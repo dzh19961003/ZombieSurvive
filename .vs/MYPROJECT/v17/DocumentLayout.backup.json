@@ -1,0 +1,116 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Dev\\my-project\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B99603BD-3045-4BD5-9FE8-5524FEFC6575}|MyProject.csproj|d:\\dev\\my-project\\scripts\\tools\\savemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99603BD-3045-4BD5-9FE8-5524FEFC6575}|MyProject.csproj|solutionrelative:scripts\\tools\\savemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B99603BD-3045-4BD5-9FE8-5524FEFC6575}|MyProject.csproj|d:\\dev\\my-project\\scripts\\tools\\configmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99603BD-3045-4BD5-9FE8-5524FEFC6575}|MyProject.csproj|solutionrelative:scripts\\tools\\configmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B99603BD-3045-4BD5-9FE8-5524FEFC6575}|MyProject.csproj|d:\\dev\\my-project\\scripts\\gamelogic\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99603BD-3045-4BD5-9FE8-5524FEFC6575}|MyProject.csproj|solutionrelative:scripts\\gamelogic\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B99603BD-3045-4BD5-9FE8-5524FEFC6575}|MyProject.csproj|d:\\dev\\my-project\\scripts\\const\\paths.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99603BD-3045-4BD5-9FE8-5524FEFC6575}|MyProject.csproj|solutionrelative:scripts\\const\\paths.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Dev\\my-project\\Scripts\\Manager\\ConfigManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Scripts\\Manager\\ConfigManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B99603BD-3045-4BD5-9FE8-5524FEFC6575}|MyProject.csproj|d:\\dev\\my-project\\scripts\\generatedclasses\\placeinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B99603BD-3045-4BD5-9FE8-5524FEFC6575}|MyProject.csproj|solutionrelative:scripts\\generatedclasses\\placeinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlayerManager.cs",
+              "DocumentMoniker": "D:\\Dev\\my-project\\Scripts\\GameLogic\\PlayerManager.cs",
+              "RelativeDocumentMoniker": "Scripts\\GameLogic\\PlayerManager.cs",
+              "ToolTip": "D:\\Dev\\my-project\\Scripts\\GameLogic\\PlayerManager.cs",
+              "RelativeToolTip": "Scripts\\GameLogic\\PlayerManager.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T14:50:46.153Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SaveManager.cs",
+              "DocumentMoniker": "D:\\Dev\\my-project\\Scripts\\Tools\\SaveManager.cs",
+              "RelativeDocumentMoniker": "Scripts\\Tools\\SaveManager.cs",
+              "ToolTip": "D:\\Dev\\my-project\\Scripts\\Tools\\SaveManager.cs",
+              "RelativeToolTip": "Scripts\\Tools\\SaveManager.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T14:47:51.885Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ConfigManager.cs",
+              "DocumentMoniker": "D:\\Dev\\my-project\\Scripts\\Tools\\ConfigManager.cs",
+              "RelativeDocumentMoniker": "Scripts\\Tools\\ConfigManager.cs",
+              "ToolTip": "D:\\Dev\\my-project\\Scripts\\Tools\\ConfigManager.cs",
+              "RelativeToolTip": "Scripts\\Tools\\ConfigManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-28T15:55:50.108Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ConfigManager.cs",
+              "DocumentMoniker": "D:\\Dev\\my-project\\Scripts\\Manager\\ConfigManager.cs",
+              "RelativeDocumentMoniker": "Scripts\\Manager\\ConfigManager.cs",
+              "ToolTip": "D:\\Dev\\my-project\\Scripts\\Manager\\ConfigManager.cs",
+              "RelativeToolTip": "Scripts\\Manager\\ConfigManager.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-28T15:52:10.226Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PlaceInfo.cs",
+              "DocumentMoniker": "D:\\Dev\\my-project\\Scripts\\GeneratedClasses\\PlaceInfo.cs",
+              "RelativeDocumentMoniker": "Scripts\\GeneratedClasses\\PlaceInfo.cs",
+              "ToolTip": "D:\\Dev\\my-project\\Scripts\\GeneratedClasses\\PlaceInfo.cs",
+              "RelativeToolTip": "Scripts\\GeneratedClasses\\PlaceInfo.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-28T15:10:55.443Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Paths.cs",
+              "DocumentMoniker": "D:\\Dev\\my-project\\Scripts\\Const\\Paths.cs",
+              "RelativeDocumentMoniker": "Scripts\\Const\\Paths.cs",
+              "ToolTip": "D:\\Dev\\my-project\\Scripts\\Const\\Paths.cs",
+              "RelativeToolTip": "Scripts\\Const\\Paths.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-28T15:10:35.035Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

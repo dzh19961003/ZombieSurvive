@@ -1,0 +1,197 @@
+[
+  {
+	"ID": 1,
+	"name": "佳邻超市",
+	"image": "image_1",
+	"difficulty": 1,
+	"weight": 0,
+	"stage": 0,
+	"eventNum": 5,
+	"enterEventID": 7,
+	"endEventID": 8,
+	"item": [
+	  1,
+	  2
+	]
+  },
+  {
+	"ID": 2,
+	"name": "绿旗连锁",
+	"image": "image_2",
+	"difficulty": 2,
+	"weight": 0,
+	"stage": 0,
+	"eventNum": 8,
+	"enterEventID": 7,
+	"endEventID": 8,
+	"item": [
+	  1,
+	  2
+	]
+  },
+  {
+	"ID": 3,
+	"name": "河马鲜生",
+	"image": "image_3",
+	"difficulty": 3,
+	"weight": 0,
+	"stage": 0,
+	"eventNum": 12,
+	"enterEventID": 7,
+	"endEventID": 8,
+	"item": [
+	  1,
+	  2
+	]
+  },
+  {
+	"ID": 4,
+	"name": "土姆超市",
+	"image": "image_4",
+	"difficulty": 4,
+	"weight": 0,
+	"stage": 0,
+	"eventNum": 18,
+	"enterEventID": 7,
+	"endEventID": 8,
+	"item": [
+	  1,
+	  2
+	]
+  },
+  {
+	"ID": 5,
+	"name": "实验小学",
+	"image": "image_5",
+	"difficulty": 1,
+	"weight": 0,
+	"stage": 0,
+	"eventNum": 5,
+	"enterEventID": 7,
+	"endEventID": 8,
+	"item": [
+	  1,
+	  2
+	]
+  },
+  {
+	"ID": 6,
+	"name": "德树中学",
+	"image": "image_6",
+	"difficulty": 2,
+	"weight": 0,
+	"stage": 0,
+	"eventNum": 8,
+	"enterEventID": 7,
+	"endEventID": 8,
+	"item": [
+	  1,
+	  2
+	]
+  },
+  {
+	"ID": 7,
+	"name": "职业学院",
+	"image": "image_7",
+	"difficulty": 3,
+	"weight": 0,
+	"stage": 0,
+	"eventNum": 12,
+	"enterEventID": 7,
+	"endEventID": 8,
+	"item": [
+	  1,
+	  2
+	]
+  },
+  {
+	"ID": 8,
+	"name": "农业大学",
+	"image": "image_8",
+	"difficulty": 5,
+	"weight": 0,
+	"stage": 0,
+	"eventNum": 25,
+	"enterEventID": 7,
+	"endEventID": 8,
+	"item": [
+	  1,
+	  2
+	]
+  },
+  {
+	"ID": 9,
+	"name": "人济堂药店",
+	"image": "image_9",
+	"difficulty": 1,
+	"weight": 0,
+	"stage": 0,
+	"eventNum": 5,
+	"enterEventID": 7,
+	"endEventID": 8,
+	"item": [
+	  1,
+	  2
+	]
+  },
+  {
+	"ID": 10,
+	"name": "好大夫诊所",
+	"image": "image_10",
+	"difficulty": 2,
+	"weight": 0,
+	"stage": 0,
+	"eventNum": 8,
+	"enterEventID": 7,
+	"endEventID": 8,
+	"item": [
+	  1,
+	  2
+	]
+  },
+  {
+	"ID": 11,
+	"name": "西华急诊部",
+	"image": "image_11",
+	"difficulty": 3,
+	"weight": 0,
+	"stage": 0,
+	"eventNum": 12,
+	"enterEventID": 7,
+	"endEventID": 8,
+	"item": [
+	  1,
+	  2
+	]
+  },
+  {
+	"ID": 12,
+	"name": "第四人民医院",
+	"image": "image_12",
+	"difficulty": 4,
+	"weight": 0,
+	"stage": 0,
+	"eventNum": 18,
+	"enterEventID": 7,
+	"endEventID": 8,
+	"item": [
+	  1,
+	  2
+	]
+  },
+  {
+	"ID": 13,
+	"name": "警察局",
+	"image": "image_13",
+	"difficulty": 3,
+	"weight": 0,
+	"stage": 0,
+	"eventNum": 15,
+	"enterEventID": 7,
+	"endEventID": 8,
+	"item": [
+	  1,
+	  2
+	]
+  }
+]
