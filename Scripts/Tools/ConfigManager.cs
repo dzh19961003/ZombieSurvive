@@ -15,7 +15,6 @@ namespace MyProject
 
         /// <summary>PlaceInfo 配置列表</summary>
         public List<PlaceInfo> placeInfoList { get; private set; }
-        /// <summary>PlaceInfo 配置字典（以 ID 为键）</summary>
         public Dictionary<int, PlaceInfo> placeInfoDic { get; private set; }
 
         public override void _Ready()

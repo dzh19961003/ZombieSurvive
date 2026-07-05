@@ -6,8 +6,8 @@ using Godot.Collections;
 //  挂在 Main.tscn 的某个节点上，负责整个游戏的存档与读档
 //
 //  核心流程（基于 Godot 分组自动发现）：
-//   1. 需要存档的脚本在 _Ready() 里 AddToGroup("Persist")
-//   2. 任何时候调用 Save() → 自动扫描 "Persist" 分组 → 合并数据 → 写 JSON
+//   1. 需要存档的脚本在 _Ready() 里 AddToGroup("Save")
+//   2. 任何时候调用 Save() → 自动扫描 "Save" 分组 → 合并数据 → 写 JSON
 //   3. 任何时候调用 Load() → 读 JSON → 自动扫描分组 → 分发给各对象
 //
 //  你完全不需要手动 Register / Unregister / 起名。
@@ -30,7 +30,7 @@ public partial class SaveManager : Node
     // ─────────────────────────────────────────────────────────
     //  用于扫描存档对象的分组名
     // ─────────────────────────────────────────────────────────
-    private const string PERSIST_GROUP = "Persist";
+    private const string SAVE_GROUP = "Save";
 
     public override void _Ready()
     {
@@ -49,14 +49,14 @@ public partial class SaveManager : Node
     // =========================================================
 
     /// <summary>
-    /// 保存游戏。自动扫描 "Persist" 分组的所有节点，
+    /// 保存游戏。自动扫描 "Save" 分组的所有节点，
     /// 收集数据，合并写入一个 JSON 文件。
     /// 返回 true 表示成功，false 表示失败。
     /// </summary>
     public bool Save()
     {
         // ---------- 1. 自动扫描分组，找到所有存档节点 ----------
-        var nodes = GetTree().GetNodesInGroup(PERSIST_GROUP);
+        var nodes = GetTree().GetNodesInGroup(SAVE_GROUP);
 
         // ---------- 2. 构建存档根结构 ----------
         var root = new Dictionary();
@@ -104,7 +104,7 @@ public partial class SaveManager : Node
     }
 
     /// <summary>
-    /// 读取存档。先检查文件是否存在，然后自动扫描 "Persist" 分组，
+    /// 读取存档。先检查文件是否存在，然后自动扫描 "Save" 分组，
     /// 把数据分发给各节点恢复状态。
     /// 返回 true 表示成功，false 表示失败（无存档或数据损坏）。
     /// </summary>
@@ -162,7 +162,7 @@ public partial class SaveManager : Node
 
         var dataBlock = root["data"].AsGodotDictionary();
 
-        var nodes = GetTree().GetNodesInGroup(PERSIST_GROUP);
+        var nodes = GetTree().GetNodesInGroup(SAVE_GROUP);
         foreach (var node in nodes)
         {
             if (node is ISaveable saveable)
