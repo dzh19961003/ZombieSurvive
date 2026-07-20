@@ -1,12 +1,23 @@
 [
   {
     "ID": 1,
-    "name": null,
+    "name": "米饭",
     "icon": null,
-    "type": null,
-    "rarity": null,
-    "effectType": null,
-    "num": null,
+    "type": 1,
+    "rarity": 1,
+    "effectType": 1,
+    "num": 1,
+    "buffID": null,
+    "equipType": null
+  },
+  {
+    "ID": 2,
+    "name": "创口贴",
+    "icon": null,
+    "type": 2,
+    "rarity": 1,
+    "effectType": 2,
+    "num": 5,
     "buffID": null,
     "equipType": null
   }
