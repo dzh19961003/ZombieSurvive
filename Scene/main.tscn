@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b6emh7o2vbhp8" path="res://Scripts/Tools/ConfigManager.cs" id="1_r34rm"]
 [ext_resource type="Script" uid="uid://byvgppxci4ga8" path="res://Scripts/Tools/SceneLoader.cs" id="2_2wwxx"]
+[ext_resource type="PackedScene" uid="uid://cvn2jkhui0xed" path="res://Scene/base.tscn" id="3_1xcnr"]
 [ext_resource type="Script" uid="uid://d0ipvuhaqbxln" path="res://Scripts/Tools/UIManager.cs" id="3_3amdw"]
 [ext_resource type="Script" uid="uid://hpb2jkjeljx8" path="res://Scripts/Tools/SaveManager.cs" id="4_2wwxx"]
 [ext_resource type="PackedScene" uid="uid://c21jmy5x2odwc" path="res://UI/MainUI.tscn" id="4_3amdw"]
@@ -17,11 +18,14 @@ script = ExtResource("1_r34rm")
 script = ExtResource("2_2wwxx")
 SceneContainer = NodePath(".")
 
+[node name="Base" parent="Manager/SceneLoader" unique_id=1002387130 instance=ExtResource("3_1xcnr")]
+
 [node name="UIManager" type="Node2D" parent="Manager" unique_id=410968795]
 script = ExtResource("3_3amdw")
 
 [node name="MainUI" parent="Manager/UIManager" unique_id=2016221161 instance=ExtResource("4_3amdw")]
-script = null
 
 [node name="SaveManager" type="Node2D" parent="Manager" unique_id=2044791399]
 script = ExtResource("4_2wwxx")
+
+[node name="GameManager" type="Node2D" parent="Manager" unique_id=1834821515]

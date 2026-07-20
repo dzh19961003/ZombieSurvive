@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://15kqr0hmpuqy"]
+
+[node name="Property" type="Control" unique_id=1276892508]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=1831418063]
+layout_mode = 0
+offset_left = 401.0
+offset_top = 320.0
+offset_right = 641.0
+offset_bottom = 392.0
+theme_override_font_sizes/font_size = 40
+text = "PropertyUI"

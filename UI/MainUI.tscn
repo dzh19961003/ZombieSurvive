@@ -1,12 +1,16 @@
 [gd_scene format=3 uid="uid://c21jmy5x2odwc"]
 
-[node name="MainUI" type="Control" unique_id=2016221161]
+[ext_resource type="Script" uid="uid://doh45edaj46ku" path="res://Scripts/UI/MainUI.cs" id="1_xv1u1"]
+
+[node name="MainUI" type="Control" unique_id=2016221161 node_paths=PackedStringArray("propertyBtn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xv1u1")
+propertyBtn = NodePath("PropertyBtn")
 
 [node name="PropertyBtn" type="Button" parent="." unique_id=1446625206]
 layout_mode = 0
