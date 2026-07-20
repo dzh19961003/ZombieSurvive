@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://byvgppxci4ga8" path="res://Scripts/Tools/SceneLoader.cs" id="2_2wwxx"]
 [ext_resource type="Script" uid="uid://d0ipvuhaqbxln" path="res://Scripts/Tools/UIManager.cs" id="3_3amdw"]
 [ext_resource type="Script" uid="uid://hpb2jkjeljx8" path="res://Scripts/Tools/SaveManager.cs" id="4_2wwxx"]
+[ext_resource type="PackedScene" uid="uid://c21jmy5x2odwc" path="res://UI/MainUI.tscn" id="4_3amdw"]
 
 [node name="Main" type="Node2D" unique_id=832478551]
 
@@ -18,6 +19,9 @@ SceneContainer = NodePath(".")
 
 [node name="UIManager" type="Node2D" parent="Manager" unique_id=410968795]
 script = ExtResource("3_3amdw")
+
+[node name="MainUI" parent="Manager/UIManager" unique_id=2016221161 instance=ExtResource("4_3amdw")]
+script = null
 
 [node name="SaveManager" type="Node2D" parent="Manager" unique_id=2044791399]
 script = ExtResource("4_2wwxx")

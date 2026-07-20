@@ -24,7 +24,7 @@ public partial class UIManager : Node
     //  ShowPanel：打开一个面板
     //
     //  用法示例：
-    //    UIManager.Instance.ShowPanel(UIPaths.Shop);
+    //    UIManager.Instance.ShowUI(Paths.Shop);
     //
     //  第一次调用时会加载场景并创建节点；
     //  之后再调用同一路径，直接显示已有节点（不重复创建）。

@@ -13,13 +13,10 @@
 public static class Paths
 {
     //UI面板路径：
-    // 示例：商店面板
-    //public const string Shop = "res://UI/ShopPanel.tscn";
-
+    public const string MainUI = "res://UI/MainUI.tscn";
 
 
     //场景路径：
-    // 示例：主面板
     //public const string Main = "res://Scene/main.tscn";
 
 
