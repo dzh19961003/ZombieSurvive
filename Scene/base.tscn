@@ -1,3 +1,16 @@
 [gd_scene format=3 uid="uid://cvn2jkhui0xed"]
 
+[ext_resource type="Texture2D" uid="uid://bga7gxjrvakkk" path="res://Assets/Images/Base/bg.png" id="1_d3q2k"]
+[ext_resource type="Texture2D" uid="uid://dh312wub7p60c" path="res://Assets/Images/Base/warehouse.png" id="2_7lj54"]
+
 [node name="Base" type="Node2D" unique_id=1002387130]
+
+[node name="Bg" type="Sprite2D" parent="." unique_id=384706903]
+scale = Vector2(1.1445271, 1.147129)
+texture = ExtResource("1_d3q2k")
+centered = false
+
+[node name="Warehouse" type="Sprite2D" parent="." unique_id=1906071549]
+position = Vector2(715.00006, 549.00006)
+scale = Vector2(0.3253359, 0.3253359)
+texture = ExtResource("2_7lj54")
