@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://15kqr0hmpuqy"]
 
+[ext_resource type="Script" uid="uid://daunwsd0fkudj" path="res://Scripts/UI/PropertyUi.cs" id="1_00jn1"]
+
 [node name="Property" type="Control" unique_id=1276892508]
 layout_mode = 3
 anchors_preset = 15
@@ -7,12 +9,50 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_00jn1")
 
-[node name="Label" type="Label" parent="." unique_id=1831418063]
+[node name="equipment" type="Label" parent="." unique_id=1831418063]
 layout_mode = 0
-offset_left = 401.0
-offset_top = 320.0
-offset_right = 641.0
-offset_bottom = 392.0
+offset_left = 135.0
+offset_top = 191.0
+offset_right = 375.0
+offset_bottom = 263.0
 theme_override_font_sizes/font_size = 40
-text = "PropertyUI"
+text = "装备  "
+
+[node name="Label" type="Label" parent="equipment" unique_id=638311636]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 108.0
+offset_right = 78.0
+offset_bottom = 164.0
+theme_override_colors/font_color = Color(0.9111089, 0.31493354, 0.5196126, 1)
+theme_override_font_sizes/font_size = 37
+text = "半饱"
+
+[node name="state" type="Label" parent="." unique_id=1048721372]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 550.0
+offset_right = 375.0
+offset_bottom = 622.0
+theme_override_font_sizes/font_size = 40
+text = "状态"
+
+[node name="trait" type="Label" parent="." unique_id=1500583798]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 948.0
+offset_right = 375.0
+offset_bottom = 1020.0
+theme_override_font_sizes/font_size = 40
+text = "特质"
+
+[node name="specialProps" type="Label" parent="." unique_id=360643319]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 1270.0
+offset_right = 373.0
+offset_bottom = 1342.0
+theme_override_font_sizes/font_size = 40
+text = "特殊道具"
