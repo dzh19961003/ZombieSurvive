@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "E:\\study\\github_projects\\ZombieSurvive\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\study\\github_projects\\ZombieSurvive\\Scripts\\UI\\PropertyUi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Scripts\\UI\\PropertyUi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\study\\github_projects\\ZombieSurvive\\Scripts\\UI\\MainUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Scripts\\UI\\MainUI.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\study\\github_projects\\ZombieSurvive\\Scripts\\UI\\PropertyUi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Scripts\\UI\\PropertyUi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\study\\github_projects\\ZombieSurvive\\Scripts\\Tools\\UIManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Scripts\\Tools\\UIManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,30 +22,41 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "UIManager.cs",
+              "DocumentMoniker": "E:\\study\\github_projects\\ZombieSurvive\\Scripts\\Tools\\UIManager.cs",
+              "RelativeDocumentMoniker": "Scripts\\Tools\\UIManager.cs",
+              "ToolTip": "E:\\study\\github_projects\\ZombieSurvive\\Scripts\\Tools\\UIManager.cs",
+              "RelativeToolTip": "Scripts\\Tools\\UIManager.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-21T04:16:32.088Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "MainUI.cs",
               "DocumentMoniker": "E:\\study\\github_projects\\ZombieSurvive\\Scripts\\UI\\MainUI.cs",
               "RelativeDocumentMoniker": "Scripts\\UI\\MainUI.cs",
               "ToolTip": "E:\\study\\github_projects\\ZombieSurvive\\Scripts\\UI\\MainUI.cs",
               "RelativeToolTip": "Scripts\\UI\\MainUI.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-20T15:57:13.988Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-20T15:57:13.988Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "PropertyUi.cs",
               "DocumentMoniker": "E:\\study\\github_projects\\ZombieSurvive\\Scripts\\UI\\PropertyUi.cs",
               "RelativeDocumentMoniker": "Scripts\\UI\\PropertyUi.cs",
               "ToolTip": "E:\\study\\github_projects\\ZombieSurvive\\Scripts\\UI\\PropertyUi.cs",
               "RelativeToolTip": "Scripts\\UI\\PropertyUi.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-07-20T15:55:04.679Z",
               "EditorCaption": ""

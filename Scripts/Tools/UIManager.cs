@@ -74,4 +74,5 @@ public partial class UIManager : Node
 			panel.Visible = false;
 		}
 	}
+	
 }
