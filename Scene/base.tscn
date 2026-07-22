@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://cvn2jkhui0xed"]
 
 [ext_resource type="Texture2D" uid="uid://bga7gxjrvakkk" path="res://Assets/Images/Base/bg.png" id="1_d3q2k"]
+[ext_resource type="Script" uid="uid://bum5t6p0d6c6j" path="res://Scripts/Furnitures/Warehouse.cs" id="2_0ce0i"]
 [ext_resource type="Texture2D" uid="uid://dh312wub7p60c" path="res://Assets/Images/Base/warehouse.png" id="2_7lj54"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hu5nu"]
+size = Vector2(336, 333)
 
 [node name="Base" type="Node2D" unique_id=1002387130]
 
@@ -10,6 +14,13 @@ scale = Vector2(1.1445271, 1.147129)
 texture = ExtResource("1_d3q2k")
 centered = false
 
-[node name="Warehouse" type="Sprite2D" parent="." unique_id=1906071549]
+[node name="Warehouse" type="Area2D" parent="." unique_id=559613430]
+script = ExtResource("2_0ce0i")
+
+[node name="Warehouse" type="Sprite2D" parent="Warehouse" unique_id=1906071549]
 position = Vector2(683, 556)
 texture = ExtResource("2_7lj54")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Warehouse" unique_id=462998327]
+position = Vector2(669, 540)
+shape = SubResource("RectangleShape2D_hu5nu")

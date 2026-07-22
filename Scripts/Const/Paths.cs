@@ -15,6 +15,7 @@ public static class Paths
     //UI面板路径：
     public const string MainUI = "res://UI/MainUI.tscn";
     public const string PropertyUI = "res://UI/PropertyUI.tscn";
+    public const string WarehouseUI = "res://UI/WarehouseUI.tscn";
 
     //场景路径：
     //public const string Main = "res://Scene/main.tscn";

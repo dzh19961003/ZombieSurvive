@@ -1,24 +1,24 @@
 [
   {
-    "ID": 1,
-    "name": "米饭",
-    "icon": null,
-    "type": 1,
-    "rarity": 1,
-    "effectType": 1,
-    "num": 1,
-    "buffID": null,
-    "equipType": null
+	"ID": 1,
+	"name": "米饭",
+	"icon": "rice_icon",
+	"type": 1,
+	"rarity": 1,
+	"effectType": 1,
+	"num": 1,
+	"buffID": null,
+	"equipType": null
   },
   {
-    "ID": 2,
-    "name": "创口贴",
-    "icon": null,
-    "type": 2,
-    "rarity": 1,
-    "effectType": 2,
-    "num": 5,
-    "buffID": null,
-    "equipType": null
+	"ID": 2,
+	"name": "创口贴",
+	"icon": "bandage_icon",
+	"type": 2,
+	"rarity": 2,
+	"effectType": 2,
+	"num": 5,
+	"buffID": null,
+	"equipType": null
   }
 ]

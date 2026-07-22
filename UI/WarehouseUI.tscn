@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://6nmspgaue8yk"]
+
+[ext_resource type="Script" uid="uid://clfjt522lih5y" path="res://Scripts/UI/WarehouseUI.cs" id="1_nevy0"]
+[ext_resource type="Texture2D" uid="uid://53n15gjv8ksp" path="res://Assets/Images/UI/popup_panel.png" id="1_oyj1m"]
+[ext_resource type="Texture2D" uid="uid://bs7gg3xn14v6b" path="res://Assets/Images/UI/close_button.png" id="2_r0rr7"]
+
+[node name="Warehouse" type="Control" unique_id=1634816914 node_paths=PackedStringArray("ItemList", "closeBtn")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nevy0")
+ItemList = NodePath("itemList")
+closeBtn = NodePath("closeBtn")
+
+[node name="bg" type="NinePatchRect" parent="." unique_id=55441412]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 392.0
+offset_right = 1030.0
+offset_bottom = 1429.0
+texture = ExtResource("1_oyj1m")
+region_rect = Rect2(-1, 1, 720, 416)
+patch_margin_left = 57
+patch_margin_top = 61
+patch_margin_right = 64
+patch_margin_bottom = 61
+
+[node name="Label" type="Label" parent="." unique_id=672004121]
+layout_mode = 0
+offset_left = 422.0
+offset_top = 486.0
+offset_right = 625.0
+offset_bottom = 553.0
+theme_override_font_sizes/font_size = 48
+text = "仓库界面"
+
+[node name="itemList" type="GridContainer" parent="." unique_id=1259200723]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 650.0
+offset_right = 954.0
+offset_bottom = 1286.0
+theme_override_constants/h_separation = 140
+theme_override_constants/v_separation = 4
+accessibility_region = true
+columns = 6
+
+[node name="closeBtn" type="Button" parent="." unique_id=2000255513]
+layout_mode = 0
+offset_left = 915.0
+offset_top = 363.0
+offset_right = 1060.0
+offset_bottom = 508.0
+icon = ExtResource("2_r0rr7")
+flat = true
+expand_icon = true
