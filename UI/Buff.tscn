@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://mnqrb3ht0w74"]
+
+[ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="1_rrns2"]
+[ext_resource type="Texture2D" uid="uid://cgo5d5n4nefk3" path="res://Assets/Images/UI/arrow_left.png" id="2_d10r5"]
+
+[node name="Buff" type="Control" unique_id=1420942808]
+custom_minimum_size = Vector2(265, 79)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1139727258]
+layout_mode = 0
+offset_right = 196.0
+offset_bottom = 79.0
+texture = ExtResource("1_rrns2")
+
+[node name="TextureRect2" type="TextureRect" parent="TextureRect" unique_id=881591601]
+layout_mode = 0
+offset_left = 232.99998
+offset_top = 14.999999
+offset_right = 309.0
+offset_bottom = 91.0
+rotation = 1.5707964
+scale = Vector2(0.62926424, 0.61784494)
+texture = ExtResource("2_d10r5")
+
+[node name="Happy" type="Label" parent="TextureRect" unique_id=153694741]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 19.0
+offset_right = 170.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 29
+text = "身心愉悦"
+horizontal_alignment = 1
+vertical_alignment = 1
