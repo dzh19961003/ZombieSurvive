@@ -12,15 +12,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nevy0")
-ItemList = NodePath("itemList")
+ItemList = NodePath("ScrollContainer/itemList")
 closeBtn = NodePath("closeBtn")
 
 [node name="bg" type="NinePatchRect" parent="." unique_id=55441412]
 layout_mode = 0
 offset_left = 21.0
-offset_top = 392.0
+offset_top = 224.0
 offset_right = 1030.0
-offset_bottom = 1429.0
+offset_bottom = 1624.0
 texture = ExtResource("1_oyj1m")
 region_rect = Rect2(-1, 1, 720, 416)
 patch_margin_left = 57
@@ -31,29 +31,35 @@ patch_margin_bottom = 61
 [node name="Label" type="Label" parent="." unique_id=672004121]
 layout_mode = 0
 offset_left = 422.0
-offset_top = 486.0
+offset_top = 318.0
 offset_right = 625.0
-offset_bottom = 553.0
+offset_bottom = 385.0
 theme_override_font_sizes/font_size = 48
 text = "仓库界面"
 
-[node name="itemList" type="GridContainer" parent="." unique_id=1259200723]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=61371309]
 layout_mode = 0
-offset_left = 100.0
-offset_top = 650.0
-offset_right = 954.0
-offset_bottom = 1286.0
-theme_override_constants/h_separation = 140
-theme_override_constants/v_separation = 4
-accessibility_region = true
+offset_left = 63.0
+offset_top = 516.0
+offset_right = 981.0
+offset_bottom = 1493.0
+follow_focus = true
+draw_focus_border = true
+
+[node name="itemList" type="GridContainer" parent="ScrollContainer" unique_id=1259200723]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
 columns = 6
 
 [node name="closeBtn" type="Button" parent="." unique_id=2000255513]
 layout_mode = 0
 offset_left = 915.0
-offset_top = 363.0
+offset_top = 195.0
 offset_right = 1060.0
-offset_bottom = 508.0
+offset_bottom = 340.0
 icon = ExtResource("2_r0rr7")
 flat = true
 expand_icon = true

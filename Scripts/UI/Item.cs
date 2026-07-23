@@ -6,7 +6,7 @@ public partial class Item : Control
 {
 	public int ID;
 
-	[Export] public Sprite2D[] Rarity;
+	[Export] public TextureRect[] Rarity;
 	[Export] public TextureButton BG;
     [Export] public TextureRect itemIcon;
 
@@ -19,11 +19,19 @@ public partial class Item : Control
 
 	public void InitialItem() 
 	{
-		if (ID!=0)
+		if (ID == 0)
+		{          
+            itemIcon.Visible = false;
+            for (int i = 0; i < Rarity.Length; i++)
+            {
+                Rarity[i].Visible = false;
+            }            
+        }
+		else
 		{
-            GD.Print(ConfigManager.Instance.itemDic[ID].Icon);
+            itemIcon.Visible = true;
             //读取物品图标
-            itemIcon.Texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/Items/" + ConfigManager.Instance.itemDic[ID].Icon+".png");
+            itemIcon.Texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/Items/" + ConfigManager.Instance.itemDic[ID].Icon + ".png");
 
             //读取稀有度
             for (int i = 0; i < Rarity.Length; i++)
@@ -31,13 +39,6 @@ public partial class Item : Control
                 Rarity[i].Visible = false;
             }
             Rarity[ConfigManager.Instance.itemDic[ID].Rarity - 1].Visible = true;
-        }
-		else
-		{
-            for (int i = 0; i < Rarity.Length; i++)
-            {
-                Rarity[i].Visible = false;
-            }
         }
 		       
     }

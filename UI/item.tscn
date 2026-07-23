@@ -10,13 +10,12 @@
 
 [node name="Item" type="Control" unique_id=1539995109 node_paths=PackedStringArray("Rarity", "BG", "itemIcon")]
 layout_mode = 3
-anchor_right = 0.12100001
-anchor_bottom = 0.068
-offset_right = 0.31999207
-offset_bottom = 0.43998718
+offset_right = 152.0
+offset_bottom = 152.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
+custom_minimum_size = Vector2(150, 150)
 script = ExtResource("1_4u0i4")
 Rarity = [NodePath("TextureButton/Rarity_1"), NodePath("TextureButton/Rarity_2"), NodePath("TextureButton/Rarity_3"), NodePath("TextureButton/Rarity_4")]
 BG = NodePath("TextureButton")
@@ -25,37 +24,52 @@ itemIcon = NodePath("TextureButton/itemIcon")
 [node name="TextureButton" type="TextureButton" parent="." unique_id=1415998938]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0380001
-anchor_bottom = 1.0380001
-offset_right = 0.021987915
-offset_bottom = 0.021987915
+offset_right = 150.0
+offset_bottom = 150.0
 texture_normal = ExtResource("1_ia6xt")
+stretch_mode = 0
 
 [node name="itemIcon" type="TextureRect" parent="TextureButton" unique_id=702115929]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 19.0
-offset_right = 112.0
-offset_bottom = 115.0
+offset_left = 13.0
+offset_top = 17.0
+offset_right = 126.0
+offset_bottom = 130.0
 texture = ExtResource("3_c6xva")
 expand_mode = 1
 
-[node name="Rarity_1" type="Sprite2D" parent="TextureButton" unique_id=937874127]
-position = Vector2(64.5, 14.599999)
+[node name="Rarity_1" type="TextureRect" parent="TextureButton" unique_id=1991707141]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 4.0
+offset_right = 241.0
+offset_bottom = 60.0
 scale = Vector2(0.45, 0.45)
 texture = ExtResource("3_m0b3i")
 
-[node name="Rarity_2" type="Sprite2D" parent="TextureButton" unique_id=1186636022]
-position = Vector2(64.5, 14.599999)
+[node name="Rarity_2" type="TextureRect" parent="TextureButton" unique_id=1495975674]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 4.0
+offset_right = 241.0
+offset_bottom = 60.0
 scale = Vector2(0.45, 0.45)
 texture = ExtResource("4_c6xva")
 
-[node name="Rarity_3" type="Sprite2D" parent="TextureButton" unique_id=818321142]
-position = Vector2(64.5, 14.599999)
+[node name="Rarity_3" type="TextureRect" parent="TextureButton" unique_id=187100480]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 4.0
+offset_right = 241.0
+offset_bottom = 60.0
 scale = Vector2(0.45, 0.45)
 texture = ExtResource("5_qpl1q")
 
-[node name="Rarity_4" type="Sprite2D" parent="TextureButton" unique_id=917548634]
-position = Vector2(64.5, 14.599999)
+[node name="Rarity_4" type="TextureRect" parent="TextureButton" unique_id=1797260126]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 4.0
+offset_right = 241.0
+offset_bottom = 60.0
 scale = Vector2(0.45, 0.45)
 texture = ExtResource("6_dcb8o")
