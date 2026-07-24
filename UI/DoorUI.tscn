@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dse7smxvddjrn"]
+
+[ext_resource type="Script" uid="uid://dtuemhogpbmt2" path="res://Scripts/UI/DoorUI.cs" id="1_7uxfa"]
+[ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="1_kxyl3"]
+[ext_resource type="Texture2D" uid="uid://bs7gg3xn14v6b" path="res://Assets/Images/UI/close_button.png" id="3_ahgvc"]
+
+[node name="DoorUI" type="Control" unique_id=1816427421 node_paths=PackedStringArray("close_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7uxfa")
+close_button = NodePath("closeBtn")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1129887287]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 64.0
+offset_right = 1026.0
+offset_bottom = 1784.0
+texture = ExtResource("1_kxyl3")
+
+[node name="Label" type="Label" parent="." unique_id=929189079]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 127.0
+offset_right = 626.0
+offset_bottom = 182.0
+theme_override_font_sizes/font_size = 40
+text = "门的界面"
+
+[node name="closeBtn" type="Button" parent="." unique_id=200594329]
+layout_mode = 0
+offset_left = 922.0
+offset_top = 23.0
+offset_right = 1002.0
+offset_bottom = 103.0
+scale = Vector2(1.64, 1.5600003)
+icon = ExtResource("3_ahgvc")

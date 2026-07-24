@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://qdlmdi5kvult"]
+
+[ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="1_e4lrc"]
+[ext_resource type="Script" uid="uid://x8pq3or5i6ci" path="res://Scripts/UI/WorkstationUI.cs" id="1_sivno"]
+[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="2_pol8l"]
+[ext_resource type="Texture2D" uid="uid://bs7gg3xn14v6b" path="res://Assets/Images/UI/close_button.png" id="4_wl7na"]
+
+[node name="WorkstationUI" type="Control" unique_id=541979178 node_paths=PackedStringArray("closeBtn")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sivno")
+closeBtn = NodePath("closeBtn")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1348429344]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 107.0
+offset_right = 996.0
+offset_bottom = 1812.0
+texture = ExtResource("1_e4lrc")
+region_rect = Rect2(0, 0, 980, 1720)
+
+[node name="workbench" type="GridContainer" parent="NinePatchRect" unique_id=1538182408]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 219.0
+offset_right = 489.0
+offset_bottom = 635.0
+columns = 3
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/workbench" unique_id=6887677]
+layout_mode = 2
+texture = ExtResource("2_pol8l")
+
+[node name="TextureRect2" type="TextureRect" parent="NinePatchRect/workbench" unique_id=1611014896]
+layout_mode = 2
+texture = ExtResource("2_pol8l")
+
+[node name="TextureRect3" type="TextureRect" parent="NinePatchRect/workbench" unique_id=2118690136]
+layout_mode = 2
+texture = ExtResource("2_pol8l")
+
+[node name="TextureRect4" type="TextureRect" parent="NinePatchRect/workbench" unique_id=1201772240]
+layout_mode = 2
+texture = ExtResource("2_pol8l")
+
+[node name="TextureRect5" type="TextureRect" parent="NinePatchRect/workbench" unique_id=532604413]
+layout_mode = 2
+texture = ExtResource("2_pol8l")
+
+[node name="TextureRect6" type="TextureRect" parent="NinePatchRect/workbench" unique_id=1294386275]
+layout_mode = 2
+texture = ExtResource("2_pol8l")
+
+[node name="TextureRect7" type="TextureRect" parent="NinePatchRect/workbench" unique_id=690014987]
+layout_mode = 2
+texture = ExtResource("2_pol8l")
+
+[node name="TextureRect8" type="TextureRect" parent="NinePatchRect/workbench" unique_id=1489950311]
+layout_mode = 2
+texture = ExtResource("2_pol8l")
+
+[node name="TextureRect9" type="TextureRect" parent="NinePatchRect/workbench" unique_id=121275950]
+layout_mode = 2
+texture = ExtResource("2_pol8l")
+
+[node name="ItemList" type="ItemList" parent="NinePatchRect" unique_id=257008543]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 776.0
+offset_right = 854.0
+offset_bottom = 1391.0
+item_count = 1
+
+[node name="Label" type="Label" parent="NinePatchRect" unique_id=1707353200]
+layout_mode = 0
+offset_left = 366.0
+offset_top = 59.0
+offset_right = 566.0
+offset_bottom = 114.0
+theme_override_font_sizes/font_size = 40
+text = "工作台界面"
+
+[node name="product" type="TextureRect" parent="NinePatchRect" unique_id=1101520846]
+layout_mode = 0
+offset_left = 638.0
+offset_top = 349.0
+offset_right = 774.0
+offset_bottom = 485.0
+texture = ExtResource("2_pol8l")
+
+[node name="closeBtn" type="Button" parent="." unique_id=1721774359]
+layout_mode = 0
+offset_left = 897.0
+offset_top = 59.0
+offset_right = 1042.0
+offset_bottom = 204.0
+icon = ExtResource("4_wl7na")
+flat = true
+expand_icon = true
