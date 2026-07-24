@@ -3,8 +3,10 @@
 [ext_resource type="Script" uid="uid://clfjt522lih5y" path="res://Scripts/UI/WarehouseUI.cs" id="1_nevy0"]
 [ext_resource type="Texture2D" uid="uid://53n15gjv8ksp" path="res://Assets/Images/UI/popup_panel.png" id="1_oyj1m"]
 [ext_resource type="Texture2D" uid="uid://bs7gg3xn14v6b" path="res://Assets/Images/UI/close_button.png" id="2_r0rr7"]
+[ext_resource type="Texture2D" uid="uid://cwqay0vk7x016" path="res://Assets/Images/UI/tab_inactive.png" id="4_2b0ju"]
+[ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="5_t5eni"]
 
-[node name="Warehouse" type="Control" unique_id=1634816914 node_paths=PackedStringArray("ItemList", "closeBtn")]
+[node name="Warehouse" type="Control" unique_id=1634816914 node_paths=PackedStringArray("ItemList", "closeBtn", "tabButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +16,7 @@ grow_vertical = 2
 script = ExtResource("1_nevy0")
 ItemList = NodePath("ScrollContainer/itemList")
 closeBtn = NodePath("closeBtn")
+tabButton = []
 
 [node name="bg" type="NinePatchRect" parent="." unique_id=55441412]
 layout_mode = 0
@@ -63,3 +66,108 @@ offset_bottom = 340.0
 icon = ExtResource("2_r0rr7")
 flat = true
 expand_icon = true
+
+[node name="AllBtn" type="TextureButton" parent="." unique_id=428616660]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 439.0
+offset_right = 253.63885
+offset_bottom = 512.0
+texture_normal = ExtResource("4_2b0ju")
+texture_pressed = ExtResource("5_t5eni")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="AllBtn" unique_id=1807112969]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 14.0
+offset_right = 147.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 32
+text = "全部"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FoodBtn" type="TextureButton" parent="." unique_id=2055870386]
+layout_mode = 0
+offset_left = 245.0
+offset_top = 439.0
+offset_right = 437.63885
+offset_bottom = 512.0
+texture_normal = ExtResource("4_2b0ju")
+texture_pressed = ExtResource("5_t5eni")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="FoodBtn" unique_id=221438928]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 14.0
+offset_right = 147.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 32
+text = "食物"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MedicBtn" type="TextureButton" parent="." unique_id=309946957]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 439.0
+offset_right = 622.63885
+offset_bottom = 512.0
+texture_normal = ExtResource("4_2b0ju")
+texture_pressed = ExtResource("5_t5eni")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MedicBtn" unique_id=1539690880]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 14.0
+offset_right = 147.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 32
+text = "药品"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EquipBtn" type="TextureButton" parent="." unique_id=754796123]
+layout_mode = 0
+offset_left = 613.0
+offset_top = 439.0
+offset_right = 805.63885
+offset_bottom = 512.0
+texture_normal = ExtResource("4_2b0ju")
+texture_pressed = ExtResource("5_t5eni")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="EquipBtn" unique_id=1885384263]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 14.0
+offset_right = 147.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 32
+text = "装备"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MaterialBtn" type="TextureButton" parent="." unique_id=625322058]
+layout_mode = 0
+offset_left = 799.0
+offset_top = 439.0
+offset_right = 991.6389
+offset_bottom = 512.0
+texture_normal = ExtResource("4_2b0ju")
+texture_pressed = ExtResource("5_t5eni")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MaterialBtn" unique_id=1266706163]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 14.0
+offset_right = 147.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 32
+text = "材料"
+horizontal_alignment = 1
+vertical_alignment = 1

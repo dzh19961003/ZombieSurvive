@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://d0ipvuhaqbxln" path="res://Scripts/Tools/UIManager.cs" id="3_3amdw"]
 [ext_resource type="Script" uid="uid://hpb2jkjeljx8" path="res://Scripts/Tools/SaveManager.cs" id="4_2wwxx"]
 [ext_resource type="PackedScene" uid="uid://c21jmy5x2odwc" path="res://UI/MainUI.tscn" id="4_3amdw"]
+[ext_resource type="Script" uid="uid://hvq4dgahu7vl" path="res://Scripts/GameLogic/PlayerManager.cs" id="7_ow1sv"]
 
 [node name="Main" type="Node2D" unique_id=832478551]
 
@@ -29,3 +30,6 @@ script = ExtResource("3_3amdw")
 script = ExtResource("4_2wwxx")
 
 [node name="GameManager" type="Node2D" parent="Manager" unique_id=1834821515]
+
+[node name="Player" type="Node2D" parent="Manager" unique_id=834292925]
+script = ExtResource("7_ow1sv")

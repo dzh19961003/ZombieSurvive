@@ -5,58 +5,63 @@
 //   1. 实现 ISaveable 接口
 //   2. 在 _Ready() 里 AddToGroup("Persist")
 //   3. 写 GetSaveData() 和 LoadSaveData()
-//  不用 Register、不用 Unregister、不用手动起名。
 // ============================================================
 
 using Godot;
 using Godot.Collections;
+using MyProject;
+using System.Collections.Generic;
 
 public partial class PlayerManager : Node, ISaveable
 {
-    // ─────────────────────────────────────────────────────────
-    //  SaveKey：直接用节点路径作为唯一标识
-    //  比如 "/root/Main/PlayerManager"，完全不用动脑
-    // ─────────────────────────────────────────────────────────
+    public static PlayerManager Instance { get; private set; }
     public string SaveKey => GetPath();
 
-    // ─────────────────────────────────────────────────────────
-    //  玩家数据
-    // ─────────────────────────────────────────────────────────
-    private int _hp = 100;
-    private int _gold = 0;
-    private int _level = 1;
 
+    private int HP = 100;
+    private int maxHP = 100;
+
+
+    private Array<int> ItemArray=new Array<int>() { 2,3};
+
+    public void GetItem(int id) 
+    {
+        
+    }
+    //获得天赋：ID
+    //获得状态：ID
+
+    #region 存档相关
     public override void _Ready()
     {
-        // 加入分组就完事了，SaveManager 会自动发现你
-        AddToGroup("Persist");
+        if (Instance != null)
+        {
+            GD.PrintErr("[PlayerManager] 单例已存在，重复创建！");
+            QueueFree();
+            return;
+        }
+        Instance = this;
+
+        AddToGroup("Save");
         SaveManager.Instance.Save();
         SaveManager.Instance.Load();
     }
-
-    // ─────────────────────────────────────────────────────────
-    //  GetSaveData：打包当前数据
-    // ─────────────────────────────────────────────────────────
     public Dictionary GetSaveData()
     {
         return new Dictionary
         {
-            { "hp",    _hp    },
-            { "gold",  _gold  },
-            { "level", _level },
+            { "hp", HP},
+            { "maxHP",maxHP},
+            { "ItemArray", ItemArray},
         };
     }
-
-    // ─────────────────────────────────────────────────────────
-    //  LoadSaveData：从存档恢复数据
-    //  用 ContainsKey 判断 + 默认值兜底，一行一个字段
-    // ─────────────────────────────────────────────────────────
     public void LoadSaveData(Dictionary data)
     {
-        _hp    = data.ContainsKey("hp")    ? (int)data["hp"]    : 100;
-        _gold  = data.ContainsKey("gold")  ? (int)data["gold"]  : 0;
-        _level = data.ContainsKey("level") ? (int)data["level"] : 1;
+        HP = data.ContainsKey("hp")    ? (int)data["hp"]    : 100;
+        maxHP = data.ContainsKey("maxHP")  ? (int)data["maxHP"]  : 100;
+        ItemArray = data.ContainsKey("ItemArray") ? (Array<int>)data["ItemArray"] : new Array<int>{1,2};
 
-        GD.Print($"[PlayerManager] 数据恢复完成：HP={_hp}, Gold={_gold}, Level={_level}");
+        GD.Print($"[PlayerManager] 数据恢复完成：HP={HP}, maxHP={maxHP}, ItemArray={ItemArray}");
     }
+    #endregion
 }

@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using MyProject;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ public partial class WarehouseUI : Control
 {
 	[Export] public GridContainer ItemList;
 	[Export] public Button closeBtn;
+    [Export] public TextureButton[] tabButton;
 
     private List<int> ItemID = new List<int>();
 
@@ -15,9 +17,17 @@ public partial class WarehouseUI : Control
     // 最少显示的格子数量，铺满至少一整屏
     private int minNum = 42;
 
+    private int buttonIndex = 1;
+
+
     public override void _Ready()
 	{
 		closeBtn.Pressed += () => UIManager.Instance.HideUI(Paths.WarehouseUI);
+        //for (int i = 0; i < tabButton.Length; i++)
+        //{
+        //    int index = i; 
+        //    tabButton[i].Pressed += () => SwitchBtn(index);
+        //}
 
         //测试用，先手动添加ID为1、2的物品
         ItemID.Add(1);
@@ -131,5 +141,10 @@ public partial class WarehouseUI : Control
         // 这样 ScrollContainer 才能根据 GridContainer 的实际内容高度来设置滚动范围。
         // 不调用的话，ScrollContainer 可能拿到的还是旧的最小尺寸，导致无法滚到底部。
         ItemList.UpdateMinimumSize();
+    }
+
+    public void LoadSaveData(Dictionary data)
+    {
+        
     }
 }
