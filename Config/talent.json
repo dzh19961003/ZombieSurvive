@@ -3,12 +3,14 @@
     "ID": 1,
     "name": "力大无穷",
     "positive": 1,
-    "effect": "强健+3"
+    "effect": "强健+3",
+    "rarity": 2
   },
   {
     "ID": 2,
     "name": "瘦弱",
     "positive": 0,
-    "effect": "强健-3"
+    "effect": "强健-3",
+    "rarity": 1
   }
 ]

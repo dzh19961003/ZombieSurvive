@@ -20,5 +20,8 @@ namespace MyProject
 
         /// <summary>原始字段: effect</summary>
         public string Effect { get; set; }
+
+        /// <summary>原始字段: rarity</summary>
+        public int Rarity { get; set; }
     }
 }
