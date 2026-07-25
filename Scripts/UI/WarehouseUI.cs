@@ -40,14 +40,6 @@ public partial class WarehouseUI : Control
         SpawnItemList(ItemID,0);
     }
 
-	public override void _Process(double delta)
-	{
-	}
-
-    /// <summary>
-    /// 根据物品ID列表，在 GridContainer 中生成物品格子。
-    /// 不足 minNum 时补空格子；超过时按 gridLength 取余补齐最后一行。
-    /// </summary>
     private void SpawnItemList(List<int> AllItemList,int type)
     {
         List<int> itemList = GetSortedItemID(AllItemList);
@@ -164,14 +156,15 @@ public partial class WarehouseUI : Control
         
     }
 
+    //按照类型、稀有度、ID的顺序排行
     public List<int> GetSortedItemID(List<int> itemList)
     {
         List<int> sortedList = itemList;
 
         return sortedList
             .OrderBy(id => ConfigManager.Instance.itemDic[id].Type)
-            .ThenBy(id => ConfigManager.Instance.itemDic[id].Rarity)
-            .ThenBy(id => id)  // 最后按ID排序
+            .ThenByDescending(id => ConfigManager.Instance.itemDic[id].Rarity)
+            .ThenBy(id => id)  
             .ToList();
     }
 }

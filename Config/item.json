@@ -7,7 +7,7 @@
 	"rarity": 1,
 	"effectType": 1,
 	"num": 1,
-	"buffID": null,
+	"buffID": 1,
 	"equipType": null
   },
   {
@@ -18,7 +18,7 @@
 	"rarity": 2,
 	"effectType": 2,
 	"num": 5,
-	"buffID": null,
+	"buffID": 2,
 	"equipType": null
   },
   {
@@ -26,10 +26,10 @@
 	"name": "可乐",
 	"icon": "cola_icon",
 	"type": 1,
-	"rarity": 1,
+	"rarity": 3,
 	"effectType": 1,
 	"num": 1,
-	"buffID": null,
+	"buffID": 0,
 	"equipType": null
   }
 ]

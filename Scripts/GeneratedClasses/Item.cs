@@ -31,7 +31,7 @@ namespace MyProject
         public int Num { get; set; }
 
         /// <summary>原始字段: buffID</summary>
-        public object BuffID { get; set; }
+        public int BuffID { get; set; }
 
         /// <summary>原始字段: equipType</summary>
         public object EquipType { get; set; }

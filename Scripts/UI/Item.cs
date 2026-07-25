@@ -1,6 +1,8 @@
 using Godot;
+using Godot.Collections;
 using MyProject;
 using System;
+using System.Diagnostics;
 
 public partial class Item : Control
 {
@@ -11,7 +13,6 @@ public partial class Item : Control
 	[Export] public TextureButton BG;
     [Export] public TextureRect itemIcon;
     [Export] public Label numLabel;
-
 
     public override void _Ready()
 	{
@@ -48,6 +49,62 @@ public partial class Item : Control
     }
 	private void OnItemClick()
 	{
-		
-	}
+        switch (ConfigManager.Instance.itemDic[ID].Type)
+        {
+            case 1:
+                DetailsFood foodTips= (DetailsFood)UIManager.Instance.ShowUI("res://UI/DetailsTag/DetailsFood.tscn");
+                foodTips.InitialTips(ID);
+                SetSpwanPosition(foodTips);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void SetSpwanPosition(Control control) 
+    {
+
+        Vector2 itemGlobalPos = this.GlobalPosition;    
+        
+        float itemRight = itemGlobalPos.X + Size.X;  
+        float itemTop = itemGlobalPos.Y; 
+
+
+        Vector2 controlSize = control.Size;
+        if (controlSize == Vector2.Zero) 
+        { 
+            controlSize = new Vector2(400, 500);
+        }
+            
+
+        float controlX, controlY;
+
+        // 屏幕宽度
+        float screenWidth = GetViewport().GetVisibleRect().Size.X;
+
+        // 右侧放得下
+        if (itemRight + controlSize.X <= screenWidth)
+        {
+            controlX = itemRight;
+        }
+        //放不下
+        else
+        {
+            controlX = itemGlobalPos.X - controlSize.X;
+        }
+
+        // 竖直方向：
+        controlY = itemTop;
+        if (controlY < 0)
+        { 
+            controlY = 0;
+        } 
+        if (controlY + controlSize.Y > GetViewport().GetVisibleRect().Size.Y)
+        { 
+            controlY = GetViewport().GetVisibleRect().Size.Y - controlSize.Y;
+        }
+
+        // 4) 赋值
+        control.Position = new Vector2(controlX, controlY);
+    }
 }
