@@ -33,7 +33,7 @@ namespace MyProject
         /// <summary>原始字段: buffID</summary>
         public int BuffID { get; set; }
 
-        /// <summary>原始字段: equipType</summary>
-        public object EquipType { get; set; }
+        /// <summary>原始字段: equipID</summary>
+        public int EquipID { get; set; }
     }
 }

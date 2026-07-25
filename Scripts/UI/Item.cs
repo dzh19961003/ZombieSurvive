@@ -49,18 +49,41 @@ public partial class Item : Control
     }
 	private void OnItemClick()
 	{
+        if (ID==0)
+        {
+            return;
+        }
         switch (ConfigManager.Instance.itemDic[ID].Type)
         {
             case 1:
-                DetailsFood foodTips= (DetailsFood)UIManager.Instance.ShowUI("res://UI/DetailsTag/DetailsFood.tscn");
+                DetailsFood foodTips = (DetailsFood)UIManager.Instance.ShowUI("res://UI/DetailsTag/DetailsFood.tscn");
                 foodTips.InitialTips(ID);
                 SetSpwanPosition(foodTips);
                 break;
+            case 2:
+                DetailsFood medicTips = (DetailsFood)UIManager.Instance.ShowUI("res://UI/DetailsTag/DetailsMedic.tscn");
+                medicTips.InitialTips(ID);
+                SetSpwanPosition(medicTips);
+                break;
+            case 3:
+                switch (ConfigManager.Instance.itemDic[ID].EquipID)
+                {
+                    case 1:
+                        DetailsWeapon weaponTips=(DetailsWeapon)UIManager.Instance.ShowUI("res://UI/DetailsTag/DetailsWeapon.tscn");
+                        weaponTips.InitialTips(ID);
+                        SetSpwanPosition(weaponTips);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+
             default:
                 break;
         }
     }
 
+    //设置标签位置的方法
     private void SetSpwanPosition(Control control) 
     {
 

@@ -1,1 +1,44 @@
-[]
+[
+  {
+    "ID": 1,
+    "name": "水果刀",
+    "type": 1,
+    "damage": 4.8,
+    "defence": 0,
+    "strongAdd": 0.1,
+    "speedAdd": 0.2,
+    "brainAdd": 0,
+    "effectDes": "攻击四肢概率+20%",
+    "hasState": 0,
+    "effectType": null,
+    "effectNum": null
+  },
+  {
+    "ID": 2,
+    "name": "牛仔外套",
+    "type": 2,
+    "damage": 0,
+    "defence": 20,
+    "strongAdd": 0.2,
+    "speedAdd": 0.3,
+    "brainAdd": 0,
+    "effectDes": "攻击四肢时，回复1点护甲",
+    "hasState": 0,
+    "effectType": null,
+    "effectNum": null
+  },
+  {
+    "ID": 3,
+    "name": "宁李跑鞋",
+    "type": 3,
+    "damage": 0,
+    "defence": 8,
+    "strongAdd": 0,
+    "speedAdd": 0.3,
+    "brainAdd": 0,
+    "effectDes": "攻击四肢时，回合条+10%",
+    "hasState": 0,
+    "effectType": null,
+    "effectNum": null
+  }
+]

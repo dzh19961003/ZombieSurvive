@@ -13,6 +13,11 @@ namespace MyProject
     {
         public static ConfigManager Instance { get; private set; }
 
+        /// <summary>Equip 配置列表</summary>
+        public List<Equip> equipList { get; private set; }
+        /// <summary>Equip 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, Equip> equipDic { get; private set; }
+
         /// <summary>Item 配置列表</summary>
         public List<Item> itemList { get; private set; }
         /// <summary>Item 配置字典（以 ID 为键）</summary>
@@ -43,6 +48,10 @@ namespace MyProject
             }
 
             Instance = this;
+
+            equipList = JsonLoader.LoadToList<Equip>("equip");
+            equipDic = JsonLoader.LoadToDic<Equip>("equip");
+            GD.Print("[ConfigManager] Equip loaded: List=" + (equipList?.Count ?? 0) + ", Dic=" + (equipDic?.Count ?? 0));
 
             itemList = JsonLoader.LoadToList<Item>("item");
             itemDic = JsonLoader.LoadToDic<Item>("item");

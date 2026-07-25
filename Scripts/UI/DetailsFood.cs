@@ -18,7 +18,7 @@ public partial class DetailsFood : Control
     private State state;
     public override void _Ready()
 	{
-        BG.Pressed += () => UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsFood.tscn");
+        BG.Pressed += () => { UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsFood.tscn"); UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsMedic.tscn"); };
     }
 
 	public void InitialTips(int ID) 
@@ -46,11 +46,11 @@ public partial class DetailsFood : Control
             //更改状态字体颜色
             if (state.Positive == 0)
             {
-                AddThemeColorOverride(stateNameLabel.Name, Colors.Red);
+                stateNameLabel.AddThemeColorOverride("font_color", Colors.Red);
             }
             else
             {
-                AddThemeColorOverride(stateNameLabel.Name, Colors.Green);
+                stateNameLabel.AddThemeColorOverride("font_color", Colors.Green);
             }
             StateTips tips = stateTips as StateTips;
             tips.Initail(state.ID);

@@ -1,14 +1,14 @@
-[gd_scene format=3 uid="uid://bvfemaxhsu6gn"]
+[gd_scene format=3 uid="uid://cmhbpei4dq0ar"]
 
-[ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="1_7ogu5"]
-[ext_resource type="Script" uid="uid://jl5jw021vv1o" path="res://Scripts/UI/DetailsFood.cs" id="1_8luu2"]
-[ext_resource type="Texture2D" uid="uid://c5kp62gpikm3m" path="res://Assets/Images/Items/rice_icon.png" id="2_8qnwx"]
-[ext_resource type="Texture2D" uid="uid://c54mcv34ik4pe" path="res://Assets/Images/UI/button_prompt.png" id="3_524xd"]
-[ext_resource type="Texture2D" uid="uid://dmsp4tv0xocxa" path="res://Assets/Images/UI/rarity_green.png" id="3_jnlsd"]
-[ext_resource type="Texture2D" uid="uid://rmjmivhdjuc6" path="res://Assets/Images/UI/rarity_blue.png" id="4_5pbwx"]
-[ext_resource type="PackedScene" uid="uid://d0vboa0gmoyru" path="res://UI/DetailsTag/StateTips.tscn" id="4_e2ejl"]
-[ext_resource type="Texture2D" uid="uid://cqpcu7ik6fr4y" path="res://Assets/Images/UI/rarity_purple.png" id="5_ubgwb"]
-[ext_resource type="Texture2D" uid="uid://dmujn2n7t1dig" path="res://Assets/Images/UI/rarity_orange.png" id="6_0d44x"]
+[ext_resource type="Script" uid="uid://jl5jw021vv1o" path="res://Scripts/UI/DetailsFood.cs" id="1_4psy7"]
+[ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="2_vo16y"]
+[ext_resource type="Texture2D" uid="uid://dmsp4tv0xocxa" path="res://Assets/Images/UI/rarity_green.png" id="3_np85c"]
+[ext_resource type="Texture2D" uid="uid://rmjmivhdjuc6" path="res://Assets/Images/UI/rarity_blue.png" id="4_50iv4"]
+[ext_resource type="Texture2D" uid="uid://cqpcu7ik6fr4y" path="res://Assets/Images/UI/rarity_purple.png" id="5_7rxoo"]
+[ext_resource type="Texture2D" uid="uid://dmujn2n7t1dig" path="res://Assets/Images/UI/rarity_orange.png" id="6_88ibo"]
+[ext_resource type="Texture2D" uid="uid://b2l7to85rkjl" path="res://Assets/Images/UI/heart_icon.png" id="7_4psy7"]
+[ext_resource type="Texture2D" uid="uid://c54mcv34ik4pe" path="res://Assets/Images/UI/button_prompt.png" id="8_uk3we"]
+[ext_resource type="PackedScene" uid="uid://d0vboa0gmoyru" path="res://UI/DetailsTag/StateTips.tscn" id="9_aswn4"]
 
 [node name="DetailsFood" type="Control" unique_id=1879187992 node_paths=PackedStringArray("nameLable", "numLabel", "stateLabel", "stateNameLabel", "noStateLabel", "stateTips", "BG", "Rarity")]
 layout_mode = 3
@@ -17,7 +17,7 @@ offset_right = 384.0
 offset_bottom = 703.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_8luu2")
+script = ExtResource("1_4psy7")
 nameLable = NodePath("Name")
 numLabel = NodePath("Num")
 stateLabel = NodePath("state")
@@ -40,7 +40,7 @@ flat = true
 layout_mode = 0
 offset_right = 379.0
 offset_bottom = 471.02057
-texture = ExtResource("1_7ogu5")
+texture = ExtResource("2_vo16y")
 region_rect = Rect2(0, 0, 980, 1720)
 patch_margin_left = 101
 patch_margin_top = 101
@@ -54,7 +54,7 @@ offset_top = 22.0
 offset_right = 765.13495
 offset_bottom = 210.88889
 scale = Vector2(0.45, 0.45)
-texture = ExtResource("3_jnlsd")
+texture = ExtResource("3_np85c")
 
 [node name="Rarity_2" type="TextureRect" parent="." unique_id=1989387335]
 layout_mode = 0
@@ -63,7 +63,7 @@ offset_top = 22.0
 offset_right = 765.13495
 offset_bottom = 210.88889
 scale = Vector2(0.45, 0.45)
-texture = ExtResource("4_5pbwx")
+texture = ExtResource("4_50iv4")
 
 [node name="Rarity_3" type="TextureRect" parent="." unique_id=1997742881]
 layout_mode = 0
@@ -72,7 +72,7 @@ offset_top = 22.0
 offset_right = 765.13495
 offset_bottom = 210.88889
 scale = Vector2(0.45, 0.45)
-texture = ExtResource("5_ubgwb")
+texture = ExtResource("5_7rxoo")
 
 [node name="Rarity_4" type="TextureRect" parent="." unique_id=860127637]
 layout_mode = 0
@@ -81,7 +81,7 @@ offset_top = 22.0
 offset_right = 765.13495
 offset_bottom = 210.88889
 scale = Vector2(0.45, 0.45)
-texture = ExtResource("6_0d44x")
+texture = ExtResource("6_88ibo")
 
 [node name="Name" type="Label" parent="." unique_id=47269188]
 layout_mode = 0
@@ -96,10 +96,10 @@ vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="." unique_id=2054554623]
 layout_mode = 0
-offset_left = 195.0
-offset_top = 147.0
-offset_right = 223.0
-offset_bottom = 205.0
+offset_left = 183.0
+offset_top = 146.0
+offset_right = 211.0
+offset_bottom = 204.0
 theme_override_font_sizes/font_size = 42
 text = "+"
 horizontal_alignment = 1
@@ -107,27 +107,27 @@ vertical_alignment = 1
 
 [node name="Num" type="Label" parent="." unique_id=1738823794]
 layout_mode = 0
-offset_left = 214.0
+offset_left = 203.0
 offset_top = 142.0
-offset_right = 264.0
+offset_right = 290.0
 offset_bottom = 209.0
 theme_override_colors/font_color = Color(0.3254902, 1, 0.05882353, 1)
 theme_override_font_sizes/font_size = 48
-text = "2"
+text = "15"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RiceIcon" type="Sprite2D" parent="." unique_id=1699342010]
-position = Vector2(145, 172)
-scale = Vector2(0.73437494, 0.73437494)
-texture = ExtResource("2_8qnwx")
+position = Vector2(137, 177)
+scale = Vector2(0.9999999, 0.9999999)
+texture = ExtResource("7_4psy7")
 
 [node name="state" type="Label" parent="." unique_id=1774318255]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 248.0
-offset_right = 201.0
-offset_bottom = 293.0
+offset_left = 66.0
+offset_top = 250.0
+offset_right = 203.0
+offset_bottom = 295.0
 theme_override_font_sizes/font_size = 32
 text = "获得状态:"
 horizontal_alignment = 1
@@ -135,10 +135,10 @@ vertical_alignment = 1
 
 [node name="stateID" type="Label" parent="." unique_id=239603367]
 layout_mode = 0
-offset_left = 212.0
-offset_top = 248.0
-offset_right = 340.0
-offset_bottom = 293.0
+offset_left = 214.0
+offset_top = 250.0
+offset_right = 342.0
+offset_bottom = 295.0
 theme_override_colors/font_color = Color(0.3254902, 1, 0.05882353, 1)
 theme_override_font_sizes/font_size = 32
 text = "好吃吃"
@@ -162,7 +162,7 @@ offset_left = 77.0
 offset_top = 354.0
 offset_right = 296.99997
 offset_bottom = 430.0
-texture_normal = ExtResource("3_524xd")
+texture_normal = ExtResource("8_uk3we")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -177,7 +177,7 @@ text = "使用"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StateTips" parent="." unique_id=571347170 instance=ExtResource("4_e2ejl")]
+[node name="StateTips" parent="." unique_id=571347170 instance=ExtResource("9_aswn4")]
 layout_mode = 1
 anchors_preset = 0
 anchor_right = 0.0

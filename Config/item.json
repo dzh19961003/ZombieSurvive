@@ -8,7 +8,7 @@
 	"effectType": 1,
 	"num": 1,
 	"buffID": 1,
-	"equipType": null
+	"equipID": 0
   },
   {
 	"ID": 2,
@@ -19,7 +19,7 @@
 	"effectType": 2,
 	"num": 5,
 	"buffID": 2,
-	"equipType": null
+	"equipID": 0
   },
   {
 	"ID": 3,
@@ -30,6 +30,39 @@
 	"effectType": 1,
 	"num": 1,
 	"buffID": 0,
-	"equipType": null
+	"equipID": 0
+  },
+  {
+	"ID": 4,
+	"name": "水果刀",
+	"icon": "knife1_icon",
+	"type": 3,
+	"rarity": 1,
+	"effectType": 0,
+	"num": 0,
+	"buffID": 0,
+	"equipID": 1
+  },
+  {
+	"ID": 5,
+	"name": "牛仔外套",
+	"icon": "jacket1_icon",
+	"type": 3,
+	"rarity": 2,
+	"effectType": 0,
+	"num": 0,
+	"buffID": 0,
+	"equipID": 2
+  },
+  {
+	"ID": 6,
+	"name": "宁李跑鞋",
+	"icon": "shoes1_icon",
+	"type": 3,
+	"rarity": 3,
+	"effectType": 0,
+	"num": 0,
+	"buffID": 0,
+	"equipID": 3
   }
 ]

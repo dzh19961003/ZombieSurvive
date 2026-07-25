@@ -14,11 +14,11 @@ public partial class StateTips : Control
 		nameLabel.Text = ConfigManager.Instance.stateDic[ID].Name;
         if (ConfigManager.Instance.stateDic[ID].Positive == 0)
         {
-            AddThemeColorOverride(nameLabel.Name, Colors.Red);
+            nameLabel.AddThemeColorOverride("font_color", Colors.Red);
         }
         else
         {
-            AddThemeColorOverride(nameLabel.Name, Colors.Green);
+            nameLabel.AddThemeColorOverride("font_color", Colors.Green);
         }
         desLabel.Text = ConfigManager.Instance.stateDic[ID].Effect;
     }

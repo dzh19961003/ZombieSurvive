@@ -34,6 +34,7 @@ public partial class WarehouseUI : Control
         ItemDic.Add(1, 15);
         ItemDic.Add(2, 18);
         ItemDic.Add(3, 16);
+        ItemDic.Add(4, 1);
 
         ItemID = ItemDic.Keys.ToList<int>();
 
