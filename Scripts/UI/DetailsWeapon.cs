@@ -16,14 +16,15 @@ public partial class DetailsWeapon : Control
     [Export] public Label noEffectLabel;
     [Export] public Control stateTips;
     [Export] public Button BG;
+    [Export] public TextureRect typeIcon;
 
     public override void _Ready()
 	{
-        BG.Pressed += () => UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsWeapon.tscn");
+        BG.Pressed += () => { UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsWeapon.tscn"); UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsArmer.tscn"); };
     }
-    public void InitialTips(int ID) 
+    public void InitialTips(int ID)
     {
-        
+
         //获取装备ID
         int equipID = ConfigManager.Instance.itemDic[ID].EquipID;
 
@@ -43,7 +44,7 @@ public partial class DetailsWeapon : Control
 
         //文本赋值
         nameLable.Text = equip.Name;
-        if (ConfigManager.Instance.equipDic[equipID].EffectDes!="")
+        if (ConfigManager.Instance.equipDic[equipID].EffectDes != "")
         {
             effectLabel.Text = equip.EffectDes;
         }
@@ -52,12 +53,25 @@ public partial class DetailsWeapon : Control
             noEffectLabel.Visible = true;
             effectLabel.Visible = false;
         }
-        baseDamageLable.Text = equip.Damage.ToString();
+
+        if (equip.Type == 1)
+        {
+            baseDamageLable.Text = equip.Damage.ToString();
+        }
+        else if (equip.Type == 2|| equip.Type == 3 )
+        {
+            baseDamageLable.Text = equip.Defence.ToString();
+        }
+        else
+        {
+            baseDamageLable.Text = "";
+        }
+
         strongAddLabel.Text = "x" + equip.SpeedAdd.ToString();
         speedAddLabel.Text = "x" + equip.StrongAdd.ToString();
         brainAddLabel.Text = "x" + equip.BrainAdd.ToString();
 
-
+        typeIcon.Texture = UIManager.Instance.SetItemRarityType(ID);
     }
 
 

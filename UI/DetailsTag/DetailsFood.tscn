@@ -9,8 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://d0vboa0gmoyru" path="res://UI/DetailsTag/StateTips.tscn" id="4_e2ejl"]
 [ext_resource type="Texture2D" uid="uid://cqpcu7ik6fr4y" path="res://Assets/Images/UI/rarity_purple.png" id="5_ubgwb"]
 [ext_resource type="Texture2D" uid="uid://dmujn2n7t1dig" path="res://Assets/Images/UI/rarity_orange.png" id="6_0d44x"]
+[ext_resource type="Texture2D" uid="uid://c28feo2kchmh" path="res://Assets/Images/UI/ItemType/armer_4.png" id="10_5pbwx"]
 
-[node name="DetailsFood" type="Control" unique_id=1879187992 node_paths=PackedStringArray("nameLable", "numLabel", "stateLabel", "stateNameLabel", "noStateLabel", "stateTips", "BG", "Rarity")]
+[node name="DetailsFood" type="Control" unique_id=1879187992 node_paths=PackedStringArray("nameLable", "numLabel", "stateLabel", "stateNameLabel", "noStateLabel", "stateTips", "BG", "Rarity", "typeIcon")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 384.0
@@ -26,6 +27,7 @@ noStateLabel = NodePath("noState")
 stateTips = NodePath("StateTips")
 BG = NodePath("Bg2")
 Rarity = [NodePath("Rarity_1"), NodePath("Rarity_2"), NodePath("Rarity_3"), NodePath("Rarity_4")]
+typeIcon = NodePath("typeIcon")
 
 [node name="Bg2" type="Button" parent="." unique_id=2097972755]
 layout_mode = 1
@@ -188,3 +190,12 @@ offset_right = 6.0
 offset_bottom = 469.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="typeIcon" type="TextureRect" parent="." unique_id=1147415921]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 26.0
+offset_right = 131.0
+offset_bottom = 103.0
+texture = ExtResource("10_5pbwx")
+expand_mode = 1

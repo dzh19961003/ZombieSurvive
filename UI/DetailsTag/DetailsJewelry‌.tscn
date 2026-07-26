@@ -1,0 +1,149 @@
+[gd_scene format=3 uid="uid://dcjqsda2chv3i"]
+
+[ext_resource type="Script" uid="uid://bpl5xne6fkrci" path="res://Scripts/UI/DetailsJewelry.cs" id="1_borl2"]
+[ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="2_l4q0u"]
+[ext_resource type="Texture2D" uid="uid://dmsp4tv0xocxa" path="res://Assets/Images/UI/rarity_green.png" id="3_gu2qx"]
+[ext_resource type="Texture2D" uid="uid://rmjmivhdjuc6" path="res://Assets/Images/UI/rarity_blue.png" id="4_r44hk"]
+[ext_resource type="Texture2D" uid="uid://cqpcu7ik6fr4y" path="res://Assets/Images/UI/rarity_purple.png" id="5_dcc5w"]
+[ext_resource type="Texture2D" uid="uid://dmujn2n7t1dig" path="res://Assets/Images/UI/rarity_orange.png" id="6_a6yys"]
+[ext_resource type="Texture2D" uid="uid://c54mcv34ik4pe" path="res://Assets/Images/UI/button_prompt.png" id="7_1jjne"]
+[ext_resource type="PackedScene" uid="uid://d0vboa0gmoyru" path="res://UI/DetailsTag/StateTips.tscn" id="8_rek4i"]
+[ext_resource type="Texture2D" uid="uid://c28feo2kchmh" path="res://Assets/Images/UI/ItemType/armer_4.png" id="12_hp0w7"]
+
+[node name="DetailsJewelry‌" type="Control" unique_id=1879187992 node_paths=PackedStringArray("Rarity", "nameLable", "BG", "typeIcon", "equipBtn", "effectLable")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 419.0
+offset_bottom = 709.0
+script = ExtResource("1_borl2")
+Rarity = [NodePath("Rarity_1"), NodePath("Rarity_2"), NodePath("Rarity_3"), NodePath("Rarity_4")]
+nameLable = NodePath("Name")
+BG = NodePath("Bg2")
+typeIcon = NodePath("typeIcon")
+equipBtn = NodePath("EquipButton")
+effectLable = NodePath("effect")
+
+[node name="Bg2" type="Button" parent="." unique_id=2097972755]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -2845.0
+offset_top = -1722.0
+offset_right = 2390.308
+offset_bottom = 3772.0
+flat = true
+
+[node name="Bg" type="NinePatchRect" parent="." unique_id=1787980288]
+layout_mode = 0
+offset_right = 422.0
+offset_bottom = 459.0
+texture = ExtResource("2_l4q0u")
+region_rect = Rect2(0, 0, 980, 1720)
+patch_margin_left = 101
+patch_margin_top = 101
+patch_margin_right = 142
+patch_margin_bottom = 201
+
+[node name="Rarity_1" type="TextureRect" parent="." unique_id=1262958861]
+layout_mode = 0
+offset_left = 23.07148
+offset_top = 22.0
+offset_right = 861.16675
+offset_bottom = 235.33334
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("3_gu2qx")
+
+[node name="Rarity_2" type="TextureRect" parent="." unique_id=1989387335]
+layout_mode = 0
+offset_left = 23.07148
+offset_top = 22.0
+offset_right = 861.16675
+offset_bottom = 235.33334
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("4_r44hk")
+
+[node name="Rarity_3" type="TextureRect" parent="." unique_id=1997742881]
+layout_mode = 0
+offset_left = 23.07148
+offset_top = 22.0
+offset_right = 861.16675
+offset_bottom = 235.33334
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("5_dcc5w")
+
+[node name="Rarity_4" type="TextureRect" parent="." unique_id=860127637]
+layout_mode = 0
+offset_left = 23.07148
+offset_top = 22.0
+offset_right = 861.16675
+offset_bottom = 235.33334
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("6_a6yys")
+
+[node name="Name" type="Label" parent="." unique_id=47269188]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 41.0
+offset_right = 324.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 40
+text = "物品名称"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="effect" type="Label" parent="." unique_id=1833941639]
+custom_minimum_size = Vector2(250, 151)
+layout_mode = 0
+offset_left = 38.0
+offset_top = 138.0
+offset_right = 377.0
+offset_bottom = 289.0
+pivot_offset = Vector2(120, 54)
+theme_override_constants/line_spacing = -2
+theme_override_font_sizes/font_size = 28
+text = "特殊效果说明特殊效果说明特殊效果说明特殊"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="EquipButton" type="TextureButton" parent="." unique_id=1722086135]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 342.0
+offset_right = 322.99997
+offset_bottom = 418.0
+texture_normal = ExtResource("7_1jjne")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="EatLabel" type="Label" parent="EquipButton" unique_id=1005137943]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 14.0
+offset_right = 178.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 36
+text = "装备"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StateTips" parent="." unique_id=571347170 instance=ExtResource("8_rek4i")]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 23.0
+offset_top = 458.0
+offset_right = 23.0
+offset_bottom = 458.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="typeIcon" type="TextureRect" parent="." unique_id=1445821641]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 23.0
+offset_right = 149.0
+offset_bottom = 114.0
+texture = ExtResource("12_hp0w7")
+expand_mode = 1

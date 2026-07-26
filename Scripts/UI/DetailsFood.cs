@@ -14,6 +14,7 @@ public partial class DetailsFood : Control
     [Export] public Control stateTips;
     [Export] public Button BG;
     [Export] public TextureRect[] Rarity;
+    [Export] public TextureRect typeIcon;
 
     private State state;
     public override void _Ready()
@@ -71,6 +72,7 @@ public partial class DetailsFood : Control
 		{
             stateTips.Visible = true;
         }
+        typeIcon.Texture = UIManager.Instance.SetItemRarityType(ID);
     }
 
 }

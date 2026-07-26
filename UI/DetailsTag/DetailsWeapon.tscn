@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://4qwp6t3h6f7p"]
+[gd_scene format=3 uid="uid://b3o0gf142s48o"]
 
 [ext_resource type="Script" uid="uid://bswy8jwefck1d" path="res://Scripts/UI/DetailsWeapon.cs" id="1_4yuhm"]
 [ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="2_twi54"]
@@ -10,9 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://c54mcv34ik4pe" path="res://Assets/Images/UI/button_prompt.png" id="8_uq4mr"]
 [ext_resource type="PackedScene" uid="uid://d0vboa0gmoyru" path="res://UI/DetailsTag/StateTips.tscn" id="9_2r0ib"]
 [ext_resource type="Texture2D" uid="uid://drrlot6oesri8" path="res://Assets/Images/UI/strong.png" id="9_4yuhm"]
-[ext_resource type="Texture2D" uid="uid://dxc2kfd03qdd6" path="res://Assets/Images/UI/talent.png" id="10_6fhvh"]
+[ext_resource type="Texture2D" uid="uid://byni2fkgyi20q" path="res://Assets/Images/UI/brain.png" id="11_6fhvh"]
+[ext_resource type="Texture2D" uid="uid://c28feo2kchmh" path="res://Assets/Images/UI/ItemType/armer_4.png" id="12_6fhvh"]
 
-[node name="DetailsWeapon" type="Control" unique_id=1879187992 node_paths=PackedStringArray("Rarity", "nameLable", "damageLable", "baseDamageLable", "strongAddLabel", "speedAddLabel", "brainAddLabel", "effectLabel", "noEffectLabel", "stateTips", "BG")]
+[node name="DetailsWeapon" type="Control" unique_id=1879187992 node_paths=PackedStringArray("Rarity", "nameLable", "damageLable", "baseDamageLable", "strongAddLabel", "speedAddLabel", "brainAddLabel", "effectLabel", "noEffectLabel", "stateTips", "BG", "typeIcon")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 414.0
@@ -29,14 +30,15 @@ effectLabel = NodePath("effect")
 noEffectLabel = NodePath("noEffect")
 stateTips = NodePath("StateTips")
 BG = NodePath("Bg2")
+typeIcon = NodePath("typeIcon")
 
 [node name="Bg2" type="Button" parent="." unique_id=2097972755]
 layout_mode = 1
 anchors_preset = -1
-offset_left = -2226.0
-offset_top = -1412.0
-offset_right = 3009.308
-offset_bottom = 4082.0
+offset_left = -2308.0
+offset_top = -1637.0
+offset_right = 2927.308
+offset_bottom = 3857.0
 flat = true
 
 [node name="Bg" type="NinePatchRect" parent="." unique_id=1787980288]
@@ -249,7 +251,7 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="Speed" type="Sprite2D" parent="." unique_id=1338533662]
-position = Vector2(208.375, 317.375)
+position = Vector2(208.375, 316)
 scale = Vector2(0.6308593, 0.6308593)
 texture = ExtResource("8_twi54")
 
@@ -258,7 +260,16 @@ position = Vector2(71, 316)
 scale = Vector2(0.5625, 0.5625)
 texture = ExtResource("9_4yuhm")
 
-[node name="Talent" type="Sprite2D" parent="." unique_id=502675513]
-position = Vector2(341, 317)
-scale = Vector2(0.5312499, 0.5312499)
-texture = ExtResource("10_6fhvh")
+[node name="Brain" type="Sprite2D" parent="." unique_id=1062992137]
+position = Vector2(341, 316)
+scale = Vector2(0.546875, 0.546875)
+texture = ExtResource("11_6fhvh")
+
+[node name="typeIcon" type="TextureRect" parent="." unique_id=1445821641]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 23.0
+offset_right = 149.0
+offset_bottom = 114.0
+texture = ExtResource("12_6fhvh")
+expand_mode = 1

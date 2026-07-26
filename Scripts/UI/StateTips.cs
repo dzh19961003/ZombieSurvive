@@ -5,6 +5,7 @@ public partial class StateTips : Control
 {
 	[Export] public Label nameLabel;
     [Export] public Label desLabel;
+    [Export] public Label timeLabel;
     public override void _Ready()
 	{
 
@@ -21,6 +22,7 @@ public partial class StateTips : Control
             nameLabel.AddThemeColorOverride("font_color", Colors.Green);
         }
         desLabel.Text = ConfigManager.Instance.stateDic[ID].Effect;
+        timeLabel.Text = ConfigManager.Instance.stateDic[ID].Time.ToString()+"天";
     }
 
 

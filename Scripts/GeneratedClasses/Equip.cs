@@ -22,7 +22,7 @@ namespace MyProject
         public double Damage { get; set; }
 
         /// <summary>原始字段: defence</summary>
-        public int Defence { get; set; }
+        public double Defence { get; set; }
 
         /// <summary>原始字段: strongAdd</summary>
         public double StrongAdd { get; set; }

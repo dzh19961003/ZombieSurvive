@@ -35,12 +35,17 @@ public partial class WarehouseUI : Control
         ItemDic.Add(2, 18);
         ItemDic.Add(3, 16);
         ItemDic.Add(4, 1);
+        ItemDic.Add(5, 1);
+        ItemDic.Add(6, 1);
+        ItemDic.Add(7, 10);
+        ItemDic.Add(8, 1);
 
         ItemID = ItemDic.Keys.ToList<int>();
 
         SpawnItemList(ItemID,0);
     }
 
+    //生成物品栏方法
     private void SpawnItemList(List<int> AllItemList,int type)
     {
         List<int> itemList = GetSortedItemID(AllItemList);
@@ -122,6 +127,8 @@ public partial class WarehouseUI : Control
         // 不调用的话，ScrollContainer 可能拿到的还是旧的最小尺寸，导致无法滚到底部。
         ItemList.UpdateMinimumSize();
     }
+
+    //点击页签按钮后根据类型生成物品栏
     private void SwitchBtn(int index) 
     {
         for (int i = 0; i < tabButton.Length; i++)

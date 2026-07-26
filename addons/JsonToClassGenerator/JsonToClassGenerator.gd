@@ -328,21 +328,23 @@ func _infer_csharp_type(value: Variant, json_text: String, field_name: String) -
 			return "object"
 
 
-## 检查 JSON 文本中指定字段的值是否为纯整数格式（不含小数点）
-## 通过正则匹配 "field_name": 数字 来判断
+## 检查 JSON 文本中指定字段的所有值是否均为纯整数格式（不含小数点）
+## 遍历该字段在 JSON 中出现的每一次，只要任意一个值带小数点就返回 false（应声明为 double）
+## 这样不会因为第一个值是 0 就误判为 int
 func _json_field_is_int(json_text: String, field_name: String) -> bool:
 	var regex := RegEx.new()
-	# 匹配 "fieldName": 数字 的模式，捕获数字部分
-	# 支持带引号的字段名，数字可能是正负整数或小数
-	regex.compile("\"" + field_name + "\"" + "\\s*:\\s*(-?\\d+)(?:\\.\\d+)?")
-	var result := regex.search(json_text)
-	if result == null:
+	# 匹配 "fieldName": 数字 的模式，数字可能是正负整数或小数
+	regex.compile("\"" + field_name + "\"" + "\\s*:\\s*(-?\\d+(?:\\.\\d+)?)")
+	var results := regex.search_all(json_text)
+	if results.is_empty():
 		return false
-	# 如果匹配到的数字捕获组存在，说明是纯整数
-	# 注意：正则会捕获整数部分，如果后面跟着 .数字 则整个匹配会包含小数部分
-	# 这里更稳健的做法是检查完整匹配是否包含小数点
-	var full_match := result.get_string()
-	return not ("." in full_match.substr(full_match.find(":") + 1))
+	# 遍历所有匹配，只要有一个值包含小数点，就说明该字段存在小数，应声明为 double
+	for result in results:
+		var full_match := result.get_string()
+		var value_part := full_match.substr(full_match.find(":") + 1)
+		if "." in value_part:
+			return false
+	return true
 
 
 ## 判断 JSON 文本中数组字段是否包含小数点数字

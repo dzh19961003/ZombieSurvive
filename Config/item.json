@@ -64,5 +64,27 @@
 	"num": 0,
 	"buffID": 0,
 	"equipID": 3
+  },
+  {
+	"ID": 7,
+	"name": "木板",
+	"icon": "wood_icon",
+	"type": 4,
+	"rarity": 1,
+	"effectType": 0,
+	"num": 0,
+	"buffID": 0,
+	"equipID": 0
+  },
+  {
+	"ID": 8,
+	"name": "金戒指",
+	"icon": "ring1_icon",
+	"type": 3,
+	"rarity": 4,
+	"effectType": 0,
+	"num": 0,
+	"buffID": 0,
+	"equipID": 4
   }
 ]

@@ -65,19 +65,39 @@ public partial class Item : Control
                 medicTips.InitialTips(ID);
                 SetSpwanPosition(medicTips);
                 break;
+            //装备
             case 3:
-                switch (ConfigManager.Instance.itemDic[ID].EquipID)
+                switch (ConfigManager.Instance.equipDic[ConfigManager.Instance.itemDic[ID].EquipID].Type)
                 {
                     case 1:
                         DetailsWeapon weaponTips=(DetailsWeapon)UIManager.Instance.ShowUI("res://UI/DetailsTag/DetailsWeapon.tscn");
                         weaponTips.InitialTips(ID);
                         SetSpwanPosition(weaponTips);
                         break;
+                    case 2:
+                        DetailsWeapon clothTips = (DetailsWeapon)UIManager.Instance.ShowUI("res://UI/DetailsTag/DetailsArmer.tscn");
+                        clothTips.InitialTips(ID);
+                        SetSpwanPosition(clothTips);
+                        break;
+                    case 3:
+                        DetailsWeapon shoesTips = (DetailsWeapon)UIManager.Instance.ShowUI("res://UI/DetailsTag/DetailsArmer.tscn");
+                        shoesTips.InitialTips(ID);
+                        SetSpwanPosition(shoesTips);
+                        break;
+                    case 4:
+                        DetailsJewelry jewelryTips = (DetailsJewelry)UIManager.Instance.ShowUI("res://UI/DetailsTag/DetailsJewelry.tscn");
+                        jewelryTips.InitialTips(ID);
+                        SetSpwanPosition(jewelryTips);
+                        break;
                     default:
                         break;
                 }
                 break;
-
+            case 4:
+                DetailsMaterial materialTips = (DetailsMaterial)UIManager.Instance.ShowUI("res://UI/DetailsTag/DetailsMaterial.tscn");
+                materialTips.InitialTips(ID);
+                SetSpwanPosition(materialTips);
+                break;
             default:
                 break;
         }

@@ -1,5 +1,7 @@
 using Godot;
+using MyProject;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 // ============================================================
 //  UIManager — 简单UI管理器
@@ -74,5 +76,139 @@ public partial class UIManager : Node
 			panel.Visible = false;
 		}
 	}
-	
+    
+    //输入物品ID，返回对应稀有度的物品类型图标
+	public Texture2D SetItemRarityType(int ID) 
+	{
+        Texture2D texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/material_1.png");
+
+        switch (ConfigManager.Instance.itemDic[ID].Type)
+		{
+			case 1:
+				switch (ConfigManager.Instance.itemDic[ID].Rarity)
+				{
+					case 1:
+						texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/food_1.png");
+                        break;
+                    case 2:
+                        texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/food_2.png");
+                        break;
+                    case 3:
+                        texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/food_3.png");
+                        break;
+                    case 4:
+                        texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/food_4.png");
+                        break;
+                    default:
+						break;
+				}
+				break;
+            case 2:
+                switch (ConfigManager.Instance.itemDic[ID].Rarity)
+                {
+                    case 1:
+                        texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/medic_1.png");
+                        break;
+                    case 2:
+                        texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/medic_2.png");
+                        break;
+                    case 3:
+                        texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/medic_3.png");
+                        break;
+                    case 4:
+                        texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/medic_4.png");
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 3:
+				int type = ConfigManager.Instance.equipDic[ConfigManager.Instance.itemDic[ID].EquipID].Type;
+
+                if (type == 1)
+				{
+                    switch (ConfigManager.Instance.itemDic[ID].Rarity)
+                    {
+                        case 1:
+                            texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/weapon_1.png");
+                            break;
+                        case 2:
+                            texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/weapon_2.png");
+                            break;
+                        case 3:
+                            texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/weapon_3.png");
+                            break;
+                        case 4:
+                            texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/weapon_4.png");
+                            break;
+                        default:
+                            break;
+                    }
+                }
+				else if(type == 2|| type==3 )
+				{
+                    switch (ConfigManager.Instance.itemDic[ID].Rarity)
+                    {
+                        case 1:
+                            texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/armer_1.png");
+                            break;
+                        case 2:
+                            texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/armer_2.png");
+                            break;
+                        case 3:
+                            texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/armer_3.png");
+                            break;
+                        case 4:
+                            texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/armer_4.png");
+                            break;
+                        default:
+                            break;
+                    }
+                }
+				else
+				{
+                    switch (ConfigManager.Instance.itemDic[ID].Rarity)
+                    {
+                        case 1:
+                            texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/treasure_1.png");
+                            break;
+                        case 2:
+                            texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/treasure_2.png");
+                            break;
+                        case 3:
+                            texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/treasure_3.png");
+                            break;
+                        case 4:
+                            texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/treasure_4.png");
+                            break;
+                        default:
+                            break;
+                    }
+                }
+				break;
+            case 4:
+                switch (ConfigManager.Instance.itemDic[ID].Rarity)
+                {
+                    case 1:
+                        texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/material_1.png");
+                        break;
+                    case 2:
+                        texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/material_2.png");
+                        break;
+                    case 3:
+                        texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/material_3.png");
+                        break;
+                    case 4:
+                        texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/material_4.png");
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+				break;
+		}
+		return texture;
+
+    } 
 }
