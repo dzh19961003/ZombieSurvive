@@ -44,8 +44,7 @@ public partial class Item : Control
             }
             Rarity[ConfigManager.Instance.itemDic[ID].Rarity - 1].Visible = true;
             numLabel.Text = num.ToString();
-        }
-		       
+        }		       
     }
 	private void OnItemClick()
 	{

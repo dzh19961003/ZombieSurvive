@@ -3,92 +3,83 @@ using MyProject;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-// ============================================================
-//  UIManager — 简单UI管理器
-//  作用：统一负责"打开面板"和"关闭面板"，不用在各个脚本里互相找节点
-// ============================================================
-
 public partial class UIManager : Node
 {
-	// 全局单例
-	public static UIManager Instance { get; private set; }
+    // 全局单例
+    public static UIManager Instance { get; private set; }
 
-	// 记录已经加载过的面板，避免重复创建
-	// key = 面板场景的路径，value = 面板节点本身
-	private Dictionary<string, Control> _panels = new();
+    // 记录已经加载过的面板，避免重复创建
+    // key = 面板场景的路径，value = 面板节点本身
+    private Dictionary<string, Control> _panels = new();
 
-	public override void _Ready()
-	{
-		Instance = this;
-	}
+    public override void _Ready()
+    {
+        Instance = this;
+    }
 
-	// ─────────────────────────────────────────────────────────
-	//  ShowPanel：打开一个面板
-	//
-	//  用法示例：
-	//    UIManager.Instance.ShowUI(Paths.Shop);
-	//
-	//  第一次调用时会加载场景并创建节点；
-	//  之后再调用同一路径，直接显示已有节点（不重复创建）。
-	// ─────────────────────────────────────────────────────────
-	public Control ShowUI(string scenePath)
-	{
-		// 如果这个面板从来没打开过，就创建它
-		if (!_panels.ContainsKey(scenePath))
-		{        
-			var scene = GD.Load<PackedScene>(scenePath);
-			if (scene == null)
-			{
-				GD.PrintErr("找不到这个面板场景：" + scenePath);
-				return null;
-			}
-			var panel = scene.Instantiate<Control>();
-			AddChild(panel);          // 加到 UIManager 节点下面
-			_panels[scenePath] = panel;
-		}
+    // ─────────────────────────────────────────────────────────
+    //  ShowPanel：打开一个面板
+    //  第一次调用时会加载场景并创建节点；
+    //  之后再调用同一路径，直接显示已有节点（不重复创建）。
+    // ─────────────────────────────────────────────────────────
+    public Control ShowUI(string scenePath)
+    {
+        // 如果这个面板从来没打开过，就创建它
+        if (!_panels.ContainsKey(scenePath))
+        {
+            var scene = GD.Load<PackedScene>(scenePath);
+            if (scene == null)
+            {
+                GD.PrintErr("找不到这个面板场景：" + scenePath);
+                return null;
+            }
+            var panel = scene.Instantiate<Control>();
+            AddChild(panel);          // 加到 UIManager 节点下面
+            _panels[scenePath] = panel;
+        }
 
-		// 把面板显示出来
-		_panels[scenePath].Visible = true;
-		return _panels[scenePath];
-	}
+        // 把面板显示出来
+        _panels[scenePath].Visible = true;
+        return _panels[scenePath];
+    }
 
-	// ─────────────────────────────────────────────────────────
-	//  HidePanel：隐藏一个面板（节点还在，只是看不见）
-	//
-	//  用法示例：
-	//    UIManager.Instance.HidePanel(UIPaths.Shop);
-	// ─────────────────────────────────────────────────────────
-	public void HideUI(string scenePath)
-	{
-		if (_panels.ContainsKey(scenePath))
-		{
-			_panels[scenePath].Visible = false;
-		}
-	}
+    // ─────────────────────────────────────────────────────────
+    //  HidePanel：隐藏一个面板（节点还在，只是看不见）
+    //
+    //  用法示例：
+    //    UIManager.Instance.HidePanel(UIPaths.Shop);
+    // ─────────────────────────────────────────────────────────
+    public void HideUI(string scenePath)
+    {
+        if (_panels.ContainsKey(scenePath))
+        {
+            _panels[scenePath].Visible = false;
+        }
+    }
 
-	// ─────────────────────────────────────────────────────────
-	//  HideAll：关闭所有面板（切换场景前可以调用）
-	// ─────────────────────────────────────────────────────────
-	public void HideAll()
-	{
-		foreach (var panel in _panels.Values)
-		{
-			panel.Visible = false;
-		}
-	}
-    
+    // ─────────────────────────────────────────────────────────
+    //  HideAll：关闭所有面板（切换场景前可以调用）
+    // ─────────────────────────────────────────────────────────
+    public void HideAll()
+    {
+        foreach (var panel in _panels.Values)
+        {
+            panel.Visible = false;
+        }
+    }
+
     //输入物品ID，返回对应稀有度的物品类型图标
-	public Texture2D SetItemRarityType(int ID) 
-	{
+    public Texture2D SetItemRarityType(int ID)
+    {
         Texture2D texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/material_1.png");
 
         switch (ConfigManager.Instance.itemDic[ID].Type)
-		{
-			case 1:
-				switch (ConfigManager.Instance.itemDic[ID].Rarity)
-				{
-					case 1:
-						texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/food_1.png");
+        {
+            case 1:
+                switch (ConfigManager.Instance.itemDic[ID].Rarity)
+                {
+                    case 1:
+                        texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/food_1.png");
                         break;
                     case 2:
                         texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/food_2.png");
@@ -100,9 +91,9 @@ public partial class UIManager : Node
                         texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/ItemType/food_4.png");
                         break;
                     default:
-						break;
-				}
-				break;
+                        break;
+                }
+                break;
             case 2:
                 switch (ConfigManager.Instance.itemDic[ID].Rarity)
                 {
@@ -123,10 +114,10 @@ public partial class UIManager : Node
                 }
                 break;
             case 3:
-				int type = ConfigManager.Instance.equipDic[ConfigManager.Instance.itemDic[ID].EquipID].Type;
+                int type = ConfigManager.Instance.equipDic[ConfigManager.Instance.itemDic[ID].EquipID].Type;
 
                 if (type == 1)
-				{
+                {
                     switch (ConfigManager.Instance.itemDic[ID].Rarity)
                     {
                         case 1:
@@ -145,8 +136,8 @@ public partial class UIManager : Node
                             break;
                     }
                 }
-				else if(type == 2|| type==3 )
-				{
+                else if (type == 2 || type == 3)
+                {
                     switch (ConfigManager.Instance.itemDic[ID].Rarity)
                     {
                         case 1:
@@ -165,8 +156,8 @@ public partial class UIManager : Node
                             break;
                     }
                 }
-				else
-				{
+                else
+                {
                     switch (ConfigManager.Instance.itemDic[ID].Rarity)
                     {
                         case 1:
@@ -185,7 +176,7 @@ public partial class UIManager : Node
                             break;
                     }
                 }
-				break;
+                break;
             case 4:
                 switch (ConfigManager.Instance.itemDic[ID].Rarity)
                 {
@@ -206,9 +197,17 @@ public partial class UIManager : Node
                 }
                 break;
             default:
-				break;
-		}
-		return texture;
+                break;
+        }
+        return texture;
 
-    } 
+    }
+
+    //创建一个通用提示弹窗
+    public CommonTips ShowCommonTips(string title, string tips)
+    {
+        CommonTips commonTips= (CommonTips)ShowUI("res://UI/CommonTips.tscn");
+        commonTips.SpawnTips(title, tips);
+        return commonTips;
+    }
 }
