@@ -10,19 +10,22 @@
 using Godot;
 using Godot.Collections;
 using MyProject;
-using System.Collections.Generic;
 
 public partial class PlayerManager : Node, ISaveable
 {
     public static PlayerManager Instance { get; private set; }
     public string SaveKey => GetPath();
 
+    //仓库
+    public Dictionary<int, int> ItemDic = new Dictionary<int, int>();
+    //BUFF
+    public Array<int> talentID = new Array<int>();
 
     private int HP = 100;
     private int maxHP = 100;
 
 
-    private Array<int> ItemArray=new Array<int>() { 2,3};
+    public Array<int> ItemArray=new Array<int>() { 2,3};
 
     public void GetItem(int id) 
     {
@@ -53,6 +56,7 @@ public partial class PlayerManager : Node, ISaveable
             { "hp", HP},
             { "maxHP",maxHP},
             { "ItemArray", ItemArray},
+            { "ItemDic",ItemDic}
         };
     }
     public void LoadSaveData(Dictionary data)
@@ -60,6 +64,7 @@ public partial class PlayerManager : Node, ISaveable
         HP = data.ContainsKey("hp")    ? (int)data["hp"]    : 100;
         maxHP = data.ContainsKey("maxHP")  ? (int)data["maxHP"]  : 100;
         ItemArray = data.ContainsKey("ItemArray") ? (Array<int>)data["ItemArray"] : new Array<int>{1,2};
+        ItemDic = data.ContainsKey("ItemDic") ? (Dictionary<int, int>)data["ItemDic"] : new Dictionary<int, int> { };
 
         GD.Print($"[PlayerManager] 数据恢复完成：HP={HP}, maxHP={maxHP}, ItemArray={ItemArray}");
     }
