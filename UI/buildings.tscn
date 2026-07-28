@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://cdsukhiue3pa7"]
+
+[ext_resource type="Script" uid="uid://byx2t15s25m62" path="res://Scripts/UI/Buildings.cs" id="1_t8865"]
+[ext_resource type="Texture2D" uid="uid://dy3dq5sxiuhr3" path="res://Assets/Images/Building/building_coffee.png" id="1_usp65"]
+[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="2_t8865"]
+[ext_resource type="PackedScene" uid="uid://db0xj71lp2hu1" path="res://UI/stars.tscn" id="3_lkx8u"]
+
+[node name="Buildings" type="Control" unique_id=1233884665 node_paths=PackedStringArray("buildingImage", "stars", "nameLabel")]
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(1.3476561, 1.3945682)
+script = ExtResource("1_t8865")
+buildingImage = NodePath("TextureRect")
+stars = NodePath("Stars")
+nameLabel = NodePath("NinePatchRect2/NameLabel")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1969720726]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_usp65")
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="." unique_id=563485267]
+layout_mode = 0
+offset_left = 7.4202905
+offset_top = -27.248579
+offset_right = 237.44931
+offset_bottom = 54.497177
+texture = ExtResource("2_t8865")
+region_rect = Rect2(0, 0, 136, 136)
+patch_margin_left = 28
+patch_margin_top = 30
+patch_margin_right = 38
+patch_margin_bottom = 37
+
+[node name="NameLabel" type="Label" parent="NinePatchRect2" unique_id=758811516]
+layout_mode = 0
+offset_left = 12.614494
+offset_top = 12.190156
+offset_right = 210.73624
+offset_bottom = 61.66784
+theme_override_font_sizes/font_size = 32
+text = "实验小学"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=744102614]
+layout_mode = 0
+offset_left = 9.646378
+offset_top = 197.19365
+offset_right = 239.6754
+offset_bottom = 278.9394
+texture = ExtResource("2_t8865")
+region_rect = Rect2(0, 0, 136, 136)
+patch_margin_left = 28
+patch_margin_top = 30
+patch_margin_right = 38
+patch_margin_bottom = 37
+
+[node name="Stars" parent="." unique_id=64213728 instance=ExtResource("3_lkx8u")]
+layout_mode = 0
+offset_left = 21.518843
+offset_top = 210.10088
+offset_right = 221.51884
+offset_bottom = 260.1009

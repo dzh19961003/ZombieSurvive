@@ -25,6 +25,7 @@ public partial class Door : Area2D
 
     private void OpenDoor() 
 	{
-		UIManager.Instance.ShowUI(Paths.DoorUI);
-	}
+		CommonTips tips= UIManager.Instance.ShowCommonTips("外出探索","确认结束上午并进行外出探索吗？（时间将切换到中午）");
+		tips.confirmBtn.Pressed += () => UIManager.Instance.ShowUI("res://UI/ExploreMap.tscn");
+    }
 }

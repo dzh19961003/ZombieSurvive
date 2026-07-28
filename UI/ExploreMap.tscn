@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://drqmpbxor5vvu"]
+
+[ext_resource type="Script" uid="uid://btewfj7m5rqcb" path="res://Scripts/UI/ExploreMap.cs" id="1_010fc"]
+[ext_resource type="Texture2D" uid="uid://p3ijubs4t40d" path="res://Assets/Images/Building/map.png" id="2_2mgyq"]
+[ext_resource type="PackedScene" uid="uid://cdsukhiue3pa7" path="res://UI/buildings.tscn" id="3_4ndlo"]
+
+[node name="ExploreMap" type="Control" unique_id=1816427421 node_paths=PackedStringArray("buildings")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_010fc")
+buildings = [NodePath("building1"), NodePath("building2"), NodePath("building3"), NodePath("building4"), NodePath("building5")]
+
+[node name="mapBG" type="TextureRect" parent="." unique_id=1778814364]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -91.0
+offset_top = -65.0
+offset_right = 1149.0
+offset_bottom = 1968.6001
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2mgyq")
+expand_mode = 1
+
+[node name="building1" parent="." unique_id=746730931 instance=ExtResource("3_4ndlo")]
+layout_mode = 0
+offset_left = 745.0
+offset_top = 1348.0
+offset_right = 745.0
+offset_bottom = 1348.0
+scale = Vector2(1.1, 1.1)
+
+[node name="building2" parent="." unique_id=1233884665 instance=ExtResource("3_4ndlo")]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 1146.0
+offset_right = 88.0
+offset_bottom = 1146.0
+scale = Vector2(1.1, 1.1)
+
+[node name="building3" parent="." unique_id=64728160 instance=ExtResource("3_4ndlo")]
+layout_mode = 0
+offset_left = 519.99994
+offset_top = 781.0
+offset_right = 519.99994
+offset_bottom = 781.0
+scale = Vector2(1.1, 1.1)
+
+[node name="building4" parent="." unique_id=1432139497 instance=ExtResource("3_4ndlo")]
+layout_mode = 0
+offset_left = 109.99999
+offset_top = 451.0
+offset_right = 109.99999
+offset_bottom = 451.0
+scale = Vector2(1.1, 1.1)
+
+[node name="building5" parent="." unique_id=1032576674 instance=ExtResource("3_4ndlo")]
+layout_mode = 0
+offset_left = 731.0
+offset_top = 107.0
+offset_right = 731.0
+offset_bottom = 107.0
+scale = Vector2(1.1, 1.1)

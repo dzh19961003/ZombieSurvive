@@ -1,0 +1,38 @@
+[
+  {
+    "ID": 1,
+    "name": "人民医院",
+    "image": "building_hospital",
+    "stars": 5
+  },
+  {
+    "ID": 2,
+    "name": "实验小学",
+    "image": "building_school",
+    "stars": 4
+  },
+  {
+    "ID": 3,
+    "name": "不如家酒店",
+    "image": "building_hotel",
+    "stars": 3
+  },
+  {
+    "ID": 4,
+    "name": "渔网网咖",
+    "image": "building_netbar",
+    "stars": 2
+  },
+  {
+    "ID": 5,
+    "name": "Lucky咖啡",
+    "image": "building_coffee",
+    "stars": 1
+  },
+  {
+    "ID": 6,
+    "name": "Lucky咖啡2",
+    "image": "building_coffee",
+    "stars": 1
+  }
+]
