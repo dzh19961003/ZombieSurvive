@@ -18,14 +18,17 @@ public partial class PlayerManager : Node, ISaveable
 
     //仓库
     public Dictionary<int, int> ItemDic = new Dictionary<int, int>();
-    //BUFF
+    //天赋列表
     public Array<int> talentID = new Array<int>();
+   
 
     private int HP = 100;
     private int maxHP = 100;
 
 
     public Array<int> ItemArray=new Array<int>() { 2,3};
+//测试数据
+    public Array<int> stateArray = new Array<int>() { 1, 2 };
 
     public void GetItem(int id) 
     {
@@ -33,7 +36,7 @@ public partial class PlayerManager : Node, ISaveable
     }
     //获得天赋：ID
     //获得状态：ID
-
+ 
     #region 存档相关
     public override void _Ready()
     {
@@ -48,7 +51,8 @@ public partial class PlayerManager : Node, ISaveable
         AddToGroup("Save");
         SaveManager.Instance.Save();
         SaveManager.Instance.Load();
-    }
+       
+}
     public Dictionary GetSaveData()
     {
         return new Dictionary
@@ -56,7 +60,9 @@ public partial class PlayerManager : Node, ISaveable
             { "hp", HP},
             { "maxHP",maxHP},
             { "ItemArray", ItemArray},
-            { "ItemDic",ItemDic}
+            { "ItemDic",ItemDic},
+            { "talentID", talentID },
+            { "stateArray", stateArray}
         };
     }
     public void LoadSaveData(Dictionary data)
@@ -66,6 +72,8 @@ public partial class PlayerManager : Node, ISaveable
         ItemArray = data.ContainsKey("ItemArray") ? (Array<int>)data["ItemArray"] : new Array<int>{1,2};
         ItemDic = data.ContainsKey("ItemDic") ? (Dictionary<int, int>)data["ItemDic"] : new Dictionary<int, int> { };
 
+        talentID = data.ContainsKey("talentID") ? (Array<int>)data["talentID"] : new Array<int> { };
+        stateArray = data.ContainsKey("stateArray") ? (Array<int>)data["stateArray"] : new Array<int> { };
         GD.Print($"[PlayerManager] 数据恢复完成：HP={HP}, maxHP={maxHP}, ItemArray={ItemArray}");
     }
     #endregion

@@ -8,11 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://bs7gg3xn14v6b" path="res://Assets/Images/UI/close_button.png" id="3_t1ga8"]
 [ext_resource type="PackedScene" uid="uid://mnqrb3ht0w74" path="res://UI/Buff.tscn" id="4_dnpfe"]
 [ext_resource type="Script" uid="uid://bxkd3n0h3aas6" path="res://Scripts/UI/SpecialItemList.cs" id="4_qxceh"]
-[ext_resource type="PackedScene" uid="uid://gs2mvp3jgrp7" path="res://UI/Debuff.tscn" id="5_5q78x"]
 [ext_resource type="PackedScene" uid="uid://d3yd8heapq3r6" path="res://UI/Trait.tscn" id="7_f8vne"]
 [ext_resource type="Texture2D" uid="uid://crkvpnyf3ibcp" path="res://Assets/Images/UI/button_cancel.png" id="11_cxrls"]
 
-[node name="PropertyUI" type="Control" unique_id=1276892508 node_paths=PackedStringArray("close_button")]
+[node name="PropertyUI" type="Control" unique_id=1276892508 node_paths=PackedStringArray("close_button", "StateAreas")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +20,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_00jn1")
 close_button = NodePath("close_button")
+StateAreas = NodePath("States/StateAreas")
+BuffPrefab = ExtResource("4_dnpfe")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=891162855]
 layout_mode = 0
@@ -118,32 +119,7 @@ offset_left = -275.0
 offset_top = 97.0
 offset_right = 528.0
 offset_bottom = 342.0
-
-[node name="Buffs" type="GridContainer" parent="States/StateAreas" unique_id=330327312]
-layout_mode = 2
 columns = 3
-
-[node name="Buff" parent="States/StateAreas/Buffs" unique_id=1420942808 instance=ExtResource("4_dnpfe")]
-layout_mode = 2
-
-[node name="Buff2" parent="States/StateAreas/Buffs" unique_id=1608638212 instance=ExtResource("4_dnpfe")]
-layout_mode = 2
-
-[node name="Buff3" parent="States/StateAreas/Buffs" unique_id=1254520035 instance=ExtResource("4_dnpfe")]
-layout_mode = 2
-
-[node name="Buff4" parent="States/StateAreas/Buffs" unique_id=1696543823 instance=ExtResource("4_dnpfe")]
-layout_mode = 2
-
-[node name="Debuffs" type="GridContainer" parent="States/StateAreas" unique_id=1589493774]
-layout_mode = 2
-columns = 3
-
-[node name="Debuff" parent="States/StateAreas/Debuffs" unique_id=413647960 instance=ExtResource("5_5q78x")]
-layout_mode = 2
-
-[node name="Debuff2" parent="States/StateAreas/Debuffs" unique_id=1693170007 instance=ExtResource("5_5q78x")]
-layout_mode = 2
 
 [node name="Traits" type="TextureRect" parent="." unique_id=1742402963]
 layout_mode = 0
