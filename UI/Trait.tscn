@@ -1,8 +1,13 @@
 [gd_scene format=3 uid="uid://d3yd8heapq3r6"]
 
-[ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="1_s677l"]
+[ext_resource type="Script" uid="uid://qqq1vcse3l02" path="res://Scripts/UI/Trait.cs" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://c2vl6xl2rvua5" path="res://Assets/Images/UI/ItemType/rarity_dot_1.png" id="3_7uc4g"]
+[ext_resource type="Texture2D" uid="uid://bpslpdjxivf2g" path="res://Assets/Images/UI/ItemType/rarity_dot_2.png" id="4_wtjos"]
+[ext_resource type="Texture2D" uid="uid://mnqf6oij858x" path="res://Assets/Images/UI/ItemType/rarity_dot_3.png" id="5_c4reh"]
+[ext_resource type="Texture2D" uid="uid://dwhgw57us8vgn" path="res://Assets/Images/UI/ItemType/rarity_dot_4.png" id="6_en87w"]
 
-[node name="Trait" type="Control" unique_id=1420942808]
+[node name="Trait" type="Control" unique_id=103860773 node_paths=PackedStringArray("Bg", "TalentName", "Rarity")]
 custom_minimum_size = Vector2(280, 79)
 layout_mode = 3
 anchors_preset = 15
@@ -12,29 +17,61 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("1_script")
+Bg = NodePath("Bg")
+TalentName = NodePath("TalentName")
+Rarity = [NodePath("rarity1"), NodePath("rarity2"), NodePath("rarity3"), NodePath("rarity4")]
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1139727258]
+[node name="Bg" type="TextureButton" parent="." unique_id=19116228]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -98.0
-offset_top = -39.5
-offset_right = 136.0
-offset_bottom = 39.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_s677l")
+offset_right = 234.0
+offset_bottom = 79.0
+texture_normal = ExtResource("2_bg")
+stretch_mode = 0
 
-[node name="Agile" type="Label" parent="TextureRect" unique_id=153694741]
+[node name="rarity1" type="TextureRect" parent="." unique_id=1499623245]
 layout_mode = 0
 offset_left = 22.0
-offset_top = 19.0
-offset_right = 200.0
-offset_bottom = 60.0
+offset_top = 20.0
+offset_right = 67.0
+offset_bottom = 65.0
+texture = ExtResource("3_7uc4g")
+expand_mode = 1
+
+[node name="rarity2" type="TextureRect" parent="." unique_id=401858681]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 20.0
+offset_right = 67.0
+offset_bottom = 65.0
+texture = ExtResource("4_wtjos")
+expand_mode = 1
+
+[node name="rarity3" type="TextureRect" parent="." unique_id=611888558]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 20.0
+offset_right = 67.0
+offset_bottom = 65.0
+texture = ExtResource("5_c4reh")
+expand_mode = 1
+
+[node name="rarity4" type="TextureRect" parent="." unique_id=2098267493]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 17.0
+offset_right = 67.0
+offset_bottom = 62.0
+texture = ExtResource("6_en87w")
+expand_mode = 1
+
+[node name="TalentName" type="Label" parent="." unique_id=886531404]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 17.0
+offset_right = 195.0
+offset_bottom = 58.0
 theme_override_font_sizes/font_size = 29
-text = "脚步轻盈"
+text = "天赋名字"
 horizontal_alignment = 1
 vertical_alignment = 1

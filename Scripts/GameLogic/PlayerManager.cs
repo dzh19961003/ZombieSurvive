@@ -19,7 +19,7 @@ public partial class PlayerManager : Node, ISaveable
     //仓库
     public Dictionary<int, int> ItemDic = new Dictionary<int, int>();
     //天赋列表
-    public Array<int> talentID = new Array<int>();
+    public Array<int> talentID = new Array<int>() { 1,2};
    
 
     private int HP = 100;
@@ -29,8 +29,8 @@ public partial class PlayerManager : Node, ISaveable
     public Array<int> ItemArray=new Array<int>() { 2,3};
 //测试数据
     public Array<int> stateArray = new Array<int>() { 1, 2 };
-
-    public void GetItem(int id) 
+    
+public void GetItem(int id) 
     {
         
     }
@@ -51,8 +51,13 @@ public partial class PlayerManager : Node, ISaveable
         AddToGroup("Save");
         SaveManager.Instance.Save();
         SaveManager.Instance.Load();
-       
-}
+        
+            
+        
+     
+        
+        
+    }
     public Dictionary GetSaveData()
     {
         return new Dictionary
