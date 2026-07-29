@@ -15,6 +15,7 @@ public partial class UIManager : Node
     public override void _Ready()
     {
         Instance = this;
+        ShowUI(Paths.MainUI);
     }
 
     // ─────────────────────────────────────────────────────────
@@ -34,13 +35,16 @@ public partial class UIManager : Node
                 return null;
             }
             var panel = scene.Instantiate<Control>();
-            AddChild(panel);          // 加到 UIManager 节点下面
-            _panels[scenePath] = panel;
+            AddChild(panel);
+            // 加到 UIManager 节点下面
+            _panels[scenePath] = panel; 
         }
 
         // 把面板显示出来
         _panels[scenePath].Visible = true;
+        this.MoveChild(_panels[scenePath], this.GetChildCount()-1);
         return _panels[scenePath];
+
     }
 
     // ─────────────────────────────────────────────────────────

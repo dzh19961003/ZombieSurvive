@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://cvn2jkhui0xed" path="res://Scene/base.tscn" id="3_1xcnr"]
 [ext_resource type="Script" uid="uid://d0ipvuhaqbxln" path="res://Scripts/Tools/UIManager.cs" id="3_3amdw"]
 [ext_resource type="Script" uid="uid://hpb2jkjeljx8" path="res://Scripts/Tools/SaveManager.cs" id="4_2wwxx"]
-[ext_resource type="PackedScene" uid="uid://c21jmy5x2odwc" path="res://UI/MainUI.tscn" id="4_3amdw"]
 [ext_resource type="Script" uid="uid://bnp4u7cpn4fyd" path="res://Scripts/Tools/GameManager.cs" id="7_75buv"]
 [ext_resource type="Script" uid="uid://hvq4dgahu7vl" path="res://Scripts/GameLogic/PlayerManager.cs" id="7_ow1sv"]
 
@@ -24,8 +23,6 @@ SceneContainer = NodePath(".")
 
 [node name="UIManager" type="Node2D" parent="Manager" unique_id=410968795]
 script = ExtResource("3_3amdw")
-
-[node name="MainUI" parent="Manager/UIManager" unique_id=2016221161 instance=ExtResource("4_3amdw")]
 
 [node name="SaveManager" type="Node2D" parent="Manager" unique_id=2044791399]
 script = ExtResource("4_2wwxx")

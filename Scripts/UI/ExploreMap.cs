@@ -1,13 +1,26 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.IO;
 
 public partial class ExploreMap : Control
 {
 	[Export] public Control[] buildings;
-	public override void _Ready()
+	[Export] public TextureButton backBtn;
+    public override void _Ready()
 	{
-		Array<int> buildArray = new Array<int>();
+		backBtn.Pressed += () => 
+		{
+            CommonTips tips = UIManager.Instance.ShowCommonTips("返回基地", "确定返回基地吗？（时间将切换到夜晚）");
+			tips.OnConfirm = () =>
+			{
+				UIManager.Instance.HideUI("res://UI/ExploreMap.tscn");
+				UIManager.Instance.ShowUI(Paths.MainUI);
+			};
+
+        };
+
+        Array<int> buildArray = new Array<int>();
 		for (int i = 5; i > 0; i--)
 		{
             buildArray.Add(i);
@@ -23,4 +36,5 @@ public partial class ExploreMap : Control
 			building.InitialBuilding(buildingArry[i]);
 		}
 	}
+
 }

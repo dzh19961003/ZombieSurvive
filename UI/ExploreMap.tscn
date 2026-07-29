@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://btewfj7m5rqcb" path="res://Scripts/UI/ExploreMap.cs" id="1_010fc"]
 [ext_resource type="Texture2D" uid="uid://p3ijubs4t40d" path="res://Assets/Images/Building/map.png" id="2_2mgyq"]
 [ext_resource type="PackedScene" uid="uid://cdsukhiue3pa7" path="res://UI/buildings.tscn" id="3_4ndlo"]
+[ext_resource type="Texture2D" uid="uid://crkvpnyf3ibcp" path="res://Assets/Images/UI/button_cancel.png" id="4_ftd0u"]
 
-[node name="ExploreMap" type="Control" unique_id=1816427421 node_paths=PackedStringArray("buildings")]
+[node name="ExploreMap" type="Control" unique_id=1816427421 node_paths=PackedStringArray("buildings", "backBtn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_010fc")
 buildings = [NodePath("building1"), NodePath("building2"), NodePath("building3"), NodePath("building4"), NodePath("building5")]
+backBtn = NodePath("backBtn")
 
 [node name="mapBG" type="TextureRect" parent="." unique_id=1778814364]
 layout_mode = 1
@@ -65,3 +67,24 @@ offset_top = 107.0
 offset_right = 731.0
 offset_bottom = 107.0
 scale = Vector2(1.1, 1.1)
+
+[node name="backBtn" type="TextureButton" parent="." unique_id=1209917913]
+layout_mode = 0
+offset_left = 262.0
+offset_top = 1701.0
+offset_right = 789.1104
+offset_bottom = 1892.0
+texture_normal = ExtResource("4_ftd0u")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="backBtn" unique_id=1463719439]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 35.0
+offset_right = 467.0
+offset_bottom = 162.0
+theme_override_font_sizes/font_size = 60
+text = "返回基地"
+horizontal_alignment = 1
+vertical_alignment = 1
