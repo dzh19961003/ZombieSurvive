@@ -7,10 +7,16 @@ public partial class Buildings : Control
 	[Export] TextureRect buildingImage;
 	[Export] Control stars;
 	[Export] Label nameLabel;
+	[Export] Button tipsButton;
+	public int ID;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-	
+		tipsButton.Pressed += () => 
+		{ 
+			BuildingTips buildingTips=(BuildingTips)UIManager.Instance.ShowUI("res://UI/BuildingTips.tscn");
+			buildingTips.InitialTips(ID);
+		};
     }
 	public void InitialBuilding(int buildingID)
 	{

@@ -16,6 +16,7 @@ public partial class ExploreMap : Control
 			{
 				UIManager.Instance.HideUI("res://UI/ExploreMap.tscn");
 				UIManager.Instance.ShowUI(Paths.MainUI);
+				GameManager.Instance.gameState = 5;
 			};
 
         };
@@ -34,7 +35,9 @@ public partial class ExploreMap : Control
 		{
 			Buildings building = buildings[i] as Buildings;
 			building.InitialBuilding(buildingArry[i]);
-		}
+			building.ID = buildingArry[i];
+
+        }
 	}
 
 }

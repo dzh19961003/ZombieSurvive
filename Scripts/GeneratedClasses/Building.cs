@@ -20,5 +20,8 @@ namespace MyProject
 
         /// <summary>原始字段: stars</summary>
         public int Stars { get; set; }
+
+        /// <summary>原始字段: des</summary>
+        public string Des { get; set; }
     }
 }

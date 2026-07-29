@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="2_t8865"]
 [ext_resource type="PackedScene" uid="uid://db0xj71lp2hu1" path="res://UI/stars.tscn" id="3_lkx8u"]
 
-[node name="Buildings" type="Control" unique_id=1233884665 node_paths=PackedStringArray("buildingImage", "stars", "nameLabel")]
+[node name="Buildings" type="Control" unique_id=1233884665 node_paths=PackedStringArray("buildingImage", "stars", "nameLabel", "tipsButton")]
 layout_mode = 3
 anchors_preset = 0
 scale = Vector2(1.3476561, 1.3945682)
@@ -13,6 +13,7 @@ script = ExtResource("1_t8865")
 buildingImage = NodePath("TextureRect")
 stars = NodePath("Stars")
 nameLabel = NodePath("NinePatchRect2/NameLabel")
+tipsButton = NodePath("tipsButton")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1969720726]
 layout_mode = 0
@@ -63,3 +64,11 @@ offset_left = 21.518843
 offset_top = 210.10088
 offset_right = 221.51884
 offset_bottom = 260.1009
+
+[node name="tipsButton" type="Button" parent="." unique_id=1904847773]
+layout_mode = 0
+offset_left = 8.904348
+offset_top = -25.097374
+offset_right = 229.28699
+offset_bottom = 272.48578
+flat = true

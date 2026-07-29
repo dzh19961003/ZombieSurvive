@@ -9,9 +9,8 @@ public partial class GameManager : Node2D,ISaveable
     //写日记 = 1,
     //随机事件 = 2,
     //早晨 = 3,
-    //第1次探索 = 4,
-    //第2次探索 = 5,
-    //夜晚 = 6
+    //探索 = 4,
+    //夜晚 = 5
     public int gameState = 1;
 
     public static GameManager Instance { get; private set; }
