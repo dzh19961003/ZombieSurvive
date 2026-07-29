@@ -7,7 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="3_p8wmk"]
 [ext_resource type="Texture2D" uid="uid://bs7gg3xn14v6b" path="res://Assets/Images/UI/close_button.png" id="3_t1ga8"]
 [ext_resource type="Script" uid="uid://bxkd3n0h3aas6" path="res://Scripts/UI/SpecialItemList.cs" id="4_qxceh"]
+[ext_resource type="Texture2D" uid="uid://b2l7to85rkjl" path="res://Assets/Images/UI/heart_icon.png" id="7_f8vne"]
+[ext_resource type="Texture2D" uid="uid://drrlot6oesri8" path="res://Assets/Images/UI/strong.png" id="9_cxrls"]
+[ext_resource type="Texture2D" uid="uid://d21mrp1tehixc" path="res://Assets/Images/UI/speed.png" id="11_7b2ht"]
 [ext_resource type="Texture2D" uid="uid://crkvpnyf3ibcp" path="res://Assets/Images/UI/button_cancel.png" id="11_cxrls"]
+[ext_resource type="Texture2D" uid="uid://byni2fkgyi20q" path="res://Assets/Images/UI/brain.png" id="12_gbxri"]
 
 [node name="PropertyUI" type="Control" unique_id=1276892508 node_paths=PackedStringArray("close_button", "StateAreas", "TalentAreas")]
 layout_mode = 3
@@ -229,6 +233,14 @@ offset_bottom = 76.0
 theme_override_font_sizes/font_size = 41
 text = "100/100"
 
+[node name="TextureRect" type="TextureRect" parent="Health" unique_id=1271902915]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -17.0
+offset_right = 104.0
+offset_bottom = 111.0
+texture = ExtResource("7_f8vne")
+
 [node name="close_button" type="Button" parent="." unique_id=1378168597]
 layout_mode = 0
 offset_left = 937.0
@@ -245,7 +257,7 @@ offset_top = 362.0
 offset_right = 186.0
 offset_bottom = 402.0
 scale = Vector2(2.1979518, 1.9755502)
-texture = ExtResource("2_a1hvy")
+texture = ExtResource("9_cxrls")
 expand_mode = 2
 
 [node name="number" type="Label" parent="strength" unique_id=40318838]
@@ -281,7 +293,7 @@ offset_top = 362.0
 offset_right = 464.0
 offset_bottom = 402.0
 scale = Vector2(2.1979518, 1.9755502)
-texture = ExtResource("2_a1hvy")
+texture = ExtResource("11_7b2ht")
 expand_mode = 2
 
 [node name="number" type="Label" parent="agile" unique_id=889037789]
@@ -317,7 +329,7 @@ offset_top = 362.0
 offset_right = 732.0
 offset_bottom = 402.0
 scale = Vector2(2.1979518, 1.9755502)
-texture = ExtResource("2_a1hvy")
+texture = ExtResource("12_gbxri")
 expand_mode = 2
 
 [node name="number" type="Label" parent="intelligence" unique_id=1407329152]
