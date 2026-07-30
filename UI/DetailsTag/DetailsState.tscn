@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://tbkw36fpdn0j"]
+
+[ext_resource type="Script" uid="uid://blkbir300v5rb" path="res://Scripts/UI/DetailsState.cs" id="1_aqu80"]
+[ext_resource type="Texture2D" uid="uid://53n15gjv8ksp" path="res://Assets/Images/UI/popup_panel.png" id="2_vff4y"]
+
+[node name="DetailsState" type="Control" unique_id=571347170 node_paths=PackedStringArray("nameLabel", "desLabel", "timeLabel", "BG")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -710.0
+offset_bottom = -1677.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aqu80")
+nameLabel = NodePath("Name")
+desLabel = NodePath("Des")
+timeLabel = NodePath("Time")
+BG = NodePath("Bg2")
+
+[node name="Bg" type="NinePatchRect" parent="." unique_id=579948542]
+layout_mode = 0
+offset_right = 370.0
+offset_bottom = 245.0
+texture = ExtResource("2_vff4y")
+
+[node name="Name" type="Label" parent="." unique_id=710659455]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 23.0
+offset_right = 227.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.3254902, 1, 0.05882353, 1)
+theme_override_font_sizes/font_size = 32
+text = "状态名称"
+
+[node name="Time" type="Label" parent="." unique_id=344716445]
+layout_mode = 0
+offset_left = 269.0
+offset_top = 24.0
+offset_right = 335.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 32
+text = "2天"
+horizontal_alignment = 1
+
+[node name="Des" type="Label" parent="." unique_id=479162960]
+custom_minimum_size = Vector2(330, 120)
+custom_maximum_size = Vector2(330, 200)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 71.0
+offset_right = 355.0
+offset_bottom = 207.0
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 24
+text = "状态说明状态说明状态说明状态说明状态说明状态说明状态说明状态说明明状态说明状态说明状态说明明"
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Bg2" type="Button" parent="." unique_id=777120471]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -2158.0
+offset_top = -1599.0
+offset_right = 3077.308
+offset_bottom = 3895.0
+flat = true

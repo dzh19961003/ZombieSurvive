@@ -3,8 +3,9 @@
 // ============================================================
 
 using Godot;
-using Godot.Collections;  // ← 添加这一行
+using Godot.Collections; 
 using MyProject;
+
 
 namespace MyProject
 {
@@ -46,7 +47,7 @@ namespace MyProject
                 StateAreas.GetChild(i).QueueFree();
             }
 
-            // 2. 加载 Buff 预制体（只加载一次）
+            // 2. 加载 Buff 预制体
             var stateScene = GD.Load<PackedScene>("res://UI/Buff.tscn");
 
             // 3. 循环创建 Buff 实例
@@ -88,7 +89,7 @@ namespace MyProject
             // 3. 循环创建 Trait 实例
             for (int i = 0; i < talentID.Count; i++)
             {
-                // 实例化 Trait（注意：是 Trait，不是 Buff！）
+                // 实例化 Trait
                 Trait trait = talentScene.Instantiate<Trait>();
 
                 // 先加入场景树，再调 Setup 初始化显示

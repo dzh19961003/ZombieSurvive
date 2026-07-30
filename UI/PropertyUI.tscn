@@ -25,6 +25,16 @@ close_button = NodePath("close_button")
 StateAreas = NodePath("States/StateAreas")
 TalentAreas = NodePath("Traits/TraitAreas")
 
+[node name="Control" type="ColorRect" parent="." unique_id=1968276744]
+propagate_maximum_size = true
+layout_mode = 1
+anchors_preset = -1
+offset_right = 1080.0
+offset_bottom = 1920.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78431374)
+
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=891162855]
 layout_mode = 0
 offset_left = 66.0

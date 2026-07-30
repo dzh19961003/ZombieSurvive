@@ -5,6 +5,9 @@
 
 using Godot;
 using MyProject;
+using Godot.Collections;
+using System;
+
 
 namespace MyProject
 {
@@ -138,13 +141,18 @@ namespace MyProject
             // 防御性检查
             if (ConfigManager.Instance == null) return;
             if (!ConfigManager.Instance.talentDic.ContainsKey(TalentID)) return;
-
+            
             // 获取天赋数据并显示提示
             Talent talent = ConfigManager.Instance.talentDic[TalentID];
 
             if (UIManager.Instance != null)
             {
-                UIManager.Instance.ShowCommonTips(talent.Name, talent.Effect);
+                
+                DetailsTalent talentTips = (DetailsTalent)UIManager.Instance.ShowUI("res://UI/DetailsTag/DetailsTalent.tscn");
+                talentTips.InitialTips(TalentID);
+                UIManager.Instance.SetSpwanPosition(this, talentTips);
+
+
             }
         }
     }

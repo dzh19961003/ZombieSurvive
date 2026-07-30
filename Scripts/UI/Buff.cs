@@ -5,6 +5,7 @@
 using Godot;
 using MyProject;
 
+
 public partial class Buff : Control
 {
     public int ID;
@@ -84,7 +85,16 @@ public partial class Buff : Control
     private void OnBuffClick()
     {
         if (ID == 0) return;
-        State state = ConfigManager.Instance.stateDic[ID];
-        UIManager.Instance.ShowCommonTips(state.Name, state.Effect);
+        //State state = ConfigManager.Instance.stateDic[ID];
+        //UIManager.Instance.ShowCommonTips(state.Name, state.Effect);
+        if (UIManager.Instance != null)
+        {
+
+            DetailsState buffTips = (DetailsState)UIManager.Instance.ShowUI("res://UI/DetailsTag/DetailsState.tscn");
+            buffTips.Initail(ID);
+            UIManager.Instance.SetSpwanPosition(this, buffTips);
+
+
+        }
     }
 }
