@@ -2,6 +2,7 @@ using Godot;
 using MyProject;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 
 public partial class UIManager : Node
 {
@@ -213,5 +214,61 @@ public partial class UIManager : Node
         CommonTips commonTips= (CommonTips)ShowUI("res://UI/CommonTips.tscn");
         commonTips.SpawnTips(title, tips);
         return commonTips;
+    }
+
+    //自动设置标签位置
+    //前面的Control参数一般就是脚本挂在的地方的Control，一般在调用时直接写"this"即可
+    //后面的Control参数是标签，需要生成后在脚本里获取到标签并传入
+
+    /*示例代码：
+     DetailsFood foodTips = (DetailsFood)UIManager.Instance.ShowUI("res://UI/DetailsTag/DetailsFood.tscn");
+     foodTips.InitialTips(ID);
+     UIManager.Instance.SetSpwanPosition(this, foodTips);
+    */
+    public void SetSpwanPosition(Control item,Control tag)
+    {
+
+        Vector2 itemGlobalPos = item.GlobalPosition;
+
+        float itemRight = itemGlobalPos.X + item.Size.X;
+        float itemTop = itemGlobalPos.Y;
+
+
+        Vector2 controlSize = tag.Size;
+        if (controlSize == Vector2.Zero)
+        {
+            controlSize = new Vector2(400, 500);
+        }
+
+
+        float controlX, controlY;
+
+        // 屏幕宽度
+        float screenWidth = GetViewport().GetVisibleRect().Size.X;
+
+        // 右侧放得下
+        if (itemRight + controlSize.X <= screenWidth)
+        {
+            controlX = itemRight;
+        }
+        //放不下
+        else
+        {
+            controlX = itemGlobalPos.X - controlSize.X;
+        }
+
+        // 竖直方向：
+        controlY = itemTop;
+        if (controlY < 0)
+        {
+            controlY = 0;
+        }
+        if (controlY + controlSize.Y > GetViewport().GetVisibleRect().Size.Y)
+        {
+            controlY = GetViewport().GetVisibleRect().Size.Y - controlSize.Y;
+        }
+
+        // 4) 赋值
+        tag.Position = new Vector2(controlX, controlY);
     }
 }

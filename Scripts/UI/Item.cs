@@ -57,7 +57,7 @@ public partial class Item : Control
             case 1:
                 DetailsFood foodTips = (DetailsFood)UIManager.Instance.ShowUI("res://UI/DetailsTag/DetailsFood.tscn");
                 foodTips.InitialTips(ID);
-                SetSpwanPosition(foodTips);
+                UIManager.Instance.SetSpwanPosition(this,foodTips);
                 break;
             case 2:
                 DetailsFood medicTips = (DetailsFood)UIManager.Instance.ShowUI("res://UI/DetailsTag/DetailsMedic.tscn");
