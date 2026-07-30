@@ -7,13 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://dmujn2n7t1dig" path="res://Assets/Images/UI/rarity_orange.png" id="5_c4reh"]
 
 [node name="Trait" type="Control" unique_id=103860773 node_paths=PackedStringArray("Bg", "TalentName", "Rarity")]
-custom_minimum_size = Vector2(280, 79)
+custom_minimum_size = Vector2(230, 79)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 230.0
+offset_bottom = 79.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_script")
@@ -62,6 +60,6 @@ vertical_alignment = 1
 
 [node name="Bg" type="TextureButton" parent="." unique_id=19116228]
 layout_mode = 1
-offset_right = 234.0
-offset_bottom = 79.0
-stretch_mode = 0
+offset_right = 232.0
+offset_bottom = 76.0
+ignore_texture_size = true

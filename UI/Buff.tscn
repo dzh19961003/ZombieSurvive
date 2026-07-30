@@ -6,13 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="3_j0u80"]
 
 [node name="Buff" type="Control" unique_id=1420942808 node_paths=PackedStringArray("PosIcon", "Bg", "StateName", "TimeLen")]
-custom_minimum_size = Vector2(265, 79)
+custom_minimum_size = Vector2(240, 79)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 240.0
+offset_bottom = 79.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_g5n51")
