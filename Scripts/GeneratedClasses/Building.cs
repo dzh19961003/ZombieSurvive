@@ -23,5 +23,17 @@ namespace MyProject
 
         /// <summary>原始字段: des</summary>
         public string Des { get; set; }
+
+        /// <summary>原始字段: food</summary>
+        public int Food { get; set; }
+
+        /// <summary>原始字段: medic</summary>
+        public int Medic { get; set; }
+
+        /// <summary>原始字段: equip</summary>
+        public int Equip { get; set; }
+
+        /// <summary>原始字段: material</summary>
+        public int Material { get; set; }
     }
 }

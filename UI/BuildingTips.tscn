@@ -7,8 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://du76f06ps5fb1" path="res://Assets/Images/UI/button_confirm.png" id="4_725gl"]
 [ext_resource type="Texture2D" uid="uid://bs7gg3xn14v6b" path="res://Assets/Images/UI/close_button.png" id="6_4r6dt"]
 [ext_resource type="PackedScene" uid="uid://db0xj71lp2hu1" path="res://UI/stars.tscn" id="6_l458b"]
+[ext_resource type="PackedScene" uid="uid://c2ktxpmkvihar" path="res://UI/supplyStar.tscn" id="8_cvlfx"]
 
-[node name="BuildingTips" type="Control" unique_id=1735430347 node_paths=PackedStringArray("nameLabel", "star", "desLabel", "confirmBtn", "cancelBtn")]
+[node name="BuildingTips" type="Control" unique_id=1735430347 node_paths=PackedStringArray("nameLabel", "star", "desLabel", "confirmBtn", "cancelBtn", "foodStars", "medicStars", "equipStars", "materialStars")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +22,10 @@ star = NodePath("stars")
 desLabel = NodePath("des")
 confirmBtn = NodePath("confirmButton")
 cancelBtn = NodePath("closeBtn")
+foodStars = NodePath("foodStars")
+medicStars = NodePath("medicStars")
+equipStars = NodePath("equipStars")
+materialStars = NodePath("materialStars")
 
 [node name="bg" type="ColorRect" parent="." unique_id=1899464651]
 layout_mode = 1
@@ -97,40 +102,40 @@ autowrap_mode = 1
 
 [node name="food" type="Label" parent="." unique_id=1805908730]
 layout_mode = 0
-offset_left = 263.0
-offset_top = 571.0
-offset_right = 360.0
-offset_bottom = 616.0
+offset_left = 301.0
+offset_top = 574.0
+offset_right = 398.0
+offset_bottom = 619.0
 theme_override_font_sizes/font_size = 32
 text = "食物"
 horizontal_alignment = 2
 
 [node name="medic" type="Label" parent="." unique_id=469075166]
 layout_mode = 0
-offset_left = 263.0
-offset_top = 631.0
-offset_right = 360.0
-offset_bottom = 676.0
+offset_left = 301.0
+offset_top = 634.0
+offset_right = 398.0
+offset_bottom = 679.0
 theme_override_font_sizes/font_size = 32
 text = "医疗"
 horizontal_alignment = 2
 
 [node name="material" type="Label" parent="." unique_id=109017313]
 layout_mode = 0
-offset_left = 263.0
-offset_top = 691.0
-offset_right = 360.0
-offset_bottom = 736.0
+offset_left = 301.0
+offset_top = 694.0
+offset_right = 398.0
+offset_bottom = 739.0
 theme_override_font_sizes/font_size = 32
 text = "装备"
 horizontal_alignment = 2
 
 [node name="equip" type="Label" parent="." unique_id=1887901619]
 layout_mode = 0
-offset_left = 263.0
-offset_top = 751.0
-offset_right = 360.0
-offset_bottom = 796.0
+offset_left = 301.0
+offset_top = 754.0
+offset_right = 398.0
+offset_bottom = 799.0
 theme_override_font_sizes/font_size = 32
 text = "材料"
 horizontal_alignment = 2
@@ -182,4 +187,36 @@ offset_left = 385.0
 offset_top = 477.0
 offset_right = 585.0
 offset_bottom = 527.0
+scale = Vector2(1.5, 1.5)
+
+[node name="foodStars" parent="." unique_id=1220326612 instance=ExtResource("8_cvlfx")]
+layout_mode = 0
+offset_left = 445.0
+offset_top = 562.0
+offset_right = 645.0
+offset_bottom = 612.0
+scale = Vector2(1.5, 1.5)
+
+[node name="medicStars" parent="." unique_id=1122747995 instance=ExtResource("8_cvlfx")]
+layout_mode = 0
+offset_left = 445.0
+offset_top = 621.0
+offset_right = 645.0
+offset_bottom = 671.0
+scale = Vector2(1.5, 1.5)
+
+[node name="equipStars" parent="." unique_id=1035698463 instance=ExtResource("8_cvlfx")]
+layout_mode = 0
+offset_left = 445.0
+offset_top = 679.0
+offset_right = 645.0
+offset_bottom = 729.0
+scale = Vector2(1.5, 1.5)
+
+[node name="materialStars" parent="." unique_id=1375073496 instance=ExtResource("8_cvlfx")]
+layout_mode = 0
+offset_left = 445.0
+offset_top = 737.0
+offset_right = 645.0
+offset_bottom = 787.0
 scale = Vector2(1.5, 1.5)

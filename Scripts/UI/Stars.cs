@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 public partial class Stars : Control
 {
-	[Export] TextureRect[] stars;
+	[Export] public TextureRect[] stars;
 	public override void _Ready()
 	{
 		

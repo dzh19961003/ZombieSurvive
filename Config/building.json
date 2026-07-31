@@ -4,41 +4,65 @@
     "name": "人民医院",
     "image": "building_hospital",
     "stars": 5,
-    "des": "人民医院人民医院人民医院"
+    "des": "人民医院人民医院人民医院",
+    "food": 2,
+    "medic": 5,
+    "equip": 4,
+    "material": 3
   },
   {
     "ID": 2,
     "name": "实验小学",
     "image": "building_school",
     "stars": 4,
-    "des": "实验小学实验小学实验小学"
+    "des": "实验小学实验小学实验小学",
+    "food": 4,
+    "medic": 3,
+    "equip": 4,
+    "material": 3
   },
   {
     "ID": 3,
     "name": "不如家酒店",
     "image": "building_hotel",
     "stars": 3,
-    "des": "不如家酒店不如家酒店不如家酒店"
+    "des": "不如家酒店不如家酒店不如家酒店",
+    "food": 5,
+    "medic": 2,
+    "equip": 2,
+    "material": 3
   },
   {
     "ID": 4,
     "name": "渔网网咖",
     "image": "building_netbar",
     "stars": 2,
-    "des": "渔网网咖渔网网咖渔网网咖"
+    "des": "渔网网咖渔网网咖渔网网咖",
+    "food": 2,
+    "medic": 1,
+    "equip": 1,
+    "material": 3
   },
   {
     "ID": 5,
     "name": "Lucky咖啡",
     "image": "building_coffee",
     "stars": 1,
-    "des": "Lucky咖啡Lucky咖啡Lucky咖啡"
+    "des": "Lucky咖啡Lucky咖啡Lucky咖啡",
+    "food": 3,
+    "medic": 1,
+    "equip": 1,
+    "material": 1
   },
   {
     "ID": 6,
     "name": "Lucky咖啡2",
     "image": "building_coffee",
     "stars": 1,
-    "des": "Lucky咖啡2Lucky咖啡2Lucky咖啡2"
+    "des": "Lucky咖啡2Lucky咖啡2Lucky咖啡2",
+    "food": 3,
+    "medic": 1,
+    "equip": 1,
+    "material": 1
   }
 ]
