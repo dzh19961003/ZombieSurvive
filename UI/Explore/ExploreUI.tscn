@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://tbdv8tqdi3un"]
+
+[ext_resource type="Texture2D" uid="uid://daq3kljsrucf7" path="res://Assets/Images/BuildingBg/building_2_0_1.png" id="1_3fx2v"]
+[ext_resource type="Script" uid="uid://c7e1hoilidhkt" path="res://Scripts/UI/Explore/ExploreUI.cs" id="1_bp85n"]
+[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="2_hoe4v"]
+
+[node name="ExploreUI" type="Control" unique_id=1351775229 node_paths=PackedStringArray("bg", "desLabel", "chooseBar", "roomContainer", "roomBg")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1080.0
+offset_bottom = 1920.0
+script = ExtResource("1_bp85n")
+bg = NodePath("Bg")
+desLabel = NodePath("DesBar/desLabel")
+chooseBar = NodePath("ChooseBar")
+roomContainer = NodePath("roomContainer")
+roomBg = NodePath("roomBg")
+
+[node name="Bg" type="TextureRect" parent="." unique_id=1617460817]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3fx2v")
+stretch_mode = 3
+
+[node name="DesBar" type="NinePatchRect" parent="." unique_id=1911186057]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 1158.0
+offset_right = 1023.0
+offset_bottom = 1472.0
+texture = ExtResource("2_hoe4v")
+region_rect = Rect2(0, 0, 136, 136)
+patch_margin_left = 28
+patch_margin_top = 27
+patch_margin_right = 33
+patch_margin_bottom = 36
+
+[node name="desLabel" type="Label" parent="DesBar" unique_id=166100634]
+custom_minimum_size = Vector2(864, 258)
+custom_maximum_size = Vector2(864, 300)
+layout_mode = 0
+offset_left = 34.0
+offset_top = 25.0
+offset_right = 898.0
+offset_bottom = 283.0
+theme_override_font_sizes/font_size = 32
+text = "描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述"
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="ChooseBar" type="VBoxContainer" parent="." unique_id=542390078]
+layout_mode = 1
+offset_left = 73.0
+offset_top = 1513.0
+offset_right = 1033.0
+offset_bottom = 1832.0
+theme_override_constants/separation = 0
+
+[node name="roomBg" type="NinePatchRect" parent="." unique_id=359328042]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 415.0
+offset_right = 1061.0
+offset_bottom = 1049.0
+texture = ExtResource("2_hoe4v")
+region_rect = Rect2(0, 0, 129, 128)
+patch_margin_left = 29
+patch_margin_top = 28
+patch_margin_right = 28
+patch_margin_bottom = 27
+
+[node name="desLabel2" type="Label" parent="roomBg" unique_id=1530936056]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 33.0
+offset_right = 964.0
+offset_bottom = 116.0
+theme_override_font_sizes/font_size = 60
+text = "选择房间"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="roomContainer" type="HBoxContainer" parent="." unique_id=901745634]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 544.0
+offset_right = 1056.0
+offset_bottom = 964.0
+alignment = 1

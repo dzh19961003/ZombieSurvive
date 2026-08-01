@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://cc5hxek0hk34j"]
+
+[ext_resource type="Script" uid="uid://dvvb2xaitr7yj" path="res://Scripts/UI/Explore/RoomChoose.cs" id="1_t8yyn"]
+[ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="2_ybahx"]
+[ext_resource type="Texture2D" uid="uid://b2oojhk686bgj" path="res://Assets/Images/Building/room_1.png" id="3_ybahx"]
+[ext_resource type="Texture2D" uid="uid://dwixpcu418bs5" path="res://Assets/Images/UI/food_icon.png" id="4_yeydk"]
+[ext_resource type="Texture2D" uid="uid://daj7n4mdopysh" path="res://Assets/Images/UI/medic_icon.png" id="5_ojnxv"]
+[ext_resource type="Texture2D" uid="uid://b5g273gg6vn80" path="res://Assets/Images/UI/equip_icon.png" id="6_ltix8"]
+[ext_resource type="Texture2D" uid="uid://5h3mibmpnfjb" path="res://Assets/Images/UI/material_icon.png" id="7_nrq2i"]
+
+[node name="RoomChoose" type="Control" unique_id=672145399 node_paths=PackedStringArray("nameLabel", "roomIcon", "food", "medic", "equip", "material", "exploreProgress")]
+material = Object(TextureRect,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":2,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"oversampling_with_scale":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"custom_minimum_size":Vector2(72, 72),"custom_maximum_size":Vector2(72, 72),"propagate_maximum_size":false,"clip_contents":false,"layout_mode":2,"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"offset_transform_enabled":false,"offset_transform_position":Vector2(0, 0),"offset_transform_position_ratio":Vector2(0, 0),"offset_transform_scale":Vector2(1, 1),"offset_transform_rotation":0.0,"offset_transform_pivot":Vector2(0, 0),"offset_transform_pivot_ratio":Vector2(0.5, 0.5),"offset_transform_visual_only":true,"localize_numeral_system":true,"layout_direction":0,"translation_context":&"","tooltip_text":"","tooltip_auto_translate_mode":0,"focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"focus_behavior_recursive":0,"mouse_filter":1,"mouse_behavior_recursive":0,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"accessibility_name":"","accessibility_description":"","accessibility_live":0,"accessibility_controls_nodes":Array[NodePath]([]),"accessibility_described_by_nodes":Array[NodePath]([]),"accessibility_labeled_by_nodes":Array[NodePath]([]),"accessibility_flow_to_nodes":Array[NodePath]([]),"theme":null,"theme_type_variation":&"","texture":ExtResource("7_nrq2i"),"expand_mode":1,"stretch_mode":0,"flip_h":false,"flip_v":false,"script":null)
+
+custom_minimum_size = Vector2(332, 420)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 332.0
+offset_bottom = 478.0
+script = ExtResource("1_t8yyn")
+nameLabel = NodePath("nameLabel")
+roomIcon = NodePath("TextureButton/roomIcon")
+food = NodePath("items/foodIcon")
+medic = NodePath("items/medicIcon")
+equip = NodePath("items/equipIcon")
+material = NodePath("items/materialIcon")
+exploreProgress = NodePath("progressLabel")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=80331685]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 0
+
+[node name="Room" type="NinePatchRect" parent="TextureButton" unique_id=689990083]
+custom_minimum_size = Vector2(328, 424)
+propagate_maximum_size = true
+layout_mode = 1
+offset_right = 332.0
+offset_bottom = 477.0
+texture = ExtResource("2_ybahx")
+region_rect = Rect2(0, 0, 980, 1720)
+patch_margin_left = 104
+patch_margin_top = 144
+patch_margin_right = 124
+patch_margin_bottom = 240
+
+[node name="bg" type="ColorRect" parent="TextureButton" unique_id=1737960862]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 87.0
+offset_right = 301.0
+offset_bottom = 297.0
+color = Color(0.7411765, 0.84705883, 1, 0.20392157)
+
+[node name="roomIcon" type="TextureRect" parent="TextureButton" unique_id=295371806]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 94.0
+offset_right = 245.93333
+offset_bottom = 243.0
+texture = ExtResource("3_ybahx")
+expand_mode = 1
+
+[node name="nameLabel" type="Label" parent="." unique_id=1957824548]
+custom_minimum_size = Vector2(256, 45)
+layout_mode = 0
+offset_left = 36.0
+offset_top = 33.0
+offset_right = 292.0
+offset_bottom = 78.0
+theme_override_font_sizes/font_size = 32
+text = "房间名称"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="progressDesLabel" type="Label" parent="." unique_id=1389586898]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 238.0
+offset_right = 165.0
+offset_bottom = 283.0
+theme_override_font_sizes/font_size = 32
+text = "已探索"
+vertical_alignment = 1
+
+[node name="progressLabel" type="Label" parent="." unique_id=480061932]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 238.0
+offset_right = 261.0
+offset_bottom = 283.0
+theme_override_font_sizes/font_size = 32
+text = "50%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="desLabel" type="Label" parent="." unique_id=625751400]
+custom_minimum_size = Vector2(256, 45)
+layout_mode = 0
+offset_left = 36.0
+offset_top = 301.0
+offset_right = 292.0
+offset_bottom = 346.0
+theme_override_font_sizes/font_size = 24
+text = "高产物资"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="items" type="HBoxContainer" parent="." unique_id=321889678]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 361.0
+offset_right = 299.0
+offset_bottom = 433.0
+theme_override_constants/separation = -7
+alignment = 1
+
+[node name="foodIcon" type="TextureRect" parent="items" unique_id=59533850]
+custom_minimum_size = Vector2(72, 72)
+custom_maximum_size = Vector2(72, 72)
+layout_mode = 2
+texture = ExtResource("4_yeydk")
+expand_mode = 1
+
+[node name="medicIcon" type="TextureRect" parent="items" unique_id=836162120]
+custom_minimum_size = Vector2(72, 72)
+custom_maximum_size = Vector2(72, 72)
+layout_mode = 2
+texture = ExtResource("5_ojnxv")
+expand_mode = 1
+
+[node name="equipIcon" type="TextureRect" parent="items" unique_id=625186395]
+custom_minimum_size = Vector2(72, 72)
+custom_maximum_size = Vector2(72, 72)
+layout_mode = 2
+texture = ExtResource("6_ltix8")
+expand_mode = 1
+
+[node name="materialIcon" type="TextureRect" parent="items" unique_id=362320929]
+custom_minimum_size = Vector2(72, 72)
+custom_maximum_size = Vector2(72, 72)
+layout_mode = 2
+texture = ExtResource("7_nrq2i")
+expand_mode = 1

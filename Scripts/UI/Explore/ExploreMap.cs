@@ -14,7 +14,7 @@ public partial class ExploreMap : Control
             CommonTips tips = UIManager.Instance.ShowCommonTips("返回基地", "确定返回基地吗？（时间将切换到夜晚）");
 			tips.OnConfirm = () =>
 			{
-				UIManager.Instance.HideUI("res://UI/ExploreMap.tscn");
+				UIManager.Instance.HideUI("res://UI/Explore/ExploreMap.tscn");
 				UIManager.Instance.ShowUI(Paths.MainUI);
 				GameManager.Instance.gameState = 5;
 			};
@@ -36,7 +36,6 @@ public partial class ExploreMap : Control
 			Buildings building = buildings[i] as Buildings;
 			building.InitialBuilding(buildingArry[i]);
 			building.ID = buildingArry[i];
-
         }
 	}
 

@@ -14,7 +14,7 @@ public partial class Buildings : Control
 	{
 		tipsButton.Pressed += () => 
 		{ 
-			BuildingTips buildingTips=(BuildingTips)UIManager.Instance.ShowUI("res://UI/BuildingTips.tscn");
+			BuildingTips buildingTips=(BuildingTips)UIManager.Instance.ShowUI("res://UI/Explore/BuildingTips.tscn");
 			buildingTips.InitialTips(ID);
 		};
     }

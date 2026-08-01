@@ -1,0 +1,74 @@
+[
+  {
+	"ID": 1,
+	"name": "大厅",
+	"image": "room_1",
+	"food": 2,
+	"medic": 0,
+	"equip": 0,
+	"material": 0,
+	"roomLayer": 1,
+	"eventPool": [
+	  1001,
+	  1002
+	],
+	"subTask": [
+	  3
+	],
+	"triggerProgress": [
+	  30
+	]
+  },
+  {
+	"ID": 2,
+	"name": "操作间",
+	"image": null,
+	"food": 2,
+	"medic": 0,
+	"equip": 2,
+	"material": 2,
+	"roomLayer": 2,
+	"eventPool": [
+	  1001,
+	  1002
+	],
+	"subTask": [
+	  5
+	],
+	"triggerProgress": [
+	  60
+	]
+  },
+  {
+	"ID": 3,
+	"name": "仓库",
+	"image": null,
+	"food": 2,
+	"medic": 0,
+	"equip": 2,
+	"material": 3,
+	"roomLayer": 2,
+	"eventPool": [
+	  1001,
+	  1002
+	],
+	"subTask": [],
+	"triggerProgress": []
+  },
+  {
+	"ID": 4,
+	"name": "冷库",
+	"image": null,
+	"food": 3,
+	"medic": 0,
+	"equip": 0,
+	"material": 0,
+	"roomLayer": 3,
+	"eventPool": [
+	  1001,
+	  1002
+	],
+	"subTask": [],
+	"triggerProgress": []
+  }
+]

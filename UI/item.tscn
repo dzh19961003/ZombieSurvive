@@ -25,7 +25,6 @@ numLabel = NodePath("TextureButton/Num")
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=1415998938]
 layout_mode = 1
-anchors_preset = -1
 offset_right = 150.0
 offset_bottom = 150.0
 texture_normal = ExtResource("1_ia6xt")

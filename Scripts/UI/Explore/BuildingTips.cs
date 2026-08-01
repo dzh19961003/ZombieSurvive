@@ -9,17 +9,23 @@ public partial class BuildingTips : Control
 	[Export] Label desLabel;
 	[Export] TextureButton confirmBtn;
     [Export] Button cancelBtn;
-	[Export] Control foodStars;
+    [Export] Control foodStars;
     [Export] Control medicStars;
     [Export] Control equipStars;
     [Export] Control materialStars;
+    private int buildingID;
 
     public override void _Ready()
 	{
 		cancelBtn.Pressed += () => UIManager.Instance.HideUI("res://UI/BuildingTips.tscn");
+        confirmBtn.Pressed += () => {
+            GameManager.Instance.currentBuildingID = buildingID;
+            UIManager.Instance.ShowUI("res://UI/Explore/ExploreUI.tscn");          
+        };
 	}
 	public void InitialTips(int ID) 
 	{
+        buildingID = ID;
 		Building building = ConfigManager.Instance.buildingDic[ID];
         nameLabel.Text = building.Name;
         Stars stars = star as Stars;

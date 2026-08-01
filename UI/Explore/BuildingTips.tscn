@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://blrxeoopu15v3"]
 
-[ext_resource type="Script" uid="uid://bx2tcxx2eavkc" path="res://Scripts/UI/BuildingTips.cs" id="1_3fq3s"]
-[ext_resource type="Texture2D" uid="uid://53n15gjv8ksp" path="res://Assets/Images/UI/popup_panel.png" id="2_3fq3s"]
-[ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="3_cvlfx"]
-[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="3_l458b"]
-[ext_resource type="Texture2D" uid="uid://du76f06ps5fb1" path="res://Assets/Images/UI/button_confirm.png" id="4_725gl"]
-[ext_resource type="Texture2D" uid="uid://bs7gg3xn14v6b" path="res://Assets/Images/UI/close_button.png" id="6_4r6dt"]
-[ext_resource type="PackedScene" uid="uid://db0xj71lp2hu1" path="res://UI/stars.tscn" id="6_l458b"]
-[ext_resource type="PackedScene" uid="uid://c2ktxpmkvihar" path="res://UI/supplyStar.tscn" id="8_cvlfx"]
+[ext_resource type="Script" uid="uid://bx2tcxx2eavkc" path="res://Scripts/UI/Explore/BuildingTips.cs" id="1_syilv"]
+[ext_resource type="Texture2D" uid="uid://53n15gjv8ksp" path="res://Assets/Images/UI/popup_panel.png" id="2_pbixe"]
+[ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="3_1eeb5"]
+[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="4_d1361"]
+[ext_resource type="Texture2D" uid="uid://du76f06ps5fb1" path="res://Assets/Images/UI/button_confirm.png" id="5_mirmx"]
+[ext_resource type="Texture2D" uid="uid://bs7gg3xn14v6b" path="res://Assets/Images/UI/close_button.png" id="6_dfig5"]
+[ext_resource type="PackedScene" uid="uid://db0xj71lp2hu1" path="res://UI/stars.tscn" id="7_cnc4k"]
+[ext_resource type="PackedScene" uid="uid://c2ktxpmkvihar" path="res://UI/Explore/supplyStar.tscn" id="8_3fxkn"]
 
 [node name="BuildingTips" type="Control" unique_id=1735430347 node_paths=PackedStringArray("nameLabel", "star", "desLabel", "confirmBtn", "cancelBtn", "foodStars", "medicStars", "equipStars", "materialStars")]
 layout_mode = 3
@@ -16,7 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3fq3s")
+script = ExtResource("1_syilv")
 nameLabel = NodePath("title")
 star = NodePath("stars")
 desLabel = NodePath("des")
@@ -39,7 +39,7 @@ offset_left = 215.0
 offset_top = 289.0
 offset_right = 858.0
 offset_bottom = 1279.8281
-texture = ExtResource("2_3fq3s")
+texture = ExtResource("2_pbixe")
 region_rect = Rect2(-1, 1, 718, 409)
 patch_margin_left = 48
 patch_margin_top = 40
@@ -52,7 +52,7 @@ offset_left = 347.0
 offset_top = 334.0
 offset_right = 722.2793
 offset_bottom = 416.0
-texture = ExtResource("3_cvlfx")
+texture = ExtResource("3_1eeb5")
 region_rect = Rect2(0, 58, 980, 1479)
 
 [node name="title" type="Label" parent="." unique_id=2004018582]
@@ -81,7 +81,7 @@ offset_left = 245.0
 offset_top = 845.0
 offset_right = 825.0
 offset_bottom = 1058.0
-texture = ExtResource("3_l458b")
+texture = ExtResource("4_d1361")
 region_rect = Rect2(10, 12, 108, 105)
 patch_margin_left = 21
 patch_margin_top = 12
@@ -117,7 +117,7 @@ offset_top = 634.0
 offset_right = 398.0
 offset_bottom = 679.0
 theme_override_font_sizes/font_size = 32
-text = "医疗"
+text = "药品"
 horizontal_alignment = 2
 
 [node name="material" type="Label" parent="." unique_id=109017313]
@@ -156,7 +156,7 @@ offset_left = 380.0
 offset_top = 1122.0
 offset_right = 697.9166
 offset_bottom = 1231.0
-texture_normal = ExtResource("4_725gl")
+texture_normal = ExtResource("5_mirmx")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -177,11 +177,11 @@ offset_left = 779.0
 offset_top = 262.0
 offset_right = 891.0
 offset_bottom = 374.0
-icon = ExtResource("6_4r6dt")
+icon = ExtResource("6_dfig5")
 flat = true
 expand_icon = true
 
-[node name="stars" parent="." unique_id=64213728 instance=ExtResource("6_l458b")]
+[node name="stars" parent="." unique_id=64213728 instance=ExtResource("7_cnc4k")]
 layout_mode = 0
 offset_left = 385.0
 offset_top = 477.0
@@ -189,7 +189,7 @@ offset_right = 585.0
 offset_bottom = 527.0
 scale = Vector2(1.5, 1.5)
 
-[node name="foodStars" parent="." unique_id=1220326612 instance=ExtResource("8_cvlfx")]
+[node name="foodStars" parent="." unique_id=1220326612 instance=ExtResource("8_3fxkn")]
 layout_mode = 0
 offset_left = 445.0
 offset_top = 562.0
@@ -197,7 +197,7 @@ offset_right = 645.0
 offset_bottom = 612.0
 scale = Vector2(1.5, 1.5)
 
-[node name="medicStars" parent="." unique_id=1122747995 instance=ExtResource("8_cvlfx")]
+[node name="medicStars" parent="." unique_id=1122747995 instance=ExtResource("8_3fxkn")]
 layout_mode = 0
 offset_left = 445.0
 offset_top = 621.0
@@ -205,7 +205,7 @@ offset_right = 645.0
 offset_bottom = 671.0
 scale = Vector2(1.5, 1.5)
 
-[node name="equipStars" parent="." unique_id=1035698463 instance=ExtResource("8_cvlfx")]
+[node name="equipStars" parent="." unique_id=1035698463 instance=ExtResource("8_3fxkn")]
 layout_mode = 0
 offset_left = 445.0
 offset_top = 679.0
@@ -213,7 +213,7 @@ offset_right = 645.0
 offset_bottom = 729.0
 scale = Vector2(1.5, 1.5)
 
-[node name="materialStars" parent="." unique_id=1375073496 instance=ExtResource("8_cvlfx")]
+[node name="materialStars" parent="." unique_id=1375073496 instance=ExtResource("8_3fxkn")]
 layout_mode = 0
 offset_left = 445.0
 offset_top = 737.0

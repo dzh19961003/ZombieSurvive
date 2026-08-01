@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cdsukhiue3pa7"]
 
-[ext_resource type="Script" uid="uid://byx2t15s25m62" path="res://Scripts/UI/Buildings.cs" id="1_t8865"]
+[ext_resource type="Script" uid="uid://byx2t15s25m62" path="res://Scripts/UI/Explore/Buildings.cs" id="1_t8865"]
 [ext_resource type="Texture2D" uid="uid://dy3dq5sxiuhr3" path="res://Assets/Images/Building/building_coffee.png" id="1_usp65"]
 [ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="2_t8865"]
 [ext_resource type="PackedScene" uid="uid://db0xj71lp2hu1" path="res://UI/stars.tscn" id="3_lkx8u"]

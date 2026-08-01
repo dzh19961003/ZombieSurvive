@@ -23,15 +23,25 @@ namespace MyProject
         /// <summary>Equip 配置字典（以 ID 为键）</summary>
         public Dictionary<int, Equip> equipDic { get; private set; }
 
+        /// <summary>Event 配置列表</summary>
+        public List<Event> eventList { get; private set; }
+        /// <summary>Event 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, Event> eventDic { get; private set; }
+
+        /// <summary>EventPool 配置列表</summary>
+        public List<EventPool> eventPoolList { get; private set; }
+        /// <summary>EventPool 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, EventPool> eventPoolDic { get; private set; }
+
         /// <summary>Item 配置列表</summary>
         public List<Item> itemList { get; private set; }
         /// <summary>Item 配置字典（以 ID 为键）</summary>
         public Dictionary<int, Item> itemDic { get; private set; }
 
-        /// <summary>PlaceInfo 配置列表</summary>
-        public List<PlaceInfo> placeInfoList { get; private set; }
-        /// <summary>PlaceInfo 配置字典（以 ID 为键）</summary>
-        public Dictionary<int, PlaceInfo> placeInfoDic { get; private set; }
+        /// <summary>Room 配置列表</summary>
+        public List<Room> roomList { get; private set; }
+        /// <summary>Room 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, Room> roomDic { get; private set; }
 
         /// <summary>State 配置列表</summary>
         public List<State> stateList { get; private set; }
@@ -62,13 +72,21 @@ namespace MyProject
             equipDic = JsonLoader.LoadToDic<Equip>("equip");
             GD.Print("[ConfigManager] Equip loaded: List=" + (equipList?.Count ?? 0) + ", Dic=" + (equipDic?.Count ?? 0));
 
+            eventList = JsonLoader.LoadToList<Event>("event");
+            eventDic = JsonLoader.LoadToDic<Event>("event");
+            GD.Print("[ConfigManager] Event loaded: List=" + (eventList?.Count ?? 0) + ", Dic=" + (eventDic?.Count ?? 0));
+
+            eventPoolList = JsonLoader.LoadToList<EventPool>("event_pool");
+            eventPoolDic = JsonLoader.LoadToDic<EventPool>("event_pool");
+            GD.Print("[ConfigManager] EventPool loaded: List=" + (eventPoolList?.Count ?? 0) + ", Dic=" + (eventPoolDic?.Count ?? 0));
+
             itemList = JsonLoader.LoadToList<Item>("item");
             itemDic = JsonLoader.LoadToDic<Item>("item");
             GD.Print("[ConfigManager] Item loaded: List=" + (itemList?.Count ?? 0) + ", Dic=" + (itemDic?.Count ?? 0));
 
-            placeInfoList = JsonLoader.LoadToList<PlaceInfo>("place_info");
-            placeInfoDic = JsonLoader.LoadToDic<PlaceInfo>("place_info");
-            GD.Print("[ConfigManager] PlaceInfo loaded: List=" + (placeInfoList?.Count ?? 0) + ", Dic=" + (placeInfoDic?.Count ?? 0));
+            roomList = JsonLoader.LoadToList<Room>("room");
+            roomDic = JsonLoader.LoadToDic<Room>("room");
+            GD.Print("[ConfigManager] Room loaded: List=" + (roomList?.Count ?? 0) + ", Dic=" + (roomDic?.Count ?? 0));
 
             stateList = JsonLoader.LoadToList<State>("state");
             stateDic = JsonLoader.LoadToDic<State>("state");

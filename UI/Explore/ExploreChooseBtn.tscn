@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c4c0yicjmc1vi"]
+
+[ext_resource type="Script" uid="uid://bqmc86o6vj1ps" path="res://Scripts/UI/Explore/ExploreChooseBtn.cs" id="1_1exqd"]
+[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="1_wirtp"]
+
+[node name="ExploreChooseBtn" type="CenterContainer" unique_id=153935579]
+custom_minimum_size = Vector2(760, 120)
+offset_right = 941.0
+offset_bottom = 120.0
+script = ExtResource("1_1exqd")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1998778597]
+custom_maximum_size = Vector2(760, 120)
+layout_mode = 2
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="UI" type="NinePatchRect" parent="TextureButton" unique_id=477192212]
+layout_mode = 0
+offset_left = -471.0
+offset_top = -60.0
+offset_right = 466.0
+offset_bottom = 60.0
+texture = ExtResource("1_wirtp")
+region_rect = Rect2(0, 0, 136, 136)
+patch_margin_left = 28
+patch_margin_top = 27
+patch_margin_right = 33
+patch_margin_bottom = 36
