@@ -3,8 +3,19 @@
 [ext_resource type="Texture2D" uid="uid://daq3kljsrucf7" path="res://Assets/Images/BuildingBg/building_2_0_1.png" id="1_3fx2v"]
 [ext_resource type="Script" uid="uid://c7e1hoilidhkt" path="res://Scripts/UI/Explore/ExploreUI.cs" id="1_bp85n"]
 [ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="2_hoe4v"]
+[ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="4_pxmw8"]
+[ext_resource type="Texture2D" uid="uid://dlagv04uasoc5" path="res://Assets/Images/UI/exploreIcon.png" id="5_qpp0w"]
+[ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="5_xam4r"]
+[ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="6_uthlu"]
+[ext_resource type="Texture2D" uid="uid://csw3aoeuk0uu" path="res://Assets/Images/UI/plusIcon.png" id="8_uthlu"]
+[ext_resource type="Texture2D" uid="uid://b4qbhhkttqh0m" path="res://Assets/Images/UI/mapIcon.png" id="8_xam4r"]
+[ext_resource type="Texture2D" uid="uid://br6sl8ouqesfy" path="res://Assets/Images/UI/noiseIcon.png" id="11_s03io"]
+[ext_resource type="Texture2D" uid="uid://6u23el1whh3l" path="res://Assets/Images/UI/Explore/exploreImage_1.png" id="12_mpigk"]
+[ext_resource type="Texture2D" uid="uid://nwj5vh2p16gj" path="res://Assets/Images/UI/plusIcon_2.png" id="13_7olkg"]
+[ext_resource type="Texture2D" uid="uid://c5kw0xcwtxyx5" path="res://Assets/Images/UI/Explore/exploreImage_3.png" id="13_rnyhu"]
+[ext_resource type="Texture2D" uid="uid://eha4luqy6cu8" path="res://Assets/Images/UI/Explore/exploreImage_2.png" id="13_vo20k"]
 
-[node name="ExploreUI" type="Control" unique_id=1351775229 node_paths=PackedStringArray("bg", "desLabel", "chooseBar", "roomContainer", "roomBg")]
+[node name="ExploreUI" type="Control" unique_id=1351775229 node_paths=PackedStringArray("bg", "desLabel", "chooseBar", "roomContainer", "roomBg", "backBtn", "roomProgressBar", "noiseBar")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1080.0
@@ -13,8 +24,11 @@ script = ExtResource("1_bp85n")
 bg = NodePath("Bg")
 desLabel = NodePath("DesBar/desLabel")
 chooseBar = NodePath("ChooseBar")
-roomContainer = NodePath("roomContainer")
+roomContainer = NodePath("roomBg/roomContainer")
 roomBg = NodePath("roomBg")
+backBtn = NodePath("roomBg/roomContainer/BackBtn")
+roomProgressBar = NodePath("roomBg/roomProgressBar")
+noiseBar = NodePath("bg/noiseBar")
 
 [node name="Bg" type="TextureRect" parent="." unique_id=1617460817]
 layout_mode = 1
@@ -28,10 +42,10 @@ stretch_mode = 3
 
 [node name="DesBar" type="NinePatchRect" parent="." unique_id=1911186057]
 layout_mode = 0
-offset_left = 86.0
-offset_top = 1158.0
-offset_right = 1023.0
-offset_bottom = 1472.0
+offset_left = 77.0
+offset_top = 1226.0
+offset_right = 1014.0
+offset_bottom = 1540.0
 texture = ExtResource("2_hoe4v")
 region_rect = Rect2(0, 0, 136, 136)
 patch_margin_left = 28
@@ -49,23 +63,24 @@ offset_right = 898.0
 offset_bottom = 283.0
 theme_override_font_sizes/font_size = 32
 text = "描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述"
+horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
 [node name="ChooseBar" type="VBoxContainer" parent="." unique_id=542390078]
 layout_mode = 1
 offset_left = 73.0
-offset_top = 1513.0
+offset_top = 1536.0
 offset_right = 1033.0
-offset_bottom = 1832.0
+offset_bottom = 1896.0
 theme_override_constants/separation = 0
 
 [node name="roomBg" type="NinePatchRect" parent="." unique_id=359328042]
 layout_mode = 0
 offset_left = 7.0
-offset_top = 415.0
+offset_top = 503.0
 offset_right = 1061.0
-offset_bottom = 1049.0
+offset_bottom = 1099.0
 texture = ExtResource("2_hoe4v")
 region_rect = Rect2(0, 0, 129, 128)
 patch_margin_left = 29
@@ -73,21 +88,546 @@ patch_margin_top = 28
 patch_margin_right = 28
 patch_margin_bottom = 27
 
-[node name="desLabel2" type="Label" parent="roomBg" unique_id=1530936056]
+[node name="TitleBackground" type="TextureRect" parent="roomBg" unique_id=2063200782]
 layout_mode = 0
-offset_left = 100.0
-offset_top = 33.0
-offset_right = 964.0
-offset_bottom = 116.0
-theme_override_font_sizes/font_size = 60
-text = "选择房间"
+offset_left = 70.00001
+offset_top = -61.0
+offset_right = 710.0
+offset_bottom = 35.0
+scale = Vector2(1.4326489, 1.6302083)
+texture = ExtResource("6_uthlu")
+
+[node name="desLabel3" type="Label" parent="roomBg" unique_id=703118839]
+layout_mode = 0
+offset_left = 89.0
+offset_top = -34.0
+offset_right = 953.0
+offset_bottom = 49.0
+theme_override_font_sizes/font_size = 48
+text = "选择前进方向"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="roomContainer" type="HBoxContainer" parent="." unique_id=901745634]
+[node name="roomProgressBar" type="HBoxContainer" parent="roomBg" unique_id=1471222341]
+visible = false
 layout_mode = 0
-offset_left = 23.0
-offset_top = 544.0
-offset_right = 1056.0
-offset_bottom = 964.0
+offset_left = 384.00003
+offset_top = 567.99994
+offset_right = 745.25
+offset_bottom = 695.99994
+scale = Vector2(0.8, 0.8)
+theme_override_constants/separation = -24
 alignment = 1
+
+[node name="roomContainer" type="HBoxContainer" parent="roomBg" unique_id=901745634]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 90.0
+offset_right = 1045.0
+offset_bottom = 565.0
+alignment = 1
+
+[node name="BackBtn" type="TextureButton" parent="roomBg/roomContainer" unique_id=607785597]
+custom_minimum_size = Vector2(332, 475)
+layout_mode = 2
+stretch_mode = 0
+
+[node name="Room" type="NinePatchRect" parent="roomBg/roomContainer/BackBtn" unique_id=1293770067]
+custom_minimum_size = Vector2(328, 424)
+propagate_maximum_size = true
+layout_mode = 1
+offset_right = 332.0
+offset_bottom = 477.0
+texture = ExtResource("5_xam4r")
+region_rect = Rect2(0, 0, 980, 1720)
+patch_margin_left = 104
+patch_margin_top = 144
+patch_margin_right = 124
+patch_margin_bottom = 240
+
+[node name="bg" type="ColorRect" parent="roomBg/roomContainer/BackBtn" unique_id=1223978779]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 87.0
+offset_right = 301.0
+offset_bottom = 297.0
+color = Color(0.7411765, 0.84705883, 1, 0.20392157)
+
+[node name="ExploreImage3" type="TextureRect" parent="roomBg/roomContainer/BackBtn" unique_id=704719630]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 110.0
+offset_right = 301.0
+offset_bottom = 270.0
+texture = ExtResource("13_rnyhu")
+
+[node name="nameLabel" type="Label" parent="roomBg/roomContainer/BackBtn" unique_id=1565299931]
+custom_minimum_size = Vector2(256, 45)
+layout_mode = 0
+offset_left = 36.0
+offset_top = 33.0
+offset_right = 292.0
+offset_bottom = 78.0
+theme_override_font_sizes/font_size = 32
+text = "离开建筑"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="roomBg2" type="NinePatchRect" parent="." unique_id=1753727129]
+visible = false
+layout_mode = 0
+offset_left = 7.0
+offset_top = 502.0
+offset_right = 1061.0
+offset_bottom = 1089.0
+texture = ExtResource("2_hoe4v")
+region_rect = Rect2(0, 0, 129, 128)
+patch_margin_left = 29
+patch_margin_top = 28
+patch_margin_right = 28
+patch_margin_bottom = 27
+
+[node name="TitleBackground" type="TextureRect" parent="roomBg2" unique_id=1063156191]
+layout_mode = 0
+offset_left = 73.00001
+offset_top = -61.0
+offset_right = 713.0
+offset_bottom = 35.0
+scale = Vector2(1.4326489, 1.6302083)
+texture = ExtResource("6_uthlu")
+
+[node name="desLabel3" type="Label" parent="roomBg2" unique_id=1649297337]
+layout_mode = 0
+offset_left = 94.99999
+offset_top = -34.0
+offset_right = 959.0
+offset_bottom = 49.0
+theme_override_font_sizes/font_size = 48
+text = "搜索策略"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="roomProgressBar" type="HBoxContainer" parent="roomBg2" unique_id=963739536]
+layout_mode = 0
+offset_left = 494.99997
+offset_top = 593.99994
+offset_right = 856.2499
+offset_bottom = 721.99994
+scale = Vector2(0.8, 0.8)
+theme_override_constants/separation = -24
+alignment = 1
+
+[node name="roomContainer" type="HBoxContainer" parent="roomBg2" unique_id=1413327284]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 92.0
+offset_right = 1049.0
+offset_bottom = 567.0
+alignment = 1
+
+[node name="ExploreBtn1" type="TextureButton" parent="roomBg2/roomContainer" unique_id=741055492]
+custom_minimum_size = Vector2(332, 475)
+layout_mode = 2
+stretch_mode = 0
+
+[node name="Room" type="NinePatchRect" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1712778797]
+custom_minimum_size = Vector2(328, 424)
+propagate_maximum_size = true
+layout_mode = 1
+offset_right = 332.0
+offset_bottom = 477.0
+texture = ExtResource("5_xam4r")
+region_rect = Rect2(0, 0, 980, 1720)
+patch_margin_left = 104
+patch_margin_top = 144
+patch_margin_right = 124
+patch_margin_bottom = 240
+
+[node name="bg" type="ColorRect" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1611173336]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 288.0
+offset_right = 301.0
+offset_bottom = 447.0
+color = Color(0.7411765, 0.84705883, 1, 0.20392157)
+
+[node name="nameLabel" type="Label" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1833466240]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 42.0
+offset_right = 263.77777
+offset_bottom = 101.0
+theme_override_font_sizes/font_size = 42
+text = "谨慎搜索"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="risDeskLabel2" type="Label" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=2141331081]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 355.0
+offset_right = 148.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 32
+text = "进度"
+vertical_alignment = 1
+
+[node name="risDeskLabel4" type="Label" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1800925166]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 294.0
+offset_right = 148.0
+offset_bottom = 339.0
+theme_override_font_sizes/font_size = 32
+text = "品质"
+vertical_alignment = 1
+
+[node name="risDeskLabel3" type="Label" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1788093337]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 398.0
+offset_right = 148.0
+offset_bottom = 443.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "噪音"
+vertical_alignment = 1
+
+[node name="PlusIcon" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=2104190291]
+position = Vector2(231, 317)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("8_uthlu")
+
+[node name="PlusIcon3" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=415790216]
+position = Vector2(273.5, 376)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("8_uthlu")
+
+[node name="PlusIcon2" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1657648158]
+position = Vector2(272, 317)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("8_uthlu")
+
+[node name="Map" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1368453188]
+position = Vector2(56.999992, 377)
+scale = Vector2(0.25263506, 0.30855796)
+texture = ExtResource("8_xam4r")
+
+[node name="NoiseIcon" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1745900787]
+position = Vector2(57, 420.99994)
+scale = Vector2(0.37695313, 0.37695313)
+texture = ExtResource("11_s03io")
+
+[node name="ExploreIcon" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1899885972]
+position = Vector2(59, 320)
+scale = Vector2(0.89604104, 0.89604104)
+texture = ExtResource("5_qpp0w")
+
+[node name="PlusIcon4" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1039526804]
+position = Vector2(273.24997, 421)
+scale = Vector2(0.7265622, 0.7265622)
+texture = ExtResource("13_7olkg")
+
+[node name="ExploreImage1" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1064600176]
+position = Vector2(163.28123, 188.5)
+scale = Vector2(0.9875, 0.9875)
+texture = ExtResource("12_mpigk")
+
+[node name="ExploreBtn2" type="TextureButton" parent="roomBg2/roomContainer" unique_id=507746360]
+custom_minimum_size = Vector2(332, 475)
+layout_mode = 2
+stretch_mode = 0
+
+[node name="Room" type="NinePatchRect" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=2136794592]
+custom_minimum_size = Vector2(328, 424)
+propagate_maximum_size = true
+layout_mode = 1
+offset_right = 332.0
+offset_bottom = 477.0
+texture = ExtResource("5_xam4r")
+region_rect = Rect2(0, 0, 980, 1720)
+patch_margin_left = 104
+patch_margin_top = 144
+patch_margin_right = 124
+patch_margin_bottom = 240
+
+[node name="bg" type="ColorRect" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=1163303091]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 289.0
+offset_right = 300.0
+offset_bottom = 447.0
+color = Color(0.7411765, 0.84705883, 1, 0.20392157)
+
+[node name="risDeskLabel2" type="Label" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=1557849464]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 355.0
+offset_right = 149.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 32
+text = "进度"
+vertical_alignment = 1
+
+[node name="risDeskLabel4" type="Label" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=914342430]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 294.0
+offset_right = 149.0
+offset_bottom = 339.0
+theme_override_font_sizes/font_size = 32
+text = "品质"
+vertical_alignment = 1
+
+[node name="risDeskLabel3" type="Label" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=471059441]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 398.0
+offset_right = 149.0
+offset_bottom = 443.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "噪音"
+vertical_alignment = 1
+
+[node name="PlusIcon" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=929546374]
+position = Vector2(279, 317)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("8_uthlu")
+
+[node name="PlusIcon2" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=147153492]
+position = Vector2(193, 376)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("8_uthlu")
+
+[node name="PlusIcon3" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=846362577]
+position = Vector2(237, 376)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("8_uthlu")
+
+[node name="PlusIcon4" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=2069024279]
+position = Vector2(279, 376)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("8_uthlu")
+
+[node name="nameLabel" type="Label" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=778252554]
+custom_minimum_size = Vector2(256, 45)
+layout_mode = 0
+offset_left = 36.0
+offset_top = 42.0
+offset_right = 292.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 42
+text = "高效搜索"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Map" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=347135317]
+position = Vector2(57, 377)
+scale = Vector2(0.25263506, 0.30855796)
+texture = ExtResource("8_xam4r")
+
+[node name="NoiseIcon" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=2108129789]
+position = Vector2(57, 420.99994)
+scale = Vector2(0.37695313, 0.37695313)
+texture = ExtResource("11_s03io")
+
+[node name="ExploreIcon" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=1288477518]
+position = Vector2(59, 320)
+scale = Vector2(0.89604104, 0.89604104)
+texture = ExtResource("5_qpp0w")
+
+[node name="PlusIcon5" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=1124102976]
+position = Vector2(237, 421)
+scale = Vector2(0.7265622, 0.7265622)
+texture = ExtResource("13_7olkg")
+
+[node name="PlusIcon6" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=280351518]
+position = Vector2(279, 421)
+scale = Vector2(0.7265622, 0.7265622)
+texture = ExtResource("13_7olkg")
+
+[node name="BackBtn" type="TextureButton" parent="roomBg2/roomContainer" unique_id=172267814]
+custom_minimum_size = Vector2(332, 475)
+layout_mode = 2
+stretch_mode = 0
+
+[node name="Room" type="NinePatchRect" parent="roomBg2/roomContainer/BackBtn" unique_id=764094555]
+custom_minimum_size = Vector2(328, 424)
+propagate_maximum_size = true
+layout_mode = 1
+offset_right = 332.0
+offset_bottom = 477.0
+texture = ExtResource("5_xam4r")
+region_rect = Rect2(0, 0, 980, 1720)
+patch_margin_left = 104
+patch_margin_top = 144
+patch_margin_right = 124
+patch_margin_bottom = 240
+
+[node name="bg" type="ColorRect" parent="roomBg2/roomContainer/BackBtn" unique_id=60272908]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 290.0
+offset_right = 301.0
+offset_bottom = 447.0
+color = Color(0.7411765, 0.84705883, 1, 0.20392157)
+
+[node name="ExploreImage3" type="Sprite2D" parent="roomBg2/roomContainer/BackBtn" unique_id=259760957]
+position = Vector2(164, 188.25)
+scale = Vector2(0.9906249, 0.9906248)
+texture = ExtResource("13_rnyhu")
+
+[node name="nameLabel" type="Label" parent="roomBg2/roomContainer/BackBtn" unique_id=1910960913]
+custom_minimum_size = Vector2(256, 45)
+layout_mode = 0
+offset_left = 37.0
+offset_top = 42.0
+offset_right = 293.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 42
+text = "中途撤离"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="risDeskLabel" type="Label" parent="roomBg2/roomContainer/BackBtn" unique_id=1810493593]
+custom_minimum_size = Vector2(256, 45)
+layout_mode = 0
+offset_left = 36.0
+offset_top = 294.0
+offset_right = 292.0
+offset_bottom = 339.0
+theme_override_font_sizes/font_size = 32
+text = "撤离风险"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="riskLabel" type="Label" parent="roomBg2/roomContainer/BackBtn" unique_id=1150622691]
+custom_minimum_size = Vector2(256, 45)
+layout_mode = 0
+offset_left = 36.0
+offset_top = 368.0
+offset_right = 292.0
+offset_bottom = 435.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "高"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="ExploreImage2" type="Sprite2D" parent="roomBg2" unique_id=399860888]
+position = Vector2(528.99994, 281.25)
+scale = Vector2(0.9906252, 0.9906251)
+texture = ExtResource("13_vo20k")
+
+[node name="bg" type="ColorRect" parent="." unique_id=1247847510]
+layout_mode = 0
+offset_right = 1080.0
+offset_bottom = 110.0
+color = Color(0, 0, 0, 0.8352941)
+
+[node name="staminaBar" type="NinePatchRect" parent="bg" unique_id=115282439]
+layout_mode = 0
+offset_left = 446.0
+offset_top = 18.0
+offset_right = 691.0
+offset_bottom = 100.0
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_hoe4v")
+region_rect = Rect2(0, 0, 129, 127)
+patch_margin_left = 29
+patch_margin_top = 27
+patch_margin_right = 29
+patch_margin_bottom = 30
+
+[node name="Stamina" type="Sprite2D" parent="bg/staminaBar" unique_id=595121926]
+position = Vector2(1.9073486e-06, 41.999996)
+scale = Vector2(0.7630621, 0.7630621)
+texture = ExtResource("4_pxmw8")
+
+[node name="ExploreIcon" type="Sprite2D" parent="bg/staminaBar/Stamina" unique_id=1194997438]
+position = Vector2(18.846605, 29.840504)
+scale = Vector2(1.1779145, 1.1779145)
+texture = ExtResource("5_qpp0w")
+
+[node name="StaminaLabel" type="Label" parent="bg/staminaBar" unique_id=576064882]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 8.0
+offset_right = 216.0
+offset_bottom = 75.0
+theme_override_colors/font_outline_color = Color(0.32941177, 0.039215688, 0.003921569, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 48
+text = "20"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="progressBar" type="NinePatchRect" parent="bg" unique_id=1465975069]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 18.0
+offset_right = 353.0
+offset_bottom = 100.0
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_hoe4v")
+region_rect = Rect2(0, 0, 129, 127)
+patch_margin_left = 29
+patch_margin_top = 27
+patch_margin_right = 29
+patch_margin_bottom = 30
+
+[node name="Map" type="Sprite2D" parent="bg/progressBar" unique_id=890080032]
+position = Vector2(1.999979, 38.000004)
+scale = Vector2(0.6044136, 0.7382057)
+texture = ExtResource("8_xam4r")
+
+[node name="StaminaLabel" type="Label" parent="bg/progressBar" unique_id=1459738139]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 8.0
+offset_right = 216.0
+offset_bottom = 75.0
+theme_override_colors/font_outline_color = Color(0.32941177, 0.039215688, 0.003921569, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 48
+text = "20%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="noiseBar" type="NinePatchRect" parent="bg" unique_id=1870751930]
+layout_mode = 0
+offset_left = 778.0
+offset_top = 18.0
+offset_right = 1022.0
+offset_bottom = 100.0
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_hoe4v")
+region_rect = Rect2(0, 0, 129, 127)
+patch_margin_left = 29
+patch_margin_top = 27
+patch_margin_right = 29
+patch_margin_bottom = 30
+
+[node name="NoiseIcon" type="Sprite2D" parent="bg/noiseBar" unique_id=40143372]
+position = Vector2(23.999992, 39)
+scale = Vector2(1.0703126, 1.0703126)
+texture = ExtResource("11_s03io")
+
+[node name="StaminaLabel" type="Label" parent="bg/noiseBar" unique_id=1666562131]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 8.0
+offset_right = 216.0
+offset_bottom = 75.0
+theme_override_colors/font_outline_color = Color(0.32941177, 0.039215688, 0.003921569, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 48
+text = "20%"
+horizontal_alignment = 2
+vertical_alignment = 1

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://c2ms2t0wsgj54"]
+
+[ext_resource type="Script" uid="uid://ccani7wwqu0qm" path="res://Scripts/UI/Explore/RoomProgress.cs" id="1_yo15o"]
+[ext_resource type="Texture2D" uid="uid://cuf21obshc0gy" path="res://Assets/Images/UI/progressIn.png" id="2_5c2ei"]
+[ext_resource type="Texture2D" uid="uid://cit3gvlwpjso6" path="res://Assets/Images/UI/progressOut.png" id="3_sj2qs"]
+
+[node name="roomProgress" type="Control" unique_id=1218447031 node_paths=PackedStringArray("on", "off")]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 128.0
+script = ExtResource("1_yo15o")
+on = NodePath("on")
+off = NodePath("off")
+
+[node name="off" type="TextureRect" parent="." unique_id=246106973]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("3_sj2qs")
+stretch_mode = 2
+
+[node name="on" type="TextureRect" parent="." unique_id=1724851453]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2_5c2ei")
+stretch_mode = 2

@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://ckufvc6k0f3wo"]
+
+[ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="2_nu42n"]
+[ext_resource type="Texture2D" uid="uid://dkws8ecj80748" path="res://Assets/Images/UI/backIcon.png" id="3_snbwf"]
+
+[node name="RoomChoose" type="Control" unique_id=672145399]
+custom_minimum_size = Vector2(332, 420)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 332.0
+offset_bottom = 478.0
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=80331685]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 0
+
+[node name="nameLabel" type="Label" parent="TextureButton" unique_id=1957824548]
+custom_minimum_size = Vector2(256, 45)
+layout_mode = 0
+offset_left = 36.0
+offset_top = 33.0
+offset_right = 292.0
+offset_bottom = 78.0
+theme_override_font_sizes/font_size = 32
+text = "离开建筑"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Room" type="NinePatchRect" parent="TextureButton" unique_id=689990083]
+custom_minimum_size = Vector2(328, 424)
+propagate_maximum_size = true
+layout_mode = 1
+offset_right = 332.0
+offset_bottom = 477.0
+texture = ExtResource("2_nu42n")
+region_rect = Rect2(0, 0, 980, 1720)
+patch_margin_left = 104
+patch_margin_top = 144
+patch_margin_right = 124
+patch_margin_bottom = 240
+
+[node name="bg" type="ColorRect" parent="TextureButton" unique_id=1737960862]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 87.0
+offset_right = 301.0
+offset_bottom = 297.0
+color = Color(0.7411765, 0.84705883, 1, 0.20392157)
+
+[node name="roomIcon" type="TextureRect" parent="TextureButton" unique_id=295371806]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 98.0
+offset_right = 268.93335
+offset_bottom = 292.0
+texture = ExtResource("3_snbwf")
+expand_mode = 1

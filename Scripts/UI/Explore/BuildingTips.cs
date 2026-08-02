@@ -17,8 +17,9 @@ public partial class BuildingTips : Control
 
     public override void _Ready()
 	{
-		cancelBtn.Pressed += () => UIManager.Instance.HideUI("res://UI/BuildingTips.tscn");
+		cancelBtn.Pressed += () => UIManager.Instance.HideUI("res://UI/Explore/BuildingTips.tscn");
         confirmBtn.Pressed += () => {
+            UIManager.Instance.HideUI("res://UI/Explore/BuildingTips.tscn");
             GameManager.Instance.currentBuildingID = buildingID;
             UIManager.Instance.ShowUI("res://UI/Explore/ExploreUI.tscn");          
         };
