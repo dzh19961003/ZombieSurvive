@@ -4,7 +4,9 @@
 [ext_resource type="Script" uid="uid://c7e1hoilidhkt" path="res://Scripts/UI/Explore/ExploreUI.cs" id="1_bp85n"]
 [ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="2_hoe4v"]
 [ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="4_pxmw8"]
+[ext_resource type="PackedScene" uid="uid://c4c0yicjmc1vi" path="res://UI/Explore/ExploreChooseBtn.tscn" id="4_rnyhu"]
 [ext_resource type="Texture2D" uid="uid://dlagv04uasoc5" path="res://Assets/Images/UI/exploreIcon.png" id="5_qpp0w"]
+[ext_resource type="Texture2D" uid="uid://d1nmp4fcid50p" path="res://Assets/Images/UI/main_panel_2.png" id="5_vo20k"]
 [ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="5_xam4r"]
 [ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="6_uthlu"]
 [ext_resource type="Texture2D" uid="uid://csw3aoeuk0uu" path="res://Assets/Images/UI/plusIcon.png" id="8_uthlu"]
@@ -42,10 +44,10 @@ stretch_mode = 3
 
 [node name="DesBar" type="NinePatchRect" parent="." unique_id=1911186057]
 layout_mode = 0
-offset_left = 77.0
-offset_top = 1226.0
-offset_right = 1014.0
-offset_bottom = 1540.0
+offset_left = 13.0
+offset_top = 1184.0
+offset_right = 1073.0
+offset_bottom = 1498.0
 texture = ExtResource("2_hoe4v")
 region_rect = Rect2(0, 0, 136, 136)
 patch_margin_left = 28
@@ -54,13 +56,12 @@ patch_margin_right = 33
 patch_margin_bottom = 36
 
 [node name="desLabel" type="Label" parent="DesBar" unique_id=166100634]
-custom_minimum_size = Vector2(864, 258)
-custom_maximum_size = Vector2(864, 300)
+custom_minimum_size = Vector2(864, 230)
 layout_mode = 0
-offset_left = 34.0
-offset_top = 25.0
-offset_right = 898.0
-offset_bottom = 283.0
+offset_left = 33.0
+offset_top = 33.0
+offset_right = 999.0
+offset_bottom = 263.0
 theme_override_font_sizes/font_size = 32
 text = "描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述"
 horizontal_alignment = 1
@@ -69,17 +70,26 @@ autowrap_mode = 1
 
 [node name="ChooseBar" type="VBoxContainer" parent="." unique_id=542390078]
 layout_mode = 1
-offset_left = 73.0
-offset_top = 1536.0
-offset_right = 1033.0
-offset_bottom = 1896.0
+offset_left = 12.0
+offset_top = 1511.0
+offset_right = 1092.0
+offset_bottom = 1871.0
 theme_override_constants/separation = 0
+
+[node name="ExploreChooseBtn" parent="ChooseBar" unique_id=153935579 instance=ExtResource("4_rnyhu")]
+layout_mode = 2
+
+[node name="ExploreChooseBtn2" parent="ChooseBar" unique_id=1497115010 instance=ExtResource("4_rnyhu")]
+layout_mode = 2
+
+[node name="ExploreChooseBtn3" parent="ChooseBar" unique_id=555747987 instance=ExtResource("4_rnyhu")]
+layout_mode = 2
 
 [node name="roomBg" type="NinePatchRect" parent="." unique_id=359328042]
 layout_mode = 0
-offset_left = 7.0
+offset_left = 12.0
 offset_top = 503.0
-offset_right = 1061.0
+offset_right = 1066.0
 offset_bottom = 1099.0
 texture = ExtResource("2_hoe4v")
 region_rect = Rect2(0, 0, 129, 128)
@@ -90,19 +100,19 @@ patch_margin_bottom = 27
 
 [node name="TitleBackground" type="TextureRect" parent="roomBg" unique_id=2063200782]
 layout_mode = 0
-offset_left = 70.00001
-offset_top = -61.0
+offset_left = 70.0
+offset_top = -85.0
 offset_right = 710.0
-offset_bottom = 35.0
+offset_bottom = 11.0
 scale = Vector2(1.4326489, 1.6302083)
 texture = ExtResource("6_uthlu")
 
 [node name="desLabel3" type="Label" parent="roomBg" unique_id=703118839]
 layout_mode = 0
-offset_left = 89.0
-offset_top = -34.0
+offset_left = 88.99999
+offset_top = -58.0
 offset_right = 953.0
-offset_bottom = 49.0
+offset_bottom = 25.0
 theme_override_font_sizes/font_size = 48
 text = "选择前进方向"
 horizontal_alignment = 1
@@ -122,9 +132,9 @@ alignment = 1
 [node name="roomContainer" type="HBoxContainer" parent="roomBg" unique_id=901745634]
 layout_mode = 0
 offset_left = 12.0
-offset_top = 90.0
+offset_top = 74.0
 offset_right = 1045.0
-offset_bottom = 565.0
+offset_bottom = 549.0
 alignment = 1
 
 [node name="BackBtn" type="TextureButton" parent="roomBg/roomContainer" unique_id=607785597]
@@ -138,7 +148,7 @@ propagate_maximum_size = true
 layout_mode = 1
 offset_right = 332.0
 offset_bottom = 477.0
-texture = ExtResource("5_xam4r")
+texture = ExtResource("5_vo20k")
 region_rect = Rect2(0, 0, 980, 1720)
 patch_margin_left = 104
 patch_margin_top = 144
@@ -148,31 +158,43 @@ patch_margin_bottom = 240
 [node name="bg" type="ColorRect" parent="roomBg/roomContainer/BackBtn" unique_id=1223978779]
 layout_mode = 0
 offset_left = 26.0
-offset_top = 87.0
+offset_top = 327.0
 offset_right = 301.0
-offset_bottom = 297.0
+offset_bottom = 445.0
 color = Color(0.7411765, 0.84705883, 1, 0.20392157)
 
 [node name="ExploreImage3" type="TextureRect" parent="roomBg/roomContainer/BackBtn" unique_id=704719630]
 layout_mode = 0
 offset_left = 26.0
-offset_top = 110.0
+offset_top = 97.0
 offset_right = 301.0
-offset_bottom = 270.0
+offset_bottom = 257.0
 texture = ExtResource("13_rnyhu")
 
 [node name="nameLabel" type="Label" parent="roomBg/roomContainer/BackBtn" unique_id=1565299931]
 custom_minimum_size = Vector2(256, 45)
 layout_mode = 0
 offset_left = 36.0
-offset_top = 33.0
+offset_top = 38.0
 offset_right = 292.0
-offset_bottom = 78.0
+offset_bottom = 83.0
 theme_override_font_sizes/font_size = 32
-text = "离开建筑"
+text = "返回地图"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
+
+[node name="desLabel" type="Label" parent="roomBg/roomContainer/BackBtn" unique_id=233198192]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 335.0
+offset_right = 299.0
+offset_bottom = 429.0
+theme_override_constants/line_spacing = -8
+theme_override_font_sizes/font_size = 36
+text = "结束探索"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="roomBg2" type="NinePatchRect" parent="." unique_id=1753727129]
 visible = false
@@ -190,19 +212,19 @@ patch_margin_bottom = 27
 
 [node name="TitleBackground" type="TextureRect" parent="roomBg2" unique_id=1063156191]
 layout_mode = 0
-offset_left = 73.00001
-offset_top = -61.0
+offset_left = 73.0
+offset_top = -85.0
 offset_right = 713.0
-offset_bottom = 35.0
+offset_bottom = 11.0
 scale = Vector2(1.4326489, 1.6302083)
 texture = ExtResource("6_uthlu")
 
 [node name="desLabel3" type="Label" parent="roomBg2" unique_id=1649297337]
 layout_mode = 0
 offset_left = 94.99999
-offset_top = -34.0
+offset_top = -58.0
 offset_right = 959.0
-offset_bottom = 49.0
+offset_bottom = 25.0
 theme_override_font_sizes/font_size = 48
 text = "搜索策略"
 horizontal_alignment = 1
@@ -221,9 +243,9 @@ alignment = 1
 [node name="roomContainer" type="HBoxContainer" parent="roomBg2" unique_id=1413327284]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 92.0
+offset_top = 76.0
 offset_right = 1049.0
-offset_bottom = 567.0
+offset_bottom = 551.0
 alignment = 1
 
 [node name="ExploreBtn1" type="TextureButton" parent="roomBg2/roomContainer" unique_id=741055492]
@@ -531,11 +553,16 @@ offset_right = 1080.0
 offset_bottom = 110.0
 color = Color(0, 0, 0, 0.8352941)
 
+[node name="HBoxContainer" type="HBoxContainer" parent="bg" unique_id=1750290835]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="staminaBar" type="NinePatchRect" parent="bg" unique_id=115282439]
 layout_mode = 0
-offset_left = 446.0
+offset_left = 101.0
 offset_top = 18.0
-offset_right = 691.0
+offset_right = 346.0
 offset_bottom = 100.0
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_hoe4v")
@@ -570,9 +597,9 @@ vertical_alignment = 1
 
 [node name="progressBar" type="NinePatchRect" parent="bg" unique_id=1465975069]
 layout_mode = 0
-offset_left = 109.0
+offset_left = 447.0
 offset_top = 18.0
-offset_right = 353.0
+offset_right = 692.0
 offset_bottom = 100.0
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_hoe4v")
@@ -602,9 +629,9 @@ vertical_alignment = 1
 
 [node name="noiseBar" type="NinePatchRect" parent="bg" unique_id=1870751930]
 layout_mode = 0
-offset_left = 778.0
+offset_left = 783.0
 offset_top = 18.0
-offset_right = 1022.0
+offset_right = 1027.0
 offset_bottom = 100.0
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_hoe4v")

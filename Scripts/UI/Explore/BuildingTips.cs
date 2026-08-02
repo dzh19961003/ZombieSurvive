@@ -21,7 +21,9 @@ public partial class BuildingTips : Control
         confirmBtn.Pressed += () => {
             UIManager.Instance.HideUI("res://UI/Explore/BuildingTips.tscn");
             GameManager.Instance.currentBuildingID = buildingID;
-            UIManager.Instance.ShowUI("res://UI/Explore/ExploreUI.tscn");          
+            // 用 CreateUI 创建全新实例（不走缓存），每次打开 ExploreUI 都会重新执行 _Ready
+            ExploreUI explore = (ExploreUI)UIManager.Instance.CreateUI("res://UI/Explore/ExploreUI.tscn");
+            explore.RefreshExplore(GameManager.Instance.exploreState, GameManager.Instance.exploreLayer);
         };
 	}
 	public void InitialTips(int ID) 

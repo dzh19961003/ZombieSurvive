@@ -63,6 +63,64 @@ public partial class UIManager : Node
     }
 
     // ─────────────────────────────────────────────────────────
+    //  CreateUI：每次创建全新实例（不走缓存），
+    //  适用于需要每次打开都是全新状态的界面（如 ExploreUI）。
+    //  关闭时用 DeleteUI 销毁。
+    // ─────────────────────────────────────────────────────────
+    public Control CreateUI(string scenePath)
+    {
+        var scene = GD.Load<PackedScene>(scenePath);
+        if (scene == null)
+        {
+            GD.PrintErr("[UIManager] 找不到场景：" + scenePath);
+            return null;
+        }
+        var panel = scene.Instantiate<Control>();
+        AddChild(panel);
+        return panel;
+    }
+
+    // ─────────────────────────────────────────────────────────
+    //  DeleteUI：销毁一个 UI 面板节点，同时清理 ShowUI 缓存
+    //  （防止缓存里留下已释放节点的悬空引用）。
+    //
+    //  重载 1：传节点引用
+    //    UIManager.Instance.DeleteUI(exploreUI);
+    //  重载 2：传场景路径
+    //    UIManager.Instance.DeleteUI("res://UI/Explore/ExploreUI.tscn");
+    // ─────────────────────────────────────────────────────────
+    public void DeleteUI(Control panel)
+    {
+        if (panel == null) return;
+
+        // 从 ShowUI 缓存中移除（如果有）
+        string keyToRemove = null;
+        foreach (var kv in _panels)
+        {
+            if (kv.Value == panel)
+            {
+                keyToRemove = kv.Key;
+                break;
+            }
+        }
+        if (keyToRemove != null)
+        {
+            _panels.Remove(keyToRemove);
+        }
+
+        panel.QueueFree();
+    }
+
+    public void DeleteUI(string scenePath)
+    {
+        if (_panels.TryGetValue(scenePath, out var panel))
+        {
+            _panels.Remove(scenePath);
+            panel.QueueFree();
+        }
+    }
+
+    // ─────────────────────────────────────────────────────────
     //  HideAll：关闭所有面板（切换场景前可以调用）
     // ─────────────────────────────────────────────────────────
     public void HideAll()

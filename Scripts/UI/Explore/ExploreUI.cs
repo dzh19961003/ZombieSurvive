@@ -14,20 +14,21 @@ public partial class ExploreUI : Control
     [Export] public HBoxContainer roomProgressBar;
     [Export] public NinePatchRect noiseBar;
 
+
     public override void _Ready()
 	{
 		backBtn.Pressed += () => { 
 			CommonTips tips= UIManager.Instance.ShowCommonTips("离开建筑","确认要离开当前建筑并结束探索吗");
-			tips.OnConfirm = () => UIManager.Instance.HideUI("res://UI/Explore/ExploreUI.tscn");
+			tips.OnConfirm = () => UIManager.Instance.DeleteUI(this);
 		};
-		RefreshExplore(1, 1);
     }
-	public void RefreshExplore(int exploreState,int layer) 
-	{		
-		Building building = ConfigManager.Instance.buildingDic[GameManager.Instance.currentBuildingID];
 
-		//获取最大房间层级并给每层房间赋值
-		int maxLayer = 0;
+    public void RefreshExplore(int exploreState,int layer) 
+	{	
+		Building building = ConfigManager.Instance.buildingDic[GameManager.Instance.currentBuildingID];
+        
+        //获取最大房间层级并给每层房间赋值
+        int maxLayer = 0;
         foreach (var item in building.RoomID)
 		{
 			if (ConfigManager.Instance.roomDic[item].RoomLayer>maxLayer)
@@ -61,15 +62,14 @@ public partial class ExploreUI : Control
                 roomProgress.Initial();
             }			
         }
-
+       
         switch (exploreState)
 		{
             //房间选择界面，生成房间信息
             case 1:				
                 chooseBar.Visible = false;
 				roomBg.Visible = true;
-
-                desLabel.Text = building.Des;
+				TextTyper.TypeText(desLabel, building.Des);               
                 for (int i = 0; i < LayerArray[GameManager.Instance.exploreLayer-1].Count; i++)
 				{
                     var room = GD.Load<PackedScene>("res://UI/Explore/roomChoose.tscn");
@@ -87,6 +87,5 @@ public partial class ExploreUI : Control
             default:
 				break;
 		}
-		
-	}
+    }
 }

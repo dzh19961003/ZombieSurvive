@@ -16,13 +16,15 @@ public partial class RoomChoose : Control
 	{
 	}
     public void InitialRoom(int roomID) 
-    {
+    {       
         Room room = ConfigManager.Instance.roomDic[roomID];
         nameLabel.Text = room.Name;
         if (room.Food == 0) food.Visible = false;
         if (room.Medic == 0) medic.Visible = false;
         if (room.Equip == 0) equip.Visible = false;
         if (room.Material == 0) material.Visible = false;
+
+        roomIcon.Texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/Building/"+room.Image+".png");
     }
 
 

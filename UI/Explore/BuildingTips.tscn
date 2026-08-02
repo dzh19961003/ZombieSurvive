@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://blrxeoopu15v3"]
 
 [ext_resource type="Script" uid="uid://bx2tcxx2eavkc" path="res://Scripts/UI/Explore/BuildingTips.cs" id="1_syilv"]
-[ext_resource type="Texture2D" uid="uid://53n15gjv8ksp" path="res://Assets/Images/UI/popup_panel.png" id="2_pbixe"]
+[ext_resource type="Texture2D" uid="uid://d1nmp4fcid50p" path="res://Assets/Images/UI/main_panel_2.png" id="2_syilv"]
 [ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="3_1eeb5"]
 [ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="4_d1361"]
 [ext_resource type="Texture2D" uid="uid://du76f06ps5fb1" path="res://Assets/Images/UI/button_confirm.png" id="5_mirmx"]
@@ -39,27 +39,27 @@ offset_left = 215.0
 offset_top = 289.0
 offset_right = 858.0
 offset_bottom = 1279.8281
-texture = ExtResource("2_pbixe")
-region_rect = Rect2(-1, 1, 718, 409)
-patch_margin_left = 48
-patch_margin_top = 40
-patch_margin_right = 58
-patch_margin_bottom = 50
+texture = ExtResource("2_syilv")
+region_rect = Rect2(-1, 1, 975, 1713)
+patch_margin_left = 83
+patch_margin_top = 101
+patch_margin_right = 73
+patch_margin_bottom = 82
 
 [node name="titleBg" type="NinePatchRect" parent="." unique_id=1294859878]
 layout_mode = 0
-offset_left = 347.0
+offset_left = 348.0
 offset_top = 334.0
-offset_right = 722.2793
+offset_right = 723.2793
 offset_bottom = 416.0
 texture = ExtResource("3_1eeb5")
 region_rect = Rect2(0, 58, 980, 1479)
 
 [node name="title" type="Label" parent="." unique_id=2004018582]
 layout_mode = 1
-offset_left = 366.0
+offset_left = 367.0
 offset_top = 344.0
-offset_right = 703.0
+offset_right = 704.0
 offset_bottom = 400.0
 theme_override_font_sizes/font_size = 40
 text = "实验小学"
@@ -67,9 +67,9 @@ horizontal_alignment = 1
 
 [node name="difficult" type="Label" parent="." unique_id=1217472671]
 layout_mode = 0
-offset_left = 449.0
+offset_left = 450.0
 offset_top = 438.0
-offset_right = 615.0
+offset_right = 616.0
 offset_bottom = 483.0
 theme_override_font_sizes/font_size = 32
 text = "难度"
@@ -77,9 +77,9 @@ horizontal_alignment = 1
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1293386819]
 layout_mode = 0
-offset_left = 245.0
+offset_left = 247.0
 offset_top = 845.0
-offset_right = 825.0
+offset_right = 827.0
 offset_bottom = 1058.0
 texture = ExtResource("4_d1361")
 region_rect = Rect2(10, 12, 108, 105)
@@ -91,9 +91,9 @@ patch_margin_bottom = 20
 [node name="des" type="Label" parent="." unique_id=1034142510]
 custom_maximum_size = Vector2(550, 192)
 layout_mode = 0
-offset_left = 262.0
+offset_left = 263.0
 offset_top = 856.0
-offset_right = 812.0
+offset_right = 813.0
 offset_bottom = 1048.0
 theme_override_constants/line_spacing = -4
 theme_override_font_sizes/font_size = 32
@@ -183,9 +183,9 @@ expand_icon = true
 
 [node name="stars" parent="." unique_id=64213728 instance=ExtResource("7_cnc4k")]
 layout_mode = 0
-offset_left = 385.0
+offset_left = 386.0
 offset_top = 477.0
-offset_right = 585.0
+offset_right = 586.0
 offset_bottom = 527.0
 scale = Vector2(1.5, 1.5)
 
