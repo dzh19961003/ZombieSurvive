@@ -15,6 +15,20 @@ namespace MyProject
         [Export] public GridContainer StateAreas;
         [Export] public GridContainer TalentAreas;
 
+        // 三项属性显示节点（力量 / 敏捷 / 智力）
+        private Label _strengthLabel;
+        private Label _agilityLabel;
+        private Label _intelligenceLabel;
+        private TextureProgressBar _strengthBar;
+        private TextureProgressBar _agilityBar;
+        private TextureProgressBar _intelligenceBar;
+        private Label _strengthBarText;
+        private Label _agilityBarText;
+        private Label _intelligenceBarText;
+
+        // 属性进度条上限（与场景中 TextureProgressBar 默认 max_value 一致）
+        private const int AttrMax = PlayerManager.ExpMax;
+
         public override void _Ready()
         {
             // 如果 Export 没在编辑器里赋值（Godot 重新保存场景时可能清掉），
@@ -22,13 +36,58 @@ namespace MyProject
             if (TalentAreas == null)
                 TalentAreas = GetNodeOrNull<GridContainer>("Traits/TraitAreas");
 
+            // 查找三项属性显示节点（路径对应 PropertyUI.tscn 中的节点结构）
+            _strengthLabel      = GetNodeOrNull<Label>("strength/number");
+            _agilityLabel       = GetNodeOrNull<Label>("agile/number");
+            _intelligenceLabel  = GetNodeOrNull<Label>("intelligence/number");
+            _strengthBar        = GetNodeOrNull<TextureProgressBar>("strength/progress");
+            _agilityBar         = GetNodeOrNull<TextureProgressBar>("agile/progress");
+            _intelligenceBar    = GetNodeOrNull<TextureProgressBar>("intelligence/progress");
+            _strengthBarText    = GetNodeOrNull<Label>("strength/progress/Label");
+            _agilityBarText     = GetNodeOrNull<Label>("agile/progress/Label2");
+            _intelligenceBarText= GetNodeOrNull<Label>("intelligence/progress/Label3");
+
             close_button.Pressed += OnCloseButtonPressed;
+
+            // UIManager.ShowUI 是缓存机制：首次创建后才 _Ready，之后只切换 Visible。
+            // 因此监听可见性变化，面板再次显示时自动刷新属性。
+            VisibilityChanged += OnVisibilityChanged;
 
             // 从 PlayerManager 获取状态ID数组，生成标签
             SpawnStateList(PlayerManager.Instance.stateArray);
 
             // 从 PlayerManager 获取天赋ID数组，生成天赋标签
             SpawnTalentList(PlayerManager.Instance.talentID);
+
+            // 首次刷新属性显示
+            RefreshAttributes();
+        }
+
+        private void OnVisibilityChanged()
+        {
+            if (Visible) RefreshAttributes();
+        }
+
+        /// <summary>
+        /// 从 PlayerManager 读取力量 / 敏捷 / 智力及其经验值，刷新到 UI。
+        /// number 显示属性值，进度条显示经验进度（满 ExpMax 时属性 +1）。
+        /// 可在外部属性变化后主动调用，也会在面板每次显示时自动触发。
+        /// </summary>
+        public void RefreshAttributes()
+        {
+            var pm = PlayerManager.Instance;
+            if (pm == null) return;
+
+            SetAttrDisplay(_strengthLabel, _strengthBar, _strengthBarText, pm.Strength, pm.StrengthExp);
+            SetAttrDisplay(_agilityLabel, _agilityBar, _agilityBarText, pm.Agility, pm.AgilityExp);
+            SetAttrDisplay(_intelligenceLabel, _intelligenceBar, _intelligenceBarText, pm.Intelligence, pm.IntelligenceExp);
+        }
+
+        private void SetAttrDisplay(Label numLabel, TextureProgressBar bar, Label barText, int attrValue, int expValue)
+        {
+            if (numLabel != null) numLabel.Text = attrValue.ToString();
+            if (bar != null)      bar.Value = Mathf.Clamp(expValue, 0, AttrMax);
+            if (barText != null)  barText.Text = $"{expValue}/{AttrMax}";
         }
 
         private void OnCloseButtonPressed()
