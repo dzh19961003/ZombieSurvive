@@ -9,10 +9,12 @@ public partial class ExploreUI : Control
 	[Export] public Label desLabel;
 	[Export] public VBoxContainer chooseBar;
 	[Export] public HBoxContainer roomContainer;
-	[Export] public NinePatchRect roomBg;
+	[Export] public NinePatchRect roomChoose;
     [Export] public TextureButton backBtn;
     [Export] public HBoxContainer roomProgressBar;
     [Export] public NinePatchRect noiseBar;
+    [Export] public NinePatchRect exploreChoose;
+    [Export] public TextureButton exploreBackBtn;
 
 
     public override void _Ready()
@@ -21,6 +23,10 @@ public partial class ExploreUI : Control
 			CommonTips tips= UIManager.Instance.ShowCommonTips("离开建筑","确认要离开当前建筑并结束探索吗");
 			tips.OnConfirm = () => UIManager.Instance.DeleteUI(this);
 		};
+        exploreBackBtn.Pressed += () => {
+            CommonTips tips = UIManager.Instance.ShowCommonTips("终止探索","确认要离开当前位置并继续前进吗");
+            tips.OnConfirm = () => UIManager.Instance.DeleteUI(this);
+        };
     }
 
     public void RefreshExplore(int exploreState,int layer) 
@@ -68,7 +74,7 @@ public partial class ExploreUI : Control
             //房间选择界面，生成房间信息
             case 1:				
                 chooseBar.Visible = false;
-				roomBg.Visible = true;
+                roomChoose.Visible = true;
 				TextTyper.TypeText(desLabel, building.Des);               
                 for (int i = 0; i < LayerArray[GameManager.Instance.exploreLayer-1].Count; i++)
 				{
@@ -76,16 +82,19 @@ public partial class ExploreUI : Control
                     RoomChoose roomChoose = room.Instantiate<RoomChoose>();
                     roomContainer.AddChild(roomChoose);
 					roomChoose.InitialRoom(LayerArray[GameManager.Instance.exploreLayer - 1][i]);
+					roomChoose.ID = LayerArray[GameManager.Instance.exploreLayer - 1][i];
                 }
 				roomContainer.MoveChild(backBtn, -1);
                 break;
             //具体事件选择，生成选项信息
             case 2:
                 chooseBar.Visible = true;
-                roomBg.Visible = false;
+                roomChoose.Visible = false;
+				
                 break;
             default:
 				break;
 		}
     }
+	
 }

@@ -15,6 +15,9 @@ namespace MyProject
         /// <summary>原始字段: name</summary>
         public string Name { get; set; }
 
+        /// <summary>原始字段: des</summary>
+        public string Des { get; set; }
+
         /// <summary>原始字段: image</summary>
         public string Image { get; set; }
 

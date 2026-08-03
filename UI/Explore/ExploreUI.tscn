@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://c7e1hoilidhkt" path="res://Scripts/UI/Explore/ExploreUI.cs" id="1_bp85n"]
 [ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="2_hoe4v"]
 [ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="4_pxmw8"]
-[ext_resource type="PackedScene" uid="uid://c4c0yicjmc1vi" path="res://UI/Explore/ExploreChooseBtn.tscn" id="4_rnyhu"]
 [ext_resource type="Texture2D" uid="uid://dlagv04uasoc5" path="res://Assets/Images/UI/exploreIcon.png" id="5_qpp0w"]
 [ext_resource type="Texture2D" uid="uid://d1nmp4fcid50p" path="res://Assets/Images/UI/main_panel_2.png" id="5_vo20k"]
 [ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="5_xam4r"]
@@ -17,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://c5kw0xcwtxyx5" path="res://Assets/Images/UI/Explore/exploreImage_3.png" id="13_rnyhu"]
 [ext_resource type="Texture2D" uid="uid://eha4luqy6cu8" path="res://Assets/Images/UI/Explore/exploreImage_2.png" id="13_vo20k"]
 
-[node name="ExploreUI" type="Control" unique_id=1351775229 node_paths=PackedStringArray("bg", "desLabel", "chooseBar", "roomContainer", "roomBg", "backBtn", "roomProgressBar", "noiseBar")]
+[node name="ExploreUI" type="Control" unique_id=1351775229 node_paths=PackedStringArray("bg", "desLabel", "chooseBar", "roomContainer", "roomChoose", "backBtn", "roomProgressBar", "noiseBar", "exploreChoose")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1080.0
@@ -26,11 +25,12 @@ script = ExtResource("1_bp85n")
 bg = NodePath("Bg")
 desLabel = NodePath("DesBar/desLabel")
 chooseBar = NodePath("ChooseBar")
-roomContainer = NodePath("roomBg/roomContainer")
-roomBg = NodePath("roomBg")
-backBtn = NodePath("roomBg/roomContainer/BackBtn")
-roomProgressBar = NodePath("roomBg/roomProgressBar")
+roomContainer = NodePath("roomChoose/roomContainer")
+roomChoose = NodePath("roomChoose")
+backBtn = NodePath("roomChoose/roomContainer/BackBtn")
+roomProgressBar = NodePath("roomChoose/roomProgressBar")
 noiseBar = NodePath("bg/noiseBar")
+exploreChoose = NodePath("exploreChoose")
 
 [node name="Bg" type="TextureRect" parent="." unique_id=1617460817]
 layout_mode = 1
@@ -44,9 +44,9 @@ stretch_mode = 3
 
 [node name="DesBar" type="NinePatchRect" parent="." unique_id=1911186057]
 layout_mode = 0
-offset_left = 13.0
+offset_left = 86.0
 offset_top = 1184.0
-offset_right = 1073.0
+offset_right = 1016.0
 offset_bottom = 1498.0
 texture = ExtResource("2_hoe4v")
 region_rect = Rect2(0, 0, 136, 136)
@@ -60,7 +60,7 @@ custom_minimum_size = Vector2(864, 230)
 layout_mode = 0
 offset_left = 33.0
 offset_top = 33.0
-offset_right = 999.0
+offset_right = 897.0
 offset_bottom = 263.0
 theme_override_font_sizes/font_size = 32
 text = "描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述"
@@ -76,16 +76,7 @@ offset_right = 1092.0
 offset_bottom = 1871.0
 theme_override_constants/separation = 0
 
-[node name="ExploreChooseBtn" parent="ChooseBar" unique_id=153935579 instance=ExtResource("4_rnyhu")]
-layout_mode = 2
-
-[node name="ExploreChooseBtn2" parent="ChooseBar" unique_id=1497115010 instance=ExtResource("4_rnyhu")]
-layout_mode = 2
-
-[node name="ExploreChooseBtn3" parent="ChooseBar" unique_id=555747987 instance=ExtResource("4_rnyhu")]
-layout_mode = 2
-
-[node name="roomBg" type="NinePatchRect" parent="." unique_id=359328042]
+[node name="roomChoose" type="NinePatchRect" parent="." unique_id=359328042]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 503.0
@@ -98,7 +89,7 @@ patch_margin_top = 28
 patch_margin_right = 28
 patch_margin_bottom = 27
 
-[node name="TitleBackground" type="TextureRect" parent="roomBg" unique_id=2063200782]
+[node name="TitleBackground" type="TextureRect" parent="roomChoose" unique_id=2063200782]
 layout_mode = 0
 offset_left = 70.0
 offset_top = -85.0
@@ -107,7 +98,7 @@ offset_bottom = 11.0
 scale = Vector2(1.4326489, 1.6302083)
 texture = ExtResource("6_uthlu")
 
-[node name="desLabel3" type="Label" parent="roomBg" unique_id=703118839]
+[node name="desLabel3" type="Label" parent="roomChoose" unique_id=703118839]
 layout_mode = 0
 offset_left = 88.99999
 offset_top = -58.0
@@ -118,7 +109,7 @@ text = "选择前进方向"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="roomProgressBar" type="HBoxContainer" parent="roomBg" unique_id=1471222341]
+[node name="roomProgressBar" type="HBoxContainer" parent="roomChoose" unique_id=1471222341]
 visible = false
 layout_mode = 0
 offset_left = 384.00003
@@ -129,7 +120,7 @@ scale = Vector2(0.8, 0.8)
 theme_override_constants/separation = -24
 alignment = 1
 
-[node name="roomContainer" type="HBoxContainer" parent="roomBg" unique_id=901745634]
+[node name="roomContainer" type="HBoxContainer" parent="roomChoose" unique_id=901745634]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 74.0
@@ -137,12 +128,12 @@ offset_right = 1045.0
 offset_bottom = 549.0
 alignment = 1
 
-[node name="BackBtn" type="TextureButton" parent="roomBg/roomContainer" unique_id=607785597]
+[node name="BackBtn" type="TextureButton" parent="roomChoose/roomContainer" unique_id=607785597]
 custom_minimum_size = Vector2(332, 475)
 layout_mode = 2
 stretch_mode = 0
 
-[node name="Room" type="NinePatchRect" parent="roomBg/roomContainer/BackBtn" unique_id=1293770067]
+[node name="Room" type="NinePatchRect" parent="roomChoose/roomContainer/BackBtn" unique_id=1293770067]
 custom_minimum_size = Vector2(328, 424)
 propagate_maximum_size = true
 layout_mode = 1
@@ -155,7 +146,7 @@ patch_margin_top = 144
 patch_margin_right = 124
 patch_margin_bottom = 240
 
-[node name="bg" type="ColorRect" parent="roomBg/roomContainer/BackBtn" unique_id=1223978779]
+[node name="bg" type="ColorRect" parent="roomChoose/roomContainer/BackBtn" unique_id=1223978779]
 layout_mode = 0
 offset_left = 26.0
 offset_top = 327.0
@@ -163,7 +154,7 @@ offset_right = 301.0
 offset_bottom = 445.0
 color = Color(0.7411765, 0.84705883, 1, 0.20392157)
 
-[node name="ExploreImage3" type="TextureRect" parent="roomBg/roomContainer/BackBtn" unique_id=704719630]
+[node name="ExploreImage3" type="TextureRect" parent="roomChoose/roomContainer/BackBtn" unique_id=704719630]
 layout_mode = 0
 offset_left = 26.0
 offset_top = 97.0
@@ -171,7 +162,7 @@ offset_right = 301.0
 offset_bottom = 257.0
 texture = ExtResource("13_rnyhu")
 
-[node name="nameLabel" type="Label" parent="roomBg/roomContainer/BackBtn" unique_id=1565299931]
+[node name="nameLabel" type="Label" parent="roomChoose/roomContainer/BackBtn" unique_id=1565299931]
 custom_minimum_size = Vector2(256, 45)
 layout_mode = 0
 offset_left = 36.0
@@ -184,7 +175,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
-[node name="desLabel" type="Label" parent="roomBg/roomContainer/BackBtn" unique_id=233198192]
+[node name="desLabel" type="Label" parent="roomChoose/roomContainer/BackBtn" unique_id=233198192]
 layout_mode = 0
 offset_left = 27.0
 offset_top = 335.0
@@ -196,8 +187,7 @@ text = "结束探索"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="roomBg2" type="NinePatchRect" parent="." unique_id=1753727129]
-visible = false
+[node name="exploreChoose" type="NinePatchRect" parent="." unique_id=1753727129]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 502.0
@@ -210,7 +200,7 @@ patch_margin_top = 28
 patch_margin_right = 28
 patch_margin_bottom = 27
 
-[node name="TitleBackground" type="TextureRect" parent="roomBg2" unique_id=1063156191]
+[node name="TitleBackground" type="TextureRect" parent="exploreChoose" unique_id=1063156191]
 layout_mode = 0
 offset_left = 73.0
 offset_top = -85.0
@@ -219,7 +209,7 @@ offset_bottom = 11.0
 scale = Vector2(1.4326489, 1.6302083)
 texture = ExtResource("6_uthlu")
 
-[node name="desLabel3" type="Label" parent="roomBg2" unique_id=1649297337]
+[node name="desLabel3" type="Label" parent="exploreChoose" unique_id=1649297337]
 layout_mode = 0
 offset_left = 94.99999
 offset_top = -58.0
@@ -230,7 +220,7 @@ text = "搜索策略"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="roomProgressBar" type="HBoxContainer" parent="roomBg2" unique_id=963739536]
+[node name="roomProgressBar" type="HBoxContainer" parent="exploreChoose" unique_id=963739536]
 layout_mode = 0
 offset_left = 494.99997
 offset_top = 593.99994
@@ -240,7 +230,7 @@ scale = Vector2(0.8, 0.8)
 theme_override_constants/separation = -24
 alignment = 1
 
-[node name="roomContainer" type="HBoxContainer" parent="roomBg2" unique_id=1413327284]
+[node name="roomContainer" type="HBoxContainer" parent="exploreChoose" unique_id=1413327284]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 76.0
@@ -248,12 +238,12 @@ offset_right = 1049.0
 offset_bottom = 551.0
 alignment = 1
 
-[node name="ExploreBtn1" type="TextureButton" parent="roomBg2/roomContainer" unique_id=741055492]
+[node name="ExploreBtn1" type="TextureButton" parent="exploreChoose/roomContainer" unique_id=741055492]
 custom_minimum_size = Vector2(332, 475)
 layout_mode = 2
 stretch_mode = 0
 
-[node name="Room" type="NinePatchRect" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1712778797]
+[node name="Room" type="NinePatchRect" parent="exploreChoose/roomContainer/ExploreBtn1" unique_id=1712778797]
 custom_minimum_size = Vector2(328, 424)
 propagate_maximum_size = true
 layout_mode = 1
@@ -266,7 +256,7 @@ patch_margin_top = 144
 patch_margin_right = 124
 patch_margin_bottom = 240
 
-[node name="bg" type="ColorRect" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1611173336]
+[node name="bg" type="ColorRect" parent="exploreChoose/roomContainer/ExploreBtn1" unique_id=1611173336]
 layout_mode = 0
 offset_left = 26.0
 offset_top = 288.0
@@ -274,7 +264,7 @@ offset_right = 301.0
 offset_bottom = 447.0
 color = Color(0.7411765, 0.84705883, 1, 0.20392157)
 
-[node name="nameLabel" type="Label" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1833466240]
+[node name="nameLabel" type="Label" parent="exploreChoose/roomContainer/ExploreBtn1" unique_id=1833466240]
 layout_mode = 0
 offset_left = 60.0
 offset_top = 42.0
@@ -285,7 +275,7 @@ text = "谨慎搜索"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="risDeskLabel2" type="Label" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=2141331081]
+[node name="risDeskLabel2" type="Label" parent="exploreChoose/roomContainer/ExploreBtn1" unique_id=2141331081]
 layout_mode = 0
 offset_left = 84.0
 offset_top = 355.0
@@ -295,7 +285,7 @@ theme_override_font_sizes/font_size = 32
 text = "进度"
 vertical_alignment = 1
 
-[node name="risDeskLabel4" type="Label" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1800925166]
+[node name="risDeskLabel4" type="Label" parent="exploreChoose/roomContainer/ExploreBtn1" unique_id=1800925166]
 layout_mode = 0
 offset_left = 84.0
 offset_top = 294.0
@@ -305,7 +295,7 @@ theme_override_font_sizes/font_size = 32
 text = "品质"
 vertical_alignment = 1
 
-[node name="risDeskLabel3" type="Label" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1788093337]
+[node name="risDeskLabel3" type="Label" parent="exploreChoose/roomContainer/ExploreBtn1" unique_id=1788093337]
 layout_mode = 0
 offset_left = 84.0
 offset_top = 398.0
@@ -316,52 +306,52 @@ theme_override_font_sizes/font_size = 32
 text = "噪音"
 vertical_alignment = 1
 
-[node name="PlusIcon" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=2104190291]
+[node name="PlusIcon" type="Sprite2D" parent="exploreChoose/roomContainer/ExploreBtn1" unique_id=2104190291]
 position = Vector2(231, 317)
 scale = Vector2(0.6875, 0.6875)
 texture = ExtResource("8_uthlu")
 
-[node name="PlusIcon3" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=415790216]
+[node name="PlusIcon3" type="Sprite2D" parent="exploreChoose/roomContainer/ExploreBtn1" unique_id=415790216]
 position = Vector2(273.5, 376)
 scale = Vector2(0.6875, 0.6875)
 texture = ExtResource("8_uthlu")
 
-[node name="PlusIcon2" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1657648158]
+[node name="PlusIcon2" type="Sprite2D" parent="exploreChoose/roomContainer/ExploreBtn1" unique_id=1657648158]
 position = Vector2(272, 317)
 scale = Vector2(0.6875, 0.6875)
 texture = ExtResource("8_uthlu")
 
-[node name="Map" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1368453188]
+[node name="Map" type="Sprite2D" parent="exploreChoose/roomContainer/ExploreBtn1" unique_id=1368453188]
 position = Vector2(56.999992, 377)
 scale = Vector2(0.25263506, 0.30855796)
 texture = ExtResource("8_xam4r")
 
-[node name="NoiseIcon" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1745900787]
+[node name="NoiseIcon" type="Sprite2D" parent="exploreChoose/roomContainer/ExploreBtn1" unique_id=1745900787]
 position = Vector2(57, 420.99994)
 scale = Vector2(0.37695313, 0.37695313)
 texture = ExtResource("11_s03io")
 
-[node name="ExploreIcon" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1899885972]
+[node name="ExploreIcon" type="Sprite2D" parent="exploreChoose/roomContainer/ExploreBtn1" unique_id=1899885972]
 position = Vector2(59, 320)
 scale = Vector2(0.89604104, 0.89604104)
 texture = ExtResource("5_qpp0w")
 
-[node name="PlusIcon4" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1039526804]
+[node name="PlusIcon4" type="Sprite2D" parent="exploreChoose/roomContainer/ExploreBtn1" unique_id=1039526804]
 position = Vector2(273.24997, 421)
 scale = Vector2(0.7265622, 0.7265622)
 texture = ExtResource("13_7olkg")
 
-[node name="ExploreImage1" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn1" unique_id=1064600176]
+[node name="ExploreImage1" type="Sprite2D" parent="exploreChoose/roomContainer/ExploreBtn1" unique_id=1064600176]
 position = Vector2(163.28123, 188.5)
 scale = Vector2(0.9875, 0.9875)
 texture = ExtResource("12_mpigk")
 
-[node name="ExploreBtn2" type="TextureButton" parent="roomBg2/roomContainer" unique_id=507746360]
+[node name="ExploreBtn2" type="TextureButton" parent="exploreChoose/roomContainer" unique_id=507746360]
 custom_minimum_size = Vector2(332, 475)
 layout_mode = 2
 stretch_mode = 0
 
-[node name="Room" type="NinePatchRect" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=2136794592]
+[node name="Room" type="NinePatchRect" parent="exploreChoose/roomContainer/ExploreBtn2" unique_id=2136794592]
 custom_minimum_size = Vector2(328, 424)
 propagate_maximum_size = true
 layout_mode = 1
@@ -374,7 +364,7 @@ patch_margin_top = 144
 patch_margin_right = 124
 patch_margin_bottom = 240
 
-[node name="bg" type="ColorRect" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=1163303091]
+[node name="bg" type="ColorRect" parent="exploreChoose/roomContainer/ExploreBtn2" unique_id=1163303091]
 layout_mode = 0
 offset_left = 25.0
 offset_top = 289.0
@@ -382,7 +372,7 @@ offset_right = 300.0
 offset_bottom = 447.0
 color = Color(0.7411765, 0.84705883, 1, 0.20392157)
 
-[node name="risDeskLabel2" type="Label" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=1557849464]
+[node name="risDeskLabel2" type="Label" parent="exploreChoose/roomContainer/ExploreBtn2" unique_id=1557849464]
 layout_mode = 0
 offset_left = 85.0
 offset_top = 355.0
@@ -392,7 +382,7 @@ theme_override_font_sizes/font_size = 32
 text = "进度"
 vertical_alignment = 1
 
-[node name="risDeskLabel4" type="Label" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=914342430]
+[node name="risDeskLabel4" type="Label" parent="exploreChoose/roomContainer/ExploreBtn2" unique_id=914342430]
 layout_mode = 0
 offset_left = 85.0
 offset_top = 294.0
@@ -402,7 +392,7 @@ theme_override_font_sizes/font_size = 32
 text = "品质"
 vertical_alignment = 1
 
-[node name="risDeskLabel3" type="Label" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=471059441]
+[node name="risDeskLabel3" type="Label" parent="exploreChoose/roomContainer/ExploreBtn2" unique_id=471059441]
 layout_mode = 0
 offset_left = 85.0
 offset_top = 398.0
@@ -413,27 +403,27 @@ theme_override_font_sizes/font_size = 32
 text = "噪音"
 vertical_alignment = 1
 
-[node name="PlusIcon" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=929546374]
+[node name="PlusIcon" type="Sprite2D" parent="exploreChoose/roomContainer/ExploreBtn2" unique_id=929546374]
 position = Vector2(279, 317)
 scale = Vector2(0.6875, 0.6875)
 texture = ExtResource("8_uthlu")
 
-[node name="PlusIcon2" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=147153492]
+[node name="PlusIcon2" type="Sprite2D" parent="exploreChoose/roomContainer/ExploreBtn2" unique_id=147153492]
 position = Vector2(193, 376)
 scale = Vector2(0.6875, 0.6875)
 texture = ExtResource("8_uthlu")
 
-[node name="PlusIcon3" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=846362577]
+[node name="PlusIcon3" type="Sprite2D" parent="exploreChoose/roomContainer/ExploreBtn2" unique_id=846362577]
 position = Vector2(237, 376)
 scale = Vector2(0.6875, 0.6875)
 texture = ExtResource("8_uthlu")
 
-[node name="PlusIcon4" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=2069024279]
+[node name="PlusIcon4" type="Sprite2D" parent="exploreChoose/roomContainer/ExploreBtn2" unique_id=2069024279]
 position = Vector2(279, 376)
 scale = Vector2(0.6875, 0.6875)
 texture = ExtResource("8_uthlu")
 
-[node name="nameLabel" type="Label" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=778252554]
+[node name="nameLabel" type="Label" parent="exploreChoose/roomContainer/ExploreBtn2" unique_id=778252554]
 custom_minimum_size = Vector2(256, 45)
 layout_mode = 0
 offset_left = 36.0
@@ -446,37 +436,37 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
-[node name="Map" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=347135317]
+[node name="Map" type="Sprite2D" parent="exploreChoose/roomContainer/ExploreBtn2" unique_id=347135317]
 position = Vector2(57, 377)
 scale = Vector2(0.25263506, 0.30855796)
 texture = ExtResource("8_xam4r")
 
-[node name="NoiseIcon" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=2108129789]
+[node name="NoiseIcon" type="Sprite2D" parent="exploreChoose/roomContainer/ExploreBtn2" unique_id=2108129789]
 position = Vector2(57, 420.99994)
 scale = Vector2(0.37695313, 0.37695313)
 texture = ExtResource("11_s03io")
 
-[node name="ExploreIcon" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=1288477518]
+[node name="ExploreIcon" type="Sprite2D" parent="exploreChoose/roomContainer/ExploreBtn2" unique_id=1288477518]
 position = Vector2(59, 320)
 scale = Vector2(0.89604104, 0.89604104)
 texture = ExtResource("5_qpp0w")
 
-[node name="PlusIcon5" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=1124102976]
+[node name="PlusIcon5" type="Sprite2D" parent="exploreChoose/roomContainer/ExploreBtn2" unique_id=1124102976]
 position = Vector2(237, 421)
 scale = Vector2(0.7265622, 0.7265622)
 texture = ExtResource("13_7olkg")
 
-[node name="PlusIcon6" type="Sprite2D" parent="roomBg2/roomContainer/ExploreBtn2" unique_id=280351518]
+[node name="PlusIcon6" type="Sprite2D" parent="exploreChoose/roomContainer/ExploreBtn2" unique_id=280351518]
 position = Vector2(279, 421)
 scale = Vector2(0.7265622, 0.7265622)
 texture = ExtResource("13_7olkg")
 
-[node name="BackBtn" type="TextureButton" parent="roomBg2/roomContainer" unique_id=172267814]
+[node name="BackBtn" type="TextureButton" parent="exploreChoose/roomContainer" unique_id=172267814]
 custom_minimum_size = Vector2(332, 475)
 layout_mode = 2
 stretch_mode = 0
 
-[node name="Room" type="NinePatchRect" parent="roomBg2/roomContainer/BackBtn" unique_id=764094555]
+[node name="Room" type="NinePatchRect" parent="exploreChoose/roomContainer/BackBtn" unique_id=764094555]
 custom_minimum_size = Vector2(328, 424)
 propagate_maximum_size = true
 layout_mode = 1
@@ -489,7 +479,7 @@ patch_margin_top = 144
 patch_margin_right = 124
 patch_margin_bottom = 240
 
-[node name="bg" type="ColorRect" parent="roomBg2/roomContainer/BackBtn" unique_id=60272908]
+[node name="bg" type="ColorRect" parent="exploreChoose/roomContainer/BackBtn" unique_id=60272908]
 layout_mode = 0
 offset_left = 26.0
 offset_top = 290.0
@@ -497,12 +487,12 @@ offset_right = 301.0
 offset_bottom = 447.0
 color = Color(0.7411765, 0.84705883, 1, 0.20392157)
 
-[node name="ExploreImage3" type="Sprite2D" parent="roomBg2/roomContainer/BackBtn" unique_id=259760957]
+[node name="ExploreImage3" type="Sprite2D" parent="exploreChoose/roomContainer/BackBtn" unique_id=259760957]
 position = Vector2(164, 188.25)
 scale = Vector2(0.9906249, 0.9906248)
 texture = ExtResource("13_rnyhu")
 
-[node name="nameLabel" type="Label" parent="roomBg2/roomContainer/BackBtn" unique_id=1910960913]
+[node name="nameLabel" type="Label" parent="exploreChoose/roomContainer/BackBtn" unique_id=1910960913]
 custom_minimum_size = Vector2(256, 45)
 layout_mode = 0
 offset_left = 37.0
@@ -515,7 +505,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
-[node name="risDeskLabel" type="Label" parent="roomBg2/roomContainer/BackBtn" unique_id=1810493593]
+[node name="risDeskLabel" type="Label" parent="exploreChoose/roomContainer/BackBtn" unique_id=1810493593]
 custom_minimum_size = Vector2(256, 45)
 layout_mode = 0
 offset_left = 36.0
@@ -528,7 +518,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
-[node name="riskLabel" type="Label" parent="roomBg2/roomContainer/BackBtn" unique_id=1150622691]
+[node name="riskLabel" type="Label" parent="exploreChoose/roomContainer/BackBtn" unique_id=1150622691]
 custom_minimum_size = Vector2(256, 45)
 layout_mode = 0
 offset_left = 36.0
@@ -542,7 +532,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
-[node name="ExploreImage2" type="Sprite2D" parent="roomBg2" unique_id=399860888]
+[node name="ExploreImage2" type="Sprite2D" parent="exploreChoose" unique_id=399860888]
 position = Vector2(528.99994, 281.25)
 scale = Vector2(0.9906252, 0.9906251)
 texture = ExtResource("13_vo20k")

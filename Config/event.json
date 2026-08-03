@@ -139,10 +139,26 @@
     "ID": 9,
     "eventType": 101,
     "headType": 2,
-    "des": "测试事件8",
+    "des": "测试事件9",
     "image": "building_5_0_1",
     "option": [
       "结束事件9"
+    ],
+    "demand": [],
+    "demandNum": [],
+    "nextEvent": [
+      9999
+    ],
+    "icon": []
+  },
+  {
+    "ID": 10,
+    "eventType": 101,
+    "headType": 1,
+    "des": "测试事件10",
+    "image": "building_5_0_2",
+    "option": [
+      "结束事件10"
     ],
     "demand": [],
     "demandNum": [],

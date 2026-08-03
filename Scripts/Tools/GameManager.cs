@@ -1,7 +1,6 @@
 using Godot;
 using Godot.Collections;
 using MyProject;
-using System;
 
 public partial class GameManager : Node2D,ISaveable
 {
@@ -33,6 +32,8 @@ public partial class GameManager : Node2D,ISaveable
     //各建筑探索进度
     public Dictionary<int, int> exploreProgress = new Dictionary<int, int>();
 
+    //当前事件
+    public Array<int> currentEventArray = new Array<int>();
     public static GameManager Instance { get; private set; }
 
     #region 存档相关
@@ -63,6 +64,25 @@ public partial class GameManager : Node2D,ISaveable
         Instance = this;
 
         this.AddToGroup("Save");
+    }
+
+    public void LoadEvent(int roomID)
+    {
+        Array<int> eventArray = new Array<int>();
+
+        foreach (var item in ConfigManager.Instance.roomDic[roomID].EventPool)
+        {
+            
+            foreach (var item2 in ConfigManager.Instance.eventPoolDic[item].Event)
+            {
+                if (ConfigManager.Instance.eventDic[item2].HeadType == 1 && !eventArray.Contains(item2))
+                {
+                    eventArray.Add(item2);
+                }
+            }
+        }
+        GD.Print(eventArray);
+        currentEventArray = eventArray;
     }
 
 }
