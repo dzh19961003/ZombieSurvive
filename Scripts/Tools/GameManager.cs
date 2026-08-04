@@ -33,7 +33,8 @@ public partial class GameManager : Node2D,ISaveable
     public Dictionary<int, int> exploreProgress = new Dictionary<int, int>();
 
     //当前事件
-    public Array<int> currentEventArray = new Array<int>();
+    public Array<int> carefulEventArray = new Array<int>();
+    public Array<int> quickEventArray = new Array<int>();
     public static GameManager Instance { get; private set; }
 
     #region 存档相关
@@ -69,6 +70,7 @@ public partial class GameManager : Node2D,ISaveable
     public void LoadEvent(int roomID)
     {
         Array<int> eventArray = new Array<int>();
+        Array<int> eventArray2 = new Array<int>();
 
         foreach (var item in ConfigManager.Instance.roomDic[roomID].EventPool)
         {
@@ -81,8 +83,19 @@ public partial class GameManager : Node2D,ISaveable
                 }
             }
         }
-        GD.Print(eventArray);
-        currentEventArray = eventArray;
+        foreach (var item in ConfigManager.Instance.roomDic[roomID].EventPool2)
+        {
+
+            foreach (var item2 in ConfigManager.Instance.eventPoolDic[item].Event)
+            {
+                if (ConfigManager.Instance.eventDic[item2].HeadType == 1 && !eventArray2.Contains(item2))
+                {
+                    eventArray2.Add(item2);
+                }
+            }
+        }
+        carefulEventArray = eventArray;
+        quickEventArray = eventArray2;
     }
 
 }

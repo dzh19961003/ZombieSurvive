@@ -21,6 +21,12 @@ namespace MyProject
         /// <summary>原始字段: effect</summary>
         public string Effect { get; set; }
 
+        /// <summary>原始字段: effctType</summary>
+        public int EffctType { get; set; }
+
+        /// <summary>原始字段: effctNum</summary>
+        public int EffctNum { get; set; }
+
         /// <summary>原始字段: time</summary>
         public int Time { get; set; }
     }

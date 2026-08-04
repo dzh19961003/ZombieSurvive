@@ -1,78 +1,94 @@
 [
   {
-	"ID": 1,
-	"name": "大厅",
-	"des": "你进入了大厅，xx，现在你可以开始探索了",
-	"image": "room_1",
-	"food": 2,
-	"medic": 0,
-	"equip": 0,
-	"material": 0,
-	"roomLayer": 1,
-	"eventPool": [
-	  1001,
-	  1002
-	],
-	"subTask": [
-	  3
-	],
-	"triggerProgress": [
-	  30
-	]
+    "ID": 1,
+    "name": "大厅",
+    "des": "你进入了大厅，xx，现在你可以开始探索了",
+    "image": "room_1",
+    "food": 2,
+    "medic": 0,
+    "equip": 0,
+    "material": 0,
+    "roomLayer": 1,
+    "eventPool": [
+      1001,
+      1002
+    ],
+    "eventPool2": [
+      1001,
+      1002
+    ],
+    "subTask": [
+      3
+    ],
+    "triggerProgress": [
+      30
+    ]
   },
   {
-	"ID": 2,
-	"name": "操作间",
-	"des": "你进入了操作间，xx，现在你可以开始探索了",
-	"image": null,
-	"food": 2,
-	"medic": 0,
-	"equip": 2,
-	"material": 2,
-	"roomLayer": 2,
-	"eventPool": [
-	  1001,
-	  1002
-	],
-	"subTask": [
-	  5
-	],
-	"triggerProgress": [
-	  60
-	]
+    "ID": 2,
+    "name": "操作间",
+    "des": "你进入了操作间，xx，现在你可以开始探索了",
+    "image": null,
+    "food": 2,
+    "medic": 0,
+    "equip": 2,
+    "material": 2,
+    "roomLayer": 2,
+    "eventPool": [
+      1001,
+      1002
+    ],
+    "eventPool2": [
+      1001,
+      1002
+    ],
+    "subTask": [
+      5
+    ],
+    "triggerProgress": [
+      60
+    ]
   },
   {
-	"ID": 3,
-	"name": "仓库",
-	"des": "你进入了仓库，xx，现在你可以开始探索了",
-	"image": null,
-	"food": 2,
-	"medic": 0,
-	"equip": 2,
-	"material": 3,
-	"roomLayer": 2,
-	"eventPool": [
-	  1001,
-	  1002
-	],
-	"subTask": [],
-	"triggerProgress": []
+    "ID": 3,
+    "name": "仓库",
+    "des": "你进入了仓库，xx，现在你可以开始探索了",
+    "image": null,
+    "food": 2,
+    "medic": 0,
+    "equip": 2,
+    "material": 3,
+    "roomLayer": 2,
+    "eventPool": [
+      1001,
+      1002
+    ],
+    "eventPool2": [
+      1001,
+      1002
+    ],
+    "subTask": [],
+    "triggerProgress": []
   },
   {
-	"ID": 4,
-	"name": "冷库",
-	"des": "你进入了冷库，xx，现在你可以开始探索了",
-	"image": null,
-	"food": 3,
-	"medic": 0,
-	"equip": 0,
-	"material": 0,
-	"roomLayer": 3,
-	"eventPool": [
-	  1001,
-	  1002
-	],
-	"subTask": [],
-	"triggerProgress": []
+    "ID": 4,
+    "name": "冷库",
+    "des": "你进入了冷库，xx，现在你可以开始探索了",
+    "image": null,
+    "food": 3,
+    "medic": 0,
+    "equip": 0,
+    "material": 0,
+    "roomLayer": 3,
+    "eventPool": [
+      1001,
+      1002
+    ],
+    "eventPool2": [
+      1001,
+      1002
+    ],
+    "subTask": [],
+    "triggerProgress": []
   }
 ]

@@ -1,6 +1,5 @@
-[gd_scene format=3 uid="uid://ecbscene4c5d6"]
+[gd_scene format=3 uid="uid://gvwqcp5j5amf"]
 
-[ext_resource type="Script" uid="uid://ecbar3y5d9ilu" path="res://Scripts/UI/Explore/ExploreChooseBar.cs" id="12_scr"]
 [ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="1_tex"]
 [ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="2_tex"]
 [ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="3_tex"]
@@ -12,9 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://nwj5vh2p16gj" path="res://Assets/Images/UI/plusIcon_2.png" id="9_tex"]
 [ext_resource type="Texture2D" uid="uid://c5kw0xcwtxyx5" path="res://Assets/Images/UI/Explore/exploreImage_3.png" id="10_tex"]
 [ext_resource type="Texture2D" uid="uid://eha4luqy6cu8" path="res://Assets/Images/UI/Explore/exploreImage_2.png" id="11_tex"]
+[ext_resource type="Script" uid="uid://gve612vs2mt3" path="res://Scripts/UI/Explore/ExploreChooseBar.cs" id="12_scr"]
 
 [node name="ExploreChooseBar" type="NinePatchRect" unique_id=1753727129 node_paths=PackedStringArray("backBtn")]
-layout_mode = 0
 offset_left = 7.0
 offset_top = 502.0
 offset_right = 1061.0
@@ -44,7 +43,7 @@ offset_top = -58.0
 offset_right = 959.0
 offset_bottom = 25.0
 theme_override_font_sizes/font_size = 48
-text = "搜索策略"
+text = "接下来，你打算"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -99,7 +98,7 @@ offset_top = 42.0
 offset_right = 263.77777
 offset_bottom = 101.0
 theme_override_font_sizes/font_size = 42
-text = "谨慎搜索"
+text = "仔细搜索"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -328,7 +327,7 @@ offset_top = 42.0
 offset_right = 293.0
 offset_bottom = 100.0
 theme_override_font_sizes/font_size = 42
-text = "中途撤离"
+text = "直接离开"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
@@ -336,12 +335,12 @@ autowrap_mode = 1
 [node name="risDeskLabel" type="Label" parent="roomContainer/BackBtn" unique_id=1810493593]
 custom_minimum_size = Vector2(256, 45)
 layout_mode = 0
-offset_left = 36.0
+offset_left = 35.0
 offset_top = 294.0
-offset_right = 292.0
+offset_right = 291.0
 offset_bottom = 339.0
 theme_override_font_sizes/font_size = 32
-text = "撤离风险"
+text = "预估风险"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
@@ -361,6 +360,6 @@ vertical_alignment = 1
 autowrap_mode = 1
 
 [node name="ExploreImage2" type="Sprite2D" parent="." unique_id=399860888]
-position = Vector2(528.99994, 281.25)
+position = Vector2(528.99994, 265.25003)
 scale = Vector2(0.9906252, 0.9906251)
 texture = ExtResource("11_tex")

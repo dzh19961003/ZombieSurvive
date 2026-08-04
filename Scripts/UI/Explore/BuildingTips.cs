@@ -18,13 +18,7 @@ public partial class BuildingTips : Control
     public override void _Ready()
 	{
 		cancelBtn.Pressed += () => UIManager.Instance.HideUI("res://UI/Explore/BuildingTips.tscn");
-        confirmBtn.Pressed += () => {
-            UIManager.Instance.HideUI("res://UI/Explore/BuildingTips.tscn");
-            GameManager.Instance.currentBuildingID = buildingID;
-            // 用 CreateUI 创建全新实例（不走缓存），每次打开 ExploreUI 都会重新执行 _Ready
-            ExploreUI explore = (ExploreUI)UIManager.Instance.CreateUI("res://UI/Explore/ExploreUI.tscn");
-            explore.RefreshExplore(GameManager.Instance.exploreState, GameManager.Instance.exploreLayer);
-        };
+        confirmBtn.Pressed += EnterExplore;
 	}
 	public void InitialTips(int ID) 
 	{
@@ -44,7 +38,16 @@ public partial class BuildingTips : Control
         equip.ShowStars(building.Equip);
         Stars material = materialStars as Stars;
         material.ShowStars(building.Material);
-
+    }
+    public void EnterExplore() 
+    {
+        UIManager.Instance.HideUI("res://UI/Explore/BuildingTips.tscn");
+        GameManager.Instance.currentBuildingID = buildingID;
+        // 用 CreateUI 创建全新实例（不走缓存），每次打开 ExploreUI 都会重新执行 _Ready
+        ExploreUI explore = (ExploreUI)UIManager.Instance.CreateUI("res://UI/Explore/ExploreUI.tscn");
+        GameManager.Instance.exploreState = 1;
+        GameManager.Instance.exploreLayer = 1;
+        explore.RefreshExplore();
     }
 
 }

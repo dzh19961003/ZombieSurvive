@@ -4,6 +4,8 @@
     "name": "美味",
     "positive": 1,
     "effect": "太美味了",
+    "effctType": 1,
+    "effctNum": 3,
     "time": 1
   },
   {
@@ -11,6 +13,8 @@
     "name": "感染",
     "positive": 0,
     "effect": "被感染了",
+    "effctType": 2,
+    "effctNum": 3,
     "time": 2
   }
 ]

@@ -23,5 +23,11 @@ namespace MyProject
 
         /// <summary>原始字段: rarity</summary>
         public int Rarity { get; set; }
+
+        /// <summary>原始字段: effectType</summary>
+        public int EffectType { get; set; }
+
+        /// <summary>原始字段: effectNum</summary>
+        public int EffectNum { get; set; }
     }
 }

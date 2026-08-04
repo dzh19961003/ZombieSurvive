@@ -4,11 +4,12 @@
 [ext_resource type="Script" uid="uid://c7e1hoilidhkt" path="res://Scripts/UI/Explore/ExploreUI.cs" id="1_bp85n"]
 [ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="2_hoe4v"]
 [ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="4_pxmw8"]
+[ext_resource type="PackedScene" uid="uid://bp70g5bwrnic7" path="res://UI/Explore/EventChooseBar.tscn" id="4_xam4r"]
 [ext_resource type="Texture2D" uid="uid://dlagv04uasoc5" path="res://Assets/Images/UI/exploreIcon.png" id="5_qpp0w"]
 [ext_resource type="Texture2D" uid="uid://b4qbhhkttqh0m" path="res://Assets/Images/UI/mapIcon.png" id="8_xam4r"]
 [ext_resource type="Texture2D" uid="uid://br6sl8ouqesfy" path="res://Assets/Images/UI/noiseIcon.png" id="11_s03io"]
 
-[node name="ExploreUI" type="Control" unique_id=1351775229 node_paths=PackedStringArray("bg", "desLabel", "chooseBar", "noiseBar")]
+[node name="ExploreUI" type="Control" unique_id=1351775229 node_paths=PackedStringArray("bg", "desLabel", "noiseBar")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1080.0
@@ -16,7 +17,6 @@ offset_bottom = 1920.0
 script = ExtResource("1_bp85n")
 bg = NodePath("Bg")
 desLabel = NodePath("DesBar/desLabel")
-chooseBar = NodePath("ChooseBar")
 noiseBar = NodePath("bg/noiseBar")
 
 [node name="Bg" type="TextureRect" parent="." unique_id=1617460817]
@@ -55,13 +55,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
-[node name="ChooseBar" type="VBoxContainer" parent="." unique_id=542390078]
-layout_mode = 1
-offset_left = 12.0
-offset_top = 1511.0
-offset_right = 1092.0
-offset_bottom = 1871.0
-theme_override_constants/separation = 0
+[node name="ChooseBar" parent="." unique_id=275394596 instance=ExtResource("4_xam4r")]
+layout_mode = 0
 
 [node name="bg" type="ColorRect" parent="." unique_id=1247847510]
 layout_mode = 0
