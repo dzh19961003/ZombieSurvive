@@ -8,31 +8,24 @@ public partial class ExploreUI : Control
 	[Export] public TextureRect bg;
 	[Export] public Label desLabel;
 	[Export] public VBoxContainer chooseBar;
-	[Export] public HBoxContainer roomContainer;
-	[Export] public NinePatchRect roomChoose;
-    [Export] public TextureButton backBtn;
-    [Export] public HBoxContainer roomProgressBar;
     [Export] public NinePatchRect noiseBar;
-    [Export] public NinePatchRect exploreChoose;
-    [Export] public TextureButton exploreBackBtn;
 
+    // 当前创建出来的两个独立面板引用（方便离开时统一销毁）
+    // 这两个面板原来是 ExploreUI 里的子节点，用 Visible 控制出现；
+    // 现在独立成场景，用 UIManager.CreateUI 创建、DeleteUI 销毁。
+    private RoomChooseBar _roomChooseBar;
+    private ExploreChooseBar _exploreChooseBar;
 
     public override void _Ready()
 	{
-		backBtn.Pressed += () => { 
-			CommonTips tips= UIManager.Instance.ShowCommonTips("离开建筑","确认要离开当前建筑并结束探索吗");
-			tips.OnConfirm = () => UIManager.Instance.DeleteUI(this);
-		};
-        exploreBackBtn.Pressed += () => {
-            CommonTips tips = UIManager.Instance.ShowCommonTips("终止探索","确认要离开当前位置并继续前进吗");
-            tips.OnConfirm = () => UIManager.Instance.DeleteUI(this);
-        };
+        // 两个面板的返回按钮逻辑已经搬到各自脚本里（RoomChooseBar / ExploreChooseBar），
+        // 它们点击后都调用本脚本的 LeaveExplore() 统一销毁。
     }
 
-    public void RefreshExplore(int exploreState,int layer) 
-	{	
+    public void RefreshExplore(int exploreState,int layer)
+	{
 		Building building = ConfigManager.Instance.buildingDic[GameManager.Instance.currentBuildingID];
-        
+
         //获取最大房间层级并给每层房间赋值
         int maxLayer = 0;
         foreach (var item in building.RoomID)
@@ -57,44 +50,64 @@ public partial class ExploreUI : Control
                 }
 			}
 		}
-		//建筑探索进度层级展示
-		for (int i = 0; i < maxLayer; i++)
-		{
-			var room = GD.Load<PackedScene>("res://UI/Explore/roomProgress.tscn");
-			RoomProgress roomProgress = room.Instantiate<RoomProgress>();
-			roomProgressBar.AddChild(roomProgress);
-			if (i<GameManager.Instance.exploreLayer)
-			{
-                roomProgress.Initial();
-            }			
-        }
-       
+
         switch (exploreState)
 		{
-            //房间选择界面，生成房间信息
-            case 1:				
+            //房间选择界面：创建房间选择面板（以前用 Visible 显示，现在用 CreateUI 创建）
+            case 1:
                 chooseBar.Visible = false;
-                roomChoose.Visible = true;
-				TextTyper.TypeText(desLabel, building.Des);               
-                for (int i = 0; i < LayerArray[GameManager.Instance.exploreLayer-1].Count; i++)
-				{
-                    var room = GD.Load<PackedScene>("res://UI/Explore/roomChoose.tscn");
-                    RoomChoose roomChoose = room.Instantiate<RoomChoose>();
-                    roomContainer.AddChild(roomChoose);
-					roomChoose.InitialRoom(LayerArray[GameManager.Instance.exploreLayer - 1][i]);
-					roomChoose.ID = LayerArray[GameManager.Instance.exploreLayer - 1][i];
-                }
-				roomContainer.MoveChild(backBtn, -1);
+                TextTyper.TypeText(desLabel, building.Des);
+                // 用 CreateUI 创建独立的房间选择面板，不走缓存，每次都是全新实例
+                _roomChooseBar = (RoomChooseBar)UIManager.Instance.CreateUI("res://UI/Explore/RoomChooseBar.tscn");
+                _roomChooseBar.Init(this, LayerArray[GameManager.Instance.exploreLayer - 1], maxLayer);
                 break;
-            //具体事件选择，生成选项信息
-            case 2:
-                chooseBar.Visible = true;
-                roomChoose.Visible = false;
-				
-                break;
+            //具体事件选择：这个分支现在由 OnRoomSelected 处理，不再走 RefreshExplore
             default:
 				break;
 		}
     }
-	
+
+    // 房间选项点击后调用（由 RoomChoose.InitialExplore 转发过来）
+    // 销毁房间选择面板，加载事件，创建搜索策略面板
+    public void OnRoomSelected(int roomID)
+    {
+        // 先销毁房间选择面板
+        if (_roomChooseBar != null)
+        {
+            UIManager.Instance.DeleteUI(_roomChooseBar);
+            _roomChooseBar = null;
+        }
+
+        GameManager.Instance.LoadEvent(roomID);
+        GameManager.Instance.exploreState = 2;
+        TextTyper.TypeText(desLabel, ConfigManager.Instance.roomDic[roomID].Des);
+        chooseBar.Visible = true;
+
+        // 创建独立的搜索策略面板
+        _exploreChooseBar = (ExploreChooseBar)UIManager.Instance.CreateUI("res://UI/Explore/ExploreChooseBar.tscn");
+        _exploreChooseBar.Init(this);
+    }
+
+    // 离开探索：销毁所有探索相关面板和自身
+    // RoomChooseBar 的“离开建筑”按钮、ExploreChooseBar 的“中途撤离”按钮确认后都调用这里
+    public void LeaveExplore()
+    {
+        if (_roomChooseBar != null)
+        {
+            UIManager.Instance.DeleteUI(_roomChooseBar);
+            _roomChooseBar = null;
+        }
+        UIManager.Instance.DeleteUI(this);
+    }
+    public void LeaveRoom()
+    {
+        if (_exploreChooseBar != null)
+        {
+            UIManager.Instance.DeleteUI(_exploreChooseBar);
+            _exploreChooseBar = null;
+        }
+        GameManager.Instance.exploreState = 1;
+        GameManager.Instance.exploreLayer += 1;
+        RefreshExplore(GameManager.Instance.exploreState, GameManager.Instance.exploreLayer);
+    }
 }

@@ -1,0 +1,366 @@
+[gd_scene format=3 uid="uid://ecbscene4c5d6"]
+
+[ext_resource type="Script" uid="uid://ecbar3y5d9ilu" path="res://Scripts/UI/Explore/ExploreChooseBar.cs" id="12_scr"]
+[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="1_tex"]
+[ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="2_tex"]
+[ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="3_tex"]
+[ext_resource type="Texture2D" uid="uid://csw3aoeuk0uu" path="res://Assets/Images/UI/plusIcon.png" id="4_tex"]
+[ext_resource type="Texture2D" uid="uid://b4qbhhkttqh0m" path="res://Assets/Images/UI/mapIcon.png" id="5_tex"]
+[ext_resource type="Texture2D" uid="uid://br6sl8ouqesfy" path="res://Assets/Images/UI/noiseIcon.png" id="6_tex"]
+[ext_resource type="Texture2D" uid="uid://dlagv04uasoc5" path="res://Assets/Images/UI/exploreIcon.png" id="7_tex"]
+[ext_resource type="Texture2D" uid="uid://6u23el1whh3l" path="res://Assets/Images/UI/Explore/exploreImage_1.png" id="8_tex"]
+[ext_resource type="Texture2D" uid="uid://nwj5vh2p16gj" path="res://Assets/Images/UI/plusIcon_2.png" id="9_tex"]
+[ext_resource type="Texture2D" uid="uid://c5kw0xcwtxyx5" path="res://Assets/Images/UI/Explore/exploreImage_3.png" id="10_tex"]
+[ext_resource type="Texture2D" uid="uid://eha4luqy6cu8" path="res://Assets/Images/UI/Explore/exploreImage_2.png" id="11_tex"]
+
+[node name="ExploreChooseBar" type="NinePatchRect" unique_id=1753727129 node_paths=PackedStringArray("backBtn")]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 502.0
+offset_right = 1061.0
+offset_bottom = 1089.0
+texture = ExtResource("1_tex")
+region_rect = Rect2(0, 0, 129, 128)
+patch_margin_left = 29
+patch_margin_top = 28
+patch_margin_right = 28
+patch_margin_bottom = 27
+script = ExtResource("12_scr")
+backBtn = NodePath("roomContainer/BackBtn")
+
+[node name="TitleBackground" type="TextureRect" parent="." unique_id=1063156191]
+layout_mode = 0
+offset_left = 73.0
+offset_top = -85.0
+offset_right = 713.0
+offset_bottom = 11.0
+scale = Vector2(1.4326489, 1.6302083)
+texture = ExtResource("2_tex")
+
+[node name="desLabel3" type="Label" parent="." unique_id=1649297337]
+layout_mode = 0
+offset_left = 94.99999
+offset_top = -58.0
+offset_right = 959.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 48
+text = "搜索策略"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="roomProgressBar" type="HBoxContainer" parent="." unique_id=963739536]
+layout_mode = 0
+offset_left = 494.99997
+offset_top = 593.99994
+offset_right = 856.2499
+offset_bottom = 721.99994
+scale = Vector2(0.8, 0.8)
+theme_override_constants/separation = -24
+alignment = 1
+
+[node name="roomContainer" type="HBoxContainer" parent="." unique_id=1413327284]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 76.0
+offset_right = 1049.0
+offset_bottom = 551.0
+alignment = 1
+
+[node name="ExploreBtn1" type="TextureButton" parent="roomContainer" unique_id=741055492]
+custom_minimum_size = Vector2(332, 475)
+layout_mode = 2
+stretch_mode = 0
+
+[node name="Room" type="NinePatchRect" parent="roomContainer/ExploreBtn1" unique_id=1712778797]
+custom_minimum_size = Vector2(328, 424)
+propagate_maximum_size = true
+layout_mode = 1
+offset_right = 332.0
+offset_bottom = 477.0
+texture = ExtResource("3_tex")
+region_rect = Rect2(0, 0, 980, 1720)
+patch_margin_left = 104
+patch_margin_top = 144
+patch_margin_right = 124
+patch_margin_bottom = 240
+
+[node name="bg" type="ColorRect" parent="roomContainer/ExploreBtn1" unique_id=1611173336]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 288.0
+offset_right = 301.0
+offset_bottom = 447.0
+color = Color(0.7411765, 0.84705883, 1, 0.20392157)
+
+[node name="nameLabel" type="Label" parent="roomContainer/ExploreBtn1" unique_id=1833466240]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 42.0
+offset_right = 263.77777
+offset_bottom = 101.0
+theme_override_font_sizes/font_size = 42
+text = "谨慎搜索"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="risDeskLabel2" type="Label" parent="roomContainer/ExploreBtn1" unique_id=2141331081]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 355.0
+offset_right = 148.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 32
+text = "进度"
+vertical_alignment = 1
+
+[node name="risDeskLabel4" type="Label" parent="roomContainer/ExploreBtn1" unique_id=1800925166]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 294.0
+offset_right = 148.0
+offset_bottom = 339.0
+theme_override_font_sizes/font_size = 32
+text = "品质"
+vertical_alignment = 1
+
+[node name="risDeskLabel3" type="Label" parent="roomContainer/ExploreBtn1" unique_id=1788093337]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 398.0
+offset_right = 148.0
+offset_bottom = 443.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "噪音"
+vertical_alignment = 1
+
+[node name="PlusIcon" type="Sprite2D" parent="roomContainer/ExploreBtn1" unique_id=2104190291]
+position = Vector2(231, 317)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("4_tex")
+
+[node name="PlusIcon3" type="Sprite2D" parent="roomContainer/ExploreBtn1" unique_id=415790216]
+position = Vector2(273.5, 376)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("4_tex")
+
+[node name="PlusIcon2" type="Sprite2D" parent="roomContainer/ExploreBtn1" unique_id=1657648158]
+position = Vector2(272, 317)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("4_tex")
+
+[node name="Map" type="Sprite2D" parent="roomContainer/ExploreBtn1" unique_id=1368453188]
+position = Vector2(56.999992, 377)
+scale = Vector2(0.25263506, 0.30855796)
+texture = ExtResource("5_tex")
+
+[node name="NoiseIcon" type="Sprite2D" parent="roomContainer/ExploreBtn1" unique_id=1745900787]
+position = Vector2(57, 420.99994)
+scale = Vector2(0.37695313, 0.37695313)
+texture = ExtResource("6_tex")
+
+[node name="ExploreIcon" type="Sprite2D" parent="roomContainer/ExploreBtn1" unique_id=1899885972]
+position = Vector2(59, 320)
+scale = Vector2(0.89604104, 0.89604104)
+texture = ExtResource("7_tex")
+
+[node name="PlusIcon4" type="Sprite2D" parent="roomContainer/ExploreBtn1" unique_id=1039526804]
+position = Vector2(273.24997, 421)
+scale = Vector2(0.7265622, 0.7265622)
+texture = ExtResource("9_tex")
+
+[node name="ExploreImage1" type="Sprite2D" parent="roomContainer/ExploreBtn1" unique_id=1064600176]
+position = Vector2(163.28123, 188.5)
+scale = Vector2(0.9875, 0.9875)
+texture = ExtResource("8_tex")
+
+[node name="ExploreBtn2" type="TextureButton" parent="roomContainer" unique_id=507746360]
+custom_minimum_size = Vector2(332, 475)
+layout_mode = 2
+stretch_mode = 0
+
+[node name="Room" type="NinePatchRect" parent="roomContainer/ExploreBtn2" unique_id=2136794592]
+custom_minimum_size = Vector2(328, 424)
+propagate_maximum_size = true
+layout_mode = 1
+offset_right = 332.0
+offset_bottom = 477.0
+texture = ExtResource("3_tex")
+region_rect = Rect2(0, 0, 980, 1720)
+patch_margin_left = 104
+patch_margin_top = 144
+patch_margin_right = 124
+patch_margin_bottom = 240
+
+[node name="bg" type="ColorRect" parent="roomContainer/ExploreBtn2" unique_id=1163303091]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 289.0
+offset_right = 300.0
+offset_bottom = 447.0
+color = Color(0.7411765, 0.84705883, 1, 0.20392157)
+
+[node name="risDeskLabel2" type="Label" parent="roomContainer/ExploreBtn2" unique_id=1557849464]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 355.0
+offset_right = 149.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 32
+text = "进度"
+vertical_alignment = 1
+
+[node name="risDeskLabel4" type="Label" parent="roomContainer/ExploreBtn2" unique_id=914342430]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 294.0
+offset_right = 149.0
+offset_bottom = 339.0
+theme_override_font_sizes/font_size = 32
+text = "品质"
+vertical_alignment = 1
+
+[node name="risDeskLabel3" type="Label" parent="roomContainer/ExploreBtn2" unique_id=471059441]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 398.0
+offset_right = 149.0
+offset_bottom = 443.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "噪音"
+vertical_alignment = 1
+
+[node name="PlusIcon" type="Sprite2D" parent="roomContainer/ExploreBtn2" unique_id=929546374]
+position = Vector2(279, 317)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("4_tex")
+
+[node name="PlusIcon2" type="Sprite2D" parent="roomContainer/ExploreBtn2" unique_id=147153492]
+position = Vector2(193, 376)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("4_tex")
+
+[node name="PlusIcon3" type="Sprite2D" parent="roomContainer/ExploreBtn2" unique_id=846362577]
+position = Vector2(237, 376)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("4_tex")
+
+[node name="PlusIcon4" type="Sprite2D" parent="roomContainer/ExploreBtn2" unique_id=2069024279]
+position = Vector2(279, 376)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("4_tex")
+
+[node name="nameLabel" type="Label" parent="roomContainer/ExploreBtn2" unique_id=778252554]
+custom_minimum_size = Vector2(256, 45)
+layout_mode = 0
+offset_left = 36.0
+offset_top = 42.0
+offset_right = 292.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 42
+text = "高效搜索"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Map" type="Sprite2D" parent="roomContainer/ExploreBtn2" unique_id=347135317]
+position = Vector2(57, 377)
+scale = Vector2(0.25263506, 0.30855796)
+texture = ExtResource("5_tex")
+
+[node name="NoiseIcon" type="Sprite2D" parent="roomContainer/ExploreBtn2" unique_id=2108129789]
+position = Vector2(57, 420.99994)
+scale = Vector2(0.37695313, 0.37695313)
+texture = ExtResource("6_tex")
+
+[node name="ExploreIcon" type="Sprite2D" parent="roomContainer/ExploreBtn2" unique_id=1288477518]
+position = Vector2(59, 320)
+scale = Vector2(0.89604104, 0.89604104)
+texture = ExtResource("7_tex")
+
+[node name="PlusIcon5" type="Sprite2D" parent="roomContainer/ExploreBtn2" unique_id=1124102976]
+position = Vector2(237, 421)
+scale = Vector2(0.7265622, 0.7265622)
+texture = ExtResource("9_tex")
+
+[node name="PlusIcon6" type="Sprite2D" parent="roomContainer/ExploreBtn2" unique_id=280351518]
+position = Vector2(279, 421)
+scale = Vector2(0.7265622, 0.7265622)
+texture = ExtResource("9_tex")
+
+[node name="BackBtn" type="TextureButton" parent="roomContainer" unique_id=172267814]
+custom_minimum_size = Vector2(332, 475)
+layout_mode = 2
+stretch_mode = 0
+
+[node name="Room" type="NinePatchRect" parent="roomContainer/BackBtn" unique_id=764094555]
+custom_minimum_size = Vector2(328, 424)
+propagate_maximum_size = true
+layout_mode = 1
+offset_right = 332.0
+offset_bottom = 477.0
+texture = ExtResource("3_tex")
+region_rect = Rect2(0, 0, 980, 1720)
+patch_margin_left = 104
+patch_margin_top = 144
+patch_margin_right = 124
+patch_margin_bottom = 240
+
+[node name="bg" type="ColorRect" parent="roomContainer/BackBtn" unique_id=60272908]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 290.0
+offset_right = 301.0
+offset_bottom = 447.0
+color = Color(0.7411765, 0.84705883, 1, 0.20392157)
+
+[node name="ExploreImage3" type="Sprite2D" parent="roomContainer/BackBtn" unique_id=259760957]
+position = Vector2(164, 188.25)
+scale = Vector2(0.9906249, 0.9906248)
+texture = ExtResource("10_tex")
+
+[node name="nameLabel" type="Label" parent="roomContainer/BackBtn" unique_id=1910960913]
+custom_minimum_size = Vector2(256, 45)
+layout_mode = 0
+offset_left = 37.0
+offset_top = 42.0
+offset_right = 293.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 42
+text = "中途撤离"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="risDeskLabel" type="Label" parent="roomContainer/BackBtn" unique_id=1810493593]
+custom_minimum_size = Vector2(256, 45)
+layout_mode = 0
+offset_left = 36.0
+offset_top = 294.0
+offset_right = 292.0
+offset_bottom = 339.0
+theme_override_font_sizes/font_size = 32
+text = "撤离风险"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="riskLabel" type="Label" parent="roomContainer/BackBtn" unique_id=1150622691]
+custom_minimum_size = Vector2(256, 45)
+layout_mode = 0
+offset_left = 36.0
+offset_top = 368.0
+offset_right = 292.0
+offset_bottom = 435.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "高"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="ExploreImage2" type="Sprite2D" parent="." unique_id=399860888]
+position = Vector2(528.99994, 281.25)
+scale = Vector2(0.9906252, 0.9906251)
+texture = ExtResource("11_tex")

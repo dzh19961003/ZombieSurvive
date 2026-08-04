@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://rcbscene1a2b3"]
+
+[ext_resource type="Script" uid="uid://rcbar2x4c8hkt" path="res://Scripts/UI/Explore/RoomChooseBar.cs" id="1_rcb"]
+[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="2_rcb"]
+[ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="3_rcb"]
+[ext_resource type="Texture2D" uid="uid://d1nmp4fcid50p" path="res://Assets/Images/UI/main_panel_2.png" id="4_rcb"]
+[ext_resource type="Texture2D" uid="uid://c5kw0xcwtxyx5" path="res://Assets/Images/UI/Explore/exploreImage_3.png" id="5_rcb"]
+
+[node name="RoomChooseBar" type="NinePatchRect" unique_id=359328042 node_paths=PackedStringArray("roomContainer", "backBtn", "roomProgressBar")]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 503.0
+offset_right = 1066.0
+offset_bottom = 1099.0
+texture = ExtResource("2_rcb")
+region_rect = Rect2(0, 0, 129, 128)
+patch_margin_left = 29
+patch_margin_top = 28
+patch_margin_right = 28
+patch_margin_bottom = 27
+script = ExtResource("1_rcb")
+roomContainer = NodePath("roomContainer")
+backBtn = NodePath("roomContainer/BackBtn")
+roomProgressBar = NodePath("roomProgressBar")
+
+[node name="TitleBackground" type="TextureRect" parent="." unique_id=2063200782]
+layout_mode = 0
+offset_left = 70.0
+offset_top = -85.0
+offset_right = 710.0
+offset_bottom = 11.0
+scale = Vector2(1.4326489, 1.6302083)
+texture = ExtResource("3_rcb")
+
+[node name="desLabel3" type="Label" parent="." unique_id=703118839]
+layout_mode = 0
+offset_left = 88.99999
+offset_top = -58.0
+offset_right = 953.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 48
+text = "选择前进方向"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="roomProgressBar" type="HBoxContainer" parent="." unique_id=1471222341]
+visible = false
+layout_mode = 0
+offset_left = 384.00003
+offset_top = 567.99994
+offset_right = 745.25
+offset_bottom = 695.99994
+scale = Vector2(0.8, 0.8)
+theme_override_constants/separation = -24
+alignment = 1
+
+[node name="roomContainer" type="HBoxContainer" parent="." unique_id=901745634]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 74.0
+offset_right = 1045.0
+offset_bottom = 549.0
+alignment = 1
+
+[node name="BackBtn" type="TextureButton" parent="roomContainer" unique_id=607785597]
+custom_minimum_size = Vector2(332, 475)
+layout_mode = 2
+stretch_mode = 0
+
+[node name="Room" type="NinePatchRect" parent="roomContainer/BackBtn" unique_id=1293770067]
+custom_minimum_size = Vector2(328, 424)
+propagate_maximum_size = true
+layout_mode = 1
+offset_right = 332.0
+offset_bottom = 477.0
+texture = ExtResource("4_rcb")
+region_rect = Rect2(0, 0, 980, 1720)
+patch_margin_left = 104
+patch_margin_top = 144
+patch_margin_right = 124
+patch_margin_bottom = 240
+
+[node name="bg" type="ColorRect" parent="roomContainer/BackBtn" unique_id=1223978779]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 327.0
+offset_right = 301.0
+offset_bottom = 445.0
+color = Color(0.7411765, 0.84705883, 1, 0.20392157)
+
+[node name="ExploreImage3" type="TextureRect" parent="roomContainer/BackBtn" unique_id=704719630]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 97.0
+offset_right = 301.0
+offset_bottom = 257.0
+texture = ExtResource("5_rcb")
+
+[node name="nameLabel" type="Label" parent="roomContainer/BackBtn" unique_id=1565299931]
+custom_minimum_size = Vector2(256, 45)
+layout_mode = 0
+offset_left = 36.0
+offset_top = 38.0
+offset_right = 292.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 32
+text = "返回地图"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="desLabel" type="Label" parent="roomContainer/BackBtn" unique_id=233198192]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 335.0
+offset_right = 299.0
+offset_bottom = 429.0
+theme_override_constants/line_spacing = -8
+theme_override_font_sizes/font_size = 36
+text = "结束探索"
+horizontal_alignment = 1
+vertical_alignment = 1

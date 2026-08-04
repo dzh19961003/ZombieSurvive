@@ -15,12 +15,14 @@ public partial class RoomChoose : Control
     [Export] public Button button;
    
     public int ID;
-    ExploreUI exploreUI;
+    // 所属的房间选择面板（房间选项现在挂在 RoomChooseBar 里，不再是 ExploreUI 的子节点）
+    RoomChooseBar _bar;
     public override void _Ready()
 	{
-        //强行向上找三级，层级修改这里也要改
-        Node explore = GetParent().GetParent().GetParent(); 
-        exploreUI = explore as ExploreUI;
+        // 向上找两级：RoomChoose -> roomContainer -> RoomChooseBar
+        // 以前是找三级到 ExploreUI，现在房间选项被 RoomChooseBar 管理
+        Node parent = GetParent().GetParent();
+        _bar = parent as RoomChooseBar;
 
         button.Pressed += InitialExplore;
 
@@ -38,11 +40,10 @@ public partial class RoomChoose : Control
     }
     private void InitialExplore()
     {
-        GameManager.Instance.LoadEvent(ID);
-        GameManager.Instance.exploreState = 2;
-        exploreUI.exploreChoose.Visible = true;
-        exploreUI.roomChoose.Visible = false;
-        TextTyper.TypeText(exploreUI.desLabel, ConfigManager.Instance.roomDic[ID].Des);
+        // 交给 ExploreUI.OnRoomSelected 统一处理：
+        // 销毁房间选择面板、加载事件、显示房间描述、创建搜索策略面板
+        // （以前在这里直接切 exploreChoose/roomChoose 的 Visible，现在改成创建/销毁面板）
+        _bar.exploreUI.OnRoomSelected(ID);
     }
 
 
