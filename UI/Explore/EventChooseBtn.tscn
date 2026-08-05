@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://c4c0yicjmc1vi"]
 
-[ext_resource type="Script" uid="uid://bqmc86o6vj1ps" path="res://Scripts/UI/Explore/ExploreChooseBtn.cs" id="1_1exqd"]
-[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="1_wirtp"]
+[ext_resource type="Script" uid="uid://bqmc86o6vj1ps" path="res://Scripts/UI/Explore/EventChooseBtn.cs" id="1_efng5"]
+[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="2_lvj4f"]
 
 [node name="ExploreChooseBtn" type="CenterContainer" unique_id=153935579 node_paths=PackedStringArray("desLabel", "textureBtn")]
 custom_minimum_size = Vector2(920, 120)
 offset_right = 920.0
 offset_bottom = 120.0
-script = ExtResource("1_1exqd")
+script = ExtResource("1_efng5")
 desLabel = NodePath("TextureButton/desLabel")
 textureBtn = NodePath("TextureButton")
 
@@ -24,7 +24,7 @@ offset_left = 1.0
 offset_top = -1.0
 offset_right = 865.0
 offset_bottom = 119.0
-texture = ExtResource("1_wirtp")
+texture = ExtResource("2_lvj4f")
 region_rect = Rect2(0, 0, 136, 136)
 patch_margin_left = 28
 patch_margin_top = 27

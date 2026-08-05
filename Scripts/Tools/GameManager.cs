@@ -38,6 +38,8 @@ public partial class GameManager : Node2D,ISaveable
     //当前事件
     public Array<int> carefulEventArray = new Array<int>();
     public Array<int> quickEventArray = new Array<int>();
+
+
     public static GameManager Instance { get; private set; }
 
     #region 存档相关
@@ -47,13 +49,15 @@ public partial class GameManager : Node2D,ISaveable
     {
         return new Dictionary
         {
-            { "gameState", gameState }
+            { "gameState", gameState },
+            { "exploreProgress",exploreProgress}           
         };
     }
 
     public void LoadSaveData(Dictionary data)
     {
-        
+        gameState = data.ContainsKey("gameState") ? (int)data["gameState"] : 1;
+        exploreProgress =  data.ContainsKey("exploreProgress") ? (Dictionary<int,int>)data["exploreProgress"] : new Dictionary<int, int>();
     }
     #endregion
 

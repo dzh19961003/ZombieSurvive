@@ -2,7 +2,7 @@ using Godot;
 using MyProject;
 using System;
 
-public partial class ExploreChooseBtn : CenterContainer
+public partial class EventChooseBtn : CenterContainer
 {
 	[Export] public Label desLabel;
 	[Export] public TextureButton textureBtn;
