@@ -28,7 +28,7 @@ public partial class ExploreChooseBar : NinePatchRect
         exploreUI = owner;
     }
 
-    private int explore(int type) 
+    private void explore(int type) 
     {
         EventChooseBar eventChooseBar=(EventChooseBar)UIManager.Instance.CreateUI("res://UI/Explore/EventChooseBar.tscn");
 
@@ -41,6 +41,8 @@ public partial class ExploreChooseBar : NinePatchRect
         {
             eventID=Tools.GetRandomNumber(gameManager.quickEventArray);
         }
-        return eventID;
+        eventChooseBar.exploreUI = exploreUI;
+        eventChooseBar.Initial(eventID);
+        this.QueueFree();
     }
 }

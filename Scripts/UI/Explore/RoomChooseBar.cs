@@ -50,7 +50,8 @@ public partial class RoomChooseBar : NinePatchRect
             RoomChoose roomChoose = room.Instantiate<RoomChoose>();
             roomContainer.AddChild(roomChoose);
             roomChoose.InitialRoom(layerRooms[i]);
-            roomChoose.ID = layerRooms[i];
+            GameManager.Instance.roomID= layerRooms[i];
+            roomChoose.ID = GameManager.Instance.roomID;
         }
         // 把返回按钮移到最后（始终在最右侧）
         roomContainer.MoveChild(backBtn, -1);

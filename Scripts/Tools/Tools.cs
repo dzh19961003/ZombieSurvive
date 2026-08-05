@@ -9,14 +9,14 @@ public static class Tools
     //给出一个List或者Array返回一个随机数   
     public static int GetRandomNumber(Array<int> numArray)
     {
-        numArray = new Array<int>();
-        int r = GD.RandRange(1, numArray.Count);        
+        if (numArray == null || numArray.Count == 0) return -1;
+        int r = GD.RandRange(0, numArray.Count - 1);        
         return numArray[r];
     }
     public static int GetRandomNumber(List<int> numList)
     {
-        numList = new List<int>();
-        int r = GD.RandRange(1, numList.Count);
+        if (numList == null || numList.Count == 0) return -1;
+        int r = GD.RandRange(0, numList.Count - 1);
         return numList[r];
     }
     //给出一个List或者Array，根据权重返回一个随机数

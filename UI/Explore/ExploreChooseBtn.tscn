@@ -3,13 +3,16 @@
 [ext_resource type="Script" uid="uid://bqmc86o6vj1ps" path="res://Scripts/UI/Explore/ExploreChooseBtn.cs" id="1_1exqd"]
 [ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="1_wirtp"]
 
-[node name="ExploreChooseBtn" type="CenterContainer" unique_id=153935579]
+[node name="ExploreChooseBtn" type="CenterContainer" unique_id=153935579 node_paths=PackedStringArray("desLabel", "textureBtn")]
 custom_minimum_size = Vector2(920, 120)
 offset_right = 920.0
 offset_bottom = 120.0
 script = ExtResource("1_1exqd")
+desLabel = NodePath("TextureButton/desLabel")
+textureBtn = NodePath("TextureButton")
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=1998778597]
+custom_minimum_size = Vector2(864, 120)
 custom_maximum_size = Vector2(1080, 120)
 layout_mode = 2
 ignore_texture_size = true
@@ -17,13 +20,23 @@ stretch_mode = 0
 
 [node name="UI" type="NinePatchRect" parent="TextureButton" unique_id=477192212]
 layout_mode = 0
-offset_left = -430.0
-offset_top = -60.0
-offset_right = 434.0
-offset_bottom = 60.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 865.0
+offset_bottom = 119.0
 texture = ExtResource("1_wirtp")
 region_rect = Rect2(0, 0, 136, 136)
 patch_margin_left = 28
 patch_margin_top = 27
 patch_margin_right = 33
 patch_margin_bottom = 36
+
+[node name="desLabel" type="Label" parent="TextureButton" unique_id=1043053961]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 12.0
+offset_right = 743.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 32
+text = "你好哈哈哈"
+vertical_alignment = 1

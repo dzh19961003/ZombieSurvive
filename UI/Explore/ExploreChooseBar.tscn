@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://eha4luqy6cu8" path="res://Assets/Images/UI/Explore/exploreImage_2.png" id="11_tex"]
 [ext_resource type="Script" uid="uid://gve612vs2mt3" path="res://Scripts/UI/Explore/ExploreChooseBar.cs" id="12_scr"]
 
-[node name="ExploreChooseBar" type="NinePatchRect" unique_id=1753727129 node_paths=PackedStringArray("backBtn")]
+[node name="ExploreChooseBar" type="NinePatchRect" unique_id=1753727129 node_paths=PackedStringArray("backBtn", "carefulExploreBtn", "quicklyExploreBtn")]
 offset_left = 7.0
 offset_top = 502.0
 offset_right = 1061.0
@@ -26,6 +26,8 @@ patch_margin_right = 28
 patch_margin_bottom = 27
 script = ExtResource("12_scr")
 backBtn = NodePath("roomContainer/BackBtn")
+carefulExploreBtn = NodePath("roomContainer/ExploreBtn1")
+quicklyExploreBtn = NodePath("roomContainer/ExploreBtn2")
 
 [node name="TitleBackground" type="TextureRect" parent="." unique_id=1063156191]
 layout_mode = 0

@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://bp70g5bwrnic7"]
 
-[node name="ChooseBar" type="VBoxContainer" unique_id=275394596]
+[ext_resource type="Script" uid="uid://dylcqi6gdawg3" path="res://Scripts/UI/Explore/EventChooseBar.cs" id="1_wioru"]
+
+[node name="EventChooseBar" type="VBoxContainer" unique_id=275394596]
 offset_left = 12.0
 offset_top = 1511.0
 offset_right = 1092.0
 offset_bottom = 1871.0
 theme_override_constants/separation = 0
+script = ExtResource("1_wioru")

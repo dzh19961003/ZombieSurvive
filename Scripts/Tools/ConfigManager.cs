@@ -33,6 +33,11 @@ namespace MyProject
         /// <summary>EventPool 配置字典（以 ID 为键）</summary>
         public Dictionary<int, EventPool> eventPoolDic { get; private set; }
 
+        /// <summary>ExploreEvent 配置列表</summary>
+        public List<ExploreEvent> exploreEventList { get; private set; }
+        /// <summary>ExploreEvent 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, ExploreEvent> exploreEventDic { get; private set; }
+
         /// <summary>Item 配置列表</summary>
         public List<Item> itemList { get; private set; }
         /// <summary>Item 配置字典（以 ID 为键）</summary>
@@ -79,6 +84,10 @@ namespace MyProject
             eventPoolList = JsonLoader.LoadToList<EventPool>("event_pool");
             eventPoolDic = JsonLoader.LoadToDic<EventPool>("event_pool");
             GD.Print("[ConfigManager] EventPool loaded: List=" + (eventPoolList?.Count ?? 0) + ", Dic=" + (eventPoolDic?.Count ?? 0));
+
+            exploreEventList = JsonLoader.LoadToList<ExploreEvent>("explore_event");
+            exploreEventDic = JsonLoader.LoadToDic<ExploreEvent>("explore_event");
+            GD.Print("[ConfigManager] ExploreEvent loaded: List=" + (exploreEventList?.Count ?? 0) + ", Dic=" + (exploreEventDic?.Count ?? 0));
 
             itemList = JsonLoader.LoadToList<Item>("item");
             itemDic = JsonLoader.LoadToDic<Item>("item");

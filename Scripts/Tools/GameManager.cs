@@ -20,11 +20,14 @@ public partial class GameManager : Node2D,ISaveable
     探索完毕 = 3 */
     public int exploreState = 1;
 
-    //当期建筑ID
+    //当前建筑ID
     public int currentBuildingID = 0;
 
     //当前探索层级，与房间所在层级相同
     public int exploreLayer = 1;
+
+    //当前房间ID
+    public int roomID=1;
 
     //已完成的支线
     public Array<int> finishedEvent = new Array<int>();
