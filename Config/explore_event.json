@@ -4,7 +4,7 @@
     "eventType": 101,
     "headType": 1,
     "des": "你找到了一个废弃建材堆，看了看应该有些可用的建材，但翻找时容易划伤手指",
-    "image": "building_5_0_1",
+    "image": "material_image",
     "option": [
       "翻找可用建材（随机建材，可能受伤）",
       "无视走开"
@@ -15,14 +15,19 @@
       2,
       9999
     ],
-    "icon": []
+    "icon": [],
+    "getItem": [],
+    "itemNum": [],
+    "propertyID": [],
+    "propertyNum": [],
+    "stateID": []
   },
   {
     "ID": 2,
     "eventType": 101,
     "headType": 2,
     "des": "通过翻找，你成功找到了一些用得上的建材，但翻找过程中不幸被钉子划伤",
-    "image": "building_5_0_1",
+    "image": "material_image",
     "option": [
       "真是倒霉"
     ],
@@ -31,14 +36,19 @@
     "nextEvent": [
       9999
     ],
-    "icon": []
+    "icon": [],
+    "getItem": [],
+    "itemNum": [],
+    "propertyID": [],
+    "propertyNum": [],
+    "stateID": []
   },
   {
     "ID": 3,
     "eventType": 102,
     "headType": 1,
     "des": "你来到操场的球门前，球门上挂着一条醒目的红色丝带，你研究了半天也没发现有什么问题",
-    "image": "building_5_0_1",
+    "image": "material_image",
     "option": [
       "好像哪里不对...",
       "无奈放弃"
@@ -50,14 +60,19 @@
       10
     ],
     "nextEvent": [],
-    "icon": []
+    "icon": [],
+    "getItem": [],
+    "itemNum": [],
+    "propertyID": [],
+    "propertyNum": [],
+    "stateID": []
   },
   {
     "ID": 4,
     "eventType": 102,
     "headType": 2,
     "des": "又打量了一会儿后，你仿佛心有灵犀般地抬头向上看，不远处教学楼上的一个窗户挂满了相同的红色丝带，隐隐看到有一个身影在窗前...",
-    "image": "building_5_0_1",
+    "image": "material_image",
     "option": [
       "难道有幸存者？",
       "警惕离开"
@@ -65,14 +80,19 @@
     "demand": [],
     "demandNum": [],
     "nextEvent": [],
-    "icon": []
+    "icon": [],
+    "getItem": [],
+    "itemNum": [],
+    "propertyID": [],
+    "propertyNum": [],
+    "stateID": []
   },
   {
     "ID": 5,
     "eventType": 103,
     "headType": 1,
     "des": "测试事件5(重要支线)",
-    "image": "building_5_0_1",
+    "image": "material_image",
     "option": [
       "跳转事件6(重要支线)",
       "结束事件5(重要支线)"
@@ -83,14 +103,19 @@
       6,
       9999
     ],
-    "icon": []
+    "icon": [],
+    "getItem": [],
+    "itemNum": [],
+    "propertyID": [],
+    "propertyNum": [],
+    "stateID": []
   },
   {
     "ID": 6,
     "eventType": 103,
     "headType": 2,
     "des": "测试事件6(重要支线)",
-    "image": "building_5_0_1",
+    "image": "material_image",
     "option": [
       "结束事件6(重要支线)"
     ],
@@ -99,14 +124,19 @@
     "nextEvent": [
       9999
     ],
-    "icon": []
+    "icon": [],
+    "getItem": [],
+    "itemNum": [],
+    "propertyID": [],
+    "propertyNum": [],
+    "stateID": []
   },
   {
     "ID": 7,
     "eventType": 101,
     "headType": 1,
     "des": "测试事件7",
-    "image": "building_5_0_1",
+    "image": "material_image",
     "option": [
       "结束事件7"
     ],
@@ -115,14 +145,19 @@
     "nextEvent": [
       9999
     ],
-    "icon": []
+    "icon": [],
+    "getItem": [],
+    "itemNum": [],
+    "propertyID": [],
+    "propertyNum": [],
+    "stateID": []
   },
   {
     "ID": 8,
     "eventType": 101,
     "headType": 1,
     "des": "测试事件8",
-    "image": "building_5_0_1",
+    "image": "material_image",
     "option": [
       "跳转事件9",
       "结束事件8"
@@ -133,14 +168,19 @@
       9,
       9999
     ],
-    "icon": []
+    "icon": [],
+    "getItem": [],
+    "itemNum": [],
+    "propertyID": [],
+    "propertyNum": [],
+    "stateID": []
   },
   {
     "ID": 9,
     "eventType": 101,
     "headType": 2,
     "des": "测试事件9",
-    "image": "building_5_0_1",
+    "image": "material_image",
     "option": [
       "结束事件9"
     ],
@@ -149,14 +189,19 @@
     "nextEvent": [
       9999
     ],
-    "icon": []
+    "icon": [],
+    "getItem": [],
+    "itemNum": [],
+    "propertyID": [],
+    "propertyNum": [],
+    "stateID": []
   },
   {
     "ID": 10,
     "eventType": 101,
     "headType": 1,
     "des": "测试事件10",
-    "image": "building_5_0_2",
+    "image": "material_image",
     "option": [
       "结束事件10"
     ],
@@ -165,6 +210,11 @@
     "nextEvent": [
       9999
     ],
-    "icon": []
+    "icon": [],
+    "getItem": [],
+    "itemNum": [],
+    "propertyID": [],
+    "propertyNum": [],
+    "stateID": []
   }
 ]

@@ -1,16 +1,18 @@
 using Godot;
 using Godot.Collections;
 using MyProject;
+using static System.Net.Mime.MediaTypeNames;
 
 
 public partial class ExploreUI : Control
 {
 	[Export] public TextureRect bg;
-	[Export] public Label desLabel;
+    [Export] public TextureRect image;
+    [Export] public Label desLabel;
     [Export] public NinePatchRect noiseBar;
     [Export] public Label exploreProgressLabel;
     [Export] public Label noiseProgressLabel;
-
+    
     private RoomChooseBar _roomChooseBar;
     private ExploreChooseBar _exploreChooseBar;
 
@@ -45,9 +47,10 @@ public partial class ExploreUI : Control
 				{
 					LayerArray[i-1].Add(item);
                 }
-			}
+            }
 		}
         RefreshExploreUI();
+        image.Visible = false;
         //初始化房间
         TextTyper.TypeText(desLabel, building.Des);
         _roomChooseBar = (RoomChooseBar)UIManager.Instance.CreateUI("res://UI/Explore/RoomChooseBar.tscn");
@@ -82,6 +85,7 @@ public partial class ExploreUI : Control
         // 创建独立的搜索策略面板
         _exploreChooseBar = (ExploreChooseBar)UIManager.Instance.CreateUI("res://UI/Explore/ExploreChooseBar.tscn");
         _exploreChooseBar.Init(this);
+        image.Visible = false;
     }
 
     // 离开探索：销毁所有探索相关面板和自身

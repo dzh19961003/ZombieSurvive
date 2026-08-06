@@ -16,7 +16,7 @@ public static class TextTyper
 {
     // ========== 默认速度 ==========
     // 每秒打印3个字
-    private const int DEFAULT_CHARS_PER_SECOND = 24;
+    private const int DEFAULT_CHARS_PER_SECOND = 36;
 
     // ========== 公开方法 ==========
 
