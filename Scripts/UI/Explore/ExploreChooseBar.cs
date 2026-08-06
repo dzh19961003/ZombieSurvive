@@ -15,7 +15,7 @@ public partial class ExploreChooseBar : NinePatchRect
         // 中途撤离按钮：弹确认框，确认后交给 ExploreUI 统一销毁所有探索界面
         backBtn.Pressed += () =>
         {
-            CommonTips tips = UIManager.Instance.ShowCommonTips("终止探索", "确认要离开当前位置并继续前进吗");
+            CommonTips tips = UIManager.Instance.ShowCommonTips("直接离开", "确认要离开当前位置并继续前进吗（可使你跳过当前场景），当前离开风险高，很大概率惊动丧尸");
             tips.OnConfirm = () => exploreUI.LeaveRoom();
         };
         carefulExploreBtn.Pressed += () => 
@@ -37,35 +37,45 @@ public partial class ExploreChooseBar : NinePatchRect
     private void explore(int type) 
     {
         EventChooseBar eventChooseBar=(EventChooseBar)UIManager.Instance.CreateUI("res://UI/Explore/EventChooseBar.tscn");
-        Dictionary<int, int> explorePogress = GameManager.Instance.exploreProgress;
+        Dictionary<int, int> explorePogress = gameManager.exploreProgress;
 
         int eventID=1;
         if (type==1)
         {
             eventID=Tools.GetRandomNumber(gameManager.carefulEventArray);
-            if (explorePogress.ContainsKey(GameManager.Instance.roomID))
+            if (explorePogress.ContainsKey(gameManager.roomID))
             {
-                explorePogress[(GameManager.Instance.roomID)] += Tools.GetRandomNumber(Consts.carefulExploreProgress);
+                explorePogress[(gameManager.roomID)] += Tools.GetRandomNumber(Consts.carefulExploreProgress);
             }
             else
             {
-                explorePogress[(GameManager.Instance.roomID)] = Tools.GetRandomNumber(Consts.carefulExploreProgress);
-            }             
+                explorePogress[(gameManager.roomID)] = Tools.GetRandomNumber(Consts.carefulExploreProgress);
+            }
+            gameManager.exploreNoise += Tools.GetRandomNumber(Consts.carefulNoiseProgress);
         }
         else
         {
             eventID=Tools.GetRandomNumber(gameManager.quickEventArray);
-            if (explorePogress.ContainsKey(GameManager.Instance.roomID))
+            if (explorePogress.ContainsKey(gameManager.roomID))
             {
-                explorePogress[(GameManager.Instance.roomID)] += Tools.GetRandomNumber(Consts.quickExploreProgress);
+                explorePogress[(gameManager.roomID)] += Tools.GetRandomNumber(Consts.quickExploreProgress);
             }
             else
             {
-                explorePogress[(GameManager.Instance.roomID)] = Tools.GetRandomNumber(Consts.quickExploreProgress);
+                explorePogress[(gameManager.roomID)] = Tools.GetRandomNumber(Consts.quickExploreProgress);
             }
+            gameManager.exploreNoise += Tools.GetRandomNumber(Consts.quickNoiseProgress);
         }
-        GD.Print(GameManager.Instance.exploreProgress[GameManager.Instance.roomID]);
+        //处理噪音值和探索值达到上限的方法,后续补充
+        if (gameManager.exploreNoise>100)
+        {
+            gameManager.exploreNoise -= 100;
+        }
+
+        GD.Print(gameManager.exploreProgress[gameManager.roomID]);
+        GD.Print(gameManager.exploreNoise);
         eventChooseBar.exploreUI = exploreUI;
+        exploreUI.RefreshExploreUI();
         eventChooseBar.Initial(eventID);
         this.QueueFree();
     }

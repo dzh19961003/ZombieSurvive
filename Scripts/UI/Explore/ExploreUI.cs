@@ -8,6 +8,8 @@ public partial class ExploreUI : Control
 	[Export] public TextureRect bg;
 	[Export] public Label desLabel;
     [Export] public NinePatchRect noiseBar;
+    [Export] public Label exploreProgressLabel;
+    [Export] public Label noiseProgressLabel;
 
     private RoomChooseBar _roomChooseBar;
     private ExploreChooseBar _exploreChooseBar;
@@ -45,13 +47,24 @@ public partial class ExploreUI : Control
                 }
 			}
 		}
-
+        RefreshExploreUI();
         //初始化房间
         TextTyper.TypeText(desLabel, building.Des);
         _roomChooseBar = (RoomChooseBar)UIManager.Instance.CreateUI("res://UI/Explore/RoomChooseBar.tscn");
         _roomChooseBar.Init(this, LayerArray[GameManager.Instance.exploreLayer - 1], maxLayer);
     }
-
+    public void RefreshExploreUI()
+    {
+        if (GameManager.Instance.exploreProgress.ContainsKey(GameManager.Instance.roomID))
+        {
+            exploreProgressLabel.Text = GameManager.Instance.exploreProgress[GameManager.Instance.roomID].ToString() + "%";
+        }
+        else
+        {
+            exploreProgressLabel.Text =  "0%";
+        }        
+        noiseProgressLabel.Text = GameManager.Instance.exploreNoise.ToString() + "%";
+    }
     // 销毁房间选择面板，加载事件，创建搜索策略面板
     public void OnRoomSelected(int roomID)
     {

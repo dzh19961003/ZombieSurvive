@@ -35,6 +35,9 @@ public partial class GameManager : Node2D,ISaveable
     //各建筑探索进度
     public Dictionary<int, int> exploreProgress = new Dictionary<int, int>();
 
+    //建筑探索噪音值
+    public int exploreNoise=0;
+
     //当前事件
     public Array<int> carefulEventArray = new Array<int>();
     public Array<int> quickEventArray = new Array<int>();

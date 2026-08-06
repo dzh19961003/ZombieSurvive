@@ -170,6 +170,11 @@ position = Vector2(273.24997, 421)
 scale = Vector2(0.7265622, 0.7265622)
 texture = ExtResource("9_tex")
 
+[node name="PlusIcon5" type="Sprite2D" parent="roomContainer/ExploreBtn1" unique_id=641242086]
+position = Vector2(231, 421)
+scale = Vector2(0.7265622, 0.7265622)
+texture = ExtResource("9_tex")
+
 [node name="ExploreImage1" type="Sprite2D" parent="roomContainer/ExploreBtn1" unique_id=1064600176]
 position = Vector2(163.28123, 188.5)
 scale = Vector2(0.9875, 0.9875)
@@ -237,11 +242,6 @@ position = Vector2(279, 317)
 scale = Vector2(0.6875, 0.6875)
 texture = ExtResource("4_tex")
 
-[node name="PlusIcon2" type="Sprite2D" parent="roomContainer/ExploreBtn2" unique_id=147153492]
-position = Vector2(193, 376)
-scale = Vector2(0.6875, 0.6875)
-texture = ExtResource("4_tex")
-
 [node name="PlusIcon3" type="Sprite2D" parent="roomContainer/ExploreBtn2" unique_id=846362577]
 position = Vector2(237, 376)
 scale = Vector2(0.6875, 0.6875)
@@ -279,11 +279,6 @@ texture = ExtResource("6_tex")
 position = Vector2(59, 320)
 scale = Vector2(0.89604104, 0.89604104)
 texture = ExtResource("7_tex")
-
-[node name="PlusIcon5" type="Sprite2D" parent="roomContainer/ExploreBtn2" unique_id=1124102976]
-position = Vector2(237, 421)
-scale = Vector2(0.7265622, 0.7265622)
-texture = ExtResource("9_tex")
 
 [node name="PlusIcon6" type="Sprite2D" parent="roomContainer/ExploreBtn2" unique_id=280351518]
 position = Vector2(279, 421)
