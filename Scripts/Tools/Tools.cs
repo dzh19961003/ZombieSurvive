@@ -28,5 +28,4 @@ public static class Tools
     {
         return 1;
     }
-
 }

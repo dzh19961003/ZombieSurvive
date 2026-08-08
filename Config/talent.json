@@ -5,7 +5,7 @@
     "positive": 1,
     "effect": "强健+3",
     "rarity": 2,
-    "effectType": 1,
+    "effectType": 10002,
     "effectNum": 3
   },
   {
@@ -14,7 +14,7 @@
     "positive": 0,
     "effect": "强健-3",
     "rarity": 1,
-    "effectType": 1,
+    "effectType": 10003,
     "effectNum": -3
   }
 ]

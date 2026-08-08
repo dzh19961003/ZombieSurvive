@@ -1,0 +1,72 @@
+[
+  {
+    "ID": 10001,
+    "type": "生命值",
+    "imageIcon": "heart_icon.png"
+  },
+  {
+    "ID": 10002,
+    "type": "最大生命值",
+    "imageIcon": "heart_icon.png"
+  },
+  {
+    "ID": 10003,
+    "type": "强健",
+    "imageIcon": "strong.png"
+  },
+  {
+    "ID": 10004,
+    "type": "速度",
+    "imageIcon": "speed.png"
+  },
+  {
+    "ID": 10005,
+    "type": "智力",
+    "imageIcon": "brain.png"
+  },
+  {
+    "ID": 10006,
+    "type": "强健经验",
+    "imageIcon": "strong.png"
+  },
+  {
+    "ID": 10007,
+    "type": "速度经验",
+    "imageIcon": "speed.png"
+  },
+  {
+    "ID": 10008,
+    "type": "智力经验",
+    "imageIcon": "brain.png"
+  },
+  {
+    "ID": 10009,
+    "type": "经验获取效率",
+    "imageIcon": "heart_icon.png"
+  },
+  {
+    "ID": 10010,
+    "type": "护甲",
+    "imageIcon": "heart_icon.png"
+  },
+  {
+    "ID": 10011,
+    "type": "护甲最大值",
+    "imageIcon": "heart_icon.png"
+  },
+  {
+    "ID": 10012,
+    "type": "攻击四肢权重",
+    "imageIcon": "heart_icon.png"
+  },
+  {
+    "ID": 10013,
+    "type": "攻击头部权重",
+    "imageIcon": "heart_icon.png"
+  },
+  {
+    "ID": 10014,
+    "type": "攻击身体权重",
+    "imageIcon": "heart_icon.png"
+  }
+]

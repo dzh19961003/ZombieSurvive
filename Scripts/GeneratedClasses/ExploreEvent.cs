@@ -39,17 +39,11 @@ namespace MyProject
         /// <summary>原始字段: icon</summary>
         public List<object> Icon { get; set; }
 
-        /// <summary>原始字段: getItem</summary>
-        public List<object> GetItem { get; set; }
+        /// <summary>原始字段: itemID</summary>
+        public List<object> ItemID { get; set; }
 
         /// <summary>原始字段: itemNum</summary>
         public List<object> ItemNum { get; set; }
-
-        /// <summary>原始字段: propertyID</summary>
-        public List<object> PropertyID { get; set; }
-
-        /// <summary>原始字段: propertyNum</summary>
-        public List<object> PropertyNum { get; set; }
 
         /// <summary>原始字段: stateID</summary>
         public List<object> StateID { get; set; }

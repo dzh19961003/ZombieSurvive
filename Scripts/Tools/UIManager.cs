@@ -38,12 +38,12 @@ public partial class UIManager : Node
             var panel = scene.Instantiate<Control>();
             AddChild(panel);
             // 加到 UIManager 节点下面
-            _panels[scenePath] = panel; 
+            _panels[scenePath] = panel;
         }
 
         // 把面板显示出来
         _panels[scenePath].Visible = true;
-        this.MoveChild(_panels[scenePath], this.GetChildCount()-1);
+        this.MoveChild(_panels[scenePath], this.GetChildCount() - 1);
         return _panels[scenePath];
 
     }
@@ -269,7 +269,7 @@ public partial class UIManager : Node
     //创建一个通用提示弹窗
     public CommonTips ShowCommonTips(string title, string tips)
     {
-        CommonTips commonTips= (CommonTips)ShowUI("res://UI/CommonTips.tscn");
+        CommonTips commonTips = (CommonTips)ShowUI("res://UI/CommonTips.tscn");
         commonTips.SpawnTips(title, tips);
         return commonTips;
     }
@@ -283,7 +283,7 @@ public partial class UIManager : Node
      foodTips.InitialTips(ID);
      UIManager.Instance.SetSpwanPosition(this, foodTips);
     */
-    public void SetSpwanPosition(Control item,Control tag)
+    public void SetSpwanPosition(Control item, Control tag)
     {
 
         Vector2 itemGlobalPos = item.GlobalPosition;
@@ -328,5 +328,21 @@ public partial class UIManager : Node
 
         // 4) 赋值
         tag.Position = new Vector2(controlX, controlY);
+    }
+
+    //通过id找到对应图标，大于10000的是属性，小于10000的是物品
+    public Texture2D GetItemIcon(int ID) 
+    {
+        Texture2D texture2D = null;
+        
+        if (ID<10000)
+        {
+            texture2D = ResourceLoader.Load<Texture2D>(ConfigManager.Instance.itemDic[ID].Icon + ".png");
+        }
+        else
+        {
+            texture2D = ResourceLoader.Load<Texture2D>(ConfigManager.Instance.effectTypeDic[ID].ImageIcon);
+        }
+        return texture2D;
     }
 }

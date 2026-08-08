@@ -18,6 +18,11 @@ namespace MyProject
         /// <summary>Building 配置字典（以 ID 为键）</summary>
         public Dictionary<int, Building> buildingDic { get; private set; }
 
+        /// <summary>EffectType 配置列表</summary>
+        public List<EffectType> effectTypeList { get; private set; }
+        /// <summary>EffectType 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, EffectType> effectTypeDic { get; private set; }
+
         /// <summary>Equip 配置列表</summary>
         public List<Equip> equipList { get; private set; }
         /// <summary>Equip 配置字典（以 ID 为键）</summary>
@@ -42,6 +47,11 @@ namespace MyProject
         public List<Item> itemList { get; private set; }
         /// <summary>Item 配置字典（以 ID 为键）</summary>
         public Dictionary<int, Item> itemDic { get; private set; }
+
+        /// <summary>ItemPool 配置列表</summary>
+        public List<ItemPool> itemPoolList { get; private set; }
+        /// <summary>ItemPool 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, ItemPool> itemPoolDic { get; private set; }
 
         /// <summary>Room 配置列表</summary>
         public List<Room> roomList { get; private set; }
@@ -73,6 +83,10 @@ namespace MyProject
             buildingDic = JsonLoader.LoadToDic<Building>("building");
             GD.Print("[ConfigManager] Building loaded: List=" + (buildingList?.Count ?? 0) + ", Dic=" + (buildingDic?.Count ?? 0));
 
+            effectTypeList = JsonLoader.LoadToList<EffectType>("effect_type");
+            effectTypeDic = JsonLoader.LoadToDic<EffectType>("effect_type");
+            GD.Print("[ConfigManager] EffectType loaded: List=" + (effectTypeList?.Count ?? 0) + ", Dic=" + (effectTypeDic?.Count ?? 0));
+
             equipList = JsonLoader.LoadToList<Equip>("equip");
             equipDic = JsonLoader.LoadToDic<Equip>("equip");
             GD.Print("[ConfigManager] Equip loaded: List=" + (equipList?.Count ?? 0) + ", Dic=" + (equipDic?.Count ?? 0));
@@ -92,6 +106,10 @@ namespace MyProject
             itemList = JsonLoader.LoadToList<Item>("item");
             itemDic = JsonLoader.LoadToDic<Item>("item");
             GD.Print("[ConfigManager] Item loaded: List=" + (itemList?.Count ?? 0) + ", Dic=" + (itemDic?.Count ?? 0));
+
+            itemPoolList = JsonLoader.LoadToList<ItemPool>("item_pool");
+            itemPoolDic = JsonLoader.LoadToDic<ItemPool>("item_pool");
+            GD.Print("[ConfigManager] ItemPool loaded: List=" + (itemPoolList?.Count ?? 0) + ", Dic=" + (itemPoolDic?.Count ?? 0));
 
             roomList = JsonLoader.LoadToList<Room>("room");
             roomDic = JsonLoader.LoadToDic<Room>("room");

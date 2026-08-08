@@ -16,10 +16,8 @@
       9999
     ],
     "icon": [],
-    "getItem": [],
+    "itemID": [],
     "itemNum": [],
-    "propertyID": [],
-    "propertyNum": [],
     "stateID": []
   },
   {
@@ -37,10 +35,10 @@
       9999
     ],
     "icon": [],
-    "getItem": [],
+    "itemID": [
+      1001
+    ],
     "itemNum": [],
-    "propertyID": [],
-    "propertyNum": [],
     "stateID": []
   },
   {
@@ -61,10 +59,8 @@
     ],
     "nextEvent": [],
     "icon": [],
-    "getItem": [],
+    "itemID": [],
     "itemNum": [],
-    "propertyID": [],
-    "propertyNum": [],
     "stateID": []
   },
   {
@@ -81,10 +77,8 @@
     "demandNum": [],
     "nextEvent": [],
     "icon": [],
-    "getItem": [],
+    "itemID": [],
     "itemNum": [],
-    "propertyID": [],
-    "propertyNum": [],
     "stateID": []
   },
   {
@@ -104,10 +98,8 @@
       9999
     ],
     "icon": [],
-    "getItem": [],
+    "itemID": [],
     "itemNum": [],
-    "propertyID": [],
-    "propertyNum": [],
     "stateID": []
   },
   {
@@ -125,10 +117,8 @@
       9999
     ],
     "icon": [],
-    "getItem": [],
+    "itemID": [],
     "itemNum": [],
-    "propertyID": [],
-    "propertyNum": [],
     "stateID": []
   },
   {
@@ -146,10 +136,8 @@
       9999
     ],
     "icon": [],
-    "getItem": [],
+    "itemID": [],
     "itemNum": [],
-    "propertyID": [],
-    "propertyNum": [],
     "stateID": []
   },
   {
@@ -169,17 +157,15 @@
       9999
     ],
     "icon": [],
-    "getItem": [],
+    "itemID": [],
     "itemNum": [],
-    "propertyID": [],
-    "propertyNum": [],
     "stateID": []
   },
   {
     "ID": 9,
     "eventType": 101,
     "headType": 2,
-    "des": "测试事件9",
+    "des": "力量经验+10",
     "image": "material_image",
     "option": [
       "结束事件9"
@@ -190,10 +176,8 @@
       9999
     ],
     "icon": [],
-    "getItem": [],
+    "itemID": [],
     "itemNum": [],
-    "propertyID": [],
-    "propertyNum": [],
     "stateID": []
   },
   {
@@ -211,10 +195,8 @@
       9999
     ],
     "icon": [],
-    "getItem": [],
+    "itemID": [],
     "itemNum": [],
-    "propertyID": [],
-    "propertyNum": [],
     "stateID": []
   }
 ]

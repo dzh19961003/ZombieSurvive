@@ -4,7 +4,7 @@
     "name": "美味",
     "positive": 1,
     "effect": "太美味了",
-    "effctType": 1,
+    "effctType": 10002,
     "effctNum": 3,
     "time": 1
   },
@@ -13,7 +13,7 @@
     "name": "感染",
     "positive": 0,
     "effect": "被感染了",
-    "effctType": 2,
+    "effctType": 10003,
     "effctNum": 3,
     "time": 2
   },
@@ -22,7 +22,7 @@
     "name": "美味+",
     "positive": 1,
     "effect": "太美味了",
-    "effctType": 3,
+    "effctType": 10004,
     "effctNum": 5,
     "time": 1
   },
@@ -31,7 +31,7 @@
     "name": "美味++",
     "positive": 1,
     "effect": "太美味了",
-    "effctType": 4,
+    "effctType": 10005,
     "effctNum": -5,
     "time": 1
   }
