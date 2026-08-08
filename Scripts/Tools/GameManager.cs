@@ -21,7 +21,10 @@ public partial class GameManager : Node2D,ISaveable
     public int exploreState = 1;
 
     //当前建筑ID
-    public int currentBuildingID = 0;
+    public int currentBuildingID = 1;
+
+    //当前事件ID
+    public int currentEventID = 1;
 
     //当前探索层级，与房间所在层级相同
     public int exploreLayer = 1;

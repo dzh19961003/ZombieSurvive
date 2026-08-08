@@ -9,25 +9,25 @@ namespace MyProject
     /// </summary>
     public class Talent
     {
-        /// <summary>原始字段: ID</summary>
+        /// <summary>原始字段: ID(int)</summary>
         public int ID { get; set; }
 
-        /// <summary>原始字段: name</summary>
+        /// <summary>原始字段: name(string)</summary>
         public string Name { get; set; }
 
-        /// <summary>原始字段: positive</summary>
+        /// <summary>原始字段: positive(int)</summary>
         public int Positive { get; set; }
 
-        /// <summary>原始字段: effect</summary>
+        /// <summary>原始字段: effect(string)</summary>
         public string Effect { get; set; }
 
-        /// <summary>原始字段: rarity</summary>
+        /// <summary>原始字段: rarity(int)</summary>
         public int Rarity { get; set; }
 
-        /// <summary>原始字段: effectType</summary>
+        /// <summary>原始字段: effectType(int)</summary>
         public int EffectType { get; set; }
 
-        /// <summary>原始字段: effectNum</summary>
+        /// <summary>原始字段: effectNum(int)</summary>
         public int EffectNum { get; set; }
     }
 }

@@ -9,13 +9,13 @@ namespace MyProject
     /// </summary>
     public class EffectType
     {
-        /// <summary>原始字段: ID</summary>
+        /// <summary>原始字段: ID(int)</summary>
         public int ID { get; set; }
 
-        /// <summary>原始字段: type</summary>
+        /// <summary>原始字段: type(string)</summary>
         public string Type { get; set; }
 
-        /// <summary>原始字段: imageIcon</summary>
+        /// <summary>原始字段: imageIcon(string)</summary>
         public string ImageIcon { get; set; }
     }
 }

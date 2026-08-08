@@ -1,38 +1,38 @@
 [
   {
-    "ID": 1,
-    "name": "美味",
-    "positive": 1,
-    "effect": "太美味了",
-    "effctType": 10002,
-    "effctNum": 3,
-    "time": 1
+    "ID(int)": 1,
+    "name(string)": "美味",
+    "positive(int)": 1,
+    "effect(string)": "太美味了",
+    "effctType(int)": 10002,
+    "effctNum(int)": 3,
+    "time(int)": 1
   },
   {
-    "ID": 2,
-    "name": "感染",
-    "positive": 0,
-    "effect": "被感染了",
-    "effctType": 10003,
-    "effctNum": 3,
-    "time": 2
+    "ID(int)": 2,
+    "name(string)": "感染",
+    "positive(int)": 0,
+    "effect(string)": "被感染了",
+    "effctType(int)": 10003,
+    "effctNum(int)": 3,
+    "time(int)": 2
   },
   {
-    "ID": 3,
-    "name": "美味+",
-    "positive": 1,
-    "effect": "太美味了",
-    "effctType": 10004,
-    "effctNum": 5,
-    "time": 1
+    "ID(int)": 3,
+    "name(string)": "美味+",
+    "positive(int)": 1,
+    "effect(string)": "太美味了",
+    "effctType(int)": 10004,
+    "effctNum(int)": 5,
+    "time(int)": 1
   },
   {
-    "ID": 4,
-    "name": "美味++",
-    "positive": 1,
-    "effect": "太美味了",
-    "effctType": 10005,
-    "effctNum": -5,
-    "time": 1
+    "ID(int)": 4,
+    "name(string)": "美味++",
+    "positive(int)": 1,
+    "effect(string)": "太美味了",
+    "effctType(int)": 10005,
+    "effctNum(int)": -5,
+    "time(int)": 1
   }
 ]

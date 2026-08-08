@@ -9,43 +9,43 @@ namespace MyProject
     /// </summary>
     public class ExploreEvent
     {
-        /// <summary>原始字段: ID</summary>
+        /// <summary>原始字段: ID(int)</summary>
         public int ID { get; set; }
 
-        /// <summary>原始字段: eventType</summary>
+        /// <summary>原始字段: eventType(int)</summary>
         public int EventType { get; set; }
 
-        /// <summary>原始字段: headType</summary>
+        /// <summary>原始字段: headType(int)</summary>
         public int HeadType { get; set; }
 
-        /// <summary>原始字段: des</summary>
+        /// <summary>原始字段: des(string)</summary>
         public string Des { get; set; }
 
-        /// <summary>原始字段: image</summary>
+        /// <summary>原始字段: image(string)</summary>
         public string Image { get; set; }
 
-        /// <summary>原始字段: option</summary>
+        /// <summary>原始字段: option(string)</summary>
         public List<string> Option { get; set; }
 
-        /// <summary>原始字段: demand</summary>
-        public List<object> Demand { get; set; }
+        /// <summary>原始字段: demand(int)</summary>
+        public List<int> Demand { get; set; }
 
-        /// <summary>原始字段: demandNum</summary>
-        public List<object> DemandNum { get; set; }
+        /// <summary>原始字段: demandNum(int)</summary>
+        public List<int> DemandNum { get; set; }
 
-        /// <summary>原始字段: nextEvent</summary>
+        /// <summary>原始字段: nextEvent(int)</summary>
         public List<int> NextEvent { get; set; }
 
-        /// <summary>原始字段: icon</summary>
-        public List<object> Icon { get; set; }
+        /// <summary>原始字段: icon(string)</summary>
+        public List<string> Icon { get; set; }
 
-        /// <summary>原始字段: itemID</summary>
-        public List<object> ItemID { get; set; }
+        /// <summary>原始字段: itemID(int)</summary>
+        public List<int> ItemID { get; set; }
 
-        /// <summary>原始字段: itemNum</summary>
-        public List<object> ItemNum { get; set; }
+        /// <summary>原始字段: itemNum(int)</summary>
+        public List<int> ItemNum { get; set; }
 
-        /// <summary>原始字段: stateID</summary>
-        public List<object> StateID { get; set; }
+        /// <summary>原始字段: stateID(int)</summary>
+        public List<int> StateID { get; set; }
     }
 }

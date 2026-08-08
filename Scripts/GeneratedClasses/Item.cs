@@ -9,31 +9,31 @@ namespace MyProject
     /// </summary>
     public class Item
     {
-        /// <summary>原始字段: ID</summary>
+        /// <summary>原始字段: ID(int)</summary>
         public int ID { get; set; }
 
-        /// <summary>原始字段: name</summary>
+        /// <summary>原始字段: name(string)</summary>
         public string Name { get; set; }
 
-        /// <summary>原始字段: icon</summary>
+        /// <summary>原始字段: icon(string)</summary>
         public string Icon { get; set; }
 
-        /// <summary>原始字段: type</summary>
+        /// <summary>原始字段: type(int)</summary>
         public int Type { get; set; }
 
-        /// <summary>原始字段: rarity</summary>
+        /// <summary>原始字段: rarity(int)</summary>
         public int Rarity { get; set; }
 
-        /// <summary>原始字段: effectType</summary>
+        /// <summary>原始字段: effectType(int)</summary>
         public int EffectType { get; set; }
 
-        /// <summary>原始字段: num</summary>
+        /// <summary>原始字段: num(int)</summary>
         public int Num { get; set; }
 
-        /// <summary>原始字段: buffID</summary>
+        /// <summary>原始字段: buffID(int)</summary>
         public int BuffID { get; set; }
 
-        /// <summary>原始字段: equipID</summary>
+        /// <summary>原始字段: equipID(int)</summary>
         public int EquipID { get; set; }
     }
 }

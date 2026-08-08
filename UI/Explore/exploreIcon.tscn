@@ -3,14 +3,19 @@
 [ext_resource type="Script" uid="uid://dbh3mykfipxo7" path="res://Scripts/UI/ExploreIcon.cs" id="1_60xj6"]
 [ext_resource type="Texture2D" uid="uid://b2l7to85rkjl" path="res://Assets/Images/UI/heart_icon.png" id="1_qem1d"]
 
-[node name="exploreIcon" type="Control" unique_id=665575287]
+[node name="exploreIcon" type="Control" unique_id=665575287 node_paths=PackedStringArray("icon", "addLabel", "minusLabel", "numLabel")]
 custom_minimum_size = Vector2(250, 90)
 layout_mode = 3
+anchors_preset = 0
 offset_right = 250.0
 offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_60xj6")
+icon = NodePath("TextureRect")
+addLabel = NodePath("addLabel")
+minusLabel = NodePath("minusLabel")
+numLabel = NodePath("numLabel")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1433089850]
 custom_minimum_size = Vector2(90, 90)

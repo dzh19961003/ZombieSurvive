@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 using MyProject;
-using static System.Net.Mime.MediaTypeNames;
+using System.Diagnostics;
 
 
 public partial class ExploreUI : Control
@@ -12,7 +12,8 @@ public partial class ExploreUI : Control
     [Export] public NinePatchRect noiseBar;
     [Export] public Label exploreProgressLabel;
     [Export] public Label noiseProgressLabel;
-    
+    [Export] public HBoxContainer iconContainer;
+
     private RoomChooseBar _roomChooseBar;
     private ExploreChooseBar _exploreChooseBar;
 
@@ -67,6 +68,22 @@ public partial class ExploreUI : Control
             exploreProgressLabel.Text =  "0%";
         }        
         noiseProgressLabel.Text = GameManager.Instance.exploreNoise.ToString() + "%";
+
+        ExploreEvent exploreEvent = ConfigManager.Instance.exploreEventDic[GameManager.Instance.currentEventID];
+        GD.Print("获得物品数量" + exploreEvent.ItemID.Count);
+
+        foreach (var item in iconContainer.GetChildren())
+        {
+            item.QueueFree();
+        } 
+
+        for (int i = 0; i < exploreEvent.ItemID.Count; i++)
+        {                
+            var scene= GD.Load<PackedScene>("res://UI/Explore/exploreIcon.tscn");
+            ExploreIcon exploreIcon = scene.Instantiate<ExploreIcon>();
+            iconContainer.AddChild(exploreIcon);
+            exploreIcon.Initial(exploreEvent.ItemID[i], exploreEvent.ItemNum[i]);
+        }
     }
     // 销毁房间选择面板，加载事件，创建搜索策略面板
     public void OnRoomSelected(int roomID)
@@ -109,4 +126,5 @@ public partial class ExploreUI : Control
         GameManager.Instance.exploreLayer += 1;
         RefreshExplore();
     }
+
 }

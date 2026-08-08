@@ -9,10 +9,10 @@ namespace MyProject
     /// </summary>
     public class ItemPool
     {
-        /// <summary>原始字段: ID</summary>
+        /// <summary>原始字段: ID(int)</summary>
         public int ID { get; set; }
 
-        /// <summary>原始字段: item</summary>
+        /// <summary>原始字段: item(int)</summary>
         public List<int> Item { get; set; }
     }
 }

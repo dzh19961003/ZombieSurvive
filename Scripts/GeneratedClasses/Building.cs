@@ -9,37 +9,37 @@ namespace MyProject
     /// </summary>
     public class Building
     {
-        /// <summary>原始字段: ID</summary>
+        /// <summary>原始字段: ID(int)</summary>
         public int ID { get; set; }
 
-        /// <summary>原始字段: name</summary>
+        /// <summary>原始字段: name(string)</summary>
         public string Name { get; set; }
 
-        /// <summary>原始字段: image</summary>
+        /// <summary>原始字段: image(string)</summary>
         public string Image { get; set; }
 
-        /// <summary>原始字段: stars</summary>
+        /// <summary>原始字段: stars(int)</summary>
         public int Stars { get; set; }
 
-        /// <summary>原始字段: des</summary>
+        /// <summary>原始字段: des(string)</summary>
         public string Des { get; set; }
 
-        /// <summary>原始字段: enterDes</summary>
+        /// <summary>原始字段: enterDes(string)</summary>
         public string EnterDes { get; set; }
 
-        /// <summary>原始字段: food</summary>
+        /// <summary>原始字段: food(int)</summary>
         public int Food { get; set; }
 
-        /// <summary>原始字段: medic</summary>
+        /// <summary>原始字段: medic(int)</summary>
         public int Medic { get; set; }
 
-        /// <summary>原始字段: equip</summary>
+        /// <summary>原始字段: equip(int)</summary>
         public int Equip { get; set; }
 
-        /// <summary>原始字段: material</summary>
+        /// <summary>原始字段: material(int)</summary>
         public int Material { get; set; }
 
-        /// <summary>原始字段: roomID</summary>
+        /// <summary>原始字段: roomID(int)</summary>
         public List<int> RoomID { get; set; }
     }
 }

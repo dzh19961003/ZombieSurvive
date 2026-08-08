@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b4qbhhkttqh0m" path="res://Assets/Images/UI/mapIcon.png" id="8_xam4r"]
 [ext_resource type="Texture2D" uid="uid://br6sl8ouqesfy" path="res://Assets/Images/UI/noiseIcon.png" id="11_s03io"]
 
-[node name="ExploreUI" type="Control" unique_id=1351775229 node_paths=PackedStringArray("bg", "image", "desLabel", "noiseBar", "exploreProgressLabel", "noiseProgressLabel")]
+[node name="ExploreUI" type="Control" unique_id=1351775229 node_paths=PackedStringArray("bg", "image", "desLabel", "noiseBar", "exploreProgressLabel", "noiseProgressLabel", "iconContainer")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1080.0
@@ -21,6 +21,7 @@ desLabel = NodePath("DesBar/desLabel")
 noiseBar = NodePath("bg/noiseBar")
 exploreProgressLabel = NodePath("bg/progressBar/StaminaLabel")
 noiseProgressLabel = NodePath("bg/noiseBar/StaminaLabel")
+iconContainer = NodePath("DesBar/iconContainer")
 
 [node name="Bg" type="TextureRect" parent="." unique_id=1617460817]
 layout_mode = 1
@@ -80,6 +81,7 @@ offset_left = 86.0
 offset_top = 206.0
 offset_right = 844.0
 offset_bottom = 296.0
+alignment = 1
 
 [node name="bg" type="ColorRect" parent="." unique_id=1247847510]
 layout_mode = 0

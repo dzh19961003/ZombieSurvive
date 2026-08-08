@@ -9,10 +9,10 @@ namespace MyProject
     /// </summary>
     public class EventPool
     {
-        /// <summary>原始字段: ID</summary>
+        /// <summary>原始字段: ID(int)</summary>
         public int ID { get; set; }
 
-        /// <summary>原始字段: event</summary>
+        /// <summary>原始字段: event(int)</summary>
         public List<int> Event { get; set; }
     }
 }

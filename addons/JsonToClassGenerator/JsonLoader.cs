@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using Godot;
 
 namespace MyProject.Tools;
@@ -18,6 +19,20 @@ public static class JsonLoader
 	{
 		PropertyNameCaseInsensitive = true
 	};
+
+	/// <summary>
+	/// 去除 JSON key 中括号内的类型标注，使 key 能正确匹配 C# 属性名。
+	/// 例如 "ID(int)": 1 → "ID": 1、"roomID(int)": [...] → "roomID": [...]
+	/// 对于没有括号标注的旧格式 JSON，本方法不做任何改动，兼容两种格式。
+	/// </summary>
+	private static string StripTypeAnnotations(string jsonText)
+	{
+		// 匹配 JSON key 中的 "xxx(yyy)" 形式，将 (yyy) 部分去掉，只保留 xxx
+		// 正则说明："([^"]+)  捕获 key 名称（不含引号）
+		//           \([^)]*\)  匹配括号及括号内任意内容（不含右括号）
+		//           替换为 $1，即只保留 key 名称
+		return Regex.Replace(jsonText, @"""([^""]+)\([^)]*\)""\s*:", @"""$1"":");
+	}
 
 	/// <summary>
 	/// 根据文件名（不含扩展名）全局检索 JSON 文件，
@@ -55,6 +70,10 @@ public static class JsonLoader
 		}
 
 		string jsonText = file.GetAsText();
+
+		// 预处理：去掉 JSON key 中的括号类型标注（如 "ID(int)" → "ID"）
+		// 这样 C# 类的属性名（ID、Name 等）才能正确匹配
+		jsonText = StripTypeAnnotations(jsonText);
 
 		try
 		{
@@ -110,6 +129,9 @@ public static class JsonLoader
 		}
 
 		string jsonText = file.GetAsText();
+
+		// 预处理：去掉 JSON key 中的括号类型标注（如 "ID(int)" → "ID"）
+		jsonText = StripTypeAnnotations(jsonText);
 
 		// 先反序列化为 List<T>
 		List<T> list;

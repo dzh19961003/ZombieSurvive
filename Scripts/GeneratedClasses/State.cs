@@ -9,25 +9,25 @@ namespace MyProject
     /// </summary>
     public class State
     {
-        /// <summary>原始字段: ID</summary>
+        /// <summary>原始字段: ID(int)</summary>
         public int ID { get; set; }
 
-        /// <summary>原始字段: name</summary>
+        /// <summary>原始字段: name(string)</summary>
         public string Name { get; set; }
 
-        /// <summary>原始字段: positive</summary>
+        /// <summary>原始字段: positive(int)</summary>
         public int Positive { get; set; }
 
-        /// <summary>原始字段: effect</summary>
+        /// <summary>原始字段: effect(string)</summary>
         public string Effect { get; set; }
 
-        /// <summary>原始字段: effctType</summary>
+        /// <summary>原始字段: effctType(int)</summary>
         public int EffctType { get; set; }
 
-        /// <summary>原始字段: effctNum</summary>
+        /// <summary>原始字段: effctNum(int)</summary>
         public int EffctNum { get; set; }
 
-        /// <summary>原始字段: time</summary>
+        /// <summary>原始字段: time(int)</summary>
         public int Time { get; set; }
     }
 }

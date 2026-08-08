@@ -66,16 +66,16 @@ public partial class ExploreChooseBar : NinePatchRect
             }
             gameManager.exploreNoise += Tools.GetRandomNumber(Consts.quickNoiseProgress);
         }
+        //赋值当前事件ID
+        GameManager.Instance.currentEventID = eventID;
+
         //处理噪音值和探索值达到上限的方法,后续补充
         if (gameManager.exploreNoise>100)
         {
             gameManager.exploreNoise -= 100;
         }
 
-        GD.Print(gameManager.exploreProgress[gameManager.roomID]);
-        GD.Print(gameManager.exploreNoise);
-        eventChooseBar.exploreUI = exploreUI;
-        exploreUI.RefreshExploreUI();
+        eventChooseBar.exploreUI = exploreUI;       
         eventChooseBar.Initial(eventID);
         this.QueueFree();
     }

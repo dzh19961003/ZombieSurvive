@@ -210,21 +210,24 @@ func _generate_class_from_json(json_path: String, file_base_name: String) -> Str
 	var cs_class_name := _to_pascal_case(file_base_name)
 
 	# 收集所有字段，合并多个对象中的字段（如果是数组）
-	# 同时收集每个字段在所有数据项中的全部值，用于精确判断数组元素类型
-	var field_values: Dictionary = {}  # key: 字段名, value: Array[Variant]
 	if data is Array:
 		for item in data:
 			if item is Dictionary:
 				for key in item:
 					if not sample.has(key):
 						sample[key] = item[key]
-					# 收集该字段的所有值
-					if not field_values.has(key):
-						field_values[key] = []
-					field_values[key].append(item[key])
 
-	# 生成 C# 类代码（传入 json_text 和 field_values 用于精确判断类型）
-	var cs_code := _build_csharp_class(cs_class_name, sample, json_text, field_values)
+	# 构建字段信息列表：每个字段包含 原始key、属性名、C#类型
+	# 优先从 JSON key 的括号中读取类型标注（如 "ID(int)" → int）
+	# 如果没有括号标注，则回退到根据 value 推断类型
+	var field_infos: Array[Dictionary] = []
+	for key in sample:
+		var raw_key: String = key
+		var info := _parse_field_info(raw_key, sample[key], json_text)
+		field_infos.append(info)
+
+	# 生成 C# 类代码
+	var cs_code := _build_csharp_class(cs_class_name, field_infos)
 
 	# 写入文件
 	var output_file := "res://%s/%s.cs" % [DEFAULT_OUTPUT_DIR, cs_class_name]
@@ -265,8 +268,71 @@ func _to_pascal_case(text: String) -> String:
 
 
 ## 将 JSON 字段名转换为 PascalCase 属性名
+## 如果字段名带有括号类型标注如 "name(string)"，只取括号前的部分
 func _to_property_name(field_name: String) -> String:
-	return _to_pascal_case(field_name)
+	var name_only := _extract_field_name(field_name)
+	return _to_pascal_case(name_only)
+
+
+## 从 JSON key 中提取纯字段名（去掉括号及类型标注）
+## "ID(int)" → "ID"  |  "name(string)" → "name"  |  "ID" → "ID"（无括号时保持原样）
+func _extract_field_name(raw_key: String) -> String:
+	var paren_idx := raw_key.find("(")
+	if paren_idx == -1:
+		return raw_key
+	return raw_key.substr(0, paren_idx)
+
+
+## 解析单个字段的信息
+## 返回 Dictionary { "raw_key": 原始JSON key, "prop_name": C#属性名, "cs_type": C#类型 }
+## 优先从 JSON key 的括号中读取类型标注（如 "ID(int)" → int）
+## 如果没有括号标注，则回退到根据 value 运行时推断类型
+func _parse_field_info(raw_key: String, value: Variant, json_text: String) -> Dictionary:
+	var field_name := _extract_field_name(raw_key)
+	var prop_name := _to_pascal_case(field_name)
+
+	# 检查 JSON key 是否带有括号类型标注，如 "ID(int)"、"name(string)"、"roomID(int)": [...]
+	var type_annotation := _extract_type_annotation(raw_key)
+	if type_annotation != "":
+		# 有括号类型标注，直接使用
+		var cs_type := _annotation_to_csharp_type(type_annotation)
+		# 如果 value 是数组，包裹为 List<>
+		if typeof(value) == TYPE_ARRAY:
+			cs_type = "List<%s>" % cs_type
+		return { "raw_key": raw_key, "prop_name": prop_name, "cs_type": cs_type }
+
+	# 没有括号标注，回退到原来的值推断逻辑
+	var cs_type := _infer_csharp_type(value, json_text, raw_key)
+	return { "raw_key": raw_key, "prop_name": prop_name, "cs_type": cs_type }
+
+
+## 从 JSON key 中提取括号内的类型标注
+## "ID(int)" → "int"  |  "name(string)" → "string"  |  "ID" → ""（无括号返回空）
+func _extract_type_annotation(raw_key: String) -> String:
+	var paren_start := raw_key.find("(")
+	var paren_end := raw_key.find(")")
+	if paren_start == -1 or paren_end == -1 or paren_end <= paren_start + 1:
+		return ""
+	return raw_key.substr(paren_start + 1, paren_end - paren_start - 1)
+
+
+## 将 JSON 中标注的类型名映射为 C# 类型名
+## int → int, string → string, double → double, float → double, bool → bool
+func _annotation_to_csharp_type(annotation: String) -> String:
+	var lower := annotation.to_lower().strip_edges()
+	match lower:
+		"int":
+			return "int"
+		"string":
+			return "string"
+		"double", "float":
+			return "double"
+		"bool":
+			return "bool"
+		_:
+			# 未知类型标注，回退为 object
+			push_warning("[JsonToClassGenerator] 未知的类型标注: '%s'，回退为 object" % annotation)
+			return "object"
 
 
 ## 根据 JSON 值推断 C# 类型
@@ -366,7 +432,8 @@ func _array_elem_has_decimal(json_text: String, field_name: String) -> bool:
 
 
 ## 构建 C# 类代码字符串
-func _build_csharp_class(cs_class_name: String, sample: Dictionary, json_text: String, field_values: Dictionary) -> String:
+## field_infos: Array[Dictionary]，每个元素含 raw_key、prop_name、cs_type
+func _build_csharp_class(cs_class_name: String, field_infos: Array[Dictionary]) -> String:
 	var lines: Array[String] = []
 
 	lines.append("using System;")
@@ -381,20 +448,18 @@ func _build_csharp_class(cs_class_name: String, sample: Dictionary, json_text: S
 	lines.append("    public class %s" % cs_class_name)
 	lines.append("    {")
 
-	var keys := sample.keys()
-	for i in range(keys.size()):
-		var key: String = keys[i]
-		var value: Variant = sample[key]
-
-		var cs_type := _infer_csharp_type(value, json_text, key)
-		var prop_name := _to_property_name(key)
+	for i in range(field_infos.size()):
+		var info: Dictionary = field_infos[i]
+		var raw_key: String = info["raw_key"]
+		var prop_name: String = info["prop_name"]
+		var cs_type: String = info["cs_type"]
 
 		# 添加注释标注原始 JSON 字段名
-		lines.append("        /// <summary>原始字段: %s</summary>" % key)
+		lines.append("        /// <summary>原始字段: %s</summary>" % raw_key)
 		lines.append("        public %s %s { get; set; }" % [cs_type, prop_name])
 
 		# 非最后一个字段时添加空行
-		if i < keys.size() - 1:
+		if i < field_infos.size() - 1:
 			lines.append("")
 
 	lines.append("    }")

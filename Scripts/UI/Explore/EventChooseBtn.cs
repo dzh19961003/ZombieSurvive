@@ -14,18 +14,20 @@ public partial class EventChooseBtn : CenterContainer
 		textureBtn.Pressed += () =>
 		{
 			ExploreEvent exploreEvent = ConfigManager.Instance.exploreEventDic[eventID];
-
             EventChooseBar eventChooseBar= (EventChooseBar)UIManager.Instance.CreateUI("res://UI/Explore/EventChooseBar.tscn");
             eventChooseBar.exploreUI = exploreUI;
             if (exploreEvent.NextEvent[rank] == 9999)
 			{
                 UIManager.Instance.DeleteUI((Control)GetParent());
 				exploreUI.OnRoomSelected(GameManager.Instance.roomID);
+				GameManager.Instance.currentEventID = 1;
+                exploreUI.RefreshExploreUI();
             }
 			else 
-			{ 
-				eventChooseBar.Initial(exploreEvent.NextEvent[rank]);
-			}
+			{
+                GameManager.Instance.currentEventID = exploreEvent.NextEvent[rank];
+                eventChooseBar.Initial(exploreEvent.NextEvent[rank]);               
+            }
 			
 			UIManager.Instance.DeleteUI((Control)GetParent());
         };

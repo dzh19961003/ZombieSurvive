@@ -10,11 +10,15 @@ public partial class EventChooseBar : VBoxContainer
 	}
 	public void Initial(int eventID) 
 	{
-		ExploreEvent exploreEvent= ConfigManager.Instance.exploreEventDic[eventID];
-		TextTyper.TypeText(exploreUI.desLabel, exploreEvent.Des);
+        exploreUI.RefreshExploreUI();
+        ExploreEvent exploreEvent= ConfigManager.Instance.exploreEventDic[eventID];        
+        TextTyper.TypeText(exploreUI.desLabel, exploreEvent.Des);
 		exploreUI.image.Visible = true;
-		exploreUI.image.Texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/Explore/" + exploreEvent.Image+ ".png");
+        
+        //加载事件图片
+        exploreUI.image.Texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/Explore/" + exploreEvent.Image+ ".png");
 
+		//生成三个选项
         for (int i = 0; i < exploreEvent.Option.Count; i++)
 		{
 		    var chooseBtn = GD.Load<PackedScene>("res://UI/Explore/EventChooseBtn.tscn");

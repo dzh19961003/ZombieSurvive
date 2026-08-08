@@ -337,11 +337,11 @@ public partial class UIManager : Node
         
         if (ID<10000)
         {
-            texture2D = ResourceLoader.Load<Texture2D>(ConfigManager.Instance.itemDic[ID].Icon + ".png");
+            texture2D = ResourceLoader.Load<Texture2D>("res://Assets/Images/Items/" + ConfigManager.Instance.itemDic[ID].Icon + ".png");
         }
         else
         {
-            texture2D = ResourceLoader.Load<Texture2D>(ConfigManager.Instance.effectTypeDic[ID].ImageIcon);
+            texture2D = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/"+ConfigManager.Instance.effectTypeDic[ID].ImageIcon);
         }
         return texture2D;
     }
