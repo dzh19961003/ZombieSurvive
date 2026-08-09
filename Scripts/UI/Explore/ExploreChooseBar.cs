@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using MyProject;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 
 public partial class ExploreChooseBar : NinePatchRect
@@ -9,18 +10,16 @@ public partial class ExploreChooseBar : NinePatchRect
     [Export] public TextureButton backBtn;
     [Export] public TextureButton carefulExploreBtn;
     [Export] public TextureButton quicklyExploreBtn;
+    [Export] public Label dangerLabel;
 
     public ExploreUI exploreUI;
     private GameManager gameManager;
     private bool progress=true;
+    private int danger=3;
     public override void _Ready()
     {
         // 中途撤离按钮：弹确认框，确认后交给 ExploreUI 统一销毁所有探索界面
-        backBtn.Pressed += () =>
-        {
-            CommonTips tips = UIManager.Instance.ShowCommonTips("直接离开", "确认要离开当前位置并继续前进吗（可使你跳过当前场景），当前离开风险高，很大概率惊动丧尸");
-            tips.OnConfirm = () => exploreUI.LeaveRoom();
-        };
+        backBtn.Pressed += OnBack;
         carefulExploreBtn.Pressed += () => 
         {
             explore(1); 
@@ -30,10 +29,40 @@ public partial class ExploreChooseBar : NinePatchRect
             explore(2); 
         };
         gameManager = GameManager.Instance;
+        
     }
 
     public void Init(ExploreUI owner,bool finish)
     {
+        //根据权重取得风险
+        danger = Tools.GetRandomNumber(Consts.leaveDanger, Consts.leaveDangerWeight);
+
+        //探索度大于90时，固定为低风险
+        if (gameManager.exploreProgress.TryGetValue(gameManager.roomID, out int d)) 
+        {
+            if (d >= 90)
+            {
+                danger = 1;
+            }
+        }
+
+        switch (danger)
+        {
+            case 1:
+                dangerLabel.Text = "低";
+                dangerLabel.AddThemeColorOverride("font_color", Colors.Green);
+                break;
+            case 2:
+                dangerLabel.Text = "中";
+                dangerLabel.AddThemeColorOverride("font_color", Colors.Yellow);
+                break;
+            case 3:
+                dangerLabel.Text = "高";
+                dangerLabel.AddThemeColorOverride("font_color", Colors.Red);
+                break;
+            default:
+                break;
+        }
         exploreUI = owner;
         carefulExploreBtn.Visible = !finish;
         quicklyExploreBtn.Visible = !finish;
@@ -43,7 +72,6 @@ public partial class ExploreChooseBar : NinePatchRect
     {
         EventChooseBar eventChooseBar=(EventChooseBar)UIManager.Instance.CreateUI("res://UI/Explore/EventChooseBar.tscn");
         Dictionary<int, int> explorePogress = gameManager.exploreProgress;
-
 
         int eventID=1;
         //仔细探索
@@ -98,6 +126,7 @@ public partial class ExploreChooseBar : NinePatchRect
             progress = false;
             gameManager.currentSubTask = eventID;
         }
+
         //不是支线再增加进度
         if (progress==true)
         {
@@ -142,6 +171,27 @@ public partial class ExploreChooseBar : NinePatchRect
         eventChooseBar.exploreUI = exploreUI;       
         eventChooseBar.Initial(eventID);
         this.QueueFree();
+    }
+
+    private void OnBack()
+    {
+        switch (danger)
+        {
+            case 1:
+                CommonTips tips1 = UIManager.Instance.ShowCommonTips("直接离开", "确认要离开当前位置并继续前进吗（可使你跳过当前场景）\n\n当前离开风险低，不会惊动丧尸，可放心撤离");
+                tips1.OnConfirm = () => exploreUI.LeaveRoom();
+                break;
+            case 2:
+                CommonTips tips2 = UIManager.Instance.ShowCommonTips("直接离开", "确认要离开当前位置并继续前进吗（可使你跳过当前场景）\n\n当前撤离风险适中，有一定概率惊动丧尸！");
+                tips2.OnConfirm = () => exploreUI.LeaveRoom();
+                break;
+            case 3:
+                CommonTips tips3 = UIManager.Instance.ShowCommonTips("直接离开", "确认要离开当前位置并继续前进吗（可使你跳过当前场景）\n\n当前撤离风险较高，很大概率会惊动丧尸！");
+                tips3.OnConfirm = () => exploreUI.LeaveRoom();
+                break;
+            default:
+                break;
+        }              
     }
 
 
