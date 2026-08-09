@@ -54,10 +54,10 @@ namespace MyProject
             VisibilityChanged += OnVisibilityChanged;
 
             // 从 PlayerManager 获取状态ID数组，生成标签
-            SpawnStateList(PlayerManager.Instance.stateArray);
+            SpawnStateList(PlayerManager.Instance.GetStateArray());
 
             // 从 PlayerManager 获取天赋ID数组，生成天赋标签
-            SpawnTalentList(PlayerManager.Instance.talentID);
+            SpawnTalentList(PlayerManager.Instance.GetTalentID());
 
             // 首次刷新属性显示
             RefreshAttributes();
@@ -78,9 +78,9 @@ namespace MyProject
             var pm = PlayerManager.Instance;
             if (pm == null) return;
 
-            SetAttrDisplay(_strengthLabel, _strengthBar, _strengthBarText, pm.Strength, pm.StrengthExp);
-            SetAttrDisplay(_agilityLabel, _agilityBar, _agilityBarText, pm.Agility, pm.AgilityExp);
-            SetAttrDisplay(_intelligenceLabel, _intelligenceBar, _intelligenceBarText, pm.Intelligence, pm.IntelligenceExp);
+            SetAttrDisplay(_strengthLabel, _strengthBar, _strengthBarText, pm.StrengthBase, pm.Strength_exp);
+            SetAttrDisplay(_agilityLabel, _agilityBar, _agilityBarText, pm.AgilityBase, pm.Agility_exp);
+            SetAttrDisplay(_intelligenceLabel, _intelligenceBar, _intelligenceBarText, pm.IntelligenceBase, pm.Intelligence_exp);
         }
 
         private void SetAttrDisplay(Label numLabel, TextureProgressBar bar, Label barText, int attrValue, int expValue)
