@@ -10,7 +10,7 @@ public partial class EventChooseBar : VBoxContainer
 	}
 	public void Initial(int eventID) 
 	{
-        exploreUI.RefreshExploreUI();
+        exploreUI.RefreshExploreUI(true);
         ExploreEvent exploreEvent= ConfigManager.Instance.exploreEventDic[eventID];        
         TextTyper.TypeText(exploreUI.desLabel, exploreEvent.Des);
 		exploreUI.image.Visible = true;

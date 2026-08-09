@@ -237,6 +237,11 @@ theme_override_font_sizes/font_size = 32
 text = "噪音"
 vertical_alignment = 1
 
+[node name="ExploreImage2" type="Sprite2D" parent="roomContainer/ExploreBtn2" unique_id=399860888]
+position = Vector2(162.99994, 189.25012)
+scale = Vector2(0.99062514, 0.990625)
+texture = ExtResource("11_tex")
+
 [node name="PlusIcon" type="Sprite2D" parent="roomContainer/ExploreBtn2" unique_id=929546374]
 position = Vector2(279, 317)
 scale = Vector2(0.6875, 0.6875)
@@ -355,8 +360,3 @@ text = "高"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
-
-[node name="ExploreImage2" type="Sprite2D" parent="." unique_id=399860888]
-position = Vector2(528.99994, 265.25003)
-scale = Vector2(0.9906252, 0.9906251)
-texture = ExtResource("11_tex")

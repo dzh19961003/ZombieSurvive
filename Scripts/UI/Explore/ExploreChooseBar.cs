@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using MyProject;
 
 
 public partial class ExploreChooseBar : NinePatchRect
@@ -29,9 +30,11 @@ public partial class ExploreChooseBar : NinePatchRect
         gameManager = GameManager.Instance;
     }
 
-    public void Init(ExploreUI owner)
+    public void Init(ExploreUI owner,bool finish)
     {
         exploreUI = owner;
+        carefulExploreBtn.Visible = !finish;
+        quicklyExploreBtn.Visible = !finish;
     }
 
     private void explore(int type) 
@@ -39,7 +42,9 @@ public partial class ExploreChooseBar : NinePatchRect
         EventChooseBar eventChooseBar=(EventChooseBar)UIManager.Instance.CreateUI("res://UI/Explore/EventChooseBar.tscn");
         Dictionary<int, int> explorePogress = gameManager.exploreProgress;
 
+
         int eventID=1;
+        //仔细探索
         if (type==1)
         {
             eventID=Tools.GetRandomNumber(gameManager.carefulEventArray);
@@ -53,6 +58,7 @@ public partial class ExploreChooseBar : NinePatchRect
             }
             gameManager.exploreNoise += Tools.GetRandomNumber(Consts.carefulNoiseProgress);
         }
+        //快速探索
         else
         {
             eventID=Tools.GetRandomNumber(gameManager.quickEventArray);
@@ -64,19 +70,60 @@ public partial class ExploreChooseBar : NinePatchRect
             {
                 explorePogress[(gameManager.roomID)] = Tools.GetRandomNumber(Consts.quickExploreProgress);
             }
+
             gameManager.exploreNoise += Tools.GetRandomNumber(Consts.quickNoiseProgress);
         }
+
+
+        //处理噪音值和探索值达到上限的方法
+        if (gameManager.exploreNoise > 100)
+        {
+            gameManager.exploreNoise -= 100;
+        }
+        if (explorePogress[(gameManager.roomID)] > 100)
+        {
+            explorePogress[(gameManager.roomID)] = 100;
+        }
+
         //赋值当前事件ID
         GameManager.Instance.currentEventID = eventID;
 
-        //处理噪音值和探索值达到上限的方法,后续补充
-        if (gameManager.exploreNoise>100)
+        //如果该房间支线未触发且达到触发进度，则必定触发该支线
+
+        Array<int> subTaskArray = new Array<int>();
+        if (!gameManager.subTaskDic.ContainsKey(gameManager.roomID))
         {
-            gameManager.exploreNoise -= 100;
+            gameManager.subTaskDic.Add(gameManager.roomID, subTaskArray);
+        }
+        else
+        {
+            subTaskArray = gameManager.subTaskDic[gameManager.roomID];
+        }
+
+        if (ConfigManager.Instance.roomDic[gameManager.roomID].SubTask.Count > 0 && !subTaskArray.Contains(ConfigManager.Instance.roomDic[gameManager.roomID].SubTask[0]))
+        {
+            if (explorePogress[(gameManager.roomID)] >= ConfigManager.Instance.roomDic[gameManager.roomID].TriggerProgress[0])
+            {
+                eventID = ConfigManager.Instance.roomDic[gameManager.roomID].SubTask[0];
+            }
+        }
+        if (ConfigManager.Instance.roomDic[gameManager.roomID].SubTask.Count > 1 && !subTaskArray.Contains(ConfigManager.Instance.roomDic[gameManager.roomID].SubTask[1]))
+        {
+            if (explorePogress[(gameManager.roomID)] >= ConfigManager.Instance.roomDic[gameManager.roomID].TriggerProgress[1])
+            {
+                eventID = ConfigManager.Instance.roomDic[gameManager.roomID].SubTask[1];
+            }
+        }
+        if (ConfigManager.Instance.exploreEventDic[eventID].EventType == 102)
+        {
+            subTaskArray.Add(eventID);
+            gameManager.subTaskDic[gameManager.roomID] = subTaskArray;
         }
 
         eventChooseBar.exploreUI = exploreUI;       
         eventChooseBar.Initial(eventID);
         this.QueueFree();
     }
+
+
 }

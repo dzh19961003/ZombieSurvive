@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b4qbhhkttqh0m" path="res://Assets/Images/UI/mapIcon.png" id="8_xam4r"]
 [ext_resource type="Texture2D" uid="uid://br6sl8ouqesfy" path="res://Assets/Images/UI/noiseIcon.png" id="11_s03io"]
 
-[node name="ExploreUI" type="Control" unique_id=1351775229 node_paths=PackedStringArray("bg", "image", "desLabel", "noiseBar", "exploreProgressLabel", "noiseProgressLabel", "iconContainer")]
+[node name="ExploreUI" type="Control" unique_id=1351775229 node_paths=PackedStringArray("bg", "image", "desLabel", "noiseBar", "exploreProgressLabel", "noiseProgressLabel", "iconContainer", "exploreProgressBar")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1080.0
@@ -18,10 +18,11 @@ script = ExtResource("1_bp85n")
 bg = NodePath("Bg")
 image = NodePath("image")
 desLabel = NodePath("DesBar/desLabel")
-noiseBar = NodePath("bg/noiseBar")
-exploreProgressLabel = NodePath("bg/progressBar/StaminaLabel")
-noiseProgressLabel = NodePath("bg/noiseBar/StaminaLabel")
+noiseBar = NodePath("bg/HBoxContainer/noiseBar")
+exploreProgressLabel = NodePath("bg/HBoxContainer/progressBar/StaminaLabel")
+noiseProgressLabel = NodePath("bg/HBoxContainer/noiseBar/StaminaLabel")
 iconContainer = NodePath("DesBar/iconContainer")
+exploreProgressBar = NodePath("bg/HBoxContainer/progressBar")
 
 [node name="Bg" type="TextureRect" parent="." unique_id=1617460817]
 layout_mode = 1
@@ -91,16 +92,15 @@ color = Color(0, 0, 0, 0.8352941)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="bg" unique_id=1750290835]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 81.0
+offset_top = 13.0
+offset_right = 1038.0
+offset_bottom = 95.0
+theme_override_constants/separation = 111
 
-[node name="staminaBar" type="NinePatchRect" parent="bg" unique_id=115282439]
-layout_mode = 0
-offset_left = 101.0
-offset_top = 18.0
-offset_right = 346.0
-offset_bottom = 100.0
-scale = Vector2(0.9, 0.9)
+[node name="staminaBar" type="NinePatchRect" parent="bg/HBoxContainer" unique_id=115282439]
+custom_minimum_size = Vector2(245, 82)
+layout_mode = 2
 texture = ExtResource("2_hoe4v")
 region_rect = Rect2(0, 0, 129, 127)
 patch_margin_left = 29
@@ -108,17 +108,17 @@ patch_margin_top = 27
 patch_margin_right = 29
 patch_margin_bottom = 30
 
-[node name="Stamina" type="Sprite2D" parent="bg/staminaBar" unique_id=595121926]
+[node name="Stamina" type="Sprite2D" parent="bg/HBoxContainer/staminaBar" unique_id=595121926]
 position = Vector2(1.9073486e-06, 41.999996)
 scale = Vector2(0.7630621, 0.7630621)
 texture = ExtResource("4_pxmw8")
 
-[node name="ExploreIcon" type="Sprite2D" parent="bg/staminaBar/Stamina" unique_id=1194997438]
+[node name="ExploreIcon" type="Sprite2D" parent="bg/HBoxContainer/staminaBar/Stamina" unique_id=1194997438]
 position = Vector2(18.846605, 29.840504)
 scale = Vector2(1.1779145, 1.1779145)
 texture = ExtResource("5_qpp0w")
 
-[node name="StaminaLabel" type="Label" parent="bg/staminaBar" unique_id=576064882]
+[node name="StaminaLabel" type="Label" parent="bg/HBoxContainer/staminaBar" unique_id=576064882]
 layout_mode = 0
 offset_left = 94.0
 offset_top = 8.0
@@ -131,13 +131,9 @@ text = "20"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="progressBar" type="NinePatchRect" parent="bg" unique_id=1465975069]
-layout_mode = 0
-offset_left = 447.0
-offset_top = 18.0
-offset_right = 692.0
-offset_bottom = 100.0
-scale = Vector2(0.9, 0.9)
+[node name="noiseBar" type="NinePatchRect" parent="bg/HBoxContainer" unique_id=1870751930]
+custom_minimum_size = Vector2(245, 82)
+layout_mode = 2
 texture = ExtResource("2_hoe4v")
 region_rect = Rect2(0, 0, 129, 127)
 patch_margin_left = 29
@@ -145,12 +141,12 @@ patch_margin_top = 27
 patch_margin_right = 29
 patch_margin_bottom = 30
 
-[node name="Map" type="Sprite2D" parent="bg/progressBar" unique_id=890080032]
-position = Vector2(1.999979, 38.000004)
-scale = Vector2(0.6044136, 0.7382057)
-texture = ExtResource("8_xam4r")
+[node name="NoiseIcon" type="Sprite2D" parent="bg/HBoxContainer/noiseBar" unique_id=40143372]
+position = Vector2(23.999992, 39)
+scale = Vector2(1.0703126, 1.0703126)
+texture = ExtResource("11_s03io")
 
-[node name="StaminaLabel" type="Label" parent="bg/progressBar" unique_id=1459738139]
+[node name="StaminaLabel" type="Label" parent="bg/HBoxContainer/noiseBar" unique_id=1666562131]
 layout_mode = 0
 offset_left = 88.0
 offset_top = 8.0
@@ -163,13 +159,9 @@ text = "20%"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="noiseBar" type="NinePatchRect" parent="bg" unique_id=1870751930]
-layout_mode = 0
-offset_left = 783.0
-offset_top = 18.0
-offset_right = 1027.0
-offset_bottom = 100.0
-scale = Vector2(0.9, 0.9)
+[node name="progressBar" type="NinePatchRect" parent="bg/HBoxContainer" unique_id=1465975069]
+custom_minimum_size = Vector2(245, 82)
+layout_mode = 2
 texture = ExtResource("2_hoe4v")
 region_rect = Rect2(0, 0, 129, 127)
 patch_margin_left = 29
@@ -177,12 +169,12 @@ patch_margin_top = 27
 patch_margin_right = 29
 patch_margin_bottom = 30
 
-[node name="NoiseIcon" type="Sprite2D" parent="bg/noiseBar" unique_id=40143372]
-position = Vector2(23.999992, 39)
-scale = Vector2(1.0703126, 1.0703126)
-texture = ExtResource("11_s03io")
+[node name="Map" type="Sprite2D" parent="bg/HBoxContainer/progressBar" unique_id=890080032]
+position = Vector2(1.999979, 38.000004)
+scale = Vector2(0.6044136, 0.7382057)
+texture = ExtResource("8_xam4r")
 
-[node name="StaminaLabel" type="Label" parent="bg/noiseBar" unique_id=1666562131]
+[node name="StaminaLabel" type="Label" parent="bg/HBoxContainer/progressBar" unique_id=1459738139]
 layout_mode = 0
 offset_left = 88.0
 offset_top = 8.0
