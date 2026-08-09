@@ -8,16 +8,16 @@
 // ============================================================
 
 using System;
-using System.Text.RegularExpressions;
 using Godot;
 using Godot.Collections;
 using MyProject;
 
 public partial class PlayerManager : Node, ISaveable
 {
+   
+
     public static PlayerManager Instance { get; private set; }
     public string SaveKey => GetPath();
-
     public event Action GetItem;
     public event Action<Array<int>> GetItem2;
     //仓库
@@ -27,6 +27,8 @@ public partial class PlayerManager : Node, ISaveable
     private Dictionary<int,int> ItemArray=new Dictionary<int, int>() { };
    //测试数据
     private Array<int> stateArray = new Array<int>() { };
+    //状态剩余天数表：key=状态ID，value=剩余天数（每日结算-1，归0移除）
+    private Dictionary<int, int> StateTimeDic = new Dictionary<int, int>();
    
     private int hpBase = 100;
     private int maxHpBase = 100;
@@ -46,11 +48,11 @@ public partial class PlayerManager : Node, ISaveable
     private int exploreStamina = 10;
     private int maxBaseStamina = 10;
     private int maxexploreStamina = 10;
-    public int HpBase {get{return hpBase + GetAddition(10001);}private set{}}
-    public int MaxHpBase {get{return maxHpBase + GetAddition(10002);}private set{}}
-    public int StrengthBase {get{return strengthBase + GetAddition(10003);}private set{}}
-    public int AgilityBase {get{return agilityBase + GetAddition(10004);}private set{}}
-    public int IntelligenceBase {get{return intelligenceBase + GetAddition(10005);}private set{}}
+    public int Hp {get{return hpBase + GetAddition(10001);}private set{}}
+    public int MaxHp {get{return maxHpBase + GetAddition(10002);}private set{}}
+    public int Strength {get{return strengthBase + GetAddition(10003);}private set{}}
+    public int Agility {get{return agilityBase + GetAddition(10004);}private set{}}
+    public int Intelligence {get{return intelligenceBase + GetAddition(10005);}private set{}}
     public int Strength_exp {get{return (int)(strength_exp + GetAddition(10006)* Exp_acq_rate); }private set{}}
     public int Agility_exp {get{return (int)(agility_exp + GetAddition(10007) * Exp_acq_rate); }private set{}}
     public int Intelligence_exp {get{return (int)(intelligence_exp + GetAddition(10008) * Exp_acq_rate); }private set{}}
@@ -75,26 +77,76 @@ public partial class PlayerManager : Node, ISaveable
                 {
                     v += ConfigManager.Instance.stateDic[item].EffctNum;
                 }
-
             }
-
             return v;
         }
     // 三项属性对应的经验值。满 ExpMax 时，对应属性 +1 并清零。
     public const int ExpMax = 100;
-    //获取属性id
+    //获得状态：状态唯一，重复获得时重置为初始天数而非叠加
     public void GetState(int ID)
     {
-        stateArray.Add(ID);
-        GetItem.Invoke();
-        GetItem2.Invoke(stateArray);
+        if (!ConfigManager.Instance.stateDic.ContainsKey(ID))
+        {
+            GD.PrintErr($"[PlayerManager] 状态ID不存在：{ID}");
+            return;
+        }
+        int initTime = ConfigManager.Instance.stateDic[ID].Time;
+        if (StateTimeDic.ContainsKey(ID))
+        {
+            //已有该状态，重置为初始天数
+            StateTimeDic[ID] = initTime;
+        }
+        else
+        {
+            StateTimeDic.Add(ID, initTime);
+            stateArray.Add(ID);
+        }
+        GetItem?.Invoke();
+        GetItem2?.Invoke(stateArray);
     }
     public void RemoveState(int ID)
     {
+        if (StateTimeDic.ContainsKey(ID))
+        {
+            StateTimeDic.Remove(ID);
+        }
         if (stateArray.Contains(ID))
         {
             stateArray.Remove(ID);
-        }    
+        }
+    }
+    //每日结算：所有状态剩余天数-1，归0时移除状态
+    public void OnDayEnd()
+    {
+        //先拷贝keys，避免遍历时修改字典
+        var keys = new Array<int>();
+        foreach (var k in StateTimeDic.Keys) keys.Add(k);
+
+        var expired = new Array<int>();
+        foreach (var id in keys)
+        {
+            StateTimeDic[id] -= 1;
+            if (StateTimeDic[id] <= 0)
+            {
+                expired.Add(id);
+            }
+        }
+        //移除过期状态
+        foreach (var id in expired)
+        {
+            StateTimeDic.Remove(id);
+            if (stateArray.Contains(id))
+            {
+                stateArray.Remove(id);
+            }
+            GD.Print($"[PlayerManager] 状态到期移除：ID={id} ({ConfigManager.Instance.stateDic[id].Name})");
+        }
+        //有状态被移除时通知UI刷新
+        if (expired.Count > 0)
+        {
+            GetItem?.Invoke();
+            GetItem2?.Invoke(stateArray);
+        }
     }
     //只读访问：返回副本，外部无法修改内部数组
     public Array<int> GetStateArray()
@@ -117,13 +169,13 @@ public partial class PlayerManager : Node, ISaveable
         switch ( id)
         {
             case 10001:
-                // 生命值钳制在 [0, MaxHpBase]（含状态加成的当前上限）
-                hpBase = Mathf.Clamp(hpBase + amount, 0, MaxHpBase);
+                // 生命值钳制在 [0, MaxHp]（含状态加成的当前上限）
+                hpBase = Mathf.Clamp(hpBase + amount, 0, MaxHp);
                 break;
             case 10002:
                 maxHpBase += amount;
                 // 最大生命值变化后，当前生命值不能超过新上限
-                hpBase = Mathf.Min(hpBase, MaxHpBase);
+                hpBase = Mathf.Min(hpBase, MaxHp);
                 break;
             case 10003:
                 strengthBase += amount;
@@ -141,7 +193,7 @@ public partial class PlayerManager : Node, ISaveable
                 {
                     strength_exp -= ExpMax;
                     AddItem(10003, 1);
-                    GD.Print($"[PlayerManager] 强健经验满，强健+1 → {StrengthBase}");
+                    GD.Print($"[PlayerManager] 强健经验满，强健+1 → {Strength}");
                 }
                 break;
             case 10007:
@@ -151,7 +203,7 @@ public partial class PlayerManager : Node, ISaveable
                 {
                     agility_exp -= ExpMax;
                     AddItem(10004, 1);
-                    GD.Print($"[PlayerManager] 速度经验满，速度+1 → {AgilityBase}");
+                    GD.Print($"[PlayerManager] 速度经验满，速度+1 → {Agility}");
                 }
                 break;
             case 10008:
@@ -161,7 +213,7 @@ public partial class PlayerManager : Node, ISaveable
                 {
                     intelligence_exp -= ExpMax;
                     AddItem(10005, 1);
-                    GD.Print($"[PlayerManager] 智力经验满，智力+1 → {IntelligenceBase}");
+                    GD.Print($"[PlayerManager] 智力经验满，智力+1 → {Intelligence}");
                 }
                 break;
             case 10009:
@@ -216,7 +268,7 @@ public partial class PlayerManager : Node, ISaveable
                 ItemDic[id]+=amount;
             }
         }
-        GetItem.Invoke();
+        GetItem?.Invoke();
     }
     public override void _Ready()
     {
@@ -235,6 +287,8 @@ public partial class PlayerManager : Node, ISaveable
     {
         if (Input.IsActionJustPressed("ui_accept"))
         {
+            AddItem(10001, -15);   
+            AddItem(10002, 20);    
             AddItem(10003, 10);
             GetState(2);
         }
@@ -246,11 +300,11 @@ public partial class PlayerManager : Node, ISaveable
         // 加成由 stateArray 单独存档，读档后 getter 自动重新计算，避免重复叠加。
         return new Dictionary
         {
-            { "hpBase", hpBase},
-            { "maxHpBase", maxHpBase},
-            { "strengthBase", strengthBase},
-            { "agilityBase", agilityBase},
-            { "intelligenceBase", intelligenceBase},
+            { "hp", hpBase},
+            { "maxHp", maxHpBase},
+            { "strength", strengthBase},
+            { "agility", agilityBase},
+            { "intelligence", intelligenceBase},
             { "strength_exp", strength_exp},
             { "agility_exp", agility_exp},
             { "intelligence_exp", intelligence_exp},
@@ -258,6 +312,7 @@ public partial class PlayerManager : Node, ISaveable
             { "ItemDic",ItemDic},
             { "talentID", talentID },
             { "stateArray", stateArray},
+            { "stateTimeDic", StateTimeDic},
             {"exp_acq_rate", exp_acq_rate},
             {"armor", armor},
             {"max_armor", max_armor},
@@ -296,7 +351,8 @@ public partial class PlayerManager : Node, ISaveable
         ItemDic   = data.ContainsKey("ItemDic")   ? (Dictionary<int, int>)data["ItemDic"]   : new Dictionary<int, int> { };
         talentID  = data.ContainsKey("talentID")  ? (Array<int>)data["talentID"]            : new Array<int> { };
         stateArray = data.ContainsKey("stateArray") ? (Array<int>)data["stateArray"]        : new Array<int> { };
-        GD.Print($"[PlayerManager] 数据恢复完成：HP={HpBase}/{MaxHpBase}, Str={StrengthBase}({strength_exp}/{ExpMax}), Agi={AgilityBase}({agility_exp}/{ExpMax}), Int={IntelligenceBase}({intelligence_exp}/{ExpMax})");
+        StateTimeDic = data.ContainsKey("stateTimeDic") ? (Dictionary<int, int>)data["stateTimeDic"] : new Dictionary<int, int> { };
+        GD.Print($"[PlayerManager] 数据恢复完成：HP={Hp}/{MaxHp}, Str={Strength}({strength_exp}/{ExpMax}), Agi={Agility}({agility_exp}/{ExpMax}), Int={Intelligence}({intelligence_exp}/{ExpMax})");
     }
     #endregion
 }

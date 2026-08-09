@@ -26,17 +26,20 @@ namespace MyProject
         private Label _agilityBarText;
         private Label _intelligenceBarText;
 
+        // 生命值显示节点（血条 + "当前/最大" 文字）
+        private TextureProgressBar _healthBar;
+        private Label _healthText;
+
         // 属性进度条上限（与场景中 TextureProgressBar 默认 max_value 一致）
         private const int AttrMax = PlayerManager.ExpMax;
 
         public override void _Ready()
         {
-            // 如果 Export 没在编辑器里赋值（Godot 重新保存场景时可能清掉），
-            // 按路径自动查找，避免 NullReferenceException
+
             if (TalentAreas == null)
                 TalentAreas = GetNodeOrNull<GridContainer>("Traits/TraitAreas");
 
-            // 查找三项属性显示节点（路径对应 PropertyUI.tscn 中的节点结构）
+  
             _strengthLabel      = GetNodeOrNull<Label>("strength/number");
             _agilityLabel       = GetNodeOrNull<Label>("agile/number");
             _intelligenceLabel  = GetNodeOrNull<Label>("intelligence/number");
@@ -46,6 +49,10 @@ namespace MyProject
             _strengthBarText    = GetNodeOrNull<Label>("strength/progress/Label");
             _agilityBarText     = GetNodeOrNull<Label>("agile/progress/Label2");
             _intelligenceBarText= GetNodeOrNull<Label>("intelligence/progress/Label3");
+
+            // 血条节点：Health 本身是 TextureProgressBar，Health/Label 是 "当前/最大" 文字
+            _healthBar          = GetNodeOrNull<TextureProgressBar>("Health");
+            _healthText         = GetNodeOrNull<Label>("Health/Label");
 
             close_button.Pressed += OnCloseButtonPressed;
 
@@ -81,9 +88,20 @@ namespace MyProject
             var pm = PlayerManager.Instance;
             if (pm == null) return;
 
-            SetAttrDisplay(_strengthLabel, _strengthBar, _strengthBarText, pm.StrengthBase, pm.Strength_exp);
-            SetAttrDisplay(_agilityLabel, _agilityBar, _agilityBarText, pm.AgilityBase, pm.Agility_exp);
-            SetAttrDisplay(_intelligenceLabel, _intelligenceBar, _intelligenceBarText, pm.IntelligenceBase, pm.Intelligence_exp);
+            SetAttrDisplay(_strengthLabel, _strengthBar, _strengthBarText, pm.Strength, pm.Strength_exp);
+            SetAttrDisplay(_agilityLabel, _agilityBar, _agilityBarText, pm.Agility, pm.Agility_exp);
+            SetAttrDisplay(_intelligenceLabel, _intelligenceBar, _intelligenceBarText, pm.Intelligence, pm.Intelligence_exp);
+
+            // 刷新血条：MaxValue 设为当前最大生命值（含状态加成），Value 显示当前生命值
+            if (_healthBar != null)
+            {
+                _healthBar.MaxValue = pm.MaxHp;
+                _healthBar.Value = Mathf.Clamp(pm.Hp, 0, pm.MaxHp);
+            }
+            if (_healthText != null)
+            {
+                _healthText.Text = $"{pm.Hp}/{pm.MaxHp}";
+            }
         }
 
         private void SetAttrDisplay(Label numLabel, TextureProgressBar bar, Label barText, int attrValue, int expValue)
