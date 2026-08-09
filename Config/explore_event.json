@@ -117,12 +117,12 @@
 	"des(string)": "测试事件6(重要支线)",
 	"image(string)": "material_image",
 	"option(string)": [
-      "结束事件6(重要支线)"
+      "完结事件6(重要支线)"
 	],
 	"demand(int)": [],
 	"demandNum(int)": [],
 	"nextEvent(int)": [
-	  9999
+	  9998
 	],
 	"icon(string)": [],
 	"itemID(int)": [],

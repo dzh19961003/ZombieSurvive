@@ -7,6 +7,7 @@
 //   3. 写 GetSaveData() 和 LoadSaveData()
 // ============================================================
 
+using System;
 using System.Text.RegularExpressions;
 using Godot;
 using Godot.Collections;
@@ -17,12 +18,14 @@ public partial class PlayerManager : Node, ISaveable
     public static PlayerManager Instance { get; private set; }
     public string SaveKey => GetPath();
 
+    public event Action GetItem;
+    public event Action<Array<int>> GetItem2;
     //仓库
     private Dictionary<int, int> ItemDic = new Dictionary<int, int>();
    //天赋列表
     private Array<int> talentID = new Array<int>() { 1,2};
     private Dictionary<int,int> ItemArray=new Dictionary<int, int>() { };
-//测试数据
+   //测试数据
     private Array<int> stateArray = new Array<int>() { };
    
     private int hpBase = 100;
@@ -30,15 +33,15 @@ public partial class PlayerManager : Node, ISaveable
     private int strengthBase = 10;
     private int agilityBase = 10;
     private int intelligenceBase = 10;
-     private int strength_exp = 0;
+    private int strength_exp = 0;
     private int agility_exp = 0;
     private int intelligence_exp = 0;
-    private int exp_acq_rate = 1;
+    private double exp_acq_rate = 1.0;
     private int armor = 0;
     private int max_armor = 100;
-    private int attack_limb_weight = 0;
-    private int attack_head_weight = 0;
-    private int attack_body_weight = 0;
+    private int attack_limb_weight = 100;
+    private int attack_head_weight = 100;
+    private int attack_body_weight = 100;
     private int baseStamina = 10;
     private int exploreStamina = 10;
     private int maxBaseStamina = 10;
@@ -48,10 +51,10 @@ public partial class PlayerManager : Node, ISaveable
     public int StrengthBase {get{return strengthBase + GetAddition(10003);}private set{}}
     public int AgilityBase {get{return agilityBase + GetAddition(10004);}private set{}}
     public int IntelligenceBase {get{return intelligenceBase + GetAddition(10005);}private set{}}
-    public int Strength_exp {get{return strength_exp + GetAddition(10006);}private set{}}
-    public int Agility_exp {get{return agility_exp + GetAddition(10007);}private set{}}
-    public int Intelligence_exp {get{return intelligence_exp + GetAddition(10008);}private set{}}
-    public int Exp_acq_rate {get{return exp_acq_rate + GetAddition(10009);}private set{}}
+    public int Strength_exp {get{return (int)(strength_exp + GetAddition(10006)* Exp_acq_rate); }private set{}}
+    public int Agility_exp {get{return (int)(agility_exp + GetAddition(10007) * Exp_acq_rate); }private set{}}
+    public int Intelligence_exp {get{return (int)(intelligence_exp + GetAddition(10008) * Exp_acq_rate); }private set{}}
+    public double Exp_acq_rate {get{return exp_acq_rate + GetAddition(10009);}private set{}}
     public int Armor {get{return armor + GetAddition(10010);}private set{}}
     public int MaxArmor {get{return max_armor + GetAddition(10011);}private set{}}
     public int Attack_limb_weight {get{return attack_limb_weight + GetAddition(10012);}private set{}}
@@ -83,6 +86,8 @@ public partial class PlayerManager : Node, ISaveable
     public void GetState(int ID)
     {
         stateArray.Add(ID);
+        GetItem.Invoke();
+        GetItem2.Invoke(stateArray);
     }
     public void RemoveState(int ID)
     {
@@ -131,7 +136,7 @@ public partial class PlayerManager : Node, ISaveable
                 break;
             case 10006:
                 if (amount <= 0) return;
-                strength_exp += amount;
+                strength_exp += (int)(amount*Exp_acq_rate);
                 while (strength_exp >= ExpMax)
                 {
                     strength_exp -= ExpMax;
@@ -141,7 +146,7 @@ public partial class PlayerManager : Node, ISaveable
                 break;
             case 10007:
                 if (amount <= 0) return;
-                agility_exp += amount;
+                agility_exp += (int)(amount * Exp_acq_rate);
                 while (agility_exp >= ExpMax)
                 {
                     agility_exp -= ExpMax;
@@ -151,7 +156,7 @@ public partial class PlayerManager : Node, ISaveable
                 break;
             case 10008:
                 if (amount <= 0) return;
-                intelligence_exp += amount;
+                intelligence_exp += (int)(amount * Exp_acq_rate);
                 while (intelligence_exp >= ExpMax)
                 {
                     intelligence_exp -= ExpMax;
@@ -197,7 +202,7 @@ public partial class PlayerManager : Node, ISaveable
             default:
 
                 break;
-            }    
+            }           
         }
         // 加物品
         else
@@ -211,6 +216,7 @@ public partial class PlayerManager : Node, ISaveable
                 ItemDic[id]+=amount;
             }
         }
+        GetItem.Invoke();
     }
     public override void _Ready()
     {
@@ -225,8 +231,16 @@ public partial class PlayerManager : Node, ISaveable
         SaveManager.Instance.Save();
         SaveManager.Instance.Load();
     }
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("ui_accept"))
+        {
+            AddItem(10003, 10);
+            GetState(2);
+        }
+    }
     #region 存档相关
-       public Dictionary GetSaveData()
+    public Dictionary GetSaveData()
     {
         // 存私有 base 字段（基础值，不含 GetAddition 加成）。
         // 加成由 stateArray 单独存档，读档后 getter 自动重新计算，避免重复叠加。
@@ -268,12 +282,12 @@ public partial class PlayerManager : Node, ISaveable
         strength_exp        = data.ContainsKey("strength_exp")        ? (int)data["strength_exp"]        : 0;
         agility_exp         = data.ContainsKey("agility_exp")         ? (int)data["agility_exp"]         : 0;
         intelligence_exp    = data.ContainsKey("intelligence_exp")    ? (int)data["intelligence_exp"]    : 0;
-        exp_acq_rate        = data.ContainsKey("exp_acq_rate")        ? (int)data["exp_acq_rate"]        : 1;
+        exp_acq_rate        = data.ContainsKey("exp_acq_rate")        ? (int)data["exp_acq_rate"]        : 1.0;
         armor               = data.ContainsKey("armor")               ? (int)data["armor"]               : 0;
         max_armor           = data.ContainsKey("max_armor")           ? (int)data["max_armor"]           : 100;
-        attack_limb_weight  = data.ContainsKey("attack_limb_weight")  ? (int)data["attack_limb_weight"]  : 0;
-        attack_head_weight  = data.ContainsKey("attack_head_weight")  ? (int)data["attack_head_weight"]  : 0;
-        attack_body_weight  = data.ContainsKey("attack_body_weight")  ? (int)data["attack_body_weight"]  : 0;
+        attack_limb_weight  = data.ContainsKey("attack_limb_weight")  ? (int)data["attack_limb_weight"]  : 100;
+        attack_head_weight  = data.ContainsKey("attack_head_weight")  ? (int)data["attack_head_weight"]  : 100;
+        attack_body_weight  = data.ContainsKey("attack_body_weight")  ? (int)data["attack_body_weight"]  : 100;
         baseStamina         = data.ContainsKey("baseStamina")         ? (int)data["baseStamina"]         : 10;
         exploreStamina      = data.ContainsKey("exploreStamina")      ? (int)data["exploreStamina"]      : 10;
         maxBaseStamina      = data.ContainsKey("maxBaseStamina")      ? (int)data["maxBaseStamina"]      : 10;

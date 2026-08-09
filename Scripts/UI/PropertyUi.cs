@@ -61,6 +61,9 @@ namespace MyProject
 
             // 首次刷新属性显示
             RefreshAttributes();
+
+            PlayerManager.Instance.GetItem += RefreshAttributes;
+            PlayerManager.Instance.GetItem2 += SpawnStateList;
         }
 
         private void OnVisibilityChanged()

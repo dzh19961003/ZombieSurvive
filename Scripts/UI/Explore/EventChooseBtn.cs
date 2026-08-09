@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using MyProject;
 using System;
 
@@ -16,12 +17,13 @@ public partial class EventChooseBtn : CenterContainer
         textureBtn.Pressed += () =>
         {
             ExploreEvent exploreEvent = ConfigManager.Instance.exploreEventDic[eventID];
+            GameManager gameManager = GameManager.Instance;
 
             if (GameManager.Instance.exploreProgress[GameManager.Instance.roomID]>=100)
             {
                 finish = true;
             }
-
+            //普通事件结尾
             if (exploreEvent.NextEvent[rank] == 9999)
             {
                 UIManager.Instance.DeleteUI((Control)GetParent());
@@ -29,6 +31,27 @@ public partial class EventChooseBtn : CenterContainer
                 GameManager.Instance.currentEventID = 1;
                 exploreUI.RefreshExploreUI(true);
             }
+            //关键支线结尾
+            else if (exploreEvent.NextEvent[rank] == 9998)
+            {
+                UIManager.Instance.DeleteUI((Control)GetParent());
+                exploreUI.OnRoomSelected(GameManager.Instance.roomID, finish);
+                GameManager.Instance.currentEventID = 1;
+                exploreUI.RefreshExploreUI(true);
+
+                Array<int> subTaskArray = new Array<int>();
+                if (!gameManager.subTaskDic.ContainsKey(gameManager.roomID))
+                {
+                    gameManager.subTaskDic.Add(gameManager.roomID, subTaskArray);
+                }
+                else
+                {
+                    subTaskArray = gameManager.subTaskDic[gameManager.roomID];
+                }
+                subTaskArray.Add(gameManager.currentSubTask);
+                gameManager.subTaskDic[gameManager.roomID] = subTaskArray;
+            }
+            //继续事件
             else
             {
                 EventChooseBar eventChooseBar = (EventChooseBar)UIManager.Instance.CreateUI("res://UI/Explore/EventChooseBar.tscn");

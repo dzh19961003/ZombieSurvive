@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using MyProject;
+using System;
 
 
 public partial class ExploreChooseBar : NinePatchRect
@@ -11,6 +12,7 @@ public partial class ExploreChooseBar : NinePatchRect
 
     public ExploreUI exploreUI;
     private GameManager gameManager;
+    private bool progress=true;
     public override void _Ready()
     {
         // 中途撤离按钮：弹确认框，确认后交给 ExploreUI 统一销毁所有探索界面
@@ -48,41 +50,11 @@ public partial class ExploreChooseBar : NinePatchRect
         if (type==1)
         {
             eventID=Tools.GetRandomNumber(gameManager.carefulEventArray);
-            if (explorePogress.ContainsKey(gameManager.roomID))
-            {
-                explorePogress[(gameManager.roomID)] += Tools.GetRandomNumber(Consts.carefulExploreProgress);
-            }
-            else
-            {
-                explorePogress[(gameManager.roomID)] = Tools.GetRandomNumber(Consts.carefulExploreProgress);
-            }
-            gameManager.exploreNoise += Tools.GetRandomNumber(Consts.carefulNoiseProgress);
         }
         //快速探索
         else
         {
             eventID=Tools.GetRandomNumber(gameManager.quickEventArray);
-            if (explorePogress.ContainsKey(gameManager.roomID))
-            {
-                explorePogress[(gameManager.roomID)] += Tools.GetRandomNumber(Consts.quickExploreProgress);
-            }
-            else
-            {
-                explorePogress[(gameManager.roomID)] = Tools.GetRandomNumber(Consts.quickExploreProgress);
-            }
-
-            gameManager.exploreNoise += Tools.GetRandomNumber(Consts.quickNoiseProgress);
-        }
-
-
-        //处理噪音值和探索值达到上限的方法
-        if (gameManager.exploreNoise > 100)
-        {
-            gameManager.exploreNoise -= 100;
-        }
-        if (explorePogress[(gameManager.roomID)] > 100)
-        {
-            explorePogress[(gameManager.roomID)] = 100;
         }
 
         //赋值当前事件ID
@@ -114,11 +86,58 @@ public partial class ExploreChooseBar : NinePatchRect
                 eventID = ConfigManager.Instance.roomDic[gameManager.roomID].SubTask[1];
             }
         }
+
         if (ConfigManager.Instance.exploreEventDic[eventID].EventType == 102)
         {
+            progress = false;
             subTaskArray.Add(eventID);
             gameManager.subTaskDic[gameManager.roomID] = subTaskArray;
         }
+        if (ConfigManager.Instance.exploreEventDic[eventID].EventType == 103)
+        {
+            progress = false;
+            gameManager.currentSubTask = eventID;
+        }
+        //不是支线再增加进度
+        if (progress==true)
+        {
+            if (type == 1)
+            {               
+                if (explorePogress.ContainsKey(gameManager.roomID))
+                {
+                    explorePogress[(gameManager.roomID)] += Tools.GetRandomNumber(Consts.carefulExploreProgress);
+                }
+                else
+                {
+                    explorePogress[(gameManager.roomID)] = Tools.GetRandomNumber(Consts.carefulExploreProgress);
+                }
+                gameManager.exploreNoise += Tools.GetRandomNumber(Consts.carefulNoiseProgress);
+            }
+            //快速探索
+            else
+            {
+                if (explorePogress.ContainsKey(gameManager.roomID))
+                {
+                    explorePogress[(gameManager.roomID)] += Tools.GetRandomNumber(Consts.quickExploreProgress);
+                }
+                else
+                {
+                    explorePogress[(gameManager.roomID)] = Tools.GetRandomNumber(Consts.quickExploreProgress);
+                }
+
+                gameManager.exploreNoise += Tools.GetRandomNumber(Consts.quickNoiseProgress);
+            }
+            //处理噪音值和探索值达到上限的方法
+            if (gameManager.exploreNoise > 100)
+            {
+                gameManager.exploreNoise -= 100;
+            }
+            if (explorePogress[(gameManager.roomID)] > 100)
+            {
+                explorePogress[(gameManager.roomID)] = 100;
+            }
+        }
+       
 
         eventChooseBar.exploreUI = exploreUI;       
         eventChooseBar.Initial(eventID);
