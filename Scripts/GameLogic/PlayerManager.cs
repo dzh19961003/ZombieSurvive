@@ -20,6 +20,12 @@ public partial class PlayerManager : Node, ISaveable
     public string SaveKey => GetPath();
     public event Action GetItem;
     public event Action<Array<int>> GetItem2;
+
+    // 三项属性对应的经验值。满 ExpMax 时，对应属性 +1 并清零。
+    public const int ExpMax = 100;
+    public const int MaxHunger = 3;
+    //hunger 值 → 状态表 ID 映射（对应 state.json 中 ID 5/6/7/8）
+    private static readonly int[] HungerStateIDs = new int[] { 5, 6, 7, 8 };
     //仓库
     private Dictionary<int, int> ItemDic = new Dictionary<int, int>();
    //天赋列表
@@ -48,6 +54,7 @@ public partial class PlayerManager : Node, ISaveable
     private int exploreStamina = 10;
     private int maxBaseStamina = 10;
     private int maxexploreStamina = 10;
+    private int hunger = 3;
     public int Hp {get{return hpBase + GetAddition(10001);}private set{}}
     public int MaxHp {get{return maxHpBase + GetAddition(10002);}private set{}}
     public int Strength {get{return strengthBase + GetAddition(10003);}private set{}}
@@ -66,6 +73,7 @@ public partial class PlayerManager : Node, ISaveable
     public int ExploreStamina {get{return exploreStamina + GetAddition(10016);}private set{}}
     public int MaxBaseStamina {get{return maxBaseStamina + GetAddition(10017);}private set{}}
     public int MaxexploreStamina {get{return maxexploreStamina + GetAddition(10018);}private set{}}
+    public int Hunger {get{return hunger + GetAddition(10019);}private set{}}
     
     //增量计算
     public int GetAddition(int statetype)
@@ -80,8 +88,7 @@ public partial class PlayerManager : Node, ISaveable
             }
             return v;
         }
-    // 三项属性对应的经验值。满 ExpMax 时，对应属性 +1 并清零。
-    public const int ExpMax = 100;
+
     //获得状态：状态唯一，重复获得时重置为初始天数而非叠加
     public void GetState(int ID)
     {
@@ -161,6 +168,35 @@ public partial class PlayerManager : Node, ISaveable
         foreach (var id in talentID) copy.Add(id);
         return copy;
     }
+    /// <summary>
+    /// 根据 hunger 值同步饥饿相关状态（状态表 ID 5/6/7/8）：
+    ///   移除旧的饥饿类状态，施加当前 hunger 对应的新状态。
+    /// 由 AddItem(10019) 修改 hunger 后自动调用，保证状态与数值强绑定。
+    /// </summary>
+    private void SyncHungerState(int hunger)
+    {
+        // 1. 移除所有饥饿类状态（避免多个饥饿状态同时存在）
+        foreach (var sid in HungerStateIDs)
+        {
+            if (StateTimeDic.ContainsKey(sid))
+            {
+                RemoveState(sid);
+            }
+        }
+        // 2. 施加当前 hunger 对应的状态（HungerStateIDs[0..3] 对应 hunger 0..3）
+        int idx = Mathf.Clamp(hunger, 0, MaxHunger);
+        int targetID = HungerStateIDs[idx];
+        if (ConfigManager.Instance != null &&
+            ConfigManager.Instance.stateDic.ContainsKey(targetID))
+        {
+            GetState(targetID);
+            GD.Print($"[PlayerManager] 饥饿状态同步：hunger={hunger} → 施加状态 ID={targetID}（{ConfigManager.Instance.stateDic[targetID].Name}）");
+        }
+        else
+        {
+            GD.PrintErr($"[PlayerManager] SyncHungerState 失败：状态表找不到 ID={targetID}");
+        }
+    }
     //增加基础属性值
     public void AddItem(int id,int amount)
     {   
@@ -235,21 +271,23 @@ public partial class PlayerManager : Node, ISaveable
                 attack_body_weight += amount;
                 break;
             case 10015:
-                // 基地体力钳制在 [0, MaxBaseStamina]
                 baseStamina = Mathf.Clamp(baseStamina + amount, 0, MaxBaseStamina);
                 break;
             case 10016:
-                // 探索体力钳制在 [0, MaxexploreStamina]
                 exploreStamina = Mathf.Clamp(exploreStamina + amount, 0, MaxexploreStamina);
                 break;
             case 10017:
                 maxBaseStamina += amount;
-                // 最大值变化后，当前体力不能超过新上限
                 baseStamina = Mathf.Min(baseStamina, MaxBaseStamina);
                 break;
             case 10018:
                 maxexploreStamina += amount;
                 exploreStamina = Mathf.Min(exploreStamina, MaxexploreStamina);
+                break;
+            case 10019:
+
+                hunger = Mathf.Clamp(hunger + amount, 0, MaxHunger);
+                SyncHungerState(hunger);
                 break;
             default:
 
@@ -282,15 +320,32 @@ public partial class PlayerManager : Node, ISaveable
         AddToGroup("Save");
         SaveManager.Instance.Save();
         SaveManager.Instance.Load();
+        // 读档后 hunger 已恢复，同步一次初始饥饿状态到 stateArray
+        // （否则初始 stateArray 里没有饱腹状态，PropertyUi 打开看不到）
+        // 用 CallDeferred：保证 ConfigManager 已初始化（SyncHungerState 内部要读表）
+        CallDeferred(nameof(DeferredInitHungerState));
+    }
+
+    private void DeferredInitHungerState()
+    {
+        if (ConfigManager.Instance == null)
+        {
+            GD.PrintErr("[PlayerManager] ConfigManager 未就绪，饥饿状态初始化失败");
+            return;
+        }
+        SyncHungerState(hunger);
     }
     public override void _Process(double delta)
     {
         if (Input.IsActionJustPressed("ui_accept"))
         {
-            AddItem(10001, -15);   
-            AddItem(10002, 20);    
+            AddItem(10001, -15);
+            AddItem(10002, 20);
             AddItem(10003, 10);
             GetState(2);
+            // 测试饥饿：hunger 每次 -1（3→2→1→0 循环），
+            // AddItem(10019) 内部会自动同步饥饿状态（ID 8→7→6→5）
+            AddItem(10019, -1);
         }
     }
     #region 存档相关
@@ -322,7 +377,8 @@ public partial class PlayerManager : Node, ISaveable
             {"baseStamina", baseStamina},
             {"exploreStamina", exploreStamina},
             {"maxBaseStamina", maxBaseStamina},
-            {"maxexploreStamina", maxexploreStamina}
+            {"maxexploreStamina", maxexploreStamina},
+            {"hunger",hunger}
         };
     }
     public void LoadSaveData(Dictionary data)
@@ -347,6 +403,7 @@ public partial class PlayerManager : Node, ISaveable
         exploreStamina      = data.ContainsKey("exploreStamina")      ? (int)data["exploreStamina"]      : 10;
         maxBaseStamina      = data.ContainsKey("maxBaseStamina")      ? (int)data["maxBaseStamina"]      : 10;
         maxexploreStamina   = data.ContainsKey("maxexploreStamina")   ? (int)data["maxexploreStamina"]   : 10;
+        hunger              = data.ContainsKey("hunger")              ? (int)data["hunger"]              : 3;
         // ItemArray = data.ContainsKey("ItemArray") ? (Array<int>)data["ItemArray"] : new Array<int>{1,2};
         ItemDic   = data.ContainsKey("ItemDic")   ? (Dictionary<int, int>)data["ItemDic"]   : new Dictionary<int, int> { };
         talentID  = data.ContainsKey("talentID")  ? (Array<int>)data["talentID"]            : new Array<int> { };

@@ -239,3 +239,7 @@ vertical_alignment = 1
 
 [node name="Sta_Hun" parent="." unique_id=960878017 instance=ExtResource("12_i0lr5")]
 layout_mode = 0
+offset_left = 21.0
+offset_top = 23.0
+offset_right = 594.0
+offset_bottom = 293.0
