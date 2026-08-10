@@ -72,21 +72,26 @@
   {
 	"ID(int)": 10015,
 	"type(string)": "基地体力",
-	"imageIcon(string)": "stamina.png"
+	"imageIcon(string)": "heart_icon.png"
   },
   {
 	"ID(int)": 10016,
 	"type(string)": "探索体力",
-	"imageIcon(string)": "stamina.png"
+	"imageIcon(string)": "heart_icon.png"
   },
   {
 	"ID(int)": 10017,
 	"type(string)": "基地最大体力",
-	"imageIcon(string)": "stamina.png"
+	"imageIcon(string)": "heart_icon.png"
   },
   {
 	"ID(int)": 10018,
 	"type(string)": "探索最大体力",
-	"imageIcon(string)": "stamina.png"
+	"imageIcon(string)": "heart_icon.png"
+  },
+  {
+	"ID(int)": 10019,
+	"type(string)": "饱食度",
+	"imageIcon(string)": "heart_icon.png"
   }
 ]
