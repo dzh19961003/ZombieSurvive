@@ -6,29 +6,37 @@
 [ext_resource type="Texture2D" uid="uid://cwqay0vk7x016" path="res://Assets/Images/UI/tab_inactive.png" id="3_qbgyk"]
 
 [node name="Clock" type="TextureButton" unique_id=1599589682]
-offset_left = 782.0
-offset_top = 133.0
-offset_right = 1064.0
-offset_bottom = 252.0
-texture_normal = ExtResource("1_f6cye")
+custom_minimum_size = Vector2(356, 211)
+anchors_preset = -1
+offset_right = 356.0
+offset_bottom = 211.0
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("2_qbgyk")
 
+[node name="bg" type="TextureRect" parent="." unique_id=774450695]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 86.0
+offset_right = 349.0
+offset_bottom = 190.0
+texture = ExtResource("1_f6cye")
+expand_mode = 1
+
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1843491433]
 layout_mode = 0
-offset_left = -59.0
-offset_top = 16.0
-offset_right = 57.0
-offset_bottom = 91.0
+offset_left = 4.0
+offset_top = 100.0
+offset_right = 120.0
+offset_bottom = 175.0
 texture = ExtResource("2_1udsu")
 
 [node name="Label" type="Label" parent="." unique_id=486867903]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 25.0
-offset_right = 230.0
-offset_bottom = 94.0
+offset_left = 123.0
+offset_top = 104.0
+offset_right = 289.0
+offset_bottom = 173.0
 theme_override_font_sizes/font_size = 45
 text = "早晨"
 horizontal_alignment = 1
@@ -36,19 +44,18 @@ vertical_alignment = 1
 
 [node name="Day" type="TextureButton" parent="." unique_id=1268579884]
 layout_mode = 0
-offset_left = 1.0
-offset_top = -100.0
-offset_right = 286.0
-offset_bottom = -2.0
+offset_left = 64.0
+offset_right = 349.0
+offset_bottom = 98.0
 texture_normal = ExtResource("3_qbgyk")
 stretch_mode = 0
 
 [node name="DayCount" type="Label" parent="Day" unique_id=1240658737]
 layout_mode = 0
-offset_left = 35.0
-offset_top = 17.0
-offset_right = 228.0
-offset_bottom = 82.0
+offset_left = 46.0
+offset_top = 19.0
+offset_right = 239.0
+offset_bottom = 84.0
 theme_override_font_sizes/font_size = 45
 text = "第1天"
 horizontal_alignment = 1

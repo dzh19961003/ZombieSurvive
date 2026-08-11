@@ -255,10 +255,11 @@ texture = ExtResource("7_f8vne")
 
 [node name="close_button" type="Button" parent="." unique_id=1378168597]
 layout_mode = 0
-offset_left = 929.0
-offset_top = 102.0
-offset_right = 1009.0
-offset_bottom = 182.0
+offset_left = 886.99994
+offset_top = 89.0
+offset_right = 966.99994
+offset_bottom = 169.0
+scale = Vector2(1.7, 1.7)
 theme_override_icons/icon = ExtResource("2_a1hvy")
 icon = ExtResource("3_t1ga8")
 flat = true

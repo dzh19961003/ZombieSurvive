@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="4_pxmw8"]
 [ext_resource type="Texture2D" uid="uid://dlagv04uasoc5" path="res://Assets/Images/UI/exploreIcon.png" id="5_qpp0w"]
 [ext_resource type="Texture2D" uid="uid://b4qbhhkttqh0m" path="res://Assets/Images/UI/mapIcon.png" id="8_xam4r"]
+[ext_resource type="PackedScene" uid="uid://cr451u7s3ttth" path="res://UI/propertyBar.tscn" id="9_shwkd"]
 [ext_resource type="Texture2D" uid="uid://br6sl8ouqesfy" path="res://Assets/Images/UI/noiseIcon.png" id="11_s03io"]
 
 [node name="ExploreUI" type="Control" unique_id=1351775229 node_paths=PackedStringArray("bg", "image", "desLabel", "noiseBar", "exploreProgressLabel", "noiseProgressLabel", "iconContainer", "exploreProgressBar")]
@@ -186,3 +187,14 @@ theme_override_font_sizes/font_size = 48
 text = "20%"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="PropertyBar" parent="." unique_id=1181979352 instance=ExtResource("9_shwkd")]
+layout_mode = 1
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = 6.0
+offset_top = 109.0
+offset_right = 527.0
+offset_bottom = 420.0
+grow_vertical = 1

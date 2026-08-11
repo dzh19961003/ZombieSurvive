@@ -10,10 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://cwqay0vk7x016" path="res://Assets/Images/UI/tab_inactive.png" id="7_3oam6"]
 
 [node name="Sta_Hun" type="TextureButton" unique_id=960878017 node_paths=PackedStringArray("warehouseBtn", "propertyButton")]
-offset_left = 33.0
-offset_top = 33.0
-offset_right = 606.0
-offset_bottom = 303.0
+offset_right = 578.0
+offset_bottom = 244.0
 texture_normal = ExtResource("1_cu7rr")
 ignore_texture_size = true
 stretch_mode = 0
@@ -24,9 +22,9 @@ propertyButton = NodePath("propertyButton")
 [node name="Hunger" type="TextureButton" parent="." unique_id=1709879092]
 layout_mode = 0
 offset_left = 25.0
-offset_top = 26.0
+offset_top = 18.0
 offset_right = 288.0
-offset_bottom = 207.0
+offset_bottom = 156.0
 texture_normal = ExtResource("2_iw8wl")
 ignore_texture_size = true
 stretch_mode = 0
@@ -34,64 +32,64 @@ stretch_mode = 0
 [node name="HIcon" type="TextureRect" parent="Hunger" unique_id=423896582]
 layout_mode = 0
 offset_left = 17.0
-offset_top = 45.0
+offset_top = 23.0
 offset_right = 83.0
-offset_bottom = 113.0
+offset_bottom = 91.0
 texture = ExtResource("3_q88b4")
 expand_mode = 1
 
 [node name="H1" type="TextureRect" parent="Hunger" unique_id=305634069]
 layout_mode = 0
-offset_left = 78.0
-offset_top = 45.0
-offset_right = 144.0
-offset_bottom = 113.0
+offset_left = 80.0
+offset_top = 27.0
+offset_right = 146.0
+offset_bottom = 95.0
 texture = ExtResource("4_cb8cu")
 expand_mode = 1
 
 [node name="H2" type="TextureRect" parent="Hunger" unique_id=1448421353]
 layout_mode = 0
-offset_left = 124.0
-offset_top = 45.0
-offset_right = 190.0
-offset_bottom = 113.0
+offset_left = 126.0
+offset_top = 27.0
+offset_right = 192.0
+offset_bottom = 95.0
 texture = ExtResource("4_cb8cu")
 expand_mode = 1
 
 [node name="H3" type="TextureRect" parent="Hunger" unique_id=153815242]
 layout_mode = 0
-offset_left = 170.0
-offset_top = 45.0
-offset_right = 236.0
-offset_bottom = 113.0
+offset_left = 172.0
+offset_top = 27.0
+offset_right = 238.0
+offset_bottom = 95.0
 texture = ExtResource("5_lt7oe")
 expand_mode = 1
 
 [node name="Stamina" type="TextureButton" parent="." unique_id=648011017]
 layout_mode = 0
 offset_left = 286.0
-offset_top = 26.0
+offset_top = 18.0
 offset_right = 549.0
-offset_bottom = 207.0
+offset_bottom = 155.0
 texture_normal = ExtResource("2_iw8wl")
 ignore_texture_size = true
 stretch_mode = 0
 
 [node name="SIcon" type="TextureRect" parent="Stamina" unique_id=940793646]
 layout_mode = 0
-offset_left = 11.0
-offset_top = 45.0
-offset_right = 86.0
-offset_bottom = 110.0
+offset_left = 30.999992
+offset_top = 32.0
+offset_right = 96.769226
+offset_bottom = 89.0
 texture = ExtResource("6_0q8px")
 expand_mode = 1
 
 [node name="SValue" type="Label" parent="Stamina" unique_id=2022723050]
 layout_mode = 0
-offset_left = 87.0
-offset_top = 49.0
-offset_right = 219.0
-offset_bottom = 105.0
+offset_left = 91.0
+offset_top = 32.0
+offset_right = 223.0
+offset_bottom = 88.0
 theme_override_font_sizes/font_size = 40
 text = "X 15"
 horizontal_alignment = 1
@@ -100,9 +98,9 @@ vertical_alignment = 1
 [node name="HungerState" type="TextureButton" parent="." unique_id=2141518108]
 layout_mode = 0
 offset_left = 23.0
-offset_top = 179.0
+offset_top = 147.0
 offset_right = 213.0
-offset_bottom = 251.0
+offset_bottom = 219.0
 texture_normal = ExtResource("7_3oam6")
 
 [node name="Label" type="Label" parent="HungerState" unique_id=211532519]
@@ -118,13 +116,16 @@ vertical_alignment = 1
 
 [node name="warehouseButton" type="Button" parent="." unique_id=1205585204]
 layout_mode = 0
-offset_right = 569.0
-offset_bottom = 182.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 550.0
+offset_bottom = 140.0
 flat = true
 
 [node name="propertyButton" type="Button" parent="." unique_id=316472007]
 layout_mode = 0
-offset_top = 178.0
-offset_right = 561.0
-offset_bottom = 261.0
+offset_left = 22.0
+offset_top = 149.0
+offset_right = 549.0
+offset_bottom = 218.0
 flat = true

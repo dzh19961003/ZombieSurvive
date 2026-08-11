@@ -21,7 +21,7 @@ SceneContainer = NodePath(".")
 
 [node name="Base" parent="Manager/SceneLoader" unique_id=1002387130 instance=ExtResource("3_1xcnr")]
 
-[node name="UIManager" type="Node2D" parent="Manager" unique_id=410968795]
+[node name="UIManager" type="CanvasLayer" parent="Manager" unique_id=770124840]
 script = ExtResource("3_3amdw")
 
 [node name="SaveManager" type="Node2D" parent="Manager" unique_id=2044791399]

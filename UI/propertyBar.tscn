@@ -1,0 +1,159 @@
+[gd_scene format=3 uid="uid://cr451u7s3ttth"]
+
+[ext_resource type="Script" uid="uid://dadiolsni3gkb" path="res://Scripts/UI/PropertyBar.cs" id="1_2fcoe"]
+[ext_resource type="Texture2D" uid="uid://53n15gjv8ksp" path="res://Assets/Images/UI/popup_panel.png" id="1_piw6c"]
+[ext_resource type="Texture2D" uid="uid://desgea4htjck3" path="res://icon.svg" id="2_d4ma1"]
+[ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="3_2fcoe"]
+[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="3_d4ma1"]
+[ext_resource type="Texture2D" uid="uid://drrlot6oesri8" path="res://Assets/Images/UI/strong.png" id="4_xpf6f"]
+[ext_resource type="Texture2D" uid="uid://d21mrp1tehixc" path="res://Assets/Images/UI/speed.png" id="5_iu1ib"]
+[ext_resource type="Texture2D" uid="uid://byni2fkgyi20q" path="res://Assets/Images/UI/brain.png" id="6_smrt8"]
+[ext_resource type="Texture2D" uid="uid://b2l7to85rkjl" path="res://Assets/Images/UI/heart_icon.png" id="7_evi37"]
+
+[node name="PropertyBar" type="Button" unique_id=1181979352 node_paths=PackedStringArray("_strengthLabel", "_agilityLabel", "_intelligenceLabel", "_healthBar", "_healthText")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -1915.0
+offset_right = 518.0
+offset_bottom = -1604.0
+grow_vertical = 0
+flat = true
+script = ExtResource("1_2fcoe")
+_strengthLabel = NodePath("Property/HBoxContainer/strength/Label")
+_agilityLabel = NodePath("Property/HBoxContainer/agile/Label3")
+_intelligenceLabel = NodePath("Property/HBoxContainer/intelligence/Label2")
+_healthBar = NodePath("Health/HealthProgressBar")
+_healthText = NodePath("Health/Label")
+
+[node name="BG" type="TextureRect" parent="." unique_id=1773149968]
+layout_mode = 0
+offset_right = 520.0
+offset_bottom = 311.0
+texture = ExtResource("1_piw6c")
+expand_mode = 1
+
+[node name="ButtonName" type="Label" parent="." unique_id=1305141967]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 23.0
+offset_right = 380.77924
+offset_bottom = 78.0
+theme_override_font_sizes/font_size = 40
+text = "我的属性"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Head" type="TextureRect" parent="." unique_id=219249251]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 91.0
+offset_right = 120.854546
+offset_bottom = 180.0
+texture = ExtResource("2_d4ma1")
+expand_mode = 1
+
+[node name="Property" type="NinePatchRect" parent="." unique_id=533678785]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 88.0
+offset_right = 494.0
+offset_bottom = 192.0
+texture = ExtResource("3_d4ma1")
+region_rect = Rect2(0, 0, 136, 136)
+patch_margin_left = 31
+patch_margin_top = 28
+patch_margin_right = 38
+patch_margin_bottom = 37
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Property" unique_id=1455455002]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 8.0
+offset_right = 352.0
+offset_bottom = 88.0
+theme_override_constants/separation = 31
+
+[node name="strength" type="TextureRect" parent="Property/HBoxContainer" unique_id=1693991867]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("4_xpf6f")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Property/HBoxContainer/strength" unique_id=1429099086]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 15.0
+offset_right = 121.0
+offset_bottom = 66.0
+theme_override_font_sizes/font_size = 37
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="agile" type="TextureRect" parent="Property/HBoxContainer" unique_id=826248026]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("5_iu1ib")
+expand_mode = 1
+
+[node name="Label3" type="Label" parent="Property/HBoxContainer/agile" unique_id=717811890]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 15.0
+offset_right = 119.0
+offset_bottom = 66.0
+theme_override_font_sizes/font_size = 37
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="intelligence" type="TextureRect" parent="Property/HBoxContainer" unique_id=107422897]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("6_smrt8")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="Property/HBoxContainer/intelligence" unique_id=1788613856]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 14.0
+offset_right = 120.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 37
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Health" type="TextureRect" parent="." unique_id=223369430]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 155.0
+offset_right = 149.0
+offset_bottom = 305.0
+texture = ExtResource("7_evi37")
+
+[node name="HealthProgressBar" type="TextureProgressBar" parent="Health" unique_id=135427496]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 41.0
+offset_right = 647.2857
+offset_bottom = 163.85715
+scale = Vector2(0.7, 0.7)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("3_2fcoe")
+texture_progress = ExtResource("3_2fcoe")
+tint_progress = Color(1, 0.01953125, 0.01953125, 1)
+
+[node name="Label" type="Label" parent="Health" unique_id=1930593645]
+layout_mode = 0
+offset_left = 245.0
+offset_top = 55.0
+offset_right = 379.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 35
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1

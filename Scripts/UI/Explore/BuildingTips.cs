@@ -16,11 +16,24 @@ public partial class BuildingTips : Control
     private int buildingID;
 
     public override void _Ready()
-	{
-		cancelBtn.Pressed += () => UIManager.Instance.HideUI("res://UI/Explore/BuildingTips.tscn");
-        confirmBtn.Pressed += EnterExplore;
-	}
-	public void InitialTips(int ID) 
+    {
+        cancelBtn.Pressed += () => UIManager.Instance.HideUI("res://UI/Explore/BuildingTips.tscn");
+        confirmBtn.Pressed += () =>
+        {
+            if (GameManager.Instance.CurrentTimePeriod == 1)
+            {
+                EnterExplore();
+                GameManager.Instance.AdvanceTime();
+            }
+            else 
+            {
+                Node tips = UIManager.Instance.ShowCommonTips("探索提示", "确定进入今天的第二次探索吗？临近黄昏丧尸的能力会显著提升");
+                CommonTips control = (CommonTips)tips;
+                control.OnConfirm = EnterExplore;
+            }
+        };
+    }
+    public void InitialTips(int ID) 
 	{
         buildingID = ID;
 		Building building = ConfigManager.Instance.buildingDic[ID];
@@ -47,7 +60,6 @@ public partial class BuildingTips : Control
         ExploreUI explore = (ExploreUI)UIManager.Instance.CreateUI("res://UI/Explore/ExploreUI.tscn");
         GameManager.Instance.exploreState = 1;
         GameManager.Instance.exploreLayer = 1;
-        explore.RefreshExplore();
+        explore.RefreshExplore();       
     }
-
 }
