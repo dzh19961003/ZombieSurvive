@@ -51,7 +51,9 @@ public partial class Buff : Control
 
         // 设置文本
         StateName.Text = state.Name;
-        TimeLen.Text = state.Time + "天";
+
+        int remaining = PlayerManager.Instance != null? PlayerManager.Instance.GetStateRemainingDays(ID): state.Time;
+        TimeLen.Text = remaining + "天";
 
         // 根据正面/负面设置样式
         if (state.Positive == 1)

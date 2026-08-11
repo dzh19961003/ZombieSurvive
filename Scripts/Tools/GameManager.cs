@@ -109,14 +109,16 @@ public partial class GameManager : Node2D,ISaveable
     {
         if (currentTimePeriod >= MaxTimePeriod)
         {
+            // 跨天
             currentTimePeriod = 0;
             dayCount++;
-            PlayerManager.Instance?.OnDayEnd();
         }
         else
         {
             currentTimePeriod++;
         }
+        
+        PlayerManager.Instance?.OnTimeAdvanced();
         TimeChanged?.Invoke(currentTimePeriod, dayCount);
         GD.Print($"[GameManager] 时间推进 → 第{dayCount}天 {CurrentTimePeriodName}");
     }

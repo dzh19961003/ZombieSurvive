@@ -35,6 +35,9 @@ public partial class PlayerManager : Node, ISaveable
     private Array<int> stateArray = new Array<int>() { };
     //状态剩余天数表：key=状态ID，value=剩余天数（每日结算-1，归0移除）
     private Dictionary<int, int> StateTimeDic = new Dictionary<int, int>();
+    //当前自然日内已推进的时段数（0~3）。每满4个时段算完整一天，触发 OnDayEnd。
+    private int timePeriodsElapsed = 0;
+    public const int PeriodsPerDay = 4;
     
     private int hpBase = 100;
     private int maxHpBase = 100;
@@ -122,6 +125,19 @@ public partial class PlayerManager : Node, ISaveable
             stateArray.Remove(ID);
         }
     }
+
+    public void OnTimeAdvanced()
+    {
+        timePeriodsElapsed++;
+        GD.Print($"[PlayerManager] 时段累计 {timePeriodsElapsed}/{PeriodsPerDay}");
+        if (timePeriodsElapsed >= PeriodsPerDay)
+        {
+            timePeriodsElapsed = 0;
+            GD.Print("[PlayerManager] 完整一天结束，开始每日结算");
+            OnDayEnd();
+        }
+    }
+
     //每日结算：所有状态剩余天数-1，归0时移除状态
     public void OnDayEnd()
     {
@@ -148,8 +164,8 @@ public partial class PlayerManager : Node, ISaveable
             }
             GD.Print($"[PlayerManager] 状态到期移除：ID={id} ({ConfigManager.Instance.stateDic[id].Name})");
         }
-        //有状态被移除时通知UI刷新
-        if (expired.Count > 0)
+
+        if (keys.Count > 0)
         {
             GetItem?.Invoke();
             GetItem2?.Invoke(stateArray);
@@ -168,11 +184,17 @@ public partial class PlayerManager : Node, ISaveable
         foreach (var id in talentID) copy.Add(id);
         return copy;
     }
-    /// <summary>
-    /// 根据 hunger 值同步饥饿相关状态（状态表 ID 5/6/7/8）：
-    ///   移除旧的饥饿类状态，施加当前 hunger 对应的新状态。
-    /// 由 AddItem(10019) 修改 hunger 后自动调用，保证状态与数值强绑定。
-    /// </summary>
+    
+    //获取指定状态的剩余天数
+   
+    public int GetStateRemainingDays(int stateID)
+    {
+        if (StateTimeDic.ContainsKey(stateID))
+        {
+            return StateTimeDic[stateID];
+        }
+        return 0;
+    }
     private void SyncHungerState(int hunger)
     {
         // 1. 移除所有饥饿类状态（避免多个饥饿状态同时存在）
@@ -324,6 +346,7 @@ public partial class PlayerManager : Node, ISaveable
         // （否则初始 stateArray 里没有饱腹状态，PropertyUi 打开看不到）
         // 用 CallDeferred：保证 ConfigManager 已初始化（SyncHungerState 内部要读表）
         CallDeferred(nameof(DeferredInitHungerState));
+        GetState(2);
     }
 
     private void DeferredInitHungerState()
@@ -342,7 +365,7 @@ public partial class PlayerManager : Node, ISaveable
             AddItem(10001, -15);
             AddItem(10002, 20);
             AddItem(10003, 10);
-            GetState(2);
+            // GetState(2);
             AddItem(10019, -1);
             GameManager.Instance.AdvanceTime();
         }
@@ -367,6 +390,7 @@ public partial class PlayerManager : Node, ISaveable
             { "talentID", talentID },
             { "stateArray", stateArray},
             { "stateTimeDic", StateTimeDic},
+            { "timePeriodsElapsed", timePeriodsElapsed},
             {"exp_acq_rate", exp_acq_rate},
             {"armor", armor},
             {"max_armor", max_armor},
@@ -408,6 +432,7 @@ public partial class PlayerManager : Node, ISaveable
         talentID  = data.ContainsKey("talentID")  ? (Array<int>)data["talentID"]            : new Array<int> { };
         stateArray = data.ContainsKey("stateArray") ? (Array<int>)data["stateArray"]        : new Array<int> { };
         StateTimeDic = data.ContainsKey("stateTimeDic") ? (Dictionary<int, int>)data["stateTimeDic"] : new Dictionary<int, int> { };
+        timePeriodsElapsed = data.ContainsKey("timePeriodsElapsed") ? (int)data["timePeriodsElapsed"] : 0;
         GD.Print($"[PlayerManager] 数据恢复完成：HP={Hp}/{MaxHp}, Str={Strength}({strength_exp}/{ExpMax}), Agi={Agility}({agility_exp}/{ExpMax}), Int={Intelligence}({intelligence_exp}/{ExpMax})");
     }
     #endregion
