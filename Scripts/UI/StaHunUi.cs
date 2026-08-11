@@ -6,9 +6,6 @@ public partial class StaHunUi : TextureButton
 {
 	[Export] public Button warehouseBtn;
 	[Export] public Button propertyButton;
-
-	// 三个小方块（Hunger 下）：H1/H2 填绿色 progressIn，H3 默认灰色 progressOut
-	// 第 i 个方块（i < Hunger）显示绿色（progressIn），否则灰色（progressOut）
 	private TextureRect _h1;
 	private TextureRect _h2;
 	private TextureRect _h3;
@@ -17,7 +14,6 @@ public partial class StaHunUi : TextureButton
 	private Texture2D _greenTex;
 	private Texture2D _grayTex;
 
-	// Stamina 面板里显示 "X 15" 的文字
 	private Label _staminaValueLabel;
 
 	// 饱食状态文字（HungerState/Label）
@@ -122,7 +118,7 @@ public partial class StaHunUi : TextureButton
 			0 => 5,
 			1 => 6,
 			2 => 7,
-			_ => 8,
+			3 => 8,
 		};
 	}
 
@@ -145,7 +141,7 @@ public partial class StaHunUi : TextureButton
 			0 => "饥饿",
 			1 => "空腹",
 			2 => "半饱",
-			_ => "饱腹",
+			3 => "饱腹",
 		};
 	}
 

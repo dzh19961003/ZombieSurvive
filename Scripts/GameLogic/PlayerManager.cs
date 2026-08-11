@@ -35,7 +35,7 @@ public partial class PlayerManager : Node, ISaveable
     private Array<int> stateArray = new Array<int>() { };
     //状态剩余天数表：key=状态ID，value=剩余天数（每日结算-1，归0移除）
     private Dictionary<int, int> StateTimeDic = new Dictionary<int, int>();
-   
+    
     private int hpBase = 100;
     private int maxHpBase = 100;
     private int strengthBase = 10;
@@ -343,9 +343,8 @@ public partial class PlayerManager : Node, ISaveable
             AddItem(10002, 20);
             AddItem(10003, 10);
             GetState(2);
-            // 测试饥饿：hunger 每次 -1（3→2→1→0 循环），
-            // AddItem(10019) 内部会自动同步饥饿状态（ID 8→7→6→5）
             AddItem(10019, -1);
+            GameManager.Instance.AdvanceTime();
         }
     }
     #region 存档相关

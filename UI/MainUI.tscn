@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cwqay0vk7x016" path="res://Assets/Images/UI/tab_inactive.png" id="9_tinas"]
 [ext_resource type="Texture2D" uid="uid://qbdn6muxwbkj" path="res://Assets/Images/UI/sleep.png" id="10_e10a1"]
 [ext_resource type="PackedScene" uid="uid://b0jmqtny847q5" path="res://UI/sta_hunUI.tscn" id="12_i0lr5"]
-[ext_resource type="Texture2D" uid="uid://cimgjjgut172w" path="res://Assets/Images/UI/time.png" id="15_5ctpo"]
+[ext_resource type="PackedScene" uid="uid://2rhn2jmv0o1k" path="res://UI/time.tscn" id="12_r3ckc"]
 
 [node name="MainUI" type="Control" unique_id=2016221161 node_paths=PackedStringArray("propertyBtn")]
 layout_mode = 3
@@ -188,58 +188,16 @@ offset_bottom = 116.0
 theme_override_font_sizes/font_size = 43
 text = "去睡觉"
 
-[node name="Clock" type="TextureButton" parent="." unique_id=875291809]
-layout_mode = 0
-offset_left = 782.0
-offset_top = 133.0
-offset_right = 1064.0
-offset_bottom = 252.0
-texture_normal = ExtResource("2_fdbdo")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="TextureRect" type="TextureRect" parent="Clock" unique_id=701328835]
-layout_mode = 0
-offset_left = -59.0
-offset_top = 16.0
-offset_right = 57.0
-offset_bottom = 91.0
-texture = ExtResource("15_5ctpo")
-
-[node name="Label" type="Label" parent="Clock" unique_id=436928474]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 25.0
-offset_right = 230.0
-offset_bottom = 94.0
-theme_override_font_sizes/font_size = 45
-text = "上 午"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Day" type="TextureButton" parent="." unique_id=460099592]
-layout_mode = 0
-offset_left = 783.0
-offset_top = 33.0
-offset_right = 1068.0
-offset_bottom = 131.0
-texture_normal = ExtResource("9_tinas")
-stretch_mode = 0
-
-[node name="DayCount" type="Label" parent="Day" unique_id=1421062593]
-layout_mode = 0
-offset_left = 35.0
-offset_top = 17.0
-offset_right = 228.0
-offset_bottom = 82.0
-theme_override_font_sizes/font_size = 45
-text = "第1天"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Sta_Hun" parent="." unique_id=960878017 instance=ExtResource("12_i0lr5")]
 layout_mode = 0
 offset_left = 21.0
 offset_top = 23.0
 offset_right = 594.0
 offset_bottom = 293.0
+
+[node name="Clock" parent="." unique_id=1599589682 instance=ExtResource("12_r3ckc")]
+layout_mode = 0
+offset_left = 776.0
+offset_top = 127.0
+offset_right = 1058.0
+offset_bottom = 246.0
