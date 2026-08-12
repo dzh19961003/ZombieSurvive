@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://mnqrb3ht0w74"]
 
-[ext_resource type="Script" uid="uid://dxy4e40th2e2k" path="res://Scripts/UI/States.cs" id="1_g5n51"]
-[ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="1_rrns2"]
-[ext_resource type="Texture2D" uid="uid://cgo5d5n4nefk3" path="res://Assets/Images/UI/arrow_left.png" id="2_d10r5"]
-[ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="3_j0u80"]
-
+[ext_resource type="Script" uid="uid://dxy4e40th2e2k" path="res://Scripts/UI/States.cs" id="1_7o1y6"]
+[ext_resource type="Texture2D" uid="uid://cgo5d5n4nefk3" path="res://Assets/Images/UI/arrow_left.png" id="2_5en7t"]
+[ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="3_dcnyy"]
+[ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="4_kktbc"]
 
 [node name="Buff" type="Control" unique_id=1420942808 node_paths=PackedStringArray("PosIcon", "Bg", "StateName", "TimeLen")]
 custom_minimum_size = Vector2(240, 79)
@@ -14,7 +13,7 @@ offset_right = 240.0
 offset_bottom = 79.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_g5n51")
+script = ExtResource("1_7o1y6")
 PosIcon = NodePath("PosIcon")
 Bg = NodePath("Bg")
 StateName = NodePath("StateName")
@@ -28,13 +27,13 @@ offset_right = 304.0
 offset_bottom = 102.0
 rotation = 1.5707964
 scale = Vector2(0.62926424, 0.61784494)
-texture = ExtResource("2_d10r5")
+texture = ExtResource("2_5en7t")
 
 [node name="Bg" type="TextureButton" parent="." unique_id=1045471739]
 layout_mode = 0
 offset_right = 196.0
 offset_bottom = 79.0
-texture_normal = ExtResource("1_rrns2")
+texture_normal = ExtResource("3_dcnyy")
 
 [node name="StateName" type="Label" parent="." unique_id=153694741]
 layout_mode = 0
@@ -52,7 +51,7 @@ layout_mode = 0
 offset_left = 172.0
 offset_right = 238.0
 offset_bottom = 32.0
-texture = ExtResource("3_j0u80")
+texture = ExtResource("4_kktbc")
 expand_mode = 1
 
 [node name="TimeLen" type="Label" parent="Duration" unique_id=2077637104]
