@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://mnqrb3ht0w74"]
 
-[ext_resource type="Script" uid="uid://dxy4e40th2e2k" path="res://Scripts/UI/Buff.cs" id="1_g5n51"]
+[ext_resource type="Script" uid="uid://dxy4e40th2e2k" path="res://Scripts/UI/States.cs" id="1_g5n51"]
 [ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="1_rrns2"]
 [ext_resource type="Texture2D" uid="uid://cgo5d5n4nefk3" path="res://Assets/Images/UI/arrow_left.png" id="2_d10r5"]
 [ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="3_j0u80"]
+
 
 [node name="Buff" type="Control" unique_id=1420942808 node_paths=PackedStringArray("PosIcon", "Bg", "StateName", "TimeLen")]
 custom_minimum_size = Vector2(240, 79)

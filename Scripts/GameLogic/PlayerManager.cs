@@ -135,7 +135,7 @@ public partial class PlayerManager : Node, ISaveable
             timePeriodsElapsed = 0;
             GD.Print("[PlayerManager] 完整一天结束，开始每日结算");
             //饱食度-1，后续接入结局触发
-            Hunger -= 1;
+            AddItem(10019,-1);
             OnDayEnd();
         }
     }

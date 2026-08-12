@@ -6,7 +6,7 @@ using Godot;
 using MyProject;
 
 
-public partial class Buff : Control
+public partial class States : Control
 {
     public int ID;
 
@@ -37,13 +37,13 @@ public partial class Buff : Control
         // 防御性检查
         if (ConfigManager.Instance == null)
         {
-            GD.PrintErr($"[Buff] ConfigManager 为 null！ID={ID}");
+            GD.PrintErr($"[States] ConfigManager 为 null！ID={ID}");
             return;
         }
 
         if (!ConfigManager.Instance.stateDic.ContainsKey(ID))
         {
-            GD.PrintErr($"[Buff] stateDic 中找不到 ID={ID}！");
+            GD.PrintErr($"[States] stateDic 中找不到 ID={ID}！");
             return;
         }
 

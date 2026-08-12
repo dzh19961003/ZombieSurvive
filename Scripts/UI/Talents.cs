@@ -11,7 +11,7 @@ using System;
 
 namespace MyProject
 {
-    public partial class Trait : Control
+    public partial class Talents : Control
     {
         // 天赋唯一 ID
         public int TalentID { get; set; }

@@ -128,17 +128,17 @@ namespace MyProject
             }
 
             // 2. 加载 Buff 预制体
-            var stateScene = GD.Load<PackedScene>("res://UI/Buff.tscn");
+            var stateScene = GD.Load<PackedScene>("res://UI/States.tscn");
 
             // 3. 循环创建 Buff 实例
             for (int i = 0; i < stateIDArray.Count; i++)
             {
-                Buff buff = stateScene.Instantiate<Buff>();
+                States states = stateScene.Instantiate<States>();
 
                 // Buff 的 _Ready() 会检查 ID，所以必须在 AddChild 之前设置
-                buff.ID = stateIDArray[i];
+                states.ID = stateIDArray[i];
 
-                StateAreas.AddChild(buff);
+                StateAreas.AddChild(states);
             }
 
             // 4. GridContainer 动态添加子节点后必须刷新布局
@@ -164,18 +164,18 @@ namespace MyProject
             }
 
             // 2. 加载 Trait 预制体（只加载一次，循环里用 Instantiate 复制）
-            var talentScene = GD.Load<PackedScene>("res://UI/Trait.tscn");
+            var talentScene = GD.Load<PackedScene>("res://UI/Talents.tscn");
 
             // 3. 循环创建 Trait 实例
             for (int i = 0; i < talentID.Count; i++)
             {
                 // 实例化 Trait
-                Trait trait = talentScene.Instantiate<Trait>();
+                Talents talents = talentScene.Instantiate<Talents>();
 
                 // 先加入场景树，再调 Setup 初始化显示
                 // Trait 的 _Ready() 会自动查找子节点，AddChild 后 _Ready 被调用
-                TalentAreas.AddChild(trait);
-                trait.Setup(talentID[i]);
+                TalentAreas.AddChild(talents);
+                talents.Setup(talentID[i]);
             }
 
             // 4. 刷新容器布局（GridContainer 动态添加子节点后必须调这个）
