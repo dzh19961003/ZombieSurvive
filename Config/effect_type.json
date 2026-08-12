@@ -1,102 +1,102 @@
 [
   {
-	"ID(int)": 10001,
-	"type(string)": "生命值",
-	"imageIcon(string)": "heart_icon.png"
+    "ID(int)": 10001,
+    "type(string)": "生命值",
+    "imageIcon(string)": "heart_icon.png"
   },
   {
-	"ID(int)": 10002,
-	"type(string)": "最大生命值",
-	"imageIcon(string)": "heart_icon.png"
+    "ID(int)": 10002,
+    "type(string)": "最大生命值",
+    "imageIcon(string)": "heart_icon.png"
   },
   {
-	"ID(int)": 10003,
-	"type(string)": "强健",
-	"imageIcon(string)": "strong.png"
+    "ID(int)": 10003,
+    "type(string)": "强健",
+    "imageIcon(string)": "strong.png"
   },
   {
-	"ID(int)": 10004,
-	"type(string)": "速度",
-	"imageIcon(string)": "speed.png"
+    "ID(int)": 10004,
+    "type(string)": "速度",
+    "imageIcon(string)": "speed.png"
   },
   {
-	"ID(int)": 10005,
-	"type(string)": "智力",
-	"imageIcon(string)": "brain.png"
+    "ID(int)": 10005,
+    "type(string)": "智力",
+    "imageIcon(string)": "brain.png"
   },
   {
-	"ID(int)": 10006,
-	"type(string)": "强健经验",
-	"imageIcon(string)": "strong.png"
+    "ID(int)": 10006,
+    "type(string)": "强健经验",
+    "imageIcon(string)": "strong.png"
   },
   {
-	"ID(int)": 10007,
-	"type(string)": "速度经验",
-	"imageIcon(string)": "speed.png"
+    "ID(int)": 10007,
+    "type(string)": "速度经验",
+    "imageIcon(string)": "speed.png"
   },
   {
-	"ID(int)": 10008,
-	"type(string)": "智力经验",
-	"imageIcon(string)": "brain.png"
+    "ID(int)": 10008,
+    "type(string)": "智力经验",
+    "imageIcon(string)": "brain.png"
   },
   {
-	"ID(int)": 10009,
-	"type(string)": "经验获取效率",
-	"imageIcon(string)": "heart_icon.png"
+    "ID(int)": 10009,
+    "type(string)": "经验获取效率",
+    "imageIcon(string)": "heart_icon.png"
   },
   {
-	"ID(int)": 10010,
-	"type(string)": "护甲",
-	"imageIcon(string)": "heart_icon.png"
+    "ID(int)": 10010,
+    "type(string)": "护甲",
+    "imageIcon(string)": "heart_icon.png"
   },
   {
-	"ID(int)": 10011,
-	"type(string)": "护甲最大值",
-	"imageIcon(string)": "heart_icon.png"
+    "ID(int)": 10011,
+    "type(string)": "护甲最大值",
+    "imageIcon(string)": "heart_icon.png"
   },
   {
-	"ID(int)": 10012,
-	"type(string)": "攻击四肢权重",
-	"imageIcon(string)": "heart_icon.png"
+    "ID(int)": 10012,
+    "type(string)": "攻击四肢权重",
+    "imageIcon(string)": "heart_icon.png"
   },
   {
-	"ID(int)": 10013,
-	"type(string)": "攻击头部权重",
-	"imageIcon(string)": "heart_icon.png"
+    "ID(int)": 10013,
+    "type(string)": "攻击头部权重",
+    "imageIcon(string)": "heart_icon.png"
   },
   {
-	"ID(int)": 10014,
-	"type(string)": "攻击身体权重",
-	"imageIcon(string)": "heart_icon.png"
+    "ID(int)": 10014,
+    "type(string)": "攻击身体权重",
+    "imageIcon(string)": "heart_icon.png"
   },
   {
-	"ID(int)": 10015,
-	"type(string)": "基地体力",
-	"imageIcon(string)": "heart_icon.png"
+    "ID(int)": 10015,
+    "type(string)": "基地体力",
+    "imageIcon(string)": "heart_icon.png"
   },
   {
-	"ID(int)": 10016,
-	"type(string)": "探索体力",
-	"imageIcon(string)": "heart_icon.png"
+    "ID(int)": 10016,
+    "type(string)": "探索体力",
+    "imageIcon(string)": "heart_icon.png"
   },
   {
-	"ID(int)": 10017,
-	"type(string)": "基地最大体力",
-	"imageIcon(string)": "heart_icon.png"
+    "ID(int)": 10017,
+    "type(string)": "基地最大体力",
+    "imageIcon(string)": "heart_icon.png"
   },
   {
-	"ID(int)": 10018,
-	"type(string)": "探索最大体力",
-	"imageIcon(string)": "heart_icon.png"
+    "ID(int)": 10018,
+    "type(string)": "探索最大体力",
+    "imageIcon(string)": "heart_icon.png"
   },
   {
-	"ID(int)": 10019,
-	"type(string)": "饱食度",
-	"imageIcon(string)": "heart_icon.png"
+    "ID(int)": 10019,
+    "type(string)": "饱食度",
+    "imageIcon(string)": "heart_icon.png"
   },
   {
-	"ID(int)": 10020,
-	"type(string)": "制作等级",
-	"imageIcon(string)": "heart_icon.png"
+    "ID(int)": 10020,
+    "type(string)": "制作等级",
+    "imageIcon(string)": "heart_icon.png"
   }
 ]
