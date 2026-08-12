@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://cr3w4jsrtk2u"]
+
+[ext_resource type="Texture2D" uid="uid://d1nmp4fcid50p" path="res://Assets/Images/UI/main_panel_2.png" id="1_t36ki"]
+
+[node name="SelecedArea" type="Control" unique_id=1336905437]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 1150.0
+offset_right = 825.0
+offset_bottom = 1400.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=520957390]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_t36ki")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="." unique_id=1328116268]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -20.0
+offset_right = 200.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
+theme_override_font_sizes/font_size = 26
+text = "在上方选择物品进行制作"
+horizontal_alignment = 1
+vertical_alignment = 1

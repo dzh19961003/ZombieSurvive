@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cf3q4me5htwwx" path="res://Assets/Images/Items/jacket1_icon.png" id="8_jacket"]
 [ext_resource type="Texture2D" uid="uid://baa5sri2u20w7" path="res://Assets/Images/Items/ring1_icon.png" id="9_ring"]
 [ext_resource type="Texture2D" uid="uid://bwawwv5xw4hp7" path="res://Assets/Images/Items/tools_icon.png" id="10_tools"]
-[ext_resource type="Texture2D" uid="uid://d1nmp4fcid50p" path="res://Assets/Images/UI/main_panel_2.png" id="11_fgrty"]
+[ext_resource type="PackedScene" uid="uid://cr3w4jsrtk2u" path="res://UI/WorkStation/WSseleced_area.tscn" id="11_7bguu"]
 [ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="11_stam"]
 
 [node name="WSMakeUI" type="Control" unique_id=1001001001]
@@ -510,38 +510,9 @@ offset_bottom = 63.0
 theme_override_font_sizes/font_size = 40
 text = "×2"
 
-[node name="SelecedArea" type="Control" parent="." unique_id=920014600]
-anchors_preset = 0
-offset_left = 40.0
-offset_top = 1150.0
-offset_right = 825.0
-offset_bottom = 1400.0
-
-[node name="TextureRect" type="TextureRect" parent="SelecedArea" unique_id=1958718152]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("11_fgrty")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="SelecedArea" unique_id=1004000001]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -20.0
-offset_right = 200.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
-theme_override_font_sizes/font_size = 26
-text = "在上方选择物品进行制作"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="SelecedArea" parent="." unique_id=1336905437 instance=ExtResource("11_7bguu")]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 1138.0
+offset_right = 831.0
+offset_bottom = 1388.0

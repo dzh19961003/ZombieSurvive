@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://x8pq3or5i6ci" path="res://Scripts/UI/WorkstationUI.cs" id="1_sivno"]
 [ext_resource type="Texture2D" uid="uid://d1nmp4fcid50p" path="res://Assets/Images/UI/main_panel_2.png" id="2_4cbvb"]
-[ext_resource type="PackedScene" uid="uid://dxokfpltwmqnk" path="res://UI/WSMakeUI.tscn" id="3_makeui"]
-[ext_resource type="PackedScene" uid="uid://co5gs6anh2rxe" path="res://UI/WSUpgradeUI.tscn" id="3_mwji2"]
+[ext_resource type="PackedScene" uid="uid://dxokfpltwmqnk" path="res://UI/WorkStation/WSMakeUI.tscn" id="3_makeui"]
+[ext_resource type="PackedScene" uid="uid://co5gs6anh2rxe" path="res://UI/WorkStation/WSUpgradeUI.tscn" id="3_mwji2"]
 [ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="4_sivno"]
 [ext_resource type="Texture2D" uid="uid://bs7gg3xn14v6b" path="res://Assets/Images/UI/close_button.png" id="4_wl7na"]
 [ext_resource type="Texture2D" uid="uid://cwqay0vk7x016" path="res://Assets/Images/UI/tab_inactive.png" id="5_wl7na"]
