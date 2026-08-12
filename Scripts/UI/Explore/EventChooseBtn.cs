@@ -18,8 +18,13 @@ public partial class EventChooseBtn : CenterContainer
         {
             ExploreEvent exploreEvent = ConfigManager.Instance.exploreEventDic[eventID];
             GameManager gameManager = GameManager.Instance;
-
+            //进度大于100，变为已完成状态
             if (GameManager.Instance.exploreProgress[GameManager.Instance.roomID]>=100)
+            {
+                finish = true;
+            }
+            //进度为90，且当前事件类型为103
+            if (GameManager.Instance.exploreProgress[GameManager.Instance.roomID] == 90 && ConfigManager.Instance.exploreEventDic[eventID].EventType == 103)
             {
                 finish = true;
             }
@@ -50,6 +55,7 @@ public partial class EventChooseBtn : CenterContainer
                 }
                 subTaskArray.Add(gameManager.currentSubTask);
                 gameManager.subTaskDic[gameManager.roomID] = subTaskArray;
+                gameManager.exploreProgress[gameManager.roomID] += 10;
             }
             //继续事件
             else

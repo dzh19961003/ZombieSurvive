@@ -25,12 +25,24 @@ public partial class BuildingTips : Control
                 EnterExplore();
                 GameManager.Instance.AdvanceTime();
             }
-            else 
+            else if (GameManager.Instance.CurrentTimePeriod == 2)
             {
                 Node tips = UIManager.Instance.ShowCommonTips("探索提示", "确定进入今天的第二次探索吗？临近黄昏丧尸的能力会显著提升");
                 CommonTips control = (CommonTips)tips;
                 control.OnConfirm = EnterExplore;
+                GameManager.Instance.AdvanceTime();
             }
+            else
+            {
+                Node tips = UIManager.Instance.ShowCommonTips("探索提示", "今天已经太晚了，明天再来继续探索吧");
+                CommonTips control = (CommonTips)tips;
+                control.OnConfirm = () =>
+                { 
+                    UIManager.Instance.HideUI("res://UI/CommonTips.tscn");
+                    UIManager.Instance.HideUI("res://UI/Explore/BuildingTips.tscn");
+                };
+            }
+
         };
     }
     public void InitialTips(int ID) 

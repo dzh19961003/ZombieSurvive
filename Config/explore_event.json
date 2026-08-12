@@ -1,214 +1,214 @@
 [
   {
-    "ID(int)": 1,
-    "eventType(int)": 101,
-    "headType(int)": 1,
-    "des(string)": "你找到了一个废弃建材堆，看了看应该有些可用的建材，但翻找时容易划伤手指",
-    "image(string)": "material_image",
-    "option(string)": [
-      "翻找可用建材（随机建材，可能受伤）",
+	"ID(int)": 1,
+	"eventType(int)": 101,
+	"headType(int)": 1,
+	"des(string)": "你找到了一个废弃建材堆，看了看应该有些可用的建材，但翻找时容易划伤手指",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "翻找可用建材（随机建材，可能受伤）",
       "无视走开"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "nextEvent(int)": [
-      2,
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"nextEvent(int)": [
+	  2,
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 2,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": "通过翻找，你成功找到了一些用得上的建材，但翻找过程中不幸被钉子划伤",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 2,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": "通过翻找，你成功找到了一些用得上的建材，但翻找过程中不幸被钉子划伤",
+	"image(string)": "material_image",
+	"option(string)": [
       "真是倒霉"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [
-      1001,
-      10001
-    ],
-    "itemNum(int)": [
-      1,
-      -5
-    ],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [
+	  1001,
+	  10001
+	],
+	"itemNum(int)": [
+	  1,
+	  -5
+	],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 3,
-    "eventType(int)": 102,
-    "headType(int)": 1,
-    "des(string)": "（一般支线）你来到操场的球门前，球门上挂着一条醒目的红色丝带，你研究了半天也没发现有什么问题",
-    "image(string)": "material_image",
-    "option(string)": [
-      "好像哪里不对...",
+	"ID(int)": 3,
+	"eventType(int)": 102,
+	"headType(int)": 1,
+	"des(string)": "（一般支线）你来到操场的球门前，球门上挂着一条醒目的红色丝带，你研究了半天也没发现有什么问题",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "好像哪里不对...",
       "无奈放弃"
-    ],
-    "demand(int)": [
-      10003
-    ],
-    "demandNum(int)": [
-      10
-    ],
-    "nextEvent(int)": [
-      4,
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [
+	  10003
+	],
+	"demandNum(int)": [
+	  10
+	],
+	"nextEvent(int)": [
+	  4,
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 4,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "（一般支线）又打量了一会儿后，你仿佛心有灵犀般地抬头向上看，不远处教学楼上的一个窗户挂满了相同的红色丝带，隐隐看到有一个身影在窗前...",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 4,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "（一般支线）又打量了一会儿后，你仿佛心有灵犀般地抬头向上看，不远处教学楼上的一个窗户挂满了相同的红色丝带，隐隐看到有一个身影在窗前...",
+	"image(string)": "material_image",
+	"option(string)": [
       "结束支线"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5,
-    "eventType(int)": 103,
-    "headType(int)": 1,
-    "des(string)": "测试事件5(重要支线)",
-    "image(string)": "material_image",
-    "option(string)": [
-      "跳转事件6(重要支线)",
+	"ID(int)": 5,
+	"eventType(int)": 103,
+	"headType(int)": 1,
+	"des(string)": "测试事件5(重要支线)",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "跳转事件6(重要支线)",
       "结束事件5(重要支线)"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "nextEvent(int)": [
-      6,
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"nextEvent(int)": [
+	  6,
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 6,
-    "eventType(int)": 103,
-    "headType(int)": 2,
-    "des(string)": "测试事件6(重要支线)",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 6,
+	"eventType(int)": 103,
+	"headType(int)": 2,
+	"des(string)": "测试事件6(重要支线)",
+	"image(string)": "material_image",
+	"option(string)": [
       "完结事件6(重要支线)"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "nextEvent(int)": [
-      9998
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"nextEvent(int)": [
+	  9998
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 7,
-    "eventType(int)": 101,
-    "headType(int)": 1,
-    "des(string)": "测试事件7",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 7,
+	"eventType(int)": 101,
+	"headType(int)": 1,
+	"des(string)": "测试事件7",
+	"image(string)": "material_image",
+	"option(string)": [
       "结束事件7"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 8,
-    "eventType(int)": 101,
-    "headType(int)": 1,
-    "des(string)": "测试事件8",
-    "image(string)": "material_image",
-    "option(string)": [
-      "跳转事件9",
+	"ID(int)": 8,
+	"eventType(int)": 101,
+	"headType(int)": 1,
+	"des(string)": "测试事件8",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "跳转事件9",
       "结束事件8"
-    ],
-    "demand(int)": [
-      10003
-    ],
-    "demandNum(int)": [
-      10
-    ],
-    "nextEvent(int)": [
-      9,
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [
+	  10003
+	],
+	"demandNum(int)": [
+	  10
+	],
+	"nextEvent(int)": [
+	  9,
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 9,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": "力量经验+10",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 9,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": "力量经验+10",
+	"image(string)": "material_image",
+	"option(string)": [
       "结束事件9"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 10,
-    "eventType(int)": 101,
-    "headType(int)": 1,
-    "des(string)": "测试事件10",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 10,
+	"eventType(int)": 101,
+	"headType(int)": 1,
+	"des(string)": "测试事件10",
+	"image(string)": "material_image",
+	"option(string)": [
       "结束事件10"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   }
 ]

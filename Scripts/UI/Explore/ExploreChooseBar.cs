@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using MyProject;
 using System;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
 
@@ -15,6 +16,7 @@ public partial class ExploreChooseBar : NinePatchRect
     public ExploreUI exploreUI;
     private GameManager gameManager;
     private bool progress=true;
+    bool include = true;
     private int danger=3;
     public override void _Ready()
     {
@@ -99,7 +101,7 @@ public partial class ExploreChooseBar : NinePatchRect
         {
             subTaskArray = gameManager.subTaskDic[gameManager.roomID];
         }
-
+        //取出应该触发的支线事件ID
         if (ConfigManager.Instance.roomDic[gameManager.roomID].SubTask.Count > 0 && !subTaskArray.Contains(ConfigManager.Instance.roomDic[gameManager.roomID].SubTask[0]))
         {
             if (explorePogress[(gameManager.roomID)] >= ConfigManager.Instance.roomDic[gameManager.roomID].TriggerProgress[0])
@@ -114,13 +116,14 @@ public partial class ExploreChooseBar : NinePatchRect
                 eventID = ConfigManager.Instance.roomDic[gameManager.roomID].SubTask[1];
             }
         }
-
+        //如果是普通支线，直接标记为完成
         if (ConfigManager.Instance.exploreEventDic[eventID].EventType == 102)
         {
             progress = false;
             subTaskArray.Add(eventID);
             gameManager.subTaskDic[gameManager.roomID] = subTaskArray;
         }
+        //如果是重要支线，暂不标记，仅赋值给当前支线
         if (ConfigManager.Instance.exploreEventDic[eventID].EventType == 103)
         {
             progress = false;
@@ -161,10 +164,42 @@ public partial class ExploreChooseBar : NinePatchRect
             {
                 gameManager.exploreNoise -= 100;
             }
-            if (explorePogress[(gameManager.roomID)] > 100)
+            //如果有重要支线未完成，进度不能超过90%
+            //首先判断是否有已完成支线array，这个array是否包含未完成的重要支线
+            if (gameManager.subTaskDic.TryGetValue(gameManager.roomID,out Array<int> array))
             {
-                explorePogress[(gameManager.roomID)] = 100;
+                foreach (var item in ConfigManager.Instance.roomDic[gameManager.roomID].SubTask)
+                {
+                    if (!array.Contains(item))
+                    {
+                        include = false;
+                    }
+                }               
             }
+            //如果找不到已完成支线，则判断该房间支线数量是否为0，如果不为0则直接限制进度
+            else
+            {
+                if (ConfigManager.Instance.roomDic[gameManager.roomID].SubTask.Count!=0)
+                {
+                    include = false;
+                }
+            }
+            //最后根据综合情况判断进度应该是多少
+            if (include==false)
+            {
+                if (explorePogress[(gameManager.roomID)] > 90)
+                {
+                    explorePogress[(gameManager.roomID)] = 90;
+                }
+            }
+            else
+            {
+                if (explorePogress[(gameManager.roomID)] > 100)
+                {
+                    explorePogress[(gameManager.roomID)] = 100;
+                }
+            }
+            
         }
        
 

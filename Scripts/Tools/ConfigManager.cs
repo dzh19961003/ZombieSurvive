@@ -53,6 +53,16 @@ namespace MyProject
         /// <summary>ItemPool 配置字典（以 ID 为键）</summary>
         public Dictionary<int, ItemPool> itemPoolDic { get; private set; }
 
+        /// <summary>RoofWorkstation 配置列表</summary>
+        public List<RoofWorkstation> roofWorkstationList { get; private set; }
+        /// <summary>RoofWorkstation 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, RoofWorkstation> roofWorkstationDic { get; private set; }
+
+        /// <summary>RoofWorkstationItem 配置列表</summary>
+        public List<RoofWorkstationItem> roofWorkstationItemList { get; private set; }
+        /// <summary>RoofWorkstationItem 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, RoofWorkstationItem> roofWorkstationItemDic { get; private set; }
+
         /// <summary>Room 配置列表</summary>
         public List<Room> roomList { get; private set; }
         /// <summary>Room 配置字典（以 ID 为键）</summary>
@@ -110,6 +120,14 @@ namespace MyProject
             itemPoolList = JsonLoader.LoadToList<ItemPool>("item_pool");
             itemPoolDic = JsonLoader.LoadToDic<ItemPool>("item_pool");
             GD.Print("[ConfigManager] ItemPool loaded: List=" + (itemPoolList?.Count ?? 0) + ", Dic=" + (itemPoolDic?.Count ?? 0));
+
+            roofWorkstationList = JsonLoader.LoadToList<RoofWorkstation>("roof_workstation");
+            roofWorkstationDic = JsonLoader.LoadToDic<RoofWorkstation>("roof_workstation");
+            GD.Print("[ConfigManager] RoofWorkstation loaded: List=" + (roofWorkstationList?.Count ?? 0) + ", Dic=" + (roofWorkstationDic?.Count ?? 0));
+
+            roofWorkstationItemList = JsonLoader.LoadToList<RoofWorkstationItem>("roof_workstation_item");
+            roofWorkstationItemDic = JsonLoader.LoadToDic<RoofWorkstationItem>("roof_workstation_item");
+            GD.Print("[ConfigManager] RoofWorkstationItem loaded: List=" + (roofWorkstationItemList?.Count ?? 0) + ", Dic=" + (roofWorkstationItemDic?.Count ?? 0));
 
             roomList = JsonLoader.LoadToList<Room>("room");
             roomDic = JsonLoader.LoadToDic<Room>("room");
