@@ -1,0 +1,107 @@
+[
+  {
+    "ID(int)": 1,
+    "itemID(int)": 4,
+    "type(int)": 1,
+    "level(int)": 1,
+    "materialID(int)": [
+      9,
+      7
+    ],
+    "materialNum(int)": [
+      2,
+      2
+    ],
+    "stamina(int)": 1,
+    "getID(int)": [
+      9,
+      7
+    ],
+    "getNum(int)": [
+      1,
+      1
+    ]
+  },
+  {
+    "ID(int)": 2,
+    "itemID(int)": 5,
+    "type(int)": 1,
+    "level(int)": 2,
+    "materialID(int)": [
+      9,
+      7
+    ],
+    "materialNum(int)": [
+      3,
+      3
+    ],
+    "stamina(int)": 1,
+    "getID(int)": [
+      9,
+      7
+    ],
+    "getNum(int)": [
+      2,
+      1
+    ]
+  },
+  {
+    "ID(int)": 3,
+    "itemID(int)": 6,
+    "type(int)": 1,
+    "level(int)": 3,
+    "materialID(int)": [
+      9,
+      7
+    ],
+    "materialNum(int)": [
+      4,
+      4
+    ],
+    "stamina(int)": 1,
+    "getID(int)": [
+      9,
+      7
+    ],
+    "getNum(int)": [
+      3,
+      1
+    ]
+  },
+  {
+    "ID(int)": 4,
+    "itemID(int)": 8,
+    "type(int)": 1,
+    "level(int)": 5,
+    "materialID(int)": [
+      9,
+      7
+    ],
+    "materialNum(int)": [
+      5,
+      5
+    ],
+    "stamina(int)": 2,
+    "getID(int)": [
+      9
+    ],
+    "getNum(int)": [
+      4
+    ]
+  },
+  {
+    "ID(int)": 5,
+    "itemID(int)": 1,
+    "type(int)": 2,
+    "level(int)": 1,
+    "materialID(int)": [
+      9
+    ],
+    "materialNum(int)": [
+      2
+    ],
+    "stamina(int)": 1,
+    "getID(int)": [],
+    "getNum(int)": []
+  }
+]

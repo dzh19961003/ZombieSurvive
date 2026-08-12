@@ -1,0 +1,77 @@
+[
+  {
+    "ID(int)": 1,
+    "level(int)": 1,
+    "icon(string)": "workstation_1",
+    "itemID(int)": [
+      7,
+      9,
+      10015
+    ],
+    "itemNum(int)": [
+      2,
+      2,
+      2
+    ]
+  },
+  {
+    "ID(int)": 2,
+    "level(int)": 2,
+    "icon(string)": "workstation_1",
+    "itemID(int)": [
+      7,
+      9,
+      10015
+    ],
+    "itemNum(int)": [
+      3,
+      3,
+      3
+    ]
+  },
+  {
+    "ID(int)": 3,
+    "level(int)": 3,
+    "icon(string)": "workstation_1",
+    "itemID(int)": [
+      7,
+      9,
+      10015
+    ],
+    "itemNum(int)": [
+      4,
+      4,
+      4
+    ]
+  },
+  {
+    "ID(int)": 4,
+    "level(int)": 4,
+    "icon(string)": "workstation_1",
+    "itemID(int)": [
+      7,
+      9,
+      10015
+    ],
+    "itemNum(int)": [
+      5,
+      5,
+      5
+    ]
+  },
+  {
+    "ID(int)": 5,
+    "level(int)": 5,
+    "icon(string)": "workstation_1",
+    "itemID(int)": [
+      7,
+      9,
+      10015
+    ],
+    "itemNum(int)": [
+      999,
+      999,
+      999
+    ]
+  }
+]

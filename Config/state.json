@@ -1,74 +1,74 @@
 [
   {
-	"ID(int)": 1,
-	"name(string)": "美味",
-	"positive(int)": 1,
-	"effect(string)": "太美味了",
-	"effctType(int)": 10002,
-	"effctNum(int)": 3,
-	"time(int)": 1
+    "ID(int)": 1,
+    "name(string)": "美味",
+    "positive(int)": 1,
+    "effect(string)": "太美味了",
+    "effctType(int)": 10002,
+    "effctNum(int)": 3,
+    "time(int)": 1
   },
   {
-	"ID(int)": 2,
-	"name(string)": "感染",
-	"positive(int)": 0,
-	"effect(string)": "被感染了",
-	"effctType(int)": 10003,
-	"effctNum(int)": 3,
-	"time(int)": 2
+    "ID(int)": 2,
+    "name(string)": "感染",
+    "positive(int)": 0,
+    "effect(string)": "被感染了",
+    "effctType(int)": 10003,
+    "effctNum(int)": 3,
+    "time(int)": 2
   },
   {
-	"ID(int)": 3,
-	"name(string)": "美味+",
-	"positive(int)": 1,
-	"effect(string)": "太美味了",
-	"effctType(int)": 10004,
-	"effctNum(int)": 5,
-	"time(int)": 1
+    "ID(int)": 3,
+    "name(string)": "美味+",
+    "positive(int)": 1,
+    "effect(string)": "太美味了",
+    "effctType(int)": 10004,
+    "effctNum(int)": 5,
+    "time(int)": 1
   },
   {
-	"ID(int)": 4,
-	"name(string)": "美味++",
-	"positive(int)": 1,
-	"effect(string)": "太美味了",
-	"effctType(int)": 10005,
-	"effctNum(int)": -5,
-	"time(int)": 1
+    "ID(int)": 4,
+    "name(string)": "美味++",
+    "positive(int)": 1,
+    "effect(string)": "太美味了",
+    "effctType(int)": 10005,
+    "effctNum(int)": -5,
+    "time(int)": 1
   },
   {
-	"ID(int)": 5,
-	"name(string)": "饥饿",
-	"positive(int)": 0,
-	"effect(string)": "要饿死了",
-	"effctType(int)": 10003,
-	"effctNum(int)": -10,
-	"time(int)": 2
+    "ID(int)": 5,
+    "name(string)": "饥饿",
+    "positive(int)": 0,
+    "effect(string)": "要饿死了",
+    "effctType(int)": 10003,
+    "effctNum(int)": -10,
+    "time(int)": 2
   },
   {
-	"ID(int)": 6,
-	"name(string)": "空腹",
-	"positive(int)": 0,
-	"effect(string)": "需要吃饭",
-	"effctType(int)": 10003,
-	"effctNum(int)": -5,
-	"time(int)": 2
+    "ID(int)": 6,
+    "name(string)": "空腹",
+    "positive(int)": 0,
+    "effect(string)": "需要吃饭",
+    "effctType(int)": 10003,
+    "effctNum(int)": -5,
+    "time(int)": 2
   },
   {
-	"ID(int)": 7,
-	"name(string)": "半饱",
-	"positive(int)": 1,
-	"effect(string)": "还不错",
-	"effctType(int)": 10003,
-	"effctNum(int)": 3,
-	"time(int)": 2
+    "ID(int)": 7,
+    "name(string)": "半饱",
+    "positive(int)": 1,
+    "effect(string)": "还不错",
+    "effctType(int)": 10003,
+    "effctNum(int)": 3,
+    "time(int)": 2
   },
   {
-	"ID(int)": 8,
-	"name(string)": "饱腹",
-	"positive(int)": 1,
-	"effect(string)": "一身力气",
-	"effctType(int)": 10003,
-	"effctNum(int)": 10,
-	"time(int)": 2
+    "ID(int)": 8,
+    "name(string)": "饱腹",
+    "positive(int)": 1,
+    "effect(string)": "一身力气",
+    "effctType(int)": 10003,
+    "effctNum(int)": 10,
+    "time(int)": 2
   }
 ]
