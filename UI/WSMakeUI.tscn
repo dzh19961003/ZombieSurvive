@@ -1,0 +1,547 @@
+[gd_scene format=3 uid="uid://dxokfpltwmqnk"]
+
+[ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="1_tabactive"]
+[ext_resource type="Texture2D" uid="uid://cwqay0vk7x016" path="res://Assets/Images/UI/tab_inactive.png" id="2_tabinactive"]
+[ext_resource type="Texture2D" uid="uid://c5kp62gpikm3m" path="res://Assets/Images/Items/rice_icon.png" id="4_ti34o"]
+[ext_resource type="Texture2D" uid="uid://b0f54t58kd7u3" path="res://Assets/Images/Items/wood_icon.png" id="5_fgrty"]
+[ext_resource type="Texture2D" uid="uid://53n15gjv8ksp" path="res://Assets/Images/UI/popup_panel.png" id="6_iypto"]
+[ext_resource type="Texture2D" uid="uid://deoueql4psbch" path="res://Assets/Images/Items/knife1_icon.png" id="7_knife"]
+[ext_resource type="Texture2D" uid="uid://cf3q4me5htwwx" path="res://Assets/Images/Items/jacket1_icon.png" id="8_jacket"]
+[ext_resource type="Texture2D" uid="uid://baa5sri2u20w7" path="res://Assets/Images/Items/ring1_icon.png" id="9_ring"]
+[ext_resource type="Texture2D" uid="uid://bwawwv5xw4hp7" path="res://Assets/Images/Items/tools_icon.png" id="10_tools"]
+[ext_resource type="Texture2D" uid="uid://d1nmp4fcid50p" path="res://Assets/Images/UI/main_panel_2.png" id="11_fgrty"]
+[ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="11_stam"]
+
+[node name="WSMakeUI" type="Control" unique_id=1001001001]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 865.0
+offset_bottom = 1424.0
+
+[node name="SubTabBar" type="HBoxContainer" parent="." unique_id=1002000001]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 825.0
+offset_bottom = 90.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="TabMake" type="TextureButton" parent="SubTabBar" unique_id=1002000002]
+custom_minimum_size = Vector2(220, 70)
+layout_mode = 2
+texture_normal = ExtResource("1_tabactive")
+stretch_mode = 0
+
+[node name="Content" type="HBoxContainer" parent="SubTabBar/TabMake" unique_id=1002000003]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -22.0
+offset_right = 60.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="SubTabBar/TabMake/Content" unique_id=1002000004]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+texture = ExtResource("10_tools")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SubTabBar/TabMake/Content" unique_id=1002000005]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "制作"
+vertical_alignment = 1
+
+[node name="TabCook" type="TextureButton" parent="SubTabBar" unique_id=1002000010]
+custom_minimum_size = Vector2(220, 70)
+layout_mode = 2
+texture_normal = ExtResource("2_tabinactive")
+stretch_mode = 0
+
+[node name="Content" type="HBoxContainer" parent="SubTabBar/TabCook" unique_id=1002000011]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -22.0
+offset_right = 60.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="SubTabBar/TabCook/Content" unique_id=1002000012]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+texture = ExtResource("4_ti34o")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SubTabBar/TabCook/Content" unique_id=1002000013]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "做饭"
+vertical_alignment = 1
+
+[node name="TabDecompose" type="TextureButton" parent="SubTabBar" unique_id=1002000020]
+custom_minimum_size = Vector2(220, 70)
+layout_mode = 2
+texture_normal = ExtResource("2_tabinactive")
+stretch_mode = 0
+
+[node name="Content" type="HBoxContainer" parent="SubTabBar/TabDecompose" unique_id=1002000021]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -22.0
+offset_right = 60.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="SubTabBar/TabDecompose/Content" unique_id=1002000022]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+texture = ExtResource("5_fgrty")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SubTabBar/TabDecompose/Content" unique_id=1002000023]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "拆解"
+vertical_alignment = 1
+
+[node name="RecipeScroll" type="ScrollContainer" parent="." unique_id=1003000001]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 120.0
+offset_right = 819.0
+offset_bottom = 1130.0
+horizontal_scroll_mode = 0
+
+[node name="RecipeList" type="VBoxContainer" parent="RecipeScroll" unique_id=1003000002]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Row1" type="PanelContainer" parent="RecipeScroll/RecipeList" unique_id=1003000010]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Row1Inner" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row1" unique_id=891347351]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ItemIconBg" type="TextureRect" parent="RecipeScroll/RecipeList/Row1/Row1Inner" unique_id=1003000012]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 0
+offset_right = 790.0
+offset_bottom = 90.0
+texture = ExtResource("6_iypto")
+expand_mode = 1
+
+[node name="ItemIcon" type="TextureRect" parent="RecipeScroll/RecipeList/Row1/Row1Inner" unique_id=1003000013]
+layout_mode = 0
+offset_left = 32.0
+offset_top = -2.0
+offset_right = 115.0
+offset_bottom = 88.0
+texture = ExtResource("7_knife")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ItemName" type="Label" parent="RecipeScroll/RecipeList/Row1/Row1Inner" unique_id=1003000014]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 17.0
+offset_right = 220.0
+offset_bottom = 70.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "小刀"
+vertical_alignment = 1
+
+[node name="CostList" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row1/Row1Inner" unique_id=1170460637]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 7.0
+offset_right = 724.0
+offset_bottom = 97.0
+
+[node name="Recipe1" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row1/Row1Inner/CostList" unique_id=484330020]
+layout_mode = 0
+offset_left = -78.0
+offset_right = 124.0
+offset_bottom = 90.0
+
+[node name="Icon" type="TextureRect" parent="RecipeScroll/RecipeList/Row1/Row1Inner/CostList/Recipe1" unique_id=1078077434]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 0
+offset_left = 71.0
+offset_right = 124.0
+offset_bottom = 71.0
+texture = ExtResource("10_tools")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Num" type="Label" parent="RecipeScroll/RecipeList/Row1/Row1Inner/CostList/Recipe1" unique_id=1787296523]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 8.0
+offset_right = 174.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 40
+text = "×3"
+
+[node name="Recipe2" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row1/Row1Inner/CostList" unique_id=75883326]
+layout_mode = 0
+offset_left = 40.0
+offset_top = -1.0
+offset_right = 232.0
+offset_bottom = 89.0
+
+[node name="Icon" type="TextureRect" parent="RecipeScroll/RecipeList/Row1/Row1Inner/CostList/Recipe2" unique_id=523900604]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 0
+offset_left = 71.0
+offset_right = 124.0
+offset_bottom = 71.0
+texture = ExtResource("5_fgrty")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Num" type="Label" parent="RecipeScroll/RecipeList/Row1/Row1Inner/CostList/Recipe2" unique_id=111000137]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 8.0
+offset_right = 174.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 40
+text = "×3"
+
+[node name="Stamina" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row1/Row1Inner" unique_id=670627696]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 9.0
+offset_right = 523.0
+offset_bottom = 80.0
+
+[node name="Icon" type="TextureRect" parent="RecipeScroll/RecipeList/Row1/Row1Inner/Stamina" unique_id=1305566322]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 0
+offset_left = 71.0
+offset_right = 124.0
+offset_bottom = 71.0
+texture = ExtResource("11_stam")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Num" type="Label" parent="RecipeScroll/RecipeList/Row1/Row1Inner/Stamina" unique_id=424638355]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 8.0
+offset_right = 174.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 40
+text = "×1"
+
+[node name="Row2" type="PanelContainer" parent="RecipeScroll/RecipeList" unique_id=2023085749]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Row1Inner" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row2" unique_id=2053111810]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ItemIconBg" type="TextureRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner" unique_id=2145498581]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 0
+offset_right = 790.0
+offset_bottom = 90.0
+texture = ExtResource("6_iypto")
+expand_mode = 1
+
+[node name="ItemIcon" type="TextureRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner" unique_id=1784939563]
+layout_mode = 0
+offset_left = 32.0
+offset_top = -2.0
+offset_right = 115.0
+offset_bottom = 88.0
+texture = ExtResource("8_jacket")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ItemName" type="Label" parent="RecipeScroll/RecipeList/Row2/Row1Inner" unique_id=857622166]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 17.0
+offset_right = 220.0
+offset_bottom = 70.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "外套"
+vertical_alignment = 1
+
+[node name="CostList" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner" unique_id=960454322]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 7.0
+offset_right = 724.0
+offset_bottom = 97.0
+
+[node name="Recipe1" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner/CostList" unique_id=1519954366]
+layout_mode = 0
+offset_left = -78.0
+offset_right = 124.0
+offset_bottom = 90.0
+
+[node name="Icon" type="TextureRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner/CostList/Recipe1" unique_id=699518123]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 0
+offset_left = 71.0
+offset_right = 124.0
+offset_bottom = 71.0
+texture = ExtResource("10_tools")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Num" type="Label" parent="RecipeScroll/RecipeList/Row2/Row1Inner/CostList/Recipe1" unique_id=683104031]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 8.0
+offset_right = 174.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 40
+text = "×3"
+
+[node name="Recipe2" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner/CostList" unique_id=657629649]
+layout_mode = 0
+offset_left = 40.0
+offset_top = -1.0
+offset_right = 232.0
+offset_bottom = 89.0
+
+[node name="Icon" type="TextureRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner/CostList/Recipe2" unique_id=2088294877]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 0
+offset_left = 71.0
+offset_right = 124.0
+offset_bottom = 71.0
+texture = ExtResource("5_fgrty")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Num" type="Label" parent="RecipeScroll/RecipeList/Row2/Row1Inner/CostList/Recipe2" unique_id=255534995]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 8.0
+offset_right = 174.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 40
+text = "×3"
+
+[node name="Stamina" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner" unique_id=1357085440]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 9.0
+offset_right = 523.0
+offset_bottom = 80.0
+
+[node name="Icon" type="TextureRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner/Stamina" unique_id=238037210]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 0
+offset_left = 71.0
+offset_right = 124.0
+offset_bottom = 71.0
+texture = ExtResource("11_stam")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Num" type="Label" parent="RecipeScroll/RecipeList/Row2/Row1Inner/Stamina" unique_id=1809211273]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 8.0
+offset_right = 174.0
+offset_bottom = 63.0
+theme_override_colors/font_color = Color(1, 0, 0.09803922, 1)
+theme_override_font_sizes/font_size = 40
+text = "×3"
+
+[node name="Row3" type="PanelContainer" parent="RecipeScroll/RecipeList" unique_id=2075946401]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Row1Inner" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row3" unique_id=1126443967]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ItemIconBg" type="TextureRect" parent="RecipeScroll/RecipeList/Row3/Row1Inner" unique_id=730080098]
+custom_minimum_size = Vector2(72, 72)
+layout_mode = 0
+offset_right = 790.0
+offset_bottom = 90.0
+texture = ExtResource("6_iypto")
+expand_mode = 1
+
+[node name="ItemIcon" type="TextureRect" parent="RecipeScroll/RecipeList/Row3/Row1Inner" unique_id=1655972269]
+layout_mode = 0
+offset_left = 32.0
+offset_top = -2.0
+offset_right = 115.0
+offset_bottom = 88.0
+texture = ExtResource("9_ring")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ItemName" type="Label" parent="RecipeScroll/RecipeList/Row3/Row1Inner" unique_id=2032248070]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 17.0
+offset_right = 220.0
+offset_bottom = 70.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "金戒指"
+vertical_alignment = 1
+
+[node name="CostList" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row3/Row1Inner" unique_id=858803669]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 7.0
+offset_right = 724.0
+offset_bottom = 97.0
+
+[node name="Recipe1" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row3/Row1Inner/CostList" unique_id=1841912476]
+layout_mode = 0
+offset_left = -78.0
+offset_right = 124.0
+offset_bottom = 90.0
+
+[node name="Icon" type="TextureRect" parent="RecipeScroll/RecipeList/Row3/Row1Inner/CostList/Recipe1" unique_id=1203709561]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 0
+offset_left = 71.0
+offset_right = 124.0
+offset_bottom = 71.0
+texture = ExtResource("10_tools")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Num" type="Label" parent="RecipeScroll/RecipeList/Row3/Row1Inner/CostList/Recipe1" unique_id=95660047]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 8.0
+offset_right = 174.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 40
+text = "×3"
+
+[node name="Recipe2" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row3/Row1Inner/CostList" unique_id=1816753681]
+layout_mode = 0
+offset_left = 40.0
+offset_top = -1.0
+offset_right = 232.0
+offset_bottom = 89.0
+
+[node name="Icon" type="TextureRect" parent="RecipeScroll/RecipeList/Row3/Row1Inner/CostList/Recipe2" unique_id=1321827457]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 0
+offset_left = 71.0
+offset_right = 124.0
+offset_bottom = 71.0
+texture = ExtResource("5_fgrty")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Num" type="Label" parent="RecipeScroll/RecipeList/Row3/Row1Inner/CostList/Recipe2" unique_id=324673317]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 8.0
+offset_right = 174.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 40
+text = "×3"
+
+[node name="Stamina" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row3/Row1Inner" unique_id=1243786219]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 9.0
+offset_right = 523.0
+offset_bottom = 80.0
+
+[node name="Icon" type="TextureRect" parent="RecipeScroll/RecipeList/Row3/Row1Inner/Stamina" unique_id=27319366]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 0
+offset_left = 71.0
+offset_right = 124.0
+offset_bottom = 71.0
+texture = ExtResource("11_stam")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Num" type="Label" parent="RecipeScroll/RecipeList/Row3/Row1Inner/Stamina" unique_id=878553704]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 8.0
+offset_right = 174.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 40
+text = "×2"
+
+[node name="SelecedArea" type="Control" parent="." unique_id=920014600]
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 1150.0
+offset_right = 825.0
+offset_bottom = 1400.0
+
+[node name="TextureRect" type="TextureRect" parent="SelecedArea" unique_id=1958718152]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_fgrty")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="SelecedArea" unique_id=1004000001]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -20.0
+offset_right = 200.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
+theme_override_font_sizes/font_size = 26
+text = "在上方选择物品进行制作"
+horizontal_alignment = 1
+vertical_alignment = 1

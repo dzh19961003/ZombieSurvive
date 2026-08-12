@@ -1,0 +1,227 @@
+[gd_scene format=3 uid="uid://co5gs6anh2rxe"]
+
+[ext_resource type="Texture2D" uid="uid://c7dmkkuse5evs" path="res://Assets/Images/Base/workstation_1.png" id="1_wsimg"]
+[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="2_2s8ke"]
+[ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="3_btnbg"]
+[ext_resource type="Texture2D" uid="uid://b0f54t58kd7u3" path="res://Assets/Images/Items/wood_icon.png" id="4_wood"]
+[ext_resource type="Texture2D" uid="uid://bwawwv5xw4hp7" path="res://Assets/Images/Items/tools_icon.png" id="5_tools"]
+[ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="6_stam"]
+[ext_resource type="Texture2D" uid="uid://bf7ktqffrh22v" path="res://Assets/Images/UI/lock.png" id="7_lock"]
+
+[node name="WSUpgradeUI" type="Control" unique_id=977526347]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 865.0
+offset_bottom = 1424.0
+
+[node name="GradeTitle" type="Label" parent="." unique_id=1214482962]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 38.0
+offset_right = 565.0
+offset_bottom = 98.0
+theme_override_font_sizes/font_size = 40
+text = "等级1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WSTexture" type="TextureRect" parent="." unique_id=1963380931]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 139.0
+offset_right = 732.0
+offset_bottom = 539.0
+texture = ExtResource("1_wsimg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MakeLevel" type="NinePatchRect" parent="." unique_id=2119908922]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 658.0
+offset_right = 765.0
+offset_bottom = 758.0
+
+[node name="BG" type="TextureRect" parent="MakeLevel" unique_id=1529144717]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -27.0
+offset_right = 162.0
+offset_bottom = 109.0
+texture = ExtResource("2_2s8ke")
+
+[node name="MakeLevelValue" type="Label" parent="MakeLevel" unique_id=-1294967293]
+layout_mode = 0
+offset_left = 361.0
+offset_top = 14.0
+offset_right = 443.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "等级1"
+horizontal_alignment = 2
+
+[node name="Label" type="Label" parent="MakeLevel" unique_id=-1294967294]
+layout_mode = 0
+offset_top = 14.0
+offset_right = 128.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 32
+text = "制作等级"
+horizontal_alignment = 1
+
+[node name="ExtraFun" type="NinePatchRect" parent="." unique_id=1806351133]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 845.0
+offset_right = 765.0
+offset_bottom = 945.0
+
+[node name="BG" type="TextureRect" parent="ExtraFun" unique_id=904168990]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -27.0
+offset_right = 162.0
+offset_bottom = 109.0
+texture = ExtResource("2_2s8ke")
+
+[node name="ExtraFunDescription" type="Label" parent="ExtraFun" unique_id=1811801536]
+layout_mode = 0
+offset_left = 300.0
+offset_top = -22.0
+offset_right = 510.0
+offset_bottom = 23.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "厨房（等级3）"
+horizontal_alignment = 2
+
+[node name="ExtraFunDescription2" type="Label" parent="ExtraFun" unique_id=939503251]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 33.0
+offset_right = 510.0
+offset_bottom = 78.0
+theme_override_colors/font_color = Color(0.5958281, 0.5958281, 0.5958281, 1)
+theme_override_font_sizes/font_size = 32
+text = "拆解（等级5）"
+
+[node name="Label" type="Label" parent="ExtraFun" unique_id=1059625277]
+layout_mode = 0
+offset_top = 14.0
+offset_right = 128.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 32
+text = "额外功能"
+horizontal_alignment = 1
+
+[node name="Lock" type="TextureRect" parent="ExtraFun" unique_id=1381699839]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 33.0
+offset_right = 292.0
+offset_bottom = 73.0
+texture = ExtResource("7_lock")
+expand_mode = 1
+
+[node name="UpgradeRequ" type="NinePatchRect" parent="." unique_id=129518580]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 1035.0
+offset_right = 765.0
+offset_bottom = 1135.0
+
+[node name="BG" type="TextureRect" parent="UpgradeRequ" unique_id=1920888104]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -27.0
+offset_right = 162.0
+offset_bottom = 109.0
+texture = ExtResource("2_2s8ke")
+
+[node name="Label" type="Label" parent="UpgradeRequ" unique_id=429024595]
+layout_mode = 0
+offset_top = 14.0
+offset_right = 128.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 32
+text = "升级需求"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UpgradeRequ" unique_id=732886219]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 20.0
+offset_right = 292.0
+offset_bottom = 60.0
+texture = ExtResource("4_wood")
+expand_mode = 1
+
+[node name="requirement1" type="Label" parent="UpgradeRequ" unique_id=1741728290]
+layout_mode = 0
+offset_left = 297.0
+offset_top = 14.0
+offset_right = 379.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "X5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="UpgradeRequ" unique_id=1779073129]
+layout_mode = 0
+offset_left = 388.0
+offset_top = 20.0
+offset_right = 428.0
+offset_bottom = 60.0
+texture = ExtResource("5_tools")
+expand_mode = 1
+
+[node name="requirement2" type="Label" parent="UpgradeRequ" unique_id=1645050086]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 14.0
+offset_right = 502.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0, 0.023529412, 1)
+theme_override_font_sizes/font_size = 32
+text = "X5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect3" type="TextureRect" parent="UpgradeRequ" unique_id=416462427]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 20.0
+offset_right = 550.0
+offset_bottom = 60.0
+texture = ExtResource("6_stam")
+expand_mode = 1
+
+[node name="requirement3" type="Label" parent="UpgradeRequ" unique_id=1125220601]
+layout_mode = 0
+offset_left = 547.0
+offset_top = 14.0
+offset_right = 629.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "X5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeBtn" type="Button" parent="." unique_id=1788584474]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 1250.0
+offset_right = 632.0
+offset_bottom = 1380.0
+theme_override_font_sizes/font_size = 40
+text = "升级"
+icon = ExtResource("3_btnbg")
+flat = true
+text_overrun_behavior = 1
+icon_alignment = 1
+expand_icon = true
