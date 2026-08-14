@@ -34,13 +34,8 @@ public partial class BuildingTips : Control
             }
             else
             {
-                Node tips = UIManager.Instance.ShowCommonTips("探索提示", "今天已经太晚了，明天再来继续探索吧");
-                CommonTips control = (CommonTips)tips;
-                control.OnConfirm = () =>
-                { 
-                    UIManager.Instance.HideUI("res://UI/CommonTips.tscn");
-                    UIManager.Instance.HideUI("res://UI/Explore/BuildingTips.tscn");
-                };
+                Node tips = UIManager.Instance.ShowCommonTips2("今天已经太晚了，明天再来继续探索吧");
+                CommonTips2 control = (CommonTips2)tips;
             }
 
         };

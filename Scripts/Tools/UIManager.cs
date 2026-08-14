@@ -274,6 +274,14 @@ public partial class UIManager : Node
         return commonTips;
     }
 
+    //创建一个顶部横幅提示，自动淡入淡出
+    public CommonTips2 ShowCommonTips2(string tips)
+    {
+        CommonTips2 commonTips2 = (CommonTips2)ShowUI("res://UI/CommonTips2.tscn");
+        commonTips2.ShowTips(tips);
+        return commonTips2;
+    }
+
     //自动设置标签位置
     //前面的Control参数一般就是脚本挂在的地方的Control，一般在调用时直接写"this"即可
     //后面的Control参数是标签，需要生成后在脚本里获取到标签并传入
