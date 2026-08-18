@@ -70,5 +70,32 @@
     "effctType(int)": 10003,
     "effctNum(int)": 10,
     "time(int)": 2
+  },
+  {
+    "ID(int)": 101,
+    "name(string)": "抓伤",
+    "positive(int)": 0,
+    "effect(string)": "你受到了抓伤，最大生命值-10",
+    "effctType(int)": 10002,
+    "effctNum(int)": -10,
+    "time(int)": 1
+  },
+  {
+    "ID(int)": 102,
+    "name(string)": "亢奋",
+    "positive(int)": 1,
+    "effect(string)": "你肾上腺素飙升，让你觉得十分亢奋，速度+1",
+    "effctType(int)": 10004,
+    "effctNum(int)": 1,
+    "time(int)": 1
+  },
+  {
+    "ID(int)": 103,
+    "name(string)": "伤口",
+    "positive(int)": 0,
+    "effect(string)": "你身上有伤口，最大生命值-15",
+    "effctType(int)": 10002,
+    "effctNum(int)": -15,
+    "time(int)": 3
   }
 ]

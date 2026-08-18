@@ -53,6 +53,11 @@ namespace MyProject
         /// <summary>ItemPool 配置字典（以 ID 为键）</summary>
         public Dictionary<int, ItemPool> itemPoolDic { get; private set; }
 
+        /// <summary>RoofTrain 配置列表</summary>
+        public List<RoofTrain> roofTrainList { get; private set; }
+        /// <summary>RoofTrain 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, RoofTrain> roofTrainDic { get; private set; }
+
         /// <summary>RoofWorkstation 配置列表</summary>
         public List<RoofWorkstation> roofWorkstationList { get; private set; }
         /// <summary>RoofWorkstation 配置字典（以 ID 为键）</summary>
@@ -120,6 +125,10 @@ namespace MyProject
             itemPoolList = JsonLoader.LoadToList<ItemPool>("item_pool");
             itemPoolDic = JsonLoader.LoadToDic<ItemPool>("item_pool");
             GD.Print("[ConfigManager] ItemPool loaded: List=" + (itemPoolList?.Count ?? 0) + ", Dic=" + (itemPoolDic?.Count ?? 0));
+
+            roofTrainList = JsonLoader.LoadToList<RoofTrain>("roof_train");
+            roofTrainDic = JsonLoader.LoadToDic<RoofTrain>("roof_train");
+            GD.Print("[ConfigManager] RoofTrain loaded: List=" + (roofTrainList?.Count ?? 0) + ", Dic=" + (roofTrainDic?.Count ?? 0));
 
             roofWorkstationList = JsonLoader.LoadToList<RoofWorkstation>("roof_workstation");
             roofWorkstationDic = JsonLoader.LoadToDic<RoofWorkstation>("roof_workstation");

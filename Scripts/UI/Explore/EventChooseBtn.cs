@@ -7,6 +7,10 @@ public partial class EventChooseBtn : CenterContainer
 {
     [Export] public Label desLabel;
     [Export] public TextureButton textureBtn;
+    [Export] public Label desLabel2;
+    [Export] public TextureRect needBtn;
+    [Export] public Label numLabel;
+
     public ExploreUI exploreUI;
     public int eventID;
     public int rank;
@@ -72,6 +76,14 @@ public partial class EventChooseBtn : CenterContainer
     public void Initial(string des, string image)
     {
         desLabel.Text = des;
+        if (ConfigManager.Instance.exploreEventDic[eventID].Demand.Count >= rank+1)
+        {
+            desLabel2.Visible = true;
+            needBtn.Visible = true;
+            numLabel.Visible = true;
+            needBtn.Texture = UIManager.Instance.GetItemIcon(ConfigManager.Instance.exploreEventDic[eventID].Demand[rank]);
+            numLabel.Text = "x"+ConfigManager.Instance.exploreEventDic[eventID].DemandNum[rank].ToString();
+        }
     }
 
 }

@@ -24,9 +24,9 @@ public partial class EventChooseBar : VBoxContainer
 		    var chooseBtn = GD.Load<PackedScene>("res://UI/Explore/EventChooseBtn.tscn");
 		    EventChooseBtn exploreChooseBtn = chooseBtn.Instantiate<EventChooseBtn>();
 		    this.AddChild(exploreChooseBtn);
-			exploreChooseBtn.Initial(exploreEvent.Option[i], "");
-			exploreChooseBtn.rank = i;
-			exploreChooseBtn.eventID = eventID;
+            exploreChooseBtn.eventID = eventID;
+            exploreChooseBtn.rank = i;
+            exploreChooseBtn.Initial(exploreEvent.Option[i], "");			
 			exploreChooseBtn.exploreUI = exploreUI;
         }		
     }

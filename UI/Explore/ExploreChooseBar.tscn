@@ -32,18 +32,19 @@ dangerLabel = NodePath("roomContainer/BackBtn/riskLabel")
 
 [node name="TitleBackground" type="TextureRect" parent="." unique_id=1063156191]
 layout_mode = 0
-offset_left = 73.0
+offset_left = 245.0
 offset_top = -85.0
-offset_right = 713.0
+offset_right = 631.6963
 offset_bottom = 11.0
 scale = Vector2(1.4326489, 1.6302083)
 texture = ExtResource("2_tex")
+expand_mode = 1
 
 [node name="desLabel3" type="Label" parent="." unique_id=1649297337]
 layout_mode = 0
-offset_left = 94.99999
+offset_left = 281.0
 offset_top = -58.0
-offset_right = 959.0
+offset_right = 751.0
 offset_bottom = 25.0
 theme_override_font_sizes/font_size = 48
 text = "接下来，你打算"

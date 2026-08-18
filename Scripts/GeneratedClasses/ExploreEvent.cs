@@ -33,6 +33,9 @@ namespace MyProject
         /// <summary>原始字段: demandNum(int)</summary>
         public List<int> DemandNum { get; set; }
 
+        /// <summary>原始字段: isRemove(int)</summary>
+        public List<int> IsRemove { get; set; }
+
         /// <summary>原始字段: nextEvent(int)</summary>
         public List<int> NextEvent { get; set; }
 

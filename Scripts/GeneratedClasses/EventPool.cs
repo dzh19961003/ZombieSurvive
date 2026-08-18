@@ -12,6 +12,9 @@ namespace MyProject
         /// <summary>原始字段: ID(int)</summary>
         public int ID { get; set; }
 
+        /// <summary>原始字段: des(string)</summary>
+        public string Des { get; set; }
+
         /// <summary>原始字段: event(int)</summary>
         public List<int> Event { get; set; }
     }

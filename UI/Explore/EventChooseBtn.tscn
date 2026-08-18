@@ -2,14 +2,18 @@
 
 [ext_resource type="Script" uid="uid://bqmc86o6vj1ps" path="res://Scripts/UI/Explore/EventChooseBtn.cs" id="1_efng5"]
 [ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="2_lvj4f"]
+[ext_resource type="Texture2D" uid="uid://byni2fkgyi20q" path="res://Assets/Images/UI/brain.png" id="3_lvj4f"]
 
-[node name="ExploreChooseBtn" type="CenterContainer" unique_id=153935579 node_paths=PackedStringArray("desLabel", "textureBtn")]
+[node name="ExploreChooseBtn" type="CenterContainer" unique_id=153935579 node_paths=PackedStringArray("desLabel", "textureBtn", "desLabel2", "needBtn", "numLabel")]
 custom_minimum_size = Vector2(920, 120)
 offset_right = 920.0
 offset_bottom = 120.0
 script = ExtResource("1_efng5")
 desLabel = NodePath("TextureButton/desLabel")
 textureBtn = NodePath("TextureButton")
+desLabel2 = NodePath("TextureButton/needDesLabel")
+needBtn = NodePath("TextureButton/needIcon")
+numLabel = NodePath("TextureButton/needLabel")
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=1998778597]
 custom_minimum_size = Vector2(864, 120)
@@ -33,10 +37,44 @@ patch_margin_bottom = 36
 
 [node name="desLabel" type="Label" parent="TextureButton" unique_id=1043053961]
 layout_mode = 0
-offset_left = 35.0
+offset_left = 25.0
 offset_top = 12.0
-offset_right = 743.0
+offset_right = 597.0
 offset_bottom = 96.0
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 36
 text = "你好哈哈哈"
 vertical_alignment = 1
+
+[node name="needLabel" type="Label" parent="TextureButton" unique_id=841317774]
+visible = false
+layout_mode = 0
+offset_left = 772.0
+offset_top = 27.0
+offset_right = 843.0
+offset_bottom = 82.0
+theme_override_font_sizes/font_size = 32
+text = "x2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="needDesLabel" type="Label" parent="TextureButton" unique_id=938242858]
+visible = false
+layout_mode = 0
+offset_left = 613.0
+offset_top = 29.0
+offset_right = 704.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 32
+text = "需要:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="needIcon" type="TextureRect" parent="TextureButton" unique_id=1858689895]
+visible = false
+layout_mode = 0
+offset_left = 698.0
+offset_top = 20.0
+offset_right = 772.8605
+offset_bottom = 94.0
+texture = ExtResource("3_lvj4f")
+expand_mode = 1
