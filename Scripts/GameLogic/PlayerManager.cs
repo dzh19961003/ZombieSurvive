@@ -410,11 +410,22 @@ public partial class PlayerManager : Node, ISaveable
     {
         if (Input.IsActionJustPressed("ui_accept"))
         {
+            //测试
+            AddItem(1,5);
+            AddItem(2,5);
+            AddItem(3,5);
+            AddItem(4,5);
+            AddItem(5,5);
+            AddItem(6,5);
+            AddItem(7,5);
+            AddItem(8,5);
+            AddItem(9,5);
             AddItem(10001, -15);
             AddItem(10002, 20);
             AddItem(10003, 10);
             // GetState(2);
             AddItem(10019, -1);
+            AddItem(10015,-2);
             GameManager.Instance.AdvanceTime();
         }
     }

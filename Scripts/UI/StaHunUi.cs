@@ -13,12 +13,12 @@ public partial class StaHunUi : TextureButton
 	// 绿色/灰色纹理
 	private Texture2D _greenTex;
 	private Texture2D _grayTex;
-
+	//体力值
 	private Label _staminaValueLabel;
 
 	// 饱食状态文字（HungerState/Label）
 	private Label _hungerStateLabel;
-
+	
 	public override void _Ready()
 	{
 		if (warehouseBtn != null) warehouseBtn.Pressed += EnterWarehouse;
@@ -76,6 +76,7 @@ public partial class StaHunUi : TextureButton
 		RefreshStaminaDisplay();
 	}
 
+	
 	/// <summary>
 	/// 根据 Hunger 值把三个小方块染成绿色或灰色：
 	///   下标 < Hunger 的方块 → 绿色（progressIn）
@@ -159,7 +160,7 @@ public partial class StaHunUi : TextureButton
 		if (pm == null || _staminaValueLabel == null) return;
 
 		// 显示探索体力 / 探索最大体力
-		_staminaValueLabel.Text = $"X {pm.ExploreStamina}/{pm.MaxexploreStamina}";
+		_staminaValueLabel.Text = $"X {pm.BaseStamina}/{pm.MaxBaseStamina}";
 	}
 
 	private void EnterWarehouse()
