@@ -3,16 +3,20 @@
 [ext_resource type="Texture2D" uid="uid://c7dmkkuse5evs" path="res://Assets/Images/Base/workstation_1.png" id="1_wsimg"]
 [ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="2_2s8ke"]
 [ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="3_btnbg"]
+[ext_resource type="Texture2D" uid="uid://c33rmupvbsy43" path="res://Assets/Images/UI/arrow_1.png" id="4_1oyri"]
 [ext_resource type="Texture2D" uid="uid://b0f54t58kd7u3" path="res://Assets/Images/Items/wood_icon.png" id="4_wood"]
 [ext_resource type="Texture2D" uid="uid://bwawwv5xw4hp7" path="res://Assets/Images/Items/tools_icon.png" id="5_tools"]
 [ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="6_stam"]
 [ext_resource type="Texture2D" uid="uid://bf7ktqffrh22v" path="res://Assets/Images/UI/lock.png" id="7_lock"]
+[ext_resource type="Script" uid="uid://i41sashq0xvx" path="res://Scripts/UI/WorkStation/WsUpgradeUi.cs" id="8_script"]
 
-[node name="WSUpgradeUI" type="Control" unique_id=977526347]
+[node name="WSUpgradeUI" type="Control" unique_id=977526347 node_paths=PackedStringArray("upgrade")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 865.0
 offset_bottom = 1424.0
+script = ExtResource("8_script")
+upgrade = NodePath("UpgradeBtn")
 
 [node name="GradeTitle" type="Label" parent="." unique_id=1214482962]
 layout_mode = 0
@@ -52,13 +56,33 @@ texture = ExtResource("2_2s8ke")
 
 [node name="MakeLevelValue" type="Label" parent="MakeLevel" unique_id=-1294967293]
 layout_mode = 0
-offset_left = 361.0
+offset_left = 269.0
 offset_top = 14.0
-offset_right = 443.0
+offset_right = 351.0
 offset_bottom = 59.0
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 32
 text = "等级1"
+horizontal_alignment = 2
+
+[node name="Lock2" type="TextureRect" parent="MakeLevel" unique_id=1393396358]
+layout_mode = 0
+offset_left = 422.0
+offset_top = 20.0
+offset_right = 462.0
+offset_bottom = 60.0
+texture = ExtResource("4_1oyri")
+expand_mode = 1
+
+[node name="MakeNextLevelValue" type="Label" parent="MakeLevel" unique_id=263172907]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 14.0
+offset_right = 602.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "等级2"
 horizontal_alignment = 2
 
 [node name="Label" type="Label" parent="MakeLevel" unique_id=-1294967294]

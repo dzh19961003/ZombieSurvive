@@ -186,7 +186,42 @@ public partial class PlayerManager : Node, ISaveable
         foreach (var id in talentID) copy.Add(id);
         return copy;
     }
-    
+
+    //只读访问：返回指定ID物品的持有数量（不存在返回0），外部无法修改内部字典
+    public int GetItemCount(int id)
+    {
+        return ItemDic.ContainsKey(id) ? ItemDic[id] : 0;
+    }
+
+    //判断是否持有足够数量的物品（默认数量1），校验资源时使用
+    public bool HasItem(int id, int amount = 1)
+    {
+        return GetItemCount(id) >= amount;
+    }
+
+    //移除物品：仅处理物品（id<=10000），属性增减请用 AddItem
+    //数量钳制到0，归0时清理键，触发 GetItem 事件
+    public void RemoveItem(int id, int amount)
+    {
+        if (id > 10000) return;
+        if (amount <= 0) return;
+        if (!ItemDic.ContainsKey(id)) return;
+        ItemDic[id] = Mathf.Max(0, ItemDic[id] - amount);
+        if (ItemDic[id] <= 0)
+        {
+            ItemDic.Remove(id);
+        }
+        GetItem?.Invoke();
+    }
+
+    //只读访问：返回当前所有物品ID的副本列表，外部无法修改内部字典
+    public Array<int> GetAllItemIDs()
+    {
+        var copy = new Array<int>();
+        foreach (var id in ItemDic.Keys) copy.Add(id);
+        return copy;
+    }
+
     //获取指定状态的剩余天数
    
     public int GetStateRemainingDays(int stateID)
@@ -349,6 +384,17 @@ public partial class PlayerManager : Node, ISaveable
         // 用 CallDeferred：保证 ConfigManager 已初始化（SyncHungerState 内部要读表）
         CallDeferred(nameof(DeferredInitHungerState));
         GetState(2);
+        //测试
+        AddItem(1,5);
+        AddItem(2,5);
+        AddItem(3,5);
+        AddItem(4,5);
+        AddItem(5,5);
+        AddItem(6,5);
+        AddItem(7,5);
+        AddItem(8,5);
+        AddItem(9,5);
+        
     }
 
     private void DeferredInitHungerState()

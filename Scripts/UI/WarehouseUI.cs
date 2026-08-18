@@ -11,13 +11,12 @@ public partial class WarehouseUI : Control
     [Export] public TextureButton[] tabButton;
 
     private List<int> ItemID = new List<int>();
-    private Dictionary<int, int> ItemDic = new Dictionary<int, int>();
+    // 当前选中的页签类型（0=全部，1=食物，2=药品，3=装备，4=材料）
+    private int currentType = 0;
 
     private int gridLength = 6;
     // 最少显示的格子数量，铺满至少一整屏
     private int minNum = 42;
-
-    private int buttonIndex = 1;
 
 
     public override void _Ready()
@@ -26,28 +25,62 @@ public partial class WarehouseUI : Control
 
         for (int i = 0; i < tabButton.Length; i++)
         {
-            int index = i; 
+            int index = i;
             tabButton[i].Pressed += () => SwitchBtn(index);
         }
 
-        //测试用，先手动添加物品及数量
-        ItemDic.Add(1, 15);
-        ItemDic.Add(2, 18);
-        ItemDic.Add(3, 16);
-        ItemDic.Add(4, 1);
-        ItemDic.Add(5, 1);
-        ItemDic.Add(6, 1);
-        ItemDic.Add(7, 10);
-        ItemDic.Add(8, 1);
+        // _Ready顺序不确定，延迟初始化避免PlayerManager未就绪
+        CallDeferred(nameof(DeferredInit));
+    }
 
-        ItemID = ItemDic.Keys.ToList<int>();
+    public override void _ExitTree()
+    {
+        if (PlayerManager.Instance != null)
+        {
+            PlayerManager.Instance.GetItem -= OnPlayerDataChanged;
+        }
+    }
 
-        SpawnItemList(ItemID,0);
+    private void DeferredInit()
+    {
+        if (PlayerManager.Instance == null)
+        {
+            GD.PrintErr("[WarehouseUI] PlayerManager 未就绪");
+            return;
+        }
+        // 订阅玩家数据变化，物品增减时自动刷新仓库
+        PlayerManager.Instance.GetItem += OnPlayerDataChanged;
+        RefreshWarehouse();
+    }
+
+    private void OnPlayerDataChanged()
+    {
+        CallDeferred(nameof(RefreshWarehouse));
+    }
+
+    // 从 PlayerManager 读取最新持有物品并重建当前页签的物品栏
+    private void RefreshWarehouse()
+    {
+        if (PlayerManager.Instance == null) return;
+        ItemID = new List<int>(PlayerManager.Instance.GetAllItemIDs());
+        ClearItemList();
+        SpawnItemList(ItemID, currentType);
+    }
+
+    //清空物品栏所有格子
+    private void ClearItemList()
+    {
+        for (int i = 0; i < ItemList.GetChildCount(); i++)
+        {
+            ItemList.GetChild(i).QueueFree();
+        }
     }
 
     //生成物品栏方法
     private void SpawnItemList(List<int> AllItemList,int type)
     {
+        //记录当前页签类型，供数据变化刷新时保持页签
+        currentType = type;
         List<int> itemList = GetSortedItemID(AllItemList);
         // 当物品种类小于最小数量时，最低生成42个格子
         if (ItemID.Count <= minNum)
@@ -64,7 +97,7 @@ public partial class WarehouseUI : Control
                 Item item = itemScene.Instantiate<Item>();
                 ItemList.AddChild(item);
                 item.ID = itemList[i];
-                item.num = ItemDic[itemList[i]];
+                item.num = PlayerManager.Instance.GetItemCount(itemList[i]);
                 item.InitialItem();
             }
             for (int i = 0; i < (minNum+ skipNum - itemList.Count); i++)
@@ -91,7 +124,7 @@ public partial class WarehouseUI : Control
                 Item item = itemScene.Instantiate<Item>();
                 ItemList.AddChild(item);
                 item.ID = ItemID[i];
-                item.num = ItemDic[itemList[i]];
+                item.num = PlayerManager.Instance.GetItemCount(itemList[i]);
                 item.InitialItem();
             }
             // 补齐最后一行不满的部分
@@ -119,7 +152,7 @@ public partial class WarehouseUI : Control
                     item.InitialItem();
                 }
             }
-            
+
         }
 
         // GridContainer 在动态添加子节点后，需要手动让它重新计算自身的最小尺寸，
@@ -129,7 +162,7 @@ public partial class WarehouseUI : Control
     }
 
     //点击页签按钮后根据类型生成物品栏
-    private void SwitchBtn(int index) 
+    private void SwitchBtn(int index)
     {
         for (int i = 0; i < tabButton.Length; i++)
         {
@@ -161,7 +194,6 @@ public partial class WarehouseUI : Control
                 SpawnItemList(ItemID, 0);
                 break;
         }
-        
     }
 
     //按照类型、稀有度、ID的顺序排行
@@ -172,7 +204,7 @@ public partial class WarehouseUI : Control
         return sortedList
             .OrderBy(id => ConfigManager.Instance.itemDic[id].Type)
             .ThenByDescending(id => ConfigManager.Instance.itemDic[id].Rarity)
-            .ThenBy(id => id)  
+            .ThenBy(id => id)
             .ToList();
     }
 }
