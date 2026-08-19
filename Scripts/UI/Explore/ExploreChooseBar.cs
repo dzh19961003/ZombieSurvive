@@ -133,32 +133,39 @@ public partial class ExploreChooseBar : NinePatchRect
         //不是支线再增加进度
         if (progress==true)
         {
+            int noise = 0;
+            int progress = 0;
             if (type == 1)
             {               
                 if (explorePogress.ContainsKey(gameManager.roomID))
                 {
-                    explorePogress[(gameManager.roomID)] += Tools.GetRandomNumber(Consts.carefulExploreProgress);
+                    progress = Tools.GetRandomNumber(Consts.carefulExploreProgress);
+                    explorePogress[(gameManager.roomID)] += progress;
                 }
                 else
                 {
                     explorePogress[(gameManager.roomID)] = Tools.GetRandomNumber(Consts.carefulExploreProgress);
                 }
-                gameManager.exploreNoise += Tools.GetRandomNumber(Consts.carefulNoiseProgress);
+                noise = Tools.GetRandomNumber(Consts.carefulNoiseProgress);
+                gameManager.exploreNoise += noise;
             }
             //快速探索
             else
             {
                 if (explorePogress.ContainsKey(gameManager.roomID))
                 {
-                    explorePogress[(gameManager.roomID)] += Tools.GetRandomNumber(Consts.quickExploreProgress);
+                    progress = Tools.GetRandomNumber(Consts.quickExploreProgress);
+                    explorePogress[(gameManager.roomID)] += progress;
                 }
                 else
                 {
                     explorePogress[(gameManager.roomID)] = Tools.GetRandomNumber(Consts.quickExploreProgress);
                 }
-
-                gameManager.exploreNoise += Tools.GetRandomNumber(Consts.quickNoiseProgress);
+                noise = Tools.GetRandomNumber(Consts.quickNoiseProgress);
+                gameManager.exploreNoise += noise;
             }
+            UIManager.Instance.ShowFloatTips(100001, "+" + noise.ToString() + "%");
+            UIManager.Instance.ShowFloatTips(100002, "+" + progress.ToString() + "%");
             //处理噪音值和探索值达到上限的方法
             if (gameManager.exploreNoise > 100)
             {

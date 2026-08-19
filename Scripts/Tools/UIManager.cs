@@ -282,6 +282,42 @@ public partial class UIManager : Node
         return commonTips2;
     }
 
+
+
+    //连续调用浮动提示时，后一条比前一条晚这么久出现（秒）
+    private const float FloatTipsStagger = 0.3f;
+
+    //下一条浮动提示最早可出现的时间（引擎秒）
+    //计算方式：每次取 max(当前时间, 该时间) 作为本条的出现时间，
+    //然后该时间 += 0.3。连续调用就一条比一条晚 0.3 秒；
+    //两次调用间隔超过 0.3 秒则自动恢复"立即出现"，不会白白等。
+    private float _nextFloatTipsTime = 0f;
+
+    //浮动提示条，用法示例：
+    //UIManager.Instance.ShowFloatTips(10001, "+10"); => 显示 "生命值+10"
+    //UIManager.Instance.ShowFloatTips(1, "米饭 x1"); => 左图(米饭图标) + x1
+    //循环里连续调用时会自动错开：第一条立即出现，之后每条比上一条晚 0.3 秒
+    public void ShowFloatTips(int id, string text)
+    {
+        FloatTips floatTips = (FloatTips)CreateUI("res://UI/FloatTips.tscn");
+        if (floatTips == null) return;
+
+        // ── 计算这一条需要延迟多久出现 ──
+        //注意：项目里 Scripts/UI/Time.cs 有个同名 Time 类（无命名空间），
+        //会把 Godot 的 Time 单例遮住，所以这里必须写全限定名 Godot.Time
+        float now = (float)Godot.Time.GetTicksMsec() / 1000f;   // 当前引擎时间（秒）
+        // 本条最早可出现的时间 = 当前时间 与 排队时间 的较大者
+        float spawnTime = Mathf.Max(now, _nextFloatTipsTime);
+        float delay = spawnTime - now;
+        // 下一条要比本条再晚 0.3 秒
+        _nextFloatTipsTime = spawnTime + FloatTipsStagger;
+
+        floatTips.ShowTips(id, text, delay);
+    }
+
+
+
+
     //自动设置标签位置
     //前面的Control参数一般就是脚本挂在的地方的Control，一般在调用时直接写"this"即可
     //后面的Control参数是标签，需要生成后在脚本里获取到标签并传入

@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cg2h4x3r1v33h"]
+
+[ext_resource type="Script" uid="uid://bcrwdcq87w6fx" path="res://Scripts/UI/FloatTips.cs" id="1_float"]
+[ext_resource type="Texture2D" uid="uid://br6sl8ouqesfy" path="res://Assets/Images/UI/noiseIcon.png" id="2_3hwxt"]
+
+[node name="FloatTips" type="Control" unique_id=1722222268 node_paths=PackedStringArray("bar", "icon", "tipsLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_float")
+bar = NodePath("Bar")
+icon = NodePath("Bar/Icon")
+tipsLabel = NodePath("Bar/TipsLabel")
+
+[node name="Bar" type="ColorRect" parent="." unique_id=2119794684]
+layout_mode = 1
+offset_right = 350.0
+offset_bottom = 85.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="Icon" type="TextureRect" parent="Bar" unique_id=1346419096]
+layout_mode = 1
+offset_top = -24.0
+offset_right = 122.0
+offset_bottom = 98.0
+mouse_filter = 2
+texture = ExtResource("2_3hwxt")
+expand_mode = 1
+
+[node name="TipsLabel" type="Label" parent="Bar" unique_id=933654437]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_right = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
