@@ -18,6 +18,7 @@ public partial class ExploreChooseBar : NinePatchRect
     private bool progress=true;
     bool include = true;
     private int danger=3;
+    private int tempEvent;
     public override void _Ready()
     {
         // 中途撤离按钮：弹确认框，确认后交给 ExploreUI 统一销毁所有探索界面
@@ -123,10 +124,26 @@ public partial class ExploreChooseBar : NinePatchRect
             subTaskArray.Add(eventID);
             gameManager.subTaskDic[gameManager.roomID] = subTaskArray;
         }
-        //如果是重要支线，暂不标记，仅赋值给当前支线
+        //如果是重要支线，每次探索首次触发暂不标记，仅赋值给当前支线；多次触发直接跳过
         if (ConfigManager.Instance.exploreEventDic[eventID].EventType == 103)
         {
-            progress = false;
+            if (tempEvent == eventID)
+            {
+                if (type == 1)
+                {
+                    eventID = Tools.GetRandomNumber(gameManager.carefulEventArray);
+                }
+                //快速探索
+                else
+                {
+                    eventID = Tools.GetRandomNumber(gameManager.quickEventArray);
+                }
+            }
+            else
+            {
+                progress = false;
+                tempEvent = eventID;
+            }
             gameManager.currentSubTask = eventID;
         }
 
@@ -167,7 +184,7 @@ public partial class ExploreChooseBar : NinePatchRect
             UIManager.Instance.ShowFloatTips(100001, "+" + noise.ToString() + "%");
             UIManager.Instance.ShowFloatTips(100002, "+" + progress.ToString() + "%");
             //处理噪音值和探索值达到上限的方法
-            if (gameManager.exploreNoise > 100)
+            if (gameManager.exploreNoise >= 100)
             {
                 gameManager.exploreNoise -= 100;
             }
@@ -210,8 +227,9 @@ public partial class ExploreChooseBar : NinePatchRect
         }
        
 
-        eventChooseBar.exploreUI = exploreUI;       
-        eventChooseBar.Initial(eventID);
+        eventChooseBar.exploreUI = exploreUI;
+        eventChooseBar.eventID = eventID;
+        eventChooseBar.Initial();
         this.QueueFree();
     }
 

@@ -18,8 +18,11 @@ public partial class EventChooseBtn : CenterContainer
     private bool finish = false;
     public override void _Ready()
     {
+        lastBar = (EventChooseBar)GetParent();
         textureBtn.Pressed += () =>
         {
+            lastBar.Visible = false;
+            exploreUI.iconContainer.Visible = false;
             ExploreEvent exploreEvent = ConfigManager.Instance.exploreEventDic[eventID];
             GameManager gameManager = GameManager.Instance;
             //进度大于100，变为已完成状态
@@ -68,7 +71,8 @@ public partial class EventChooseBtn : CenterContainer
                 eventChooseBar.exploreUI = exploreUI;
                 GameManager.Instance.currentEventID = exploreEvent.NextEvent[rank];
                 GetParent().QueueFree();
-                eventChooseBar.Initial(exploreEvent.NextEvent[rank]);
+                eventChooseBar.eventID = exploreEvent.NextEvent[rank];
+                eventChooseBar.Initial();
             }
         };
     }

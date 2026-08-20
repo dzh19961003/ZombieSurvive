@@ -16,14 +16,19 @@ public partial class ExploreUI : Control
     private RoomChooseBar _roomChooseBar;
     private ExploreChooseBar _exploreChooseBar;
 
+    //判断本次探索是否首次进入房间选择
+    private bool firstRoomTimes = true;
+
+    //判断本次探索是否首次进入探索选择
+    private bool firstExploreTimes = true;
+
     public override void _Ready()
     {
-
+        TextTyper.OnTypeEnd += ShowIconContainer;
     }
 
     public void RefreshExplore()
-    {
-
+    {        
         Building building = ConfigManager.Instance.buildingDic[GameManager.Instance.currentBuildingID];
 
         //获取最大房间层级并给每层房间赋值
@@ -59,7 +64,15 @@ public partial class ExploreUI : Control
 
         if (GameManager.Instance.exploreLayer <= maxLayer)
         {
-            TextTyper.TypeText(desLabel, building.Des);
+            if (firstRoomTimes == true) 
+            { 
+                TextTyper.TypeText(desLabel, building.Des);
+                firstRoomTimes = false;
+            }
+            else
+            {
+                desLabel.Text = building.Des;
+            }           
             _roomChooseBar.Init(this, LayerArray[GameManager.Instance.exploreLayer - 1], maxLayer);
         }
         else
@@ -70,6 +83,7 @@ public partial class ExploreUI : Control
     }
     public void RefreshExploreUI(bool showProgress)
     {
+        
         exploreProgressBar.Visible = showProgress;
         if (GameManager.Instance.exploreProgress.ContainsKey(GameManager.Instance.roomID))
         {
@@ -84,12 +98,16 @@ public partial class ExploreUI : Control
 
         ExploreEvent exploreEvent = ConfigManager.Instance.exploreEventDic[GameManager.Instance.currentEventID];
         GD.Print("获得物品数量" + exploreEvent.ItemID.Count);
+    }
 
+    public void ShowIconContainer()
+    {
+        iconContainer.Visible = true;
         foreach (var item in iconContainer.GetChildren())
         {
             item.QueueFree();
         }
-
+        ExploreEvent exploreEvent = ConfigManager.Instance.exploreEventDic[GameManager.Instance.currentEventID];
         for (int i = 0; i < exploreEvent.ItemID.Count; i++)
         {
             var scene = GD.Load<PackedScene>("res://UI/Explore/exploreIcon.tscn");
@@ -113,7 +131,15 @@ public partial class ExploreUI : Control
         GameManager.Instance.exploreState = 2;
         if (finish==false)
         {
-            TextTyper.TypeText(desLabel, ConfigManager.Instance.roomDic[roomID].Des);
+            if (firstExploreTimes == true)
+            {
+                TextTyper.TypeText(desLabel, ConfigManager.Instance.roomDic[roomID].Des);
+                firstExploreTimes = false;
+            }
+            else
+            {
+                desLabel.Text = ConfigManager.Instance.roomDic[roomID].Des;
+            }          
         }
         else
         {
@@ -137,6 +163,7 @@ public partial class ExploreUI : Control
         }
         UIManager.Instance.DeleteUI(this);
         GameManager.Instance.exploreNoise = 0;
+        TextTyper.OnTypeEnd -= ShowIconContainer;
     }
     public void LeaveRoom()
     {
@@ -147,6 +174,7 @@ public partial class ExploreUI : Control
         }
         GameManager.Instance.exploreState = 1;
         GameManager.Instance.exploreLayer += 1;
+        firstExploreTimes = true;
         RefreshExplore();
     }
 

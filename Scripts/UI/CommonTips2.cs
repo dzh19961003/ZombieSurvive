@@ -27,7 +27,7 @@ public partial class CommonTips2 : Control
 		_tween.SetEase(Tween.EaseType.Out);
 		_tween.TweenProperty(this, "modulate", new Color(1, 1, 1, 1), 0.3f);
 		_tween.TweenInterval(1.0f);
-		_tween.TweenProperty(this, "modulate", new Color(1, 1, 1, 0), 0.3f);
+        _tween.TweenProperty(this, "modulate", new Color(1, 1, 1, 0), 0.3f);
 		_tween.TweenCallback(Callable.From(OnFadeOutComplete));
 	}
 

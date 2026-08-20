@@ -14,6 +14,7 @@ using Godot;
 /// </summary>
 public static class TextTyper
 {
+    public static event Action OnTypeEnd;
     // ========== 默认速度 ==========
     // 每秒打印3个字
     private const int DEFAULT_CHARS_PER_SECOND = 36;
@@ -91,6 +92,7 @@ public static class TextTyper
                 {
                     // 有跳过输入 → 立即显示全部文本并结束
                     label.Text = fullText;
+                    OnTypeEnd?.Invoke();
                     return;
                 }
 
@@ -102,6 +104,7 @@ public static class TextTyper
 
         // ===== 打印完毕，确保显示完整文本 =====
         label.Text = fullText;
+        OnTypeEnd?.Invoke();
     }
 
     // ========== 输入检测 ==========

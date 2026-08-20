@@ -148,7 +148,7 @@ public partial class GameManager : Node2D,ISaveable
             
             foreach (var item2 in ConfigManager.Instance.eventPoolDic[item].Event)
             {
-                if (ConfigManager.Instance.eventDic[item2].HeadType == 1 && !eventArray.Contains(item2))
+                if (ConfigManager.Instance.eventDic[item2].HeadType == 1 && !eventArray.Contains(item2) && ConfigManager.Instance.eventDic[item2].EventType!=102 && ConfigManager.Instance.eventDic[item2].EventType != 103)
                 {
                     eventArray.Add(item2);
                 }
@@ -159,7 +159,7 @@ public partial class GameManager : Node2D,ISaveable
 
             foreach (var item2 in ConfigManager.Instance.eventPoolDic[item].Event)
             {
-                if (ConfigManager.Instance.eventDic[item2].HeadType == 1 && !eventArray2.Contains(item2))
+                if (ConfigManager.Instance.eventDic[item2].HeadType == 1 && !eventArray2.Contains(item2) && ConfigManager.Instance.eventDic[item2].EventType != 102 && ConfigManager.Instance.eventDic[item2].EventType != 103)
                 {
                     eventArray2.Add(item2);
                 }
