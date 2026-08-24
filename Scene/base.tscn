@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cvn2jkhui0xed"]
 
-[ext_resource type="Texture2D" uid="uid://bga7gxjrvakkk" path="res://Assets/Images/Base/bg.png" id="1_d3q2k"]
+[ext_resource type="Texture2D" uid="uid://dejet8o5gix85" path="res://Assets/Images/Base/bg_expanded.png" id="1_t37pv"]
 [ext_resource type="Script" uid="uid://bum5t6p0d6c6j" path="res://Scripts/Furnitures/Warehouse.cs" id="2_0ce0i"]
 [ext_resource type="Texture2D" uid="uid://dh312wub7p60c" path="res://Assets/Images/Base/warehouse.png" id="2_7lj54"]
 [ext_resource type="Script" uid="uid://bbjo6et3yuko2" path="res://Scripts/Furnitures/Door.cs" id="4_vtgk1"]
@@ -21,49 +21,51 @@ size = Vector2(364, 194)
 [node name="Base" type="Node2D" unique_id=1002387130]
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=508625364]
-position = Vector2(0, -7.9999995)
+position = Vector2(0, -2.842171e-14)
 scale = Vector2(1.1466526, 1.3600478)
-texture = ExtResource("1_d3q2k")
+texture = ExtResource("1_t37pv")
 centered = false
 
 [node name="Warehouse" type="Area2D" parent="." unique_id=559613430]
 script = ExtResource("2_0ce0i")
 
 [node name="Warehouse" type="Sprite2D" parent="Warehouse" unique_id=1906071549]
-position = Vector2(365, 422.5)
+position = Vector2(347, 485.5)
 texture = ExtResource("2_7lj54")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Warehouse" unique_id=462998327]
-position = Vector2(351, 406.5)
+position = Vector2(333, 469.5)
 shape = SubResource("RectangleShape2D_hu5nu")
 
 [node name="Door" type="Area2D" parent="." unique_id=1354858665]
+position = Vector2(0, 70)
 script = ExtResource("4_vtgk1")
 
 [node name="Door" type="Sprite2D" parent="Door" unique_id=76872662]
-position = Vector2(749, 432)
+position = Vector2(749.0382, 426)
 scale = Vector2(0.76577413, 0.7261905)
 texture = ExtResource("5_grk85")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door" unique_id=404287943]
-position = Vector2(776.25, 407)
+position = Vector2(776.2882, 401)
 shape = SubResource("RectangleShape2D_wvhbo")
 
 [node name="Workstation" type="Area2D" parent="." unique_id=1116499795]
+position = Vector2(0, 1)
 script = ExtResource("6_p35hx")
 
 [node name="Workstation" type="Sprite2D" parent="Workstation" unique_id=1460951273]
-position = Vector2(767, 821.12494)
+position = Vector2(729, 792.12494)
 scale = Vector2(0.84375006, 0.8064282)
 texture = ExtResource("7_t37pv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Workstation" unique_id=241018785]
-position = Vector2(796, 816.12494)
+position = Vector2(758, 787.12494)
 shape = SubResource("RectangleShape2D_ifow5")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=440899329]
 limit_left = 0
 limit_top = 0
 limit_right = 1080
-limit_bottom = 2274
+limit_bottom = 3119
 script = ExtResource("8_cam")
