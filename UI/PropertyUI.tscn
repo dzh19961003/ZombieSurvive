@@ -1,17 +1,19 @@
 [gd_scene format=3 uid="uid://15kqr0hmpuqy"]
 
 [ext_resource type="Script" uid="uid://daunwsd0fkudj" path="res://Scripts/UI/PropertyUi.cs" id="1_00jn1"]
+[ext_resource type="Texture2D" uid="uid://qoeawfpiwoj8" path="res://Assets/Images/UI/New/bg_3.png" id="2_7b2ht"]
 [ext_resource type="Texture2D" uid="uid://desgea4htjck3" path="res://icon.svg" id="2_a1hvy"]
-[ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="2_q386s"]
 [ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="3_8l46q"]
-[ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="3_p8wmk"]
-[ext_resource type="Texture2D" uid="uid://bs7gg3xn14v6b" path="res://Assets/Images/UI/close_button.png" id="3_t1ga8"]
+[ext_resource type="Texture2D" uid="uid://cknyjjfsqbekv" path="res://Assets/Images/UI/New/tab_nonselected.png" id="3_gbxri"]
+[ext_resource type="Texture2D" uid="uid://401g6anh5dnd" path="res://Assets/Images/UI/New/itemBg.png" id="4_o5jng"]
 [ext_resource type="Script" uid="uid://bxkd3n0h3aas6" path="res://Scripts/UI/SpecialItemList.cs" id="4_qxceh"]
 [ext_resource type="Texture2D" uid="uid://b2l7to85rkjl" path="res://Assets/Images/UI/heart_icon.png" id="7_f8vne"]
-[ext_resource type="Texture2D" uid="uid://drrlot6oesri8" path="res://Assets/Images/UI/strong.png" id="9_cxrls"]
-[ext_resource type="Texture2D" uid="uid://d21mrp1tehixc" path="res://Assets/Images/UI/speed.png" id="11_7b2ht"]
-[ext_resource type="Texture2D" uid="uid://crkvpnyf3ibcp" path="res://Assets/Images/UI/button_cancel.png" id="11_cxrls"]
-[ext_resource type="Texture2D" uid="uid://byni2fkgyi20q" path="res://Assets/Images/UI/brain.png" id="12_gbxri"]
+[ext_resource type="Texture2D" uid="uid://brqqy0i1nrwko" path="res://Assets/Images/UI/New/progressBg.png" id="8_pgtbk"]
+[ext_resource type="Texture2D" uid="uid://blsuj411ot7hm" path="res://Assets/Images/UI/New/HPprogress.png" id="9_6k270"]
+[ext_resource type="Texture2D" uid="uid://c73yxng4uea1l" path="res://Assets/Images/UI/New/closeBtn.png" id="11_bje0t"]
+[ext_resource type="Texture2D" uid="uid://bxcrxndv58etk" path="res://Assets/Images/UI/New/strength.png" id="12_0g72h"]
+[ext_resource type="Texture2D" uid="uid://d141ff1l2u5qd" path="res://Assets/Images/UI/New/speed.png" id="13_0fvta"]
+[ext_resource type="Texture2D" uid="uid://duddhv3a3jk84" path="res://Assets/Images/UI/New/brain.png" id="14_sjbdt"]
 
 [node name="PropertyUI" type="Control" unique_id=1276892508 node_paths=PackedStringArray("close_button", "StateAreas", "TalentAreas")]
 layout_mode = 3
@@ -37,48 +39,58 @@ color = Color(0, 0, 0, 0.78431374)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=891162855]
 layout_mode = 0
-offset_left = 66.0
-offset_top = 118.0
-offset_right = 997.0
-offset_bottom = 1673.0
-texture = ExtResource("2_q386s")
-patch_margin_left = 24
-patch_margin_top = 30
-patch_margin_right = 24
-patch_margin_bottom = 25
+offset_left = 75.0
+offset_top = 115.0
+offset_right = 1006.0
+offset_bottom = 1751.0
+texture = ExtResource("2_7b2ht")
+region_rect = Rect2(0, 0, 900, 1236)
+patch_margin_left = 78
+patch_margin_top = 141
+patch_margin_right = 88
+patch_margin_bottom = 119
 
 [node name="Equipments" type="TextureRect" parent="." unique_id=1282518273]
 layout_mode = 0
-offset_left = 402.0
-offset_top = 486.0
-offset_right = 620.0
-offset_bottom = 582.0
-texture = ExtResource("3_p8wmk")
+offset_left = 394.0
+offset_top = 578.0
+offset_right = 688.1666
+offset_bottom = 658.0
+texture = ExtResource("3_gbxri")
 expand_mode = 2
 
 [node name="equipments" type="HBoxContainer" parent="Equipments" unique_id=1145534198]
 layout_mode = 0
-offset_left = -275.0
-offset_top = 96.0
-offset_right = 524.0
-offset_bottom = 232.0
+offset_left = -286.0
+offset_top = 97.0
+offset_right = 579.0
+offset_bottom = 233.0
+theme_override_constants/separation = 44
 alignment = 1
 
 [node name="helmet" type="TextureRect" parent="Equipments/equipments" unique_id=993718778]
+custom_minimum_size = Vector2(140, 100)
 layout_mode = 2
-texture = ExtResource("3_8l46q")
+texture = ExtResource("4_o5jng")
+expand_mode = 1
 
 [node name="armor" type="TextureRect" parent="Equipments/equipments" unique_id=1873382615]
+custom_minimum_size = Vector2(140, 100)
 layout_mode = 2
-texture = ExtResource("3_8l46q")
+texture = ExtResource("4_o5jng")
+expand_mode = 1
 
 [node name="shoes" type="TextureRect" parent="Equipments/equipments" unique_id=895999204]
+custom_minimum_size = Vector2(140, 140)
 layout_mode = 2
-texture = ExtResource("3_8l46q")
+texture = ExtResource("4_o5jng")
+expand_mode = 1
 
 [node name="ornament" type="TextureRect" parent="Equipments/equipments" unique_id=2073056354]
+custom_minimum_size = Vector2(140, 100)
 layout_mode = 2
-texture = ExtResource("3_8l46q")
+texture = ExtResource("4_o5jng")
+expand_mode = 1
 
 [node name="Label" type="Label" parent="Equipments" unique_id=2026701635]
 layout_mode = 1
@@ -87,10 +99,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -87.0
-offset_top = -31.0
-offset_right = 85.0
-offset_bottom = 18.0
+offset_left = -86.08331
+offset_top = -27.0
+offset_right = 83.91669
+offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 35
@@ -100,11 +112,11 @@ vertical_alignment = 1
 
 [node name="States" type="TextureRect" parent="." unique_id=839262290]
 layout_mode = 0
-offset_left = 402.0
-offset_top = 725.0
-offset_right = 620.0
-offset_bottom = 821.0
-texture = ExtResource("3_p8wmk")
+offset_left = 394.0
+offset_top = 846.0
+offset_right = 688.1666
+offset_bottom = 926.0
+texture = ExtResource("3_gbxri")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="States" unique_id=2076384446]
@@ -115,9 +127,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -87.0
-offset_top = -31.0
+offset_top = -27.0
 offset_right = 85.0
-offset_bottom = 18.0
+offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 35
@@ -128,19 +140,19 @@ vertical_alignment = 1
 [node name="StateAreas" type="GridContainer" parent="States" unique_id=597607504]
 layout_mode = 0
 offset_left = -275.0
-offset_top = 97.0
-offset_right = 528.0
-offset_bottom = 342.0
+offset_top = 89.0
+offset_right = 574.0
+offset_bottom = 237.0
 theme_override_constants/h_separation = 44
 columns = 3
 
 [node name="Traits" type="TextureRect" parent="." unique_id=1742402963]
 layout_mode = 0
-offset_left = 402.0
-offset_top = 1084.0
-offset_right = 620.0
-offset_bottom = 1180.0
-texture = ExtResource("3_p8wmk")
+offset_left = 394.0
+offset_top = 1093.0
+offset_right = 688.1666
+offset_bottom = 1173.0
+texture = ExtResource("3_gbxri")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="Traits" unique_id=23511985]
@@ -151,9 +163,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -87.0
-offset_top = -31.0
+offset_top = -28.0
 offset_right = 85.0
-offset_bottom = 18.0
+offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 35
@@ -163,28 +175,28 @@ vertical_alignment = 1
 
 [node name="TraitAreas" type="GridContainer" parent="Traits" unique_id=1285491182]
 layout_mode = 0
-offset_left = -303.0
-offset_top = 99.0
-offset_right = 558.0
-offset_bottom = 195.0
+offset_left = -285.0
+offset_top = 96.0
+offset_right = 576.0
+offset_bottom = 237.0
 theme_override_constants/h_separation = 66
 columns = 3
 
 [node name="SpecialProps" type="TextureRect" parent="." unique_id=553795152]
 layout_mode = 0
-offset_left = 408.0
-offset_top = 1289.0
-offset_right = 626.0
-offset_bottom = 1385.0
-texture = ExtResource("3_p8wmk")
+offset_left = 394.0
+offset_top = 1406.0
+offset_right = 688.1666
+offset_bottom = 1486.0
+texture = ExtResource("3_gbxri")
 expand_mode = 2
 
 [node name="ItemList" type="ItemList" parent="SpecialProps" unique_id=1801528034]
 layout_mode = 0
-offset_left = -257.0
-offset_top = 97.0
-offset_right = 460.0
-offset_bottom = 281.0
+offset_left = -213.0
+offset_top = 86.0
+offset_right = 504.0
+offset_bottom = 270.0
 item_count = 5
 max_columns = 5
 same_column_width = true
@@ -209,9 +221,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -87.0
-offset_top = -31.0
+offset_top = -28.0
 offset_right = 85.0
-offset_bottom = 18.0
+offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 35
@@ -221,155 +233,183 @@ vertical_alignment = 1
 
 [node name="Portrait" type="TextureButton" parent="." unique_id=937400659]
 layout_mode = 0
-offset_left = 149.0
-offset_top = 195.0
-offset_right = 277.0
-offset_bottom = 323.0
+offset_left = 154.0
+offset_top = 223.0
+offset_right = 321.0
+offset_bottom = 390.0
 texture_normal = ExtResource("2_a1hvy")
+stretch_mode = 0
 
 [node name="Health" type="TextureProgressBar" parent="." unique_id=1707433092]
 layout_mode = 0
-offset_left = 297.0
-offset_top = 214.0
-offset_right = 937.0
-offset_bottom = 310.0
-texture_over = ExtResource("3_p8wmk")
+offset_left = 462.0
+offset_top = 233.0
+offset_right = 1354.0
+offset_bottom = 343.0
+scale = Vector2(0.5, 0.5)
+value = 50.0
+texture_under = ExtResource("8_pgtbk")
+texture_progress = ExtResource("9_6k270")
+texture_progress_offset = Vector2(20, 21.875)
 tint_over = Color(0.9945772, 5.4628404e-06, 9.62615e-07, 1)
 
 [node name="Label" type="Label" parent="Health" unique_id=1827576991]
 layout_mode = 0
-offset_left = 231.0
-offset_top = 16.0
-offset_right = 399.0
-offset_bottom = 76.0
-theme_override_font_sizes/font_size = 41
+offset_left = 296.0
+offset_right = 602.0
+offset_bottom = 110.0
+theme_override_font_sizes/font_size = 80
 text = "100/100"
 
 [node name="TextureRect" type="TextureRect" parent="Health" unique_id=1271902915]
 layout_mode = 0
-offset_left = -24.0
-offset_top = -17.0
-offset_right = 104.0
-offset_bottom = 111.0
+offset_left = -222.0
+offset_top = -50.0
+offset_right = -8.0
+offset_bottom = 164.0
 texture = ExtResource("7_f8vne")
 
 [node name="close_button" type="Button" parent="." unique_id=1378168597]
 layout_mode = 0
-offset_left = 886.99994
-offset_top = 89.0
-offset_right = 966.99994
-offset_bottom = 169.0
-scale = Vector2(1.7, 1.7)
+offset_left = 898.00006
+offset_top = 96.00001
+offset_right = 1034.0
+offset_bottom = 238.0
+scale = Vector2(0.9, 0.9)
 theme_override_icons/icon = ExtResource("2_a1hvy")
-icon = ExtResource("3_t1ga8")
+icon = ExtResource("11_bje0t")
 flat = true
+icon_alignment = 1
 
 [node name="strength" type="TextureRect" parent="." unique_id=280162119]
 layout_mode = 0
-offset_left = 146.0
-offset_top = 362.0
-offset_right = 186.0
-offset_bottom = 402.0
+offset_left = 183.00002
+offset_top = 413.0
+offset_right = 214.3929
+offset_bottom = 447.42078
 scale = Vector2(2.1979518, 1.9755502)
-texture = ExtResource("9_cxrls")
-expand_mode = 2
+texture = ExtResource("12_0g72h")
+expand_mode = 1
 
 [node name="number" type="Label" parent="strength" unique_id=40318838]
 layout_mode = 0
-offset_left = 46.40684
-offset_right = 86.406845
-offset_bottom = 23.0
-text = "101"
+offset_left = 38.672367
+offset_top = -5.568069
+offset_right = 78.67236
+offset_bottom = 39.43193
+theme_override_font_sizes/font_size = 32
+text = "10"
+horizontal_alignment = 1
 
 [node name="progress" type="TextureProgressBar" parent="strength" unique_id=912182157]
 layout_mode = 0
-offset_left = 46.40684
-offset_top = 22.778463
-offset_right = 86.406845
-offset_bottom = 62.778465
+offset_left = -6.824533
+offset_top = 43.532173
+offset_right = 473.17548
+offset_bottom = 153.53217
 scale = Vector2(0.20794062, 0.19761012)
-texture_under = ExtResource("11_cxrls")
+nine_patch_stretch = true
+stretch_margin_left = 60
+stretch_margin_right = 60
+texture_under = ExtResource("8_pgtbk")
+texture_progress = ExtResource("9_6k270")
+texture_progress_offset = Vector2(10.97, 0)
 
 [node name="Label" type="Label" parent="strength/progress" unique_id=1770772263]
 layout_mode = 0
-offset_left = 30.63163
-offset_top = 17.930847
-offset_right = 185.97787
-offset_bottom = 64.03876
-theme_override_font_sizes/font_size = 33
+offset_left = 160.0
+offset_top = 23.0
+offset_right = 315.0
+offset_bottom = 93.0
+theme_override_font_sizes/font_size = 48
 text = "0/100"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="agile" type="TextureRect" parent="." unique_id=1127263960]
 layout_mode = 0
-offset_left = 424.0
-offset_top = 362.0
-offset_right = 464.0
-offset_bottom = 402.0
+offset_left = 447.0
+offset_top = 407.0
+offset_right = 474.7531
+offset_bottom = 447.0
 scale = Vector2(2.1979518, 1.9755502)
-texture = ExtResource("11_7b2ht")
-expand_mode = 2
+texture = ExtResource("13_0fvta")
+expand_mode = 1
 
 [node name="number" type="Label" parent="agile" unique_id=889037789]
 layout_mode = 0
-offset_left = 46.40684
-offset_right = 86.406845
-offset_bottom = 23.0
+offset_left = 42.312122
+offset_top = -3.0371287
+offset_right = 82.31212
+offset_bottom = 41.96287
+theme_override_font_sizes/font_size = 32
 text = "50"
+horizontal_alignment = 1
 
 [node name="progress" type="TextureProgressBar" parent="agile" unique_id=1171486576]
 layout_mode = 0
-offset_left = 46.40684
-offset_top = 22.778463
-offset_right = 86.406845
-offset_bottom = 62.778465
+offset_left = -3.6397579
+offset_top = 46.569305
+offset_right = 476.36023
+offset_bottom = 156.5693
 scale = Vector2(0.20794062, 0.19761012)
-texture_under = ExtResource("11_cxrls")
+nine_patch_stretch = true
+stretch_margin_left = 60
+stretch_margin_right = 60
+texture_under = ExtResource("8_pgtbk")
 
 [node name="Label2" type="Label" parent="agile/progress" unique_id=1389851494]
 layout_mode = 0
-offset_left = 30.631725
-offset_top = 17.930864
-offset_right = 185.97798
-offset_bottom = 64.03877
-theme_override_font_sizes/font_size = 33
+offset_left = 164.098
+offset_top = 23.0
+offset_right = 319.09802
+offset_bottom = 93.0
+theme_override_font_sizes/font_size = 48
 text = "0/100"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="intelligence" type="TextureRect" parent="." unique_id=820454334]
 layout_mode = 0
-offset_left = 692.0
-offset_top = 362.0
-offset_right = 732.0
-offset_bottom = 402.0
+offset_left = 704.0
+offset_top = 411.0
+offset_right = 734.90063
+offset_bottom = 451.0
 scale = Vector2(2.1979518, 1.9755502)
-texture = ExtResource("12_gbxri")
-expand_mode = 2
+texture = ExtResource("14_sjbdt")
+expand_mode = 1
 
 [node name="number" type="Label" parent="intelligence" unique_id=1407329152]
 layout_mode = 0
-offset_left = 46.40684
-offset_right = 86.406845
-offset_bottom = 23.0
+offset_left = 40.492245
+offset_top = -3.0371287
+offset_right = 80.49225
+offset_bottom = 41.96287
+theme_override_font_sizes/font_size = 32
 text = "5"
+horizontal_alignment = 1
 
 [node name="progress" type="TextureProgressBar" parent="intelligence" unique_id=1870846007]
 layout_mode = 0
-offset_left = 46.40684
-offset_top = 22.778463
-offset_right = 86.406845
-offset_bottom = 62.778465
+offset_left = 2.2748396
+offset_top = 45.05074
+offset_right = 482.27484
+offset_bottom = 155.19746
 scale = Vector2(0.20794062, 0.19761012)
-texture_under = ExtResource("11_cxrls")
+nine_patch_stretch = true
+stretch_margin_left = 60
+stretch_margin_right = 60
+texture_under = ExtResource("8_pgtbk")
 
 [node name="Label3" type="Label" parent="intelligence/progress" unique_id=2124319613]
 layout_mode = 0
-offset_left = 39.383545
-offset_top = 17.930864
-offset_right = 194.7298
-offset_bottom = 64.03877
-theme_override_font_sizes/font_size = 33
+offset_left = 164.098
+offset_top = 23.0
+offset_right = 319.09802
+offset_bottom = 93.0
+theme_override_font_sizes/font_size = 48
 text = "0/100"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="item_clicked" from="SpecialProps/ItemList" to="SpecialProps/ItemList" method="Itemclick"]
