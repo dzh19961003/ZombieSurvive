@@ -10,7 +10,11 @@ public partial class DetailsMaterial : Control
     [Export] public TextureRect typeIcon;
     public override void _Ready()
 	{
-        BG.Pressed +=()=> UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsMaterial.tscn");
+        BG.Pressed += () =>
+        {
+            UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsMaterial.tscn");
+            UIManager.Instance.item.edge.Visible = false;
+        };
     }
     public void InitialTips(int ID)
     {

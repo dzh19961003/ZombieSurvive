@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://doh45edaj46ku" path="res://Scripts/UI/MainUI.cs" id="1_xv1u1"]
 [ext_resource type="PackedScene" uid="uid://cr451u7s3ttth" path="res://UI/propertyBar.tscn" id="2_8cqdv"]
-[ext_resource type="Texture2D" uid="uid://cwqay0vk7x016" path="res://Assets/Images/UI/tab_inactive.png" id="9_tinas"]
+[ext_resource type="Texture2D" uid="uid://cl6egyw1sxc71" path="res://Assets/Images/UI/New/sleepBtn.png" id="3_8cqdv"]
 [ext_resource type="Texture2D" uid="uid://qbdn6muxwbkj" path="res://Assets/Images/UI/sleep.png" id="10_e10a1"]
 [ext_resource type="PackedScene" uid="uid://b0jmqtny847q5" path="res://UI/sta_hunUI.tscn" id="12_i0lr5"]
 [ext_resource type="PackedScene" uid="uid://2rhn2jmv0o1k" path="res://UI/time.tscn" id="12_r3ckc"]
@@ -21,10 +21,10 @@ sleepBtn = NodePath("Sleep")
 
 [node name="PropertyUI" parent="." unique_id=1913051136 instance=ExtResource("2_8cqdv")]
 layout_mode = 1
-offset_left = 29.0
-offset_top = -338.0
-offset_right = 549.0
-offset_bottom = -26.0
+offset_left = 27.0
+offset_top = -313.0
+offset_right = 623.0
+offset_bottom = -33.0
 
 [node name="Sleep" type="TextureButton" parent="." unique_id=332740442]
 layout_mode = 1
@@ -33,16 +33,19 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -377.0
-offset_top = -202.0
-offset_right = -33.0
-offset_bottom = -30.0
+offset_left = -401.0
+offset_top = -173.00012
+offset_right = -56.2182
+offset_bottom = -47.000122
 grow_horizontal = 0
 grow_vertical = 0
-texture_normal = ExtResource("9_tinas")
+scale = Vector2(1.1, 1.1)
+texture_normal = ExtResource("3_8cqdv")
+ignore_texture_size = true
 stretch_mode = 0
 
 [node name="Icon" type="TextureRect" parent="Sleep" unique_id=1409997512]
+visible = false
 layout_mode = 0
 offset_left = 44.0
 offset_top = 43.0
@@ -53,29 +56,27 @@ expand_mode = 1
 
 [node name="ButtonName" type="Label" parent="Sleep" unique_id=1341612817]
 layout_mode = 0
-offset_left = 166.0
-offset_top = 56.0
-offset_right = 295.0
-offset_bottom = 116.0
+offset_left = 164.83636
+offset_top = 29.0
+offset_right = 293.83636
+offset_bottom = 89.0
 theme_override_font_sizes/font_size = 43
 text = "去睡觉"
 
 [node name="Sta_Hun" parent="." unique_id=960878017 instance=ExtResource("12_i0lr5")]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 13.0
-offset_right = 581.0
-offset_bottom = 253.0
+offset_left = 30.0
+offset_top = 27.0
+offset_right = 511.0
+offset_bottom = 194.0
 
 [node name="Clock" parent="." unique_id=1599589682 instance=ExtResource("12_r3ckc")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -390.0
-offset_top = 38.0
-offset_right = -21.0
-offset_bottom = 249.0
+offset_left = -446.0
+offset_top = 25.0
+offset_right = 10.0
+offset_bottom = 236.0
 grow_horizontal = 0
-ignore_texture_size = false
-stretch_mode = 2

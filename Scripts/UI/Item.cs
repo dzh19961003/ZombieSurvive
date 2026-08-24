@@ -1,8 +1,5 @@
 using Godot;
-using Godot.Collections;
 using MyProject;
-using System;
-using System.Diagnostics;
 
 public partial class Item : Control
 {
@@ -13,6 +10,7 @@ public partial class Item : Control
 	[Export] public TextureButton BG;
     [Export] public TextureRect itemIcon;
     [Export] public Label numLabel;
+    [Export] public TextureRect edge;
 
     public override void _Ready()
 	{
@@ -21,8 +19,8 @@ public partial class Item : Control
     }
 
 	public void InitialItem() 
-	{
-		if (ID == 0)
+	{       
+        if (ID == 0)
 		{          
             itemIcon.Visible = false;
             for (int i = 0; i < Rarity.Length; i++)
@@ -48,6 +46,8 @@ public partial class Item : Control
     }
 	private void OnItemClick()
 	{
+        edge.Visible = true;
+        UIManager.Instance.item = this;
         if (ID==0)
         {
             return;

@@ -12,7 +12,11 @@ public partial class DetailsJewelry : Control
     [Export] public Label effectLable;
     public override void _Ready()
     {
-        BG.Pressed += () => UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsJewelry.tscn");
+        BG.Pressed += () => 
+        { 
+            UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsJewelry.tscn");
+            UIManager.Instance.item.edge.Visible = false;
+        };
     }
 
     public void InitialTips(int ID)

@@ -20,7 +20,7 @@ public partial class DetailsWeapon : Control
 
     public override void _Ready()
 	{
-        BG.Pressed += () => { UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsWeapon.tscn"); UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsArmer.tscn"); };
+        BG.Pressed += () => { UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsWeapon.tscn"); UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsArmer.tscn"); UIManager.Instance.item.edge.Visible = false; };
     }
     public void InitialTips(int ID)
     {

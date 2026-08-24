@@ -36,8 +36,8 @@ public partial class StaHunUi : TextureButton
 		_hungerStateLabel = GetNodeOrNull<Label>("HungerState/Label");
 
 		// 预加载绿色/灰色方块纹理（与场景 H1/H3 纹理资源一致）
-		_greenTex = GD.Load<Texture2D>("res://Assets/Images/UI/progressIn.png");
-		_grayTex  = GD.Load<Texture2D>("res://Assets/Images/UI/progressOut.png");
+		_greenTex = GD.Load<Texture2D>("res://Assets/Images/UI/new/foodProgress.png");
+		_grayTex  = GD.Load<Texture2D>("res://Assets/Images/UI/new/foodProgress_2.png");
 
 		// 用 CallDeferred：保证 PlayerManager.Instance 已初始化（避免 _Ready 顺序不同步导致 null）
 		CallDeferred(nameof(DeferredSetup));
@@ -160,7 +160,7 @@ public partial class StaHunUi : TextureButton
 		if (pm == null || _staminaValueLabel == null) return;
 
 		// 显示探索体力 / 探索最大体力
-		_staminaValueLabel.Text = $"X {pm.BaseStamina}/{pm.MaxBaseStamina}";
+		_staminaValueLabel.Text = $"x{pm.BaseStamina}";
 	}
 
 	private void EnterWarehouse()

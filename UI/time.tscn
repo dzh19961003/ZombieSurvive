@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://2rhn2jmv0o1k"]
 
-[ext_resource type="Texture2D" uid="uid://53n15gjv8ksp" path="res://Assets/Images/UI/popup_panel.png" id="1_f6cye"]
 [ext_resource type="Texture2D" uid="uid://cimgjjgut172w" path="res://Assets/Images/UI/time.png" id="2_1udsu"]
+[ext_resource type="Texture2D" uid="uid://cym0gfn2qmrrj" path="res://Assets/Images/UI/New/timeBan.png" id="2_f6cye"]
 [ext_resource type="Script" uid="uid://cqougbv0d1odb" path="res://Scripts/UI/Time.cs" id="2_qbgyk"]
-[ext_resource type="Texture2D" uid="uid://cwqay0vk7x016" path="res://Assets/Images/UI/tab_inactive.png" id="3_qbgyk"]
 
 [node name="Clock" type="TextureButton" unique_id=1599589682]
 custom_minimum_size = Vector2(356, 211)
@@ -16,27 +15,27 @@ script = ExtResource("2_qbgyk")
 
 [node name="bg" type="TextureRect" parent="." unique_id=774450695]
 layout_mode = 0
-offset_left = 66.0
-offset_top = 86.0
-offset_right = 349.0
-offset_bottom = 190.0
-texture = ExtResource("1_f6cye")
-expand_mode = 1
+offset_left = 27.0
+offset_top = 25.0
+offset_right = 427.0
+offset_bottom = 146.0
+texture = ExtResource("2_f6cye")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1843491433]
+visible = false
 layout_mode = 0
-offset_left = 4.0
-offset_top = 100.0
-offset_right = 120.0
-offset_bottom = 175.0
+offset_left = 124.0
+offset_top = 67.0
+offset_right = 232.0
+offset_bottom = 136.0
 texture = ExtResource("2_1udsu")
 
 [node name="Label" type="Label" parent="." unique_id=486867903]
 layout_mode = 0
-offset_left = 123.0
-offset_top = 104.0
-offset_right = 289.0
-offset_bottom = 173.0
+offset_left = 215.0
+offset_top = 65.0
+offset_right = 381.0
+offset_bottom = 134.0
 theme_override_font_sizes/font_size = 45
 text = "早晨"
 horizontal_alignment = 1
@@ -47,16 +46,15 @@ layout_mode = 0
 offset_left = 64.0
 offset_right = 349.0
 offset_bottom = 98.0
-texture_normal = ExtResource("3_qbgyk")
 stretch_mode = 0
 
 [node name="DayCount" type="Label" parent="Day" unique_id=1240658737]
 layout_mode = 0
-offset_left = 46.0
-offset_top = 19.0
-offset_right = 239.0
-offset_bottom = 84.0
-theme_override_font_sizes/font_size = 45
+offset_left = 67.0
+offset_top = 27.0
+offset_right = 260.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 24
 text = "第1天"
 horizontal_alignment = 1
 vertical_alignment = 1

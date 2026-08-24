@@ -11,7 +11,11 @@ public partial class DetailsTalent : Control
     
     public override void _Ready()
     {
-        BG.Pressed += () => UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsTalent.tscn");
+        BG.Pressed += () =>
+        {
+            UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsTalent.tscn");
+            UIManager.Instance.item.edge.Visible = false;
+        };
     }
     public void InitialTips(int ID)
     {

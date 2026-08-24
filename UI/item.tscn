@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://cfvxtq84ml7gy"]
 
 [ext_resource type="Script" uid="uid://dr4sm6g1v0vwh" path="res://Scripts/UI/Item.cs" id="1_4u0i4"]
-[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="1_ia6xt"]
+[ext_resource type="Texture2D" uid="uid://401g6anh5dnd" path="res://Assets/Images/UI/New/itemBg.png" id="2_c6xva"]
 [ext_resource type="Texture2D" uid="uid://c5kp62gpikm3m" path="res://Assets/Images/Items/rice_icon.png" id="3_c6xva"]
 [ext_resource type="Texture2D" uid="uid://c2vl6xl2rvua5" path="res://Assets/Images/UI/ItemType/rarity_dot_1.png" id="4_c6xva"]
 [ext_resource type="Texture2D" uid="uid://bpslpdjxivf2g" path="res://Assets/Images/UI/ItemType/rarity_dot_2.png" id="5_qpl1q"]
 [ext_resource type="Texture2D" uid="uid://mnqf6oij858x" path="res://Assets/Images/UI/ItemType/rarity_dot_3.png" id="6_dcb8o"]
 [ext_resource type="Texture2D" uid="uid://dwhgw57us8vgn" path="res://Assets/Images/UI/ItemType/rarity_dot_4.png" id="7_pxt5l"]
+[ext_resource type="Texture2D" uid="uid://bkuvlo57mnpgu" path="res://Assets/Images/UI/New/itemBg_2.png" id="8_qpl1q"]
 
-[node name="Item" type="Control" unique_id=1539995109 node_paths=PackedStringArray("Rarity", "BG", "itemIcon", "numLabel")]
+[node name="Item" type="Control" unique_id=1539995109 node_paths=PackedStringArray("Rarity", "BG", "itemIcon", "numLabel", "edge")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 3
 anchors_preset = 0
@@ -22,12 +23,14 @@ Rarity = [NodePath("TextureButton/Rarity_1"), NodePath("TextureButton/Rarity_2")
 BG = NodePath("TextureButton")
 itemIcon = NodePath("TextureButton/itemIcon")
 numLabel = NodePath("TextureButton/Num")
+edge = NodePath("TextureButton/edge")
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=1415998938]
 layout_mode = 1
-offset_right = 150.0
-offset_bottom = 150.0
-texture_normal = ExtResource("1_ia6xt")
+offset_right = 147.0
+offset_bottom = 148.0
+texture_normal = ExtResource("2_c6xva")
+ignore_texture_size = true
 stretch_mode = 0
 
 [node name="itemIcon" type="TextureRect" parent="TextureButton" unique_id=702115929]
@@ -91,3 +94,11 @@ theme_override_font_sizes/font_size = 28
 text = "5"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="edge" type="TextureRect" parent="TextureButton" unique_id=1116018836]
+visible = false
+layout_mode = 0
+offset_right = 147.0
+offset_bottom = 148.0
+texture = ExtResource("8_qpl1q")
+expand_mode = 1

@@ -10,7 +10,11 @@ public partial class DetailsState : Control
     [Export] public Button BG;
     public override void _Ready()
     {
-        BG.Pressed += () => UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsState.tscn");
+        BG.Pressed += () =>
+        {
+            UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsState.tscn");
+            UIManager.Instance.item.edge.Visible = false;
+        };
     }
     public void Initail(int ID)
     {

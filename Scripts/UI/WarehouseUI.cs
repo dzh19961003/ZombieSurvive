@@ -1,5 +1,6 @@
 using Godot;
 using MyProject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -28,7 +29,7 @@ public partial class WarehouseUI : Control
             int index = i;
             tabButton[i].Pressed += () => SwitchBtn(index);
         }
-
+        tabButton[0].TextureNormal = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/New/switchBtn_2.png");
         // _Ready顺序不确定，延迟初始化避免PlayerManager未就绪
         CallDeferred(nameof(DeferredInit));
     }
@@ -166,9 +167,9 @@ public partial class WarehouseUI : Control
     {
         for (int i = 0; i < tabButton.Length; i++)
         {
-            tabButton[i].TextureNormal = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/tab_inactive.png");
+            tabButton[i].TextureNormal = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/New/switchBtn.png");
         }
-        tabButton[index].TextureNormal = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/tab_active.png");
+        tabButton[index].TextureNormal = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/New/switchBtn_2.png");
         for (int i = 0; i < ItemList.GetChildCount(); i++)
         {
             ItemList.GetChild(i).QueueFree();

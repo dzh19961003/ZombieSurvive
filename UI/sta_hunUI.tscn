@@ -1,18 +1,16 @@
 [gd_scene format=3 uid="uid://b0jmqtny847q5"]
 
-[ext_resource type="Texture2D" uid="uid://53n15gjv8ksp" path="res://Assets/Images/UI/popup_panel.png" id="1_cu7rr"]
-[ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="2_iw8wl"]
+[ext_resource type="Texture2D" uid="uid://levtd14e200j" path="res://Assets/Images/UI/New/foodBan.png" id="1_jjyac"]
 [ext_resource type="Script" uid="uid://shyolp5ydh8b" path="res://Scripts/UI/StaHunUi.cs" id="2_q88b4"]
 [ext_resource type="Texture2D" uid="uid://c5kp62gpikm3m" path="res://Assets/Images/Items/rice_icon.png" id="3_q88b4"]
-[ext_resource type="Texture2D" uid="uid://cuf21obshc0gy" path="res://Assets/Images/UI/progressIn.png" id="4_cb8cu"]
-[ext_resource type="Texture2D" uid="uid://cit3gvlwpjso6" path="res://Assets/Images/UI/progressOut.png" id="5_lt7oe"]
+[ext_resource type="Texture2D" uid="uid://dwvywnj86ycn0" path="res://Assets/Images/UI/New/foodProgress.png" id="4_cu7rr"]
 [ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="6_0q8px"]
-[ext_resource type="Texture2D" uid="uid://cwqay0vk7x016" path="res://Assets/Images/UI/tab_inactive.png" id="7_3oam6"]
+[ext_resource type="Texture2D" uid="uid://bg8xhhrnrhxxt" path="res://Assets/Images/UI/New/mainState_1.png" id="6_iw8wl"]
 
 [node name="Sta_Hun" type="TextureButton" unique_id=960878017 node_paths=PackedStringArray("warehouseBtn", "propertyButton")]
-offset_right = 578.0
-offset_bottom = 244.0
-texture_normal = ExtResource("1_cu7rr")
+offset_right = 481.73077
+offset_bottom = 167.0
+texture_normal = ExtResource("1_jjyac")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("2_q88b4")
@@ -23,13 +21,13 @@ propertyButton = NodePath("propertyButton")
 layout_mode = 0
 offset_left = 25.0
 offset_top = 18.0
-offset_right = 288.0
-offset_bottom = 156.0
-texture_normal = ExtResource("2_iw8wl")
+offset_right = 263.0
+offset_bottom = 99.0
 ignore_texture_size = true
 stretch_mode = 0
 
 [node name="HIcon" type="TextureRect" parent="Hunger" unique_id=423896582]
+visible = false
 layout_mode = 0
 offset_left = 17.0
 offset_top = 23.0
@@ -40,76 +38,77 @@ expand_mode = 1
 
 [node name="H1" type="TextureRect" parent="Hunger" unique_id=305634069]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 27.0
-offset_right = 146.0
-offset_bottom = 95.0
-texture = ExtResource("4_cb8cu")
+offset_left = 107.0
+offset_top = 23.0
+offset_right = 147.0
+offset_bottom = 65.0
+texture = ExtResource("4_cu7rr")
 expand_mode = 1
 
 [node name="H2" type="TextureRect" parent="Hunger" unique_id=1448421353]
 layout_mode = 0
-offset_left = 126.0
-offset_top = 27.0
-offset_right = 192.0
-offset_bottom = 95.0
-texture = ExtResource("4_cb8cu")
+offset_left = 164.0
+offset_top = 23.0
+offset_right = 204.0
+offset_bottom = 65.0
+texture = ExtResource("4_cu7rr")
 expand_mode = 1
 
 [node name="H3" type="TextureRect" parent="Hunger" unique_id=153815242]
 layout_mode = 0
-offset_left = 172.0
-offset_top = 27.0
-offset_right = 238.0
-offset_bottom = 95.0
-texture = ExtResource("5_lt7oe")
+offset_left = 220.0
+offset_top = 23.0
+offset_right = 260.0
+offset_bottom = 65.0
+texture = ExtResource("4_cu7rr")
 expand_mode = 1
 
 [node name="Stamina" type="TextureButton" parent="." unique_id=648011017]
 layout_mode = 0
-offset_left = 286.0
-offset_top = 18.0
-offset_right = 549.0
-offset_bottom = 155.0
-texture_normal = ExtResource("2_iw8wl")
+offset_left = 309.0
+offset_top = 25.0
+offset_right = 446.0
+offset_bottom = 92.0
 ignore_texture_size = true
 stretch_mode = 0
 
 [node name="SIcon" type="TextureRect" parent="Stamina" unique_id=940793646]
 layout_mode = 0
-offset_left = 30.999992
-offset_top = 32.0
-offset_right = 96.769226
-offset_bottom = 89.0
+offset_left = 0.9999924
+offset_top = 1.0
+offset_right = 77.15385
+offset_bottom = 70.0
 texture = ExtResource("6_0q8px")
 expand_mode = 1
 
 [node name="SValue" type="Label" parent="Stamina" unique_id=2022723050]
 layout_mode = 0
-offset_left = 91.0
-offset_top = 32.0
-offset_right = 223.0
-offset_bottom = 88.0
+offset_left = 38.0
+offset_top = 7.0
+offset_right = 170.0
+offset_bottom = 63.0
 theme_override_font_sizes/font_size = 40
-text = "X 15"
+text = "x15"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HungerState" type="TextureButton" parent="." unique_id=2141518108]
 layout_mode = 0
-offset_left = 23.0
-offset_top = 147.0
-offset_right = 213.0
-offset_bottom = 219.0
-texture_normal = ExtResource("7_3oam6")
+offset_left = 12.0
+offset_top = 99.0
+offset_right = 468.0
+offset_bottom = 155.0
+texture_normal = ExtResource("6_iw8wl")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Label" type="Label" parent="HungerState" unique_id=211532519]
 layout_mode = 0
-offset_left = 21.0
-offset_top = 16.0
-offset_right = 164.0
+offset_left = 154.0
+offset_top = -2.0
+offset_right = 297.0
 offset_bottom = 54.0
-theme_override_font_sizes/font_size = 27
+theme_override_font_sizes/font_size = 40
 text = "半饱"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -118,14 +117,14 @@ vertical_alignment = 1
 layout_mode = 0
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 550.0
-offset_bottom = 140.0
+offset_right = 466.0
+offset_bottom = 96.0
 flat = true
 
 [node name="propertyButton" type="Button" parent="." unique_id=316472007]
 layout_mode = 0
-offset_left = 22.0
-offset_top = 149.0
-offset_right = 549.0
-offset_bottom = 218.0
+offset_left = 13.0
+offset_top = 105.0
+offset_right = 473.0
+offset_bottom = 157.0
 flat = true

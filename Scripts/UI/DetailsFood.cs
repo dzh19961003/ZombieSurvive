@@ -19,7 +19,7 @@ public partial class DetailsFood : Control
     private State state;
     public override void _Ready()
 	{
-        BG.Pressed += () => { UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsFood.tscn"); UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsMedic.tscn"); };
+        BG.Pressed += () => { UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsFood.tscn"); UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsMedic.tscn"); UIManager.Instance.item.edge.Visible = false; };
     }
 
 	public void InitialTips(int ID) 

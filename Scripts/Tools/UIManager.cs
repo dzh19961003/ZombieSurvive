@@ -13,6 +13,8 @@ public partial class UIManager : Node
     // key = 面板场景的路径，value = 面板节点本身
     private Dictionary<string, Control> _panels = new();
 
+    public Item item;
+
     public override void _Ready()
     {
         Instance = this;
