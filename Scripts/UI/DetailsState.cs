@@ -13,7 +13,7 @@ public partial class DetailsState : Control
         BG.Pressed += () =>
         {
             UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsState.tscn");
-            UIManager.Instance.item.edge.Visible = false;
+            
         };
     }
     public void Initail(int ID)

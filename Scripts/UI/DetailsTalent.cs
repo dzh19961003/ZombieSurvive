@@ -14,7 +14,7 @@ public partial class DetailsTalent : Control
         BG.Pressed += () =>
         {
             UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsTalent.tscn");
-            UIManager.Instance.item.edge.Visible = false;
+            
         };
     }
     public void InitialTips(int ID)

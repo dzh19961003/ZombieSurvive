@@ -385,15 +385,15 @@ public partial class PlayerManager : Node, ISaveable
         CallDeferred(nameof(DeferredInitHungerState));
         GetState(2);
         //测试
-        AddItem(1,5);
-        AddItem(2,5);
-        AddItem(3,5);
-        AddItem(4,5);
-        AddItem(5,5);
-        AddItem(6,5);
-        AddItem(7,5);
-        AddItem(8,5);
-        AddItem(9,5);
+        AddItem(1,25);
+        AddItem(2,25);
+        AddItem(3,25);
+        AddItem(4,25);
+        AddItem(5,25);
+        AddItem(6,25);
+        AddItem(7,25);
+        AddItem(8,25);
+        AddItem(9,25);
         
     }
 
@@ -425,7 +425,7 @@ public partial class PlayerManager : Node, ISaveable
             AddItem(10003, 10);
             // GetState(2);
             AddItem(10019, -1);
-            AddItem(10015,-2);
+            AddItem(10015,5);
             GameManager.Instance.AdvanceTime();
         }
     }

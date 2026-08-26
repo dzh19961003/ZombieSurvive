@@ -16,6 +16,7 @@ public partial class WsUpgradeUi : Control
 	private Label _gradeTitle;
 	private Label _makeLevelValue;
 	private Label _makeNextLevelValue;
+	private Label _maxTip;
 	private Label[] _reqLabels;
 	private TextureRect[] _reqIcons;
 
@@ -23,6 +24,7 @@ public partial class WsUpgradeUi : Control
 	{
 		_gradeTitle     = GetNode<Label>("GradeTitle");
 		_makeLevelValue = GetNode<Label>("MakeLevel/MakeLevelValue");
+		_maxTip=GetNode<Label>("UpgradeRequ/maxTip");
 		_makeNextLevelValue = GetNode<Label>("MakeLevel/MakeNextLevelValue");
 		_reqLabels = new Label[]
 		{
@@ -84,21 +86,24 @@ public partial class WsUpgradeUi : Control
 		if (PlayerManager.Instance == null || ConfigManager.Instance == null) return;
 
 		// 等级标题
+	
 		string levelText = $"等级{currentLevel}";
 		string nextText = $"等级{nextLevel}";
 		if (_gradeTitle != null) _gradeTitle.Text = levelText;
 		if (_makeLevelValue != null) _makeLevelValue.Text = levelText;
 		if (_makeNextLevelValue != null) _makeNextLevelValue.Text = nextText;
 		var cfg = FindUpgradeConfig();
-		if (cfg == null)
+		if (currentLevel==5)
 		{
+			_makeNextLevelValue.Visible=false;
 			// 已达最高等级：清空需求并禁用按钮
 			for (int i = 0; i < _reqLabels.Length; i++)
-			{
-				if (_reqLabels[i] != null) _reqLabels[i].Text = "—";
-				SetReqColor(_reqLabels[i], false);
+			{	
+				_reqIcons[i].Visible=false;
+				_reqLabels[i].Visible=false;
 			}
-			if (upgrade != null) upgrade.Disabled = true;
+			if (upgrade != null) upgrade.Icon = GD.Load<Texture2D>("res://Assets/Images/UI/button_cancel.png");
+			_maxTip.Visible=true;
 			return;
 		}
 
@@ -154,8 +159,8 @@ public partial class WsUpgradeUi : Control
 
 		var cfg = FindUpgradeConfig();
 		if (cfg == null)
-		{
-			GD.Print("[WsUpgradeUi] 已达最高等级，无法升级");
+		{	
+			UIManager.Instance.ShowCommonTips2("工作台已达最高等级，无法升级");
 			return;
 		}
 
@@ -168,7 +173,7 @@ public partial class WsUpgradeUi : Control
 				int need   = i < cfg.ItemNum.Count ? cfg.ItemNum[i] : 0;
 				if (!IsEnough(itemID, need))
 				{
-					GD.Print($"[WsUpgradeUi] 资源不足：ID={itemID} 需{need}");
+					UIManager.Instance.ShowCommonTips2("升级材料不足");
 					return;
 				}
 			}

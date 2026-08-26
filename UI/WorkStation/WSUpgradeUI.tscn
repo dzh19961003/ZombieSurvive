@@ -236,6 +236,16 @@ text = "X5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="maxTip" type="Label" parent="UpgradeRequ" unique_id=156945580]
+visible = false
+layout_mode = 0
+offset_left = 254.0
+offset_top = 15.0
+offset_right = 638.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 32
+text = "已达到最高等级，无法升级"
+
 [node name="UpgradeBtn" type="Button" parent="." unique_id=1788584474]
 layout_mode = 0
 offset_left = 232.0
