@@ -46,7 +46,10 @@ public partial class Item : Control
     }
 	private void OnItemClick()
 	{
-        edge.Visible = true;
+        if (ID!=0)
+        {
+            edge.Visible = true;
+        }       
         UIManager.Instance.item = this;
         if (ID==0)
         {
