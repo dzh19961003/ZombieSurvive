@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bjdq0gau2lh7a"]
+
+[ext_resource type="Script" uid="uid://y7ofpxqg3y8p" path="res://UI/BattleManager.cs" id="1_bwxfd"]
+[ext_resource type="Texture2D" uid="uid://brqqy0i1nrwko" path="res://Assets/Images/UI/New/progressBg.png" id="1_htgqe"]
+[ext_resource type="Texture2D" uid="uid://dwvywnj86ycn0" path="res://Assets/Images/UI/New/foodProgress.png" id="2_bwxfd"]
+[ext_resource type="Texture2D" uid="uid://mmultvn08qt5" path="res://Assets/Images/UI/New/foodProgress_2.png" id="3_nmheq"]
+
+[node name="Battle" type="Control" unique_id=981174782 node_paths=PackedStringArray("progressBar", "playerHead", "enemyHead")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bwxfd")
+progressBar = NodePath("progress")
+playerHead = NodePath("player")
+enemyHead = NodePath("enemy")
+
+[node name="progress" type="TextureRect" parent="." unique_id=664751530]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 105.0
+offset_right = 988.0
+offset_bottom = 215.0
+texture = ExtResource("1_htgqe")
+
+[node name="player" type="TextureRect" parent="." unique_id=418923094]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 65.0
+offset_right = 149.0
+offset_bottom = 167.0
+texture = ExtResource("2_bwxfd")
+
+[node name="enemy" type="TextureRect" parent="." unique_id=1715682001]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 161.0
+offset_right = 147.0
+offset_bottom = 263.0
+texture = ExtResource("3_nmheq")
