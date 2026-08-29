@@ -1,9 +1,27 @@
 [gd_scene format=3 uid="uid://bjdq0gau2lh7a"]
 
-[ext_resource type="Script" uid="uid://y7ofpxqg3y8p" path="res://UI/BattleManager.cs" id="1_bwxfd"]
-[ext_resource type="Texture2D" uid="uid://brqqy0i1nrwko" path="res://Assets/Images/UI/New/progressBg.png" id="1_htgqe"]
-[ext_resource type="Texture2D" uid="uid://dwvywnj86ycn0" path="res://Assets/Images/UI/New/foodProgress.png" id="2_bwxfd"]
-[ext_resource type="Texture2D" uid="uid://mmultvn08qt5" path="res://Assets/Images/UI/New/foodProgress_2.png" id="3_nmheq"]
+[ext_resource type="Script" uid="uid://y7ofpxqg3y8p" path="res://Scripts/UI/Battle/BattleManager.cs" id="1_bwxfd"]
+[ext_resource type="Texture2D" uid="uid://cgr03410dgaey" path="res://Assets/Images/UI/Battle/timeProgress.png" id="2_bwxfd"]
+[ext_resource type="Texture2D" uid="uid://c8k0t5p74rjus" path="res://Assets/Images/UI/Battle/enemy_bg.png" id="3_4nydq"]
+[ext_resource type="Texture2D" uid="uid://d3rrr3hkl5l06" path="res://Assets/Images/UI/Battle/time.png" id="3_dvjvd"]
+[ext_resource type="Texture2D" uid="uid://drsriaqdmuyu1" path="res://Assets/Images/UI/Battle/player.png" id="3_nmheq"]
+[ext_resource type="Texture2D" uid="uid://dnsrokbej6snc" path="res://Assets/Images/UI/Battle/enemy.png" id="4_vyl4k"]
+[ext_resource type="Texture2D" uid="uid://cqddwuogebcqm" path="res://Assets/Images/UI/Battle/player_bg.png" id="5_s2eo2"]
+[ext_resource type="Texture2D" uid="uid://b2wi2mlmeydvd" path="res://Assets/Images/UI/Battle/atk_random.png" id="6_sqlpi"]
+[ext_resource type="Texture2D" uid="uid://b2hhf0s2km1k4" path="res://Assets/Images/UI/Battle/atk_arm.png" id="7_4nydq"]
+[ext_resource type="Texture2D" uid="uid://peu06rmenyb8" path="res://Assets/Images/UI/Battle/atk_body.png" id="8_dvjvd"]
+[ext_resource type="Texture2D" uid="uid://bwvffjkcsljgn" path="res://Assets/Images/UI/Battle/atk_head.png" id="9_djhm5"]
+[ext_resource type="Texture2D" uid="uid://dt64r5elymygi" path="res://Assets/Images/UI/Battle/arm_prop.png" id="10_o3nar"]
+[ext_resource type="Texture2D" uid="uid://c2rqekr8vidnl" path="res://Assets/Images/UI/Battle/body_prop.png" id="11_4p516"]
+[ext_resource type="Texture2D" uid="uid://bdnga0di6ik5m" path="res://Assets/Images/UI/Battle/head_prop.png" id="12_xk4p2"]
+[ext_resource type="Texture2D" uid="uid://0dku6o5d4g1b" path="res://Assets/Images/UI/Battle/progress_bg.png" id="13_soyc4"]
+[ext_resource type="Texture2D" uid="uid://c8suawgtqmpgy" path="res://Assets/Images/UI/Battle/progress_armer.png" id="14_r8vmd"]
+[ext_resource type="Texture2D" uid="uid://bkrnxufkkb3oo" path="res://Assets/Images/UI/Battle/progress_hp.png" id="15_h7d7p"]
+[ext_resource type="Texture2D" uid="uid://q2xr74a8wr0" path="res://Assets/Images/UI/Battle/bag.png" id="16_7ocfu"]
+[ext_resource type="Texture2D" uid="uid://blarvcfdxxu8i" path="res://Assets/Images/UI/Battle/hp_icon.png" id="17_8qdub"]
+[ext_resource type="Texture2D" uid="uid://colmv4fearh77" path="res://Assets/Images/UI/Battle/armer_icon.png" id="18_dpte7"]
+[ext_resource type="Texture2D" uid="uid://wdqclkpgrwfk" path="res://Assets/Images/UI/Battle/times_bg.png" id="19_d5j7p"]
+[ext_resource type="PackedScene" uid="uid://cdle415lb5fab" path="res://UI/Battle/difficulty.tscn" id="20_sqlpi"]
 
 [node name="Battle" type="Control" unique_id=981174782 node_paths=PackedStringArray("progressBar", "playerHead", "enemyHead")]
 layout_mode = 3
@@ -17,26 +35,507 @@ progressBar = NodePath("progress")
 playerHead = NodePath("player")
 enemyHead = NodePath("enemy")
 
-[node name="progress" type="TextureRect" parent="." unique_id=664751530]
+[node name="progress" type="NinePatchRect" parent="." unique_id=678502228]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -351.0
+offset_top = 298.0
+offset_right = 436.0
+offset_bottom = 346.0
+grow_horizontal = 2
+texture = ExtResource("2_bwxfd")
+region_rect = Rect2(0, 2, 624, 49)
+patch_margin_left = 22
+patch_margin_top = 16
+patch_margin_right = 27
+patch_margin_bottom = 17
+
+[node name="Time" type="TextureRect" parent="progress" unique_id=1019823992]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 105.0
-offset_right = 988.0
-offset_bottom = 215.0
-texture = ExtResource("1_htgqe")
+offset_left = -93.0
+offset_top = -42.000004
+offset_right = 62.817673
+offset_bottom = 120.36464
+scale = Vector2(0.7605042, 0.76050425)
+texture = ExtResource("3_dvjvd")
 
 [node name="player" type="TextureRect" parent="." unique_id=418923094]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 65.0
-offset_right = 149.0
-offset_bottom = 167.0
-texture = ExtResource("2_bwxfd")
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -367.0
+offset_top = 211.0
+offset_right = -300.0
+offset_bottom = 299.0
+grow_horizontal = 2
+texture = ExtResource("3_nmheq")
+expand_mode = 1
 
 [node name="enemy" type="TextureRect" parent="." unique_id=1715682001]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -368.0
+offset_top = 343.0
+offset_right = -301.0
+offset_bottom = 431.0
+grow_horizontal = 2
+texture = ExtResource("4_vyl4k")
+expand_mode = 1
+
+[node name="EnemyBg" type="NinePatchRect" parent="." unique_id=54445744]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.48700002
+anchor_right = 0.48700002
+offset_left = -295.96002
+offset_top = 26.0
+offset_right = 295.03998
+offset_bottom = 209.0
+texture = ExtResource("3_4nydq")
+region_rect = Rect2(0, 0, 591, 97)
+patch_margin_left = 32
+patch_margin_top = 28
+patch_margin_right = 30
+patch_margin_bottom = 31
+
+[node name="nameLabel" type="Label" parent="EnemyBg" unique_id=1168708918]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -257.5
+offset_top = 9.0
+offset_right = 257.5
+offset_bottom = 92.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 60
+text = "普通丧尸"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="difficulty" parent="EnemyBg" unique_id=44696552 instance=ExtResource("20_sqlpi")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -238.5
+offset_top = -96.0
+offset_right = 359.5
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+
+[node name="PlayerBg" type="TextureRect" parent="." unique_id=1583115962]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.001
+anchor_right = 0.5
+anchor_bottom = 1.001
+offset_left = -540.0
+offset_top = -702.92004
+offset_right = 540.0
+offset_bottom = -0.92004395
+
+[node name="bg" type="NinePatchRect" parent="PlayerBg" unique_id=1950719331]
 layout_mode = 0
-offset_left = 49.0
-offset_top = 161.0
+offset_top = 12.0
+offset_right = 1080.0
+offset_bottom = 697.0
+texture = ExtResource("5_s2eo2")
+region_rect = Rect2(0, 0, 966, 152)
+patch_margin_left = 24
+patch_margin_top = 29
+patch_margin_right = 27
+patch_margin_bottom = 31
+
+[node name="atk" type="HBoxContainer" parent="PlayerBg" unique_id=2072659286]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 269.0
+offset_right = 1053.0
+offset_bottom = 569.0
+theme_override_constants/separation = 18
+
+[node name="randomAtk" type="NinePatchRect" parent="PlayerBg/atk" unique_id=383097086]
+custom_minimum_size = Vector2(235, 275)
+custom_maximum_size = Vector2(-1, 275)
+layout_mode = 2
+texture = ExtResource("6_sqlpi")
+patch_margin_top = 169
+patch_margin_bottom = 34
+
+[node name="name" type="Label" parent="PlayerBg/atk/randomAtk" unique_id=487299815]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 159.0
+offset_right = 198.0
+offset_bottom = 215.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "随机攻击"
+
+[node name="armAtk" type="NinePatchRect" parent="PlayerBg/atk" unique_id=1776283763]
+custom_minimum_size = Vector2(235, 275)
+custom_maximum_size = Vector2(-1, 275)
+layout_mode = 2
+texture = ExtResource("7_4nydq")
+patch_margin_top = 169
+patch_margin_bottom = 34
+
+[node name="name" type="Label" parent="PlayerBg/atk/armAtk" unique_id=801061571]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 159.0
+offset_right = 198.0
+offset_bottom = 215.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "攻击手臂"
+
+[node name="dmg" type="Label" parent="PlayerBg/atk/armAtk" unique_id=902890357]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 200.0
+offset_right = 198.0
+offset_bottom = 256.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 28
+text = "伤害:15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bodyAtk" type="NinePatchRect" parent="PlayerBg/atk" unique_id=1590309909]
+custom_minimum_size = Vector2(235, 275)
+custom_maximum_size = Vector2(-1, 275)
+layout_mode = 2
+texture = ExtResource("8_dvjvd")
+patch_margin_top = 169
+patch_margin_bottom = 34
+
+[node name="name" type="Label" parent="PlayerBg/atk/bodyAtk" unique_id=983692311]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 159.0
+offset_right = 198.0
+offset_bottom = 215.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "攻击身体"
+
+[node name="dmg" type="Label" parent="PlayerBg/atk/bodyAtk" unique_id=1784098684]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 200.0
+offset_right = 198.0
+offset_bottom = 256.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 28
+text = "伤害:15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="headAtk" type="NinePatchRect" parent="PlayerBg/atk" unique_id=412597317]
+custom_minimum_size = Vector2(235, 275)
+custom_maximum_size = Vector2(-1, 275)
+layout_mode = 2
+texture = ExtResource("9_djhm5")
+patch_margin_top = 169
+patch_margin_bottom = 34
+
+[node name="name" type="Label" parent="PlayerBg/atk/headAtk" unique_id=2106725732]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 159.0
+offset_right = 198.0
+offset_bottom = 215.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "攻击头部"
+
+[node name="dmg" type="Label" parent="PlayerBg/atk/headAtk" unique_id=348756557]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 200.0
+offset_right = 198.0
+offset_bottom = 256.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 28
+text = "伤害:15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="prop" type="HBoxContainer" parent="PlayerBg" unique_id=1450618860]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 544.0
+offset_right = 1047.0
+offset_bottom = 694.0
+theme_override_constants/separation = 20
+
+[node name="armProp" type="TextureRect" parent="PlayerBg/prop" unique_id=921013400]
+custom_minimum_size = Vector2(325, 100)
+custom_maximum_size = Vector2(-1, 135)
+layout_mode = 2
+texture = ExtResource("10_o3nar")
+expand_mode = 1
+
+[node name="name" type="Label" parent="PlayerBg/prop/armProp" unique_id=230920724]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 20.0
+offset_right = 274.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
+text = "命中手臂"
+
+[node name="name2" type="Label" parent="PlayerBg/prop/armProp" unique_id=1048408668]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 50.0
+offset_right = 274.0
+offset_bottom = 127.0
+theme_override_colors/font_color = Color(0.42745098, 0.5764706, 0.27058825, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 52
+text = "45%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bodyProp" type="TextureRect" parent="PlayerBg/prop" unique_id=210602526]
+custom_minimum_size = Vector2(325, 0)
+custom_maximum_size = Vector2(-1, 135)
+layout_mode = 2
+texture = ExtResource("11_4p516")
+expand_mode = 1
+
+[node name="name" type="Label" parent="PlayerBg/prop/bodyProp" unique_id=1063653801]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 20.0
+offset_right = 274.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
+text = "命中身体"
+
+[node name="name2" type="Label" parent="PlayerBg/prop/bodyProp" unique_id=1200496856]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 50.0
+offset_right = 274.0
+offset_bottom = 127.0
+theme_override_colors/font_color = Color(0.42745098, 0.5764706, 0.27058825, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 52
+text = "45%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="headProp" type="TextureRect" parent="PlayerBg/prop" unique_id=1993883227]
+custom_minimum_size = Vector2(325, 0)
+custom_maximum_size = Vector2(-1, 135)
+layout_mode = 2
+texture = ExtResource("12_xk4p2")
+expand_mode = 1
+
+[node name="name" type="Label" parent="PlayerBg/prop/headProp" unique_id=504635660]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 20.0
+offset_right = 274.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
+text = "命中头部"
+
+[node name="name2" type="Label" parent="PlayerBg/prop/headProp" unique_id=519663713]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 50.0
+offset_right = 274.0
+offset_bottom = 127.0
+theme_override_colors/font_color = Color(0.42745098, 0.5764706, 0.27058825, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 52
+text = "10%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="armer" type="TextureProgressBar" parent="PlayerBg" unique_id=1402935312]
+layout_mode = 0
+offset_left = 242.0
+offset_top = 56.0
+offset_right = 800.0
+offset_bottom = 147.0
+value = 75.0
+texture_under = ExtResource("13_soyc4")
+texture_progress = ExtResource("14_r8vmd")
+texture_progress_offset = Vector2(30, 30)
+
+[node name="num" type="Label" parent="PlayerBg/armer" unique_id=1453490937]
+layout_mode = 0
+offset_left = 218.0
+offset_top = 22.0
+offset_right = 340.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
+text = "128/300"
+
+[node name="hp" type="TextureProgressBar" parent="PlayerBg" unique_id=1914566150]
+layout_mode = 0
+offset_left = 242.0
+offset_top = 165.0
+offset_right = 800.0
+offset_bottom = 256.0
+value = 80.0
+texture_under = ExtResource("13_soyc4")
+texture_progress = ExtResource("15_h7d7p")
+texture_progress_offset = Vector2(30, 30)
+
+[node name="num" type="Label" parent="PlayerBg/hp" unique_id=491085957]
+layout_mode = 0
+offset_left = 218.0
+offset_top = 22.0
+offset_right = 340.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
+text = "128/300"
+
+[node name="Bag" type="TextureRect" parent="PlayerBg" unique_id=1613193901]
+layout_mode = 0
+offset_left = 804.0
+offset_top = 48.0
+offset_right = 1027.0
+offset_bottom = 262.0
+texture = ExtResource("16_7ocfu")
+
+[node name="name" type="Label" parent="PlayerBg/Bag" unique_id=417509098]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 155.0
+offset_right = 149.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
+text = "背包"
+
+[node name="hpIcon" type="TextureRect" parent="PlayerBg" unique_id=277516828]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 168.0
 offset_right = 147.0
-offset_bottom = 263.0
-texture = ExtResource("3_nmheq")
+offset_bottom = 258.0
+texture = ExtResource("17_8qdub")
+
+[node name="name" type="Label" parent="PlayerBg/hpIcon" unique_id=604894013]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 15.0
+offset_right = 180.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "生命"
+
+[node name="armerIcon" type="TextureRect" parent="PlayerBg" unique_id=1155029901]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 53.0
+offset_right = 146.0
+offset_bottom = 155.0
+texture = ExtResource("18_dpte7")
+
+[node name="name" type="Label" parent="PlayerBg/armerIcon" unique_id=1692742454]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 25.0
+offset_right = 180.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "护甲"
+
+[node name="timesBg_1" type="TextureRect" parent="PlayerBg" unique_id=275763997]
+layout_mode = 0
+offset_left = 813.0
+offset_top = -74.0
+offset_right = 933.0
+offset_bottom = 12.0
+texture = ExtResource("19_d5j7p")
+
+[node name="num" type="Label" parent="PlayerBg/timesBg_1" unique_id=1305079823]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 16.0
+offset_right = 80.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 36
+text = "x1"
+
+[node name="timesBg_2" type="TextureRect" parent="PlayerBg" unique_id=83032123]
+layout_mode = 0
+offset_left = 952.0
+offset_top = -74.0
+offset_right = 1072.0
+offset_bottom = 12.0
+texture = ExtResource("19_d5j7p")
+
+[node name="num" type="Label" parent="PlayerBg/timesBg_2" unique_id=245220117]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 16.0
+offset_right = 80.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 36
+text = "x2"

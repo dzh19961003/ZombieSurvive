@@ -58,6 +58,10 @@ public partial class PlayerManager : Node, ISaveable
     private int maxBaseStamina = 10;
     private int maxexploreStamina = 10;
     private int hunger = 3;
+    private int dmg = 0;
+    private int armTime = 3;
+    private int bodyTime = 2;
+    private int headTime = 6;
     public int Hp {get{return hpBase + GetAddition(10001);}private set{}}
     public int MaxHp {get{return maxHpBase + GetAddition(10002);}private set{}}
     public int Strength {get{return strengthBase + GetAddition(10003);}private set{}}
@@ -77,7 +81,12 @@ public partial class PlayerManager : Node, ISaveable
     public int MaxBaseStamina {get{return maxBaseStamina + GetAddition(10017);}private set{}}
     public int MaxexploreStamina {get{return maxexploreStamina + GetAddition(10018);}private set{}}
     public int Hunger {get{return hunger + GetAddition(10019);}private set{}}
-    
+    public int ArmDmg { get { return dmg + GetAddition(10021); } private set { } }
+    public int BodyDmg { get { return dmg + GetAddition(10022); } private set { } }
+    public int HeadDmg { get { return dmg + GetAddition(10023); } private set { } }
+    public int ArmTime { get { return armTime + GetAddition(10024); } private set { } }
+    public int BodyTime { get { return bodyTime + GetAddition(10025); } private set { } }
+    public int HeadTime { get { return headTime + GetAddition(10026); } private set { } }
     //增量计算
     public int GetAddition(int statetype)
         {
@@ -348,6 +357,24 @@ public partial class PlayerManager : Node, ISaveable
                 hunger = Mathf.Clamp(hunger + amount, 0, MaxHunger);
                 SyncHungerState(hunger);
                 break;
+            case 10021:
+                dmg += amount;
+                break;
+            case 10022:
+                dmg += amount;
+                break;
+            case 10023:
+                dmg += amount;
+                break;
+            case 10024:
+                armTime += amount;
+                break;
+            case 10025:
+                bodyTime += amount;
+                break;
+            case 10026:
+                headTime += amount;
+                break;
             default:
 
                 break;
@@ -460,7 +487,11 @@ public partial class PlayerManager : Node, ISaveable
             {"exploreStamina", exploreStamina},
             {"maxBaseStamina", maxBaseStamina},
             {"maxexploreStamina", maxexploreStamina},
-            {"hunger",hunger}
+            {"hunger",hunger},
+            { "dmg", dmg},
+            { "armTime", armTime},
+            { "bodyTime", bodyTime},
+            { "headTime", headTime}
         };
     }
     public void LoadSaveData(Dictionary data)
@@ -486,6 +517,10 @@ public partial class PlayerManager : Node, ISaveable
         maxBaseStamina      = data.ContainsKey("maxBaseStamina")      ? (int)data["maxBaseStamina"]      : 10;
         maxexploreStamina   = data.ContainsKey("maxexploreStamina")   ? (int)data["maxexploreStamina"]   : 10;
         hunger              = data.ContainsKey("hunger")              ? (int)data["hunger"]              : 3;
+        dmg      = data.ContainsKey("dmg")      ? (int)data["dmg"]      : 0;
+        armTime  = data.ContainsKey("armTime")  ? (int)data["armTime"]  : 3;
+        bodyTime = data.ContainsKey("bodyTime") ? (int)data["bodyTime"] : 2;
+        headTime = data.ContainsKey("headTime") ? (int)data["headTime"] : 6;
         // ItemArray = data.ContainsKey("ItemArray") ? (Array<int>)data["ItemArray"] : new Array<int>{1,2};
         ItemDic   = data.ContainsKey("ItemDic")   ? (Dictionary<int, int>)data["ItemDic"]   : new Dictionary<int, int> { };
         talentID  = data.ContainsKey("talentID")  ? (Array<int>)data["talentID"]            : new Array<int> { };

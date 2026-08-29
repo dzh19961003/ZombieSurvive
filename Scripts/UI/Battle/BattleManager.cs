@@ -4,10 +4,14 @@ using System.Diagnostics;
 
 public partial class BattleManager : Control
 {
-    [Export] public TextureRect progressBar;
+    [Export] public NinePatchRect progressBar;
     [Export] public TextureRect playerHead;
     [Export] public TextureRect enemyHead;
-
+    [Export] public TextureRect mask;
+    [Export] public TextureRect randomBtn;
+    [Export] public TextureRect handBtn;
+    [Export] public TextureRect bodyBtn;
+    [Export] public TextureRect headBtn;
     //头像移动速度
     private double speed = 0.4;
     private double playerSpeed;
@@ -29,12 +33,8 @@ public partial class BattleManager : Control
     {
         positionBiasY = playerHead.Size.Y;
         positionBiasX = playerHead.Size.X / 2;
-        playerHead.Position = progressBar.Position - new Vector2(0, positionBiasY);
-        enemyHead.Position = progressBar.Position + new Vector2(0, positionBiasY);
         NormalizedSpeed(5, 5);
     }
-
-
     public override void _Process(double delta)
     {
         if (battleState != BattleState.Moving)
@@ -56,11 +56,10 @@ public partial class BattleManager : Control
         }
         UpdateUI();
     }
-
     private void UpdateUI()
     {
         playerHead.Position = progressBar.Position + new Vector2((float)(playerPosition / 1) * progressBar.Size.X - positionBiasX, -positionBiasY);
-        enemyHead.Position = progressBar.Position + new Vector2((float)(enemyPosition / 1) * progressBar.Size.X - positionBiasX, positionBiasY);
+        enemyHead.Position = progressBar.Position + new Vector2((float)(enemyPosition / 1) * progressBar.Size.X - positionBiasX, positionBiasY / 2);
     }
     private void NormalizedSpeed(int playerSpeedProperty, int enemySpeedProperty)
     {
@@ -83,6 +82,7 @@ public partial class BattleManager : Control
     private void PlayerTurn()
     {
         GD.Print("玩家行动");
+
     }
     private void EnemyTurn()
     {
