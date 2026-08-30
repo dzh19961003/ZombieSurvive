@@ -4,7 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://desgea4htjck3" path="res://icon.svg" id="2_d4ma1"]
 [ext_resource type="Texture2D" uid="uid://3gx7ydxhii6a" path="res://Assets/Images/UI/New/propertyBg.png" id="2_xpf6f"]
 [ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="3_d4ma1"]
-[ext_resource type="Texture2D" uid="uid://b2l7to85rkjl" path="res://Assets/Images/UI/heart_icon.png" id="7_evi37"]
+[ext_resource type="Texture2D" uid="uid://bollw2lwjl02l" path="res://Assets/Images/UI/New/strong.png" id="4_xpf6f"]
+[ext_resource type="Texture2D" uid="uid://d141ff1l2u5qd" path="res://Assets/Images/UI/New/speed.png" id="5_iu1ib"]
+[ext_resource type="Texture2D" uid="uid://duddhv3a3jk84" path="res://Assets/Images/UI/New/brain.png" id="6_smrt8"]
+[ext_resource type="Texture2D" uid="uid://blarvcfdxxu8i" path="res://Assets/Images/UI/Battle/hp_icon.png" id="8_xpf6f"]
 [ext_resource type="Texture2D" uid="uid://brqqy0i1nrwko" path="res://Assets/Images/UI/New/progressBg.png" id="9_iu1ib"]
 [ext_resource type="Texture2D" uid="uid://blsuj411ot7hm" path="res://Assets/Images/UI/New/HPprogress.png" id="10_smrt8"]
 
@@ -23,22 +26,23 @@ _strengthLabel = NodePath("HBoxContainer/Label")
 _agilityLabel = NodePath("HBoxContainer/Label3")
 _intelligenceLabel = NodePath("HBoxContainer/Label2")
 _healthBar = NodePath("HealthProgressBar")
-_healthText = NodePath("HealthProgressBar/Label")
+_healthText = NodePath("Label")
 
 [node name="BG" type="TextureRect" parent="." unique_id=1773149968]
 layout_mode = 0
-offset_right = 588.2353
-offset_bottom = 275.0
+offset_right = 562.0
+offset_bottom = 307.0
 texture = ExtResource("2_xpf6f")
 
 [node name="ButtonName" type="Label" parent="." unique_id=1305141967]
 layout_mode = 0
-offset_left = 235.0
-offset_top = 34.0
-offset_right = 479.77924
-offset_bottom = 90.0
+offset_left = 233.0
+offset_top = 51.0
+offset_right = 477.77924
+offset_bottom = 107.0
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 40
-text = "我的状态"
+text = "我的属性"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -54,32 +58,62 @@ expand_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1455455002]
 layout_mode = 0
-offset_left = 266.0
-offset_top = 97.0
-offset_right = 614.0
-offset_bottom = 177.0
-theme_override_constants/separation = 71
+offset_left = 246.0
+offset_top = 111.0
+offset_right = 594.0
+offset_bottom = 191.0
+theme_override_constants/separation = 77
 
 [node name="Label" type="Label" parent="HBoxContainer" unique_id=1429099086]
 layout_mode = 2
-theme_override_font_sizes/font_size = 37
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 36
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="HBoxContainer" unique_id=717811890]
 layout_mode = 2
-theme_override_font_sizes/font_size = 37
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 36
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="HBoxContainer" unique_id=1788613856]
 layout_mode = 2
-theme_override_font_sizes/font_size = 37
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 36
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="prop1" type="TextureRect" parent="." unique_id=121509411]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 123.0
+offset_right = 238.0
+offset_bottom = 176.0
+texture = ExtResource("4_xpf6f")
+expand_mode = 1
+
+[node name="prop2" type="TextureRect" parent="." unique_id=358526004]
+layout_mode = 0
+offset_left = 302.0
+offset_top = 124.0
+offset_right = 364.14954
+offset_bottom = 174.0
+texture = ExtResource("5_iu1ib")
+expand_mode = 1
+
+[node name="prop3" type="TextureRect" parent="." unique_id=1607627914]
+layout_mode = 0
+offset_left = 419.0
+offset_top = 123.0
+offset_right = 476.07693
+offset_bottom = 176.0
+texture = ExtResource("6_smrt8")
+expand_mode = 1
 
 [node name="Property" type="NinePatchRect" parent="." unique_id=533678785]
 visible = false
@@ -97,34 +131,35 @@ patch_margin_bottom = 37
 
 [node name="Health" type="TextureRect" parent="." unique_id=223369430]
 layout_mode = 0
-offset_left = 19.0
-offset_top = 162.0
-offset_right = 120.0
-offset_bottom = 263.0
-texture = ExtResource("7_evi37")
+offset_left = 38.0
+offset_top = 195.0
+offset_right = 111.7
+offset_bottom = 261.0
+texture = ExtResource("8_xpf6f")
 expand_mode = 1
 
 [node name="HealthProgressBar" type="TextureProgressBar" parent="." unique_id=135427496]
 layout_mode = 0
-offset_left = 113.0
-offset_top = 187.0
-offset_right = 1005.0
-offset_bottom = 297.0
-scale = Vector2(0.49, 0.49)
-value = 100.0
+offset_left = 116.0
+offset_top = 195.0
+offset_right = 1610.0
+offset_bottom = 427.0
+scale = Vector2(0.28, 0.28)
+value = 50.0
 stretch_margin_left = 10
 texture_under = ExtResource("9_iu1ib")
 texture_progress = ExtResource("10_smrt8")
-texture_progress_offset = Vector2(18.38, 21.07)
+texture_progress_offset = Vector2(55, 55)
 tint_progress = Color(1, 0.01953125, 0.01953125, 1)
 
-[node name="Label" type="Label" parent="HealthProgressBar" unique_id=1930593645]
-layout_mode = 0
-offset_left = 340.49988
-offset_top = 18.500015
-offset_right = 531.49994
-offset_bottom = 87.500015
-theme_override_font_sizes/font_size = 50
+[node name="Label" type="Label" parent="." unique_id=1930593645]
+layout_mode = 1
+offset_left = 201.0
+offset_top = 204.0
+offset_right = 449.00006
+offset_bottom = 249.0
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
 text = "100/100"
 horizontal_alignment = 1
 vertical_alignment = 1

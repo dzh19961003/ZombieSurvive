@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x26ev65m6p0k"
-path="res://.godot/imported/strength.png-3d61905a25834df297e85361bfef3c64.ctex"
+uid="uid://dxy3agbe5qjix"
+path="res://.godot/imported/weather_2.png-4552e8cb92cd4d284f144d612e26f068.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/UI/New/strength.png"
-dest_files=["res://.godot/imported/strength.png-3d61905a25834df297e85361bfef3c64.ctex"]
+source_file="res://Assets/Images/UI/New/weather_2.png"
+dest_files=["res://.godot/imported/weather_2.png-4552e8cb92cd4d284f144d612e26f068.ctex"]
 
 [params]
 

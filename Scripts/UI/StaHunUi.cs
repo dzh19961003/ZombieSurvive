@@ -6,7 +6,8 @@ public partial class StaHunUi : TextureButton
 {
 	[Export] public Button warehouseBtn;
 	[Export] public Button propertyButton;
-	private TextureRect _h1;
+	[Export] public TextureRect hungerBg;
+    private TextureRect _h1;
 	private TextureRect _h2;
 	private TextureRect _h3;
 
@@ -104,6 +105,23 @@ public partial class StaHunUi : TextureButton
 		{
 			_hungerStateLabel.Text = GetHungerStateName(hunger);
 		}
+		switch (hunger)
+		{
+			case 0:
+                hungerBg.Texture = GD.Load<Texture2D>("res://Assets/Images/UI/New/mainState_1.png");
+                break;
+            case 1:
+                hungerBg.Texture = GD.Load<Texture2D>("res://Assets/Images/UI/New/mainState_1.png");
+                break;
+            case 2:
+                hungerBg.Texture = GD.Load<Texture2D>("res://Assets/Images/UI/New/mainState_2.png");
+                break;
+            case 3:
+                hungerBg.Texture = GD.Load<Texture2D>("res://Assets/Images/UI/New/mainState_3.png");
+                break;
+            default:
+				break;
+		}
 
 		GD.Print($"[StaHunUi] 饱食刷新：Hunger={hunger}/{maxHunger}，绿{hunger}灰{maxHunger - hunger}，状态文字={_hungerStateLabel?.Text ?? "(null)"}");
 	}
@@ -139,7 +157,7 @@ public partial class StaHunUi : TextureButton
 		// 回退
 		return hunger switch
 		{
-			0 => "饥饿",
+			0 => "死亡",
 			1 => "空腹",
 			2 => "半饱",
 			3 => "饱腹",

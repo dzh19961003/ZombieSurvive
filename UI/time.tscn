@@ -3,23 +3,28 @@
 [ext_resource type="Texture2D" uid="uid://cimgjjgut172w" path="res://Assets/Images/UI/time.png" id="2_1udsu"]
 [ext_resource type="Texture2D" uid="uid://cym0gfn2qmrrj" path="res://Assets/Images/UI/New/timeBan.png" id="2_f6cye"]
 [ext_resource type="Script" uid="uid://cqougbv0d1odb" path="res://Scripts/UI/Time.cs" id="2_qbgyk"]
+[ext_resource type="Texture2D" uid="uid://cw71ohu7t58pp" path="res://Assets/Images/UI/New/days.png" id="4_1udsu"]
+[ext_resource type="Texture2D" uid="uid://c7g38jwrc0pli" path="res://Assets/Images/UI/New/weather_1.png" id="5_qbgyk"]
 
 [node name="Clock" type="TextureButton" unique_id=1599589682]
-custom_minimum_size = Vector2(356, 211)
 anchors_preset = -1
-offset_right = 356.0
-offset_bottom = 211.0
+offset_right = 268.0
+offset_bottom = 162.0
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("2_qbgyk")
 
-[node name="bg" type="TextureRect" parent="." unique_id=774450695]
+[node name="bg" type="NinePatchRect" parent="." unique_id=771674485]
 layout_mode = 0
-offset_left = 27.0
-offset_top = 25.0
-offset_right = 427.0
-offset_bottom = 146.0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 443.0
+offset_bottom = 274.0
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_f6cye")
+region_rect = Rect2(-1, -1, 441, 314)
+patch_margin_top = 161
+patch_margin_bottom = 82
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1843491433]
 visible = false
@@ -32,29 +37,54 @@ texture = ExtResource("2_1udsu")
 
 [node name="Label" type="Label" parent="." unique_id=486867903]
 layout_mode = 0
-offset_left = 215.0
-offset_top = 65.0
-offset_right = 381.0
-offset_bottom = 134.0
-theme_override_font_sizes/font_size = 45
+offset_left = 21.0
+offset_top = 69.0
+offset_right = 171.0
+offset_bottom = 144.0
+theme_override_colors/font_color = Color(0.21176471, 0.21568628, 0.2, 1)
+theme_override_font_sizes/font_size = 40
 text = "早晨"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Day" type="TextureButton" parent="." unique_id=1268579884]
 layout_mode = 0
-offset_left = 64.0
-offset_right = 349.0
-offset_bottom = 98.0
+offset_left = 13.0
+offset_top = 15.0
+offset_right = 253.0
+offset_bottom = 61.0
 stretch_mode = 0
 
 [node name="DayCount" type="Label" parent="Day" unique_id=1240658737]
-layout_mode = 0
-offset_left = 67.0
-offset_top = 27.0
-offset_right = 260.0
-offset_bottom = 90.0
-theme_override_font_sizes/font_size = 24
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.22100002
+anchor_right = -0.22100002
+offset_left = 122.04001
+offset_top = 4.0
+offset_right = 227.04001
+offset_bottom = 49.0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 32
 text = "第1天"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1094347941]
+visible = false
+layout_mode = 0
+offset_left = 21.0
+offset_top = 16.0
+offset_right = 62.0
+offset_bottom = 60.608017
+texture = ExtResource("4_1udsu")
+expand_mode = 1
+
+[node name="Weather" type="TextureRect" parent="." unique_id=1183837502]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 75.0
+offset_right = 242.0
+offset_bottom = 138.0
+texture = ExtResource("5_qbgyk")
+expand_mode = 1
