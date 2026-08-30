@@ -15,9 +15,9 @@ public partial class WarehouseUI : Control
     // 当前选中的页签类型（0=全部，1=食物，2=药品，3=装备，4=材料）
     private int currentType = 0;
 
-    private int gridLength = 6;
+    private int gridLength = 5;
     // 最少显示的格子数量，铺满至少一整屏
-    private int minNum = 42;
+    private int minNum = 35;
 
 
     public override void _Ready()

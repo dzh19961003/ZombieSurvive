@@ -7,16 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://bpslpdjxivf2g" path="res://Assets/Images/UI/ItemType/rarity_dot_2.png" id="5_qpl1q"]
 [ext_resource type="Texture2D" uid="uid://mnqf6oij858x" path="res://Assets/Images/UI/ItemType/rarity_dot_3.png" id="6_dcb8o"]
 [ext_resource type="Texture2D" uid="uid://dwhgw57us8vgn" path="res://Assets/Images/UI/ItemType/rarity_dot_4.png" id="7_pxt5l"]
+[ext_resource type="Texture2D" uid="uid://4coe83b4amml" path="res://Assets/Images/UI/New/itemNum.png" id="8_dcb8o"]
 [ext_resource type="Texture2D" uid="uid://bkuvlo57mnpgu" path="res://Assets/Images/UI/New/itemBg_2.png" id="8_qpl1q"]
+[ext_resource type="Texture2D" uid="uid://dnaf1w8cp56f4" path="res://Assets/Images/UI/New/itemType_1_1.png" id="9_pxt5l"]
 
-[node name="Item" type="Control" unique_id=1539995109 node_paths=PackedStringArray("Rarity", "BG", "itemIcon", "numLabel", "edge")]
+[node name="Item" type="Control" unique_id=1539995109 node_paths=PackedStringArray("Rarity", "BG", "itemIcon", "numLabel", "edge", "numBg", "itemType")]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 152.0
-offset_bottom = 152.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 179.0
+offset_bottom = 178.0
 size_flags_horizontal = 0
 script = ExtResource("1_4u0i4")
 Rarity = [NodePath("TextureButton/Rarity_1"), NodePath("TextureButton/Rarity_2"), NodePath("TextureButton/Rarity_3"), NodePath("TextureButton/Rarity_4")]
@@ -24,81 +24,107 @@ BG = NodePath("TextureButton")
 itemIcon = NodePath("TextureButton/itemIcon")
 numLabel = NodePath("TextureButton/Num")
 edge = NodePath("TextureButton/edge")
+numBg = NodePath("TextureButton/Rarity_5")
+itemType = NodePath("TextureButton/itemType")
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=1415998938]
 layout_mode = 1
-offset_right = 147.0
-offset_bottom = 148.0
+offset_right = 176.0
+offset_bottom = 177.19727
 texture_normal = ExtResource("2_c6xva")
 ignore_texture_size = true
 stretch_mode = 0
 
 [node name="itemIcon" type="TextureRect" parent="TextureButton" unique_id=702115929]
 layout_mode = 0
-offset_left = 13.0
-offset_top = 17.0
-offset_right = 126.0
-offset_bottom = 130.0
+offset_left = 37.0
+offset_top = 31.0
+offset_right = 146.0
+offset_bottom = 140.0
 texture = ExtResource("3_c6xva")
 expand_mode = 1
 
 [node name="Rarity_1" type="TextureRect" parent="TextureButton" unique_id=1991707141]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 103.555565
-offset_bottom = 103.555565
+offset_left = 13.0
+offset_top = 10.0
+offset_right = 154.19556
+offset_bottom = 125.555565
 scale = Vector2(0.45, 0.45)
 texture = ExtResource("4_c6xva")
 expand_mode = 1
 
 [node name="Rarity_2" type="TextureRect" parent="TextureButton" unique_id=1495975674]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 103.555565
-offset_bottom = 103.555565
+offset_left = 13.0
+offset_top = 10.0
+offset_right = 154.19556
+offset_bottom = 125.555565
 scale = Vector2(0.45, 0.45)
 texture = ExtResource("5_qpl1q")
 expand_mode = 1
 
 [node name="Rarity_3" type="TextureRect" parent="TextureButton" unique_id=187100480]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 103.555565
-offset_bottom = 103.555565
+offset_left = 13.0
+offset_top = 10.0
+offset_right = 154.19556
+offset_bottom = 125.555565
 scale = Vector2(0.45, 0.45)
 texture = ExtResource("6_dcb8o")
 expand_mode = 1
 
 [node name="Rarity_4" type="TextureRect" parent="TextureButton" unique_id=1797260126]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 103.555565
-offset_bottom = 103.555565
+offset_left = 13.0
+offset_top = 10.0
+offset_right = 154.19556
+offset_bottom = 125.555565
 scale = Vector2(0.45, 0.45)
 texture = ExtResource("7_pxt5l")
 expand_mode = 1
 
+[node name="Rarity_5" type="TextureRect" parent="TextureButton" unique_id=1404010351]
+visible = false
+layout_mode = 0
+offset_left = 107.23902
+offset_top = 122.0
+offset_right = 246.94632
+offset_bottom = 228.66666
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("8_dcb8o")
+expand_mode = 1
+
+[node name="itemType" type="TextureRect" parent="TextureButton" unique_id=1864412963]
+visible = false
+layout_mode = 0
+offset_left = 17.0
+offset_top = 15.0
+offset_right = 105.88889
+offset_bottom = 103.88889
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("9_pxt5l")
+expand_mode = 1
+
 [node name="Num" type="Label" parent="TextureButton" unique_id=605102283]
 layout_mode = 0
-offset_left = 82.0
-offset_top = 92.0
-offset_right = 122.0
-offset_bottom = 131.0
+offset_left = 119.0
+offset_top = 126.0
+offset_right = 159.0
+offset_bottom = 165.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 28
 text = "5"
-horizontal_alignment = 2
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="edge" type="TextureRect" parent="TextureButton" unique_id=1116018836]
 visible = false
 layout_mode = 0
-offset_right = 147.0
-offset_bottom = 148.0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 168.0
+offset_bottom = 166.0
 texture = ExtResource("8_qpl1q")
 expand_mode = 1

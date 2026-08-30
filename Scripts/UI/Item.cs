@@ -11,7 +11,8 @@ public partial class Item : Control
     [Export] public TextureRect itemIcon;
     [Export] public Label numLabel;
     [Export] public TextureRect edge;
-
+    [Export] public TextureRect numBg;
+    [Export] public TextureRect itemType;
     public override void _Ready()
 	{
 		BG.Pressed += OnItemClick;
@@ -31,10 +32,32 @@ public partial class Item : Control
         }
 		else
 		{
+            numBg.Visible = true;
+            itemType.Visible = true;
             itemIcon.Visible = true;
             //读取物品图标
             itemIcon.Texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/Items/" + ConfigManager.Instance.itemDic[ID].Icon + ".png");
-
+            switch (ConfigManager.Instance.itemDic[ID].Type)
+            {
+                case 1:
+                    itemType.Texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/New/itemType_1_1.png");
+                    break;
+                case 2:
+                    itemType.Texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/New/itemType_3_1.png");
+                    break;
+                case 3:
+                    itemType.Texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/New/itemType_2_1.png");
+                    break;
+                case 4:
+                    itemType.Texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/New/itemType_5_1.png");
+                    break;
+                case 5:
+                    itemType.Texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/New/itemType_4_1.png");
+                    break;
+                default:
+                    break;
+            }
+            
             //读取稀有度
             for (int i = 0; i < Rarity.Length; i++)
             {
@@ -46,15 +69,12 @@ public partial class Item : Control
     }
 	private void OnItemClick()
 	{
-        if (ID!=0)
-        {
-            edge.Visible = true;
-        }       
-        UIManager.Instance.item = this;
         if (ID==0)
         {
             return;
         }
+        edge.Visible = true;
+        UIManager.Instance.item = this;
         switch (ConfigManager.Instance.itemDic[ID].Type)
         {
             case 1:

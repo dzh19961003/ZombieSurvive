@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://6nmspgaue8yk"]
 
 [ext_resource type="Script" uid="uid://clfjt522lih5y" path="res://Scripts/UI/WarehouseUI.cs" id="1_nevy0"]
-[ext_resource type="Texture2D" uid="uid://cc2vql0cmxevl" path="res://Assets/Images/UI/New/bg.png" id="2_t5eni"]
+[ext_resource type="Texture2D" uid="uid://ou1l1fhqrokr" path="res://Assets/Images/UI/New/bg_4.png" id="2_2b0ju"]
 [ext_resource type="Texture2D" uid="uid://dts0y5aj1pyi6" path="res://Assets/Images/UI/New/bg_2.png" id="3_2b0ju"]
 [ext_resource type="Texture2D" uid="uid://c73yxng4uea1l" path="res://Assets/Images/UI/New/closeBtn.png" id="4_iklqg"]
 [ext_resource type="Texture2D" uid="uid://be36kvik1aaj" path="res://Assets/Images/UI/New/switchBtn.png" id="5_t5eni"]
+[ext_resource type="Texture2D" uid="uid://5ebrqi3micvv" path="res://Assets/Images/UI/New/itemType_4.png" id="6_6u6kq"]
+[ext_resource type="Texture2D" uid="uid://cf4hhaijsjoq2" path="res://Assets/Images/UI/New/itemType_1.png" id="7_lfny0"]
+[ext_resource type="Texture2D" uid="uid://k41bvd7fbvc6" path="res://Assets/Images/UI/New/itemType_3.png" id="8_gv7s5"]
+[ext_resource type="Texture2D" uid="uid://bkd8vkfj38crm" path="res://Assets/Images/UI/New/itemType_2.png" id="9_ofrs8"]
+[ext_resource type="Texture2D" uid="uid://d4lbqra7bvpeg" path="res://Assets/Images/UI/New/itemType_5.png" id="10_dj7sa"]
 
 [node name="Warehouse" type="Control" unique_id=1634816914 node_paths=PackedStringArray("ItemList", "closeBtn", "tabButton")]
 layout_mode = 3
@@ -16,7 +21,7 @@ grow_vertical = 2
 script = ExtResource("1_nevy0")
 ItemList = NodePath("ScrollContainer/itemList")
 closeBtn = NodePath("closeBtn")
-tabButton = [NodePath("AllBtn"), NodePath("FoodBtn"), NodePath("MedicBtn"), NodePath("EquipBtn"), NodePath("MaterialBtn")]
+tabButton = [NodePath("tab/AllBtn"), NodePath("tab/FoodBtn"), NodePath("tab/MedicBtn"), NodePath("tab/EquipBtn"), NodePath("tab/MaterialBtn")]
 
 [node name="Control" type="ColorRect" parent="." unique_id=309588429]
 propagate_maximum_size = true
@@ -30,17 +35,18 @@ color = Color(0, 0, 0, 0.78431374)
 
 [node name="bg" type="NinePatchRect" parent="." unique_id=55441412]
 layout_mode = 0
-offset_left = 39.0
+offset_left = 73.0
 offset_top = 224.0
-offset_right = 1048.0
+offset_right = 1020.0
 offset_bottom = 1582.0
-texture = ExtResource("2_t5eni")
+texture = ExtResource("2_2b0ju")
 patch_margin_left = 48
 patch_margin_top = 40
 patch_margin_right = 58
 patch_margin_bottom = 50
 
 [node name="bg2" type="NinePatchRect" parent="bg" unique_id=457405040]
+visible = false
 layout_mode = 0
 offset_left = 39.0
 offset_top = 257.0
@@ -55,19 +61,21 @@ patch_margin_bottom = 24
 
 [node name="Label" type="Label" parent="." unique_id=672004121]
 layout_mode = 0
-offset_left = 450.0
-offset_top = 353.0
-offset_right = 738.0
-offset_bottom = 453.0
-theme_override_font_sizes/font_size = 72
+offset_left = 310.0
+offset_top = 332.0
+offset_right = 598.0
+offset_bottom = 432.0
+theme_override_colors/font_color = Color(0.9490196, 0.9019608, 0.8117647, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 60
 text = "物品仓库"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=61371309]
 layout_mode = 0
-offset_left = 86.0
-offset_top = 535.0
-offset_right = 1004.0
-offset_bottom = 1530.0
+offset_left = 114.0
+offset_top = 568.0
+offset_right = 974.0
+offset_bottom = 1549.0
 follow_focus = true
 draw_focus_border = true
 
@@ -75,121 +83,164 @@ draw_focus_border = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 0
-columns = 6
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 5
 
 [node name="closeBtn" type="Button" parent="." unique_id=2000255513]
 layout_mode = 0
-offset_left = 953.0
-offset_top = 214.0
-offset_right = 1065.0
-offset_bottom = 329.0
+offset_left = 889.0
+offset_top = 267.0
+offset_right = 1001.0
+offset_bottom = 382.0
 icon = ExtResource("4_iklqg")
 flat = true
 expand_icon = true
 
-[node name="AllBtn" type="TextureButton" parent="." unique_id=428616660]
+[node name="tab" type="HBoxContainer" parent="." unique_id=1565207282]
 layout_mode = 0
-offset_left = 74.0
-offset_top = 462.0
-offset_right = 262.0
-offset_bottom = 535.0
+offset_left = 106.0
+offset_top = 468.0
+offset_right = 986.0
+offset_bottom = 567.0
+theme_override_constants/separation = -15
+
+[node name="AllBtn" type="TextureButton" parent="tab" unique_id=428616660]
+custom_minimum_size = Vector2(188, 85)
+layout_mode = 2
 texture_normal = ExtResource("5_t5eni")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="AllBtn" unique_id=1807112969]
+[node name="Label" type="Label" parent="tab/AllBtn" unique_id=1807112969]
 layout_mode = 0
-offset_left = 41.0
-offset_top = 14.0
-offset_right = 147.0
-offset_bottom = 59.0
-theme_override_font_sizes/font_size = 32
+offset_left = 68.0
+offset_top = 28.0
+offset_right = 174.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0.20392157, 0.24313726, 0.23529412, 1)
+theme_override_font_sizes/font_size = 34
 text = "全部"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FoodBtn" type="TextureButton" parent="." unique_id=2055870386]
+[node name="type" type="TextureRect" parent="tab/AllBtn" unique_id=1380674185]
 layout_mode = 0
-offset_left = 261.0
-offset_top = 462.0
-offset_right = 449.0
-offset_bottom = 535.0
+offset_left = 22.0
+offset_top = 20.0
+offset_right = 80.119995
+offset_bottom = 78.442
+texture = ExtResource("6_6u6kq")
+expand_mode = 1
+
+[node name="FoodBtn" type="TextureButton" parent="tab" unique_id=2055870386]
+custom_minimum_size = Vector2(188, 85)
+layout_mode = 2
 texture_normal = ExtResource("5_t5eni")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="FoodBtn" unique_id=221438928]
+[node name="Label" type="Label" parent="tab/FoodBtn" unique_id=221438928]
 layout_mode = 0
-offset_left = 41.0
-offset_top = 14.0
-offset_right = 147.0
-offset_bottom = 59.0
-theme_override_font_sizes/font_size = 32
+offset_left = 68.0
+offset_top = 28.0
+offset_right = 174.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0.20392157, 0.24313726, 0.23529412, 1)
+theme_override_font_sizes/font_size = 34
 text = "食物"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MedicBtn" type="TextureButton" parent="." unique_id=309946957]
+[node name="type" type="TextureRect" parent="tab/FoodBtn" unique_id=643866685]
 layout_mode = 0
-offset_left = 447.0
-offset_top = 462.0
-offset_right = 635.0
-offset_bottom = 535.0
+offset_left = 22.0
+offset_top = 20.0
+offset_right = 80.119995
+offset_bottom = 78.442
+texture = ExtResource("7_lfny0")
+expand_mode = 1
+
+[node name="MedicBtn" type="TextureButton" parent="tab" unique_id=309946957]
+custom_minimum_size = Vector2(188, 85)
+layout_mode = 2
 texture_normal = ExtResource("5_t5eni")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="MedicBtn" unique_id=1539690880]
+[node name="Label" type="Label" parent="tab/MedicBtn" unique_id=1539690880]
 layout_mode = 0
-offset_left = 41.0
-offset_top = 14.0
-offset_right = 147.0
-offset_bottom = 59.0
-theme_override_font_sizes/font_size = 32
+offset_left = 68.0
+offset_top = 28.0
+offset_right = 174.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0.20392157, 0.24313726, 0.23529412, 1)
+theme_override_font_sizes/font_size = 34
 text = "药品"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EquipBtn" type="TextureButton" parent="." unique_id=754796123]
+[node name="type" type="TextureRect" parent="tab/MedicBtn" unique_id=1362524136]
 layout_mode = 0
-offset_left = 633.0
-offset_top = 462.0
-offset_right = 821.0
-offset_bottom = 535.0
+offset_left = 22.0
+offset_top = 21.0
+offset_right = 80.119995
+offset_bottom = 79.442
+texture = ExtResource("8_gv7s5")
+expand_mode = 1
+
+[node name="EquipBtn" type="TextureButton" parent="tab" unique_id=754796123]
+custom_minimum_size = Vector2(188, 85)
+layout_mode = 2
 texture_normal = ExtResource("5_t5eni")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="EquipBtn" unique_id=1885384263]
+[node name="Label" type="Label" parent="tab/EquipBtn" unique_id=1885384263]
 layout_mode = 0
-offset_left = 41.0
-offset_top = 14.0
-offset_right = 147.0
-offset_bottom = 59.0
-theme_override_font_sizes/font_size = 32
+offset_left = 68.0
+offset_top = 28.0
+offset_right = 174.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0.20392157, 0.24313726, 0.23529412, 1)
+theme_override_font_sizes/font_size = 34
 text = "装备"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MaterialBtn" type="TextureButton" parent="." unique_id=625322058]
+[node name="type" type="TextureRect" parent="tab/EquipBtn" unique_id=810351038]
 layout_mode = 0
-offset_left = 818.0
-offset_top = 462.0
-offset_right = 1006.0
-offset_bottom = 535.0
+offset_left = 22.0
+offset_top = 21.0
+offset_right = 80.119995
+offset_bottom = 79.442
+texture = ExtResource("9_ofrs8")
+expand_mode = 1
+
+[node name="MaterialBtn" type="TextureButton" parent="tab" unique_id=625322058]
+custom_minimum_size = Vector2(188, 85)
+layout_mode = 2
 texture_normal = ExtResource("5_t5eni")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="MaterialBtn" unique_id=1266706163]
+[node name="Label" type="Label" parent="tab/MaterialBtn" unique_id=1266706163]
 layout_mode = 0
-offset_left = 41.0
-offset_top = 14.0
-offset_right = 147.0
-offset_bottom = 59.0
-theme_override_font_sizes/font_size = 32
+offset_left = 68.0
+offset_top = 28.0
+offset_right = 174.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0.20392157, 0.24313726, 0.23529412, 1)
+theme_override_font_sizes/font_size = 34
 text = "材料"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="type" type="TextureRect" parent="tab/MaterialBtn" unique_id=1895863589]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 20.0
+offset_right = 80.119995
+offset_bottom = 78.442
+texture = ExtResource("10_dj7sa")
+expand_mode = 1
