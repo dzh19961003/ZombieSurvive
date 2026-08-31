@@ -62,6 +62,8 @@ public partial class PlayerManager : Node, ISaveable
     private int armTime = 3;
     private int bodyTime = 2;
     private int headTime = 6;
+    //工作台等级
+    private int _workStationLevel = 1;
     public int Hp {get{return hpBase + GetAddition(10001);}private set{}}
     public int MaxHp {get{return maxHpBase + GetAddition(10002);}private set{}}
     public int Strength {get{return strengthBase + GetAddition(10003);}private set{}}
@@ -229,6 +231,12 @@ public partial class PlayerManager : Node, ISaveable
         var copy = new Array<int>();
         foreach (var id in ItemDic.Keys) copy.Add(id);
         return copy;
+    }
+
+    public int WorkStationLevel => _workStationLevel;
+    public void SetWorkStationLevel(int level)
+    {
+        _workStationLevel = Mathf.Max(1, level);
     }
 
     //获取指定状态的剩余天数

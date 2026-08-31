@@ -4,19 +4,23 @@
 [ext_resource type="Texture2D" uid="uid://cwqay0vk7x016" path="res://Assets/Images/UI/tab_inactive.png" id="2_tabinactive"]
 [ext_resource type="Texture2D" uid="uid://c5kp62gpikm3m" path="res://Assets/Images/Items/rice_icon.png" id="4_ti34o"]
 [ext_resource type="Texture2D" uid="uid://b0f54t58kd7u3" path="res://Assets/Images/Items/wood_icon.png" id="5_fgrty"]
-[ext_resource type="Texture2D" uid="uid://53n15gjv8ksp" path="res://Assets/Images/UI/popup_panel.png" id="6_iypto"]
+[ext_resource type="Texture2D" uid="uid://ceb2ps0t4tcrf" path="res://Assets/Images/UI/New/rarity_1.png" id="6_41wdn"]
 [ext_resource type="Texture2D" uid="uid://deoueql4psbch" path="res://Assets/Images/Items/knife1_icon.png" id="7_knife"]
-[ext_resource type="Texture2D" uid="uid://cf3q4me5htwwx" path="res://Assets/Images/Items/jacket1_icon.png" id="8_jacket"]
-[ext_resource type="Texture2D" uid="uid://baa5sri2u20w7" path="res://Assets/Images/Items/ring1_icon.png" id="9_ring"]
+[ext_resource type="Texture2D" uid="uid://dvvjcc386kp6q" path="res://Assets/Images/Items/shoes1_icon.png" id="9_7bguu"]
 [ext_resource type="Texture2D" uid="uid://bwawwv5xw4hp7" path="res://Assets/Images/Items/tools_icon.png" id="10_tools"]
 [ext_resource type="PackedScene" uid="uid://cr3w4jsrtk2u" path="res://UI/WorkStation/WSseleced_area.tscn" id="11_7bguu"]
 [ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="11_stam"]
+[ext_resource type="Script" uid="uid://bv2rdtcvqpalw" path="res://Scripts/UI/WorkStation/WSMakeUI.cs" id="12_script"]
 
-[node name="WSMakeUI" type="Control" unique_id=1001001001]
+[node name="WSMakeUI" type="Control" unique_id=1001001001 node_paths=PackedStringArray("make", "cook", "disassemb")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 865.0
 offset_bottom = 1424.0
+script = ExtResource("12_script")
+make = NodePath("SubTabBar/TabMake")
+cook = NodePath("SubTabBar/TabCook")
+disassemb = NodePath("SubTabBar/TabDecompose")
 
 [node name="SubTabBar" type="HBoxContainer" parent="." unique_id=1002000001]
 layout_mode = 0
@@ -143,43 +147,18 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Row1" type="PanelContainer" parent="RecipeScroll/RecipeList" unique_id=1003000010]
+[node name="Row1" type="TextureButton" parent="RecipeScroll/RecipeList" unique_id=1396470436]
 layout_mode = 2
 size_flags_horizontal = 3
+texture_normal = ExtResource("6_41wdn")
+stretch_mode = 0
 
 [node name="Row1Inner" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row1" unique_id=891347351]
 custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ItemIconBg" type="TextureRect" parent="RecipeScroll/RecipeList/Row1/Row1Inner" unique_id=1003000012]
-custom_minimum_size = Vector2(72, 72)
 layout_mode = 0
-offset_right = 790.0
+offset_right = 779.0
 offset_bottom = 90.0
-texture = ExtResource("6_iypto")
-expand_mode = 1
-
-[node name="ItemIcon" type="TextureRect" parent="RecipeScroll/RecipeList/Row1/Row1Inner" unique_id=1003000013]
-layout_mode = 0
-offset_left = 32.0
-offset_top = -2.0
-offset_right = 115.0
-offset_bottom = 88.0
-texture = ExtResource("7_knife")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="ItemName" type="Label" parent="RecipeScroll/RecipeList/Row1/Row1Inner" unique_id=1003000014]
-layout_mode = 0
-offset_left = 144.0
-offset_top = 17.0
-offset_right = 220.0
-offset_bottom = 70.0
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 40
-text = "小刀"
-vertical_alignment = 1
 
 [node name="CostList" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row1/Row1Inner" unique_id=1170460637]
 layout_mode = 0
@@ -265,58 +244,62 @@ offset_bottom = 63.0
 theme_override_font_sizes/font_size = 40
 text = "×1"
 
-[node name="Row2" type="PanelContainer" parent="RecipeScroll/RecipeList" unique_id=2023085749]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Row1Inner" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row2" unique_id=2053111810]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ItemIconBg" type="TextureRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner" unique_id=2145498581]
-custom_minimum_size = Vector2(72, 72)
+[node name="Item" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row1/Row1Inner" unique_id=1753256109]
 layout_mode = 0
-offset_right = 790.0
-offset_bottom = 90.0
-texture = ExtResource("6_iypto")
-expand_mode = 1
+offset_left = 260.0
+offset_top = 9.0
+offset_right = 523.0
+offset_bottom = 80.0
 
-[node name="ItemIcon" type="TextureRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner" unique_id=1784939563]
+[node name="ItemIcon" type="TextureRect" parent="RecipeScroll/RecipeList/Row1/Row1Inner/Item" unique_id=1003000013]
 layout_mode = 0
-offset_left = 32.0
-offset_top = -2.0
-offset_right = 115.0
-offset_bottom = 88.0
-texture = ExtResource("8_jacket")
+offset_left = -228.0
+offset_top = -11.0
+offset_right = -145.0
+offset_bottom = 79.0
+texture = ExtResource("7_knife")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ItemName" type="Label" parent="RecipeScroll/RecipeList/Row2/Row1Inner" unique_id=857622166]
+[node name="ItemName" type="Label" parent="RecipeScroll/RecipeList/Row1/Row1Inner/Item" unique_id=1003000014]
 layout_mode = 0
-offset_left = 144.0
-offset_top = 17.0
-offset_right = 220.0
-offset_bottom = 70.0
+offset_left = -116.0
+offset_top = 8.0
+offset_right = -36.0
+offset_bottom = 63.0
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 40
-text = "外套"
+text = "小刀"
 vertical_alignment = 1
 
-[node name="CostList" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner" unique_id=960454322]
+[node name="Row2" type="TextureButton" parent="RecipeScroll/RecipeList" unique_id=1100957154]
+modulate = Color(0.27752772, 0.27752772, 0.27752772, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("6_41wdn")
+stretch_mode = 0
+
+[node name="Row1Inner" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row2" unique_id=1927876278]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 0
+offset_right = 779.0
+offset_bottom = 90.0
+size_flags_horizontal = 3
+
+[node name="CostList" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner" unique_id=1277601768]
 layout_mode = 0
 offset_left = 536.0
 offset_top = 7.0
 offset_right = 724.0
 offset_bottom = 97.0
 
-[node name="Recipe1" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner/CostList" unique_id=1519954366]
+[node name="Recipe1" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner/CostList" unique_id=1274509637]
 layout_mode = 0
 offset_left = -78.0
 offset_right = 124.0
 offset_bottom = 90.0
 
-[node name="Icon" type="TextureRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner/CostList/Recipe1" unique_id=699518123]
+[node name="Icon" type="TextureRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner/CostList/Recipe1" unique_id=786286123]
 custom_minimum_size = Vector2(36, 36)
 layout_mode = 0
 offset_left = 71.0
@@ -326,7 +309,7 @@ texture = ExtResource("10_tools")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Num" type="Label" parent="RecipeScroll/RecipeList/Row2/Row1Inner/CostList/Recipe1" unique_id=683104031]
+[node name="Num" type="Label" parent="RecipeScroll/RecipeList/Row2/Row1Inner/CostList/Recipe1" unique_id=254082703]
 layout_mode = 0
 offset_left = 128.0
 offset_top = 8.0
@@ -335,14 +318,14 @@ offset_bottom = 63.0
 theme_override_font_sizes/font_size = 40
 text = "×3"
 
-[node name="Recipe2" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner/CostList" unique_id=657629649]
+[node name="Recipe2" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner/CostList" unique_id=1997674478]
 layout_mode = 0
 offset_left = 40.0
 offset_top = -1.0
 offset_right = 232.0
 offset_bottom = 89.0
 
-[node name="Icon" type="TextureRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner/CostList/Recipe2" unique_id=2088294877]
+[node name="Icon" type="TextureRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner/CostList/Recipe2" unique_id=1413011354]
 custom_minimum_size = Vector2(36, 36)
 layout_mode = 0
 offset_left = 71.0
@@ -352,7 +335,7 @@ texture = ExtResource("5_fgrty")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Num" type="Label" parent="RecipeScroll/RecipeList/Row2/Row1Inner/CostList/Recipe2" unique_id=255534995]
+[node name="Num" type="Label" parent="RecipeScroll/RecipeList/Row2/Row1Inner/CostList/Recipe2" unique_id=1695785298]
 layout_mode = 0
 offset_left = 128.0
 offset_top = 8.0
@@ -361,14 +344,14 @@ offset_bottom = 63.0
 theme_override_font_sizes/font_size = 40
 text = "×3"
 
-[node name="Stamina" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner" unique_id=1357085440]
+[node name="Stamina" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner" unique_id=669164888]
 layout_mode = 0
 offset_left = 260.0
 offset_top = 9.0
 offset_right = 523.0
 offset_bottom = 80.0
 
-[node name="Icon" type="TextureRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner/Stamina" unique_id=238037210]
+[node name="Icon" type="TextureRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner/Stamina" unique_id=7460162]
 custom_minimum_size = Vector2(36, 36)
 layout_mode = 0
 offset_left = 71.0
@@ -378,137 +361,42 @@ texture = ExtResource("11_stam")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Num" type="Label" parent="RecipeScroll/RecipeList/Row2/Row1Inner/Stamina" unique_id=1809211273]
+[node name="Num" type="Label" parent="RecipeScroll/RecipeList/Row2/Row1Inner/Stamina" unique_id=944030499]
 layout_mode = 0
 offset_left = 128.0
 offset_top = 8.0
 offset_right = 174.0
 offset_bottom = 63.0
-theme_override_colors/font_color = Color(1, 0, 0.09803922, 1)
 theme_override_font_sizes/font_size = 40
-text = "×3"
+text = "×1"
 
-[node name="Row3" type="PanelContainer" parent="RecipeScroll/RecipeList" unique_id=2075946401]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Row1Inner" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row3" unique_id=1126443967]
-custom_minimum_size = Vector2(0, 90)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ItemIconBg" type="TextureRect" parent="RecipeScroll/RecipeList/Row3/Row1Inner" unique_id=730080098]
-custom_minimum_size = Vector2(72, 72)
+[node name="Item" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner" unique_id=375043207]
 layout_mode = 0
-offset_right = 790.0
-offset_bottom = 90.0
-texture = ExtResource("6_iypto")
-expand_mode = 1
+offset_left = 260.0
+offset_top = 9.0
+offset_right = 523.0
+offset_bottom = 80.0
 
-[node name="ItemIcon" type="TextureRect" parent="RecipeScroll/RecipeList/Row3/Row1Inner" unique_id=1655972269]
+[node name="ItemIcon" type="TextureRect" parent="RecipeScroll/RecipeList/Row2/Row1Inner/Item" unique_id=1208020946]
 layout_mode = 0
-offset_left = 32.0
-offset_top = -2.0
-offset_right = 115.0
-offset_bottom = 88.0
-texture = ExtResource("9_ring")
+offset_left = -228.0
+offset_top = -11.0
+offset_right = -145.0
+offset_bottom = 79.0
+texture = ExtResource("9_7bguu")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ItemName" type="Label" parent="RecipeScroll/RecipeList/Row3/Row1Inner" unique_id=2032248070]
+[node name="ItemName" type="Label" parent="RecipeScroll/RecipeList/Row2/Row1Inner/Item" unique_id=438558626]
 layout_mode = 0
-offset_left = 144.0
-offset_top = 17.0
-offset_right = 220.0
-offset_bottom = 70.0
+offset_left = -116.0
+offset_top = 8.0
+offset_right = -36.0
+offset_bottom = 63.0
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 40
-text = "金戒指"
+text = "鞋子"
 vertical_alignment = 1
-
-[node name="CostList" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row3/Row1Inner" unique_id=858803669]
-layout_mode = 0
-offset_left = 536.0
-offset_top = 7.0
-offset_right = 724.0
-offset_bottom = 97.0
-
-[node name="Recipe1" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row3/Row1Inner/CostList" unique_id=1841912476]
-layout_mode = 0
-offset_left = -78.0
-offset_right = 124.0
-offset_bottom = 90.0
-
-[node name="Icon" type="TextureRect" parent="RecipeScroll/RecipeList/Row3/Row1Inner/CostList/Recipe1" unique_id=1203709561]
-custom_minimum_size = Vector2(36, 36)
-layout_mode = 0
-offset_left = 71.0
-offset_right = 124.0
-offset_bottom = 71.0
-texture = ExtResource("10_tools")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Num" type="Label" parent="RecipeScroll/RecipeList/Row3/Row1Inner/CostList/Recipe1" unique_id=95660047]
-layout_mode = 0
-offset_left = 128.0
-offset_top = 8.0
-offset_right = 174.0
-offset_bottom = 63.0
-theme_override_font_sizes/font_size = 40
-text = "×3"
-
-[node name="Recipe2" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row3/Row1Inner/CostList" unique_id=1816753681]
-layout_mode = 0
-offset_left = 40.0
-offset_top = -1.0
-offset_right = 232.0
-offset_bottom = 89.0
-
-[node name="Icon" type="TextureRect" parent="RecipeScroll/RecipeList/Row3/Row1Inner/CostList/Recipe2" unique_id=1321827457]
-custom_minimum_size = Vector2(36, 36)
-layout_mode = 0
-offset_left = 71.0
-offset_right = 124.0
-offset_bottom = 71.0
-texture = ExtResource("5_fgrty")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Num" type="Label" parent="RecipeScroll/RecipeList/Row3/Row1Inner/CostList/Recipe2" unique_id=324673317]
-layout_mode = 0
-offset_left = 128.0
-offset_top = 8.0
-offset_right = 174.0
-offset_bottom = 63.0
-theme_override_font_sizes/font_size = 40
-text = "×3"
-
-[node name="Stamina" type="NinePatchRect" parent="RecipeScroll/RecipeList/Row3/Row1Inner" unique_id=1243786219]
-layout_mode = 0
-offset_left = 260.0
-offset_top = 9.0
-offset_right = 523.0
-offset_bottom = 80.0
-
-[node name="Icon" type="TextureRect" parent="RecipeScroll/RecipeList/Row3/Row1Inner/Stamina" unique_id=27319366]
-custom_minimum_size = Vector2(36, 36)
-layout_mode = 0
-offset_left = 71.0
-offset_right = 124.0
-offset_bottom = 71.0
-texture = ExtResource("11_stam")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Num" type="Label" parent="RecipeScroll/RecipeList/Row3/Row1Inner/Stamina" unique_id=878553704]
-layout_mode = 0
-offset_left = 128.0
-offset_top = 8.0
-offset_right = 174.0
-offset_bottom = 63.0
-theme_override_font_sizes/font_size = 40
-text = "×2"
 
 [node name="SelecedArea" parent="." unique_id=1336905437 instance=ExtResource("11_7bguu")]
 layout_mode = 0

@@ -191,6 +191,8 @@ public partial class WsUpgradeUi : Control
 				if (itemID < 10000)
 				{
 					// 物品：走 RemoveItem（钳制到 0，触发 GetItem 事件）
+
+					
 					PlayerManager.Instance.RemoveItem(itemID, need);
 				}
 			}
@@ -214,11 +216,13 @@ public partial class WsUpgradeUi : Control
 		currentLevel++;
 		nextLevel++;
 		GD.Print($"[WsUpgradeUi] 升级成功，当前等级：{currentLevel}");
+		PlayerManager.Instance.SetWorkStationLevel(currentLevel);
 
 		RefreshDisplay();
 	}
 
 	// 判断 itemID:need 这一项是否充足（物品 / 属性统一入口）
+	// 判断材料充足
 	private bool IsEnough(int itemID, int need)
 	{
 		if (PlayerManager.Instance == null) return false;

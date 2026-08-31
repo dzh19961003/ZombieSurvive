@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cr3w4jsrtk2u"]
 
 [ext_resource type="Texture2D" uid="uid://d1nmp4fcid50p" path="res://Assets/Images/UI/main_panel_2.png" id="1_t36ki"]
+[ext_resource type="Texture2D" uid="uid://du76f06ps5fb1" path="res://Assets/Images/UI/button_confirm.png" id="2_confirm"]
 
 [node name="SelecedArea" type="Control" unique_id=1336905437]
 layout_mode = 3
@@ -40,3 +41,63 @@ theme_override_font_sizes/font_size = 26
 text = "在上方选择物品进行制作"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SelecedInfo" type="HBoxContainer" parent="." unique_id=1328116269]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 30.0
+offset_right = -40.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="Icon" type="TextureRect" parent="SelecedInfo" unique_id=1328116270]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="InfoCol" type="VBoxContainer" parent="SelecedInfo" unique_id=1328116271]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 14
+
+[node name="NameLabel" type="Label" parent="SelecedInfo/InfoCol" unique_id=1328116272]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "物品名"
+vertical_alignment = 1
+
+[node name="DescLabel" type="Label" parent="SelecedInfo/InfoCol" unique_id=1328116273]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
+theme_override_font_sizes/font_size = 26
+text = "制作材料："
+vertical_alignment = 1
+
+[node name="ActionBtn" type="Button" parent="." unique_id=1328116274]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -132.5
+offset_top = -35.0
+offset_right = 117.5
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 36
+text = "制作"
+icon = ExtResource("2_confirm")
+flat = true
+icon_alignment = 1
+expand_icon = true
