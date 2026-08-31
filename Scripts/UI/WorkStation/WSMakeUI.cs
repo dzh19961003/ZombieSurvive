@@ -48,6 +48,10 @@ public partial class WSMakeUI : Control
 		if (disassemb != null) disassemb.Pressed += () => SwitchTab(TabType.Decompose);
 		if (_actionBtn != null) _actionBtn.Pressed += OnActionPressed;
 
+		//点击空白处清空选中
+		var recipeScroll = GetNode<ScrollContainer>("RecipeScroll");
+		recipeScroll.GuiInput += OnScrollGuiInput;
+
 		CallDeferred(nameof(DeferredInit));
 	}
 
@@ -80,7 +84,7 @@ public partial class WSMakeUI : Control
 		CallDeferred(nameof(RefreshActionBtn));
 	}
 
-	//切换页签：更新页签底图并重建列表
+	//切换页签
 	private void SwitchTab(TabType tab)
 	{
 		currentTab = tab;
@@ -88,8 +92,8 @@ public partial class WSMakeUI : Control
 		if (cook != null)      cook.TextureNormal      = TabTexture(tab == TabType.Cook);
 		if (disassemb != null) disassemb.TextureNormal = TabTexture(tab == TabType.Decompose);
 		RefreshRows();
-		//切页签后刷新已选中物品的描述与按钮文案
-		if (_selectedCfg != null) SelectRow(_selectedCfg);
+		//切页签清空选中信息
+		ClearSelection();
 	}
 
 	private Texture2D TabTexture(bool active)
@@ -224,7 +228,7 @@ public partial class WSMakeUI : Control
 		return true;
 	}
 
-	//点击行：物品显示到 selectedArea
+	//点击行：物品显示到selectedArea
 	private void SelectRow(RoofWorkstationItem cfg)
 	{
 		_selectedCfg = cfg;
@@ -255,6 +259,27 @@ public partial class WSMakeUI : Control
 		if (_actionBtn == null) return;
 		bool enabled = _selectedCfg != null && IsRowAvailable(_selectedCfg);
 		_actionBtn.Modulate = enabled ? Colors.White : DimColor;
+	}
+
+
+	private void ClearSelection()
+	{
+		_selectedCfg = null;
+		_selectedTip.Visible = true;
+		_selectedInfo.Visible = false;
+		if (_actionBtn != null) _actionBtn.Modulate = DimColor;
+	}
+
+
+	private void OnScrollGuiInput(InputEvent @event)
+	{
+		if (@event is InputEventMouseButton mb
+			&& mb.ButtonIndex == MouseButton.Left
+			&& mb.Pressed
+			&& !mb.Canceled)
+		{
+			ClearSelection();
+		}
 	}
 
 	//点击制作/分解按钮
