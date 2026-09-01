@@ -79,6 +79,14 @@ public partial class BattleManager : Control
             enemySpeed = 0.99 * speed;
         }
     }
+    private void BattleStart() 
+    {
+        //加载敌人和玩家相关数据
+    }
+    private void RefreshUI() 
+    {
+
+    }
     private void PlayerTurn()
     {
         GD.Print("玩家行动");
