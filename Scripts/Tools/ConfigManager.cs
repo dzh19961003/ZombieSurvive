@@ -18,15 +18,35 @@ namespace MyProject
         /// <summary>Building 配置字典（以 ID 为键）</summary>
         public Dictionary<int, Building> buildingDic { get; private set; }
 
+        /// <summary>Diary 配置列表</summary>
+        public List<Diary> diaryList { get; private set; }
+        /// <summary>Diary 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, Diary> diaryDic { get; private set; }
+
         /// <summary>EffectType 配置列表</summary>
         public List<EffectType> effectTypeList { get; private set; }
         /// <summary>EffectType 配置字典（以 ID 为键）</summary>
         public Dictionary<int, EffectType> effectTypeDic { get; private set; }
 
+        /// <summary>Enemy 配置列表</summary>
+        public List<Enemy> enemyList { get; private set; }
+        /// <summary>Enemy 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, Enemy> enemyDic { get; private set; }
+
+        /// <summary>EnemyPool 配置列表</summary>
+        public List<EnemyPool> enemyPoolList { get; private set; }
+        /// <summary>EnemyPool 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, EnemyPool> enemyPoolDic { get; private set; }
+
         /// <summary>Equip 配置列表</summary>
         public List<Equip> equipList { get; private set; }
         /// <summary>Equip 配置字典（以 ID 为键）</summary>
         public Dictionary<int, Equip> equipDic { get; private set; }
+
+        /// <summary>EquipEffect 配置列表</summary>
+        public List<EquipEffect> equipEffectList { get; private set; }
+        /// <summary>EquipEffect 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, EquipEffect> equipEffectDic { get; private set; }
 
         /// <summary>Event 配置列表</summary>
         public List<Event> eventList { get; private set; }
@@ -98,13 +118,29 @@ namespace MyProject
             buildingDic = JsonLoader.LoadToDic<Building>("building");
             GD.Print("[ConfigManager] Building loaded: List=" + (buildingList?.Count ?? 0) + ", Dic=" + (buildingDic?.Count ?? 0));
 
+            diaryList = JsonLoader.LoadToList<Diary>("diary");
+            diaryDic = JsonLoader.LoadToDic<Diary>("diary");
+            GD.Print("[ConfigManager] Diary loaded: List=" + (diaryList?.Count ?? 0) + ", Dic=" + (diaryDic?.Count ?? 0));
+
             effectTypeList = JsonLoader.LoadToList<EffectType>("effect_type");
             effectTypeDic = JsonLoader.LoadToDic<EffectType>("effect_type");
             GD.Print("[ConfigManager] EffectType loaded: List=" + (effectTypeList?.Count ?? 0) + ", Dic=" + (effectTypeDic?.Count ?? 0));
 
+            enemyList = JsonLoader.LoadToList<Enemy>("enemy");
+            enemyDic = JsonLoader.LoadToDic<Enemy>("enemy");
+            GD.Print("[ConfigManager] Enemy loaded: List=" + (enemyList?.Count ?? 0) + ", Dic=" + (enemyDic?.Count ?? 0));
+
+            enemyPoolList = JsonLoader.LoadToList<EnemyPool>("enemy_pool");
+            enemyPoolDic = JsonLoader.LoadToDic<EnemyPool>("enemy_pool");
+            GD.Print("[ConfigManager] EnemyPool loaded: List=" + (enemyPoolList?.Count ?? 0) + ", Dic=" + (enemyPoolDic?.Count ?? 0));
+
             equipList = JsonLoader.LoadToList<Equip>("equip");
             equipDic = JsonLoader.LoadToDic<Equip>("equip");
             GD.Print("[ConfigManager] Equip loaded: List=" + (equipList?.Count ?? 0) + ", Dic=" + (equipDic?.Count ?? 0));
+
+            equipEffectList = JsonLoader.LoadToList<EquipEffect>("equip_effect");
+            equipEffectDic = JsonLoader.LoadToDic<EquipEffect>("equip_effect");
+            GD.Print("[ConfigManager] EquipEffect loaded: List=" + (equipEffectList?.Count ?? 0) + ", Dic=" + (equipEffectDic?.Count ?? 0));
 
             eventList = JsonLoader.LoadToList<Event>("event");
             eventDic = JsonLoader.LoadToDic<Event>("event");

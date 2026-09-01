@@ -1,184 +1,184 @@
 [
   {
-	"ID(int)": 1,
-	"name(string)": "店铺大厅",
-	"des(string)": "你进入了咖啡店的大厅，以往整洁的大厅里十分凌乱，桌椅板凳倒了一地，有些桌子上还有未吃完的食物。暂时没有看见丧尸在里面游荡",
-	"image(string)": "room_1",
-	"food(int)": 2,
-	"medic(int)": 0,
-	"equip(int)": 0,
-	"material(int)": 0,
-	"roomLayer(int)": 1,
-	"eventPool(int)": [
-	  1001,
-	  1002
-	],
-	"eventPool2(int)": [
-	  1001,
-	  1002
-	],
-	"subTask(int)": [
-	  5001
-	],
-	"triggerProgress(int)": [
-	  70
-	]
+    "ID(int)": 1,
+    "name(string)": "店铺大厅",
+    "des(string)": "你进入了咖啡店的大厅，以往整洁的大厅里十分凌乱，桌椅板凳倒了一地，有些桌子上还有未吃完的食物。暂时没有看见丧尸在里面游荡",
+    "image(string)": "room_1",
+    "food(int)": 2,
+    "medic(int)": 0,
+    "equip(int)": 0,
+    "material(int)": 0,
+    "roomLayer(int)": 1,
+    "eventPool(int)": [
+      1001,
+      1002
+    ],
+    "eventPool2(int)": [
+      1001,
+      1002
+    ],
+    "subTask(int)": [
+      5001
+    ],
+    "triggerProgress(int)": [
+      70
+    ]
   },
   {
-	"ID(int)": 2,
-	"name(string)": "咖啡制作区",
-	"des(string)": "你来到咖啡的制作区，这还是你第一次来到吧台后面，这里放着眼花缭乱的制作机器和一台收银机，冰箱里还有一些冰冻的水果",
-	"image(string)": "room_1",
-	"food(int)": 2,
-	"medic(int)": 0,
-	"equip(int)": 2,
-	"material(int)": 2,
-	"roomLayer(int)": 2,
-	"eventPool(int)": [
-	  1001,
-	  1002
-	],
-	"eventPool2(int)": [
-	  1001,
-	  1002
-	],
-	"subTask(int)": [
-	  5020
-	],
-	"triggerProgress(int)": [
-	  60
-	]
+    "ID(int)": 2,
+    "name(string)": "咖啡制作区",
+    "des(string)": "你来到咖啡的制作区，这还是你第一次来到吧台后面，这里放着眼花缭乱的制作机器和一台收银机，冰箱里还有一些冰冻的水果",
+    "image(string)": "room_1",
+    "food(int)": 2,
+    "medic(int)": 0,
+    "equip(int)": 2,
+    "material(int)": 2,
+    "roomLayer(int)": 2,
+    "eventPool(int)": [
+      1001,
+      1002
+    ],
+    "eventPool2(int)": [
+      1001,
+      1002
+    ],
+    "subTask(int)": [
+      5020
+    ],
+    "triggerProgress(int)": [
+      60
+    ]
   },
   {
-	"ID(int)": 3,
-	"name(string)": "物料仓库",
-	"des(string)": "你进入了后门的物料仓库，这里光线昏暗看不太清，你似乎隐约听到了什么在响动",
-	"image(string)": "room_1",
-	"food(int)": 2,
-	"medic(int)": 0,
-	"equip(int)": 2,
-	"material(int)": 3,
-	"roomLayer(int)": 2,
-	"eventPool(int)": [
-	  1001,
-	  1002
-	],
-	"eventPool2(int)": [
-	  1001,
-	  1002
-	],
-	"subTask(int)": [],
-	"triggerProgress(int)": []
+    "ID(int)": 3,
+    "name(string)": "物料仓库",
+    "des(string)": "你进入了后门的物料仓库，这里光线昏暗看不太清，你似乎隐约听到了什么在响动",
+    "image(string)": "room_1",
+    "food(int)": 2,
+    "medic(int)": 0,
+    "equip(int)": 2,
+    "material(int)": 3,
+    "roomLayer(int)": 2,
+    "eventPool(int)": [
+      1001,
+      1002
+    ],
+    "eventPool2(int)": [
+      1001,
+      1002
+    ],
+    "subTask(int)": [],
+    "triggerProgress(int)": []
   },
   {
-	"ID(int)": 4,
-	"name(string)": "冷库",
-	"des(string)": "你进入了咖啡店的冷库，这里真冷啊，你不太想在这里多待",
-	"image(string)": "room_1",
-	"food(int)": 3,
-	"medic(int)": 0,
-	"equip(int)": 0,
-	"material(int)": 0,
-	"roomLayer(int)": 3,
-	"eventPool(int)": [
-	  1001,
-	  1002
-	],
-	"eventPool2(int)": [
-	  1001,
-	  1002
-	],
-	"subTask(int)": [
-	  5040
-	],
-	"triggerProgress(int)": [
-	  0
-	]
+    "ID(int)": 4,
+    "name(string)": "冷库",
+    "des(string)": "你进入了咖啡店的冷库，这里真冷啊，你不太想在这里多待",
+    "image(string)": "room_1",
+    "food(int)": 3,
+    "medic(int)": 0,
+    "equip(int)": 0,
+    "material(int)": 0,
+    "roomLayer(int)": 3,
+    "eventPool(int)": [
+      1001,
+      1002
+    ],
+    "eventPool2(int)": [
+      1001,
+      1002
+    ],
+    "subTask(int)": [
+      5040
+    ],
+    "triggerProgress(int)": [
+      0
+    ]
   },
   {
-	"ID(int)": 5,
-	"name(string)": "网吧大厅",
-	"des(string)": "你走上楼来到网吧大厅，里面灯光打开，有几个丧尸在游荡。探索时需要小心些了",
-	"image(string)": "room_1",
-	"food(int)": 2,
-	"medic(int)": 0,
-	"equip(int)": 1,
-	"material(int)": 2,
-	"roomLayer(int)": 1,
-	"eventPool(int)": [
-	  1001,
-	  1002
-	],
-	"eventPool2(int)": [
-	  1001,
-	  1002
-	],
-	"subTask(int)": [
-	  5060
-	],
-	"triggerProgress(int)": []
+    "ID(int)": 5,
+    "name(string)": "网吧大厅",
+    "des(string)": "你走上楼来到网吧大厅，里面灯光打开，有几个丧尸在游荡。探索时需要小心些了",
+    "image(string)": "room_1",
+    "food(int)": 2,
+    "medic(int)": 0,
+    "equip(int)": 1,
+    "material(int)": 2,
+    "roomLayer(int)": 1,
+    "eventPool(int)": [
+      1001,
+      1002
+    ],
+    "eventPool2(int)": [
+      1001,
+      1002
+    ],
+    "subTask(int)": [
+      5060
+    ],
+    "triggerProgress(int)": []
   },
   {
-	"ID(int)": 6,
-	"name(string)": "高级包厢",
-	"des(string)": null,
-	"image(string)": "room_1",
-	"food(int)": 2,
-	"medic(int)": 0,
-	"equip(int)": 1,
-	"material(int)": 2,
-	"roomLayer(int)": 2,
-	"eventPool(int)": [
-	  1001,
-	  1002
-	],
-	"eventPool2(int)": [
-	  1001,
-	  1002
-	],
-	"subTask(int)": [],
-	"triggerProgress(int)": []
+    "ID(int)": 6,
+    "name(string)": "高级包厢",
+    "des(string)": null,
+    "image(string)": "room_1",
+    "food(int)": 2,
+    "medic(int)": 0,
+    "equip(int)": 1,
+    "material(int)": 2,
+    "roomLayer(int)": 2,
+    "eventPool(int)": [
+      1001,
+      1002
+    ],
+    "eventPool2(int)": [
+      1001,
+      1002
+    ],
+    "subTask(int)": [],
+    "triggerProgress(int)": []
   },
   {
-	"ID(int)": 8,
-	"name(string)": "网吧厨房",
-	"des(string)": null,
-	"image(string)": "room_1",
-	"food(int)": 3,
-	"medic(int)": 2,
-	"equip(int)": 0,
-	"material(int)": 0,
-	"roomLayer(int)": 2,
-	"eventPool(int)": [
-	  1001,
-	  1002
-	],
-	"eventPool2(int)": [
-	  1001,
-	  1002
-	],
-	"subTask(int)": [],
-	"triggerProgress(int)": []
+    "ID(int)": 8,
+    "name(string)": "网吧厨房",
+    "des(string)": null,
+    "image(string)": "room_1",
+    "food(int)": 3,
+    "medic(int)": 2,
+    "equip(int)": 0,
+    "material(int)": 0,
+    "roomLayer(int)": 2,
+    "eventPool(int)": [
+      1001,
+      1002
+    ],
+    "eventPool2(int)": [
+      1001,
+      1002
+    ],
+    "subTask(int)": [],
+    "triggerProgress(int)": []
   },
   {
-	"ID(int)": 9,
-	"name(string)": "设备仓库",
-	"des(string)": null,
-	"image(string)": "room_1",
-	"food(int)": 0,
-	"medic(int)": 0,
-	"equip(int)": 3,
-	"material(int)": 3,
-	"roomLayer(int)": 3,
-	"eventPool(int)": [
-	  1001,
-	  1002
-	],
-	"eventPool2(int)": [
-	  1001,
-	  1002
-	],
-	"subTask(int)": [],
-	"triggerProgress(int)": []
+    "ID(int)": 9,
+    "name(string)": "设备仓库",
+    "des(string)": null,
+    "image(string)": "room_1",
+    "food(int)": 0,
+    "medic(int)": 0,
+    "equip(int)": 3,
+    "material(int)": 3,
+    "roomLayer(int)": 3,
+    "eventPool(int)": [
+      1001,
+      1002
+    ],
+    "eventPool2(int)": [
+      1001,
+      1002
+    ],
+    "subTask(int)": [],
+    "triggerProgress(int)": []
   }
 ]

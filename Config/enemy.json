@@ -1,0 +1,57 @@
+[
+  {
+    "ID(int)": 1,
+    "level(int)": 1,
+    "headNum(int)": 1,
+    "bodyNum(int)": 1,
+    "armNum(int)": 2,
+    "battleEffectID(int)": [],
+    "headHP(double)": [
+      20
+    ],
+    "bodyHP(double)": [
+      40
+    ],
+    "armHP(double)": [
+      12,
+      12
+    ]
+  },
+  {
+    "ID(int)": 2,
+    "level(int)": 2,
+    "headNum(int)": 1,
+    "bodyNum(int)": 1,
+    "armNum(int)": 2,
+    "battleEffectID(int)": [],
+    "headHP(double)": [
+      25
+    ],
+    "bodyHP(double)": [
+      45
+    ],
+    "armHP(double)": [
+      10,
+      10
+    ]
+  },
+  {
+    "ID(int)": 3,
+    "level(int)": 3,
+    "headNum(int)": 2,
+    "bodyNum(int)": 1,
+    "armNum(int)": 2,
+    "battleEffectID(int)": [],
+    "headHP(double)": [
+      15,
+      15
+    ],
+    "bodyHP(double)": [
+      50
+    ],
+    "armHP(double)": [
+      18,
+      18
+    ]
+  }
+]

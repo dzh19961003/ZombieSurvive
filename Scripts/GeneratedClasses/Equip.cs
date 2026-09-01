@@ -44,5 +44,8 @@ namespace MyProject
 
         /// <summary>原始字段: effectNum(int)</summary>
         public int EffectNum { get; set; }
+
+        /// <summary>原始字段: battleType(int)</summary>
+        public int BattleType { get; set; }
     }
 }

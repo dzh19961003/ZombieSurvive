@@ -4,6 +4,8 @@ using System.Diagnostics;
 
 public partial class BattleManager : Control
 {
+    public static BattleManager Instance { get; private set; }
+
     [Export] public NinePatchRect progressBar;
     [Export] public TextureRect playerHead;
     [Export] public TextureRect enemyHead;
@@ -12,6 +14,7 @@ public partial class BattleManager : Control
     [Export] public TextureRect handBtn;
     [Export] public TextureRect bodyBtn;
     [Export] public TextureRect headBtn;
+
     //头像移动速度
     private double speed = 0.4;
     private double playerSpeed;
@@ -20,6 +23,20 @@ public partial class BattleManager : Control
     private double enemyPosition;
     private float positionBiasY;
     private float positionBiasX;
+
+    //各状态事件
+    public event Action OnBattleStart;
+    public event Action OnTurnStart;
+    public event Action OnDamageBuff;
+    public event Action OnDamageDealed;
+    public event Action OnStatusDealed;
+    public event Action OnTurnEnd;
+    public event Action OnBattleEnd;
+
+    //各战斗所需
+    public string bodyPart;        //攻击后取得的身体部位
+    public double baseDamage;      //基础武器伤害
+    public double Damage = 0;      //造成的最终伤害
 
     private BattleState battleState = BattleState.Moving;
     enum BattleState
@@ -31,6 +48,14 @@ public partial class BattleManager : Control
     }
     public override void _Ready()
     {
+        if (Instance != null)
+        {
+            GD.PrintErr("[BattleManager] 单例已存在，重复创建！");
+            QueueFree();
+            return;
+        }
+        Instance = this;
+
         positionBiasY = playerHead.Size.Y;
         positionBiasX = playerHead.Size.X / 2;
         NormalizedSpeed(5, 5);
@@ -82,8 +107,11 @@ public partial class BattleManager : Control
     private void BattleStart() 
     {
         //加载敌人和玩家相关数据
+        BattleEnemy battleEnemy = new BattleEnemy();
+        battleEnemy.Initial(1);
+        OnBattleStart.Invoke();
     }
-    private void RefreshUI() 
+    public void RefreshUI() 
     {
 
     }
