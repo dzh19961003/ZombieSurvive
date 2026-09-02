@@ -20,6 +20,13 @@ public partial class UIManager : Node
         Instance = this;
         ShowUI(Paths.MainUI);
     }
+    public override void _Process(double delta)
+    {
+        if (Input.IsActionJustPressed("ui_select"))
+        {
+            UIManager.Instance.ShowUI("res://UI/Battle.tscn");
+        }
+    }
 
     // ─────────────────────────────────────────────────────────
     //  ShowPanel：打开一个面板

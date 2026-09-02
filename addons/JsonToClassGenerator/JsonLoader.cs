@@ -21,6 +21,53 @@ public static class JsonLoader
 	};
 
 	/// <summary>
+	/// 将 JSON 中值为 null 的字段替换为对应类型的默认值，避免反序列化报错。
+	/// 依赖 key 中的类型标注判断类型：
+	/// - string → ""（空字符串）
+	/// - bool → false
+	/// - 其他数值类型（int/double/float 等）→ 0
+	/// - 若同名字段在其他行是数组（List 类型），则替换为 []
+	/// 静默处理，不输出日志（配置漏填属正常情况，避免刷屏）。
+	/// </summary>
+	private static string ReplaceNullsWithDefaults(string jsonText)
+	{
+		// 匹配 "key(type)": null 的形式，捕获 key 名和括号里的类型标注
+		return Regex.Replace(jsonText, @"""([^""]+)\(([^)]*)\)""\s*:\s*null", match =>
+		{
+			string key = match.Groups[1].Value;
+			string type = match.Groups[2].Value.Trim().ToLower();
+
+			// 根据类型标注确定默认值
+			string defaultVal;
+			if (type == "string")
+			{
+				defaultVal = "\"\"";
+			}
+			else if (type == "bool")
+			{
+				defaultVal = "false";
+			}
+			else
+			{
+				defaultVal = "0";
+			}
+
+			// List 字段的类型标注写的也是元素类型（如 "roomID(int)": [1,2,3]），
+			// 所以无法直接从标注判断是不是 List。
+			// 这里检查同名字段在其他行是否为数组值，是的话默认值改为 []
+			bool isListElsewhere = Regex.IsMatch(jsonText,
+				@"""" + Regex.Escape(key) + @"\([^)]*\)""\s*:\s*\[");
+			if (isListElsewhere)
+			{
+				defaultVal = "[]";
+			}
+
+			// 保留原始的 "key(type)" 格式，后续 StripTypeAnnotations 会统一去掉括号
+			return $@"""{key}({match.Groups[2].Value})"": {defaultVal}";
+		});
+	}
+
+	/// <summary>
 	/// 去除 JSON key 中括号内的类型标注，使 key 能正确匹配 C# 属性名。
 	/// 例如 "ID(int)": 1 → "ID": 1、"roomID(int)": [...] → "roomID": [...]
 	/// 对于没有括号标注的旧格式 JSON，本方法不做任何改动，兼容两种格式。
@@ -71,7 +118,11 @@ public static class JsonLoader
 
 		string jsonText = file.GetAsText();
 
-		// 预处理：去掉 JSON key 中的括号类型标注（如 "ID(int)" → "ID"）
+		// 预处理 1：将值为 null 的字段替换为对应类型的默认值
+		// （数值 → 0、string → ""、bool → false、List → []）
+		jsonText = ReplaceNullsWithDefaults(jsonText);
+
+		// 预处理 2：去掉 JSON key 中的括号类型标注（如 "ID(int)" → "ID"）
 		// 这样 C# 类的属性名（ID、Name 等）才能正确匹配
 		jsonText = StripTypeAnnotations(jsonText);
 
@@ -130,7 +181,10 @@ public static class JsonLoader
 
 		string jsonText = file.GetAsText();
 
-		// 预处理：去掉 JSON key 中的括号类型标注（如 "ID(int)" → "ID"）
+		// 预处理 1：将值为 null 的字段替换为对应类型的默认值
+		jsonText = ReplaceNullsWithDefaults(jsonText);
+
+		// 预处理 2：去掉 JSON key 中的括号类型标注（如 "ID(int)" → "ID"）
 		jsonText = StripTypeAnnotations(jsonText);
 
 		// 先反序列化为 List<T>

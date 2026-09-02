@@ -13,6 +13,11 @@ namespace MyProject
     {
         public static ConfigManager Instance { get; private set; }
 
+        /// <summary>BattleEffect 配置列表</summary>
+        public List<BattleEffect> battleEffectList { get; private set; }
+        /// <summary>BattleEffect 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, BattleEffect> battleEffectDic { get; private set; }
+
         /// <summary>Building 配置列表</summary>
         public List<Building> buildingList { get; private set; }
         /// <summary>Building 配置字典（以 ID 为键）</summary>
@@ -42,11 +47,6 @@ namespace MyProject
         public List<Equip> equipList { get; private set; }
         /// <summary>Equip 配置字典（以 ID 为键）</summary>
         public Dictionary<int, Equip> equipDic { get; private set; }
-
-        /// <summary>EquipEffect 配置列表</summary>
-        public List<EquipEffect> equipEffectList { get; private set; }
-        /// <summary>EquipEffect 配置字典（以 ID 为键）</summary>
-        public Dictionary<int, EquipEffect> equipEffectDic { get; private set; }
 
         /// <summary>Event 配置列表</summary>
         public List<Event> eventList { get; private set; }
@@ -114,6 +114,10 @@ namespace MyProject
 
             Instance = this;
 
+            battleEffectList = JsonLoader.LoadToList<BattleEffect>("battle_effect");
+            battleEffectDic = JsonLoader.LoadToDic<BattleEffect>("battle_effect");
+            GD.Print("[ConfigManager] BattleEffect loaded: List=" + (battleEffectList?.Count ?? 0) + ", Dic=" + (battleEffectDic?.Count ?? 0));
+
             buildingList = JsonLoader.LoadToList<Building>("building");
             buildingDic = JsonLoader.LoadToDic<Building>("building");
             GD.Print("[ConfigManager] Building loaded: List=" + (buildingList?.Count ?? 0) + ", Dic=" + (buildingDic?.Count ?? 0));
@@ -137,10 +141,6 @@ namespace MyProject
             equipList = JsonLoader.LoadToList<Equip>("equip");
             equipDic = JsonLoader.LoadToDic<Equip>("equip");
             GD.Print("[ConfigManager] Equip loaded: List=" + (equipList?.Count ?? 0) + ", Dic=" + (equipDic?.Count ?? 0));
-
-            equipEffectList = JsonLoader.LoadToList<EquipEffect>("equip_effect");
-            equipEffectDic = JsonLoader.LoadToDic<EquipEffect>("equip_effect");
-            GD.Print("[ConfigManager] EquipEffect loaded: List=" + (equipEffectList?.Count ?? 0) + ", Dic=" + (equipEffectDic?.Count ?? 0));
 
             eventList = JsonLoader.LoadToList<Event>("event");
             eventDic = JsonLoader.LoadToDic<Event>("event");

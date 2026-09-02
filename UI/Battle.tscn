@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://wdqclkpgrwfk" path="res://Assets/Images/UI/Battle/times_bg.png" id="19_d5j7p"]
 [ext_resource type="PackedScene" uid="uid://cdle415lb5fab" path="res://UI/Battle/difficulty.tscn" id="20_sqlpi"]
 
-[node name="Battle" type="Control" unique_id=981174782 node_paths=PackedStringArray("progressBar", "playerHead", "enemyHead")]
+[node name="Battle" type="Control" unique_id=981174782 node_paths=PackedStringArray("progressBar", "playerHead", "enemyHead", "randomBtn", "handBtn", "bodyBtn", "headBtn", "playerHP", "playerHPLabel", "playerArmor", "playerArmorLabel", "handProp", "bodyProp", "headProp", "handDMG", "bodyDMG", "headDMG")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,6 +34,20 @@ script = ExtResource("1_bwxfd")
 progressBar = NodePath("progress")
 playerHead = NodePath("player")
 enemyHead = NodePath("enemy")
+randomBtn = NodePath("PlayerBg/atk/randomAtk")
+handBtn = NodePath("PlayerBg/atk/handAtk")
+bodyBtn = NodePath("PlayerBg/atk/bodyAtk")
+headBtn = NodePath("PlayerBg/atk/headAtk")
+playerHP = NodePath("PlayerBg/hp")
+playerHPLabel = NodePath("PlayerBg/hp/num")
+playerArmor = NodePath("PlayerBg/armor")
+playerArmorLabel = NodePath("PlayerBg/armor/num")
+handProp = NodePath("PlayerBg/prop/handProp/name2")
+bodyProp = NodePath("PlayerBg/prop/bodyProp/name2")
+headProp = NodePath("PlayerBg/prop/headProp/name2")
+handDMG = NodePath("PlayerBg/atk/handAtk/dmg")
+bodyDMG = NodePath("PlayerBg/atk/bodyAtk/dmg")
+headDMG = NodePath("PlayerBg/atk/headAtk/dmg")
 
 [node name="progress" type="NinePatchRect" parent="." unique_id=678502228]
 layout_mode = 1
@@ -188,7 +202,7 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 40
 text = "随机攻击"
 
-[node name="armAtk" type="NinePatchRect" parent="PlayerBg/atk" unique_id=1776283763]
+[node name="handAtk" type="NinePatchRect" parent="PlayerBg/atk" unique_id=1776283763]
 custom_minimum_size = Vector2(235, 275)
 custom_maximum_size = Vector2(-1, 275)
 layout_mode = 2
@@ -196,7 +210,7 @@ texture = ExtResource("7_4nydq")
 patch_margin_top = 169
 patch_margin_bottom = 34
 
-[node name="name" type="Label" parent="PlayerBg/atk/armAtk" unique_id=801061571]
+[node name="name" type="Label" parent="PlayerBg/atk/handAtk" unique_id=801061571]
 layout_mode = 0
 offset_left = 38.0
 offset_top = 159.0
@@ -208,7 +222,7 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 40
 text = "攻击手臂"
 
-[node name="dmg" type="Label" parent="PlayerBg/atk/armAtk" unique_id=902890357]
+[node name="dmg" type="Label" parent="PlayerBg/atk/handAtk" unique_id=902890357]
 layout_mode = 0
 offset_left = 38.0
 offset_top = 200.0
@@ -298,14 +312,14 @@ offset_right = 1047.0
 offset_bottom = 694.0
 theme_override_constants/separation = 20
 
-[node name="armProp" type="TextureRect" parent="PlayerBg/prop" unique_id=921013400]
+[node name="handProp" type="TextureRect" parent="PlayerBg/prop" unique_id=921013400]
 custom_minimum_size = Vector2(325, 100)
 custom_maximum_size = Vector2(-1, 135)
 layout_mode = 2
 texture = ExtResource("10_o3nar")
 expand_mode = 1
 
-[node name="name" type="Label" parent="PlayerBg/prop/armProp" unique_id=230920724]
+[node name="name" type="Label" parent="PlayerBg/prop/handProp" unique_id=230920724]
 layout_mode = 0
 offset_left = 146.0
 offset_top = 20.0
@@ -317,7 +331,7 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 32
 text = "命中手臂"
 
-[node name="name2" type="Label" parent="PlayerBg/prop/armProp" unique_id=1048408668]
+[node name="name2" type="Label" parent="PlayerBg/prop/handProp" unique_id=1048408668]
 layout_mode = 0
 offset_left = 146.0
 offset_top = 50.0
@@ -394,7 +408,7 @@ text = "10%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="armer" type="TextureProgressBar" parent="PlayerBg" unique_id=1402935312]
+[node name="armor" type="TextureProgressBar" parent="PlayerBg" unique_id=1402935312]
 layout_mode = 0
 offset_left = 242.0
 offset_top = 56.0
@@ -405,17 +419,23 @@ texture_under = ExtResource("13_soyc4")
 texture_progress = ExtResource("14_r8vmd")
 texture_progress_offset = Vector2(30, 30)
 
-[node name="num" type="Label" parent="PlayerBg/armer" unique_id=1453490937]
-layout_mode = 0
-offset_left = 218.0
+[node name="num" type="Label" parent="PlayerBg/armor" unique_id=1453490937]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -61.0
 offset_top = 22.0
-offset_right = 340.0
+offset_right = 61.0
 offset_bottom = 67.0
+grow_horizontal = 2
 theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 32
 text = "128/300"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="hp" type="TextureProgressBar" parent="PlayerBg" unique_id=1914566150]
 layout_mode = 0
@@ -429,16 +449,22 @@ texture_progress = ExtResource("15_h7d7p")
 texture_progress_offset = Vector2(30, 30)
 
 [node name="num" type="Label" parent="PlayerBg/hp" unique_id=491085957]
-layout_mode = 0
-offset_left = 218.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -61.0
 offset_top = 22.0
-offset_right = 340.0
+offset_right = 61.0
 offset_bottom = 67.0
+grow_horizontal = 2
 theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 32
 text = "128/300"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Bag" type="TextureRect" parent="PlayerBg" unique_id=1613193901]
 layout_mode = 0
@@ -480,7 +506,7 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 40
 text = "生命"
 
-[node name="armerIcon" type="TextureRect" parent="PlayerBg" unique_id=1155029901]
+[node name="armorIcon" type="TextureRect" parent="PlayerBg" unique_id=1155029901]
 layout_mode = 0
 offset_left = 51.0
 offset_top = 53.0
@@ -488,7 +514,7 @@ offset_right = 146.0
 offset_bottom = 155.0
 texture = ExtResource("18_dpte7")
 
-[node name="name" type="Label" parent="PlayerBg/armerIcon" unique_id=1692742454]
+[node name="name" type="Label" parent="PlayerBg/armorIcon" unique_id=1692742454]
 layout_mode = 0
 offset_left = 100.0
 offset_top = 25.0

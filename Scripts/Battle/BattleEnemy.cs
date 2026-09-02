@@ -7,6 +7,9 @@ public partial class BattleEnemy : Node
     [Export] public TextureRect[] head;
     [Export] public TextureRect[] body;
     [Export] public TextureRect[] arm;
+    [Export] public Label[] headHPLabel;
+    [Export] public Label[] bodyHPLabel;
+    [Export] public Label[] handHPLabel;
 
     private int headNum;
     private int bodyNum;
@@ -29,17 +32,20 @@ public partial class BattleEnemy : Node
         bodyHP = new double[bodyNum];
         armsHp = new double[armNum];
 
-        for (int i = 0; i < headHP.Length; i++)
+        for (int i = 0; i < headNum; i++)
         {
             headHP[i] = ConfigManager.Instance.enemyDic[enemyID].HeadHP[i];
+            headHPLabel[i].Text = headHP[i].ToString();
         }
-        for (int i = 0; i < bodyHP.Length; i++)
+        for (int i = 0; i < bodyNum; i++)
         {
             bodyHP[i] = ConfigManager.Instance.enemyDic[enemyID].BodyHP[i];
+            bodyHPLabel[i].Text = bodyHP[i].ToString();
         }
-        for (int i = 0; i < armsHp.Length; i++)
+        for (int i = 0; i < armNum; i++)
         {
             armsHp[i] = ConfigManager.Instance.enemyDic[enemyID].ArmHP[i];
+            handHPLabel[i].Text = armsHp[i].ToString();
         }
     }
     public void BeHit(int part,double dmg) 

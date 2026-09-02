@@ -1,1669 +1,1669 @@
 [
   {
-    "ID(int)": 1,
-    "eventType(int)": 101,
-    "headType(int)": 1,
-    "des(string)": "你找到了一个废弃建材堆，看了看应该有些可用的建材，但翻找时容易划伤手指",
-    "image(string)": "material_image",
-    "option(string)": [
-      "翻找可用建材（随机建材，可能受伤）",
+	"ID(int)": 1,
+	"eventType(int)": 101,
+	"headType(int)": 1,
+	"des(string)": "你找到了一个废弃建材堆，看了看应该有些可用的建材，但翻找时容易划伤手指",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "翻找可用建材（随机建材，可能受伤）",
       "无视走开"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      2,
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  2,
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 2,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": "通过翻找，你成功找到了一些用得上的建材，但翻找过程中不幸被钉子划伤",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 2,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": "通过翻找，你成功找到了一些用得上的建材，但翻找过程中不幸被钉子划伤",
+	"image(string)": "material_image",
+	"option(string)": [
       "真是倒霉"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [
-      1001,
-      10001
-    ],
-    "itemNum(int)": [
-      1,
-      -5
-    ],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [
+	  1001,
+	  10001
+	],
+	"itemNum(int)": [
+	  1,
+	  -5
+	],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 3,
-    "eventType(int)": 102,
-    "headType(int)": 1,
-    "des(string)": "（一般支线）你来到操场的球门前，球门上挂着一条醒目的红色丝带，你研究了半天也没发现有什么问题",
-    "image(string)": "material_image",
-    "option(string)": [
-      "好像哪里不对...",
+	"ID(int)": 3,
+	"eventType(int)": 102,
+	"headType(int)": 1,
+	"des(string)": "（一般支线）你来到操场的球门前，球门上挂着一条醒目的红色丝带，你研究了半天也没发现有什么问题",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "好像哪里不对...",
       "无奈放弃"
-    ],
-    "demand(int)": [
-      10003
-    ],
-    "demandNum(int)": [
-      10
-    ],
-    "isRemove(int)": [
-      0
-    ],
-    "nextEvent(int)": [
-      4,
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [
+	  10003
+	],
+	"demandNum(int)": [
+	  10
+	],
+	"isRemove(int)": [
+	  0
+	],
+	"nextEvent(int)": [
+	  4,
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 4,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "（一般支线）又打量了一会儿后，你仿佛心有灵犀般地抬头向上看，不远处教学楼上的一个窗户挂满了相同的红色丝带，隐隐看到有一个身影在窗前...",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 4,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "（一般支线）又打量了一会儿后，你仿佛心有灵犀般地抬头向上看，不远处教学楼上的一个窗户挂满了相同的红色丝带，隐隐看到有一个身影在窗前...",
+	"image(string)": "material_image",
+	"option(string)": [
       "结束支线"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5,
-    "eventType(int)": 103,
-    "headType(int)": 1,
-    "des(string)": "测试事件5(重要支线)",
-    "image(string)": "material_image",
-    "option(string)": [
-      "跳转事件6(重要支线)",
+	"ID(int)": 5,
+	"eventType(int)": 103,
+	"headType(int)": 1,
+	"des(string)": "测试事件5(重要支线)",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "跳转事件6(重要支线)",
       "结束事件5(重要支线)"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      6,
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  6,
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 6,
-    "eventType(int)": 103,
-    "headType(int)": 2,
-    "des(string)": "测试事件6(重要支线)",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 6,
+	"eventType(int)": 103,
+	"headType(int)": 2,
+	"des(string)": "测试事件6(重要支线)",
+	"image(string)": "material_image",
+	"option(string)": [
       "完结事件6(重要支线)"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9998
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9998
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 7,
-    "eventType(int)": 101,
-    "headType(int)": 1,
-    "des(string)": "测试事件7",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 7,
+	"eventType(int)": 101,
+	"headType(int)": 1,
+	"des(string)": "测试事件7",
+	"image(string)": "material_image",
+	"option(string)": [
       "结束事件7"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 8,
-    "eventType(int)": 101,
-    "headType(int)": 1,
-    "des(string)": "测试事件8",
-    "image(string)": "material_image",
-    "option(string)": [
-      "跳转事件9",
+	"ID(int)": 8,
+	"eventType(int)": 101,
+	"headType(int)": 1,
+	"des(string)": "测试事件8",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "跳转事件9",
       "结束事件8"
-    ],
-    "demand(int)": [
-      10003
-    ],
-    "demandNum(int)": [
-      10
-    ],
-    "isRemove(int)": [
-      0
-    ],
-    "nextEvent(int)": [
-      9,
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [
+	  10003
+	],
+	"demandNum(int)": [
+	  10
+	],
+	"isRemove(int)": [
+	  0
+	],
+	"nextEvent(int)": [
+	  9,
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 9,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": "力量经验+10",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 9,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": "力量经验+10",
+	"image(string)": "material_image",
+	"option(string)": [
       "结束事件9"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 10,
-    "eventType(int)": 101,
-    "headType(int)": 1,
-    "des(string)": "测试事件10",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 10,
+	"eventType(int)": 101,
+	"headType(int)": 1,
+	"des(string)": "测试事件10",
+	"image(string)": "material_image",
+	"option(string)": [
       "结束事件10"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 101,
-    "eventType(int)": 101,
-    "headType(int)": 1,
-    "des(string)": "桌上摆放着一堆食物，看上去十分精致，应该还能吃",
-    "image(string)": "material_image",
-    "option(string)": [
-      "只挑选能带走的",
-      "一看就好吃，直接开吃",
+	"ID(int)": 101,
+	"eventType(int)": 101,
+	"headType(int)": 1,
+	"des(string)": "桌上摆放着一堆食物，看上去十分精致，应该还能吃",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "只挑选能带走的",
+	  "一看就好吃，直接开吃",
       "直接无视"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      102,
-      103,
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  102,
+	  103,
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 102,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": "你挑选了一些方便食品带走，其他的就留在这了",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 102,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": "你挑选了一些方便食品带走，其他的就留在这了",
+	"image(string)": "material_image",
+	"option(string)": [
       "虽然看着新鲜，但还是别直接吃了..."
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 103,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": "你饱餐一顿，多亏现在的科技与狠活，还能吃到这么“新鲜”的东西",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 103,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": "你饱餐一顿，多亏现在的科技与狠活，还能吃到这么“新鲜”的东西",
+	"image(string)": "material_image",
+	"option(string)": [
       "爽"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 104,
-    "eventType(int)": 101,
-    "headType(int)": 1,
-    "des(string)": "桌上散落着一堆凌乱的食品，看上去有些时间了，可能还能吃",
-    "image(string)": "material_image",
-    "option(string)": [
-      "只挑选能带走的",
-      "有点饿了，选能下口的吃",
+	"ID(int)": 104,
+	"eventType(int)": 101,
+	"headType(int)": 1,
+	"des(string)": "桌上散落着一堆凌乱的食品，看上去有些时间了，可能还能吃",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "只挑选能带走的",
+	  "有点饿了，选能下口的吃",
       "直接无视"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      105,
-      106,
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  105,
+	  106,
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 105,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": "你挑选了一些方便食品带走，其他的还是算了吧",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 105,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": "你挑选了一些方便食品带走，其他的还是算了吧",
+	"image(string)": "material_image",
+	"option(string)": [
       "虽然看上去还能吃，但还是别吃了..."
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 106,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": "你提心吊胆地吃了一顿，暂时看不出什么情况",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 106,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": "你提心吊胆地吃了一顿，暂时看不出什么情况",
+	"image(string)": "material_image",
+	"option(string)": [
       "不干不净，吃了没病"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 107,
-    "eventType(int)": 101,
-    "headType(int)": 1,
-    "des(string)": "桌上散落着一堆凌乱的食品，看上去有些时间了，可能还能吃",
-    "image(string)": "material_image",
-    "option(string)": [
-      "只挑选能带走的",
-      "有点饿了，选能下口的吃",
+	"ID(int)": 107,
+	"eventType(int)": 101,
+	"headType(int)": 1,
+	"des(string)": "桌上散落着一堆凌乱的食品，看上去有些时间了，可能还能吃",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "只挑选能带走的",
+	  "有点饿了，选能下口的吃",
       "直接无视"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      108,
-      109,
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  108,
+	  109,
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 108,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": "你挑选了一些方便食品带走，其他的还是算了吧",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 108,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": "你挑选了一些方便食品带走，其他的还是算了吧",
+	"image(string)": "material_image",
+	"option(string)": [
       "虽然看上去还能吃，但还是别吃了..."
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 109,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": "你提心吊胆地吃了一顿，十分美味，看来没什么问题",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 109,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": "你提心吊胆地吃了一顿，十分美味，看来没什么问题",
+	"image(string)": "material_image",
+	"option(string)": [
       "运气不错"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 110,
-    "eventType(int)": 101,
-    "headType(int)": 1,
-    "des(string)": "桌上散落着一堆凌乱的食品，看上去有些时间了，可能还能吃",
-    "image(string)": "material_image",
-    "option(string)": [
-      "只挑选能带走的",
-      "有点饿了，选能下口的吃",
+	"ID(int)": 110,
+	"eventType(int)": 101,
+	"headType(int)": 1,
+	"des(string)": "桌上散落着一堆凌乱的食品，看上去有些时间了，可能还能吃",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "只挑选能带走的",
+	  "有点饿了，选能下口的吃",
       "直接无视"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      111,
-      112,
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  111,
+	  112,
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 111,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": "你挑选了一些方便食品带走，其他的还是算了吧",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 111,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": "你挑选了一些方便食品带走，其他的还是算了吧",
+	"image(string)": "material_image",
+	"option(string)": [
       "虽然看上去还能吃，但还是别吃了..."
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 112,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": "东西坏掉了...你的肚子开始叫了起来",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 112,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": "东西坏掉了...你的肚子开始叫了起来",
+	"image(string)": "material_image",
+	"option(string)": [
       "坏了......"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 113,
-    "eventType(int)": 101,
-    "headType(int)": 1,
-    "des(string)": "桌上散落着一堆凌乱的食品，有些已经发霉了，不知道还能不能吃",
-    "image(string)": "material_image",
-    "option(string)": [
-      "只挑选能带走的",
-      "无视风险，继续炫饭",
+	"ID(int)": 113,
+	"eventType(int)": 101,
+	"headType(int)": 1,
+	"des(string)": "桌上散落着一堆凌乱的食品，有些已经发霉了，不知道还能不能吃",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "只挑选能带走的",
+	  "无视风险，继续炫饭",
       "直接无视"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      114,
-      115,
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  114,
+	  115,
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 114,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": "你挑选了一些方便食品带走，其他的东西还是算了",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 114,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": "你挑选了一些方便食品带走，其他的东西还是算了",
+	"image(string)": "material_image",
+	"option(string)": [
       "从食品堆旁离开"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 115,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": "你秉持着莫大的勇气，强行吃了些能入口的，肚子一阵翻腾...",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 115,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": "你秉持着莫大的勇气，强行吃了些能入口的，肚子一阵翻腾...",
+	"image(string)": "material_image",
+	"option(string)": [
       "呕......"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 116,
-    "eventType(int)": 101,
-    "headType(int)": 1,
-    "des(string)": "你在桌上发现一瓶未开封的咖啡，看上去还能喝",
-    "image(string)": "material_image",
-    "option(string)": [],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	"ID(int)": 116,
+	"eventType(int)": 101,
+	"headType(int)": 1,
+	"des(string)": "你在桌上发现一瓶未开封的咖啡，看上去还能喝",
+	"image(string)": "material_image",
+	"option(string)": [],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 117,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": null,
-    "image(string)": "material_image",
-    "option(string)": [],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	"ID(int)": 117,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": null,
+	"image(string)": "material_image",
+	"option(string)": [],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 118,
-    "eventType(int)": 101,
-    "headType(int)": 1,
-    "des(string)": "你在桌上发现一瓶未开封的饮料，看上去还能喝",
-    "image(string)": "material_image",
-    "option(string)": [],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	"ID(int)": 118,
+	"eventType(int)": 101,
+	"headType(int)": 1,
+	"des(string)": "你在桌上发现一瓶未开封的饮料，看上去还能喝",
+	"image(string)": "material_image",
+	"option(string)": [],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 119,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": null,
-    "image(string)": "material_image",
-    "option(string)": [],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	"ID(int)": 119,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": null,
+	"image(string)": "material_image",
+	"option(string)": [],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 120,
-    "eventType(int)": 101,
-    "headType(int)": 1,
-    "des(string)": "你在桌上发现一瓶已开封的未知饮料，不知道还能不能喝",
-    "image(string)": "material_image",
-    "option(string)": [],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	"ID(int)": 120,
+	"eventType(int)": 101,
+	"headType(int)": 1,
+	"des(string)": "你在桌上发现一瓶已开封的未知饮料，不知道还能不能喝",
+	"image(string)": "material_image",
+	"option(string)": [],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 121,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": null,
-    "image(string)": "material_image",
-    "option(string)": [],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	"ID(int)": 121,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": null,
+	"image(string)": "material_image",
+	"option(string)": [],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 122,
-    "eventType(int)": 101,
-    "headType(int)": 1,
-    "des(string)": "你在桌上发现个没人吃的慕斯蛋糕，看上去非常诱人",
-    "image(string)": "material_image",
-    "option(string)": [],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	"ID(int)": 122,
+	"eventType(int)": 101,
+	"headType(int)": 1,
+	"des(string)": "你在桌上发现个没人吃的慕斯蛋糕，看上去非常诱人",
+	"image(string)": "material_image",
+	"option(string)": [],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 123,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": null,
-    "image(string)": "material_image",
-    "option(string)": [],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	"ID(int)": 123,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": null,
+	"image(string)": "material_image",
+	"option(string)": [],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 124,
-    "eventType(int)": 101,
-    "headType(int)": 1,
-    "des(string)": "你在桌上发现有人遗留在这里的肯基基蛋挞，看上去完好无损",
-    "image(string)": "material_image",
-    "option(string)": [],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	"ID(int)": 124,
+	"eventType(int)": 101,
+	"headType(int)": 1,
+	"des(string)": "你在桌上发现有人遗留在这里的肯基基蛋挞，看上去完好无损",
+	"image(string)": "material_image",
+	"option(string)": [],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 125,
-    "eventType(int)": 101,
-    "headType(int)": 2,
-    "des(string)": null,
-    "image(string)": "material_image",
-    "option(string)": [],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	"ID(int)": 125,
+	"eventType(int)": 101,
+	"headType(int)": 2,
+	"des(string)": null,
+	"image(string)": "material_image",
+	"option(string)": [],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5001,
-    "eventType(int)": 102,
-    "headType(int)": 1,
-    "des(string)": "你站在咖啡店的大厅里，大厅不大一眼就能望到头。你注意到通往仓库的门口有个散落的露营包，但离你稍有些远",
-    "image(string)": "material_image",
-    "option(string)": [
-      "靠近查看",
+	"ID(int)": 5001,
+	"eventType(int)": 102,
+	"headType(int)": 1,
+	"des(string)": "你站在咖啡店的大厅里，大厅不大一眼就能望到头。你注意到通往仓库的门口有个散落的露营包，但离你稍有些远",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "靠近查看",
       "万一弄出不必要的动静，还是算了"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5003,
-      5002
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5003,
+	  5002
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5002,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "和背包比起来，还有更多重要的东西等着你去探索，你决定不再管它",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5002,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "和背包比起来，还有更多重要的东西等着你去探索，你决定不再管它",
+	"image(string)": "material_image",
+	"option(string)": [
       "继续探索"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5003,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "你走上前去，四周暂时没有发现危险",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5003,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "你走上前去，四周暂时没有发现危险",
+	"image(string)": "material_image",
+	"option(string)": [
       "继续上前"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5004
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5004
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5004,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "你稍微安心下来，调整呼吸走到背包前。正打算仔细查看之时，附近门后猛地伸出一只手向你抓来！",
-    "image(string)": "material_image",
-    "option(string)": [
-      "惊险闪避",
-      "用手格挡",
+	"ID(int)": 5004,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "你稍微安心下来，调整呼吸走到背包前。正打算仔细查看之时，附近门后猛地伸出一只手向你抓来！",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "惊险闪避",
+	  "用手格挡",
       "没招了，闭上眼吧"
-    ],
-    "demand(int)": [
-      10004,
-      10003
-    ],
-    "demandNum(int)": [
-      12,
-      8
-    ],
-    "isRemove(int)": [
-      0,
-      0
-    ],
-    "nextEvent(int)": [
-      5005,
-      5006,
-      5007
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [
+	  10004,
+	  10003
+	],
+	"demandNum(int)": [
+	  12,
+	  8
+	],
+	"isRemove(int)": [
+	  0,
+	  0
+	],
+	"nextEvent(int)": [
+	  5005,
+	  5006,
+	  5007
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5005,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "你千钧一发之际惊险闪避开，没有受到伤害",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5005,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "你千钧一发之际惊险闪避开，没有受到伤害",
+	"image(string)": "material_image",
+	"option(string)": [
       "看向攻击来源"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5008
-    ],
-    "icon(string)": [],
-    "itemID(int)": [
-      10007
-    ],
-    "itemNum(int)": [
-      20
-    ],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5008
+	],
+	"icon(string)": [],
+	"itemID(int)": [
+	  10007
+	],
+	"itemNum(int)": [
+	  20
+	],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5006,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "你用手臂护住要害强行阻挡了一下，虽然很痛但没有受到更多伤害",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5006,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "你用手臂护住要害强行阻挡了一下，虽然很痛但没有受到更多伤害",
+	"image(string)": "material_image",
+	"option(string)": [
       "看向攻击来源"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5008
-    ],
-    "icon(string)": [],
-    "itemID(int)": [
-      10001,
-      10006
-    ],
-    "itemNum(int)": [
-      -3,
-      10
-    ],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5008
+	],
+	"icon(string)": [],
+	"itemID(int)": [
+	  10001,
+	  10006
+	],
+	"itemNum(int)": [
+	  -3,
+	  10
+	],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5007,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "你结结实实地挨了一下！身上一痛，似乎被抓出了伤口",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5007,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "你结结实实地挨了一下！身上一痛，似乎被抓出了伤口",
+	"image(string)": "material_image",
+	"option(string)": [
       "看向攻击来源"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5008
-    ],
-    "icon(string)": [],
-    "itemID(int)": [
-      10001
-    ],
-    "itemNum(int)": [
-      -10
-    ],
-    "stateID(int)": [
-      101
-    ]
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5008
+	],
+	"icon(string)": [],
+	"itemID(int)": [
+	  10001
+	],
+	"itemNum(int)": [
+	  -10
+	],
+	"stateID(int)": [
+	  101
+	]
   },
   {
-    "ID(int)": 5008,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "你转过头定睛一看，手的主人来自一只趴在地上的丧尸——似乎在灾难爆发后，后门的货架倒塌，将他压在下面动弹不得。在一堆货架下，他正张牙舞爪地向你咆哮着",
-    "image(string)": "material_image",
-    "option(string)": [
-      "解决他",
+	"ID(int)": 5008,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "你转过头定睛一看，手的主人来自一只趴在地上的丧尸——似乎在灾难爆发后，后门的货架倒塌，将他压在下面动弹不得。在一堆货架下，他正张牙舞爪地向你咆哮着",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "解决他",
       "赶紧躲开"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5009,
-      5013
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5009,
+	  5013
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5009,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "这还是你第一次和丧尸靠这么近。看着他挣扎的身体，你肾上腺素不断飙升。思考半天，你终于还是下定决心，抄起手中武器砸了下去——",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5009,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "这还是你第一次和丧尸靠这么近。看着他挣扎的身体，你肾上腺素不断飙升。思考半天，你终于还是下定决心，抄起手中武器砸了下去——",
+	"image(string)": "material_image",
+	"option(string)": [
       "结束了"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5010
-    ],
-    "icon(string)": [],
-    "itemID(int)": [
-      10006
-    ],
-    "itemNum(int)": [
-      20
-    ],
-    "stateID(int)": [
-      102
-    ]
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5010
+	],
+	"icon(string)": [],
+	"itemID(int)": [
+	  10006
+	],
+	"itemNum(int)": [
+	  20
+	],
+	"stateID(int)": [
+	  102
+	]
   },
   {
-    "ID(int)": 5010,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "回过神来，你发现自己已满身大汗——你迈出了第一步。平静下来后，你想起了还在一旁的战利品",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5010,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "回过神来，你发现自己已满身大汗——你迈出了第一步。平静下来后，你想起了还在一旁的战利品",
+	"image(string)": "material_image",
+	"option(string)": [
       "翻找背包"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5011
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5011
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5011,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "你打开背包，翻找后里面有几样好东西，还有一把趁手的小斧",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5011,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "你打开背包，翻找后里面有几样好东西，还有一把趁手的小斧",
+	"image(string)": "material_image",
+	"option(string)": [
       "这下赚了"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5012
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5012
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5012,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "拿完东西后你彻底平复了下来。看来自己还是经验和观察不足，太过放松警惕，差点第一次探索就翻车",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5012,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "拿完东西后你彻底平复了下来。看来自己还是经验和观察不足，太过放松警惕，差点第一次探索就翻车",
+	"image(string)": "material_image",
+	"option(string)": [
       "以后要更加小心"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [
-      10008
-    ],
-    "itemNum(int)": [
-      20
-    ],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [
+	  10008
+	],
+	"itemNum(int)": [
+	  20
+	],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5013,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "你决定让他自身自灭，随后径直走向背包，翻找后里面有几件好东西，还有一把趁手的小斧",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5013,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "你决定让他自身自灭，随后径直走向背包，翻找后里面有几件好东西，还有一把趁手的小斧",
+	"image(string)": "material_image",
+	"option(string)": [
       "这下赚了"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5012
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5012
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5020,
-    "eventType(int)": 103,
-    "headType(int)": 1,
-    "des(string)": "咖啡店的操作台不大，制作咖啡的工具和收银台都在上面。你下意识地看向收银机，果然是被锁上了。常识告诉你里面应该有好东西",
-    "image(string)": "material_image",
-    "option(string)": [
-      "使用收银台钥匙打开",
-      "直接砸开",
+	"ID(int)": 5020,
+	"eventType(int)": 103,
+	"headType(int)": 1,
+	"des(string)": "咖啡店的操作台不大，制作咖啡的工具和收银台都在上面。你下意识地看向收银机，果然是被锁上了。常识告诉你里面应该有好东西",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "使用收银台钥匙打开",
+	  "直接砸开",
       "无奈离去"
-    ],
-    "demand(int)": [
-      5001,
-      10003
-    ],
-    "demandNum(int)": [
-      1,
-      8
-    ],
-    "isRemove(int)": [
-      1,
-      0
-    ],
-    "nextEvent(int)": [
-      5021,
-      5022,
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [
+	  5001,
+	  10003
+	],
+	"demandNum(int)": [
+	  1,
+	  8
+	],
+	"isRemove(int)": [
+	  1,
+	  0
+	],
+	"nextEvent(int)": [
+	  5021,
+	  5022,
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5021,
-    "eventType(int)": 103,
-    "headType(int)": 2,
-    "des(string)": "你用钥匙打开了收银机，里面整整齐齐摆着几摞钱。不过钱对现在的你来说已经没用了",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5021,
+	"eventType(int)": 103,
+	"headType(int)": 2,
+	"des(string)": "你用钥匙打开了收银机，里面整整齐齐摆着几摞钱。不过钱对现在的你来说已经没用了",
+	"image(string)": "material_image",
+	"option(string)": [
       "继续摸索"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5023
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5023
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5022,
-    "eventType(int)": 103,
-    "headType(int)": 2,
-    "des(string)": "你强行砸开了收银机，里面整整齐齐摆着几摞钱。不过钱对现在的你来说已经没用了",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5022,
+	"eventType(int)": 103,
+	"headType(int)": 2,
+	"des(string)": "你强行砸开了收银机，里面整整齐齐摆着几摞钱。不过钱对现在的你来说已经没用了",
+	"image(string)": "material_image",
+	"option(string)": [
       "继续摸索"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5023
-    ],
-    "icon(string)": [],
-    "itemID(int)": [
-      10006
-    ],
-    "itemNum(int)": [
-      20
-    ],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5023
+	],
+	"icon(string)": [],
+	"itemID(int)": [
+	  10006
+	],
+	"itemNum(int)": [
+	  20
+	],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5023,
-    "eventType(int)": 103,
-    "headType(int)": 2,
-    "des(string)": "你伸手向着收银机里找寻，不多久你摸到了一个精致的盒子，打开一看中间赫然是一枚金戒指",
-    "image(string)": "material_image",
-    "option(string)": [
-      "仔细查看",
+	"ID(int)": 5023,
+	"eventType(int)": 103,
+	"headType(int)": 2,
+	"des(string)": "你伸手向着收银机里找寻，不多久你摸到了一个精致的盒子，打开一看中间赫然是一枚金戒指",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "仔细查看",
       "收入囊中"
-    ],
-    "demand(int)": [
-      10005
-    ],
-    "demandNum(int)": [
-      20
-    ],
-    "isRemove(int)": [
-      0
-    ],
-    "nextEvent(int)": [
-      5024,
-      5027
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [
+	  10005
+	],
+	"demandNum(int)": [
+	  20
+	],
+	"isRemove(int)": [
+	  0
+	],
+	"nextEvent(int)": [
+	  5024,
+	  5027
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5024,
-    "eventType(int)": 103,
-    "headType(int)": 2,
-    "des(string)": "除戒指外，你发现包装盒里还有封信，你展开信封读了起来，上面大多都是情侣间送礼时的一些期许。不过里面的一些内容还是引起了你的注意：",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5024,
+	"eventType(int)": 103,
+	"headType(int)": 2,
+	"des(string)": "除戒指外，你发现包装盒里还有封信，你展开信封读了起来，上面大多都是情侣间送礼时的一些期许。不过里面的一些内容还是引起了你的注意：",
+	"image(string)": "material_image",
+	"option(string)": [
       "继续阅读"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5025
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5025
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5025,
-    "eventType(int)": 103,
-    "headType(int)": 2,
-    "des(string)": "“……等我在研究所里升职，你就再也不用摇奶茶了……”后面是以闲聊的口吻谈起了一些奇怪的工作成果，譬如让残疾的猴子站起来，但动起来时显得行动僵硬......",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5025,
+	"eventType(int)": 103,
+	"headType(int)": 2,
+	"des(string)": "“……等我在研究所里升职，你就再也不用摇奶茶了……”后面是以闲聊的口吻谈起了一些奇怪的工作成果，譬如让残疾的猴子站起来，但动起来时显得行动僵硬......",
+	"image(string)": "material_image",
+	"option(string)": [
       "继续阅读"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5026
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5026
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5026,
-    "eventType(int)": 103,
-    "headType(int)": 2,
-    "des(string)": "本以为只是情侣间送礼写的信， 但信里的内容让你大为震惊，信的最后甚至一再要求一定保密。你记下了信中提到的名字：蓉市生物研究所",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5026,
+	"eventType(int)": 103,
+	"headType(int)": 2,
+	"des(string)": "本以为只是情侣间送礼写的信， 但信里的内容让你大为震惊，信的最后甚至一再要求一定保密。你记下了信中提到的名字：蓉市生物研究所",
+	"image(string)": "material_image",
+	"option(string)": [
       "这个地方肯定有古怪"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5027
-    ],
-    "icon(string)": [],
-    "itemID(int)": [
-      100000
-    ],
-    "itemNum(int)": [
-      11
-    ],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5027
+	],
+	"icon(string)": [],
+	"itemID(int)": [
+	  100000
+	],
+	"itemNum(int)": [
+	  11
+	],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5027,
-    "eventType(int)": 103,
-    "headType(int)": 2,
-    "des(string)": "你带走了金戒指，仔细摸了摸收银台里已经没有其他东西了。",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5027,
+	"eventType(int)": 103,
+	"headType(int)": 2,
+	"des(string)": "你带走了金戒指，仔细摸了摸收银台里已经没有其他东西了。",
+	"image(string)": "material_image",
+	"option(string)": [
       "离开收银台"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9998
-    ],
-    "icon(string)": [],
-    "itemID(int)": [
-      5001
-    ],
-    "itemNum(int)": [
-      1
-    ],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9998
+	],
+	"icon(string)": [],
+	"itemID(int)": [
+	  5001
+	],
+	"itemNum(int)": [
+	  1
+	],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5040,
-    "eventType(int)": 102,
-    "headType(int)": 1,
-    "des(string)": "你打开了冷库门，病毒虽爆发多日，但电还依然没断，扑面而来的冷空气让你打了个哆嗦",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5040,
+	"eventType(int)": 102,
+	"headType(int)": 1,
+	"des(string)": "你打开了冷库门，病毒虽爆发多日，但电还依然没断，扑面而来的冷空气让你打了个哆嗦",
+	"image(string)": "material_image",
+	"option(string)": [
       "观察里面"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5041
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5041
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5041,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "冷库里的存货不多，大多是一些咖啡豆。在角落里，你猛然发现有个人影躺在那里，整个人都被白霜覆盖，看样子已经被冻僵了",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5041,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "冷库里的存货不多，大多是一些咖啡豆。在角落里，你猛然发现有个人影躺在那里，整个人都被白霜覆盖，看样子已经被冻僵了",
+	"image(string)": "material_image",
+	"option(string)": [
       "上前查看"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5042
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5042
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5042,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "你走近查看，从样貌看是一名“女性”，但你已无法确认她到底还算不算人类。看样子已经有了丧尸的特征，像是尸变到一半时在冷库里被冻僵了",
-    "image(string)": "material_image",
-    "option(string)": [
-      "继续查看",
+	"ID(int)": 5042,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "你走近查看，从样貌看是一名“女性”，但你已无法确认她到底还算不算人类。看样子已经有了丧尸的特征，像是尸变到一半时在冷库里被冻僵了",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "继续查看",
       "真晦气，还是不看了"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5043,
-      5048
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5043,
+	  5048
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5043,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "你向下看去，这女人手下面压着一张纸条。你捡起查看，上面用歪歪扭扭的字写到:“好多人都变了......我感觉我也快像他们一样......我可能知道这是为什么……对不起，帆”",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5043,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "你向下看去，这女人手下面压着一张纸条。你捡起查看，上面用歪歪扭扭的字写到:“好多人都变了......我感觉我也快像他们一样......我可能知道这是为什么……对不起，帆”",
+	"image(string)": "material_image",
+	"option(string)": [
       "继续阅读"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5044
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5044
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5044,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "后面的字迹更加混乱几乎看不清，但你仍能隐约看到“实验”“病”等字样。这女人是谁？她为什么好像知道丧尸病毒相关的事？帆又是谁？",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5044,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "后面的字迹更加混乱几乎看不清，但你仍能隐约看到“实验”“病”等字样。这女人是谁？她为什么好像知道丧尸病毒相关的事？帆又是谁？",
+	"image(string)": "material_image",
+	"option(string)": [
       "继续查看"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5045
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5045
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5045,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "你带着无尽的疑惑收起了字条，正打算离开时，看见她被冻僵的另一只手上拿着一把尖刀，闪着寒光似乎很锋利，你决定：",
-    "image(string)": "material_image",
-    "option(string)": [
-      "将刀带走",
+	"ID(int)": 5045,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "你带着无尽的疑惑收起了字条，正打算离开时，看见她被冻僵的另一只手上拿着一把尖刀，闪着寒光似乎很锋利，你决定：",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "将刀带走",
       "算了留在那吧"
-    ],
-    "demand(int)": [
-      10003
-    ],
-    "demandNum(int)": [
-      12
-    ],
-    "isRemove(int)": [
-      0
-    ],
-    "nextEvent(int)": [
-      5046,
-      5047
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [
+	  10003
+	],
+	"demandNum(int)": [
+	  12
+	],
+	"isRemove(int)": [
+	  0
+	],
+	"nextEvent(int)": [
+	  5046,
+	  5047
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5046,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "“反正她也用不上了”，你想着。随后你便上前拿刀，废了好大力气才从她手里抠了下来",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5046,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "“反正她也用不上了”，你想着。随后你便上前拿刀，废了好大力气才从她手里抠了下来",
+	"image(string)": "material_image",
+	"option(string)": [
       "从这里离开"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [
-      10006
-    ],
-    "itemNum(int)": [
-      20
-    ],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [
+	  10006
+	],
+	"itemNum(int)": [
+	  20
+	],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5047,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "你看了下，这把刀被冻硬的手死死攥着，没点力气还真弄不下来，你尝试了一番还是放弃了",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5047,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "你看了下，这把刀被冻硬的手死死攥着，没点力气还真弄不下来，你尝试了一番还是放弃了",
+	"image(string)": "material_image",
+	"option(string)": [
       "从这里离开"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5048,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "你对丧尸不感兴趣，从这个冻僵的人旁边离开了",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5048,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "你对丧尸不感兴趣，从这个冻僵的人旁边离开了",
+	"image(string)": "material_image",
+	"option(string)": [
       "继续探索"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5060,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "你小心翼翼在网吧大厅里摸索着，生怕惊动了游荡丧尸，就在你通过过道转向时，一名趴在桌上的丧尸突然转身扑向你！在这千钧一发之际，你决定：",
-    "image(string)": "material_image",
-    "option(string)": [
-      "迅速无声解决",
-      "猛击头部",
+	"ID(int)": 5060,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "你小心翼翼在网吧大厅里摸索着，生怕惊动了游荡丧尸，就在你通过过道转向时，一名趴在桌上的丧尸突然转身扑向你！在这千钧一发之际，你决定：",
+	"image(string)": "material_image",
+	"option(string)": [
+	  "迅速无声解决",
+	  "猛击头部",
       "捂住丧尸的嘴"
-    ],
-    "demand(int)": [
-      10004,
-      10003
-    ],
-    "demandNum(int)": [
-      14,
-      14
-    ],
-    "isRemove(int)": [
-      0,
-      0
-    ],
-    "nextEvent(int)": [
-      5061,
-      5062,
-      5063
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [
+	  10004,
+	  10003
+	],
+	"demandNum(int)": [
+	  14,
+	  14
+	],
+	"isRemove(int)": [
+	  0,
+	  0
+	],
+	"nextEvent(int)": [
+	  5061,
+	  5062,
+	  5063
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5061,
-    "eventType(int)": 102,
-    "headType(int)": 1,
-    "des(string)": "你冷静地看向扑来的丧尸，侧身躲开攻击，随后一肘打在扑来的丧尸脖颈，迅速将其解决掉。全程没有发出多余噪音。",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5061,
+	"eventType(int)": 102,
+	"headType(int)": 1,
+	"des(string)": "你冷静地看向扑来的丧尸，侧身躲开攻击，随后一肘打在扑来的丧尸脖颈，迅速将其解决掉。全程没有发出多余噪音。",
+	"image(string)": "material_image",
+	"option(string)": [
       "有惊无险…"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5065
-    ],
-    "icon(string)": [],
-    "itemID(int)": [
-      10007
-    ],
-    "itemNum(int)": [
-      30
-    ],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5065
+	],
+	"icon(string)": [],
+	"itemID(int)": [
+	  10007
+	],
+	"itemNum(int)": [
+	  30
+	],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5062,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "你看着丧尸扑上来，已经没有办法躲避，只好用尽全力砸在丧尸头部，以求一击毙命。你弄出了点动静，但运气还不错，扑过来的丧尸瞬间就没动静了",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5062,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "你看着丧尸扑上来，已经没有办法躲避，只好用尽全力砸在丧尸头部，以求一击毙命。你弄出了点动静，但运气还不错，扑过来的丧尸瞬间就没动静了",
+	"image(string)": "material_image",
+	"option(string)": [
       "可惜还是弄出了动静"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5065
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5065
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5063,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "你看着近在咫尺的丧尸头颅，似乎下一秒就会叫出声来，你害怕引起大厅其他丧尸的注意，情急之下直接用手堵住了丧尸的嘴",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5063,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "你看着近在咫尺的丧尸头颅，似乎下一秒就会叫出声来，你害怕引起大厅其他丧尸的注意，情急之下直接用手堵住了丧尸的嘴",
+	"image(string)": "material_image",
+	"option(string)": [
       "攻击丧尸"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5064
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5064
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5064,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "堵住嘴后，你用另一只手持续攻击丧尸头部，然而手心一痛，堵嘴的手已经被丧尸咬中，出现了伤口。你持续攻击，终于在弄出更大动静前解决掉了他",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5064,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "堵住嘴后，你用另一只手持续攻击丧尸头部，然而手心一痛，堵嘴的手已经被丧尸咬中，出现了伤口。你持续攻击，终于在弄出更大动静前解决掉了他",
+	"image(string)": "material_image",
+	"option(string)": [
       "好痛..."
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5065
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": [
-      103
-    ]
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5065
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": [
+	  103
+	]
   },
   {
-    "ID(int)": 5065,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "解决掉丧尸后，你将他推回椅子上，一眼就看见他夸在腰间的腰包",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5065,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "解决掉丧尸后，你将他推回椅子上，一眼就看见他夸在腰间的腰包",
+	"image(string)": "material_image",
+	"option(string)": [
       "搜索腰包"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      5066
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  5066
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5066,
-    "eventType(int)": 102,
-    "headType(int)": 2,
-    "des(string)": "你打开腰包，里面零零散散都是些没用的东西，最终在腰包侧面找到了一些有用的药物",
-    "image(string)": "material_image",
-    "option(string)": [
+	"ID(int)": 5066,
+	"eventType(int)": 102,
+	"headType(int)": 2,
+	"des(string)": "你打开腰包，里面零零散散都是些没用的东西，最终在腰包侧面找到了一些有用的药物",
+	"image(string)": "material_image",
+	"option(string)": [
       "继续探索"
-    ],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [
-      9999
-    ],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [
+	  9999
+	],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5080,
-    "eventType(int)": 103,
-    "headType(int)": 2,
-    "des(string)": null,
-    "image(string)": "material_image",
-    "option(string)": [],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	"ID(int)": 5080,
+	"eventType(int)": 103,
+	"headType(int)": 2,
+	"des(string)": null,
+	"image(string)": "material_image",
+	"option(string)": [],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5081,
-    "eventType(int)": 103,
-    "headType(int)": 2,
-    "des(string)": null,
-    "image(string)": "material_image",
-    "option(string)": [],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	"ID(int)": 5081,
+	"eventType(int)": 103,
+	"headType(int)": 2,
+	"des(string)": null,
+	"image(string)": "material_image",
+	"option(string)": [],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5082,
-    "eventType(int)": 103,
-    "headType(int)": 2,
-    "des(string)": null,
-    "image(string)": "material_image",
-    "option(string)": [],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	"ID(int)": 5082,
+	"eventType(int)": 103,
+	"headType(int)": 2,
+	"des(string)": null,
+	"image(string)": "material_image",
+	"option(string)": [],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5083,
-    "eventType(int)": 103,
-    "headType(int)": 2,
-    "des(string)": null,
-    "image(string)": "material_image",
-    "option(string)": [],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	"ID(int)": 5083,
+	"eventType(int)": 103,
+	"headType(int)": 2,
+	"des(string)": null,
+	"image(string)": "material_image",
+	"option(string)": [],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5084,
-    "eventType(int)": 103,
-    "headType(int)": 2,
-    "des(string)": null,
-    "image(string)": "material_image",
-    "option(string)": [],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	"ID(int)": 5084,
+	"eventType(int)": 103,
+	"headType(int)": 2,
+	"des(string)": null,
+	"image(string)": "material_image",
+	"option(string)": [],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5085,
-    "eventType(int)": 103,
-    "headType(int)": 2,
-    "des(string)": null,
-    "image(string)": "material_image",
-    "option(string)": [],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	"ID(int)": 5085,
+	"eventType(int)": 103,
+	"headType(int)": 2,
+	"des(string)": null,
+	"image(string)": "material_image",
+	"option(string)": [],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   },
   {
-    "ID(int)": 5086,
-    "eventType(int)": 103,
-    "headType(int)": 2,
-    "des(string)": null,
-    "image(string)": "material_image",
-    "option(string)": [],
-    "demand(int)": [],
-    "demandNum(int)": [],
-    "isRemove(int)": [],
-    "nextEvent(int)": [],
-    "icon(string)": [],
-    "itemID(int)": [],
-    "itemNum(int)": [],
-    "stateID(int)": []
+	"ID(int)": 5086,
+	"eventType(int)": 103,
+	"headType(int)": 2,
+	"des(string)": null,
+	"image(string)": "material_image",
+	"option(string)": [],
+	"demand(int)": [],
+	"demandNum(int)": [],
+	"isRemove(int)": [],
+	"nextEvent(int)": [],
+	"icon(string)": [],
+	"itemID(int)": [],
+	"itemNum(int)": [],
+	"stateID(int)": []
   }
 ]

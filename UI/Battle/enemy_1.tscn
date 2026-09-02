@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://y17u72k2eew7"]
+
+[ext_resource type="Texture2D" uid="uid://em34uue7jl0p" path="res://Assets/Images/UI/Battle/body_part.png" id="1_2c4oa"]
+[ext_resource type="Script" uid="uid://dax2avhxvsm1m" path="res://Scripts/Battle/BattleEnemy.cs" id="1_x652a"]
+[ext_resource type="Texture2D" uid="uid://643qne42of36" path="res://Assets/Images/UI/Battle/head_part.png" id="2_x652a"]
+[ext_resource type="Texture2D" uid="uid://8deo7re3nndw" path="res://Assets/Images/UI/Battle/hand_part.png" id="3_sppvu"]
+
+[node name="Enemy_1" type="Control" unique_id=1628616638 node_paths=PackedStringArray("head", "body", "arm", "headHPLabel", "bodyHPLabel", "handHPLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x652a")
+head = [NodePath("headPart")]
+body = [NodePath("bodyPart")]
+arm = [NodePath("handPart1"), NodePath("handPart2")]
+headHPLabel = [NodePath("headPart/Label")]
+bodyHPLabel = [NodePath("bodyPart/Label")]
+handHPLabel = [NodePath("handPart1/Label"), NodePath("handPart2/Label")]
+
+[node name="headPart" type="TextureRect" parent="." unique_id=714869447]
+layout_mode = 0
+offset_left = 437.0
+offset_top = 419.0
+offset_right = 642.0
+offset_bottom = 633.0
+texture = ExtResource("2_x652a")
+
+[node name="Label" type="Label" parent="headPart" unique_id=647421989]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 158.0
+offset_right = 178.0
+offset_bottom = 192.0
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bodyPart" type="TextureRect" parent="." unique_id=918697940]
+layout_mode = 0
+offset_left = 437.0
+offset_top = 712.0
+offset_right = 646.0
+offset_bottom = 927.0
+texture = ExtResource("1_2c4oa")
+
+[node name="Label" type="Label" parent="bodyPart" unique_id=1038979537]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 158.0
+offset_right = 178.0
+offset_bottom = 192.0
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="handPart1" type="TextureRect" parent="." unique_id=641244740]
+layout_mode = 0
+offset_left = 743.0
+offset_top = 928.0
+offset_right = 946.0
+offset_bottom = 1142.0
+texture = ExtResource("3_sppvu")
+
+[node name="Label" type="Label" parent="handPart1" unique_id=454500582]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 159.0
+offset_right = 178.0
+offset_bottom = 193.0
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="handPart2" type="TextureRect" parent="." unique_id=117642167]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 928.0
+offset_right = 337.0
+offset_bottom = 1142.0
+texture = ExtResource("3_sppvu")
+
+[node name="Label" type="Label" parent="handPart2" unique_id=1764828813]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 159.0
+offset_right = 178.0
+offset_bottom = 193.0
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
