@@ -6,6 +6,8 @@ public partial class BattleManager : Control
 {
     public static BattleManager Instance { get; private set; }
 
+    PlayerManager pm = PlayerManager.Instance;
+
     [Export] public NinePatchRect progressBar;
     [Export] public TextureRect playerHead;
     [Export] public TextureRect enemyHead;
@@ -14,6 +16,11 @@ public partial class BattleManager : Control
     [Export] public TextureRect handBtn;
     [Export] public TextureRect bodyBtn;
     [Export] public TextureRect headBtn;
+    [Export] public TextureProgressBar playerHP;
+    [Export] public TextureProgressBar playerArmor;
+    [Export] public Label handProp;
+    [Export] public Label bodyProp;
+    [Export] public Label headProp;
 
     //头像移动速度
     private double speed = 0.4;
@@ -55,6 +62,8 @@ public partial class BattleManager : Control
             return;
         }
         Instance = this;
+
+        BattleStart();
 
         positionBiasY = playerHead.Size.Y;
         positionBiasX = playerHead.Size.X / 2;
@@ -104,16 +113,12 @@ public partial class BattleManager : Control
             enemySpeed = 0.99 * speed;
         }
     }
-    private void BattleStart() 
-    {
-        //加载敌人和玩家相关数据
-        BattleEnemy battleEnemy = new BattleEnemy();
-        battleEnemy.Initial(1);
-        OnBattleStart.Invoke();
-    }
     public void RefreshUI() 
     {
-
+        int weightSum = pm.Attack_limb_weight + pm.Attack_body_weight + pm.Attack_head_weight;
+        handProp.Text = (pm.Attack_limb_weight / weightSum).ToString();
+        headProp.Text = (pm.Attack_head_weight / weightSum).ToString();
+        bodyProp.Text = (pm.Attack_body_weight / weightSum).ToString();
     }
     private void PlayerTurn()
     {
@@ -125,4 +130,20 @@ public partial class BattleManager : Control
         GD.Print("敌人行动");
     }
 
+    //战斗流程
+    //1.战斗开始
+    private void BattleStart()
+    {
+        //加载敌人和玩家相关数据
+        BattleEnemy battleEnemy = new BattleEnemy();
+        battleEnemy.Initial(1);
+        OnBattleStart.Invoke();
+        RefreshUI();        
+    }
+    //2.回合开始
+    private void TurnStart() 
+    {
+        OnTurnStart.Invoke();
+    }
+    //3.
 }

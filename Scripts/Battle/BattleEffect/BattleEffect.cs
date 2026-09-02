@@ -4,7 +4,10 @@ using System;
 public partial class BattleEffect : Node
 {
     protected BattleManager bm;
+    protected string body;
+    protected int bonus;
     private bool isSubscribed = false;
+    
 
     public override void _Ready()
     {

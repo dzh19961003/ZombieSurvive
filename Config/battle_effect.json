@@ -1,0 +1,74 @@
+[
+  {
+    "ID(int)": 1,
+    "name(string)": "大锤·命中身体+40%",
+    "type(string)": "DamageBonus",
+    "part(string)": "body",
+    "amount(int)": 40,
+    "trigger(string)": null,
+    "target(string)": null,
+    "statusKind(string)": null,
+    "bonusPart(string)": null,
+    "bonusAmount(int)": null
+  },
+  {
+    "ID(int)": 2,
+    "name(string)": "护目镜·头部权重+50",
+    "type(string)": "weightBonus",
+    "part(string)": "head",
+    "amount(int)": 50,
+    "trigger(string)": null,
+    "target(string)": null,
+    "statusKind(string)": null,
+    "bonusPart(string)": null,
+    "bonusAmount(int)": null
+  },
+  {
+    "ID(int)": 3,
+    "name(string)": "S1mple·开局头部充能+1",
+    "type(string)": "chargeBonus",
+    "part(string)": "head",
+    "amount(int)": 1,
+    "trigger(string)": null,
+    "target(string)": null,
+    "statusKind(string)": null,
+    "bonusPart(string)": null,
+    "bonusAmount(int)": null
+  },
+  {
+    "ID(int)": 4,
+    "name(string)": "ZywOo·未中头叠30权重",
+    "type(string)": "weightBonus",
+    "part(string)": "head",
+    "amount(int)": 30,
+    "trigger(string)": "onMiss",
+    "target(string)": null,
+    "statusKind(string)": null,
+    "bonusPart(string)": null,
+    "bonusAmount(int)": null
+  },
+  {
+    "ID(int)": 5,
+    "name(string)": "手控·攻击手臂拉20%进度",
+    "type(string)": "progressBonus",
+    "part(string)": "arm",
+    "amount(int)": 20,
+    "trigger(string)": null,
+    "target(string)": "self",
+    "statusKind(string)": null,
+    "bonusPart(string)": null,
+    "bonusAmount(int)": null
+  },
+  {
+    "ID(int)": 6,
+    "name(string)": "手术刀·挂1层流血打身体挂2层",
+    "type(string)": "applyStatus",
+    "part(string)": null,
+    "amount(int)": 1,
+    "trigger(string)": null,
+    "target(string)": null,
+    "statusKind(string)": "bleed",
+    "bonusPart(string)": "body",
+    "bonusAmount(int)": 1
+  }
+]

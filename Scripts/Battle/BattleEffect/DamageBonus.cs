@@ -3,9 +3,7 @@ using MyProject;
 using System;
 
 public partial class DamageBonus : BattleEffect
-{
-    string body;
-    int bonus;
+{    
     public override void _Ready()
     {
         base._Ready();
