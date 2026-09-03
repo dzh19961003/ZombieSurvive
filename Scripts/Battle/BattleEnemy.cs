@@ -25,6 +25,7 @@ public partial class BattleEnemy : Node
     public override void _Ready()
     {
         enemyEffects=new List<int>();
+        enemyEffectsBase = new List<BattleEffectBase>();
     }
     public void Initial(int enemyID) 
     {

@@ -51,7 +51,7 @@ public partial class BattleManager : Control
     public string bodyPart;        //攻击后取得的身体部位
     public double baseDamage;      //基础武器伤害
     public double Damage = 0;      //造成的最终伤害
-    public bool isPlayer = true;
+    public string character = "player";
     public Dictionary<int,BattleEffectBase> effectDic = new Dictionary<int,BattleEffectBase>();
 
 
@@ -145,11 +145,14 @@ public partial class BattleManager : Control
     private void PlayerTurn()
     {
         GD.Print("玩家行动");
-
+        character = "player";
+        TurnStart();
     }
     private void EnemyTurn()
     {
         GD.Print("敌人行动");
+        character = "enemy";
+        TurnStart();
     }
 
     //战斗流程
@@ -184,6 +187,7 @@ public partial class BattleManager : Control
         }
         foreach (var item in battleEffectBases) 
         {
+            item.character = "enemy";
             AddChild(item);
         }
         return battleEffectBases;
@@ -199,9 +203,11 @@ public partial class BattleManager : Control
                 DamageBonus damageBonus = new DamageBonus();
                 battleEffectBase = damageBonus;
                 break;
-            case "weightBonus":
+            case "WeightBonus":
                 WeightBonus weightBonus = new WeightBonus();
                 battleEffectBase = weightBonus;
+                weightBonus.body = battleEffect.Part;
+                weightBonus.bonus = battleEffect.Amount;
                 break;
             case "ChargeBonus":
                 break;

@@ -3,9 +3,12 @@ using System;
 
 public partial class BattleEffectBase : Node
 {
-    protected BattleManager bm;
-    protected string body;
-    protected int bonus;
+    public BattleManager bm;
+    public PlayerManager pm = PlayerManager.Instance;
+    public string character;
+    public string body;
+    public int bonus;
+
     private bool isSubscribed = false;
     
 

@@ -5,7 +5,9 @@
     "headNum(int)": 1,
     "bodyNum(int)": 1,
     "armNum(int)": 2,
-    "battleEffectID(int)": [],
+    "battleEffectID(int)": [
+      2
+    ],
     "headHP(double)": [
       20
     ],
