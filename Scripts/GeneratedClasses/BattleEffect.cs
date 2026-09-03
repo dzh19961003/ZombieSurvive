@@ -21,6 +21,9 @@ namespace MyProject
         /// <summary>原始字段: part(string)</summary>
         public string Part { get; set; }
 
+        /// <summary>原始字段: isMulty(int)</summary>
+        public int IsMulty { get; set; }
+
         /// <summary>原始字段: amount(int)</summary>
         public int Amount { get; set; }
 

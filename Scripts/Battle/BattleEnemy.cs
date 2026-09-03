@@ -1,6 +1,7 @@
 using Godot;
 using MyProject;
 using System;
+using System.Collections.Generic;
 
 public partial class BattleEnemy : Node
 {
@@ -18,12 +19,16 @@ public partial class BattleEnemy : Node
     private double[] bodyHP;
     private double[] armsHp;
 
+    private List<int> enemyEffects;
+    private List<BattleEffectBase> enemyEffectsBase;
+
     public override void _Ready()
     {
-        
+        enemyEffects=new List<int>();
     }
     public void Initial(int enemyID) 
     {
+        //初始化各部位生命值
         headNum = ConfigManager.Instance.enemyDic[enemyID].HeadNum;
         bodyNum = ConfigManager.Instance.enemyDic[enemyID].BodyNum;
         armNum = ConfigManager.Instance.enemyDic[enemyID].ArmNum;
@@ -47,9 +52,37 @@ public partial class BattleEnemy : Node
             armsHp[i] = ConfigManager.Instance.enemyDic[enemyID].ArmHP[i];
             handHPLabel[i].Text = armsHp[i].ToString();
         }
+
+        //加入敌人效果
+        foreach (var item in ConfigManager.Instance.enemyDic[enemyID].BattleEffectID)
+        {
+            enemyEffects.Add(item);
+        }
+        enemyEffectsBase = BattleManager.Instance.LoadBattleEffect(enemyEffects);
     }
     public void BeHit(int part,double dmg) 
     {
         BattleManager.Instance.RefreshUI();
+    }
+    public void GetEffect(int effectID)
+    {
+        BattleEffect battleEffect = ConfigManager.Instance.battleEffectDic[effectID];
+
+        if (!enemyEffects.Contains(effectID))
+        {
+            enemyEffects.Add(effectID);
+            BattleManager.Instance.AddChild(BattleManager.Instance.LoadEffects(effectID));
+        }
+        else
+        {
+            if (battleEffect.IsMulty == 0)
+            {
+                return;
+            }
+            else
+            {
+                BattleManager.Instance.effectDic[effectID].MultyStatusAdd();
+            }
+        }
     }
 }

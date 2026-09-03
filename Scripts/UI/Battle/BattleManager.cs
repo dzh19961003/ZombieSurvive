@@ -1,5 +1,7 @@
 using Godot;
+using MyProject;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 public partial class BattleManager : Control
@@ -50,6 +52,8 @@ public partial class BattleManager : Control
     public double baseDamage;      //基础武器伤害
     public double Damage = 0;      //造成的最终伤害
     public bool isPlayer = true;
+    public Dictionary<int,BattleEffectBase> effectDic = new Dictionary<int,BattleEffectBase>();
+
 
     private BattleState battleState = BattleState.Moving;
     enum BattleState
@@ -95,6 +99,12 @@ public partial class BattleManager : Control
             EnemyTurn();
         }
         UpdateUI();
+    }
+    //关闭UI时强行手动置空Instance
+    public override void _ExitTree()
+    {
+        if (Instance == this)   
+            Instance = null;
     }
     private void UpdateUI()
     {
@@ -161,4 +171,48 @@ public partial class BattleManager : Control
         OnTurnStart?.Invoke();
     }
     //3.
+
+
+
+    //战斗效果装填
+    public List<BattleEffectBase> LoadBattleEffect(List<int> battleEffects) 
+    {
+        List<BattleEffectBase> battleEffectBases = new List<BattleEffectBase>();
+        foreach (var item in battleEffects)
+        {
+            battleEffectBases.Add(LoadEffects(item));
+        }
+        foreach (var item in battleEffectBases) 
+        {
+            AddChild(item);
+        }
+        return battleEffectBases;
+    }
+
+    public BattleEffectBase LoadEffects(int item)
+    {
+        BattleEffectBase battleEffectBase = null;
+        BattleEffect battleEffect = ConfigManager.Instance.battleEffectDic[item];       
+        switch (battleEffect.Type)
+        {
+            case "DamageBonus":
+                DamageBonus damageBonus = new DamageBonus();
+                battleEffectBase = damageBonus;
+                break;
+            case "weightBonus":
+                WeightBonus weightBonus = new WeightBonus();
+                battleEffectBase = weightBonus;
+                break;
+            case "ChargeBonus":
+                break;
+            case "ProgressBonus":
+                break;
+            case "ApplyStatus":
+                break;
+            default:
+                break;
+        }
+        effectDic?.Add(item, battleEffectBase);
+        return battleEffectBase;
+    }
 }

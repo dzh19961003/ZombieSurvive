@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class BattleEffect : Node
+public partial class BattleEffectBase : Node
 {
     protected BattleManager bm;
     protected string body;
@@ -57,4 +57,5 @@ public partial class BattleEffect : Node
     public virtual void StatusDealed() { }
     public virtual void TurnEnd() { }
     public virtual void BattleEnd() { }
+    public virtual void MultyStatusAdd(){ }
 }

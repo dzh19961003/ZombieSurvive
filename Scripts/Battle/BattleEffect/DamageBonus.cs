@@ -2,7 +2,7 @@ using Godot;
 using MyProject;
 using System;
 
-public partial class DamageBonus : BattleEffect
+public partial class DamageBonus : BattleEffectBase
 {    
     public override void _Ready()
     {
@@ -13,7 +13,7 @@ public partial class DamageBonus : BattleEffect
     {
         if (body == bm.bodyPart)
         {
-            bm.Damage = bm.Damage + bm.baseDamage * (1 + bonus / 100);
+            bm.Damage = bm.Damage + bm.baseDamage * (1 + bonus / 100.0);
         }
     }
 }
