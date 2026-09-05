@@ -6,7 +6,8 @@
     "effect(string)": "强健+3",
     "rarity(int)": 2,
     "effectType(int)": 10002,
-    "effectNum(int)": 3
+    "effectNum(int)": 3,
+    "battleEffect(int)": null
   },
   {
     "ID(int)": 2,
@@ -15,6 +16,17 @@
     "effect(string)": "强健-3",
     "rarity(int)": 1,
     "effectType(int)": 10003,
-    "effectNum(int)": -3
+    "effectNum(int)": -3,
+    "battleEffect(int)": null
+  },
+  {
+    "ID(int)": 3,
+    "name(string)": "Go学长",
+    "positive(int)": 1,
+    "effect(string)": null,
+    "rarity(int)": 2,
+    "effectType(int)": null,
+    "effectNum(int)": null,
+    "battleEffect(int)": 8
   }
 ]

@@ -1,7 +1,7 @@
 [
   {
     "ID(int)": 1,
-    "name(string)": "大锤·命中身体+40%",
+    "name(string)": "大锤·对身体+40%伤害",
     "type(string)": "DamageBonus",
     "part(string)": "body",
     "isMulty(int)": null,
@@ -87,6 +87,19 @@
     "trigger(string)": null,
     "target(string)": null,
     "statusKind(string)": "faint",
+    "bonusPart(string)": null,
+    "bonusAmount(int)": null
+  },
+  {
+    "ID(int)": 8,
+    "name(string)": "Go学长·攻击头部权重+100",
+    "type(string)": "WeightBonus",
+    "part(string)": "head",
+    "isMulty(int)": null,
+    "amount(int)": 100,
+    "trigger(string)": null,
+    "target(string)": null,
+    "statusKind(string)": null,
     "bonusPart(string)": null,
     "bonusAmount(int)": null
   }

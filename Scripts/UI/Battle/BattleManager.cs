@@ -2,7 +2,6 @@ using Godot;
 using MyProject;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 public partial class BattleManager : Control
 {
@@ -47,12 +46,11 @@ public partial class BattleManager : Control
     public event Action OnTurnEnd;
     public event Action OnBattleEnd;
 
-    //各战斗所需
-    public string bodyPart;        //攻击后取得的身体部位
-    public double baseDamage;      //基础武器伤害
-    public double Damage = 0;      //造成的最终伤害
-    public string character = "player";
-    public Dictionary<int,BattleEffectBase> effectDic = new Dictionary<int,BattleEffectBase>();
+    //战斗所需
+    public BattleEnemy battleEnemy;
+    public BattleInfo battleInfo;
+    public Dictionary<int, BattleEffectBase> playerEffectDic = new Dictionary<int, BattleEffectBase>();//玩家效果
+    public Dictionary<int, BattleEffectBase> enemyEffectDic = new Dictionary<int, BattleEffectBase>();
 
 
     private BattleState battleState = BattleState.Moving;
@@ -103,7 +101,7 @@ public partial class BattleManager : Control
     //关闭UI时强行手动置空Instance
     public override void _ExitTree()
     {
-        if (Instance == this)   
+        if (Instance == this)
             Instance = null;
     }
     private void UpdateUI()
@@ -132,9 +130,9 @@ public partial class BattleManager : Control
     public void RefreshUI()
     {
         int weightSum = pm.Attack_limb_weight + pm.Attack_body_weight + pm.Attack_head_weight;
-        handProp.Text = Math.Round((float)pm.Attack_limb_weight / weightSum , 2) * 100 + "%";
-        headProp.Text = Math.Round((float)pm.Attack_head_weight / weightSum , 2) * 100 + "%";
-        bodyProp.Text = Math.Round((float)pm.Attack_body_weight / weightSum , 2) * 100 + "%";
+        handProp.Text = Math.Round((float)pm.Attack_limb_weight / weightSum, 2) * 100 + "%";
+        headProp.Text = Math.Round((float)pm.Attack_head_weight / weightSum, 2) * 100 + "%";
+        bodyProp.Text = Math.Round((float)pm.Attack_body_weight / weightSum, 2) * 100 + "%";
         playerHP.Value = pm.Hp;
         playerHP.MaxValue = pm.MaxHp;
         playerHPLabel.Text = pm.Hp + "/" + pm.MaxHp;
@@ -145,13 +143,11 @@ public partial class BattleManager : Control
     private void PlayerTurn()
     {
         GD.Print("玩家行动");
-        character = "player";
         TurnStart();
     }
     private void EnemyTurn()
     {
         GD.Print("敌人行动");
-        character = "enemy";
         TurnStart();
     }
 
@@ -159,12 +155,13 @@ public partial class BattleManager : Control
     //1.战斗开始
     private void BattleStart()
     {
-        //加载敌人和玩家相关数据
+        battleInfo = new BattleInfo(1);
+        //加载战斗、敌人和玩家相关数据       
         var enemy = GD.Load<PackedScene>("res://UI/Battle/enemy_1.tscn");
-        BattleEnemy battleEnemy = enemy.Instantiate<BattleEnemy>();
+        battleEnemy = enemy.Instantiate<BattleEnemy>();
         AddChild(battleEnemy);
+        battleEnemy.Initial(battleInfo.enemyID);
         //加载敌人，这里先写死
-        battleEnemy.Initial(1);
         OnBattleStart?.Invoke();
         RefreshUI();
     }
@@ -177,26 +174,27 @@ public partial class BattleManager : Control
 
 
 
-    //战斗效果装填
-    public List<BattleEffectBase> LoadBattleEffect(List<int> battleEffects) 
+    //战斗所有初始效果装填
+    public List<BattleEffectBase> LoadBattleEffect(List<int> battleEffects, string character)
     {
         List<BattleEffectBase> battleEffectBases = new List<BattleEffectBase>();
         foreach (var item in battleEffects)
         {
-            battleEffectBases.Add(LoadEffects(item));
+            battleEffectBases.Add(LoadEffects(item, character));
+            GD.Print("已加载" + character + "效果，ID:" + item);
         }
-        foreach (var item in battleEffectBases) 
+        foreach (var item in battleEffectBases)
         {
-            item.character = "enemy";
-            AddChild(item);
+            item.character = character;
+            AddChild(item);         
         }
         return battleEffectBases;
     }
-
-    public BattleEffectBase LoadEffects(int item)
+    //战斗单个效果装填
+    public BattleEffectBase LoadEffects(int item, string character)
     {
         BattleEffectBase battleEffectBase = null;
-        BattleEffect battleEffect = ConfigManager.Instance.battleEffectDic[item];       
+        BattleEffect battleEffect = ConfigManager.Instance.battleEffectDic[item];
         switch (battleEffect.Type)
         {
             case "DamageBonus":
@@ -213,12 +211,65 @@ public partial class BattleManager : Control
                 break;
             case "ProgressBonus":
                 break;
-            case "ApplyStatus":
+            case "ApplyMultipleStatus":
+                ApplyMultipleStatus applyMultipleStatus = new ApplyMultipleStatus();
+                battleEffectBase = applyMultipleStatus;
                 break;
             default:
                 break;
         }
-        effectDic?.Add(item, battleEffectBase);
+        if (character == "enemy")
+        {
+            enemyEffectDic?.Add(item, battleEffectBase);
+        }
+        else if (character == "player")
+        {
+            playerEffectDic?.Add(item, battleEffectBase);
+        }
         return battleEffectBase;
+    }
+    //战斗局内增加效果
+    public void GetEffect(int effectID, string character)
+    {
+        BattleEffect battleEffect = ConfigManager.Instance.battleEffectDic[effectID];
+        if (character == "enemy")
+        {
+            if (!battleEnemy.enemyEffects.Contains(effectID))
+            {
+                battleEnemy.enemyEffects.Add(effectID);
+                AddChild(LoadEffects(effectID, character));
+            }
+            else
+            {
+                if (battleEffect.IsMulty == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    enemyEffectDic[effectID].MultyStatusAdd();
+                }
+            }
+        }
+        else if (character == "player")
+        {
+            if (!battleInfo.playerEffects.Contains(effectID))
+            {
+                battleInfo.playerEffects.Add(effectID);
+                AddChild(LoadEffects(effectID, character));
+            }
+            else
+            {
+                if (battleEffect.IsMulty == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    playerEffectDic[effectID].MultyStatusAdd();
+                }
+            }
+        }
+
     }
 }

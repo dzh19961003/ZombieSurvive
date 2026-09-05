@@ -13,9 +13,7 @@ using Godot.Collections;
 using MyProject;
 
 public partial class PlayerManager : Node, ISaveable
-{
-   
-
+{  
     public static PlayerManager Instance { get; private set; }
     public string SaveKey => GetPath();
     public event Action GetItem;
@@ -29,7 +27,7 @@ public partial class PlayerManager : Node, ISaveable
     //仓库
     private Dictionary<int, int> ItemDic = new Dictionary<int, int>();
    //天赋列表
-    private Array<int> talentID = new Array<int>() { 1,2};
+    private Array<int> talentID = new Array<int>() { 1,2,3};
     private Dictionary<int,int> ItemArray=new Dictionary<int, int>() { };
    //测试数据
     private Array<int> stateArray = new Array<int>() { };
@@ -38,7 +36,12 @@ public partial class PlayerManager : Node, ISaveable
     //当前自然日内已推进的时段数（0~3）。每满4个时段算完整一天，触发 OnDayEnd。
     private int timePeriodsElapsed = 0;
     public const int PeriodsPerDay = 4;
-    
+    //四个装备ID(物品ID，临时配置)
+    public int weaponID=4;
+    public int clothesID=5;
+    public int shoesID=6;
+    public int ringID=8;
+
     private int hpBase = 100;
     private int maxHpBase = 100;
     private int strengthBase = 10;

@@ -49,6 +49,16 @@ handDMG = NodePath("PlayerBg/atk/handAtk/dmg")
 bodyDMG = NodePath("PlayerBg/atk/bodyAtk/dmg")
 headDMG = NodePath("PlayerBg/atk/headAtk/dmg")
 
+[node name="Control" type="ColorRect" parent="." unique_id=1809416838]
+propagate_maximum_size = true
+layout_mode = 1
+anchors_preset = -1
+offset_right = 1080.0
+offset_bottom = 1920.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78431374)
+
 [node name="progress" type="NinePatchRect" parent="." unique_id=678502228]
 layout_mode = 1
 anchors_preset = 5

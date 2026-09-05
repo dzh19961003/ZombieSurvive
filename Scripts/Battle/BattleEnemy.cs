@@ -19,13 +19,12 @@ public partial class BattleEnemy : Node
     private double[] bodyHP;
     private double[] armsHp;
 
-    private List<int> enemyEffects;
-    private List<BattleEffectBase> enemyEffectsBase;
+    public List<int> enemyEffects;
+    private List<BattleEffectBase> enemyEffectBases = new List<BattleEffectBase>();
 
     public override void _Ready()
     {
         enemyEffects=new List<int>();
-        enemyEffectsBase = new List<BattleEffectBase>();
     }
     public void Initial(int enemyID) 
     {
@@ -59,31 +58,11 @@ public partial class BattleEnemy : Node
         {
             enemyEffects.Add(item);
         }
-        enemyEffectsBase = BattleManager.Instance.LoadBattleEffect(enemyEffects);
+        enemyEffectBases = BattleManager.Instance.LoadBattleEffect(enemyEffects,"enemy");
     }
     public void BeHit(int part,double dmg) 
     {
         BattleManager.Instance.RefreshUI();
     }
-    public void GetEffect(int effectID)
-    {
-        BattleEffect battleEffect = ConfigManager.Instance.battleEffectDic[effectID];
-
-        if (!enemyEffects.Contains(effectID))
-        {
-            enemyEffects.Add(effectID);
-            BattleManager.Instance.AddChild(BattleManager.Instance.LoadEffects(effectID));
-        }
-        else
-        {
-            if (battleEffect.IsMulty == 0)
-            {
-                return;
-            }
-            else
-            {
-                BattleManager.Instance.effectDic[effectID].MultyStatusAdd();
-            }
-        }
-    }
+   
 }

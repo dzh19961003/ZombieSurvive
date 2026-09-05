@@ -39,6 +39,9 @@ namespace MyProject
         /// <summary>原始字段: hasState(int)</summary>
         public int HasState { get; set; }
 
+        /// <summary>原始字段: stateID(int)</summary>
+        public int StateID { get; set; }
+
         /// <summary>原始字段: effectType(int)</summary>
         public int EffectType { get; set; }
 

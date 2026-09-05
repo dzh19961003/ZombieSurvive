@@ -29,5 +29,8 @@ namespace MyProject
 
         /// <summary>原始字段: effectNum(int)</summary>
         public int EffectNum { get; set; }
+
+        /// <summary>原始字段: battleEffect(int)</summary>
+        public int BattleEffect { get; set; }
     }
 }

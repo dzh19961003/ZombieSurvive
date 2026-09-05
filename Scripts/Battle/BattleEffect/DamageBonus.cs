@@ -9,11 +9,22 @@ public partial class DamageBonus : BattleEffectBase
         base._Ready();
 
     }
-    public override void DamageBuff()
+    public override void BattleStart()
     {
-        if (body == bm.bodyPart)
+        switch (body)
         {
-            bm.Damage = bm.Damage + bm.baseDamage * (1 + bonus / 100.0);
+            case "body":
+                bm.bodyDMG.Text = "伤害:" + (bm.battleInfo.baseDamage) * (1 + bonus / 100.0);
+                break;
+            case "head":
+                bm.headDMG.Text = "伤害:" + (bm.battleInfo.baseDamage) * (1 + bonus / 100.0);
+                break;
+            case "arm":
+                bm.handDMG.Text = "伤害:" + (bm.battleInfo.baseDamage) * (1 + bonus / 100.0);
+                break;
+            default:
+                break;
         }
+
     }
 }

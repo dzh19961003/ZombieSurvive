@@ -97,5 +97,14 @@
     "effctType(int)": 10002,
     "effctNum(int)": -15,
     "time(int)": 3
+  },
+  {
+    "ID(int)": 104,
+    "name(string)": "流血",
+    "positive(int)": 0,
+    "effect(string)": "回合开始时生命值-1",
+    "effctType(int)": null,
+    "effctNum(int)": null,
+    "time(int)": null
   }
 ]
