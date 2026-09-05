@@ -15,14 +15,20 @@ public partial class StateTips : Control
 		nameLabel.Text = ConfigManager.Instance.stateDic[ID].Name;
         if (ConfigManager.Instance.stateDic[ID].Positive == 0)
         {
-            nameLabel.AddThemeColorOverride("font_color", Colors.Red);
+            nameLabel.AddThemeColorOverride("font_color", Color.FromHtml("#ee634e"));
         }
         else
         {
-            nameLabel.AddThemeColorOverride("font_color", Colors.Green);
+            nameLabel.AddThemeColorOverride("font_color", Color.FromHtml("#9fce94"));
         }
+        
         desLabel.Text = ConfigManager.Instance.stateDic[ID].Effect;
         timeLabel.Text = ConfigManager.Instance.stateDic[ID].Time.ToString()+"天";
+
+        if (ConfigManager.Instance.stateDic[ID].EffctType == 0)
+        {
+            timeLabel.Text = "-";
+        }
     }
 
 

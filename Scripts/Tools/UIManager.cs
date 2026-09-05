@@ -1,8 +1,7 @@
 using Godot;
 using MyProject;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
+
 
 public partial class UIManager : Node
 {
@@ -397,5 +396,36 @@ public partial class UIManager : Node
             texture2D = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/"+ConfigManager.Instance.effectTypeDic[ID].ImageIcon);
         }
         return texture2D;
+    }
+
+    // 根据稀有度改变某个 Label 的文字颜色
+    // rarity 对应：1=绿, 2=蓝, 3=紫, 4=橙
+    // 用法示例：
+    //   UIManager.Instance.SetLabelRarityColor(myLabel, itemRarity);
+    public void SetLabelRarityColor(Label label, int rarity)
+    {
+        if (label == null) return;
+
+        Color color;
+        switch (rarity)
+        {
+            case 1:
+                color = Color.FromHtml("#9fce94"); // 绿色
+                break;
+            case 2:
+                color = Color.FromHtml("#5B83A5"); // 蓝色
+                break;
+            case 3:
+                color = Color.FromHtml("#89699E"); // 紫色
+                break;
+            case 4:
+                color = Color.FromHtml("#C28A4D"); // 橙色
+                break;
+            default:
+                color = Colors.White;              // 未知稀有度用白色兜底
+                break;
+        }
+
+        label.AddThemeColorOverride("font_color", color);
     }
 }

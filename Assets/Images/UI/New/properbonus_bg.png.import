@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbvpr30jh0v3n"
-path="res://.godot/imported/equipBtn.png-3166d2a340e29a65b4bfb46ffc6d2da3.ctex"
+uid="uid://b5vu7t0b5gbx3"
+path="res://.godot/imported/properbonus_bg.png-d7822d8dc06fd33d6fc08902fc9053d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/UI/New/equipBtn.png"
-dest_files=["res://.godot/imported/equipBtn.png-3166d2a340e29a65b4bfb46ffc6d2da3.ctex"]
+source_file="res://Assets/Images/UI/New/properbonus_bg.png"
+dest_files=["res://.godot/imported/properbonus_bg.png-d7822d8dc06fd33d6fc08902fc9053d9.ctex"]
 
 [params]
 

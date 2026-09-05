@@ -130,9 +130,9 @@ public partial class BattleManager : Control
     public void RefreshUI()
     {
         int weightSum = pm.Attack_limb_weight + pm.Attack_body_weight + pm.Attack_head_weight;
-        handProp.Text = Math.Round((float)pm.Attack_limb_weight / weightSum, 2) * 100 + "%";
-        headProp.Text = Math.Round((float)pm.Attack_head_weight / weightSum, 2) * 100 + "%";
-        bodyProp.Text = Math.Round((float)pm.Attack_body_weight / weightSum, 2) * 100 + "%";
+        handProp.Text = (int)Math.Round((double)pm.Attack_limb_weight / weightSum * 100)  + "%";
+        headProp.Text = (int)Math.Round((double)pm.Attack_head_weight / weightSum * 100)  + "%";
+        bodyProp.Text = (int)Math.Round((double)pm.Attack_body_weight / weightSum * 100) + "%";
         playerHP.Value = pm.Hp;
         playerHP.MaxValue = pm.MaxHp;
         playerHPLabel.Text = pm.Hp + "/" + pm.MaxHp;

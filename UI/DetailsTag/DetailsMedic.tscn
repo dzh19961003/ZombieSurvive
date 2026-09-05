@@ -1,23 +1,22 @@
 [gd_scene format=3 uid="uid://cmhbpei4dq0ar"]
 
 [ext_resource type="Script" uid="uid://jl5jw021vv1o" path="res://Scripts/UI/DetailsFood.cs" id="1_4psy7"]
-[ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="2_vo16y"]
-[ext_resource type="Texture2D" uid="uid://dmsp4tv0xocxa" path="res://Assets/Images/UI/rarity_green.png" id="3_np85c"]
-[ext_resource type="Texture2D" uid="uid://rmjmivhdjuc6" path="res://Assets/Images/UI/rarity_blue.png" id="4_50iv4"]
-[ext_resource type="Texture2D" uid="uid://cqpcu7ik6fr4y" path="res://Assets/Images/UI/rarity_purple.png" id="5_7rxoo"]
-[ext_resource type="Texture2D" uid="uid://dmujn2n7t1dig" path="res://Assets/Images/UI/rarity_orange.png" id="6_88ibo"]
-[ext_resource type="Texture2D" uid="uid://b2l7to85rkjl" path="res://Assets/Images/UI/heart_icon.png" id="7_4psy7"]
-[ext_resource type="Texture2D" uid="uid://c54mcv34ik4pe" path="res://Assets/Images/UI/button_prompt.png" id="8_uk3we"]
+[ext_resource type="Texture2D" uid="uid://dxrx2av38chk2" path="res://Assets/Images/UI/New/food_bg.png" id="2_vo16y"]
+[ext_resource type="Texture2D" uid="uid://ceb2ps0t4tcrf" path="res://Assets/Images/UI/New/rarity_1.png" id="3_np85c"]
+[ext_resource type="Texture2D" uid="uid://c233o5e8a0b8r" path="res://Assets/Images/UI/New/rarity_2.png" id="4_50iv4"]
+[ext_resource type="Texture2D" uid="uid://b8eacsdn6xm1u" path="res://Assets/Images/UI/New/rarity_3.png" id="5_7rxoo"]
+[ext_resource type="Texture2D" uid="uid://cj7ts7ev5gl6b" path="res://Assets/Images/UI/New/rarity_4.png" id="6_88ibo"]
+[ext_resource type="Texture2D" uid="uid://c5kp62gpikm3m" path="res://Assets/Images/Items/rice_icon.png" id="7_0w5ua"]
+[ext_resource type="Texture2D" uid="uid://chsikhycwcf0f" path="res://Assets/Images/UI/New/equip_btn.png" id="8_uk3we"]
 [ext_resource type="PackedScene" uid="uid://d0vboa0gmoyru" path="res://UI/DetailsTag/StateTips.tscn" id="9_aswn4"]
 [ext_resource type="Texture2D" uid="uid://c28feo2kchmh" path="res://Assets/Images/UI/ItemType/armer_4.png" id="10_vo16y"]
 
-[node name="DetailsFood" type="Control" unique_id=1879187992 node_paths=PackedStringArray("nameLable", "numLabel", "stateLabel", "stateNameLabel", "noStateLabel", "stateTips", "BG", "Rarity", "typeIcon")]
+[node name="DetailsFood" type="Control" unique_id=1879187992 node_paths=PackedStringArray("nameLable", "numLabel", "stateLabel", "stateNameLabel", "noStateLabel", "stateTips", "BG", "Rarity", "typeIcon", "itemIcon")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 384.0
-offset_bottom = 703.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 395.0
+offset_bottom = 541.0
+scale = Vector2(1.1, 1.1)
 script = ExtResource("1_4psy7")
 nameLable = NodePath("Name")
 numLabel = NodePath("Num")
@@ -28,174 +27,216 @@ stateTips = NodePath("StateTips")
 BG = NodePath("Bg2")
 Rarity = [NodePath("Rarity_1"), NodePath("Rarity_2"), NodePath("Rarity_3"), NodePath("Rarity_4")]
 typeIcon = NodePath("typeIcon")
+itemIcon = NodePath("itemIcon")
 
-[node name="Bg2" type="Button" parent="." unique_id=2097972755]
+[node name="Bg2" type="Button" parent="." unique_id=1844130435]
 layout_mode = 1
 anchors_preset = -1
-offset_left = -2158.0
-offset_top = -1600.0
-offset_right = 3077.308
-offset_bottom = 3894.0
+offset_left = -2107.0
+offset_top = -1752.0
+offset_right = 3128.308
+offset_bottom = 3742.0
 flat = true
 
-[node name="Bg" type="NinePatchRect" parent="." unique_id=1787980288]
+[node name="Bg" type="TextureRect" parent="." unique_id=813421554]
 layout_mode = 0
-offset_right = 379.0
-offset_bottom = 471.02057
+offset_right = 390.0
+offset_bottom = 409.81134
 texture = ExtResource("2_vo16y")
-region_rect = Rect2(0, 0, 980, 1720)
-patch_margin_left = 101
-patch_margin_top = 101
-patch_margin_right = 142
-patch_margin_bottom = 201
+expand_mode = 1
 
-[node name="Rarity_1" type="TextureRect" parent="." unique_id=1262958861]
+[node name="Rarity_1" type="TextureRect" parent="." unique_id=1017827746]
 layout_mode = 0
-offset_left = 23.07148
-offset_top = 22.0
-offset_right = 765.13495
-offset_bottom = 210.88889
-scale = Vector2(0.45, 0.45)
+offset_left = 18.0
+offset_top = 127.0
+offset_right = 188.0
+offset_bottom = 318.0
 texture = ExtResource("3_np85c")
+expand_mode = 1
 
-[node name="Rarity_2" type="TextureRect" parent="." unique_id=1989387335]
+[node name="Rarity_2" type="TextureRect" parent="." unique_id=668426597]
 layout_mode = 0
-offset_left = 23.07148
-offset_top = 22.0
-offset_right = 765.13495
-offset_bottom = 210.88889
-scale = Vector2(0.45, 0.45)
+offset_left = 18.0
+offset_top = 127.0
+offset_right = 188.0
+offset_bottom = 318.0
 texture = ExtResource("4_50iv4")
+expand_mode = 1
 
-[node name="Rarity_3" type="TextureRect" parent="." unique_id=1997742881]
+[node name="Rarity_3" type="TextureRect" parent="." unique_id=1897714719]
 layout_mode = 0
-offset_left = 23.07148
-offset_top = 22.0
-offset_right = 765.13495
-offset_bottom = 210.88889
-scale = Vector2(0.45, 0.45)
+offset_left = 18.0
+offset_top = 127.0
+offset_right = 188.0
+offset_bottom = 318.0
 texture = ExtResource("5_7rxoo")
+expand_mode = 1
 
-[node name="Rarity_4" type="TextureRect" parent="." unique_id=860127637]
+[node name="Rarity_4" type="TextureRect" parent="." unique_id=126941253]
 layout_mode = 0
-offset_left = 23.07148
-offset_top = 22.0
-offset_right = 765.13495
-offset_bottom = 210.88889
-scale = Vector2(0.45, 0.45)
+offset_left = 18.0
+offset_top = 127.0
+offset_right = 188.0
+offset_bottom = 318.0
 texture = ExtResource("6_88ibo")
+expand_mode = 1
 
-[node name="Name" type="Label" parent="." unique_id=47269188]
+[node name="Name" type="Label" parent="." unique_id=309665489]
 layout_mode = 0
-offset_left = 138.0
-offset_top = 37.0
-offset_right = 298.0
-offset_bottom = 92.0
-theme_override_font_sizes/font_size = 40
+offset_left = 118.0
+offset_top = 67.0
+offset_right = 278.0
+offset_bottom = 112.0
+theme_override_colors/font_color = Color(0.9372549, 0.8980392, 0.79607844, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 32
 text = "物品名称"
+vertical_alignment = 1
+
+[node name="Name2" type="Label" parent="." unique_id=1700123889]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 7.0
+offset_right = 184.0
+offset_bottom = 47.0
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 28
+text = "物品详情"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="." unique_id=2054554623]
+[node name="Label2" type="Label" parent="." unique_id=1473237350]
 layout_mode = 0
-offset_left = 183.0
-offset_top = 146.0
-offset_right = 211.0
-offset_bottom = 204.0
-theme_override_font_sizes/font_size = 42
+offset_left = 246.0
+offset_top = 148.0
+offset_right = 287.0
+offset_bottom = 247.0
+theme_override_colors/font_color = Color(0.62352943, 0.80784315, 0.5803922, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 72
 text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Num" type="Label" parent="." unique_id=1738823794]
+[node name="Num" type="Label" parent="." unique_id=689839039]
 layout_mode = 0
-offset_left = 203.0
-offset_top = 142.0
-offset_right = 290.0
-offset_bottom = 209.0
-theme_override_colors/font_color = Color(0.3254902, 1, 0.05882353, 1)
-theme_override_font_sizes/font_size = 48
-text = "15"
-horizontal_alignment = 1
+offset_left = 293.0
+offset_top = 148.0
+offset_right = 372.0
+offset_bottom = 247.0
+theme_override_colors/font_color = Color(0.62352943, 0.80784315, 0.5803922, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 72
+text = "2"
 vertical_alignment = 1
 
-[node name="RiceIcon" type="Sprite2D" parent="." unique_id=1699342010]
-position = Vector2(137, 177)
-scale = Vector2(0.9999999, 0.9999999)
-texture = ExtResource("7_4psy7")
-
-[node name="state" type="Label" parent="." unique_id=1774318255]
+[node name="itemIcon" type="TextureRect" parent="." unique_id=729471986]
 layout_mode = 0
-offset_left = 66.0
-offset_top = 250.0
-offset_right = 203.0
-offset_bottom = 295.0
-theme_override_font_sizes/font_size = 32
+offset_left = 34.000004
+offset_top = 155.00002
+offset_right = 162.0
+offset_bottom = 283.0
+scale = Vector2(1.0351561, 1.0351561)
+texture = ExtResource("7_0w5ua")
+
+[node name="state" type="Label" parent="." unique_id=1260175485]
+layout_mode = 0
+offset_left = 206.0
+offset_top = 246.0
+offset_right = 309.0
+offset_bottom = 280.0
+theme_override_colors/font_color = Color(0.61960787, 0.70980394, 0.6784314, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 22
 text = "获得状态:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="stateID" type="Label" parent="." unique_id=239603367]
+[node name="state2" type="Label" parent="." unique_id=1888855048]
 layout_mode = 0
-offset_left = 214.0
-offset_top = 250.0
-offset_right = 342.0
-offset_bottom = 295.0
-theme_override_colors/font_color = Color(0.3254902, 1, 0.05882353, 1)
-theme_override_font_sizes/font_size = 32
-text = "好吃吃"
-vertical_alignment = 1
-
-[node name="noState" type="Label" parent="." unique_id=533309598]
-visible = false
-layout_mode = 0
-offset_left = 104.0
-offset_top = 263.0
-offset_right = 264.0
-offset_bottom = 308.0
-theme_override_font_sizes/font_size = 32
-text = "无特殊效果"
+offset_left = 232.0
+offset_top = 128.0
+offset_right = 352.0
+offset_bottom = 159.0
+theme_override_colors/font_color = Color(0.61960787, 0.70980394, 0.6784314, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 22
+text = "生命值回复"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EatButton" type="TextureButton" parent="." unique_id=1722086135]
+[node name="stateID" type="Label" parent="." unique_id=1558470701]
 layout_mode = 0
-offset_left = 77.0
-offset_top = 354.0
-offset_right = 296.99997
-offset_bottom = 430.0
+offset_left = 210.0
+offset_top = 272.0
+offset_right = 338.0
+offset_bottom = 317.0
+theme_override_colors/font_color = Color(0.9372549, 0.8980392, 0.79607844, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 28
+text = "好好吃"
+vertical_alignment = 1
+
+[node name="noState" type="Label" parent="." unique_id=1478977372]
+visible = false
+layout_mode = 0
+offset_left = 228.0
+offset_top = 265.0
+offset_right = 348.0
+offset_bottom = 299.0
+theme_override_colors/font_color = Color(0.9372549, 0.8980392, 0.79607844, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+text = "无特殊效果"
+vertical_alignment = 1
+
+[node name="EatButton" type="TextureButton" parent="." unique_id=1264124364]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 327.0
+offset_right = 378.5
+offset_bottom = 392.99994
 texture_normal = ExtResource("8_uk3we")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="EatLabel" type="Label" parent="EatButton" unique_id=1005137943]
+[node name="EatLabel" type="Label" parent="EatButton" unique_id=1376422599]
 layout_mode = 0
-offset_left = 46.0
-offset_top = 15.0
-offset_right = 178.0
-offset_bottom = 65.0
-theme_override_font_sizes/font_size = 36
+offset_left = 114.66667
+offset_top = 8.0000305
+offset_right = 246.66667
+offset_bottom = 58.00003
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 28
 text = "使用"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="StateTips" parent="." unique_id=571347170 instance=ExtResource("9_aswn4")]
-layout_mode = 1
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 6.0
-offset_top = 469.0
-offset_right = 6.0
-offset_bottom = 469.0
+offset_left = 1.0
+offset_top = 407.0
+offset_right = 1.0
+offset_bottom = 407.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="typeIcon" type="TextureRect" parent="." unique_id=1119140318]
+[node name="typeIcon" type="TextureRect" parent="." unique_id=2084545744]
 layout_mode = 0
-offset_left = 54.0
-offset_top = 26.0
-offset_right = 131.0
-offset_bottom = 103.0
+offset_left = 36.0
+offset_top = 70.0
+offset_right = 81.0
+offset_bottom = 111.35135
 texture = ExtResource("10_vo16y")
 expand_mode = 1
+stretch_mode = 5

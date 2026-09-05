@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dnaf1w8cp56f4" path="res://Assets/Images/UI/New/itemType_1_1.png" id="9_pxt5l"]
 
 [node name="Item" type="Control" unique_id=1539995109 node_paths=PackedStringArray("Rarity", "BG", "itemIcon", "numLabel", "edge", "numBg", "itemType")]
-custom_minimum_size = Vector2(150, 150)
+custom_minimum_size = Vector2(179, 178)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 179.0

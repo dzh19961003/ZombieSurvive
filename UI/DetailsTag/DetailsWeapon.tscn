@@ -1,275 +1,513 @@
 [gd_scene format=3 uid="uid://b3o0gf142s48o"]
 
 [ext_resource type="Script" uid="uid://bswy8jwefck1d" path="res://Scripts/UI/DetailsWeapon.cs" id="1_4yuhm"]
-[ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="2_twi54"]
-[ext_resource type="Texture2D" uid="uid://dmsp4tv0xocxa" path="res://Assets/Images/UI/rarity_green.png" id="3_4yuhm"]
-[ext_resource type="Texture2D" uid="uid://rmjmivhdjuc6" path="res://Assets/Images/UI/rarity_blue.png" id="4_6fhvh"]
-[ext_resource type="Texture2D" uid="uid://cqpcu7ik6fr4y" path="res://Assets/Images/UI/rarity_purple.png" id="5_6dx44"]
-[ext_resource type="Texture2D" uid="uid://dmujn2n7t1dig" path="res://Assets/Images/UI/rarity_orange.png" id="6_we48i"]
-[ext_resource type="Texture2D" uid="uid://d21mrp1tehixc" path="res://Assets/Images/UI/speed.png" id="8_twi54"]
-[ext_resource type="Texture2D" uid="uid://c54mcv34ik4pe" path="res://Assets/Images/UI/button_prompt.png" id="8_uq4mr"]
+[ext_resource type="Texture2D" uid="uid://c2hmi5hsn4f26" path="res://Assets/Images/UI/New/equipBg.png" id="2_dnc6e"]
+[ext_resource type="Texture2D" uid="uid://b5vu7t0b5gbx3" path="res://Assets/Images/UI/New/properbonus_bg.png" id="3_k305q"]
+[ext_resource type="Texture2D" uid="uid://wyeuaoehe6di" path="res://Assets/Images/UI/New/armorbase_bg.png" id="4_j6bw1"]
+[ext_resource type="Texture2D" uid="uid://cbvpr30jh0v3n" path="res://Assets/Images/UI/New/equip_effectbg.png" id="5_qr3wg"]
+[ext_resource type="Texture2D" uid="uid://ceb2ps0t4tcrf" path="res://Assets/Images/UI/New/rarity_1.png" id="6_otgfi"]
+[ext_resource type="Texture2D" uid="uid://c233o5e8a0b8r" path="res://Assets/Images/UI/New/rarity_2.png" id="7_6pl5b"]
+[ext_resource type="Texture2D" uid="uid://b8eacsdn6xm1u" path="res://Assets/Images/UI/New/rarity_3.png" id="8_08587"]
 [ext_resource type="PackedScene" uid="uid://d0vboa0gmoyru" path="res://UI/DetailsTag/StateTips.tscn" id="9_2r0ib"]
-[ext_resource type="Texture2D" uid="uid://drrlot6oesri8" path="res://Assets/Images/UI/strong.png" id="9_4yuhm"]
-[ext_resource type="Texture2D" uid="uid://byni2fkgyi20q" path="res://Assets/Images/UI/brain.png" id="11_6fhvh"]
+[ext_resource type="Texture2D" uid="uid://cj7ts7ev5gl6b" path="res://Assets/Images/UI/New/rarity_4.png" id="9_4v3vw"]
+[ext_resource type="Texture2D" uid="uid://c3xna0x42nac8" path="res://Assets/Images/UI/New/line.png" id="10_wkuii"]
+[ext_resource type="Texture2D" uid="uid://chsikhycwcf0f" path="res://Assets/Images/UI/New/equip_btn.png" id="11_0sgxk"]
 [ext_resource type="Texture2D" uid="uid://c28feo2kchmh" path="res://Assets/Images/UI/ItemType/armer_4.png" id="12_6fhvh"]
+[ext_resource type="Texture2D" uid="uid://bare7judg7dbv" path="res://Assets/Images/UI/New/prop_bg.png" id="14_e3qfn"]
+[ext_resource type="Texture2D" uid="uid://x26ev65m6p0k" path="res://Assets/Images/UI/New/strength.png" id="15_84kxw"]
+[ext_resource type="Texture2D" uid="uid://d141ff1l2u5qd" path="res://Assets/Images/UI/New/speed.png" id="16_3f168"]
+[ext_resource type="Texture2D" uid="uid://duddhv3a3jk84" path="res://Assets/Images/UI/New/brain.png" id="17_6ac18"]
+[ext_resource type="Texture2D" uid="uid://c5kp62gpikm3m" path="res://Assets/Images/Items/rice_icon.png" id="18_1vbpr"]
 
-[node name="DetailsWeapon" type="Control" unique_id=1879187992 node_paths=PackedStringArray("Rarity", "nameLable", "damageLable", "baseDamageLable", "strongAddLabel", "speedAddLabel", "brainAddLabel", "effectLabel", "noEffectLabel", "stateTips", "BG", "typeIcon")]
+[node name="DetailsWeapon" type="Control" unique_id=1879187992 node_paths=PackedStringArray("Rarity", "nameLable", "damageLable", "baseDamageLable", "strongAddLabel", "speedAddLabel", "brainAddLabel", "effectLabel", "noEffectLabel", "stateTips", "BG", "typeIcon", "itemIcon", "armorDes", "weaponDes")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 414.0
-offset_bottom = 920.0
+offset_right = 394.16666
+offset_bottom = 703.3333
+scale = Vector2(1.2, 1.2)
 script = ExtResource("1_4yuhm")
 Rarity = [NodePath("Rarity_1"), NodePath("Rarity_2"), NodePath("Rarity_3"), NodePath("Rarity_4")]
 nameLable = NodePath("Name")
-damageLable = NodePath("Amount")
+damageLable = NodePath("Num")
 baseDamageLable = NodePath("Num2")
-strongAddLabel = NodePath("strongAdd")
-speedAddLabel = NodePath("speedAdd")
-brainAddLabel = NodePath("brainAdd")
+strongAddLabel = NodePath("property/PropBg/strongAdd")
+speedAddLabel = NodePath("property/PropBg2/speedAdd")
+brainAddLabel = NodePath("property/PropBg3/brainAdd")
 effectLabel = NodePath("effect")
 noEffectLabel = NodePath("noEffect")
 stateTips = NodePath("StateTips")
 BG = NodePath("Bg2")
 typeIcon = NodePath("typeIcon")
+itemIcon = NodePath("itemIcon")
+armorDes = NodePath("armorDes")
+weaponDes = NodePath("weaponDes")
 
-[node name="Bg2" type="Button" parent="." unique_id=2097972755]
+[node name="Bg2" type="Button" parent="." unique_id=241592930]
 layout_mode = 1
 anchors_preset = -1
-offset_left = -2308.0
-offset_top = -1637.0
-offset_right = 2927.308
-offset_bottom = 3857.0
+offset_left = -2339.9998
+offset_top = -1698.3333
+offset_right = 2895.3083
+offset_bottom = 3795.6667
 flat = true
 
-[node name="Bg" type="NinePatchRect" parent="." unique_id=1787980288]
+[node name="Bg" type="NinePatchRect" parent="." unique_id=2060043735]
 layout_mode = 0
-offset_right = 422.0
-offset_bottom = 672.0
-texture = ExtResource("2_twi54")
-region_rect = Rect2(0, 0, 980, 1720)
-patch_margin_left = 101
-patch_margin_top = 101
-patch_margin_right = 142
-patch_margin_bottom = 201
+offset_right = 396.0
+offset_bottom = 557.5
+texture = ExtResource("2_dnc6e")
+region_rect = Rect2(0, 0, 692, 940)
 
-[node name="Rarity_1" type="TextureRect" parent="." unique_id=1262958861]
+[node name="bg3" type="TextureRect" parent="." unique_id=1049618595]
 layout_mode = 0
-offset_left = 23.07148
-offset_top = 22.0
-offset_right = 861.16675
-offset_bottom = 235.33334
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("3_4yuhm")
+offset_left = 18.0
+offset_top = 244.16664
+offset_right = 136.75363
+offset_bottom = 278.16663
+texture = ExtResource("3_k305q")
+expand_mode = 1
 
-[node name="Rarity_2" type="TextureRect" parent="." unique_id=1989387335]
+[node name="bg4" type="TextureRect" parent="." unique_id=1791081998]
 layout_mode = 0
-offset_left = 23.07148
-offset_top = 22.0
-offset_right = 861.16675
-offset_bottom = 235.33334
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("4_6fhvh")
+offset_left = 17.0
+offset_top = 199.0
+offset_right = 378.5422
+offset_bottom = 243.0
+texture = ExtResource("4_j6bw1")
+expand_mode = 1
 
-[node name="Rarity_3" type="TextureRect" parent="." unique_id=1997742881]
+[node name="EquipEffectbg" type="NinePatchRect" parent="." unique_id=222595053]
 layout_mode = 0
-offset_left = 23.07148
-offset_top = 22.0
-offset_right = 861.16675
-offset_bottom = 235.33334
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("5_6dx44")
+offset_left = 17.0
+offset_top = 355.83337
+offset_right = 662.96405
+offset_bottom = 564.01697
+scale = Vector2(0.5604027, 0.5604027)
+texture = ExtResource("5_qr3wg")
+region_rect = Rect2(0, 0, 678, 149)
+patch_margin_left = 60
+patch_margin_top = 54
+patch_margin_right = 47
+patch_margin_bottom = 48
 
-[node name="Rarity_4" type="TextureRect" parent="." unique_id=860127637]
+[node name="Rarity_1" type="TextureRect" parent="." unique_id=2141625282]
 layout_mode = 0
-offset_left = 23.07148
-offset_top = 22.0
-offset_right = 861.16675
-offset_bottom = 235.33334
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("6_we48i")
+offset_left = 19.0
+offset_top = 52.0
+offset_right = 173.35614
+offset_bottom = 196.0
+texture = ExtResource("6_otgfi")
+expand_mode = 1
 
-[node name="Name" type="Label" parent="." unique_id=47269188]
+[node name="Rarity_2" type="TextureRect" parent="." unique_id=18587542]
 layout_mode = 0
-offset_left = 164.0
-offset_top = 41.0
-offset_right = 324.0
-offset_bottom = 96.0
-theme_override_font_sizes/font_size = 40
-text = "物品名称"
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_left = 19.0
+offset_top = 52.0
+offset_right = 173.35614
+offset_bottom = 196.0
+texture = ExtResource("7_6pl5b")
+expand_mode = 1
 
-[node name="Amount" type="Label" parent="." unique_id=2070259479]
+[node name="Rarity_3" type="TextureRect" parent="." unique_id=1682275380]
 layout_mode = 0
-offset_left = 38.0
-offset_top = 119.0
-offset_right = 158.0
-offset_bottom = 175.0
-theme_override_font_sizes/font_size = 40
-text = "总伤害"
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_left = 19.0
+offset_top = 52.0
+offset_right = 173.35614
+offset_bottom = 196.0
+texture = ExtResource("8_08587")
+expand_mode = 1
 
-[node name="base" type="Label" parent="." unique_id=1162725593]
+[node name="Rarity_4" type="TextureRect" parent="." unique_id=1337330956]
 layout_mode = 0
-offset_left = 38.0
-offset_top = 182.0
-offset_right = 166.0
-offset_bottom = 227.0
-pivot_offset = Vector2(120, 54)
+offset_left = 19.0
+offset_top = 52.0
+offset_right = 173.35614
+offset_bottom = 196.0
+texture = ExtResource("9_4v3vw")
+expand_mode = 1
+
+[node name="line" type="TextureRect" parent="." unique_id=826489048]
+layout_mode = 0
+offset_left = 144.00005
+offset_top = 258.16663
+offset_right = 373.00006
+offset_bottom = 267.16663
+texture = ExtResource("10_wkuii")
+expand_mode = 1
+
+[node name="line2" type="TextureRect" parent="." unique_id=366374935]
+visible = false
+layout_mode = 0
+offset_left = 139.0
+offset_top = 377.3334
+offset_right = 368.0
+offset_bottom = 386.3334
+texture = ExtResource("10_wkuii")
+expand_mode = 1
+
+[node name="Name" type="Label" parent="." unique_id=69420814]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 49.166664
+offset_right = 334.0
+offset_bottom = 94.166664
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
+text = "物品名称"
+vertical_alignment = 1
+
+[node name="Name2" type="Label" parent="." unique_id=1549594158]
+layout_mode = 0
+offset_left = 16.666666
+offset_top = 3.333333
+offset_right = 158.66667
+offset_bottom = 37.333332
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+text = "装备详情"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="armorDes" type="Label" parent="." unique_id=1352267840]
+layout_mode = 0
+offset_left = 231.0
+offset_top = 94.33334
+offset_right = 279.0
+offset_bottom = 128.33334
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+text = "防具"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="weaponDes" type="Label" parent="." unique_id=1192109467]
+visible = false
+layout_mode = 0
+offset_left = 231.0
+offset_top = 95.16667
+offset_right = 279.0
+offset_bottom = 129.16667
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+text = "武器"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Amount" type="Label" parent="." unique_id=319123434]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 151.0
+offset_right = 250.0
+offset_bottom = 177.0
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 18
+text = "总伤害"
+vertical_alignment = 1
+
+[node name="base" type="Label" parent="." unique_id=1218343404]
+layout_mode = 0
+offset_left = 29.999996
+offset_top = 207.00002
+offset_right = 126.0
+offset_bottom = 235.00002
+pivot_offset = Vector2(120, 54)
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
 text = "基础伤害"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="effect" type="Label" parent="." unique_id=1833941639]
-custom_minimum_size = Vector2(250, 151)
+[node name="des" type="Label" parent="." unique_id=969560470]
 layout_mode = 0
-offset_left = 38.0
-offset_top = 381.0
-offset_right = 377.0
-offset_bottom = 532.0
+offset_left = 40.0
+offset_top = 365.16656
+offset_right = 139.16666
+offset_bottom = 399.16656
 pivot_offset = Vector2(120, 54)
-theme_override_constants/line_spacing = -2
-theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+text = "特殊效果"
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="effect" type="Label" parent="." unique_id=1275619564]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 0
+offset_left = 40.0
+offset_top = 389.00015
+offset_right = 360.0
+offset_bottom = 466.6667
+pivot_offset = Vector2(120, 54)
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -6
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
 text = "特殊效果说明特殊效果说明特殊效果说明特殊"
 vertical_alignment = 1
 autowrap_mode = 1
 
-[node name="noEffect" type="Label" parent="." unique_id=1144455879]
+[node name="noEffect" type="Label" parent="." unique_id=1621821066]
 visible = false
 custom_minimum_size = Vector2(250, 151)
 layout_mode = 0
-offset_left = 37.0
-offset_top = 382.0
-offset_right = 376.0
-offset_bottom = 533.0
+offset_left = 41.0
+offset_top = 401.0
+offset_right = 380.0
+offset_bottom = 552.0
 pivot_offset = Vector2(120, 54)
-theme_override_constants/line_spacing = -2
-theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
 text = "无特殊效果"
-horizontal_alignment = 1
-vertical_alignment = 1
 autowrap_mode = 1
 
-[node name="additional" type="Label" parent="." unique_id=2075718206]
+[node name="additional" type="Label" parent="." unique_id=224838183]
 layout_mode = 0
-offset_left = 37.0
-offset_top = 230.0
-offset_right = 165.0
-offset_bottom = 275.0
-theme_override_font_sizes/font_size = 32
-text = "伤害加成"
+offset_left = 29.999996
+offset_top = 243.66667
+offset_right = 126.0
+offset_bottom = 277.66672
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "属性加成"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Num" type="Label" parent="." unique_id=1738823794]
+[node name="Num" type="Label" parent="." unique_id=1124293503]
 layout_mode = 0
-offset_left = 193.0
-offset_top = 119.0
-offset_right = 322.0
-offset_bottom = 174.0
+offset_left = 258.3333
+offset_top = 130.0
+offset_right = 366.66663
+offset_bottom = 185.0
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 40
 text = "120.0"
 vertical_alignment = 1
 
-[node name="Num2" type="Label" parent="." unique_id=388419724]
+[node name="Num2" type="Label" parent="." unique_id=2042145601]
 layout_mode = 0
-offset_left = 194.0
-offset_top = 181.0
-offset_right = 307.0
-offset_bottom = 226.0
-theme_override_font_sizes/font_size = 32
+offset_left = 306.0
+offset_top = 207.0
+offset_right = 371.0
+offset_bottom = 235.0
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
 text = "120.0"
 vertical_alignment = 1
 
-[node name="strongAdd" type="Label" parent="." unique_id=1781355677]
+[node name="EquipButton" type="TextureButton" parent="." unique_id=1992043505]
 layout_mode = 0
-offset_left = 43.0
-offset_top = 349.0
-offset_right = 98.0
-offset_bottom = 388.0
-theme_override_font_sizes/font_size = 28
-text = "x0.6"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="speedAdd" type="Label" parent="." unique_id=633774181]
-layout_mode = 0
-offset_left = 178.375
-offset_top = 349.375
-offset_right = 233.375
-offset_bottom = 388.375
-theme_override_font_sizes/font_size = 28
-text = "x0.6"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="brainAdd" type="Label" parent="." unique_id=503701498]
-layout_mode = 0
-offset_left = 309.99997
-offset_top = 348.99997
-offset_right = 364.99997
-offset_bottom = 387.99997
-theme_override_font_sizes/font_size = 28
-text = "x0.6"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="EquipButton" type="TextureButton" parent="." unique_id=1722086135]
-layout_mode = 0
-offset_left = 96.0
-offset_top = 555.0
-offset_right = 315.99997
-offset_bottom = 631.0
-texture_normal = ExtResource("8_uq4mr")
+offset_left = 17.166664
+offset_top = 477.49982
+offset_right = 381.66666
+offset_bottom = 543.49976
+texture_normal = ExtResource("11_0sgxk")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="EatLabel" type="Label" parent="EquipButton" unique_id=1005137943]
+[node name="EatLabel" type="Label" parent="EquipButton" unique_id=302081242]
 layout_mode = 0
-offset_left = 46.0
-offset_top = 14.0
-offset_right = 178.0
-offset_bottom = 64.0
-theme_override_font_sizes/font_size = 36
+offset_left = 114.66667
+offset_top = 8.0000305
+offset_right = 246.66667
+offset_bottom = 58.00003
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 28
 text = "装备"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="StateTips" parent="." unique_id=571347170 instance=ExtResource("9_2r0ib")]
 visible = false
-layout_mode = 1
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 25.0
-offset_top = 675.0
-offset_right = 25.0
-offset_bottom = 675.0
+offset_left = 2.4999998
+offset_top = 551.6667
+offset_right = 2.4999998
+offset_bottom = 551.6667
 grow_horizontal = 1
 grow_vertical = 1
+scale = Vector2(1.01, 1.01)
 
-[node name="Speed" type="Sprite2D" parent="." unique_id=1338533662]
-position = Vector2(208.375, 316)
-scale = Vector2(0.6308593, 0.6308593)
-texture = ExtResource("8_twi54")
-
-[node name="Strong" type="Sprite2D" parent="." unique_id=1900564252]
-position = Vector2(71, 316)
-scale = Vector2(0.5625, 0.5625)
-texture = ExtResource("9_4yuhm")
-
-[node name="Brain" type="Sprite2D" parent="." unique_id=1062992137]
-position = Vector2(341, 316)
-scale = Vector2(0.546875, 0.546875)
-texture = ExtResource("11_6fhvh")
-
-[node name="typeIcon" type="TextureRect" parent="." unique_id=1445821641]
+[node name="typeIcon" type="TextureRect" parent="." unique_id=1564783065]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 23.0
-offset_right = 149.0
-offset_bottom = 114.0
+offset_left = 193.33331
+offset_top = 94.99999
+offset_right = 229.18764
+offset_bottom = 128.33331
 texture = ExtResource("12_6fhvh")
 expand_mode = 1
+stretch_mode = 5
+
+[node name="property" type="HBoxContainer" parent="." unique_id=1551784580]
+layout_mode = 0
+offset_left = 16.666664
+offset_top = 280.49997
+offset_right = 402.66666
+offset_bottom = 353.49997
+theme_override_constants/separation = -101
+
+[node name="PropBg" type="TextureRect" parent="property" unique_id=1351850459]
+custom_minimum_size = Vector2(120, 72.5)
+custom_maximum_size = Vector2(120, 72.5)
+layout_mode = 2
+texture = ExtResource("14_e3qfn")
+
+[node name="des2" type="Label" parent="property/PropBg" unique_id=2014097626]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 7.0
+offset_right = 107.0
+offset_bottom = 35.0
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "强健"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Strength" type="TextureRect" parent="property/PropBg" unique_id=768183770]
+layout_mode = 0
+offset_left = 12.5
+offset_top = 16.166382
+offset_right = 203.5
+offset_bottom = 237.16638
+scale = Vector2(0.22557479, 0.18867715)
+texture = ExtResource("15_84kxw")
+stretch_mode = 5
+
+[node name="strongAdd" type="Label" parent="property/PropBg" unique_id=373857420]
+layout_mode = 0
+offset_left = 59.666653
+offset_top = 29.0
+offset_right = 114.66666
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.62352943, 0.80784315, 0.5803922, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "x0.6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PropBg2" type="TextureRect" parent="property" unique_id=1610308164]
+custom_minimum_size = Vector2(120, 72.5)
+custom_maximum_size = Vector2(120, 72.5)
+layout_mode = 2
+texture = ExtResource("14_e3qfn")
+
+[node name="Speed2" type="TextureRect" parent="property/PropBg2" unique_id=518852497]
+layout_mode = 0
+offset_left = 10.666626
+offset_top = 16.999756
+offset_right = 276.66663
+offset_bottom = 230.99976
+scale = Vector2(0.18033458, 0.18399528)
+texture = ExtResource("16_3f168")
+stretch_mode = 5
+
+[node name="des2" type="Label" parent="property/PropBg2" unique_id=741467189]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 7.0
+offset_right = 107.0
+offset_bottom = 35.0
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "速度"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="speedAdd" type="Label" parent="property/PropBg2" unique_id=1311632741]
+layout_mode = 0
+offset_left = 59.66667
+offset_top = 29.0
+offset_right = 114.66667
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.62352943, 0.80784315, 0.5803922, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "x0.6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PropBg3" type="TextureRect" parent="property" unique_id=1009800898]
+custom_minimum_size = Vector2(120, 72.5)
+custom_maximum_size = Vector2(120, 72.5)
+layout_mode = 2
+texture = ExtResource("14_e3qfn")
+
+[node name="Brain" type="TextureRect" parent="property/PropBg3" unique_id=1131969556]
+layout_mode = 0
+offset_left = 9.666626
+offset_top = 17.833252
+offset_right = 256.66663
+offset_bottom = 230.83325
+scale = Vector2(0.18147552, 0.18225826)
+texture = ExtResource("17_6ac18")
+stretch_mode = 5
+
+[node name="des2" type="Label" parent="property/PropBg3" unique_id=1626566957]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 7.0
+offset_right = 107.0
+offset_bottom = 35.0
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "智力"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="brainAdd" type="Label" parent="property/PropBg3" unique_id=884222560]
+layout_mode = 0
+offset_left = 59.666656
+offset_top = 29.0
+offset_right = 114.66666
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.62352943, 0.80784315, 0.5803922, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "x0.6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="itemIcon" type="TextureRect" parent="." unique_id=1296806894]
+layout_mode = 0
+offset_left = 36.666664
+offset_top = 65.0
+offset_right = 155.0
+offset_bottom = 183.33334
+texture = ExtResource("18_1vbpr")
+expand_mode = 1
+stretch_mode = 5

@@ -8,6 +8,7 @@ public partial class DetailsMaterial : Control
     [Export] public Label nameLable;
     [Export] public Button BG;
     [Export] public TextureRect typeIcon;
+    [Export] public TextureRect itemIcon;
     public override void _Ready()
 	{
         BG.Pressed += () =>
@@ -18,6 +19,7 @@ public partial class DetailsMaterial : Control
     }
     public void InitialTips(int ID)
     {
+        itemIcon.Texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/Items/" + ConfigManager.Instance.itemDic[ID].Icon + ".png");
         for (int i = 0; i < Rarity.Length; i++)
         {
             Rarity[i].Visible = false;

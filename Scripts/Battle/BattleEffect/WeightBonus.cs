@@ -13,13 +13,13 @@ public partial class WeightBonus : BattleEffectBase
 		switch (body)
 		{
 			case "body":
-				pm.AddItem(10014, -bonus);
+				pm.AddItem(10014, bonus);
 				break;
             case "arm":
-                pm.AddItem(10012, -bonus);
+                pm.AddItem(10012, bonus);
                 break;
             case "head":
-                pm.AddItem(10013, -bonus);
+                pm.AddItem(10013, bonus);
                 break;
             default:
 				break;

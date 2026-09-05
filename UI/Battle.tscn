@@ -114,11 +114,11 @@ expand_mode = 1
 [node name="EnemyBg" type="NinePatchRect" parent="." unique_id=54445744]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.48700002
-anchor_right = 0.48700002
-offset_left = -295.96002
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -296.0
 offset_top = 26.0
-offset_right = 295.03998
+offset_right = 295.0
 offset_bottom = 209.0
 texture = ExtResource("3_4nydq")
 region_rect = Rect2(0, 0, 591, 97)

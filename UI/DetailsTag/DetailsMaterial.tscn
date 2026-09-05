@@ -1,23 +1,27 @@
 [gd_scene format=3 uid="uid://c6fp8jd8qhji7"]
 
 [ext_resource type="Script" uid="uid://j7ac53f728ck" path="res://Scripts/UI/DetailsMaterial.cs" id="1_td3vw"]
-[ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="2_ng66f"]
-[ext_resource type="Texture2D" uid="uid://dmsp4tv0xocxa" path="res://Assets/Images/UI/rarity_green.png" id="3_87mdf"]
-[ext_resource type="Texture2D" uid="uid://rmjmivhdjuc6" path="res://Assets/Images/UI/rarity_blue.png" id="4_wqesb"]
-[ext_resource type="Texture2D" uid="uid://cqpcu7ik6fr4y" path="res://Assets/Images/UI/rarity_purple.png" id="5_3n5cv"]
-[ext_resource type="Texture2D" uid="uid://dmujn2n7t1dig" path="res://Assets/Images/UI/rarity_orange.png" id="6_hvweo"]
+[ext_resource type="Texture2D" uid="uid://cwa61ibde1pp7" path="res://Assets/Images/UI/New/equipBg_2.png" id="2_rusa0"]
+[ext_resource type="Texture2D" uid="uid://cbvpr30jh0v3n" path="res://Assets/Images/UI/New/equip_effectbg.png" id="3_rusa0"]
+[ext_resource type="Texture2D" uid="uid://ceb2ps0t4tcrf" path="res://Assets/Images/UI/New/rarity_1.png" id="4_rusa0"]
+[ext_resource type="Texture2D" uid="uid://c233o5e8a0b8r" path="res://Assets/Images/UI/New/rarity_2.png" id="5_fcexc"]
+[ext_resource type="Texture2D" uid="uid://b8eacsdn6xm1u" path="res://Assets/Images/UI/New/rarity_3.png" id="6_ng66f"]
+[ext_resource type="Texture2D" uid="uid://cj7ts7ev5gl6b" path="res://Assets/Images/UI/New/rarity_4.png" id="7_87mdf"]
 [ext_resource type="Texture2D" uid="uid://c28feo2kchmh" path="res://Assets/Images/UI/ItemType/armer_4.png" id="7_bbiey"]
+[ext_resource type="Texture2D" uid="uid://c5kp62gpikm3m" path="res://Assets/Images/Items/rice_icon.png" id="9_fcexc"]
 
-[node name="DetailsMaterial" type="Control" unique_id=1879187992 node_paths=PackedStringArray("Rarity", "nameLable", "BG", "typeIcon")]
+[node name="DetailsMaterial" type="Control" unique_id=1879187992 node_paths=PackedStringArray("Rarity", "nameLable", "BG", "typeIcon", "itemIcon")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 384.0
-offset_bottom = 468.0
+offset_right = 398.3333
+offset_bottom = 355.0
+scale = Vector2(1.1, 1.1)
 script = ExtResource("1_td3vw")
 Rarity = [NodePath("Rarity_1"), NodePath("Rarity_2"), NodePath("Rarity_3"), NodePath("Rarity_4")]
 nameLable = NodePath("Name")
 BG = NodePath("Bg2")
 typeIcon = NodePath("typeIcon")
+itemIcon = NodePath("itemIcon")
 
 [node name="Bg2" type="Button" parent="." unique_id=2097972755]
 layout_mode = 1
@@ -28,82 +32,135 @@ offset_right = 3077.308
 offset_bottom = 3894.0
 flat = true
 
-[node name="Bg" type="NinePatchRect" parent="." unique_id=1787980288]
+[node name="Bg" type="TextureRect" parent="." unique_id=944797409]
 layout_mode = 0
-offset_right = 379.0
-offset_bottom = 471.02057
-texture = ExtResource("2_ng66f")
-region_rect = Rect2(0, 0, 980, 1720)
-patch_margin_left = 101
-patch_margin_top = 101
-patch_margin_right = 142
-patch_margin_bottom = 201
+offset_right = 385.45453
+offset_bottom = 350.8333
+texture = ExtResource("2_rusa0")
+expand_mode = 1
 
-[node name="Rarity_1" type="TextureRect" parent="." unique_id=1262958861]
+[node name="EquipEffectbg" type="NinePatchRect" parent="." unique_id=1142565023]
 layout_mode = 0
-offset_left = 23.07148
-offset_top = 22.0
-offset_right = 765.13495
-offset_bottom = 210.88889
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("3_87mdf")
-
-[node name="Rarity_2" type="TextureRect" parent="." unique_id=1989387335]
-layout_mode = 0
-offset_left = 23.07148
-offset_top = 22.0
-offset_right = 765.13495
-offset_bottom = 210.88889
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("4_wqesb")
-
-[node name="Rarity_3" type="TextureRect" parent="." unique_id=1997742881]
-layout_mode = 0
-offset_left = 23.07148
-offset_top = 22.0
-offset_right = 765.13495
-offset_bottom = 210.88889
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("5_3n5cv")
-
-[node name="Rarity_4" type="TextureRect" parent="." unique_id=860127637]
-layout_mode = 0
-offset_left = 23.07148
-offset_top = 22.0
-offset_right = 765.13495
-offset_bottom = 210.88889
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("6_hvweo")
+offset_left = 11.81818
+offset_top = 211.66666
+offset_right = 657.7822
+offset_bottom = 419.85025
+scale = Vector2(0.5604027, 0.5604027)
+texture = ExtResource("3_rusa0")
+region_rect = Rect2(0, 0, 678, 149)
+patch_margin_left = 60
+patch_margin_top = 54
+patch_margin_right = 47
+patch_margin_bottom = 48
 
 [node name="Name" type="Label" parent="." unique_id=47269188]
 layout_mode = 0
-offset_left = 138.0
-offset_top = 37.0
-offset_right = 298.0
-offset_bottom = 92.0
-theme_override_font_sizes/font_size = 40
+offset_left = 189.99998
+offset_top = 49.166668
+offset_right = 332.0
+offset_bottom = 94.16667
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 32
 text = "物品名称"
-horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name2" type="Label" parent="." unique_id=1689409110]
+layout_mode = 0
+offset_left = 227.99997
+offset_top = 94.99999
+offset_right = 324.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+text = "材料"
 vertical_alignment = 1
 
 [node name="noState" type="Label" parent="." unique_id=533309598]
 custom_minimum_size = Vector2(290, 0)
 custom_maximum_size = Vector2(290, -1)
 layout_mode = 0
-offset_left = 43.0
-offset_top = 158.0
-offset_right = 333.0
-offset_bottom = 251.0
-theme_override_font_sizes/font_size = 32
+offset_left = 53.484848
+offset_top = 224.99998
+offset_right = 343.48486
+offset_bottom = 318.0
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
 text = "用于工作台制作物品或升级家具"
 vertical_alignment = 1
 autowrap_mode = 1
 
 [node name="typeIcon" type="TextureRect" parent="." unique_id=1101021167]
 layout_mode = 0
-offset_left = 54.0
-offset_top = 26.0
-offset_right = 131.0
-offset_bottom = 103.0
+offset_left = 188.83331
+offset_top = 94.99999
+offset_right = 224.68764
+offset_bottom = 128.33331
 texture = ExtResource("7_bbiey")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name3" type="Label" parent="." unique_id=451923493]
+layout_mode = 0
+offset_left = 14.999993
+offset_top = 3.3333328
+offset_right = 157.0
+offset_bottom = 37.333332
+theme_override_colors/font_color = Color(0.9490196, 0.8862745, 0.78039217, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
+text = "材料详情"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Rarity_1" type="TextureRect" parent="." unique_id=1620058946]
+layout_mode = 0
+offset_left = 12.727272
+offset_top = 52.0
+offset_right = 167.0834
+offset_bottom = 196.0
+texture = ExtResource("4_rusa0")
+expand_mode = 1
+
+[node name="Rarity_2" type="TextureRect" parent="." unique_id=726151247]
+layout_mode = 0
+offset_left = 12.727272
+offset_top = 52.0
+offset_right = 167.0834
+offset_bottom = 196.0
+texture = ExtResource("5_fcexc")
+expand_mode = 1
+
+[node name="Rarity_3" type="TextureRect" parent="." unique_id=1123029573]
+layout_mode = 0
+offset_left = 12.727272
+offset_top = 52.0
+offset_right = 167.0834
+offset_bottom = 196.0
+texture = ExtResource("6_ng66f")
+expand_mode = 1
+
+[node name="Rarity_4" type="TextureRect" parent="." unique_id=1731655199]
+layout_mode = 0
+offset_left = 12.727272
+offset_top = 52.0
+offset_right = 167.0834
+offset_bottom = 196.0
+texture = ExtResource("7_87mdf")
+expand_mode = 1
+
+[node name="itemIcon" type="TextureRect" parent="." unique_id=343293391]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 67.5
+offset_right = 146.8994
+offset_bottom = 179.39941
+scale = Vector2(1.0351561, 1.0351561)
+texture = ExtResource("9_fcexc")
 expand_mode = 1

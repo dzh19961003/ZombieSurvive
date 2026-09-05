@@ -15,6 +15,7 @@ public partial class DetailsFood : Control
     [Export] public Button BG;
     [Export] public TextureRect[] Rarity;
     [Export] public TextureRect typeIcon;
+    [Export] public TextureRect itemIcon;
 
     private State state;
     public override void _Ready()
@@ -29,6 +30,7 @@ public partial class DetailsFood : Control
         stateLabel.Visible = true;
         stateNameLabel.Visible = true;
 
+        itemIcon.Texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/Items/" + ConfigManager.Instance.itemDic[ID].Icon + ".png");
         //选择稀有度
         for (int i = 0; i < Rarity.Length; i++)
         {
@@ -38,6 +40,7 @@ public partial class DetailsFood : Control
 
         //设置文本
         nameLable.Text = ConfigManager.Instance.itemDic[ID].Name;
+        UIManager.Instance.SetLabelRarityColor(nameLable, ConfigManager.Instance.itemDic[ID].Rarity);
         numLabel.Text = ConfigManager.Instance.itemDic[ID].Num.ToString();
 
         if (ConfigManager.Instance.itemDic[ID].BuffID != 0 )
@@ -47,11 +50,11 @@ public partial class DetailsFood : Control
             //更改状态字体颜色
             if (state.Positive == 0)
             {
-                stateNameLabel.AddThemeColorOverride("font_color", Colors.Red);
+                stateNameLabel.AddThemeColorOverride("font_color", Color.FromHtml("#ee634e"));
             }
             else
             {
-                stateNameLabel.AddThemeColorOverride("font_color", Colors.Green);
+                stateNameLabel.AddThemeColorOverride("font_color", Color.FromHtml("#9fce94"));
             }
             StateTips tips = stateTips as StateTips;
             tips.Initail(state.ID);
