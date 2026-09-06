@@ -1,9 +1,7 @@
 using Godot;
 using Godot.Collections;
 using MyProject;
-using System;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
+
 
 
 public partial class ExploreChooseBar : NinePatchRect
@@ -75,7 +73,6 @@ public partial class ExploreChooseBar : NinePatchRect
     {
         EventChooseBar eventChooseBar=(EventChooseBar)UIManager.Instance.CreateUI("res://UI/Explore/EventChooseBar.tscn");
         Dictionary<int, int> explorePogress = gameManager.exploreProgress;
-
         int eventID=1;
         //仔细探索
         if (type==1)
@@ -89,11 +86,17 @@ public partial class ExploreChooseBar : NinePatchRect
             eventID=Tools.GetRandomNumber(gameManager.quickEventArray);
         }
 
+        //根据难度判断进战斗还是普通事件
+        int difficulty = ConfigManager.Instance.buildingDic[gameManager.currentBuildingID].Stars;
+        int property = Consts.GetPropertyByDifficult(difficulty);
+        Array<int> eventArray = new Array<int>() { eventID, exploreUI.BattleEventReady(1) };
+        Array<int> weightArray = new Array<int>() { (100 - property), property };
+        eventID = Tools.GetRandomNumber(eventArray, weightArray);
+
         //赋值当前事件ID
         GameManager.Instance.currentEventID = eventID;
 
         //如果该房间支线未触发且达到触发进度，则必定触发该支线
-
         Array<int> subTaskArray = new Array<int>();
         if (!gameManager.subTaskDic.ContainsKey(gameManager.roomID))
         {
@@ -188,9 +191,7 @@ public partial class ExploreChooseBar : NinePatchRect
             if (gameManager.exploreNoise >= 100)
             {
                 gameManager.exploreNoise -= 100;
-                EnemyPool enemyPool = ConfigManager.Instance.enemyPoolDic[ConfigManager.Instance.roomDic[gameManager.roomID].EnemyPool];
-                gameManager.enemyID = Tools.GetRandomNumber(enemyPool.Enemy, enemyPool.Weight);
-                eventID = 10002;
+                eventID = exploreUI.BattleEventReady(2);
             }
             //如果有重要支线未完成，进度不能超过90%
             //首先判断是否有已完成支线array，这个array是否包含未完成的重要支线
@@ -226,16 +227,14 @@ public partial class ExploreChooseBar : NinePatchRect
                 {
                     explorePogress[(gameManager.roomID)] = 100;
                 }
-            }
-            
-        }
-       
-
+            }            
+        }      
         eventChooseBar.exploreUI = exploreUI;
         eventChooseBar.eventID = eventID;
         eventChooseBar.Initial();
         this.QueueFree();
     }
+
 
     private void OnBack()
     {

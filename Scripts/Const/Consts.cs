@@ -16,5 +16,28 @@ public static class Consts
     public static readonly int expPerIntellect = 2;
     //每项训练次数的最大值
     public static readonly int maxTrainTimes = 3;
+    //建筑难度遇到丧尸概率
+    public static int GetPropertyByDifficult(int difficulty)
+    {
+        int property = 0;
+        switch (difficulty)
+        {
+            case 1:
+                property = 10;
+                break;
+            case 2:
+                property = 13;
+                break;
+            case 3:
+                property = 16;
+                break;
+            case 4:
+                property = 19;
+                break;
+            default:
+                break;
+        }
+        return property;
+    }
 
 }

@@ -21,6 +21,9 @@ public partial class EventChooseBtn : CenterContainer
         lastBar = (EventChooseBar)GetParent();
         textureBtn.Pressed += () =>
         {
+            //预先加载怪物
+            exploreUI.BattleEventReady(3);
+
             lastBar.Visible = false;
             exploreUI.iconContainer.Visible = false;
             ExploreEvent exploreEvent = ConfigManager.Instance.exploreEventDic[eventID];
@@ -34,6 +37,10 @@ public partial class EventChooseBtn : CenterContainer
             if (GameManager.Instance.exploreProgress[GameManager.Instance.roomID] == 90 && ConfigManager.Instance.exploreEventDic[eventID].EventType == 103)
             {
                 finish = true;
+            }
+            if (true)
+            {
+
             }
             //普通事件结尾
             if (exploreEvent.NextEvent[rank] == 9999)

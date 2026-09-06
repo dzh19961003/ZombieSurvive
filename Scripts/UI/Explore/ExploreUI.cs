@@ -133,13 +133,12 @@ public partial class ExploreUI : Control
             }
             else
             {
-                GD.Print("gggg");
                 PlayerManager.Instance.AddItem(exploreEvent.ItemID[i], exploreEvent.ItemNum[i]);
                 var scene = GD.Load<PackedScene>("res://UI/Explore/exploreIcon.tscn");
                 ExploreIcon exploreIcon = scene.Instantiate<ExploreIcon>();
                 iconContainer.AddChild(exploreIcon);
                 exploreIcon.Initial(exploreEvent.ItemID[i], exploreEvent.ItemNum[i]);
-            }           
+            }               
         }
     }
     // 销毁房间选择面板，加载事件，创建搜索策略面板
@@ -203,5 +202,32 @@ public partial class ExploreUI : Control
         firstExploreTimes = true;
         RefreshExplore();
     }
-
+    public int BattleEventReady(int type)
+    {
+        //获取怪物ID
+        EnemyPool enemyPool = ConfigManager.Instance.enemyPoolDic[ConfigManager.Instance.roomDic[GameManager.Instance.roomID].EnemyPool];
+        GameManager.Instance.enemyID = Tools.GetRandomNumber(enemyPool.Enemy, enemyPool.Weight);
+        //探索随机遇到战斗
+        if (type == 1)
+        {
+            Array<int> eventArray = new Array<int>() { 10001, 10002 };
+            Array<int> weightArray = new Array<int>() { 50, 50 };
+            Tools.GetRandomNumber(eventArray, weightArray);
+            return 10002;
+        }
+        //探索强制遇到战斗
+        else if (type == 2)
+        {
+            return 10002;
+        }
+        //事件遇到指定战斗事件(走探索自己逻辑，不取事件ID)
+        else if (type == 3)
+        {
+            return 10001;
+        }
+        else
+        {
+            return 10002;
+        }
+    }
 }
