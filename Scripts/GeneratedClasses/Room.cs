@@ -42,6 +42,9 @@ namespace MyProject
         /// <summary>原始字段: eventPool2(int)</summary>
         public List<int> EventPool2 { get; set; }
 
+        /// <summary>原始字段: enemyPool(int)</summary>
+        public int EnemyPool { get; set; }
+
         /// <summary>原始字段: subTask(int)</summary>
         public List<int> SubTask { get; set; }
 

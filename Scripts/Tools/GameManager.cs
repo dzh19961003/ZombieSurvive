@@ -51,7 +51,8 @@ public partial class GameManager : Node2D,ISaveable
     public Array<int> carefulEventArray = new Array<int>();
     public Array<int> quickEventArray = new Array<int>();
 
-
+    //怪物ID
+    public int enemyID=0;
     public static GameManager Instance { get; private set; }
 
     #region 存档相关

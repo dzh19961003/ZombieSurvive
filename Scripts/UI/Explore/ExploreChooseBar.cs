@@ -81,6 +81,7 @@ public partial class ExploreChooseBar : NinePatchRect
         if (type==1)
         {
             eventID=Tools.GetRandomNumber(gameManager.carefulEventArray);
+            //eventID=Tools.GetRandomNumber(eventID,)
         }
         //快速探索
         else
@@ -187,6 +188,9 @@ public partial class ExploreChooseBar : NinePatchRect
             if (gameManager.exploreNoise >= 100)
             {
                 gameManager.exploreNoise -= 100;
+                EnemyPool enemyPool = ConfigManager.Instance.enemyPoolDic[ConfigManager.Instance.roomDic[gameManager.roomID].EnemyPool];
+                gameManager.enemyID = Tools.GetRandomNumber(enemyPool.Enemy, enemyPool.Weight);
+                eventID = 10002;
             }
             //如果有重要支线未完成，进度不能超过90%
             //首先判断是否有已完成支线array，这个array是否包含未完成的重要支线

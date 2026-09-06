@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using MyProject;
+using System.Collections.Generic;
 
 public partial class ExploreUI : Control
 {
@@ -24,7 +25,7 @@ public partial class ExploreUI : Control
 
     public override void _Ready()
     {
-        TextTyper.OnTypeEnd += ShowIconContainer;
+        TextTyper.OnTypeEnd += GetItem;
     }
 
     public void RefreshExplore()
@@ -99,8 +100,8 @@ public partial class ExploreUI : Control
         ExploreEvent exploreEvent = ConfigManager.Instance.exploreEventDic[GameManager.Instance.currentEventID];
         GD.Print("获得物品数量" + exploreEvent.ItemID.Count);
     }
-
-    public void ShowIconContainer()
+    //探索获得物品
+    public void GetItem()
     {
         iconContainer.Visible = true;
         foreach (var item in iconContainer.GetChildren())
@@ -110,10 +111,35 @@ public partial class ExploreUI : Control
         ExploreEvent exploreEvent = ConfigManager.Instance.exploreEventDic[GameManager.Instance.currentEventID];
         for (int i = 0; i < exploreEvent.ItemID.Count; i++)
         {
-            var scene = GD.Load<PackedScene>("res://UI/Explore/exploreIcon.tscn");
-            ExploreIcon exploreIcon = scene.Instantiate<ExploreIcon>();
-            iconContainer.AddChild(exploreIcon);
-            exploreIcon.Initial(exploreEvent.ItemID[i], exploreEvent.ItemNum[i]);
+            if (exploreEvent.ItemID[i] < 10000)
+            {
+                Godot.Collections.Dictionary<int, int> itemDictionary = new Godot.Collections.Dictionary<int, int>();
+                for (int j = 0; j < exploreEvent.ItemNum[i]; j++)
+                {
+                    int itemID = Tools.GetRandomNumber(ConfigManager.Instance.itemPoolDic[exploreEvent.ItemID[i]].Item);
+                    PlayerManager.Instance.AddItem(itemID, 1);
+                    if (itemDictionary.ContainsKey(itemID))
+                        itemDictionary[itemID]++;
+                    else
+                        itemDictionary[itemID] = 1;
+                }
+                foreach (var kvp in itemDictionary)
+                {
+                    var scene1 = GD.Load<PackedScene>("res://UI/Explore/exploreIcon.tscn");
+                    ExploreIcon exploreIcon1 = scene1.Instantiate<ExploreIcon>();
+                    iconContainer.AddChild(exploreIcon1);
+                    exploreIcon1.Initial(kvp.Key, kvp.Value);
+                }
+            }
+            else
+            {
+                GD.Print("gggg");
+                PlayerManager.Instance.AddItem(exploreEvent.ItemID[i], exploreEvent.ItemNum[i]);
+                var scene = GD.Load<PackedScene>("res://UI/Explore/exploreIcon.tscn");
+                ExploreIcon exploreIcon = scene.Instantiate<ExploreIcon>();
+                iconContainer.AddChild(exploreIcon);
+                exploreIcon.Initial(exploreEvent.ItemID[i], exploreEvent.ItemNum[i]);
+            }           
         }
     }
     // 销毁房间选择面板，加载事件，创建搜索策略面板
@@ -163,7 +189,7 @@ public partial class ExploreUI : Control
         }
         UIManager.Instance.DeleteUI(this);
         GameManager.Instance.exploreNoise = 0;
-        TextTyper.OnTypeEnd -= ShowIconContainer;
+        TextTyper.OnTypeEnd -= GetItem;
     }
     public void LeaveRoom()
     {

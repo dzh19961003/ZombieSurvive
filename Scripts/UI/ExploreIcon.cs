@@ -13,19 +13,13 @@ public partial class ExploreIcon : Control
 	{
 	}
 
-	public void Initial(int ID,int num)  
+	public void Initial(int ID,int num)
 	{
 		addLabel.Visible = false;
         minusLabel.Visible = false;
-		if (ID<=10000)
-		{
-            int itemID = Tools.GetRandomNumber(ConfigManager.Instance.itemPoolDic[ID].Item);
-            icon.Texture = UIManager.Instance.GetItemIcon(itemID);            
-        }
-        else
-        {
-            icon.Texture = UIManager.Instance.GetItemIcon(ID);
-        }
+        //GetItem里已经抽过随机，这里直接用传进来的ID取图标
+        //GetItemIcon内部会自动区分：小于10000是物品，大于等于10000是状态
+        icon.Texture = UIManager.Instance.GetItemIcon(ID);
 
         if (num >= 0)
         {
