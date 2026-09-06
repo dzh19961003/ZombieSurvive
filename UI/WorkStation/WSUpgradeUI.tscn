@@ -148,6 +148,15 @@ offset_bottom = 73.0
 texture = ExtResource("7_lock")
 expand_mode = 1
 
+[node name="Lock2" type="TextureRect" parent="ExtraFun" unique_id=709052850]
+layout_mode = 0
+offset_left = 251.0
+offset_top = -22.0
+offset_right = 291.0
+offset_bottom = 18.0
+texture = ExtResource("7_lock")
+expand_mode = 1
+
 [node name="UpgradeRequ" type="NinePatchRect" parent="." unique_id=129518580]
 layout_mode = 0
 offset_left = 100.0

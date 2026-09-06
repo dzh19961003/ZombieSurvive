@@ -240,6 +240,8 @@ public partial class PlayerManager : Node, ISaveable
     public void SetWorkStationLevel(int level)
     {
         _workStationLevel = Mathf.Max(1, level);
+        //等级变化时通知UI刷新
+        GetItem?.Invoke();
     }
 
     //获取指定状态的剩余天数

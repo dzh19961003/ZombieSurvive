@@ -11,6 +11,9 @@ public partial class WSMakeUI : Control
 	[Export] TextureButton disassemb;
 
 	private const int StaminaPropID = 10015;
+	//功能解锁等级：做饭3级、分解5级
+	private const int CookUnlockLevel = 3;
+	private const int DecomposeUnlockLevel = 5;
 	// 不可用行灰色
 	private static readonly Color DimColor = new(0.27752772f, 0.27752772f, 0.27752772f, 1f);
 	private enum TabType { Make = 0, Cook = 1, Decompose = 2 }
@@ -75,6 +78,9 @@ public partial class WSMakeUI : Control
 			// 玩家物品变化时刷新行的可用状态
 			PlayerManager.Instance.GetItem += OnPlayerDataChanged;
 		}
+		RefreshTabLocks();
+		//当前页签未解锁时回到制作页
+		if (!IsTabUnlocked(currentTab)) currentTab = TabType.Make;
 		SwitchTab(currentTab);
 	}
 
@@ -82,15 +88,49 @@ public partial class WSMakeUI : Control
 	{
 		CallDeferred(nameof(RefreshRows));
 		CallDeferred(nameof(RefreshActionBtn));
+		CallDeferred(nameof(RefreshTabLocks));
+	}
+
+	//判断子页签是否解锁
+	private bool IsTabUnlocked(TabType tab)
+{
+    if (PlayerManager.Instance == null)
+    {
+        return tab == TabType.Make;
+    }
+    int stationLevel = PlayerManager.Instance.WorkStationLevel;
+    switch (tab)
+    {
+        case TabType.Cook:
+            return stationLevel >= CookUnlockLevel;
+        case TabType.Decompose:
+            return stationLevel >= DecomposeUnlockLevel;
+        default:
+            return true;
+    }
+}
+
+	
+	private void RefreshTabLocks()
+	{
+		if (cook != null)      cook.Modulate      = IsTabUnlocked(TabType.Cook) ? Colors.White : DimColor;
+		if (disassemb != null) disassemb.Modulate = IsTabUnlocked(TabType.Decompose) ? Colors.White : DimColor;
 	}
 
 	//切换页签
 	private void SwitchTab(TabType tab)
 	{
+		
+		if (!IsTabUnlocked(tab))
+		{
+			UIManager.Instance.ShowCommonTips2("工作台等级不足");
+			return;
+		}
 		currentTab = tab;
 		if (make != null)      make.TextureNormal      = TabTexture(tab == TabType.Make);
 		if (cook != null)      cook.TextureNormal      = TabTexture(tab == TabType.Cook);
 		if (disassemb != null) disassemb.TextureNormal = TabTexture(tab == TabType.Decompose);
+		RefreshTabLocks();
 		RefreshRows();
 		//切页签清空选中信息
 		ClearSelection();
@@ -176,7 +216,7 @@ public partial class WSMakeUI : Control
 		row.Modulate = IsRowAvailable(cfg) ? Colors.White : DimColor;
 	}
 
-	//填充一个消耗槽位（index 超出配置时隐藏该槽位）
+	//填充一个消耗槽位
 	private void FillCostSlot(TextureButton row, string path, List<int> ids, List<int> nums, int index)
 	{
 		var slot = row.GetNode<NinePatchRect>(path);
@@ -228,7 +268,7 @@ public partial class WSMakeUI : Control
 		return true;
 	}
 
-	//点击行：物品显示到selectedArea
+	//点击行，物品显示到selectedArea
 	private void SelectRow(RoofWorkstationItem cfg)
 	{
 		_selectedCfg = cfg;
@@ -339,7 +379,7 @@ public partial class WSMakeUI : Control
 
 		if (decompose)
 		{
-			// 分解：消耗1个目标物品，产出 getID/getNum
+			// 分解
 			PlayerManager.Instance.RemoveItem(_selectedCfg.ItemID, 1);
 			if (_selectedCfg.GetID != null)
 			{
