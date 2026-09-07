@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://dalgr2tuomi4a"]
+
+[ext_resource type="Script" uid="uid://ci75ddlesiovy" path="res://Scripts/UI/TrainUI.cs" id="1_badpg"]
+[ext_resource type="Texture2D" uid="uid://d1nmp4fcid50p" path="res://Assets/Images/UI/main_panel_2.png" id="2_70m6o"]
+[ext_resource type="PackedScene" uid="uid://cqgxxnp0f3lfa" path="res://UI/Train/TUpgradeUI.tscn" id="3_badpg"]
+[ext_resource type="PackedScene" uid="uid://q5r8k0qci4am" path="res://UI/Train/TExerciseUI.tscn" id="4_70m6o"]
+[ext_resource type="Texture2D" uid="uid://bs7gg3xn14v6b" path="res://Assets/Images/UI/close_button.png" id="5_1jqe4"]
+[ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="6_8o8fc"]
+[ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="7_n3yvv"]
+[ext_resource type="Texture2D" uid="uid://cwqay0vk7x016" path="res://Assets/Images/UI/tab_inactive.png" id="8_usill"]
+
+[node name="TrainUI" type="Control" unique_id=541979178 node_paths=PackedStringArray("closeBtn", "upgrade", "exercise", "upgradePanel", "exercisePanel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_badpg")
+closeBtn = NodePath("closeBtn")
+upgrade = NodePath("Upgrade")
+exercise = NodePath("Exercise")
+upgradePanel = NodePath("BG/TUpgradeUi")
+exercisePanel = NodePath("BG/TExerciseUi")
+
+[node name="Control" type="ColorRect" parent="." unique_id=713719044]
+propagate_maximum_size = true
+layout_mode = 1
+anchors_preset = -1
+offset_right = 1080.0
+offset_bottom = 1920.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78431374)
+
+[node name="BG" type="NinePatchRect" parent="." unique_id=1348429344]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 107.0
+offset_right = 996.0
+offset_bottom = 1812.0
+texture = ExtResource("2_70m6o")
+region_rect = Rect2(0, 0, 980, 1720)
+
+[node name="TUpgradeUi" parent="BG" unique_id=1304517305 instance=ExtResource("3_badpg")]
+layout_mode = 1
+offset_left = 27.0
+offset_top = 232.0
+offset_right = 892.0
+offset_bottom = 1656.0
+
+[node name="TExerciseUi" parent="BG" unique_id=2039258953 instance=ExtResource("4_70m6o")]
+visible = false
+layout_mode = 1
+offset_left = 29.0
+offset_top = 228.0
+offset_right = 894.0
+offset_bottom = 1652.0
+
+[node name="closeBtn" type="Button" parent="." unique_id=1721774359]
+layout_mode = 0
+offset_left = 897.0
+offset_top = 59.0
+offset_right = 1042.0
+offset_bottom = 204.0
+icon = ExtResource("5_1jqe4")
+flat = true
+expand_icon = true
+
+[node name="Title" type="TextureRect" parent="." unique_id=2124802664]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 71.0
+offset_right = 775.0
+offset_bottom = 181.0
+texture = ExtResource("6_8o8fc")
+expand_mode = 1
+
+[node name="TrainName" type="Label" parent="Title" unique_id=1707353200]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 16.0
+offset_right = 329.0
+offset_bottom = 81.0
+theme_override_font_sizes/font_size = 40
+text = "自律区"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Upgrade" type="TextureButton" parent="." unique_id=1455843115]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 237.0
+offset_right = 542.0
+offset_bottom = 348.0
+texture_normal = ExtResource("7_n3yvv")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Upgrade" unique_id=1759321959]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 26.0
+offset_right = 382.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 41
+text = "升级"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exercise" type="TextureButton" parent="." unique_id=1975017010]
+layout_mode = 0
+offset_left = 533.0
+offset_top = 237.0
+offset_right = 965.0
+offset_bottom = 348.0
+texture_normal = ExtResource("8_usill")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Exercise" unique_id=2035444002]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 25.0
+offset_right = 380.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 41
+text = "锻炼"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://hpb2jkjeljx8" path="res://Scripts/Tools/SaveManager.cs" id="4_2wwxx"]
 [ext_resource type="Script" uid="uid://bnp4u7cpn4fyd" path="res://Scripts/Tools/GameManager.cs" id="7_75buv"]
 [ext_resource type="Script" uid="uid://hvq4dgahu7vl" path="res://Scripts/GameLogic/PlayerManager.cs" id="7_ow1sv"]
+[ext_resource type="Texture2D" uid="uid://cim3wacu5b7io" path="res://Assets/Images/Base/train_1.png" id="8_75buv"]
 
 [node name="Main" type="Node2D" unique_id=832478551]
 
@@ -32,3 +33,7 @@ script = ExtResource("7_75buv")
 
 [node name="Player" type="Node2D" parent="Manager" unique_id=834292925]
 script = ExtResource("7_ow1sv")
+
+[node name="Train1" type="Sprite2D" parent="." unique_id=1064650918]
+position = Vector2(432, 1186)
+texture = ExtResource("8_75buv")

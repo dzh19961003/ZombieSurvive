@@ -18,7 +18,7 @@ public static class Paths
     public const string WarehouseUI = "res://UI/WarehouseUI.tscn";
     public const string DoorUI = "res://UI/DoorUI.tscn";
     public const string WorkstationUI = "res://UI/WorkstationUI.tscn";
-
+    public const string TrainUI = "res://UI/TrainUI.tscn";
     //场景路径：
     //public const string Main = "res://Scene/main.tscn";
 

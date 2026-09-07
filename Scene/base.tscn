@@ -5,7 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://dh312wub7p60c" path="res://Assets/Images/Base/warehouse.png" id="2_7lj54"]
 [ext_resource type="Script" uid="uid://bbjo6et3yuko2" path="res://Scripts/Furnitures/Door.cs" id="4_vtgk1"]
 [ext_resource type="Texture2D" uid="uid://c42gj00wry1vu" path="res://Assets/Images/Base/door.png" id="5_grk85"]
+[ext_resource type="Script" uid="uid://cvm1aqi8gvins" path="res://Scene/Train.cs" id="6_4pfap"]
 [ext_resource type="Script" uid="uid://c17xbx6y137dw" path="res://Scripts/Furnitures/Workstation.cs" id="6_p35hx"]
+[ext_resource type="Texture2D" uid="uid://cim3wacu5b7io" path="res://Assets/Images/Base/train_1.png" id="7_6x8je"]
 [ext_resource type="Texture2D" uid="uid://c4hprhefuuw0n" path="res://Assets/Images/Base/workspace.png" id="7_t37pv"]
 [ext_resource type="Script" uid="uid://b1sfv6exwkadr" path="res://Scripts/Tools/CameraDragger.cs" id="8_cam"]
 
@@ -13,7 +15,10 @@
 size = Vector2(336, 333)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wvhbo"]
-size = Vector2(207.5, 312)
+size = Vector2(213.75, 281)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abi3o"]
+size = Vector2(184, 174)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifow5"]
 size = Vector2(364, 194)
@@ -49,6 +54,19 @@ texture = ExtResource("5_grk85")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door" unique_id=404287943]
 position = Vector2(776.2882, 401)
 shape = SubResource("RectangleShape2D_wvhbo")
+
+[node name="Train" type="Area2D" parent="." unique_id=333867531]
+position = Vector2(0, 70)
+script = ExtResource("6_4pfap")
+
+[node name="Train" type="Sprite2D" parent="Train" unique_id=1318569492]
+position = Vector2(324.5, 932.50006)
+scale = Vector2(0.8164063, 0.8007808)
+texture = ExtResource("7_6x8je")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Train" unique_id=1262376385]
+position = Vector2(324, 934)
+shape = SubResource("RectangleShape2D_abi3o")
 
 [node name="Workstation" type="Area2D" parent="." unique_id=1116499795]
 position = Vector2(0, 1)
