@@ -38,10 +38,6 @@ public partial class EventChooseBtn : CenterContainer
             {
                 finish = true;
             }
-            if (true)
-            {
-
-            }
             //普通事件结尾
             if (exploreEvent.NextEvent[rank] == 9999)
             {
@@ -70,6 +66,11 @@ public partial class EventChooseBtn : CenterContainer
                 subTaskArray.Add(gameManager.currentSubTask);
                 gameManager.subTaskDic[gameManager.roomID] = subTaskArray;
                 gameManager.exploreProgress[gameManager.roomID] += 10;
+            }
+            else if (ConfigManager.Instance.exploreEventDic[exploreEvent.NextEvent[rank]].EventType == 202)
+            {
+                exploreUI.BattleEventReady(3);
+                UIManager.Instance.CreateUI("res://UI/Battle/Battle.tscn");
             }
             //继续事件
             else

@@ -1,27 +1,27 @@
 [gd_scene format=3 uid="uid://bjdq0gau2lh7a"]
 
-[ext_resource type="Script" uid="uid://y7ofpxqg3y8p" path="res://Scripts/UI/Battle/BattleManager.cs" id="1_bwxfd"]
-[ext_resource type="Texture2D" uid="uid://cgr03410dgaey" path="res://Assets/Images/UI/Battle/timeProgress.png" id="2_bwxfd"]
-[ext_resource type="Texture2D" uid="uid://c8k0t5p74rjus" path="res://Assets/Images/UI/Battle/enemy_bg.png" id="3_4nydq"]
-[ext_resource type="Texture2D" uid="uid://d3rrr3hkl5l06" path="res://Assets/Images/UI/Battle/time.png" id="3_dvjvd"]
-[ext_resource type="Texture2D" uid="uid://drsriaqdmuyu1" path="res://Assets/Images/UI/Battle/player.png" id="3_nmheq"]
-[ext_resource type="Texture2D" uid="uid://dnsrokbej6snc" path="res://Assets/Images/UI/Battle/enemy.png" id="4_vyl4k"]
-[ext_resource type="Texture2D" uid="uid://cqddwuogebcqm" path="res://Assets/Images/UI/Battle/player_bg.png" id="5_s2eo2"]
-[ext_resource type="Texture2D" uid="uid://b2wi2mlmeydvd" path="res://Assets/Images/UI/Battle/atk_random.png" id="6_sqlpi"]
-[ext_resource type="Texture2D" uid="uid://b2hhf0s2km1k4" path="res://Assets/Images/UI/Battle/atk_arm.png" id="7_4nydq"]
-[ext_resource type="Texture2D" uid="uid://peu06rmenyb8" path="res://Assets/Images/UI/Battle/atk_body.png" id="8_dvjvd"]
-[ext_resource type="Texture2D" uid="uid://bwvffjkcsljgn" path="res://Assets/Images/UI/Battle/atk_head.png" id="9_djhm5"]
-[ext_resource type="Texture2D" uid="uid://dt64r5elymygi" path="res://Assets/Images/UI/Battle/arm_prop.png" id="10_o3nar"]
-[ext_resource type="Texture2D" uid="uid://c2rqekr8vidnl" path="res://Assets/Images/UI/Battle/body_prop.png" id="11_4p516"]
-[ext_resource type="Texture2D" uid="uid://bdnga0di6ik5m" path="res://Assets/Images/UI/Battle/head_prop.png" id="12_xk4p2"]
-[ext_resource type="Texture2D" uid="uid://0dku6o5d4g1b" path="res://Assets/Images/UI/Battle/progress_bg.png" id="13_soyc4"]
-[ext_resource type="Texture2D" uid="uid://c8suawgtqmpgy" path="res://Assets/Images/UI/Battle/progress_armer.png" id="14_r8vmd"]
-[ext_resource type="Texture2D" uid="uid://bkrnxufkkb3oo" path="res://Assets/Images/UI/Battle/progress_hp.png" id="15_h7d7p"]
-[ext_resource type="Texture2D" uid="uid://q2xr74a8wr0" path="res://Assets/Images/UI/Battle/bag.png" id="16_7ocfu"]
-[ext_resource type="Texture2D" uid="uid://blarvcfdxxu8i" path="res://Assets/Images/UI/Battle/hp_icon.png" id="17_8qdub"]
-[ext_resource type="Texture2D" uid="uid://colmv4fearh77" path="res://Assets/Images/UI/Battle/armer_icon.png" id="18_dpte7"]
-[ext_resource type="Texture2D" uid="uid://wdqclkpgrwfk" path="res://Assets/Images/UI/Battle/times_bg.png" id="19_d5j7p"]
-[ext_resource type="PackedScene" uid="uid://cdle415lb5fab" path="res://UI/Battle/difficulty.tscn" id="20_sqlpi"]
+[ext_resource type="Script" uid="uid://y7ofpxqg3y8p" path="res://Scripts/UI/Battle/BattleManager.cs" id="1_tnt82"]
+[ext_resource type="Texture2D" uid="uid://cgr03410dgaey" path="res://Assets/Images/UI/Battle/timeProgress.png" id="2_qyy3k"]
+[ext_resource type="Texture2D" uid="uid://d3rrr3hkl5l06" path="res://Assets/Images/UI/Battle/time.png" id="3_wwscj"]
+[ext_resource type="Texture2D" uid="uid://drsriaqdmuyu1" path="res://Assets/Images/UI/Battle/player.png" id="4_5snsl"]
+[ext_resource type="Texture2D" uid="uid://dnsrokbej6snc" path="res://Assets/Images/UI/Battle/enemy.png" id="5_q2hsw"]
+[ext_resource type="Texture2D" uid="uid://c8k0t5p74rjus" path="res://Assets/Images/UI/Battle/enemy_bg.png" id="6_e5d4s"]
+[ext_resource type="PackedScene" uid="uid://cdle415lb5fab" path="res://UI/Battle/difficulty.tscn" id="7_83c3s"]
+[ext_resource type="Texture2D" uid="uid://cqddwuogebcqm" path="res://Assets/Images/UI/Battle/player_bg.png" id="8_sq8b8"]
+[ext_resource type="Texture2D" uid="uid://b2wi2mlmeydvd" path="res://Assets/Images/UI/Battle/atk_random.png" id="9_r2bje"]
+[ext_resource type="Texture2D" uid="uid://b2hhf0s2km1k4" path="res://Assets/Images/UI/Battle/atk_arm.png" id="10_2rnhk"]
+[ext_resource type="Texture2D" uid="uid://peu06rmenyb8" path="res://Assets/Images/UI/Battle/atk_body.png" id="11_dvp1d"]
+[ext_resource type="Texture2D" uid="uid://bwvffjkcsljgn" path="res://Assets/Images/UI/Battle/atk_head.png" id="12_lxrcy"]
+[ext_resource type="Texture2D" uid="uid://dt64r5elymygi" path="res://Assets/Images/UI/Battle/arm_prop.png" id="13_543p7"]
+[ext_resource type="Texture2D" uid="uid://c2rqekr8vidnl" path="res://Assets/Images/UI/Battle/body_prop.png" id="14_f7ypl"]
+[ext_resource type="Texture2D" uid="uid://bdnga0di6ik5m" path="res://Assets/Images/UI/Battle/head_prop.png" id="15_rffiy"]
+[ext_resource type="Texture2D" uid="uid://0dku6o5d4g1b" path="res://Assets/Images/UI/Battle/progress_bg.png" id="16_suivo"]
+[ext_resource type="Texture2D" uid="uid://c8suawgtqmpgy" path="res://Assets/Images/UI/Battle/progress_armer.png" id="17_xx8i8"]
+[ext_resource type="Texture2D" uid="uid://bkrnxufkkb3oo" path="res://Assets/Images/UI/Battle/progress_hp.png" id="18_im33y"]
+[ext_resource type="Texture2D" uid="uid://q2xr74a8wr0" path="res://Assets/Images/UI/Battle/bag.png" id="19_llgwg"]
+[ext_resource type="Texture2D" uid="uid://blarvcfdxxu8i" path="res://Assets/Images/UI/Battle/hp_icon.png" id="20_8wp2p"]
+[ext_resource type="Texture2D" uid="uid://colmv4fearh77" path="res://Assets/Images/UI/Battle/armer_icon.png" id="21_u4cla"]
+[ext_resource type="Texture2D" uid="uid://wdqclkpgrwfk" path="res://Assets/Images/UI/Battle/times_bg.png" id="22_k0prw"]
 
 [node name="Battle" type="Control" unique_id=981174782 node_paths=PackedStringArray("progressBar", "playerHead", "enemyHead", "randomBtn", "handBtn", "bodyBtn", "headBtn", "playerHP", "playerHPLabel", "playerArmor", "playerArmorLabel", "handProp", "bodyProp", "headProp", "handDMG", "bodyDMG", "headDMG")]
 layout_mode = 3
@@ -30,7 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bwxfd")
+script = ExtResource("1_tnt82")
 progressBar = NodePath("progress")
 playerHead = NodePath("player")
 enemyHead = NodePath("enemy")
@@ -69,7 +69,7 @@ offset_top = 298.0
 offset_right = 436.0
 offset_bottom = 346.0
 grow_horizontal = 2
-texture = ExtResource("2_bwxfd")
+texture = ExtResource("2_qyy3k")
 region_rect = Rect2(0, 2, 624, 49)
 patch_margin_left = 22
 patch_margin_top = 16
@@ -83,7 +83,7 @@ offset_top = -42.000004
 offset_right = 62.817673
 offset_bottom = 120.36464
 scale = Vector2(0.7605042, 0.76050425)
-texture = ExtResource("3_dvjvd")
+texture = ExtResource("3_wwscj")
 
 [node name="player" type="TextureRect" parent="." unique_id=418923094]
 layout_mode = 1
@@ -95,7 +95,7 @@ offset_top = 211.0
 offset_right = -300.0
 offset_bottom = 299.0
 grow_horizontal = 2
-texture = ExtResource("3_nmheq")
+texture = ExtResource("4_5snsl")
 expand_mode = 1
 
 [node name="enemy" type="TextureRect" parent="." unique_id=1715682001]
@@ -108,7 +108,7 @@ offset_top = 343.0
 offset_right = -301.0
 offset_bottom = 431.0
 grow_horizontal = 2
-texture = ExtResource("4_vyl4k")
+texture = ExtResource("5_q2hsw")
 expand_mode = 1
 
 [node name="EnemyBg" type="NinePatchRect" parent="." unique_id=54445744]
@@ -120,7 +120,7 @@ offset_left = -296.0
 offset_top = 26.0
 offset_right = 295.0
 offset_bottom = 209.0
-texture = ExtResource("3_4nydq")
+texture = ExtResource("6_e5d4s")
 region_rect = Rect2(0, 0, 591, 97)
 patch_margin_left = 32
 patch_margin_top = 28
@@ -145,7 +145,7 @@ text = "普通丧尸"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="difficulty" parent="EnemyBg" unique_id=44696552 instance=ExtResource("20_sqlpi")]
+[node name="difficulty" parent="EnemyBg" unique_id=44696552 instance=ExtResource("7_83c3s")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -177,7 +177,7 @@ layout_mode = 0
 offset_top = 12.0
 offset_right = 1080.0
 offset_bottom = 697.0
-texture = ExtResource("5_s2eo2")
+texture = ExtResource("8_sq8b8")
 region_rect = Rect2(0, 0, 966, 152)
 patch_margin_left = 24
 patch_margin_top = 29
@@ -196,7 +196,7 @@ theme_override_constants/separation = 18
 custom_minimum_size = Vector2(235, 275)
 custom_maximum_size = Vector2(-1, 275)
 layout_mode = 2
-texture = ExtResource("6_sqlpi")
+texture = ExtResource("9_r2bje")
 patch_margin_top = 169
 patch_margin_bottom = 34
 
@@ -216,7 +216,7 @@ text = "随机攻击"
 custom_minimum_size = Vector2(235, 275)
 custom_maximum_size = Vector2(-1, 275)
 layout_mode = 2
-texture = ExtResource("7_4nydq")
+texture = ExtResource("10_2rnhk")
 patch_margin_top = 169
 patch_margin_bottom = 34
 
@@ -250,7 +250,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(235, 275)
 custom_maximum_size = Vector2(-1, 275)
 layout_mode = 2
-texture = ExtResource("8_dvjvd")
+texture = ExtResource("11_dvp1d")
 patch_margin_top = 169
 patch_margin_bottom = 34
 
@@ -284,7 +284,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(235, 275)
 custom_maximum_size = Vector2(-1, 275)
 layout_mode = 2
-texture = ExtResource("9_djhm5")
+texture = ExtResource("12_lxrcy")
 patch_margin_top = 169
 patch_margin_bottom = 34
 
@@ -326,7 +326,7 @@ theme_override_constants/separation = 20
 custom_minimum_size = Vector2(325, 100)
 custom_maximum_size = Vector2(-1, 135)
 layout_mode = 2
-texture = ExtResource("10_o3nar")
+texture = ExtResource("13_543p7")
 expand_mode = 1
 
 [node name="name" type="Label" parent="PlayerBg/prop/handProp" unique_id=230920724]
@@ -358,7 +358,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(325, 0)
 custom_maximum_size = Vector2(-1, 135)
 layout_mode = 2
-texture = ExtResource("11_4p516")
+texture = ExtResource("14_f7ypl")
 expand_mode = 1
 
 [node name="name" type="Label" parent="PlayerBg/prop/bodyProp" unique_id=1063653801]
@@ -390,7 +390,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(325, 0)
 custom_maximum_size = Vector2(-1, 135)
 layout_mode = 2
-texture = ExtResource("12_xk4p2")
+texture = ExtResource("15_rffiy")
 expand_mode = 1
 
 [node name="name" type="Label" parent="PlayerBg/prop/headProp" unique_id=504635660]
@@ -425,8 +425,8 @@ offset_top = 56.0
 offset_right = 800.0
 offset_bottom = 147.0
 value = 75.0
-texture_under = ExtResource("13_soyc4")
-texture_progress = ExtResource("14_r8vmd")
+texture_under = ExtResource("16_suivo")
+texture_progress = ExtResource("17_xx8i8")
 texture_progress_offset = Vector2(30, 30)
 
 [node name="num" type="Label" parent="PlayerBg/armor" unique_id=1453490937]
@@ -454,8 +454,8 @@ offset_top = 165.0
 offset_right = 800.0
 offset_bottom = 256.0
 value = 80.0
-texture_under = ExtResource("13_soyc4")
-texture_progress = ExtResource("15_h7d7p")
+texture_under = ExtResource("16_suivo")
+texture_progress = ExtResource("18_im33y")
 texture_progress_offset = Vector2(30, 30)
 
 [node name="num" type="Label" parent="PlayerBg/hp" unique_id=491085957]
@@ -482,7 +482,7 @@ offset_left = 804.0
 offset_top = 48.0
 offset_right = 1027.0
 offset_bottom = 262.0
-texture = ExtResource("16_7ocfu")
+texture = ExtResource("19_llgwg")
 
 [node name="name" type="Label" parent="PlayerBg/Bag" unique_id=417509098]
 layout_mode = 0
@@ -502,7 +502,7 @@ offset_left = 51.0
 offset_top = 168.0
 offset_right = 147.0
 offset_bottom = 258.0
-texture = ExtResource("17_8qdub")
+texture = ExtResource("20_8wp2p")
 
 [node name="name" type="Label" parent="PlayerBg/hpIcon" unique_id=604894013]
 layout_mode = 0
@@ -522,7 +522,7 @@ offset_left = 51.0
 offset_top = 53.0
 offset_right = 146.0
 offset_bottom = 155.0
-texture = ExtResource("18_dpte7")
+texture = ExtResource("21_u4cla")
 
 [node name="name" type="Label" parent="PlayerBg/armorIcon" unique_id=1692742454]
 layout_mode = 0
@@ -542,7 +542,7 @@ offset_left = 813.0
 offset_top = -74.0
 offset_right = 933.0
 offset_bottom = 12.0
-texture = ExtResource("19_d5j7p")
+texture = ExtResource("22_k0prw")
 
 [node name="num" type="Label" parent="PlayerBg/timesBg_1" unique_id=1305079823]
 layout_mode = 0
@@ -562,7 +562,7 @@ offset_left = 952.0
 offset_top = -74.0
 offset_right = 1072.0
 offset_bottom = 12.0
-texture = ExtResource("19_d5j7p")
+texture = ExtResource("22_k0prw")
 
 [node name="num" type="Label" parent="PlayerBg/timesBg_2" unique_id=245220117]
 layout_mode = 0

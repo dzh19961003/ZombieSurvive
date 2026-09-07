@@ -26,6 +26,7 @@ offset_right = 93.0
 offset_bottom = 92.0
 texture = ExtResource("1_qem1d")
 expand_mode = 1
+stretch_mode = 5
 
 [node name="addLabel" type="Label" parent="." unique_id=599697477]
 layout_mode = 0

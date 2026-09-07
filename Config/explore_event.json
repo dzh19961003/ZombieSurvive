@@ -1679,7 +1679,7 @@
     "demandNum(int)": [],
     "isRemove(int)": [],
     "nextEvent(int)": [
-      1001
+      9999
     ],
     "icon(string)": [],
     "itemID(int)": [],
@@ -1699,7 +1699,7 @@
     "demandNum(int)": [],
     "isRemove(int)": [],
     "nextEvent(int)": [
-      1001
+      9999
     ],
     "icon(string)": [],
     "itemID(int)": [],
@@ -1708,7 +1708,7 @@
   },
   {
     "ID(int)": 19003,
-    "eventType(int)": 201,
+    "eventType(int)": 202,
     "headType(int)": 2,
     "des(string)": "经过一番拉扯战斗，你战胜了丧尸",
     "image(string)": "material_image",
@@ -1719,7 +1719,7 @@
     "demandNum(int)": [],
     "isRemove(int)": [],
     "nextEvent(int)": [
-      1001
+      9999
     ],
     "icon(string)": [],
     "itemID(int)": [],
@@ -1733,9 +1733,9 @@
     "des(string)": "怪物事件1（怪物未发现玩家）",
     "image(string)": "material_image",
     "option(string)": [
-      "迎战丧尸",
       "潜行暗杀",
-      "蛮力碾压"
+      "蛮力碾压",
+      "迎战丧尸"
     ],
     "demand(int)": [
       10004,
@@ -1747,9 +1747,9 @@
     ],
     "isRemove(int)": [],
     "nextEvent(int)": [
-      19003,
       19001,
-      19002
+      19002,
+      19003
     ],
     "icon(string)": [],
     "itemID(int)": [],
@@ -1768,7 +1768,9 @@
     "demand(int)": [],
     "demandNum(int)": [],
     "isRemove(int)": [],
-    "nextEvent(int)": [],
+    "nextEvent(int)": [
+      19003
+    ],
     "icon(string)": [],
     "itemID(int)": [],
     "itemNum(int)": [],

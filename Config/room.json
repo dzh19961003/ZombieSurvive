@@ -17,7 +17,7 @@
       1001,
       1002
     ],
-    "enemyPool(int)": 10001,
+    "enemyPool(int)": 1001,
     "subTask(int)": [
       5001
     ],
@@ -43,7 +43,7 @@
       1001,
       1002
     ],
-    "enemyPool(int)": 10001,
+    "enemyPool(int)": 1001,
     "subTask(int)": [
       5020
     ],
@@ -69,7 +69,7 @@
       1001,
       1002
     ],
-    "enemyPool(int)": 10001,
+    "enemyPool(int)": 1001,
     "subTask(int)": [],
     "triggerProgress(int)": []
   },
@@ -91,7 +91,7 @@
       1001,
       1002
     ],
-    "enemyPool(int)": 10001,
+    "enemyPool(int)": 1001,
     "subTask(int)": [
       5040
     ],
@@ -117,7 +117,7 @@
       1001,
       1002
     ],
-    "enemyPool(int)": 10001,
+    "enemyPool(int)": 1001,
     "subTask(int)": [
       5060
     ],
@@ -141,7 +141,7 @@
       1001,
       1002
     ],
-    "enemyPool(int)": 10001,
+    "enemyPool(int)": 1001,
     "subTask(int)": [],
     "triggerProgress(int)": []
   },
@@ -163,7 +163,7 @@
       1001,
       1002
     ],
-    "enemyPool(int)": 10001,
+    "enemyPool(int)": 1001,
     "subTask(int)": [],
     "triggerProgress(int)": []
   },
@@ -185,7 +185,7 @@
       1001,
       1002
     ],
-    "enemyPool(int)": 10001,
+    "enemyPool(int)": 1001,
     "subTask(int)": [],
     "triggerProgress(int)": []
   }

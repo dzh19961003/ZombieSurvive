@@ -23,11 +23,11 @@ public partial class ExploreChooseBar : NinePatchRect
         backBtn.Pressed += OnBack;
         carefulExploreBtn.Pressed += () => 
         {
-            explore(1); 
+            Explore(1); 
         };
         quicklyExploreBtn.Pressed += () => 
         {
-            explore(2); 
+            Explore(2); 
         };
         gameManager = GameManager.Instance;
         
@@ -69,7 +69,7 @@ public partial class ExploreChooseBar : NinePatchRect
         quicklyExploreBtn.Visible = !finish;
     }
 
-    private void explore(int type) 
+    private void Explore(int type) 
     {
         EventChooseBar eventChooseBar=(EventChooseBar)UIManager.Instance.CreateUI("res://UI/Explore/EventChooseBar.tscn");
         Dictionary<int, int> explorePogress = gameManager.exploreProgress;

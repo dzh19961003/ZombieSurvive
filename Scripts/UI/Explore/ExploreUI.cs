@@ -204,6 +204,7 @@ public partial class ExploreUI : Control
     }
     public int BattleEventReady(int type)
     {
+        int eventID;
         //获取怪物ID
         EnemyPool enemyPool = ConfigManager.Instance.enemyPoolDic[ConfigManager.Instance.roomDic[GameManager.Instance.roomID].EnemyPool];
         GameManager.Instance.enemyID = Tools.GetRandomNumber(enemyPool.Enemy, enemyPool.Weight);
@@ -211,9 +212,8 @@ public partial class ExploreUI : Control
         if (type == 1)
         {
             Array<int> eventArray = new Array<int>() { 10001, 10002 };
-            Array<int> weightArray = new Array<int>() { 50, 50 };
-            Tools.GetRandomNumber(eventArray, weightArray);
-            return 10002;
+            eventID = Tools.GetRandomNumber(eventArray);
+            return eventID;
         }
         //探索强制遇到战斗
         else if (type == 2)
