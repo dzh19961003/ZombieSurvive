@@ -67,6 +67,8 @@ public partial class PlayerManager : Node, ISaveable
     private int headTime = 6;
     //工作台等级
     private int _workStationLevel = 1;
+    //制作等级
+    private int playerMakeLevel=0;
     public int Hp {get{return hpBase + GetAddition(10001);}private set{}}
     public int MaxHp {get{return maxHpBase + GetAddition(10002);}private set{}}
     public int Strength {get{return strengthBase + GetAddition(10003);}private set{}}
@@ -86,12 +88,14 @@ public partial class PlayerManager : Node, ISaveable
     public int MaxBaseStamina {get{return maxBaseStamina + GetAddition(10017);}private set{}}
     public int MaxexploreStamina {get{return maxexploreStamina + GetAddition(10018);}private set{}}
     public int Hunger {get{return hunger + GetAddition(10019);}private set{}}
+    public int PlayerMakeLevel{ get{return playerMakeLevel + GetAddition(10020);}private set{}}
     public int ArmDmg { get { return dmg + GetAddition(10021); } private set { } }
     public int BodyDmg { get { return dmg + GetAddition(10022); } private set { } }
     public int HeadDmg { get { return dmg + GetAddition(10023); } private set { } }
     public int ArmTime { get { return armTime + GetAddition(10024); } private set { } }
     public int BodyTime { get { return bodyTime + GetAddition(10025); } private set { } }
     public int HeadTime { get { return headTime + GetAddition(10026); } private set { } }
+
     //增量计算
     public int GetAddition(int statetype)
         {
@@ -370,6 +374,9 @@ public partial class PlayerManager : Node, ISaveable
                 hunger = Mathf.Clamp(hunger + amount, 0, MaxHunger);
                 SyncHungerState(hunger);
                 break;
+            case 10020:
+                playerMakeLevel+=amount;
+                break;
             case 10021:
                 dmg += amount;
                 break;
@@ -434,6 +441,7 @@ public partial class PlayerManager : Node, ISaveable
         AddItem(7,25);
         AddItem(8,25);
         AddItem(9,25);
+
         
     }
 
@@ -466,6 +474,7 @@ public partial class PlayerManager : Node, ISaveable
             // GetState(2);
             AddItem(10019, -1);
             AddItem(10015,5);
+            AddItem(10020,3);
             GameManager.Instance.AdvanceTime();
         }
     }
@@ -504,7 +513,8 @@ public partial class PlayerManager : Node, ISaveable
             { "dmg", dmg},
             { "armTime", armTime},
             { "bodyTime", bodyTime},
-            { "headTime", headTime}
+            { "headTime", headTime},
+            {"playerMakeLevel",playerMakeLevel}
         };
     }
     public void LoadSaveData(Dictionary data)

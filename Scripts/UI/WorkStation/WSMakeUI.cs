@@ -242,7 +242,7 @@ public partial class WSMakeUI : Control
 		if (cfg == null || PlayerManager.Instance == null) return false;
 
 		//等级校验
-		if (cfg.Level > PlayerManager.Instance.WorkStationLevel) return false;
+		if (cfg.Level > PlayerManager.Instance.WorkStationLevel+PlayerManager.Instance.PlayerMakeLevel) return false;
 
 		if (currentTab == TabType.Decompose)
 		{
@@ -331,9 +331,9 @@ public partial class WSMakeUI : Control
 		var cfg = _selectedCfg;
 
 		//等级校验
-		if (cfg.Level > pm.WorkStationLevel)
+		if (cfg.Level > pm.WorkStationLevel+pm.PlayerMakeLevel)
 		{
-			UIManager.Instance.ShowCommonTips2("工作台等级不足");
+			UIManager.Instance.ShowCommonTips2("制作等级不足");
 			return;
 		}
 

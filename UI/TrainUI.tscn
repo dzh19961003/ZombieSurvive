@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d1nmp4fcid50p" path="res://Assets/Images/UI/main_panel_2.png" id="2_70m6o"]
 [ext_resource type="PackedScene" uid="uid://cqgxxnp0f3lfa" path="res://UI/Train/TUpgradeUI.tscn" id="3_badpg"]
 [ext_resource type="PackedScene" uid="uid://q5r8k0qci4am" path="res://UI/Train/TExerciseUI.tscn" id="4_70m6o"]
+[ext_resource type="Script" uid="uid://bb4nslrhvuhqr" path="res://Scripts/UI/Train/TUpgradeUI.cs" id="4_nvqab"]
 [ext_resource type="Texture2D" uid="uid://bs7gg3xn14v6b" path="res://Assets/Images/UI/close_button.png" id="5_1jqe4"]
 [ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="6_8o8fc"]
 [ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="7_n3yvv"]
@@ -48,6 +49,7 @@ offset_left = 27.0
 offset_top = 232.0
 offset_right = 892.0
 offset_bottom = 1656.0
+script = ExtResource("4_nvqab")
 
 [node name="TExerciseUi" parent="BG" unique_id=2039258953 instance=ExtResource("4_70m6o")]
 visible = false
