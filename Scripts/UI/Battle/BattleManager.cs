@@ -49,9 +49,10 @@ public partial class BattleManager : Control
     //战斗所需
     public BattleEnemy battleEnemy;
     public BattleInfo battleInfo;
-    public Dictionary<int, BattleEffectBase> playerEffectDic = new Dictionary<int, BattleEffectBase>();//玩家效果
-    public Dictionary<int, BattleEffectBase> enemyEffectDic = new Dictionary<int, BattleEffectBase>();
-
+    public Dictionary<int, BattleEffectBase> playerEffectDic = new Dictionary<int, BattleEffectBase>();//玩家不可重复的效果实例
+    public Dictionary<int, BattleEffectBase> enemyEffectDic = new Dictionary<int, BattleEffectBase>();//敌人不可重复的效果实例
+    public List<BattleEffectBase> playerAllEffects = new List<BattleEffectBase>();//玩家所有效果实例
+    public List<BattleEffectBase> enemyAllEffects = new List<BattleEffectBase>();//敌人所有效果实例
 
     private BattleState battleState = BattleState.Moving;
     enum BattleState
@@ -172,7 +173,7 @@ public partial class BattleManager : Control
     //3.进行攻击
     private void Attack()
     {
-
+        OnStatusDealed.Invoke();
     }
 
 
@@ -188,7 +189,9 @@ public partial class BattleManager : Control
         foreach (var item in battleEffectBases)
         {
             item.character = character;
-            AddChild(item);         
+            AddChild(item);
+            if (character == "player") playerAllEffects.Add(item);
+            else if (character == "enemy") enemyAllEffects.Add(item);
         }
         return battleEffectBases;
     }
@@ -225,13 +228,18 @@ public partial class BattleManager : Control
             default:
                 break;
         }
+        //IsMulty==1 可叠加，不入字典；IsMulty==0 只保留一个
+        if (battleEffect.IsMulty == 1)
+        {
+            return battleEffectBase;
+        }
         if (character == "enemy")
         {
-            enemyEffectDic?.Add(item, battleEffectBase);
+            enemyEffectDic.TryAdd(item, battleEffectBase);
         }
         else if (character == "player")
         {
-            playerEffectDic?.Add(item, battleEffectBase);
+            playerEffectDic.TryAdd(item, battleEffectBase);
         }
         return battleEffectBase;
     }
@@ -239,44 +247,24 @@ public partial class BattleManager : Control
     public void GetEffect(int effectID, string character)
     {
         BattleEffect battleEffect = ConfigManager.Instance.battleEffectDic[effectID];
+        //IsMulty==0 且已存在则不再重复获得
         if (character == "enemy")
         {
-            if (!battleEnemy.enemyEffects.Contains(effectID))
-            {
-                battleEnemy.enemyEffects.Add(effectID);
-                AddChild(LoadEffects(effectID, character));
-            }
-            else
-            {
-                if (battleEffect.IsMulty == 0)
-                {
-                    return;
-                }
-                else
-                {
-                    enemyEffectDic[effectID].MultyStatusAdd();
-                }
-            }
+            if (battleEffect.IsMulty == 0 && battleEnemy.enemyEffects.Contains(effectID))
+                return;
+            battleEnemy.enemyEffects.Add(effectID);
+            var newEffect = LoadEffects(effectID, character);
+            AddChild(newEffect);
+            enemyAllEffects.Add(newEffect);
         }
         else if (character == "player")
         {
-            if (!battleInfo.playerEffects.Contains(effectID))
-            {
-                battleInfo.playerEffects.Add(effectID);
-                AddChild(LoadEffects(effectID, character));
-            }
-            else
-            {
-                if (battleEffect.IsMulty == 0)
-                {
-                    return;
-                }
-                else
-                {
-                    playerEffectDic[effectID].MultyStatusAdd();
-                }
-            }
+            if (battleEffect.IsMulty == 0 && battleInfo.playerEffects.Contains(effectID))
+                return;
+            battleInfo.playerEffects.Add(effectID);
+            var newEffect = LoadEffects(effectID, character);
+            AddChild(newEffect);
+            playerAllEffects.Add(newEffect);
         }
-
     }
 }

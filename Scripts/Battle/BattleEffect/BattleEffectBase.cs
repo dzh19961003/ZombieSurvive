@@ -34,7 +34,7 @@ public partial class BattleEffectBase : Node
         bm.OnTurnStart += TurnStart;
         bm.OnDamageBuff += DamageBuff;
         bm.OnDamageDealed += DamageDealed;
-        bm.OnStatusDealed += StatusDealed;
+        bm.OnStatusDealed += MultyStatusAdd;
         bm.OnTurnEnd += TurnEnd;
         bm.OnBattleEnd += BattleEnd;
 
@@ -49,7 +49,7 @@ public partial class BattleEffectBase : Node
         bm.OnTurnStart -= TurnStart;
         bm.OnDamageBuff -= DamageBuff;
         bm.OnDamageDealed -= DamageDealed;
-        bm.OnStatusDealed -= StatusDealed;
+        bm.OnStatusDealed -= MultyStatusAdd;
         bm.OnTurnEnd -= TurnEnd;
         bm.OnBattleEnd -= BattleEnd;
 
@@ -60,7 +60,6 @@ public partial class BattleEffectBase : Node
     public virtual void TurnStart(string character) { }
     public virtual void DamageBuff() {  }
     public virtual void DamageDealed() { }
-    public virtual void StatusDealed() { }
     public virtual void TurnEnd() { }
     public virtual void BattleEnd() { }
     public virtual void MultyStatusAdd(){ }

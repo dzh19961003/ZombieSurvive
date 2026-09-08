@@ -106,7 +106,7 @@ public partial class BattleEnemy : Node
                 {
                     for (int i = 0; i < bodyHP.Length; i++)
                     {
-                        if (headHP[i] != 0)
+                        if (bodyHP[i] != 0)
                         {
                             return i;
                         }
@@ -120,9 +120,9 @@ public partial class BattleEnemy : Node
                 }
                 else
                 {
-                    for (int i = 0; i < headHP.Length; i++)
+                    for (int i = 0; i < armsHP.Length; i++)
                     {
-                        if (headHP[i] != 0)
+                        if (armsHP[i] != 0)
                         {
                             return i;
                         }
