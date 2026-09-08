@@ -17,10 +17,14 @@ public partial class BattleEnemy : Node
     private int armNum;
     private double[] headHP;
     private double[] bodyHP;
-    private double[] armsHp;
+    private double[] armsHP;
+
+    public Dictionary<string, int>[] headStatusDic;
+    public Dictionary<string, int>[] bodyStatusDic;
+    public Dictionary<string, int>[] armStatusDic;
 
     public List<int> enemyEffects;
-    private List<BattleEffectBase> enemyEffectBases = new List<BattleEffectBase>();
+    private List<BattleEffectBase> enemyEffectBases = new List<BattleEffectBase>();     
 
     public override void _Ready()
     {
@@ -35,7 +39,12 @@ public partial class BattleEnemy : Node
        
         headHP = new double[headNum];
         bodyHP = new double[bodyNum];
-        armsHp = new double[armNum];
+        armsHP = new double[armNum];
+
+        //初始化各部位状态条
+        headStatusDic = new Dictionary<string, int>[headNum];
+        bodyStatusDic = new Dictionary<string, int>[bodyNum];
+        armStatusDic = new Dictionary<string, int>[armNum];
 
         for (int i = 0; i < headNum; i++)
         {
@@ -49,8 +58,8 @@ public partial class BattleEnemy : Node
         }
         for (int i = 0; i < armNum; i++)
         {
-            armsHp[i] = ConfigManager.Instance.enemyDic[enemyID].ArmHP[i];
-            handHPLabel[i].Text = armsHp[i].ToString();
+            armsHP[i] = ConfigManager.Instance.enemyDic[enemyID].ArmHP[i];
+            handHPLabel[i].Text = armsHP[i].ToString();
         }
 
         //加入敌人效果
@@ -64,5 +73,63 @@ public partial class BattleEnemy : Node
     {
         BattleManager.Instance.RefreshUI();
     }
-   
+    //当攻击时，排除不可用部位
+    //public ....
+
+    //当部位里的某一个肢体不可用时，选择另一个肢体
+    public int GetExsistPart(string part, int num)
+    {
+        switch (part)
+        {
+            case "head":
+                if (headHP[num] != 0)
+                {
+                    return num;
+                }
+                else
+                {
+                    for (int i = 0; i < headHP.Length; i++)
+                    {
+                        if (headHP[i] != 0)
+                        {
+                            return i;
+                        }
+                    }
+                }
+                break;
+            case "body":
+                if (bodyHP[num] != 0)
+                {
+                    return num;
+                }
+                else
+                {
+                    for (int i = 0; i < bodyHP.Length; i++)
+                    {
+                        if (headHP[i] != 0)
+                        {
+                            return i;
+                        }
+                    }
+                }
+                break;
+            case "arm":
+                if (armsHP[num] != 0)
+                {
+                    return num;
+                }
+                else
+                {
+                    for (int i = 0; i < headHP.Length; i++)
+                    {
+                        if (headHP[i] != 0)
+                        {
+                            return i;
+                        }
+                    }
+                }
+                break;
+        }
+        return 0;
+    }
 }

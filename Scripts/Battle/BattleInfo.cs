@@ -15,6 +15,7 @@ public class BattleInfo
     public double Damage = 0;           //造成的最终伤害
     public string character = "player"; //当前角色
     public List<int> playerEffects = new List<int>();//玩家所有效果
+    public Dictionary<string, int> playerStatusNumDic = new Dictionary<string, int>();//拥有的效果层数
 
     public BattleInfo(int ID)
     {

@@ -6,8 +6,11 @@ public partial class BattleEffectBase : Node
     public BattleManager bm;
     public PlayerManager pm = PlayerManager.Instance;
     public string character;
-    public string body;
+    public string bodyPart;
+    public string bonusBody;
+    public string statusKind;
     public int bonus;
+    public int bonusBodyAmount;
 
     private bool isSubscribed = false;
     
@@ -54,7 +57,7 @@ public partial class BattleEffectBase : Node
     }
 
     public virtual void BattleStart() { }
-    public virtual void TurnStart() { }
+    public virtual void TurnStart(string character) { }
     public virtual void DamageBuff() {  }
     public virtual void DamageDealed() { }
     public virtual void StatusDealed() { }

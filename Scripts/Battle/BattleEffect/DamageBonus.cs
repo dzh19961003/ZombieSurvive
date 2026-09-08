@@ -11,7 +11,7 @@ public partial class DamageBonus : BattleEffectBase
     }
     public override void BattleStart()
     {
-        switch (body)
+        switch (bodyPart)
         {
             case "body":
                 bm.bodyDMG.Text = "伤害:" + (bm.battleInfo.baseDamage) * (1 + bonus / 100.0);

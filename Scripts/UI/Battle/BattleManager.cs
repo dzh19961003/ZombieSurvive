@@ -39,7 +39,7 @@ public partial class BattleManager : Control
 
     //各状态事件
     public event Action OnBattleStart;
-    public event Action OnTurnStart;
+    public event Action<string> OnTurnStart;
     public event Action OnDamageBuff;
     public event Action OnDamageDealed;
     public event Action OnStatusDealed;
@@ -143,35 +143,37 @@ public partial class BattleManager : Control
     private void PlayerTurn()
     {
         GD.Print("玩家行动");
-        TurnStart();
+        TurnStart("player");
     }
     private void EnemyTurn()
     {
         GD.Print("敌人行动");
-        TurnStart();
+        TurnStart("enemy");
     }
 
     //战斗流程
     //1.战斗开始
     private void BattleStart()
     {
-        battleInfo = new BattleInfo(1);
+        battleInfo = new BattleInfo(GameManager.Instance.enemyID);
         //加载战斗、敌人和玩家相关数据       
-        var enemy = GD.Load<PackedScene>("res://UI/Battle/enemy_1.tscn");
+        var enemy = GD.Load<PackedScene>("res://UI/Battle/enemy_" + ConfigManager.Instance.enemyDic[GameManager.Instance.enemyID].Type + ".tscn");
         battleEnemy = enemy.Instantiate<BattleEnemy>();
         AddChild(battleEnemy);
         battleEnemy.Initial(battleInfo.enemyID);
-        //加载敌人，这里先写死
         OnBattleStart?.Invoke();
         RefreshUI();
     }
     //2.回合开始
-    private void TurnStart()
+    private void TurnStart(string character)
     {
-        OnTurnStart?.Invoke();
+        OnTurnStart?.Invoke(character);
     }
-    //3.
+    //3.进行攻击
+    private void Attack()
+    {
 
+    }
 
 
     //战斗所有初始效果装填
@@ -204,7 +206,7 @@ public partial class BattleManager : Control
             case "WeightBonus":
                 WeightBonus weightBonus = new WeightBonus();
                 battleEffectBase = weightBonus;
-                weightBonus.body = battleEffect.Part;
+                weightBonus.bodyPart = battleEffect.Part;
                 weightBonus.bonus = battleEffect.Amount;
                 break;
             case "ChargeBonus":
@@ -214,6 +216,11 @@ public partial class BattleManager : Control
             case "ApplyMultipleStatus":
                 ApplyMultipleStatus applyMultipleStatus = new ApplyMultipleStatus();
                 battleEffectBase = applyMultipleStatus;
+                applyMultipleStatus.bodyPart = battleEffect.Part;
+                applyMultipleStatus.bonus = battleEffect.Amount;
+                applyMultipleStatus.statusKind = battleEffect.StatusKind;
+                applyMultipleStatus.bonusBody = battleEffect.BonusPart;
+                applyMultipleStatus.bonusBodyAmount = battleEffect.BonusAmount;
                 break;
             default:
                 break;

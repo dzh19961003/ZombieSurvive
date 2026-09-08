@@ -10,7 +10,7 @@ public partial class WeightBonus : BattleEffectBase
 	}
     public override void BattleStart()
     {
-		switch (body)
+		switch (bodyPart)
 		{
 			case "body":
 				pm.AddItem(10014, bonus);

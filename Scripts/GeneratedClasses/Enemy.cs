@@ -15,6 +15,12 @@ namespace MyProject
         /// <summary>原始字段: level(int)</summary>
         public int Level { get; set; }
 
+        /// <summary>原始字段: type(int)</summary>
+        public int Type { get; set; }
+
+        /// <summary>原始字段: image(string)</summary>
+        public string Image { get; set; }
+
         /// <summary>原始字段: headNum(int)</summary>
         public int HeadNum { get; set; }
 

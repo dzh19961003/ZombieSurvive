@@ -2,6 +2,8 @@
   {
     "ID(int)": 1,
     "level(int)": 1,
+    "type(int)": 1,
+    "image(string)": "enemy_1",
     "headNum(int)": 1,
     "bodyNum(int)": 1,
     "armNum(int)": 2,
@@ -22,6 +24,8 @@
   {
     "ID(int)": 2,
     "level(int)": 2,
+    "type(int)": 1,
+    "image(string)": "enemy_1",
     "headNum(int)": 1,
     "bodyNum(int)": 1,
     "armNum(int)": 2,
@@ -40,6 +44,8 @@
   {
     "ID(int)": 3,
     "level(int)": 3,
+    "type(int)": 2,
+    "image(string)": "enemy_1",
     "headNum(int)": 2,
     "bodyNum(int)": 1,
     "armNum(int)": 2,
