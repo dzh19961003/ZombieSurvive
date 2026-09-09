@@ -1,95 +1,95 @@
 [
   {
-    "ID(int)": 1,
-    "name(string)": "街角咖啡",
-    "image(string)": "building_coffee",
-    "stars(int)": 1,
-    "des(string)": "Lucky咖啡Lucky咖啡Lucky咖啡",
-    "enterDes(string)": "你进入了Lucky咖啡，这里XXX",
-    "food(int)": 3,
-    "medic(int)": 1,
-    "equip(int)": 1,
-    "material(int)": 1,
-    "roomID(int)": [
-      1,
-      2,
-      3,
-      4
-    ]
+	"ID(int)": 1,
+	"name(string)": "街角咖啡",
+	"image(string)": "building_coffee",
+	"stars(int)": 1,
+	"des(string)": "Lucky咖啡Lucky咖啡Lucky咖啡",
+	"enterDes(string)": "你进入了Lucky咖啡，这里XXX",
+	"food(int)": 3,
+	"medic(int)": 1,
+	"equip(int)": 1,
+	"material(int)": 1,
+	"roomID(int)": [
+	  1,
+	  2,
+	  3,
+	  4
+	]
   },
   {
-    "ID(int)": 3,
-    "name(string)": "渔网网咖",
-    "image(string)": "building_netbar",
-    "stars(int)": 2,
-    "des(string)": "渔网网咖渔网网咖渔网网咖",
-    "enterDes(string)": "你进入了渔网网咖，这里XXX",
-    "food(int)": 2,
-    "medic(int)": 1,
-    "equip(int)": 1,
-    "material(int)": 3,
-    "roomID(int)": [
-      6
-    ]
+	"ID(int)": 3,
+	"name(string)": "渔网网咖",
+	"image(string)": "building_netbar",
+	"stars(int)": 2,
+	"des(string)": "渔网网咖渔网网咖渔网网咖",
+	"enterDes(string)": "你进入了渔网网咖，这里XXX",
+	"food(int)": 2,
+	"medic(int)": 1,
+	"equip(int)": 1,
+	"material(int)": 3,
+	"roomID(int)": [
+	  6
+	]
   },
   {
-    "ID(int)": 4,
-    "name(string)": "不如家酒店",
-    "image(string)": "building_hotel",
-    "stars(int)": 3,
-    "des(string)": "不如家酒店不如家酒店不如家酒店",
-    "enterDes(string)": "你进入了不如家酒店，这里XXX",
-    "food(int)": 5,
-    "medic(int)": 2,
-    "equip(int)": 2,
-    "material(int)": 3,
-    "roomID(int)": [
-      7
-    ]
+	"ID(int)": 4,
+	"name(string)": "不如家酒店",
+	"image(string)": "building_hotel",
+	"stars(int)": 3,
+	"des(string)": "不如家酒店不如家酒店不如家酒店",
+	"enterDes(string)": "你进入了不如家酒店，这里XXX",
+	"food(int)": 5,
+	"medic(int)": 2,
+	"equip(int)": 2,
+	"material(int)": 3,
+	"roomID(int)": [
+	  7
+	]
   },
   {
-    "ID(int)": 5,
-    "name(string)": "实验小学",
-    "image(string)": "building_school",
-    "stars(int)": 4,
-    "des(string)": "实验小学实验小学实验小学",
-    "enterDes(string)": "你进入了实验小学，这里XXX",
-    "food(int)": 4,
-    "medic(int)": 3,
-    "equip(int)": 4,
-    "material(int)": 3,
-    "roomID(int)": [
-      8
-    ]
+	"ID(int)": 5,
+	"name(string)": "实验小学",
+	"image(string)": "building_school",
+	"stars(int)": 4,
+	"des(string)": "实验小学实验小学实验小学",
+	"enterDes(string)": "你进入了实验小学，这里XXX",
+	"food(int)": 4,
+	"medic(int)": 3,
+	"equip(int)": 4,
+	"material(int)": 3,
+	"roomID(int)": [
+	  8
+	]
   },
   {
-    "ID(int)": 6,
-    "name(string)": "人民医院",
-    "image(string)": "building_hospital",
-    "stars(int)": 5,
-    "des(string)": "人民医院人民医院人民医院",
-    "enterDes(string)": "你进入了人民医院，这里XXX",
-    "food(int)": 3,
-    "medic(int)": 5,
-    "equip(int)": 4,
-    "material(int)": 3,
-    "roomID(int)": [
-      9
-    ]
+	"ID(int)": 6,
+	"name(string)": "人民医院",
+	"image(string)": "building_hospital",
+	"stars(int)": 5,
+	"des(string)": "人民医院人民医院人民医院",
+	"enterDes(string)": "你进入了人民医院，这里XXX",
+	"food(int)": 3,
+	"medic(int)": 5,
+	"equip(int)": 4,
+	"material(int)": 3,
+	"roomID(int)": [
+	  9
+	]
   },
   {
-    "ID(int)": 2,
-    "name(string)": "Lucky咖啡2",
-    "image(string)": "building_coffee",
-    "stars(int)": 1,
-    "des(string)": "Lucky咖啡2Lucky咖啡2Lucky咖啡2",
-    "enterDes(string)": "你进入了Lucky咖啡2，这里XXX",
-    "food(int)": 3,
-    "medic(int)": 1,
-    "equip(int)": 1,
-    "material(int)": 1,
-    "roomID(int)": [
-      5
-    ]
+	"ID(int)": 2,
+	"name(string)": "Lucky咖啡2",
+	"image(string)": "building_coffee",
+	"stars(int)": 1,
+	"des(string)": "Lucky咖啡2Lucky咖啡2Lucky咖啡2",
+	"enterDes(string)": "你进入了Lucky咖啡2，这里XXX",
+	"food(int)": 3,
+	"medic(int)": 1,
+	"equip(int)": 1,
+	"material(int)": 1,
+	"roomID(int)": [
+	  5
+	]
   }
 ]

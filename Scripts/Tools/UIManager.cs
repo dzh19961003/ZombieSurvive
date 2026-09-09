@@ -23,7 +23,8 @@ public partial class UIManager : Node
     {
         if (Input.IsActionJustPressed("ui_select"))
         {
-            UIManager.Instance.ShowUI("res://UI/Battle.tscn");
+            GameManager.Instance.enemyID = 1;
+            UIManager.Instance.ShowUI("res://UI/Battle/Battle.tscn");
         }
     }
 

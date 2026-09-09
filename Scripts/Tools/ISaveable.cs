@@ -51,6 +51,11 @@ public interface ISaveable
     //  LoadSaveData：用存档数据恢复游戏状态
     //  建议用 ContainsKey + 三元表达式简化取值，如：
     //    _hp = data.ContainsKey("hp") ? (int)data["hp"] : 100;
+    //
+    //  ⚠️ 注意：Dictionary 取出来的是 Godot.Variant，不是普通 int/double
+    //   - 整数用 (int)data["key"]
+    //   - 小数用 Tools.LoadDouble(data, "key", 默认值)
+    //   - 千万不要用 Convert.ToInt32 / Convert.ToDouble，会抛 InvalidCastException
     // ─────────────────────────────────────────────────────────
     void LoadSaveData(Dictionary data);
 }

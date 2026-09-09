@@ -64,4 +64,24 @@ public static class Tools
         }
         return numArray[result];
     }
+    //从 Godot 的 Dictionary 里安全地读小数（存档读档用）
+    //注意：Dictionary 取出来的是 Godot.Variant，不能用 Convert.ToDouble（会抛异常），
+    //要按 Variant 的实际类型分开取值
+    public static double LoadDouble(Dictionary data, string key, double defaultValue)
+    {
+        if (data == null || !data.ContainsKey(key))
+        {
+            return defaultValue;
+        }
+        Variant value = data[key];
+        if (value.VariantType == Variant.Type.Int)
+        {
+            return value.AsInt32();
+        }
+        if (value.VariantType == Variant.Type.Float)
+        {
+            return value.AsDouble();
+        }
+        return defaultValue;
+    }
 }

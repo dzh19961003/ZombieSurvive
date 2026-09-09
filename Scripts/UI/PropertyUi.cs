@@ -5,6 +5,7 @@
 using Godot;
 using Godot.Collections; 
 using MyProject;
+using System;
 
 
 namespace MyProject
@@ -96,11 +97,11 @@ namespace MyProject
             if (_healthBar != null)
             {
                 _healthBar.MaxValue = pm.MaxHp;
-                _healthBar.Value = Mathf.Clamp(pm.Hp, 0, pm.MaxHp);
+                _healthBar.Value = Math.Clamp(pm.Hp, 0, pm.MaxHp);
             }
             if (_healthText != null)
             {
-                _healthText.Text = $"{pm.Hp}/{pm.MaxHp}";
+                _healthText.Text = $"{Math.Round(pm.Hp, 1)}/{Math.Round(pm.MaxHp, 1)}";
             }
         }
 

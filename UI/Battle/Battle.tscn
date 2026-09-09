@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://colmv4fearh77" path="res://Assets/Images/UI/Battle/armer_icon.png" id="21_u4cla"]
 [ext_resource type="Texture2D" uid="uid://wdqclkpgrwfk" path="res://Assets/Images/UI/Battle/times_bg.png" id="22_k0prw"]
 
-[node name="Battle" type="Control" unique_id=981174782 node_paths=PackedStringArray("progressBar", "playerHead", "enemyHead", "randomBtn", "handBtn", "bodyBtn", "headBtn", "playerHP", "playerHPLabel", "playerArmor", "playerArmorLabel", "handProp", "bodyProp", "headProp", "handDMG", "bodyDMG", "headDMG")]
+[node name="Battle" type="Control" unique_id=981174782 node_paths=PackedStringArray("progressBar", "playerHead", "enemyHead", "randomBtn", "handBtn", "bodyBtn", "headBtn", "playerHP", "playerHPLabel", "playerArmor", "playerArmorLabel", "handProp", "bodyProp", "headProp", "armDMG", "bodyDMG", "headDMG")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,7 +45,7 @@ playerArmorLabel = NodePath("PlayerBg/armor/num")
 handProp = NodePath("PlayerBg/prop/handProp/name2")
 bodyProp = NodePath("PlayerBg/prop/bodyProp/name2")
 headProp = NodePath("PlayerBg/prop/headProp/name2")
-handDMG = NodePath("PlayerBg/atk/handAtk/dmg")
+armDMG = NodePath("PlayerBg/atk/handAtk/dmg")
 bodyDMG = NodePath("PlayerBg/atk/bodyAtk/dmg")
 headDMG = NodePath("PlayerBg/atk/headAtk/dmg")
 

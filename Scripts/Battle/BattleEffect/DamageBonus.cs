@@ -14,17 +14,17 @@ public partial class DamageBonus : BattleEffectBase
         switch (bodyPart)
         {
             case "body":
-                bm.bodyDMG.Text = "伤害:" + (bm.battleInfo.baseDamage) * (1 + amount / 100.0);
+                bm.battleInfo.bodyDamage = Math.Round(bm.battleInfo.bodyDamage * (1 + amount / 100.0), 1);
                 break;
             case "head":
-                bm.headDMG.Text = "伤害:" + (bm.battleInfo.baseDamage) * (1 + amount / 100.0);
+                bm.battleInfo.headDamage = Math.Round(bm.battleInfo.headDamage * (1 + amount / 100.0), 1);
                 break;
             case "arm":
-                bm.handDMG.Text = "伤害:" + (bm.battleInfo.baseDamage) * (1 + amount / 100.0);
+                bm.battleInfo.armDamage = Math.Round(bm.battleInfo.armDamage * (1 + amount / 100.0), 1);
                 break;
             default:
                 break;
         }
-
+        bm.RefreshUI();
     }
 }

@@ -37,13 +37,13 @@ public partial class PlayerManager : Node, ISaveable
     private int timePeriodsElapsed = 0;
     public const int PeriodsPerDay = 4;
     //四个装备ID(物品ID，临时配置)
-    public int weaponID=4;
+    public int weaponID=10;
     public int clothesID=5;
     public int shoesID=6;
     public int ringID=8;
 
-    private int hpBase = 100;
-    private int maxHpBase = 100;
+    private double hpBase = 100;
+    private double maxHpBase = 100;
     private int strengthBase = 10;
     private int agilityBase = 10;
     private int intelligenceBase = 10;
@@ -51,8 +51,8 @@ public partial class PlayerManager : Node, ISaveable
     private int agility_exp = 0;
     private int intelligence_exp = 0;
     private double exp_acq_rate = 1.0;
-    private int armor = 0;
-    private int max_armor = 100;
+    private double armor = 0;
+    private double max_armor = 100;
     private int attack_limb_weight = 100;
     private int attack_head_weight = 100;
     private int attack_body_weight = 100;
@@ -70,8 +70,8 @@ public partial class PlayerManager : Node, ISaveable
     private int _trainLevel = 1;
     //制作等级
     private int playerMakeLevel=0;
-    public int Hp {get{return hpBase + GetAddition(10001);}private set{}}
-    public int MaxHp {get{return maxHpBase + GetAddition(10002);}private set{}}
+    public double Hp {get{return hpBase + GetAddition(10001);}private set{}}
+    public double MaxHp {get{return maxHpBase + GetAddition(10002);}private set{}}
     public int Strength {get{return strengthBase + GetAddition(10003);}private set{}}
     public int Agility {get{return agilityBase + GetAddition(10004);}private set{}}
     public int Intelligence {get{return intelligenceBase + GetAddition(10005);}private set{}}
@@ -79,8 +79,8 @@ public partial class PlayerManager : Node, ISaveable
     public int Agility_exp {get{return (int)(agility_exp + GetAddition(10007) * Exp_acq_rate); }private set{}}
     public int Intelligence_exp {get{return (int)(intelligence_exp + GetAddition(10008) * Exp_acq_rate); }private set{}}
     public double Exp_acq_rate {get{return exp_acq_rate + GetAddition(10009);}private set{}}
-    public int Armor {get{return armor + GetAddition(10010);}private set{}}
-    public int MaxArmor {get{return max_armor + GetAddition(10011);}private set{}}
+    public double Armor {get{return armor + GetAddition(10010);}private set{}}
+    public double MaxArmor {get{return max_armor + GetAddition(10011);}private set{}}
     public int Attack_limb_weight {get{return attack_limb_weight + GetAddition(10012);}private set{}}
     public int Attack_head_weight {get{return attack_head_weight + GetAddition(10013);}private set{}}
     public int Attack_body_weight {get{return attack_body_weight + GetAddition(10014);}private set{}}
@@ -288,30 +288,30 @@ public partial class PlayerManager : Node, ISaveable
             GD.PrintErr($"[PlayerManager] SyncHungerState 失败：状态表找不到 ID={targetID}");
         }
     }
-    //增加基础属性值
-    public void AddItem(int id,int amount)
+    //增加基础属性值（amount 支持小数，血量和护甲是 double）
+    public void AddItem(int id,double amount)
     {   
         //加属性
         if(id>10000){
         switch ( id)
         {
             case 10001:
-                // 生命值钳制在 [0, MaxHp]（含状态加成的当前上限）
-                hpBase = Mathf.Clamp(hpBase + amount, 0, MaxHp);
+                // 生命值钳制在 [0, MaxHp]（含状态加成的当前上限），保留一位小数
+                hpBase = Math.Round(Math.Clamp(hpBase + amount, 0, MaxHp), 1);
                 break;
             case 10002:
                 maxHpBase += amount;
                 // 最大生命值变化后，当前生命值不能超过新上限
-                hpBase = Mathf.Min(hpBase, MaxHp);
+                hpBase = Math.Min(hpBase, MaxHp);
                 break;
             case 10003:
-                strengthBase += amount;
+                strengthBase += (int)amount;
                 break;
             case 10004:
-                agilityBase += amount;
+                agilityBase += (int)amount;
                 break;
             case 10005:
-                intelligenceBase += amount;
+                intelligenceBase += (int)amount;
                 break;
             case 10006:
                 if (amount <= 0) return;
@@ -347,59 +347,60 @@ public partial class PlayerManager : Node, ISaveable
                 exp_acq_rate += amount;
                 break;
             case 10010:
-                armor += amount;
+                //护甲不能为负，保留一位小数
+                armor = Math.Max(0, Math.Round(armor + amount, 1));
                 break;
             case 10011:
                 max_armor += amount;
                 break;
             case 10012:
-                attack_limb_weight += amount;
+                attack_limb_weight += (int)amount;
                 break;
             case 10013:
-                attack_head_weight += amount;
+                attack_head_weight += (int)amount;
                 break;
             case 10014:
-                attack_body_weight += amount;
+                attack_body_weight += (int)amount;
                 break;
             case 10015:
-                baseStamina = Mathf.Clamp(baseStamina + amount, 0, MaxBaseStamina);
+                baseStamina = Mathf.Clamp(baseStamina + (int)amount, 0, MaxBaseStamina);
                 break;
             case 10016:
-                exploreStamina = Mathf.Clamp(exploreStamina + amount, 0, MaxexploreStamina);
+                exploreStamina = Mathf.Clamp(exploreStamina + (int)amount, 0, MaxexploreStamina);
                 break;
             case 10017:
-                maxBaseStamina += amount;
+                maxBaseStamina += (int)amount;
                 baseStamina = Mathf.Min(baseStamina, MaxBaseStamina);
                 break;
             case 10018:
-                maxexploreStamina += amount;
+                maxexploreStamina += (int)amount;
                 exploreStamina = Mathf.Min(exploreStamina, MaxexploreStamina);
                 break;
             case 10019:
 
-                hunger = Mathf.Clamp(hunger + amount, 0, MaxHunger);
+                hunger = Mathf.Clamp(hunger + (int)amount, 0, MaxHunger);
                 SyncHungerState(hunger);
                 break;
             case 10020:
-                playerMakeLevel+=amount;
+                playerMakeLevel += (int)amount;
                 break;
             case 10021:
-                dmg += amount;
+                dmg += (int)amount;
                 break;
             case 10022:
-                dmg += amount;
+                dmg += (int)amount;
                 break;
             case 10023:
-                dmg += amount;
+                dmg += (int)amount;
                 break;
             case 10024:
-                armTime += amount;
+                armTime += (int)amount;
                 break;
             case 10025:
-                bodyTime += amount;
+                bodyTime += (int)amount;
                 break;
             case 10026:
-                headTime += amount;
+                headTime += (int)amount;
                 break;
             default:
 
@@ -409,13 +410,14 @@ public partial class PlayerManager : Node, ISaveable
         // 加物品
         else
         {
+            //物品数量是整数，amount 转成 int 再存
             if (!ItemDic.ContainsKey(id))
             {
-                ItemDic.Add(id,amount);
+                ItemDic.Add(id, (int)amount);
             }
             else
             {
-                ItemDic[id]+=amount;
+                ItemDic[id] += (int)amount;
             }
         }
         GetItem?.Invoke();
@@ -491,11 +493,11 @@ public partial class PlayerManager : Node, ISaveable
         // 加成由 stateArray 单独存档，读档后 getter 自动重新计算，避免重复叠加。
         return new Dictionary
         {
-            { "hp", hpBase},
-            { "maxHp", maxHpBase},
-            { "strength", strengthBase},
-            { "agility", agilityBase},
-            { "intelligence", intelligenceBase},
+            { "hpBase", hpBase},
+            { "maxHpBase", maxHpBase},
+            { "strengthBase", strengthBase},
+            { "agilityBase", agilityBase},
+            { "intelligenceBase", intelligenceBase},
             { "strength_exp", strength_exp},
             { "agility_exp", agility_exp},
             { "intelligence_exp", intelligence_exp},
@@ -527,8 +529,8 @@ public partial class PlayerManager : Node, ISaveable
     {
         // 直接赋值私有 base 字段（属性 set 是空实现，赋给属性会失效）。
         // key 与 GetSaveData 一一对应；缺字段时回退到字段默认初始值。
-        hpBase              = data.ContainsKey("hpBase")              ? (int)data["hpBase"]              : 100;
-        maxHpBase           = data.ContainsKey("maxHpBase")           ? (int)data["maxHpBase"]           : 100;
+        hpBase              = Tools.LoadDouble(data, "hpBase",        100);
+        maxHpBase           = Tools.LoadDouble(data, "maxHpBase",     100);
         strengthBase        = data.ContainsKey("strengthBase")        ? (int)data["strengthBase"]        : 10;
         agilityBase         = data.ContainsKey("agilityBase")         ? (int)data["agilityBase"]         : 10;
         intelligenceBase    = data.ContainsKey("intelligenceBase")    ? (int)data["intelligenceBase"]    : 10;
@@ -536,8 +538,8 @@ public partial class PlayerManager : Node, ISaveable
         agility_exp         = data.ContainsKey("agility_exp")         ? (int)data["agility_exp"]         : 0;
         intelligence_exp    = data.ContainsKey("intelligence_exp")    ? (int)data["intelligence_exp"]    : 0;
         exp_acq_rate        = data.ContainsKey("exp_acq_rate")        ? (int)data["exp_acq_rate"]        : 1.0;
-        armor               = data.ContainsKey("armor")               ? (int)data["armor"]               : 0;
-        max_armor           = data.ContainsKey("max_armor")           ? (int)data["max_armor"]           : 100;
+        armor               = Tools.LoadDouble(data, "armor",         0);
+        max_armor           = Tools.LoadDouble(data, "max_armor",     100);
         attack_limb_weight  = data.ContainsKey("attack_limb_weight")  ? (int)data["attack_limb_weight"]  : 100;
         attack_head_weight  = data.ContainsKey("attack_head_weight")  ? (int)data["attack_head_weight"]  : 100;
         attack_body_weight  = data.ContainsKey("attack_body_weight")  ? (int)data["attack_body_weight"]  : 100;

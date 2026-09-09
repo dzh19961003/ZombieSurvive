@@ -24,7 +24,7 @@ public partial class BattleManager : Control
     [Export] public Label handProp;
     [Export] public Label bodyProp;
     [Export] public Label headProp;
-    [Export] public Label handDMG;
+    [Export] public Label armDMG;
     [Export] public Label bodyDMG;
     [Export] public Label headDMG;
 
@@ -53,6 +53,7 @@ public partial class BattleManager : Control
     public Dictionary<int, BattleEffectBase> enemyEffectDic = new Dictionary<int, BattleEffectBase>();//敌人不可重复的效果实例
     public List<BattleEffectBase> playerAllEffects = new List<BattleEffectBase>();//玩家所有效果实例
     public List<BattleEffectBase> enemyAllEffects = new List<BattleEffectBase>();//敌人所有效果实例
+    private Dictionary<string, ColorRect> atkMaskDic = new Dictionary<string, ColorRect>();//攻击按钮的变暗遮罩
 
     private BattleState battleState = BattleState.Moving;
     enum BattleState
@@ -72,16 +73,16 @@ public partial class BattleManager : Control
             return;
         }
         Instance = this;
-        //按钮绑定
-        randomBtn.Pressed += () => { Attack(battleInfo.character); };
-        handBtn.Pressed += () => { Attack(battleInfo.character); };
-        bodyBtn.Pressed += () => { Attack(battleInfo.character); };
-        headBtn.Pressed += () => { Attack(battleInfo.character); };
+        //按钮绑定（最后一个参数是指定攻击部位，不传就按权重随机）
+        randomBtn.Pressed += () => { Attack(battleInfo.character, ""); };
+        handBtn.Pressed += () => { Attack(battleInfo.character, "arm"); };
+        bodyBtn.Pressed += () => { Attack(battleInfo.character, "body"); };
+        headBtn.Pressed += () => { Attack(battleInfo.character, "head"); };
 
         //进度条初始化
         positionBiasY = playerHead.Size.Y;
         positionBiasX = playerHead.Size.X / 2;
-        NormalizedSpeed(5, 2);
+        NormalizedSpeed(2, 5);
 
         //战斗逻辑
         BattleStart();
@@ -139,17 +140,30 @@ public partial class BattleManager : Control
     }
     public void RefreshUI()
     {
+        //刷新玩家相关
         int weightSum = pm.Attack_limb_weight + pm.Attack_body_weight + pm.Attack_head_weight;
         handProp.Text = (int)Math.Round((double)pm.Attack_limb_weight / weightSum * 100) + "%";
         headProp.Text = (int)Math.Round((double)pm.Attack_head_weight / weightSum * 100) + "%";
         bodyProp.Text = (int)Math.Round((double)pm.Attack_body_weight / weightSum * 100) + "%";
+        battleInfo.armProp = (int)Math.Round((double)pm.Attack_limb_weight / weightSum * 100);
+        battleInfo.headProp = (int)Math.Round((double)pm.Attack_head_weight / weightSum * 100);
+        battleInfo.bodyProp = (int)Math.Round((double)pm.Attack_body_weight / weightSum * 100);
+        bodyDMG.Text = "伤害:" + battleInfo.bodyDamage;
+        headDMG.Text = "伤害:" + battleInfo.headDamage;
+        armDMG.Text = "伤害:" + battleInfo.armDamage;
+        //血量和护甲保留一位小数显示，整数时不会多出 .0
         playerHP.Value = pm.Hp;
         playerHP.MaxValue = pm.MaxHp;
-        playerHPLabel.Text = pm.Hp + "/" + pm.MaxHp;
+        playerHPLabel.Text = Math.Round(pm.Hp, 1) + "/" + Math.Round(pm.MaxHp, 1);
         playerArmor.Value = pm.Armor;
         playerArmor.MaxValue = pm.MaxArmor;
-        playerArmorLabel.Text = pm.Armor + "/" + pm.MaxArmor;
+        playerArmorLabel.Text = Math.Round(pm.Armor, 1) + "/" + Math.Round(pm.MaxArmor, 1);
+
+        //刷新敌人相关      
+        battleEnemy.RefreshUI();
     }
+
+    #region 战斗逻辑
     private void PlayerTurn()
     {
         GD.Print("玩家行动");
@@ -159,6 +173,7 @@ public partial class BattleManager : Control
     {
         GD.Print("敌人行动");
         TurnStart("enemy");
+        Attack(battleInfo.character);
     }
 
     //战斗流程
@@ -180,42 +195,149 @@ public partial class BattleManager : Control
         OnTurnStart?.Invoke(character);
         battleInfo.character = character;
     }
-    //3.进行攻击
-    private void Attack(string attacker)
+    //3.进行攻击（targetPart 指定部位，不传就随机攻击）
+    private void Attack(string attacker, string targetPart = "")
     {
-        string bodyPart = "head";
-   
+        GD.Print("攻击");
+        //敌人回合：自动攻击玩家，先扣护甲，护甲不够再扣血
         if (attacker == "enemy")
         {
-
+            EnemyAttackPlayer();
+            //敌人回合没有命中部位，清空避免把上一次的部位拿来挂状态
+            battleInfo.bodyPart = "";
+            OnDamageBuff?.Invoke();
+            OnDamageDealed?.Invoke();
+            OnStatusDealed?.Invoke();
+            return;
         }
-        else if (attacker == "player")
+        if (attacker != "player")
         {
-            int part = Tools.GetRandomNumber(new List<int>() { 1, 2, 3 }, new List<int>() { int.Parse(headProp.Text), int.Parse(bodyProp.Text), int.Parse(handProp.Text) });
-            switch (part)
-            {
-                case 1:
-                    bodyPart = "head";
-                    break;
-                case 2:
-                    bodyPart = "body";
-                    break;
-                case 3:
-                    bodyPart = "arm";
-                    break;
-                default:
-                    break;
-            }
-            battleInfo.bodyPart = bodyPart;
-            battleEnemy?.BeHit(bodyPart, battleInfo.Damage);
+            return;
         }
-        //先触发结算伤害的效果
-        OnDamageDealed.Invoke();
-        //再结算施加状态的效果
-        OnStatusDealed.Invoke();
+        if (targetPart == "")
+        {
+            //随机攻击：无视已经打没的部位，在剩下的部位里随机
+            targetPart = GetRandomPart();
+        }
+        else if (!battleEnemy.HasAlivePart(targetPart))
+        {
+            //指定部位攻击：部位已经打没了就打不成（按钮此时应该已经被屏蔽）
+            GD.Print(targetPart + "已经没有可攻击的肢体，本次攻击无效");
+            return;
+        }
+        if (targetPart == "")
+        {
+            GD.Print("敌人已经没有可攻击的部位了");
+            return;
+        }
+        //记录本次命中的部位
+        battleInfo.bodyPart = targetPart;
+
+        //随机选中该部位的一个存活肢体
+        if (!battleEnemy.BeHit(targetPart))
+        {
+            return;
+        }
+        //结算伤害后的效果
+        OnDamageDealed?.Invoke();
+        //结算施加状态的效果
+        OnStatusDealed?.Invoke();
+    }
+    //4.回合结束
+    //5.战斗结束
+    public void BattleEnd()
+    {
+        OnBattleEnd?.Invoke();
     }
 
 
+    //战斗相关方法
+    //启用/禁用某个部位的攻击按钮，禁用时盖一层黑色半透明遮罩
+    public void SetAttackBtnAble(string part, bool able)
+    {
+        Button btn = GetAttackBtn(part);
+        if (btn == null)
+        {
+            return;
+        }
+        btn.Disabled = !able;
+        if (!atkMaskDic.ContainsKey(part))
+        {
+            atkMaskDic[part] = CreateBlackMask(btn.GetParent<Control>());
+        }
+        atkMaskDic[part].Visible = !able;
+    }
+    //按部位取对应的攻击按钮
+    private Button GetAttackBtn(string part)
+    {
+        switch (part)
+        {
+            case "arm":
+                return handBtn;
+            case "body":
+                return bodyBtn;
+            case "head":
+                return headBtn;
+            default:
+                return null;
+        }
+    }
+    //在一个节点上生成一个黑色半透明遮罩，默认隐藏
+    private ColorRect CreateBlackMask(Control parent)
+    {
+        ColorRect mask = new ColorRect();
+        mask.Color = new Color(0, 0, 0, 0.6f);
+        mask.SetAnchorsPreset(Control.LayoutPreset.FullRect);
+        mask.MouseFilter = Control.MouseFilterEnum.Ignore;
+        mask.Visible = false;
+        parent.AddChild(mask);
+        return mask;
+    }
+   
+    //敌人攻击玩家：优先扣护甲，护甲不足的部分才扣血
+    private void EnemyAttackPlayer()
+    {
+        //伤害保留一位小数，避免浮点尾巴
+        double damage = Math.Round(battleInfo.enemyDamage, 1);
+        double left = damage;
+        //先扣护甲
+        if (pm.Armor > 0)
+        {
+            double armorBefore = pm.Armor;
+            pm.AddItem(10010, -Math.Round(Math.Min(pm.Armor, left), 1));
+            //按实际扣掉的护甲算，避免护甲带状态加成时被多扣
+            double realAbsorb = Math.Max(0, Math.Round(armorBefore - pm.Armor, 1));
+            left = Math.Round(left - realAbsorb, 1);
+            GD.Print("敌人攻击" + damage + "，护甲抵挡" + realAbsorb);
+        }
+        else
+        {
+            GD.Print("敌人攻击" + damage + "，没有护甲");
+        }
+        //护甲不够的部分扣血
+        if (left > 0)
+        {
+            pm.AddItem(10001, -left);
+            GD.Print("玩家扣血" + left + "，剩余生命" + pm.Hp);
+        }
+        RefreshUI();
+    }
+    //按权重随机一个还有可用肢体的部位
+    private string GetRandomPart()
+    {
+        List<string> parts = new List<string>();
+        List<int> weights = new List<int>();
+        if (battleEnemy.HasAlivePart("head")) { parts.Add("head"); weights.Add(battleInfo.headWeight); }
+        if (battleEnemy.HasAlivePart("body")) { parts.Add("body"); weights.Add(battleInfo.bodyWeight); }
+        if (battleEnemy.HasAlivePart("arm")) { parts.Add("arm"); weights.Add(battleInfo.armWeight); }
+        if (parts.Count == 0)
+        {
+            return "";
+        }
+        //拿到的是部位在列表里的下标
+        int index = Tools.GetRandomNumber(new List<int>() { 0, 1, 2 }, weights);
+        return parts[index];
+    }
     //战斗所有初始效果装填
     public List<BattleEffectBase> LoadBattleEffect(List<int> battleEffects, string character)
     {
@@ -244,6 +366,8 @@ public partial class BattleManager : Control
             case "DamageBonus":
                 DamageBonus damageBonus = new DamageBonus();
                 battleEffectBase = damageBonus;
+                damageBonus.bodyPart = battleEffect.Part;
+                damageBonus.amount = battleEffect.Amount;
                 break;
             case "WeightBonus":
                 WeightBonus weightBonus = new WeightBonus();
@@ -306,4 +430,5 @@ public partial class BattleManager : Control
             playerAllEffects.Add(newEffect);
         }
     }
+    #endregion 
 }

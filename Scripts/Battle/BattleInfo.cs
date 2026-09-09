@@ -1,6 +1,5 @@
 using Godot;
 using MyProject;
-using System;
 using System.Collections.Generic;
 
 public class BattleInfo
@@ -12,13 +11,20 @@ public class BattleInfo
     public int enemyID;                 //敌人ID
     public string bodyPart;             //攻击后取得的身体部位
     public double baseDamage;           //基础武器伤害
-    public double Damage = 0;           //造成的最终伤害
+    public double damage = 0;           //造成的最终伤害
     public string character = "player"; //当前角色
     public List<int> playerEffects = new List<int>();//玩家所有效果
     public Dictionary<string, int> playerStatusNumDic = new Dictionary<string, int>();//拥有的效果层数
     public int bodyWeight = 0;          //身体权重
     public int headWeight = 0;          //头部权重          
     public int armWeight = 0;           //手臂权重
+    public int armProp = 0;         //身体概率
+    public int headProp = 0;         //头部概率 
+    public int bodyProp = 0;         //手臂概率
+    public double bodyDamage = 0;       //对身体伤害
+    public double headDamage = 0;       //对头部伤害 
+    public double armDamage = 0;        //对手臂伤害
+    public double enemyDamage=8.2;          //敌人基础攻击
 
     public BattleInfo(int ID)
     {
@@ -26,6 +32,9 @@ public class BattleInfo
         bodyWeight = pm.Attack_body_weight;
         headWeight = pm.Attack_head_weight;
         armWeight = pm.Attack_limb_weight;
+        bodyDamage = pm.Strength;
+        headDamage = pm.Strength;
+        armDamage = pm.Strength;
         enemyID = ID;
     }
     //加载玩家装备及天赋效果
