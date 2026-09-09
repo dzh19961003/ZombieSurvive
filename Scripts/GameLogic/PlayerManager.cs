@@ -67,6 +67,7 @@ public partial class PlayerManager : Node, ISaveable
     private int headTime = 6;
     //工作台等级
     private int _workStationLevel = 1;
+    private int _trainLevel = 1;
     //制作等级
     private int playerMakeLevel=0;
     public int Hp {get{return hpBase + GetAddition(10001);}private set{}}
@@ -241,10 +242,15 @@ public partial class PlayerManager : Node, ISaveable
     }
 
     public int WorkStationLevel => _workStationLevel;
+    public int TrainLevel => _trainLevel;
     public void SetWorkStationLevel(int level)
     {
         _workStationLevel = Mathf.Max(1, level);
-        //等级变化时通知UI刷新
+        GetItem?.Invoke();
+    }
+    public void SetTrainLevel(int level)
+    {
+        _trainLevel = Mathf.Max(1, level);
         GetItem?.Invoke();
     }
 

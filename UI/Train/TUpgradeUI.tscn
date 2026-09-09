@@ -8,12 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://bwawwv5xw4hp7" path="res://Assets/Images/Items/tools_icon.png" id="6_14rq7"]
 [ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="7_7ny1q"]
 [ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="8_e8evb"]
+[ext_resource type="Script" uid="uid://bb4nslrhvuhqr" path="res://Scripts/UI/Train/TUpgradeUI.cs" id="9_script"]
 
-[node name="TUpgradeUi" type="Control" unique_id=1304517305]
+[node name="TUpgradeUi" type="Control" unique_id=1304517305 node_paths=PackedStringArray("upgrade")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 865.0
 offset_bottom = 1424.0
+script = ExtResource("9_script")
+upgrade = NodePath("UpgradeBtn")
 
 [node name="GradeTitle" type="Label" parent="." unique_id=463637095]
 layout_mode = 0

@@ -6,15 +6,11 @@ using MyProject;
 public partial class TUpgradeUI : Control
 {
 	[Export] Button upgrade;
-
-	
 	private const int RunningmachineUnlockLevel = 2;
 	private const int BookshelfUnlockLevel = 3;
-	//锁定时眼色
+	private const int MaxLevel = 5;
 	private static readonly Color LockedFunColor = new(0.5958281f, 0.5958281f, 0.5958281f, 1f);
 
-
-	// 当前自律区等级
 	private int currentLevel = 1;
 
 	private Label _gradeTitle;
@@ -47,10 +43,11 @@ public partial class TUpgradeUI : Control
 			GetNode<TextureRect>("UpgradeRequ/TextureRect2"),
 			GetNode<TextureRect>("UpgradeRequ/TextureRect3")
 		};
-		_runningmachineDesc      = GetNode<Label>("ExtraFun/ExtraFunDescription");
-		_bookshelfDesc = GetNode<Label>("ExtraFun/ExtraFunDescription2");
-		_runningmachineLock      = GetNode<TextureRect>("ExtraFun/Lock2");
-		_bookshelfLock = GetNode<TextureRect>("ExtraFun/Lock");
+		//额外功能
+		_runningmachineDesc = GetNode<Label>("ExtraFun/ExtraFunDescription");
+		_bookshelfDesc      = GetNode<Label>("ExtraFun/ExtraFunDescription2");
+		_runningmachineLock = GetNode<TextureRect>("ExtraFun/Lock2");
+		_bookshelfLock      = GetNode<TextureRect>("ExtraFun/Lock");
 
 		if (upgrade != null)
 		{
@@ -73,6 +70,7 @@ public partial class TUpgradeUI : Control
 	{
 		if (PlayerManager.Instance == null || ConfigManager.Instance == null)
 		{
+			GD.PrintErr("[TUpgradeUI] PlayerManager 或 ConfigManager 未就绪");
 			return;
 		}
 		PlayerManager.Instance.GetItem += OnPlayerDataChanged;
@@ -84,41 +82,63 @@ public partial class TUpgradeUI : Control
 		CallDeferred(nameof(RefreshDisplay));
 	}
 
-	private RoofWorkstation FindUpgradeConfig()
+	//当前等级配置
+	private RoofTrain FindUpgradeConfig()
 	{
-		var list = ConfigManager.Instance?.roofWorkstationList;
+		var list = ConfigManager.Instance?.roofTrainList;
 		if (list == null) return null;
 		return list.FirstOrDefault(r => r.Level == currentLevel);
+	}
+
+	//下一等级配置
+	private RoofTrain FindNextUpgradeConfig()
+	{
+		var list = ConfigManager.Instance?.roofTrainList;
+		if (list == null) return null;
+		return list.FirstOrDefault(r => r.Level == currentLevel + 1);
 	}
 
 	private void RefreshDisplay()
 	{
 		if (PlayerManager.Instance == null || ConfigManager.Instance == null) return;
 
-		currentLevel = PlayerManager.Instance.WorkStationLevel;
+		currentLevel = PlayerManager.Instance.TrainLevel;
 		//额外功能解锁状态展示
-		
-	
-		string levelText = $"等级{currentLevel}";
+		RefreshExtraFun();
 
+		string levelText = $"等级{currentLevel}";
 		if (_gradeTitle != null) _gradeTitle.Text = levelText;
-		if (_expELevelValue != null) _expELevelValue.Text = levelText;
-		
+
 		var cfg = FindUpgradeConfig();
-		if (currentLevel==5)
+		var nextCfg = FindNextUpgradeConfig();
+
+		// 经验效率
+		if (_expELevelValue != null)
 		{
-			_expENextLevelValue.Visible=false;
+			_expELevelValue.Visible = true;
+			_expELevelValue.Text = cfg != null ? $"+{cfg.ExpAdd}%" : "+0%";
+		}
+
+		if (currentLevel >= MaxLevel)
+		{
+			if (_expENextLevelValue != null) _expENextLevelValue.Visible = false;
 			// 已达最高等级：清空需求并禁用按钮
 			for (int i = 0; i < _reqLabels.Length; i++)
-			{	
-				_reqIcons[i].Visible=false;
-				_reqLabels[i].Visible=false;
+			{
+				_reqIcons[i].Visible = false;
+				_reqLabels[i].Visible = false;
 			}
 			if (upgrade != null) upgrade.Icon = GD.Load<Texture2D>("res://Assets/Images/UI/button_cancel.png");
-			_maxTip.Visible=true;
+			_maxTip.Visible = true;
 			return;
 		}
 
+		if (_expENextLevelValue != null)
+		{
+			_expENextLevelValue.Visible = true;
+			_expENextLevelValue.Text = nextCfg != null ? $"+{nextCfg.ExpAdd}%" : "+0%";
+		}
+		_maxTip.Visible = false;
 		if (upgrade != null) upgrade.Disabled = false;
 
 		// 动态填充三个需求槽位
@@ -126,6 +146,8 @@ public partial class TUpgradeUI : Control
 		for (int i = 0; i < slotCount; i++)
 		{
 			if (_reqLabels[i] == null || _reqIcons[i] == null) continue;
+			_reqIcons[i].Visible = true;
+			_reqLabels[i].Visible = true;
 
 			int itemID = (cfg.ItemID != null && i < cfg.ItemID.Count) ? cfg.ItemID[i] : 0;
 			int need   = (cfg.ItemNum != null && i < cfg.ItemNum.Count) ? cfg.ItemNum[i] : 0;
@@ -138,7 +160,7 @@ public partial class TUpgradeUI : Control
 			bool insufficient;
 			if (itemID >= 10000)
 			{
-				
+
 				if (itemID == 10015)
 				{
 					insufficient = PlayerManager.Instance.BaseStamina < need;
@@ -166,20 +188,33 @@ public partial class TUpgradeUI : Control
 	}
 
 	//额外功能展示：等级不足显示锁图标且名称灰色，解锁后白色并隐藏锁图标
-	
+	private void RefreshExtraFun()
+	{
+		if (_runningmachineDesc == null || _bookshelfDesc == null) return;
+
+		bool runningmachineUnlocked = PlayerManager.Instance.TrainLevel >= RunningmachineUnlockLevel;
+		bool bookshelfUnlocked = PlayerManager.Instance.TrainLevel >= BookshelfUnlockLevel;
+
+		_runningmachineDesc.AddThemeColorOverride("font_color", runningmachineUnlocked ? Colors.White : LockedFunColor);
+		if (_runningmachineLock != null) _runningmachineLock.Visible = !runningmachineUnlocked;
+
+		_bookshelfDesc.AddThemeColorOverride("font_color", bookshelfUnlocked ? Colors.White : LockedFunColor);
+		if (_bookshelfLock != null) _bookshelfLock.Visible = !bookshelfUnlocked;
+	}
+
 	private void OnUpgradePressed()
 	{
 		if (PlayerManager.Instance == null || ConfigManager.Instance == null) return;
 
 		var cfg = FindUpgradeConfig();
 		if (cfg == null)
-		{	
-			UIManager.Instance.ShowCommonTips2("工作台已达最高等级，无法升级");
+		{
+			UIManager.Instance.ShowCommonTips2("自律区已达最高等级，无法升级");
 			return;
 		}
 
 		//校验所有材料是否充足
-		if (cfg.ItemID != null && cfg.ItemNum != null)
+		if (cfg.ItemID != null && cfg.ItemNum != null )
 		{
 			for (int i = 0; i < cfg.ItemID.Count; i++)
 			{
@@ -204,9 +239,6 @@ public partial class TUpgradeUI : Control
 
 				if (itemID < 10000)
 				{
-					// 物品：走 RemoveItem（钳制到 0，触发 GetItem 事件）
-
-					
 					PlayerManager.Instance.RemoveItem(itemID, need);
 				}
 			}
@@ -220,23 +252,20 @@ public partial class TUpgradeUI : Control
 				int need   = i < cfg.ItemNum.Count ? cfg.ItemNum[i] : 0;
 				if (itemID == 10015 && need > 0)
 				{
-					// 统一走 AddItem扣除
 					PlayerManager.Instance.AddItem(10015, -need);
-					break; // 体力只扣一次
+					break; 
 				}
 			}
 		}
 
 		currentLevel++;
-		
-		GD.Print($"[WsUpgradeUi] 升级成功，当前等级：{currentLevel}");
-		PlayerManager.Instance.SetWorkStationLevel(currentLevel);
+
+		GD.Print($"[TUpgradeUI] 升级成功，当前等级：{currentLevel}");
+		PlayerManager.Instance.SetTrainLevel(currentLevel);
 
 		RefreshDisplay();
 	}
-
-	// 判断 itemID:need 这一项是否充足（物品 / 属性统一入口）
-	// 判断材料充足
+	// 判断材料是否充足
 	private bool IsEnough(int itemID, int need)
 	{
 		if (PlayerManager.Instance == null) return false;
