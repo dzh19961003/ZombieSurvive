@@ -13,13 +13,13 @@ public partial class WeightBonus : BattleEffectBase
 		switch (bodyPart)
 		{
 			case "body":
-				pm.AddItem(10014, bonus);
-				break;
+                BattleManager.Instance.battleInfo.bodyWeight += amount;
+                break;
             case "arm":
-                pm.AddItem(10012, bonus);
+                BattleManager.Instance.battleInfo.armWeight += amount;
                 break;
             case "head":
-                pm.AddItem(10013, bonus);
+                BattleManager.Instance.battleInfo.headWeight += amount;
                 break;
             default:
 				break;

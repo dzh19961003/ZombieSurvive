@@ -9,7 +9,7 @@ public partial class BattleEffectBase : Node
     public string bodyPart;
     public string bonusBody;
     public string statusKind;
-    public int bonus;
+    public int amount;
     public int bonusBodyAmount;
 
     private bool isSubscribed = false;

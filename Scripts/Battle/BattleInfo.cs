@@ -16,10 +16,16 @@ public class BattleInfo
     public string character = "player"; //当前角色
     public List<int> playerEffects = new List<int>();//玩家所有效果
     public Dictionary<string, int> playerStatusNumDic = new Dictionary<string, int>();//拥有的效果层数
+    public int bodyWeight = 0;          //身体权重
+    public int headWeight = 0;          //头部权重          
+    public int armWeight = 0;           //手臂权重
 
     public BattleInfo(int ID)
     {
         LoadEquipEffect();
+        bodyWeight = pm.Attack_body_weight;
+        headWeight = pm.Attack_head_weight;
+        armWeight = pm.Attack_limb_weight;
         enemyID = ID;
     }
     //加载玩家装备及天赋效果

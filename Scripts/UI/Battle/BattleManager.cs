@@ -13,10 +13,10 @@ public partial class BattleManager : Control
     [Export] public TextureRect playerHead;
     [Export] public TextureRect enemyHead;
     [Export] public TextureRect mask;
-    [Export] public NinePatchRect randomBtn;
-    [Export] public NinePatchRect handBtn;
-    [Export] public NinePatchRect bodyBtn;
-    [Export] public NinePatchRect headBtn;
+    [Export] public Button randomBtn;
+    [Export] public Button handBtn;
+    [Export] public Button bodyBtn;
+    [Export] public Button headBtn;
     [Export] public TextureProgressBar playerHP;
     [Export] public Label playerHPLabel;
     [Export] public TextureProgressBar playerArmor;
@@ -64,6 +64,7 @@ public partial class BattleManager : Control
     }
     public override void _Ready()
     {
+        //设置单例
         if (Instance != null)
         {
             GD.PrintErr("[BattleManager] 单例已存在，重复创建！");
@@ -71,12 +72,20 @@ public partial class BattleManager : Control
             return;
         }
         Instance = this;
+        //按钮绑定
+        randomBtn.Pressed += () => { Attack(battleInfo.character); };
+        handBtn.Pressed += () => { Attack(battleInfo.character); };
+        bodyBtn.Pressed += () => { Attack(battleInfo.character); };
+        headBtn.Pressed += () => { Attack(battleInfo.character); };
 
-        BattleStart();
-
+        //进度条初始化
         positionBiasY = playerHead.Size.Y;
         positionBiasX = playerHead.Size.X / 2;
         NormalizedSpeed(5, 2);
+
+        //战斗逻辑
+        BattleStart();
+
     }
     public override void _Process(double delta)
     {
@@ -131,8 +140,8 @@ public partial class BattleManager : Control
     public void RefreshUI()
     {
         int weightSum = pm.Attack_limb_weight + pm.Attack_body_weight + pm.Attack_head_weight;
-        handProp.Text = (int)Math.Round((double)pm.Attack_limb_weight / weightSum * 100)  + "%";
-        headProp.Text = (int)Math.Round((double)pm.Attack_head_weight / weightSum * 100)  + "%";
+        handProp.Text = (int)Math.Round((double)pm.Attack_limb_weight / weightSum * 100) + "%";
+        headProp.Text = (int)Math.Round((double)pm.Attack_head_weight / weightSum * 100) + "%";
         bodyProp.Text = (int)Math.Round((double)pm.Attack_body_weight / weightSum * 100) + "%";
         playerHP.Value = pm.Hp;
         playerHP.MaxValue = pm.MaxHp;
@@ -169,10 +178,40 @@ public partial class BattleManager : Control
     private void TurnStart(string character)
     {
         OnTurnStart?.Invoke(character);
+        battleInfo.character = character;
     }
     //3.进行攻击
-    private void Attack()
+    private void Attack(string attacker)
     {
+        string bodyPart = "head";
+   
+        if (attacker == "enemy")
+        {
+
+        }
+        else if (attacker == "player")
+        {
+            int part = Tools.GetRandomNumber(new List<int>() { 1, 2, 3 }, new List<int>() { int.Parse(headProp.Text), int.Parse(bodyProp.Text), int.Parse(handProp.Text) });
+            switch (part)
+            {
+                case 1:
+                    bodyPart = "head";
+                    break;
+                case 2:
+                    bodyPart = "body";
+                    break;
+                case 3:
+                    bodyPart = "arm";
+                    break;
+                default:
+                    break;
+            }
+            battleInfo.bodyPart = bodyPart;
+            battleEnemy?.BeHit(bodyPart, battleInfo.Damage);
+        }
+        //先触发结算伤害的效果
+        OnDamageDealed.Invoke();
+        //再结算施加状态的效果
         OnStatusDealed.Invoke();
     }
 
@@ -210,7 +249,7 @@ public partial class BattleManager : Control
                 WeightBonus weightBonus = new WeightBonus();
                 battleEffectBase = weightBonus;
                 weightBonus.bodyPart = battleEffect.Part;
-                weightBonus.bonus = battleEffect.Amount;
+                weightBonus.amount = battleEffect.Amount;
                 break;
             case "ChargeBonus":
                 break;
@@ -220,7 +259,7 @@ public partial class BattleManager : Control
                 ApplyMultipleStatus applyMultipleStatus = new ApplyMultipleStatus();
                 battleEffectBase = applyMultipleStatus;
                 applyMultipleStatus.bodyPart = battleEffect.Part;
-                applyMultipleStatus.bonus = battleEffect.Amount;
+                applyMultipleStatus.amount = battleEffect.Amount;
                 applyMultipleStatus.statusKind = battleEffect.StatusKind;
                 applyMultipleStatus.bonusBody = battleEffect.BonusPart;
                 applyMultipleStatus.bonusBodyAmount = battleEffect.BonusAmount;

@@ -14,13 +14,13 @@ public partial class DamageBonus : BattleEffectBase
         switch (bodyPart)
         {
             case "body":
-                bm.bodyDMG.Text = "伤害:" + (bm.battleInfo.baseDamage) * (1 + bonus / 100.0);
+                bm.bodyDMG.Text = "伤害:" + (bm.battleInfo.baseDamage) * (1 + amount / 100.0);
                 break;
             case "head":
-                bm.headDMG.Text = "伤害:" + (bm.battleInfo.baseDamage) * (1 + bonus / 100.0);
+                bm.headDMG.Text = "伤害:" + (bm.battleInfo.baseDamage) * (1 + amount / 100.0);
                 break;
             case "arm":
-                bm.handDMG.Text = "伤害:" + (bm.battleInfo.baseDamage) * (1 + bonus / 100.0);
+                bm.handDMG.Text = "伤害:" + (bm.battleInfo.baseDamage) * (1 + amount / 100.0);
                 break;
             default:
                 break;

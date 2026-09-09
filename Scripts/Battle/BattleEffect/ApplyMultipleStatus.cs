@@ -19,9 +19,9 @@ public partial class ApplyMultipleStatus : BattleEffectBase
         //玩家直接在玩家上面加
         if (character == "enemy")
         {
-            if (!bm.battleInfo.playerStatusNumDic.TryAdd(statusKind, bonus))
+            if (!bm.battleInfo.playerStatusNumDic.TryAdd(statusKind, amount))
             {
-                bm.battleInfo.playerStatusNumDic[statusKind] += bonus;
+                bm.battleInfo.playerStatusNumDic[statusKind] += amount;
             }
         }
         //敌人给对应肢体加
@@ -36,16 +36,16 @@ public partial class ApplyMultipleStatus : BattleEffectBase
                     num = bm.battleEnemy.GetExsistPart("head", num);
                     if (bonusBody == "head")
                     {
-                        if (!bm.battleEnemy.headStatusDic[num].TryAdd(statusKind, bonus + bonusBodyAmount))
+                        if (!bm.battleEnemy.headStatusDic[num].TryAdd(statusKind, amount + bonusBodyAmount))
                         {
-                            bm.battleEnemy.headStatusDic[num][statusKind] += bonus + bonusBodyAmount;
+                            bm.battleEnemy.headStatusDic[num][statusKind] += amount + bonusBodyAmount;
                         }
                     }
                     else
                     {
-                        if (!bm.battleEnemy.headStatusDic[num].TryAdd(statusKind, bonus))
+                        if (!bm.battleEnemy.headStatusDic[num].TryAdd(statusKind, amount))
                         {
-                            bm.battleEnemy.headStatusDic[num][statusKind] += bonus;
+                            bm.battleEnemy.headStatusDic[num][statusKind] += amount;
                         }
                     }
                     break;
@@ -54,16 +54,16 @@ public partial class ApplyMultipleStatus : BattleEffectBase
                     num = bm.battleEnemy.GetExsistPart("body", num);
                     if (bonusBody == "body")
                     {
-                        if (!bm.battleEnemy.bodyStatusDic[num].TryAdd(statusKind, bonus + bonusBodyAmount))
+                        if (!bm.battleEnemy.bodyStatusDic[num].TryAdd(statusKind, amount + bonusBodyAmount))
                         {
-                            bm.battleEnemy.bodyStatusDic[num][statusKind] += bonus + bonusBodyAmount;
+                            bm.battleEnemy.bodyStatusDic[num][statusKind] += amount + bonusBodyAmount;
                         }
                     }
                     else
                     {
-                        if (!bm.battleEnemy.bodyStatusDic[num].TryAdd(statusKind, bonus))
+                        if (!bm.battleEnemy.bodyStatusDic[num].TryAdd(statusKind, amount))
                         {
-                            bm.battleEnemy.bodyStatusDic[num][statusKind] += bonus;
+                            bm.battleEnemy.bodyStatusDic[num][statusKind] += amount;
                         }
                     }
                     break;
@@ -72,16 +72,16 @@ public partial class ApplyMultipleStatus : BattleEffectBase
                     num = bm.battleEnemy.GetExsistPart("arm", num);
                     if (bonusBody == "arm")
                     {
-                        if (!bm.battleEnemy.armStatusDic[num].TryAdd(statusKind, bonus + bonusBodyAmount))
+                        if (!bm.battleEnemy.armStatusDic[num].TryAdd(statusKind, amount + bonusBodyAmount))
                         {
-                            bm.battleEnemy.armStatusDic[num][statusKind] += bonus + bonusBodyAmount;
+                            bm.battleEnemy.armStatusDic[num][statusKind] += amount + bonusBodyAmount;
                         }
                     }
                     else
                     {
-                        if (!bm.battleEnemy.armStatusDic[num].TryAdd(statusKind, bonus))
+                        if (!bm.battleEnemy.armStatusDic[num].TryAdd(statusKind, amount))
                         {
-                            bm.battleEnemy.armStatusDic[num][statusKind] += bonus;
+                            bm.battleEnemy.armStatusDic[num][statusKind] += amount;
                         }
                     }
                     break;

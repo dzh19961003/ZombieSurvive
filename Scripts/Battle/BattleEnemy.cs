@@ -17,29 +17,33 @@ public partial class BattleEnemy : Node
     private int armNum;
     private double[] headHP;
     private double[] bodyHP;
-    private double[] armsHP;
+    private double[] armHP;
 
     public Dictionary<string, int>[] headStatusDic;
     public Dictionary<string, int>[] bodyStatusDic;
     public Dictionary<string, int>[] armStatusDic;
 
+    bool headAble = false;
+    bool bodyAble = false;
+    bool armAble = false;
+
     public List<int> enemyEffects;
-    private List<BattleEffectBase> enemyEffectBases = new List<BattleEffectBase>();     
+    private List<BattleEffectBase> enemyEffectBases = new List<BattleEffectBase>();
 
     public override void _Ready()
     {
-        enemyEffects=new List<int>();
+        enemyEffects = new List<int>();
     }
-    public void Initial(int enemyID) 
+    public void Initial(int enemyID)
     {
         //初始化各部位生命值
         headNum = ConfigManager.Instance.enemyDic[enemyID].HeadNum;
         bodyNum = ConfigManager.Instance.enemyDic[enemyID].BodyNum;
         armNum = ConfigManager.Instance.enemyDic[enemyID].ArmNum;
-       
+
         headHP = new double[headNum];
         bodyHP = new double[bodyNum];
-        armsHP = new double[armNum];
+        armHP = new double[armNum];
 
         //初始化各部位状态条
         headStatusDic = new Dictionary<string, int>[headNum];
@@ -48,18 +52,21 @@ public partial class BattleEnemy : Node
 
         for (int i = 0; i < headNum; i++)
         {
+            headStatusDic[i] = new Dictionary<string, int>();
             headHP[i] = ConfigManager.Instance.enemyDic[enemyID].HeadHP[i];
             headHPLabel[i].Text = headHP[i].ToString();
         }
         for (int i = 0; i < bodyNum; i++)
         {
+            bodyStatusDic[i] = new Dictionary<string, int>();
             bodyHP[i] = ConfigManager.Instance.enemyDic[enemyID].BodyHP[i];
             bodyHPLabel[i].Text = bodyHP[i].ToString();
         }
         for (int i = 0; i < armNum; i++)
         {
-            armsHP[i] = ConfigManager.Instance.enemyDic[enemyID].ArmHP[i];
-            handHPLabel[i].Text = armsHP[i].ToString();
+            armStatusDic[i] = new Dictionary<string, int>();
+            armHP[i] = ConfigManager.Instance.enemyDic[enemyID].ArmHP[i];
+            handHPLabel[i].Text = armHP[i].ToString();
         }
 
         //加入敌人效果
@@ -67,15 +74,36 @@ public partial class BattleEnemy : Node
         {
             enemyEffects.Add(item);
         }
-        enemyEffectBases = BattleManager.Instance.LoadBattleEffect(enemyEffects,"enemy");
+        enemyEffectBases = BattleManager.Instance.LoadBattleEffect(enemyEffects, "enemy");
     }
-    public void BeHit(int part,double dmg) 
+    //敌人挨打方法
+    public void BeHit(string part, double dmg)
     {
         BattleManager.Instance.RefreshUI();
+        int num = 0;
+        switch (part)
+        {
+            case "head":
+                //随机选择这个部位的其中一个，并判断是否血量为0，是就换一个
+                num = Random.Shared.Next(0, headStatusDic.Length);
+                num = GetExsistPart("head", num);
+                headHP[num] -= dmg;
+                break;
+            case "body":
+                num = Random.Shared.Next(0, bodyStatusDic.Length);
+                num = GetExsistPart("body", num);
+                bodyHP[num] -= dmg;
+                break;
+            case "arm":
+                num = Random.Shared.Next(0, armStatusDic.Length);
+                num = GetExsistPart("arm", num);
+                armHP[num] -= dmg;
+                break;
+            default:
+                break;
+        }
+        CheckBodyPart();
     }
-    //当攻击时，排除不可用部位
-    //public ....
-
     //当部位里的某一个肢体不可用时，选择另一个肢体
     public int GetExsistPart(string part, int num)
     {
@@ -114,15 +142,15 @@ public partial class BattleEnemy : Node
                 }
                 break;
             case "arm":
-                if (armsHP[num] != 0)
+                if (armHP[num] != 0)
                 {
                     return num;
                 }
                 else
                 {
-                    for (int i = 0; i < armsHP.Length; i++)
+                    for (int i = 0; i < armHP.Length; i++)
                     {
-                        if (armsHP[i] != 0)
+                        if (armHP[i] != 0)
                         {
                             return i;
                         }
@@ -131,5 +159,40 @@ public partial class BattleEnemy : Node
                 break;
         }
         return 0;
+    }
+    //当攻击后，排除不可用部位
+    public void CheckBodyPart()
+    {
+        double hp = 0;
+
+        //先看有哪些部位还可用
+        foreach (var item in headHP)
+        {
+            if (item > hp)
+            {
+                hp = item;
+            }
+        }
+        if (hp != 0) { headAble = true; hp = 0; }
+        foreach (var item in bodyHP)
+        {
+            if (item > hp)
+            {
+                hp = item;
+            }
+        }
+        if (hp != 0) { bodyAble = true; hp = 0; }
+        foreach (var item in armHP)
+        {
+            if (item > hp)
+            {
+                hp = item;
+            }
+        }
+        if (hp != 0) { armAble = true; hp = 0; }
+
+        if (!bodyAble) { BattleManager.Instance.battleInfo.bodyWeight = 0; }
+        if (!armAble) { BattleManager.Instance.battleInfo.armWeight = 0; }
+        if (!headAble) { BattleManager.Instance.battleInfo.headWeight = 0; }
     }
 }

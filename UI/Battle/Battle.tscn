@@ -34,10 +34,10 @@ script = ExtResource("1_tnt82")
 progressBar = NodePath("progress")
 playerHead = NodePath("player")
 enemyHead = NodePath("enemy")
-randomBtn = NodePath("PlayerBg/atk/randomAtk")
-handBtn = NodePath("PlayerBg/atk/handAtk")
-bodyBtn = NodePath("PlayerBg/atk/bodyAtk")
-headBtn = NodePath("PlayerBg/atk/headAtk")
+randomBtn = NodePath("PlayerBg/atk/randomAtk/Button")
+handBtn = NodePath("PlayerBg/atk/handAtk/Button")
+bodyBtn = NodePath("PlayerBg/atk/bodyAtk/Button")
+headBtn = NodePath("PlayerBg/atk/headAtk/Button")
 playerHP = NodePath("PlayerBg/hp")
 playerHPLabel = NodePath("PlayerBg/hp/num")
 playerArmor = NodePath("PlayerBg/armor")
@@ -212,6 +212,14 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 40
 text = "随机攻击"
 
+[node name="Button" type="Button" parent="PlayerBg/atk/randomAtk" unique_id=598893590]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 9.0
+offset_right = 227.0
+offset_bottom = 264.0
+flat = true
+
 [node name="handAtk" type="NinePatchRect" parent="PlayerBg/atk" unique_id=1776283763]
 custom_minimum_size = Vector2(235, 275)
 custom_maximum_size = Vector2(-1, 275)
@@ -245,6 +253,14 @@ theme_override_font_sizes/font_size = 28
 text = "伤害:15"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button" type="Button" parent="PlayerBg/atk/handAtk" unique_id=1860065287]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 9.0
+offset_right = 227.0
+offset_bottom = 264.0
+flat = true
 
 [node name="bodyAtk" type="NinePatchRect" parent="PlayerBg/atk" unique_id=1590309909]
 custom_minimum_size = Vector2(235, 275)
@@ -280,6 +296,14 @@ text = "伤害:15"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Button" type="Button" parent="PlayerBg/atk/bodyAtk" unique_id=1133386997]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 9.0
+offset_right = 227.0
+offset_bottom = 264.0
+flat = true
+
 [node name="headAtk" type="NinePatchRect" parent="PlayerBg/atk" unique_id=412597317]
 custom_minimum_size = Vector2(235, 275)
 custom_maximum_size = Vector2(-1, 275)
@@ -313,6 +337,14 @@ theme_override_font_sizes/font_size = 28
 text = "伤害:15"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button" type="Button" parent="PlayerBg/atk/headAtk" unique_id=1947973408]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 9.0
+offset_right = 227.0
+offset_bottom = 264.0
+flat = true
 
 [node name="prop" type="HBoxContainer" parent="PlayerBg" unique_id=1450618860]
 layout_mode = 0
