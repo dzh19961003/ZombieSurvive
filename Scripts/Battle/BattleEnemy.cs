@@ -272,11 +272,11 @@ public partial class BattleEnemy : Node
         if (!armAble) { BattleManager.Instance.battleInfo.armWeight = 0; }
         if (!headAble) { BattleManager.Instance.battleInfo.headWeight = 0; }
 
-        //四肢整体打没了：屏蔽对应的攻击按钮（单个肢体的遮罩由 RefreshUI 负责）
+        //四肢整体打没了：不用在这里单独屏蔽按钮，
+        //BeHit 末尾的 RefreshUI 会根据 HasAlivePart 自动禁用按钮并显示遮罩
         if (!armAble && !armMasked)
         {
             armMasked = true;
-            BattleManager.Instance.SetAttackBtnAble("arm", false);
             GD.Print("手臂已被打断，无法再攻击手臂");
         }
         //头或身体打没了，按设定敌人死亡

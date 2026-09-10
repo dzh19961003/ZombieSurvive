@@ -70,7 +70,10 @@ public partial class EventChooseBtn : CenterContainer
             else if (ConfigManager.Instance.exploreEventDic[exploreEvent.NextEvent[rank]].EventType == 202)
             {
                 exploreUI.BattleEventReady(3);
-                UIManager.Instance.CreateUI("res://UI/Battle/Battle.tscn");
+                var battleUI= UIManager.Instance.CreateUI("res://UI/Battle/Battle.tscn");
+                BattleManager battleManager = (BattleManager)battleUI;
+                battleManager.exploreUI = exploreUI;    //先准备好依赖
+                battleManager.StartBattle();            //再开战
             }
             //继续事件
             else

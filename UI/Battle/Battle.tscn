@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://colmv4fearh77" path="res://Assets/Images/UI/Battle/armer_icon.png" id="21_u4cla"]
 [ext_resource type="Texture2D" uid="uid://wdqclkpgrwfk" path="res://Assets/Images/UI/Battle/times_bg.png" id="22_k0prw"]
 
-[node name="Battle" type="Control" unique_id=981174782 node_paths=PackedStringArray("progressBar", "playerHead", "enemyHead", "randomBtn", "handBtn", "bodyBtn", "headBtn", "playerHP", "playerHPLabel", "playerArmor", "playerArmorLabel", "handProp", "bodyProp", "headProp", "armDMG", "bodyDMG", "headDMG")]
+[node name="Battle" type="Control" unique_id=981174782 node_paths=PackedStringArray("progressBar", "playerHead", "enemyHead", "armMask", "bodyMask", "headMask", "armCD", "bodyCD", "headCD", "armNum", "bodyNum", "headNum", "randomBtn", "handBtn", "bodyBtn", "headBtn", "playerHP", "playerHPLabel", "playerArmor", "playerArmorLabel", "handProp", "bodyProp", "headProp", "armDMG", "bodyDMG", "headDMG", "noArm")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,6 +34,15 @@ script = ExtResource("1_tnt82")
 progressBar = NodePath("progress")
 playerHead = NodePath("player")
 enemyHead = NodePath("enemy")
+armMask = NodePath("PlayerBg/masks/armMask")
+bodyMask = NodePath("PlayerBg/masks/bodyMask")
+headMask = NodePath("PlayerBg/masks/headMask")
+armCD = NodePath("PlayerBg/masks/armMask/num")
+bodyCD = NodePath("PlayerBg/masks/bodyMask/num")
+headCD = NodePath("PlayerBg/masks/headMask/num")
+armNum = NodePath("PlayerBg/atk/handAtk/num")
+bodyNum = NodePath("PlayerBg/atk/bodyAtk/num")
+headNum = NodePath("PlayerBg/atk/headAtk/num")
 randomBtn = NodePath("PlayerBg/atk/randomAtk/Button")
 handBtn = NodePath("PlayerBg/atk/handAtk/Button")
 bodyBtn = NodePath("PlayerBg/atk/bodyAtk/Button")
@@ -48,6 +57,7 @@ headProp = NodePath("PlayerBg/prop/headProp/name2")
 armDMG = NodePath("PlayerBg/atk/handAtk/dmg")
 bodyDMG = NodePath("PlayerBg/atk/bodyAtk/dmg")
 headDMG = NodePath("PlayerBg/atk/headAtk/dmg")
+noArm = NodePath("PlayerBg/masks/noArm")
 
 [node name="Control" type="ColorRect" parent="." unique_id=1809416838]
 propagate_maximum_size = true
@@ -254,6 +264,20 @@ text = "伤害:15"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="num" type="Label" parent="PlayerBg/atk/handAtk" unique_id=691671278]
+layout_mode = 0
+offset_left = 165.0
+offset_top = 13.0
+offset_right = 219.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "x2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Button" type="Button" parent="PlayerBg/atk/handAtk" unique_id=1860065287]
 layout_mode = 0
 offset_left = 11.0
@@ -304,6 +328,20 @@ offset_right = 227.0
 offset_bottom = 264.0
 flat = true
 
+[node name="num" type="Label" parent="PlayerBg/atk/bodyAtk" unique_id=1583231239]
+layout_mode = 0
+offset_left = 165.0
+offset_top = 13.0
+offset_right = 219.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "x2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="headAtk" type="NinePatchRect" parent="PlayerBg/atk" unique_id=412597317]
 custom_minimum_size = Vector2(235, 275)
 custom_maximum_size = Vector2(-1, 275)
@@ -345,6 +383,20 @@ offset_top = 9.0
 offset_right = 227.0
 offset_bottom = 264.0
 flat = true
+
+[node name="num" type="Label" parent="PlayerBg/atk/headAtk" unique_id=20133906]
+layout_mode = 0
+offset_left = 165.0
+offset_top = 13.0
+offset_right = 219.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "x2"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="prop" type="HBoxContainer" parent="PlayerBg" unique_id=1450618860]
 layout_mode = 0
@@ -607,3 +659,124 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 36
 text = "x2"
+
+[node name="masks" type="Control" parent="PlayerBg" unique_id=1220338905]
+anchors_preset = 0
+offset_left = 294.0
+offset_top = 269.0
+offset_right = 1035.0
+offset_bottom = 544.0
+mouse_filter = 2
+
+[node name="armMask" type="ColorRect" parent="PlayerBg/masks" unique_id=1687553561]
+layout_mode = 0
+offset_right = 235.0
+offset_bottom = 275.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.8235294)
+
+[node name="des" type="Label" parent="PlayerBg/masks/armMask" unique_id=847706917]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 69.0
+offset_right = 188.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 36
+text = "冷却回合"
+
+[node name="num" type="Label" parent="PlayerBg/masks/armMask" unique_id=152571118]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 116.0
+offset_right = 188.0
+offset_bottom = 183.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 48
+text = "2"
+horizontal_alignment = 1
+
+[node name="bodyMask" type="ColorRect" parent="PlayerBg/masks" unique_id=609072874]
+layout_mode = 0
+offset_left = 253.0
+offset_right = 488.0
+offset_bottom = 275.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.8235294)
+
+[node name="des" type="Label" parent="PlayerBg/masks/bodyMask" unique_id=1580326194]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 69.0
+offset_right = 193.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 36
+text = "冷却回合"
+
+[node name="num" type="Label" parent="PlayerBg/masks/bodyMask" unique_id=829399720]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 116.0
+offset_right = 193.0
+offset_bottom = 183.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 48
+text = "2"
+horizontal_alignment = 1
+
+[node name="headMask" type="ColorRect" parent="PlayerBg/masks" unique_id=217236356]
+layout_mode = 0
+offset_left = 506.0
+offset_right = 741.0
+offset_bottom = 275.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.8235294)
+
+[node name="des" type="Label" parent="PlayerBg/masks/headMask" unique_id=855162438]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 69.0
+offset_right = 189.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 36
+text = "冷却回合"
+
+[node name="num" type="Label" parent="PlayerBg/masks/headMask" unique_id=1787641153]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 116.0
+offset_right = 188.0
+offset_bottom = 183.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 48
+text = "2"
+horizontal_alignment = 1
+
+[node name="noArm" type="Label" parent="PlayerBg/masks" unique_id=200391682]
+visible = false
+layout_mode = 0
+offset_left = 54.0
+offset_top = 72.0
+offset_right = 183.0
+offset_bottom = 183.0
+theme_override_colors/font_color = Color(0.83137256, 0.7921569, 0.67058825, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 40
+text = "无可攻击手臂"
+autowrap_mode = 1

@@ -24,7 +24,11 @@ public partial class UIManager : Node
         if (Input.IsActionJustPressed("ui_select"))
         {
             GameManager.Instance.enemyID = 1;
-            UIManager.Instance.ShowUI("res://UI/Battle/Battle.tscn");
+            //测试入口：这里没有 exploreUI，战斗CD会用 BattleInfo 里的默认值
+            //注意用 CreateUI 而不是 ShowUI，因为 ShowUI 会缓存面板、第二次不再走初始化
+            var battleUI = UIManager.Instance.CreateUI("res://UI/Battle/Battle.tscn");
+            BattleManager battleManager = (BattleManager)battleUI;
+            battleManager.StartBattle();
         }
     }
 

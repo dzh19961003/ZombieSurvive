@@ -23,6 +23,13 @@ public partial class ExploreUI : Control
     //判断本次探索是否首次进入探索选择
     private bool firstExploreTimes = true;
 
+    //本次探索内，战斗相关需求字段
+    public int bodyCD = 2;           //身体冷却
+    public int headCD = 4;           //头部冷却
+    public int armCD = 2;            //手部冷却
+    public int bodyNum = 2;             //身体攻击当前储存量
+    public int headNum = 2;             //头部攻击当前储存量
+    public int armNum = 2;              //手部攻击当前储存量
     public override void _Ready()
     {
         TextTyper.OnTypeEnd += GetItem;
