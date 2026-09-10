@@ -128,5 +128,10 @@
 	"ID(int)": 10026,
 	"type(string)": "头部冷却",
 	"imageIcon(string)": "heart_icon.png"
+  },
+  {
+	"ID(int)": 10027,
+	"type(string)": "玩家体力",
+	"imageIcon(string)": "heart_icon.png"
   }
 ]

@@ -116,7 +116,7 @@ public partial class TUpgradeUI : Control
 		if (_expELevelValue != null)
 		{
 			_expELevelValue.Visible = true;
-			_expELevelValue.Text = cfg != null ? $"+{cfg.ExpAdd}%" : "+0%";
+			_expELevelValue.Text = cfg != null ? $"+{cfg.ExpAdd+PlayerManager.Instance.Exp_acq_rate*100:F2}%" : "+0%";
 		}
 
 		if (currentLevel >= MaxLevel)
@@ -136,7 +136,7 @@ public partial class TUpgradeUI : Control
 		if (_expENextLevelValue != null)
 		{
 			_expENextLevelValue.Visible = true;
-			_expENextLevelValue.Text = nextCfg != null ? $"+{nextCfg.ExpAdd}%" : "+0%";
+			_expENextLevelValue.Text = nextCfg != null ? $"+{nextCfg.ExpAdd+PlayerManager.Instance.Exp_acq_rate*100:F2}%" : "+0%";
 		}
 		_maxTip.Visible = false;
 		if (upgrade != null) upgrade.Disabled = false;

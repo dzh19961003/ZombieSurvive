@@ -65,11 +65,12 @@ public partial class PlayerManager : Node, ISaveable
     private int armTime = 3;
     private int bodyTime = 2;
     private int headTime = 6;
-    //工作台等级
+    //工作台等级    
     private int _workStationLevel = 1;
     private int _trainLevel = 1;
     //制作等级
     private int playerMakeLevel=0;
+    private int playerstaminacost=5;
     public double Hp {get{return hpBase + GetAddition(10001);}private set{}}
     public double MaxHp {get{return maxHpBase + GetAddition(10002);}private set{}}
     public int Strength {get{return strengthBase + GetAddition(10003);}private set{}}
@@ -96,7 +97,7 @@ public partial class PlayerManager : Node, ISaveable
     public int ArmTime { get { return armTime + GetAddition(10024); } private set { } }
     public int BodyTime { get { return bodyTime + GetAddition(10025); } private set { } }
     public int HeadTime { get { return headTime + GetAddition(10026); } private set { } }
-
+    public int Playerstaminacost { get { return playerstaminacost + GetAddition(10027); } private set { } }
     //增量计算
     public int GetAddition(int statetype)
         {
@@ -402,6 +403,10 @@ public partial class PlayerManager : Node, ISaveable
             case 10026:
                 headTime += (int)amount;
                 break;
+            case 10027:
+                playerstaminacost += (int)amount;
+                break;
+                
             default:
 
                 break;
@@ -479,6 +484,8 @@ public partial class PlayerManager : Node, ISaveable
             AddItem(10001, -15);
             AddItem(10002, 20);
             AddItem(10003, 10);
+            // 经验获取效率测试
+            AddItem(10009, 0.1);
             // GetState(2);
             AddItem(10019, -1);
             AddItem(10015,5);
@@ -522,7 +529,8 @@ public partial class PlayerManager : Node, ISaveable
             { "armTime", armTime},
             { "bodyTime", bodyTime},
             { "headTime", headTime},
-            {"playerMakeLevel",playerMakeLevel}
+            {"playerMakeLevel",playerMakeLevel},
+            {"playerstaminacost",playerstaminacost}
         };
     }
     public void LoadSaveData(Dictionary data)
@@ -558,6 +566,7 @@ public partial class PlayerManager : Node, ISaveable
         stateArray = data.ContainsKey("stateArray") ? (Array<int>)data["stateArray"]        : new Array<int> { };
         StateTimeDic = data.ContainsKey("stateTimeDic") ? (Dictionary<int, int>)data["stateTimeDic"] : new Dictionary<int, int> { };
         timePeriodsElapsed = data.ContainsKey("timePeriodsElapsed") ? (int)data["timePeriodsElapsed"] : 0;
+        playerstaminacost=data.ContainsKey("playerstaminacost") ? (int)data["playerstaminacost"] : 5;
         GD.Print($"[PlayerManager] 数据恢复完成：HP={Hp}/{MaxHp}, Str={Strength}({strength_exp}/{ExpMax}), Agi={Agility}({agility_exp}/{ExpMax}), Int={Intelligence}({intelligence_exp}/{ExpMax})");
     }
     #endregion
