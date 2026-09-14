@@ -1,13 +1,17 @@
 [gd_scene format=3 uid="uid://blrxeoopu15v3"]
 
 [ext_resource type="Script" uid="uid://bx2tcxx2eavkc" path="res://Scripts/UI/Explore/BuildingTips.cs" id="1_syilv"]
-[ext_resource type="Texture2D" uid="uid://d1nmp4fcid50p" path="res://Assets/Images/UI/main_panel_2.png" id="2_syilv"]
-[ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="3_1eeb5"]
-[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="4_d1361"]
-[ext_resource type="Texture2D" uid="uid://du76f06ps5fb1" path="res://Assets/Images/UI/button_confirm.png" id="5_mirmx"]
-[ext_resource type="Texture2D" uid="uid://bs7gg3xn14v6b" path="res://Assets/Images/UI/close_button.png" id="6_dfig5"]
+[ext_resource type="Texture2D" uid="uid://cc2vql0cmxevl" path="res://Assets/Images/UI/New/bg.png" id="2_syilv"]
+[ext_resource type="Texture2D" uid="uid://dts0y5aj1pyi6" path="res://Assets/Images/UI/New/bg_2.png" id="3_1eeb5"]
+[ext_resource type="Texture2D" uid="uid://cj3raeici7cqo" path="res://Assets/Images/UI/New/bg_title.png" id="3_pbixe"]
+[ext_resource type="Texture2D" uid="uid://nmxk4fyhq1i7" path="res://Assets/Images/UI/New/confirm_btn.png" id="5_1eeb5"]
+[ext_resource type="Texture2D" uid="uid://bs8sbck0de24s" path="res://Assets/Images/UI/New/bg_5.png" id="5_mirmx"]
+[ext_resource type="Texture2D" uid="uid://cbvpr30jh0v3n" path="res://Assets/Images/UI/New/equip_effectbg.png" id="6_mirmx"]
 [ext_resource type="PackedScene" uid="uid://db0xj71lp2hu1" path="res://UI/stars.tscn" id="7_cnc4k"]
+[ext_resource type="Texture2D" uid="uid://0j0un5rare6m" path="res://Assets/Images/UI/New/closeBtn_2.png" id="7_d1361"]
 [ext_resource type="PackedScene" uid="uid://c2ktxpmkvihar" path="res://UI/Explore/supplyStar.tscn" id="8_3fxkn"]
+[ext_resource type="Texture2D" uid="uid://whkb6ytl38ma" path="res://Assets/Images/UI/New/line_2.png" id="10_mirmx"]
+[ext_resource type="Texture2D" uid="uid://b1a2xtvys10i4" path="res://Assets/Images/UI/New/line_3.png" id="12_dfig5"]
 
 [node name="BuildingTips" type="Control" unique_id=1735430347 node_paths=PackedStringArray("nameLabel", "star", "desLabel", "confirmBtn", "cancelBtn", "foodStars", "medicStars", "equipStars", "materialStars")]
 layout_mode = 3
@@ -33,190 +37,292 @@ offset_right = 1080.0
 offset_bottom = 1920.0
 color = Color(0.0627451, 0.0627451, 0.0627451, 0.78431374)
 
-[node name="bg2" type="NinePatchRect" parent="." unique_id=1200595212]
+[node name="bg2" type="TextureRect" parent="." unique_id=1570874524]
 layout_mode = 0
-offset_left = 215.0
-offset_top = 289.0
-offset_right = 858.0
-offset_bottom = 1279.8281
+offset_left = 118.0
+offset_top = 338.0
+offset_right = 964.0
+offset_bottom = 1606.0
 texture = ExtResource("2_syilv")
-region_rect = Rect2(-1, 1, 975, 1713)
-patch_margin_left = 83
-patch_margin_top = 101
-patch_margin_right = 73
-patch_margin_bottom = 82
 
-[node name="titleBg" type="NinePatchRect" parent="." unique_id=1294859878]
+[node name="Bg2" type="TextureRect" parent="." unique_id=46709870]
 layout_mode = 0
-offset_left = 348.0
-offset_top = 334.0
-offset_right = 723.2793
-offset_bottom = 416.0
+offset_left = 161.0
+offset_top = 470.0
+offset_right = 921.0
+offset_bottom = 648.0
 texture = ExtResource("3_1eeb5")
-region_rect = Rect2(0, 58, 980, 1479)
+
+[node name="bg3" type="TextureRect" parent="." unique_id=1162045728]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 313.0
+offset_right = 774.0
+offset_bottom = 446.0
+texture = ExtResource("3_pbixe")
+
+[node name="Bg5" type="TextureRect" parent="." unique_id=1684621715]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 658.0
+offset_right = 922.0
+offset_bottom = 1028.0
+texture = ExtResource("5_mirmx")
 
 [node name="title" type="Label" parent="." unique_id=2004018582]
 layout_mode = 1
-offset_left = 367.0
-offset_top = 344.0
-offset_right = 704.0
-offset_bottom = 400.0
-theme_override_font_sizes/font_size = 40
+offset_left = 372.0
+offset_top = 339.0
+offset_right = 709.0
+offset_bottom = 422.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 60
 text = "实验小学"
 horizontal_alignment = 1
 
 [node name="difficult" type="Label" parent="." unique_id=1217472671]
 layout_mode = 0
-offset_left = 450.0
-offset_top = 438.0
-offset_right = 616.0
-offset_bottom = 483.0
-theme_override_font_sizes/font_size = 32
+offset_left = 448.0
+offset_top = 498.0
+offset_right = 614.0
+offset_bottom = 554.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 40
 text = "难度"
 horizontal_alignment = 1
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1293386819]
 layout_mode = 0
-offset_left = 247.0
-offset_top = 845.0
-offset_right = 827.0
-offset_bottom = 1058.0
-texture = ExtResource("4_d1361")
-region_rect = Rect2(10, 12, 108, 105)
-patch_margin_left = 21
-patch_margin_top = 12
-patch_margin_right = 19
-patch_margin_bottom = 20
+offset_left = 166.0
+offset_top = 1042.0
+offset_right = 921.0
+offset_bottom = 1267.0
+texture = ExtResource("6_mirmx")
+region_rect = Rect2(-2, 1, 681, 147)
+patch_margin_left = 60
+patch_margin_top = 53
+patch_margin_right = 65
+patch_margin_bottom = 46
 
 [node name="des" type="Label" parent="." unique_id=1034142510]
-custom_maximum_size = Vector2(550, 192)
 layout_mode = 0
-offset_left = 263.0
-offset_top = 856.0
-offset_right = 813.0
-offset_bottom = 1048.0
-theme_override_constants/line_spacing = -4
-theme_override_font_sizes/font_size = 32
+offset_left = 204.0
+offset_top = 1056.0
+offset_right = 899.0
+offset_bottom = 1254.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 40
 text = "描述文本描述文本描述文本描述文本描述文本描述文本描述文本"
+vertical_alignment = 1
 autowrap_mode = 1
 
 [node name="food" type="Label" parent="." unique_id=1805908730]
 layout_mode = 0
-offset_left = 301.0
-offset_top = 574.0
-offset_right = 398.0
-offset_bottom = 619.0
-theme_override_font_sizes/font_size = 32
+offset_left = 224.0
+offset_top = 704.0
+offset_right = 321.0
+offset_bottom = 759.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 40
 text = "食物"
 horizontal_alignment = 2
 
 [node name="medic" type="Label" parent="." unique_id=469075166]
 layout_mode = 0
-offset_left = 301.0
-offset_top = 634.0
-offset_right = 398.0
-offset_bottom = 679.0
-theme_override_font_sizes/font_size = 32
+offset_left = 224.0
+offset_top = 782.0
+offset_right = 321.0
+offset_bottom = 838.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 40
 text = "药品"
 horizontal_alignment = 2
 
 [node name="material" type="Label" parent="." unique_id=109017313]
 layout_mode = 0
-offset_left = 301.0
-offset_top = 694.0
-offset_right = 398.0
-offset_bottom = 739.0
-theme_override_font_sizes/font_size = 32
+offset_left = 224.0
+offset_top = 859.0
+offset_right = 321.0
+offset_bottom = 915.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 40
 text = "装备"
 horizontal_alignment = 2
 
 [node name="equip" type="Label" parent="." unique_id=1887901619]
 layout_mode = 0
-offset_left = 301.0
-offset_top = 754.0
-offset_right = 398.0
-offset_bottom = 799.0
-theme_override_font_sizes/font_size = 32
+offset_left = 224.0
+offset_top = 938.99994
+offset_right = 321.0
+offset_bottom = 993.99994
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 40
 text = "材料"
 horizontal_alignment = 2
 
 [node name="progress" type="Label" parent="." unique_id=528968317]
 layout_mode = 0
 offset_left = 299.0
-offset_top = 1072.0
+offset_top = 1301.0
 offset_right = 768.0
-offset_bottom = 1117.0
-theme_override_font_sizes/font_size = 32
+offset_bottom = 1357.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 40
 text = "探索进度:90%"
 horizontal_alignment = 1
 
 [node name="confirmButton" type="TextureButton" parent="." unique_id=1933237892]
 layout_mode = 0
-offset_left = 380.0
-offset_top = 1122.0
-offset_right = 697.9166
-offset_bottom = 1231.0
-texture_normal = ExtResource("5_mirmx")
-ignore_texture_size = true
-stretch_mode = 0
+offset_left = 219.0
+offset_top = 1398.0
+offset_right = 885.0
+offset_bottom = 1541.0
+texture_normal = ExtResource("5_1eeb5")
 
 [node name="EatLabel" type="Label" parent="confirmButton" unique_id=1711720869]
 layout_mode = 0
-offset_left = 61.0
-offset_top = 18.0
-offset_right = 251.0
-offset_bottom = 87.0
-theme_override_font_sizes/font_size = 40
+offset_left = 226.0
+offset_top = 27.0
+offset_right = 416.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 60
 text = "确定"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="closeBtn" type="Button" parent="." unique_id=1433686113]
 layout_mode = 0
-offset_left = 779.0
-offset_top = 262.0
-offset_right = 891.0
-offset_bottom = 374.0
-icon = ExtResource("6_dfig5")
+offset_left = 849.0
+offset_top = 326.0
+offset_right = 974.0
+offset_bottom = 451.0
+icon = ExtResource("7_d1361")
 flat = true
 expand_icon = true
 
 [node name="stars" parent="." unique_id=64213728 instance=ExtResource("7_cnc4k")]
 layout_mode = 0
-offset_left = 386.0
-offset_top = 477.0
-offset_right = 586.0
-offset_bottom = 527.0
+offset_left = 336.0
+offset_top = 550.0
+offset_right = 597.3334
+offset_bottom = 600.0
 scale = Vector2(1.5, 1.5)
 
 [node name="foodStars" parent="." unique_id=1220326612 instance=ExtResource("8_3fxkn")]
 layout_mode = 0
-offset_left = 445.0
-offset_top = 562.0
-offset_right = 645.0
-offset_bottom = 612.0
-scale = Vector2(1.5, 1.5)
+offset_left = 386.0
+offset_top = 694.00006
+offset_right = 650.0
+offset_bottom = 744.00006
+scale = Vector2(1.45, 1.45)
 
 [node name="medicStars" parent="." unique_id=1122747995 instance=ExtResource("8_3fxkn")]
 layout_mode = 0
-offset_left = 445.0
-offset_top = 621.0
-offset_right = 645.0
-offset_bottom = 671.0
-scale = Vector2(1.5, 1.5)
+offset_left = 386.00003
+offset_top = 773.00006
+offset_right = 650.0
+offset_bottom = 823.00006
+scale = Vector2(1.45, 1.45)
 
 [node name="equipStars" parent="." unique_id=1035698463 instance=ExtResource("8_3fxkn")]
 layout_mode = 0
-offset_left = 445.0
-offset_top = 679.0
-offset_right = 645.0
-offset_bottom = 729.0
-scale = Vector2(1.5, 1.5)
+offset_left = 386.0
+offset_top = 852.00006
+offset_right = 650.0
+offset_bottom = 902.00006
+scale = Vector2(1.45, 1.45)
 
 [node name="materialStars" parent="." unique_id=1375073496 instance=ExtResource("8_3fxkn")]
 layout_mode = 0
-offset_left = 445.0
-offset_top = 737.0
-offset_right = 645.0
-offset_bottom = 787.0
-scale = Vector2(1.5, 1.5)
+offset_left = 386.0
+offset_top = 930.0
+offset_right = 650.0
+offset_bottom = 980.0
+scale = Vector2(1.45, 1.45)
+
+[node name="Line" type="TextureRect" parent="." unique_id=1141146025]
+layout_mode = 0
+offset_left = 594.0
+offset_top = 524.0
+offset_right = 800.0
+offset_bottom = 532.0
+texture = ExtResource("10_mirmx")
+expand_mode = 1
+
+[node name="Line2" type="TextureRect" parent="." unique_id=677499356]
+layout_mode = 0
+offset_left = 267.0
+offset_top = 523.0
+offset_right = 473.0
+offset_bottom = 531.0
+texture = ExtResource("10_mirmx")
+expand_mode = 1
+
+[node name="Line7" type="TextureRect" parent="." unique_id=1188009288]
+layout_mode = 0
+offset_left = 243.0
+offset_top = 768.0
+offset_right = 854.0
+offset_bottom = 776.0
+texture = ExtResource("10_mirmx")
+expand_mode = 1
+
+[node name="Line8" type="TextureRect" parent="." unique_id=1359497156]
+layout_mode = 0
+offset_left = 243.0
+offset_top = 845.0
+offset_right = 854.0
+offset_bottom = 853.0
+texture = ExtResource("10_mirmx")
+expand_mode = 1
+
+[node name="Line9" type="TextureRect" parent="." unique_id=372031364]
+layout_mode = 0
+offset_left = 243.0
+offset_top = 922.0
+offset_right = 854.0
+offset_bottom = 930.0
+texture = ExtResource("10_mirmx")
+expand_mode = 1
+
+[node name="Line3" type="TextureRect" parent="." unique_id=1027882719]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 703.0
+offset_right = 362.0
+offset_bottom = 761.0
+texture = ExtResource("12_dfig5")
+
+[node name="Line4" type="TextureRect" parent="." unique_id=1279354427]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 782.0
+offset_right = 362.0
+offset_bottom = 840.0
+texture = ExtResource("12_dfig5")
+
+[node name="Line5" type="TextureRect" parent="." unique_id=1816070124]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 860.0
+offset_right = 362.0
+offset_bottom = 918.0
+texture = ExtResource("12_dfig5")
+
+[node name="Line6" type="TextureRect" parent="." unique_id=2015360403]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 936.0
+offset_right = 362.0
+offset_bottom = 994.0
+texture = ExtResource("12_dfig5")

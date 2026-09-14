@@ -60,10 +60,11 @@ patch_margin_bottom = 37
 
 [node name="Stars" parent="." unique_id=64213728 instance=ExtResource("3_lkx8u")]
 layout_mode = 0
-offset_left = 21.518843
-offset_top = 210.10088
-offset_right = 221.51884
-offset_bottom = 260.1009
+offset_left = 28.197104
+offset_top = 216.5545
+offset_right = 295.3276
+offset_bottom = 266.5545
+scale = Vector2(0.7, 0.7)
 
 [node name="tipsButton" type="Button" parent="." unique_id=1904847773]
 layout_mode = 0
