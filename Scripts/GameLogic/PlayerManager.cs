@@ -22,7 +22,7 @@ public partial class PlayerManager : Node, ISaveable
     // 三项属性对应的经验值。满 ExpMax 时，对应属性 +1 并清零。
     public const int ExpMax = 100;
     public const int MaxHunger = 3;
-    //hunger 值 → 状态表 ID 映射（对应 state.json 中 ID 5/6/7/8）
+   
     private static readonly int[] HungerStateIDs = new int[] { 5, 6, 7, 8 };
     //仓库
     private Dictionary<int, int> ItemDic = new Dictionary<int, int>();
@@ -65,9 +65,15 @@ public partial class PlayerManager : Node, ISaveable
     private int armTime = 3;
     private int bodyTime = 2;
     private int headTime = 6;
-    //工作台等级    
+    //工作台等级
     private int _workStationLevel = 1;
     private int _trainLevel = 1;
+   //每次锻炼消耗的玩家体力
+    private const int TrainStaminaCost = 5;        
+    //玩家体力基础满值
+    private const int PlayerStaminaBaseFull = 5;
+    //各家具今日已锻炼次数
+    private Dictionary<int, int> trainTimesDic = new Dictionary<int, int>();
     //制作等级
     private int playerMakeLevel=0;
     private int playerstaminacost=5;
@@ -187,7 +193,22 @@ public partial class PlayerManager : Node, ISaveable
             GD.Print($"[PlayerManager] 状态到期移除：ID={id} ({ConfigManager.Instance.stateDic[id].Name})");
         }
 
-        if (keys.Count > 0)
+        //每日锻炼次数清零，新的一天从 0/x 开始
+        bool trainTimesReset = trainTimesDic.Count > 0;
+        if (trainTimesReset)
+        {
+            trainTimesDic.Clear();
+            GD.Print("[PlayerManager] 每日锻炼次数已重置");
+        }
+
+        //玩家体力未满则补满
+        bool staminaRefilled = playerstaminacost < PlayerStaminaBaseFull;
+        if (staminaRefilled)
+        {
+            RefillPlayerStamina();
+        }
+
+        if (keys.Count > 0 || trainTimesReset || staminaRefilled)
         {
             GetItem?.Invoke();
             GetItem2?.Invoke(stateArray);
@@ -207,20 +228,20 @@ public partial class PlayerManager : Node, ISaveable
         return copy;
     }
 
-    //只读访问：返回指定ID物品的持有数量（不存在返回0），外部无法修改内部字典
+    
     public int GetItemCount(int id)
     {
         return ItemDic.ContainsKey(id) ? ItemDic[id] : 0;
     }
 
-    //判断是否持有足够数量的物品（默认数量1），校验资源时使用
+    //判断是否持有足够数量的物品
     public bool HasItem(int id, int amount = 1)
     {
         return GetItemCount(id) >= amount;
     }
 
     //移除物品：仅处理物品（id<=10000），属性增减请用 AddItem
-    //数量钳制到0，归0时清理键，触发 GetItem 事件
+    
     public void RemoveItem(int id, int amount)
     {
         if (id > 10000) return;
@@ -234,7 +255,7 @@ public partial class PlayerManager : Node, ISaveable
         GetItem?.Invoke();
     }
 
-    //只读访问：返回当前所有物品ID的副本列表，外部无法修改内部字典
+    //返回当前所有物品ID的副本列表
     public Array<int> GetAllItemIDs()
     {
         var copy = new Array<int>();
@@ -252,6 +273,83 @@ public partial class PlayerManager : Node, ISaveable
     public void SetTrainLevel(int level)
     {
         _trainLevel = Mathf.Max(1, level);
+        GetItem?.Invoke();
+    }
+
+
+    
+
+    //返回指定家具今日已锻炼次数
+    public int GetTrainTimes(int furnitureID)
+    {
+        return trainTimesDic.ContainsKey(furnitureID) ? trainTimesDic[furnitureID] : 0;
+    }
+
+    //记录一次锻炼
+    public void AddTrainTimes(int furnitureID)
+    {
+        trainTimesDic[furnitureID] = Mathf.Min(GetTrainTimes(furnitureID) + 1, Consts.maxTrainTimes);
+        GetItem?.Invoke();
+    }
+
+    //锻炼体力是否充足
+    public bool CanConsumeTrainStamina => Playerstaminacost >= TrainStaminaCost;
+
+    //每次锻炼消耗的玩家体力点
+    public int TrainStaminaCostValue => TrainStaminaCost;
+
+    public bool TryConsumeTrainStamina()
+    {
+        if (Playerstaminacost < TrainStaminaCost) return false;
+        AddItem(10027, -TrainStaminaCost);
+        return true;
+    }
+
+    public void RefillPlayerStamina()
+    {
+        playerstaminacost = PlayerStaminaBaseFull;
+        GetItem?.Invoke();
+    }
+
+    public enum TrainStatType
+    {
+        Strength = 0,
+        Agility = 1,
+        Intelligence = 2
+    }
+    public void GainTrainExp(TrainStatType type, int amount)
+    {
+        if (amount <= 0) return;
+        switch (type)
+        {
+            case TrainStatType.Strength:
+                strength_exp += amount;
+                while (strength_exp >= ExpMax)
+                {
+                    strength_exp -= ExpMax;
+                    AddItem(10003, 1);
+                    
+                }
+                break;
+            case TrainStatType.Agility:
+                agility_exp += amount;
+                while (agility_exp >= ExpMax)
+                {
+                    agility_exp -= ExpMax;
+                    AddItem(10004, 1);
+                    
+                }
+                break;
+            case TrainStatType.Intelligence:
+                intelligence_exp += amount;
+                while (intelligence_exp >= ExpMax)
+                {
+                    intelligence_exp -= ExpMax;
+                    AddItem(10005, 1);
+                    
+                }
+                break;
+        }
         GetItem?.Invoke();
     }
 
@@ -275,7 +373,7 @@ public partial class PlayerManager : Node, ISaveable
                 RemoveState(sid);
             }
         }
-        // 2. 施加当前 hunger 对应的状态（HungerStateIDs[0..3] 对应 hunger 0..3）
+        // 2. 施加当前 hunger 对应的状态
         int idx = Mathf.Clamp(hunger, 0, MaxHunger);
         int targetID = HungerStateIDs[idx];
         if (ConfigManager.Instance != null &&
@@ -289,15 +387,15 @@ public partial class PlayerManager : Node, ISaveable
             GD.PrintErr($"[PlayerManager] SyncHungerState 失败：状态表找不到 ID={targetID}");
         }
     }
-    //增加基础属性值（amount 支持小数，血量和护甲是 double）
+    //增加基础属性值
     public void AddItem(int id,double amount)
     {   
         //加属性
         if(id>10000){
-        switch ( id)
+        switch (id)
         {
             case 10001:
-                // 生命值钳制在 [0, MaxHp]（含状态加成的当前上限），保留一位小数
+                // 保留一位小数
                 hpBase = Math.Round(Math.Clamp(hpBase + amount, 0, MaxHp), 1);
                 break;
             case 10002:
@@ -331,7 +429,7 @@ public partial class PlayerManager : Node, ISaveable
                 {
                     agility_exp -= ExpMax;
                     AddItem(10004, 1);
-                    GD.Print($"[PlayerManager] 速度经验满，速度+1 → {Agility}");
+                   
                 }
                 break;
             case 10008:
@@ -341,7 +439,7 @@ public partial class PlayerManager : Node, ISaveable
                 {
                     intelligence_exp -= ExpMax;
                     AddItem(10005, 1);
-                    GD.Print($"[PlayerManager] 智力经验满，智力+1 → {Intelligence}");
+                    
                 }
                 break;
             case 10009:
@@ -404,7 +502,7 @@ public partial class PlayerManager : Node, ISaveable
                 headTime += (int)amount;
                 break;
             case 10027:
-                playerstaminacost += (int)amount;
+                playerstaminacost = Mathf.Clamp(playerstaminacost + (int)amount, 0, PlayerStaminaBaseFull);
                 break;
                 
             default:
@@ -415,7 +513,6 @@ public partial class PlayerManager : Node, ISaveable
         // 加物品
         else
         {
-            //物品数量是整数，amount 转成 int 再存
             if (!ItemDic.ContainsKey(id))
             {
                 ItemDic.Add(id, (int)amount);
@@ -439,9 +536,6 @@ public partial class PlayerManager : Node, ISaveable
         AddToGroup("Save");
         SaveManager.Instance.Save();
         SaveManager.Instance.Load();
-        // 读档后 hunger 已恢复，同步一次初始饥饿状态到 stateArray
-        // （否则初始 stateArray 里没有饱腹状态，PropertyUi 打开看不到）
-        // 用 CallDeferred：保证 ConfigManager 已初始化（SyncHungerState 内部要读表）
         CallDeferred(nameof(DeferredInitHungerState));
         GetState(2);
         //测试
@@ -484,8 +578,8 @@ public partial class PlayerManager : Node, ISaveable
             AddItem(10001, -15);
             AddItem(10002, 20);
             AddItem(10003, 10);
-            // 经验获取效率测试
-            AddItem(10009, 0.1);
+            // // 经验获取效率测试
+            // AddItem(10009, 0.1);
             // GetState(2);
             AddItem(10019, -1);
             AddItem(10015,5);
@@ -530,7 +624,8 @@ public partial class PlayerManager : Node, ISaveable
             { "bodyTime", bodyTime},
             { "headTime", headTime},
             {"playerMakeLevel",playerMakeLevel},
-            {"playerstaminacost",playerstaminacost}
+            {"playerstaminacost",playerstaminacost},
+            { "trainTimesDic", trainTimesDic}
         };
     }
     public void LoadSaveData(Dictionary data)
@@ -567,6 +662,7 @@ public partial class PlayerManager : Node, ISaveable
         StateTimeDic = data.ContainsKey("stateTimeDic") ? (Dictionary<int, int>)data["stateTimeDic"] : new Dictionary<int, int> { };
         timePeriodsElapsed = data.ContainsKey("timePeriodsElapsed") ? (int)data["timePeriodsElapsed"] : 0;
         playerstaminacost=data.ContainsKey("playerstaminacost") ? (int)data["playerstaminacost"] : 5;
+        trainTimesDic = data.ContainsKey("trainTimesDic") ? (Dictionary<int, int>)data["trainTimesDic"] : new Dictionary<int, int> { };
         GD.Print($"[PlayerManager] 数据恢复完成：HP={Hp}/{MaxHp}, Str={Strength}({strength_exp}/{ExpMax}), Agi={Agility}({agility_exp}/{ExpMax}), Int={Intelligence}({intelligence_exp}/{ExpMax})");
     }
     #endregion

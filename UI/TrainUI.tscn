@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="7_n3yvv"]
 [ext_resource type="Texture2D" uid="uid://cwqay0vk7x016" path="res://Assets/Images/UI/tab_inactive.png" id="8_usill"]
 
+
 [node name="TrainUI" type="Control" unique_id=541979178 node_paths=PackedStringArray("closeBtn", "upgrade", "exercise", "upgradePanel", "exercisePanel")]
 layout_mode = 3
 anchors_preset = 15
