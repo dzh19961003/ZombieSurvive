@@ -7,21 +7,23 @@
 [ext_resource type="Texture2D" uid="uid://c42gj00wry1vu" path="res://Assets/Images/Base/door.png" id="5_grk85"]
 [ext_resource type="Script" uid="uid://cvm1aqi8gvins" path="res://Scene/Train.cs" id="6_4pfap"]
 [ext_resource type="Script" uid="uid://c17xbx6y137dw" path="res://Scripts/Furnitures/Workstation.cs" id="6_p35hx"]
-[ext_resource type="Texture2D" uid="uid://cim3wacu5b7io" path="res://Assets/Images/Base/train_1.png" id="7_6x8je"]
+[ext_resource type="Texture2D" uid="uid://crv8mw37408g1" path="res://Assets/Images/Base/train.png" id="7_4pfap"]
 [ext_resource type="Texture2D" uid="uid://c4hprhefuuw0n" path="res://Assets/Images/Base/workspace.png" id="7_t37pv"]
 [ext_resource type="Script" uid="uid://b1sfv6exwkadr" path="res://Scripts/Tools/CameraDragger.cs" id="8_cam"]
+[ext_resource type="Texture2D" uid="uid://o4kjxnl8fdc7" path="res://Assets/Images/Base/plant.png" id="11_ma5s7"]
+[ext_resource type="Texture2D" uid="uid://bqddk5usmagv0" path="res://Assets/Images/Base/tent.png" id="12_2blmx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hu5nu"]
-size = Vector2(336, 333)
+size = Vector2(390, 363.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wvhbo"]
-size = Vector2(213.75, 281)
+size = Vector2(268, 322.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abi3o"]
-size = Vector2(184, 174)
+size = Vector2(366, 249)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifow5"]
-size = Vector2(364, 194)
+size = Vector2(325.5625, 272.39063)
 
 [node name="Base" type="Node2D" unique_id=1002387130]
 
@@ -32,53 +34,60 @@ texture = ExtResource("1_t37pv")
 centered = false
 
 [node name="Warehouse" type="Area2D" parent="." unique_id=559613430]
+position = Vector2(388, 416)
 script = ExtResource("2_0ce0i")
 
 [node name="Warehouse" type="Sprite2D" parent="Warehouse" unique_id=1906071549]
-position = Vector2(347, 485.5)
+position = Vector2(-11.499939, 20.00003)
+scale = Vector2(0.46289057, 0.46289063)
 texture = ExtResource("2_7lj54")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Warehouse" unique_id=462998327]
-position = Vector2(333, 469.5)
+position = Vector2(-32, 4.375)
 shape = SubResource("RectangleShape2D_hu5nu")
 
 [node name="Door" type="Area2D" parent="." unique_id=1354858665]
-position = Vector2(0, 70)
+position = Vector2(788, 451)
 script = ExtResource("4_vtgk1")
 
 [node name="Door" type="Sprite2D" parent="Door" unique_id=76872662]
-position = Vector2(749.0382, 426)
-scale = Vector2(0.76577413, 0.7261905)
+position = Vector2(-5.64423, -4.999988)
+scale = Vector2(0.3755423, 0.3669725)
 texture = ExtResource("5_grk85")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door" unique_id=404287943]
-position = Vector2(776.2882, 401)
+position = Vector2(16, -8.75)
 shape = SubResource("RectangleShape2D_wvhbo")
 
 [node name="Train" type="Area2D" parent="." unique_id=333867531]
-position = Vector2(0, 70)
+position = Vector2(787, 1533)
 script = ExtResource("6_4pfap")
 
 [node name="Train" type="Sprite2D" parent="Train" unique_id=1318569492]
-position = Vector2(324.5, 932.50006)
-scale = Vector2(0.8164063, 0.8007808)
-texture = ExtResource("7_6x8je")
+position = Vector2(12.6119375, -6.8989887)
+scale = Vector2(0.2722895, 0.34004116)
+texture = ExtResource("7_4pfap")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Train" unique_id=1262376385]
-position = Vector2(324, 934)
+position = Vector2(17, -1.5)
 shape = SubResource("RectangleShape2D_abi3o")
 
+[node name="Tent" type="Sprite2D" parent="." unique_id=1079472281]
+position = Vector2(551, 853)
+scale = Vector2(0.5336457, 0.5336457)
+texture = ExtResource("12_2blmx")
+
 [node name="Workstation" type="Area2D" parent="." unique_id=1116499795]
-position = Vector2(0, 1)
+position = Vector2(800, 1262)
 script = ExtResource("6_p35hx")
 
 [node name="Workstation" type="Sprite2D" parent="Workstation" unique_id=1460951273]
-position = Vector2(729, 792.12494)
-scale = Vector2(0.84375006, 0.8064282)
+position = Vector2(-5.9999776, -4.0000525)
+scale = Vector2(0.35812622, 0.34228513)
 texture = ExtResource("7_t37pv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Workstation" unique_id=241018785]
-position = Vector2(758, 787.12494)
+position = Vector2(-2.9064941, -9.139648)
 shape = SubResource("RectangleShape2D_ifow5")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=440899329]
@@ -87,3 +96,13 @@ limit_top = 0
 limit_right = 1080
 limit_bottom = 3119
 script = ExtResource("8_cam")
+
+[node name="Plant" type="Sprite2D" parent="." unique_id=1864073692]
+position = Vector2(294, 1294)
+scale = Vector2(0.35327134, 0.35327134)
+texture = ExtResource("11_ma5s7")
+
+[node name="Plant2" type="Sprite2D" parent="Plant" unique_id=330770684]
+position = Vector2(-16.984108, 495.3699)
+scale = Vector2(1.0406013, 1.0406013)
+texture = ExtResource("11_ma5s7")
