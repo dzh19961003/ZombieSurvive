@@ -30,6 +30,11 @@ project/assembly_name="MyProject"
 
 enabled=PackedStringArray("res://addons/JsonToClassGenerator/plugin.cfg")
 
+[gui]
+
+theme/default_font_hinting=2
+theme/custom_font="uid://c1sbqb3crvk3a"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

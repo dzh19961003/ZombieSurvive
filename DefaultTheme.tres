@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://dv4rv2psblt1o"]
+
+[ext_resource type="FontFile" uid="uid://4adkwrjg5yg7" path="res://Assets/Fonts/ZLabsRoundPix_16px_M_CN.ttf" id="1_ihngy"]
+
+[resource]
+default_font = ExtResource("1_ihngy")
+Label/fonts/font = ExtResource("1_ihngy")

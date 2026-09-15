@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://m8g4ncuhax6q" path="res://Scripts/UI/CommonTips.cs" id="1_3mtwp"]
 [ext_resource type="Texture2D" uid="uid://cc2vql0cmxevl" path="res://Assets/Images/UI/New/bg.png" id="2_2ujjx"]
 [ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="2_3mtwp"]
+[ext_resource type="Texture2D" uid="uid://cj3raeici7cqo" path="res://Assets/Images/UI/New/bg_title.png" id="4_2ujjx"]
 [ext_resource type="Texture2D" uid="uid://bludht7kno3s5" path="res://Assets/Images/UI/New/confirmBtn.png" id="4_loy11"]
 [ext_resource type="Texture2D" uid="uid://dr5fg8rkpso3g" path="res://Assets/Images/UI/New/cancelBtn.png" id="5_ghfco"]
-[ext_resource type="Texture2D" uid="uid://c73yxng4uea1l" path="res://Assets/Images/UI/New/closeBtn.png" id="6_3xo5q"]
+[ext_resource type="Texture2D" uid="uid://0j0un5rare6m" path="res://Assets/Images/UI/New/closeBtn_2.png" id="7_loy11"]
 
 [node name="CommonTips" type="Control" unique_id=1735430347 node_paths=PackedStringArray("closeBtn", "confirmBtn", "cancelBtn", "titleLabel", "tipsLabel")]
 layout_mode = 3
@@ -29,15 +30,15 @@ color = Color(0.0627451, 0.0627451, 0.0627451, 0.78431374)
 
 [node name="bg2" type="NinePatchRect" parent="." unique_id=1200595212]
 layout_mode = 0
-offset_left = 113.0
-offset_top = 288.0
-offset_right = 980.0
-offset_bottom = 1454.884
+offset_left = 107.0
+offset_top = 554.0
+offset_right = 974.0
+offset_bottom = 1288.0
 texture = ExtResource("2_2ujjx")
-patch_margin_left = 48
-patch_margin_top = 40
-patch_margin_right = 58
-patch_margin_bottom = 50
+patch_margin_left = 215
+patch_margin_top = 236
+patch_margin_right = 196
+patch_margin_bottom = 230
 
 [node name="titleBg" type="NinePatchRect" parent="." unique_id=1294859878]
 visible = false
@@ -49,12 +50,22 @@ offset_bottom = 504.0
 texture = ExtResource("2_3mtwp")
 region_rect = Rect2(0, 58, 980, 1479)
 
+[node name="BgTitle" type="TextureRect" parent="." unique_id=1597580475]
+layout_mode = 0
+offset_left = 302.0
+offset_top = 514.0
+offset_right = 776.0
+offset_bottom = 647.0
+texture = ExtResource("4_2ujjx")
+
 [node name="title" type="Label" parent="." unique_id=2004018582]
 layout_mode = 0
-offset_left = 408.0
-offset_top = 408.0
-offset_right = 648.0
-offset_bottom = 491.0
+offset_left = 419.0
+offset_top = 545.0
+offset_right = 661.0
+offset_bottom = 616.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 60
 text = "提示标题"
 horizontal_alignment = 1
@@ -63,22 +74,24 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(750, 0)
 custom_maximum_size = Vector2(750, -1)
 layout_mode = 0
-offset_left = 164.0
-offset_top = 586.0
-offset_right = 914.0
-offset_bottom = 1003.0
+offset_left = 165.0
+offset_top = 717.0
+offset_right = 915.0
+offset_bottom = 1029.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_constants/line_spacing = 20
 theme_override_font_sizes/font_size = 48
-text = "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容"
+text = "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
 
 [node name="confirmButton" type="TextureButton" parent="." unique_id=1933237892]
 layout_mode = 0
-offset_left = 568.0
-offset_top = 1202.0
-offset_right = 918.0
-offset_bottom = 1322.0
+offset_left = 565.0
+offset_top = 1088.0
+offset_right = 915.0
+offset_bottom = 1208.0
 texture_normal = ExtResource("4_loy11")
 ignore_texture_size = true
 stretch_mode = 0
@@ -86,20 +99,22 @@ stretch_mode = 0
 [node name="EatLabel" type="Label" parent="confirmButton" unique_id=1711720869]
 layout_mode = 0
 offset_left = 80.0
-offset_top = 23.0
+offset_top = 16.0
 offset_right = 270.0
-offset_bottom = 92.0
-theme_override_font_sizes/font_size = 50
+offset_bottom = 99.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 48
 text = "确定"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="cancelButton" type="TextureButton" parent="." unique_id=1945784184]
 layout_mode = 0
-offset_left = 183.0
-offset_top = 1201.0
-offset_right = 533.0
-offset_bottom = 1321.0
+offset_left = 179.0
+offset_top = 1087.0
+offset_right = 529.0
+offset_bottom = 1207.0
 texture_normal = ExtResource("5_ghfco")
 ignore_texture_size = true
 stretch_mode = 0
@@ -107,20 +122,22 @@ stretch_mode = 0
 [node name="EatLabel" type="Label" parent="cancelButton" unique_id=1224902024]
 layout_mode = 0
 offset_left = 108.0
-offset_top = 23.0
+offset_top = 16.0
 offset_right = 240.0
-offset_bottom = 92.0
-theme_override_font_sizes/font_size = 50
+offset_bottom = 99.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 48
 text = "取消"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="closeBtn" type="Button" parent="." unique_id=1433686113]
 layout_mode = 0
-offset_left = 897.0
-offset_top = 280.0
-offset_right = 1007.0
-offset_bottom = 390.0
-icon = ExtResource("6_3xo5q")
+offset_left = 886.0
+offset_top = 536.0
+offset_right = 1009.0
+offset_bottom = 659.0
+icon = ExtResource("7_loy11")
 flat = true
 expand_icon = true

@@ -40,6 +40,7 @@ offset_left = 233.0
 offset_top = 51.0
 offset_right = 477.77924
 offset_bottom = 107.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 40
 text = "我的属性"
@@ -66,6 +67,7 @@ theme_override_constants/separation = 77
 
 [node name="Label" type="Label" parent="HBoxContainer" unique_id=1429099086]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 36
 text = "10"
@@ -74,6 +76,7 @@ vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="HBoxContainer" unique_id=717811890]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 36
 text = "10"
@@ -82,6 +85,7 @@ vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="HBoxContainer" unique_id=1788613856]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 36
 text = "10"

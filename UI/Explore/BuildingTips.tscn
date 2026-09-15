@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cbvpr30jh0v3n" path="res://Assets/Images/UI/New/equip_effectbg.png" id="6_mirmx"]
 [ext_resource type="PackedScene" uid="uid://db0xj71lp2hu1" path="res://UI/stars.tscn" id="7_cnc4k"]
 [ext_resource type="Texture2D" uid="uid://0j0un5rare6m" path="res://Assets/Images/UI/New/closeBtn_2.png" id="7_d1361"]
+[ext_resource type="FontVariation" uid="uid://c1sbqb3crvk3a" path="res://Assets/Fonts/font_bold.tres" id="7_dfig5"]
 [ext_resource type="PackedScene" uid="uid://c2ktxpmkvihar" path="res://UI/Explore/supplyStar.tscn" id="8_3fxkn"]
 [ext_resource type="Texture2D" uid="uid://whkb6ytl38ma" path="res://Assets/Images/UI/New/line_2.png" id="10_mirmx"]
 [ext_resource type="Texture2D" uid="uid://b1a2xtvys10i4" path="res://Assets/Images/UI/New/line_3.png" id="12_dfig5"]
@@ -55,10 +56,10 @@ texture = ExtResource("3_1eeb5")
 
 [node name="bg3" type="TextureRect" parent="." unique_id=1162045728]
 layout_mode = 0
-offset_left = 300.0
-offset_top = 313.0
-offset_right = 774.0
-offset_bottom = 446.0
+offset_left = 303.0
+offset_top = 312.0
+offset_right = 777.0
+offset_bottom = 445.0
 texture = ExtResource("3_pbixe")
 
 [node name="Bg5" type="TextureRect" parent="." unique_id=1684621715]
@@ -71,10 +72,10 @@ texture = ExtResource("5_mirmx")
 
 [node name="title" type="Label" parent="." unique_id=2004018582]
 layout_mode = 1
-offset_left = 372.0
-offset_top = 339.0
-offset_right = 709.0
-offset_bottom = 422.0
+offset_left = 371.0
+offset_top = 346.0
+offset_right = 708.0
+offset_bottom = 411.0
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 60
@@ -83,10 +84,10 @@ horizontal_alignment = 1
 
 [node name="difficult" type="Label" parent="." unique_id=1217472671]
 layout_mode = 0
-offset_left = 448.0
+offset_left = 457.0
 offset_top = 498.0
-offset_right = 614.0
-offset_bottom = 554.0
+offset_right = 623.0
+offset_bottom = 538.0
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 40
@@ -109,11 +110,12 @@ patch_margin_bottom = 46
 [node name="des" type="Label" parent="." unique_id=1034142510]
 layout_mode = 0
 offset_left = 204.0
-offset_top = 1056.0
+offset_top = 1059.0
 offset_right = 899.0
-offset_bottom = 1254.0
+offset_bottom = 1253.0
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_constants/outline_size = 5
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("7_dfig5")
 theme_override_font_sizes/font_size = 40
 text = "描述文本描述文本描述文本描述文本描述文本描述文本描述文本"
 vertical_alignment = 1
@@ -121,48 +123,48 @@ autowrap_mode = 1
 
 [node name="food" type="Label" parent="." unique_id=1805908730]
 layout_mode = 0
-offset_left = 224.0
-offset_top = 704.0
-offset_right = 321.0
-offset_bottom = 759.0
+offset_left = 235.0
+offset_top = 710.0
+offset_right = 332.0
+offset_bottom = 765.0
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("7_dfig5")
 theme_override_font_sizes/font_size = 40
 text = "食物"
 horizontal_alignment = 2
 
 [node name="medic" type="Label" parent="." unique_id=469075166]
 layout_mode = 0
-offset_left = 224.0
-offset_top = 782.0
-offset_right = 321.0
-offset_bottom = 838.0
+offset_left = 235.0
+offset_top = 788.0
+offset_right = 332.0
+offset_bottom = 844.0
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("7_dfig5")
 theme_override_font_sizes/font_size = 40
 text = "药品"
 horizontal_alignment = 2
 
 [node name="material" type="Label" parent="." unique_id=109017313]
 layout_mode = 0
-offset_left = 224.0
-offset_top = 859.0
-offset_right = 321.0
-offset_bottom = 915.0
+offset_left = 235.0
+offset_top = 865.0
+offset_right = 332.0
+offset_bottom = 921.0
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("7_dfig5")
 theme_override_font_sizes/font_size = 40
 text = "装备"
 horizontal_alignment = 2
 
 [node name="equip" type="Label" parent="." unique_id=1887901619]
 layout_mode = 0
-offset_left = 224.0
-offset_top = 938.99994
-offset_right = 321.0
-offset_bottom = 993.99994
+offset_left = 235.0
+offset_top = 945.0
+offset_right = 332.0
+offset_bottom = 1000.0
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("7_dfig5")
 theme_override_font_sizes/font_size = 40
 text = "材料"
 horizontal_alignment = 2
@@ -181,20 +183,21 @@ horizontal_alignment = 1
 
 [node name="confirmButton" type="TextureButton" parent="." unique_id=1933237892]
 layout_mode = 0
-offset_left = 219.0
+offset_left = 210.0
 offset_top = 1398.0
-offset_right = 885.0
+offset_right = 876.0
 offset_bottom = 1541.0
 texture_normal = ExtResource("5_1eeb5")
 
 [node name="EatLabel" type="Label" parent="confirmButton" unique_id=1711720869]
 layout_mode = 0
-offset_left = 226.0
+offset_left = 235.0
 offset_top = 27.0
-offset_right = 416.0
+offset_right = 425.0
 offset_bottom = 110.0
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
 theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("7_dfig5")
 theme_override_font_sizes/font_size = 60
 text = "确定"
 horizontal_alignment = 1
@@ -213,16 +216,16 @@ expand_icon = true
 [node name="stars" parent="." unique_id=64213728 instance=ExtResource("7_cnc4k")]
 layout_mode = 0
 offset_left = 336.0
-offset_top = 550.0
+offset_top = 544.0
 offset_right = 597.3334
-offset_bottom = 600.0
+offset_bottom = 594.0
 scale = Vector2(1.5, 1.5)
 
 [node name="foodStars" parent="." unique_id=1220326612 instance=ExtResource("8_3fxkn")]
 layout_mode = 0
 offset_left = 386.0
 offset_top = 694.00006
-offset_right = 650.0
+offset_right = 711.0
 offset_bottom = 744.00006
 scale = Vector2(1.45, 1.45)
 
@@ -230,7 +233,7 @@ scale = Vector2(1.45, 1.45)
 layout_mode = 0
 offset_left = 386.00003
 offset_top = 773.00006
-offset_right = 650.0
+offset_right = 711.0
 offset_bottom = 823.00006
 scale = Vector2(1.45, 1.45)
 
@@ -238,7 +241,7 @@ scale = Vector2(1.45, 1.45)
 layout_mode = 0
 offset_left = 386.0
 offset_top = 852.00006
-offset_right = 650.0
+offset_right = 711.0
 offset_bottom = 902.00006
 scale = Vector2(1.45, 1.45)
 
@@ -246,25 +249,25 @@ scale = Vector2(1.45, 1.45)
 layout_mode = 0
 offset_left = 386.0
 offset_top = 930.0
-offset_right = 650.0
+offset_right = 711.0
 offset_bottom = 980.0
 scale = Vector2(1.45, 1.45)
 
 [node name="Line" type="TextureRect" parent="." unique_id=1141146025]
 layout_mode = 0
-offset_left = 594.0
-offset_top = 524.0
-offset_right = 800.0
-offset_bottom = 532.0
+offset_left = 597.0
+offset_top = 516.0
+offset_right = 803.0
+offset_bottom = 524.0
 texture = ExtResource("10_mirmx")
 expand_mode = 1
 
 [node name="Line2" type="TextureRect" parent="." unique_id=677499356]
 layout_mode = 0
 offset_left = 267.0
-offset_top = 523.0
+offset_top = 515.0
 offset_right = 473.0
-offset_bottom = 531.0
+offset_bottom = 523.0
 texture = ExtResource("10_mirmx")
 expand_mode = 1
 

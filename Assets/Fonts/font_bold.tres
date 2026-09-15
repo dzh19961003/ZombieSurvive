@@ -1,0 +1,13 @@
+[gd_resource type="FontVariation" format=3 uid="uid://c1sbqb3crvk3a"]
+
+[ext_resource type="FontFile" uid="uid://4adkwrjg5yg7" path="res://Assets/Fonts/ZLabsRoundPix_16px_M_CN.ttf" id="1_ltbp3"]
+
+[resource]
+base_font = ExtResource("1_ltbp3")
+variation_opentype = {
+0: 1
+}
+variation_embolden = 0.4
+opentype_features = {
+1667329140: 0
+}
