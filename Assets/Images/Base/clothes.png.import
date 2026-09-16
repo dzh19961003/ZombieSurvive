@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o4kjxnl8fdc7"
-path="res://.godot/imported/plant.png-444acc64188d13b1bb4eba6852ccdaaf.ctex"
+uid="uid://3aw1gjstj8nr"
+path="res://.godot/imported/clothes.png-d9600abd4ca712ec194a98160841476a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/Base/plant.png"
-dest_files=["res://.godot/imported/plant.png-444acc64188d13b1bb4eba6852ccdaaf.ctex"]
+source_file="res://Assets/Images/Base/clothes.png"
+dest_files=["res://.godot/imported/clothes.png-d9600abd4ca712ec194a98160841476a.ctex"]
 
 [params]
 

@@ -7,11 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://c42gj00wry1vu" path="res://Assets/Images/Base/door.png" id="5_grk85"]
 [ext_resource type="Script" uid="uid://cvm1aqi8gvins" path="res://Scene/Train.cs" id="6_4pfap"]
 [ext_resource type="Script" uid="uid://c17xbx6y137dw" path="res://Scripts/Furnitures/Workstation.cs" id="6_p35hx"]
-[ext_resource type="Texture2D" uid="uid://crv8mw37408g1" path="res://Assets/Images/Base/train.png" id="7_4pfap"]
-[ext_resource type="Texture2D" uid="uid://c4hprhefuuw0n" path="res://Assets/Images/Base/workspace.png" id="7_t37pv"]
+[ext_resource type="Texture2D" uid="uid://cim3wacu5b7io" path="res://Assets/Images/Base/train_1.png" id="7_ma5s7"]
 [ext_resource type="Script" uid="uid://b1sfv6exwkadr" path="res://Scripts/Tools/CameraDragger.cs" id="8_cam"]
-[ext_resource type="Texture2D" uid="uid://o4kjxnl8fdc7" path="res://Assets/Images/Base/plant.png" id="11_ma5s7"]
-[ext_resource type="Texture2D" uid="uid://bqddk5usmagv0" path="res://Assets/Images/Base/tent.png" id="12_2blmx"]
+[ext_resource type="Texture2D" uid="uid://ccfvu4n26uppx" path="res://Assets/Images/Base/tent_1.png" id="8_ma5s7"]
+[ext_resource type="Texture2D" uid="uid://dniv75lpfuq51" path="res://Assets/Images/Base/workspace_2.png" id="10_fo3oa"]
+[ext_resource type="Texture2D" uid="uid://dyhcsu0nefpc5" path="res://Assets/Images/Base/plant_1.png" id="12_fo3oa"]
+[ext_resource type="Texture2D" uid="uid://3aw1gjstj8nr" path="res://Assets/Images/Base/clothes.png" id="13_2blmx"]
+[ext_resource type="Texture2D" uid="uid://pukei8e6q0tx" path="res://Assets/Images/Base/clothes_2.png" id="14_fo3oa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hu5nu"]
 size = Vector2(390, 363.25)
@@ -23,72 +25,92 @@ size = Vector2(268, 322.5)
 size = Vector2(366, 249)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifow5"]
-size = Vector2(325.5625, 272.39063)
+size = Vector2(298.78125, 253.19531)
 
 [node name="Base" type="Node2D" unique_id=1002387130]
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=508625364]
 position = Vector2(0, -2.842171e-14)
-scale = Vector2(1.1466526, 1.3600478)
+scale = Vector2(1.2058165, 1.4302224)
 texture = ExtResource("1_t37pv")
 centered = false
 
 [node name="Warehouse" type="Area2D" parent="." unique_id=559613430]
-position = Vector2(388, 416)
+position = Vector2(404, 416)
 script = ExtResource("2_0ce0i")
 
 [node name="Warehouse" type="Sprite2D" parent="Warehouse" unique_id=1906071549]
-position = Vector2(-11.499939, 20.00003)
-scale = Vector2(0.46289057, 0.46289063)
+position = Vector2(6.9999847, 36.000015)
+scale = Vector2(1.03719, 1.03719)
 texture = ExtResource("2_7lj54")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Warehouse" unique_id=462998327]
-position = Vector2(-32, 4.375)
+position = Vector2(-26, 28)
 shape = SubResource("RectangleShape2D_hu5nu")
 
 [node name="Door" type="Area2D" parent="." unique_id=1354858665]
-position = Vector2(788, 451)
+position = Vector2(794, 446)
 script = ExtResource("4_vtgk1")
 
 [node name="Door" type="Sprite2D" parent="Door" unique_id=76872662]
-position = Vector2(-5.64423, -4.999988)
-scale = Vector2(0.3755423, 0.3669725)
+position = Vector2(14.500019, 17.657684)
+scale = Vector2(0.94427246, 1.0158981)
 texture = ExtResource("5_grk85")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door" unique_id=404287943]
-position = Vector2(16, -8.75)
+position = Vector2(22, 15)
 shape = SubResource("RectangleShape2D_wvhbo")
 
 [node name="Train" type="Area2D" parent="." unique_id=333867531]
-position = Vector2(787, 1533)
+position = Vector2(811, 1554)
 script = ExtResource("6_4pfap")
 
 [node name="Train" type="Sprite2D" parent="Train" unique_id=1318569492]
-position = Vector2(12.6119375, -6.8989887)
-scale = Vector2(0.2722895, 0.34004116)
-texture = ExtResource("7_4pfap")
+position = Vector2(23.094208, 5.5000362)
+scale = Vector2(1.0807692, 1.0807692)
+texture = ExtResource("7_ma5s7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Train" unique_id=1262376385]
-position = Vector2(17, -1.5)
+position = Vector2(13, 13)
 shape = SubResource("RectangleShape2D_abi3o")
 
 [node name="Tent" type="Sprite2D" parent="." unique_id=1079472281]
-position = Vector2(551, 853)
-scale = Vector2(0.5336457, 0.5336457)
-texture = ExtResource("12_2blmx")
+position = Vector2(569.409, 827.5)
+scale = Vector2(1.0668203, 1.0668203)
+texture = ExtResource("8_ma5s7")
 
 [node name="Workstation" type="Area2D" parent="." unique_id=1116499795]
-position = Vector2(800, 1262)
+position = Vector2(845, 1256)
 script = ExtResource("6_p35hx")
 
 [node name="Workstation" type="Sprite2D" parent="Workstation" unique_id=1460951273]
-position = Vector2(-5.9999776, -4.0000525)
-scale = Vector2(0.35812622, 0.34228513)
-texture = ExtResource("7_t37pv")
+position = Vector2(4.9999766, 2.000022)
+scale = Vector2(0.93997264, 0.93997264)
+texture = ExtResource("10_fo3oa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Workstation" unique_id=241018785]
-position = Vector2(-2.9064941, -9.139648)
+position = Vector2(3, 0)
 shape = SubResource("RectangleShape2D_ifow5")
+
+[node name="Plant" type="Sprite2D" parent="." unique_id=1864073692]
+position = Vector2(334, 1336)
+scale = Vector2(1.0435684, 1.0435685)
+texture = ExtResource("12_fo3oa")
+
+[node name="Plant2" type="Sprite2D" parent="Plant" unique_id=330770684]
+position = Vector2(-7.6659975, 161.94435)
+scale = Vector2(1.0406013, 1.0406013)
+texture = ExtResource("12_fo3oa")
+
+[node name="Clothes" type="Sprite2D" parent="." unique_id=1990894983]
+position = Vector2(372.00003, 1121.0001)
+scale = Vector2(0.83635545, 0.954942)
+texture = ExtResource("13_2blmx")
+
+[node name="Clothes2" type="Sprite2D" parent="." unique_id=426100670]
+position = Vector2(829, 1730)
+scale = Vector2(0.64895207, 0.8722973)
+texture = ExtResource("14_fo3oa")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=440899329]
 limit_left = 0
@@ -96,13 +118,3 @@ limit_top = 0
 limit_right = 1080
 limit_bottom = 3119
 script = ExtResource("8_cam")
-
-[node name="Plant" type="Sprite2D" parent="." unique_id=1864073692]
-position = Vector2(294, 1294)
-scale = Vector2(0.35327134, 0.35327134)
-texture = ExtResource("11_ma5s7")
-
-[node name="Plant2" type="Sprite2D" parent="Plant" unique_id=330770684]
-position = Vector2(-16.984108, 495.3699)
-scale = Vector2(1.0406013, 1.0406013)
-texture = ExtResource("11_ma5s7")
