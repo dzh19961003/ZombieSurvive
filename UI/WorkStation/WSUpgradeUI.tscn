@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://co5gs6anh2rxe"]
 
-[ext_resource type="Texture2D" uid="uid://c7dmkkuse5evs" path="res://Assets/Images/Base/workstation_1.png" id="1_wsimg"]
+[ext_resource type="Texture2D" uid="uid://eptgjlkbnlxd" path="res://Assets/Images/Base/workspace_1.png" id="2_1oyri"]
 [ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="2_2s8ke"]
 [ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="3_btnbg"]
 [ext_resource type="Texture2D" uid="uid://c33rmupvbsy43" path="res://Assets/Images/UI/arrow_1.png" id="4_1oyri"]
@@ -35,7 +35,7 @@ offset_left = 132.0
 offset_top = 139.0
 offset_right = 732.0
 offset_bottom = 539.0
-texture = ExtResource("1_wsimg")
+texture = ExtResource("2_1oyri")
 expand_mode = 1
 stretch_mode = 5
 

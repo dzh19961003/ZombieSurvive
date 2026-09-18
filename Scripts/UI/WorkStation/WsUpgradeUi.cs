@@ -12,6 +12,7 @@ public partial class WsUpgradeUi : Control
 	private const int DecomposeUnlockLevel = 5;
 	//未解锁功能名称灰色（与场景默认灰色一致）
 	private static readonly Color LockedFunColor = new(0.5958281f, 0.5958281f, 0.5958281f, 1f);
+	private const int MaxTextureLevel = 5;
 
 
 	// 当前工作台等级
@@ -30,6 +31,8 @@ public partial class WsUpgradeUi : Control
 	private Label _decomposeDesc;
 	private TextureRect _cookLock;
 	private TextureRect _decomposeLock;
+	//升级界面工作台预览图
+	private TextureRect _wsTexture;
 
 	public override void _Ready()
 	{
@@ -54,6 +57,7 @@ public partial class WsUpgradeUi : Control
 		_decomposeDesc = GetNode<Label>("ExtraFun/ExtraFunDescription2");
 		_cookLock      = GetNode<TextureRect>("ExtraFun/Lock2");
 		_decomposeLock = GetNode<TextureRect>("ExtraFun/Lock");
+		_wsTexture     = GetNode<TextureRect>("WSTexture");
 
 		if (upgrade != null)
 		{
@@ -110,6 +114,8 @@ public partial class WsUpgradeUi : Control
 		int sumLevel=currentLevel+playerMakeLevel;
 		//额外功能解锁状态展示
 		RefreshExtraFun();
+		//根据等级切换工作台预览图
+		RefreshWsTexture();
 		
 		string wsLevelText = $"等级{currentLevel}";
 		string levelText = $"等级{sumLevel}";
@@ -191,6 +197,19 @@ public partial class WsUpgradeUi : Control
 
 		_decomposeDesc.AddThemeColorOverride("font_color", decomposeUnlocked ? Colors.White : LockedFunColor);
 		if (_decomposeLock != null) _decomposeLock.Visible = !decomposeUnlocked;
+	}
+
+	//根据工作台等级切换升级界面预览图（与基地场景保持一致）
+	private void RefreshWsTexture()
+	{
+		if (_wsTexture == null || PlayerManager.Instance == null) return;
+
+		int level = Mathf.Clamp(PlayerManager.Instance.WorkStationLevel, 1, MaxTextureLevel);
+		var tex = GD.Load<Texture2D>($"res://Assets/Images/Base/workspace_{level}.png");
+		if (tex != null)
+		{
+			_wsTexture.Texture = tex;
+		}
 	}
 
 	private void OnUpgradePressed()

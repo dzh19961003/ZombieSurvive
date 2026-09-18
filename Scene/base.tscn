@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cim3wacu5b7io" path="res://Assets/Images/Base/train_1.png" id="7_ma5s7"]
 [ext_resource type="Script" uid="uid://b1sfv6exwkadr" path="res://Scripts/Tools/CameraDragger.cs" id="8_cam"]
 [ext_resource type="Texture2D" uid="uid://ccfvu4n26uppx" path="res://Assets/Images/Base/tent_1.png" id="8_ma5s7"]
-[ext_resource type="Texture2D" uid="uid://dniv75lpfuq51" path="res://Assets/Images/Base/workspace_2.png" id="10_fo3oa"]
+[ext_resource type="Texture2D" uid="uid://eptgjlkbnlxd" path="res://Assets/Images/Base/workspace_1.png" id="10_fo3oa"]
 [ext_resource type="Texture2D" uid="uid://dyhcsu0nefpc5" path="res://Assets/Images/Base/plant_1.png" id="12_fo3oa"]
 [ext_resource type="Texture2D" uid="uid://3aw1gjstj8nr" path="res://Assets/Images/Base/clothes.png" id="13_2blmx"]
 [ext_resource type="Texture2D" uid="uid://pukei8e6q0tx" path="res://Assets/Images/Base/clothes_2.png" id="14_fo3oa"]
