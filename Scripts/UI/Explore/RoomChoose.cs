@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using MyProject;
 using System;
+using System.Diagnostics;
 
 public partial class RoomChoose : Control
 {
@@ -17,46 +18,42 @@ public partial class RoomChoose : Control
    
     public int ID;
     RoomChooseBar _bar;
-    bool finish = false;
+    GameManager gm = GameManager.Instance;
+    int currentRoomID;
     public override void _Ready()
 	{
         // 向上找两级：RoomChoose -> roomContainer -> RoomChooseBar
         Node parent = GetParent().GetParent();
         _bar = parent as RoomChooseBar;
-        button.Pressed += InitialExplore;
+        button.Pressed += ShowExplore;
 
 	}     
     public void InitialRoom(int roomID) 
     {
         Room room = ConfigManager.Instance.roomDic[roomID];
-        Dictionary<int, int> progress = GameManager.Instance.exploreProgress;
+        currentRoomID = roomID;
+
         nameLabel.Text = room.Name;
         if (room.Food == 0) food.Visible = false;
         if (room.Medic == 0) medic.Visible = false;
         if (room.Equip == 0) equip.Visible = false;
         if (room.Material == 0) material.Visible = false;
 
-        roomIcon.Texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/Building/"+room.Image+".png");
-        if (!progress.ContainsKey(roomID))
+        roomIcon.Texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/Building/"+room.Image+".png");       
+    }
+    private void ShowExplore()
+    {
+        Dictionary<int, int> progress = GameManager.Instance.exploreProgress;
+        _bar.detailsPanel.Visible = true;
+        if (!progress.ContainsKey(gm.roomID))
         {
-            progress.Add(roomID, 0);
-            exploreProgress.Text = progress[roomID].ToString() + "%";
+            progress.Add(gm.roomID, 0);
+            _bar.exploreProgress.Text = progress[gm.roomID].ToString() + "%";
         }
         else
-        {            
-            exploreProgress.Text = progress[roomID].ToString() + "%";
-        }
-        
-    }
-    private void InitialExplore()
-    {
-        if (GameManager.Instance.exploreProgress[GameManager.Instance.roomID]>=100)
         {
-            finish = true;
+            _bar.exploreProgress.Text = progress[gm.roomID].ToString() + "%";
         }
-        _bar.exploreUI.OnRoomSelected(ID,false);
-        _bar.exploreUI.RefreshExploreUI(true);
+        GameManager.Instance.roomID = currentRoomID;
     }
-
-
 }
