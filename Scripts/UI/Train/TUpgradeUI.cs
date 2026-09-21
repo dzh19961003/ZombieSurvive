@@ -6,13 +6,16 @@ using MyProject;
 public partial class TUpgradeUI : Control
 {
 	[Export] Button upgrade;
+	private const int MaxTextureLevel = 5;
+	
 	private const int RunningmachineUnlockLevel = 2;
 	private const int BookshelfUnlockLevel = 3;
 	private const int MaxLevel = 5;
 	private static readonly Color LockedFunColor = new(0.5958281f, 0.5958281f, 0.5958281f, 1f);
-
+	
 	private int currentLevel = 1;
-
+	
+	private TextureRect _trainTexture;
 	private Label _gradeTitle;
 	private Label _expELevelValue;
 	private Label _expENextLevelValue;
@@ -31,6 +34,7 @@ public partial class TUpgradeUI : Control
 		_expELevelValue = GetNode<Label>("ExpEfficiency/EELevelValue");
 		_maxTip=GetNode<Label>("UpgradeRequ/maxTip");
 		_expENextLevelValue = GetNode<Label>("ExpEfficiency/EENextLevelValue");
+		_trainTexture     = GetNode<TextureRect>("TrainTexture");
 		_reqLabels = new Label[]
 		{
 			GetNode<Label>("UpgradeRequ/requirement1"),
@@ -48,6 +52,7 @@ public partial class TUpgradeUI : Control
 		_bookshelfDesc      = GetNode<Label>("ExtraFun/ExtraFunDescription2");
 		_runningmachineLock = GetNode<TextureRect>("ExtraFun/Lock2");
 		_bookshelfLock      = GetNode<TextureRect>("ExtraFun/Lock");
+
 
 		if (upgrade != null)
 		{
@@ -105,7 +110,7 @@ public partial class TUpgradeUI : Control
 		currentLevel = PlayerManager.Instance.TrainLevel;
 		//额外功能解锁状态展示
 		RefreshExtraFun();
-
+		RefreshTrainTexture();
 		string levelText = $"等级{currentLevel}";
 		if (_gradeTitle != null) _gradeTitle.Text = levelText;
 
@@ -180,6 +185,17 @@ public partial class TUpgradeUI : Control
 		}
 	}
 
+	private void RefreshTrainTexture()
+	{
+		if (_trainTexture == null || PlayerManager.Instance == null) return;
+
+		int level = Mathf.Clamp(PlayerManager.Instance.TrainLevel, 1, MaxTextureLevel);
+		var tex = GD.Load<Texture2D>($"res://Assets/Images/Base/train_{level}.png");
+		if (tex != null)
+		{
+			_trainTexture.Texture = tex;
+		}
+	}
 	private void SetReqColor(Label label, bool insufficient)
 	{
 		if (label == null) return;
