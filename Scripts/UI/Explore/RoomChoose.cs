@@ -15,6 +15,7 @@ public partial class RoomChoose : Control
     [Export] public TextureRect material;
     [Export] public Label exploreProgress;
     [Export] public Button button;
+    [Export] public NinePatchRect selectEdge;   //选中边框
    
     public int ID;
     RoomChooseBar _bar;
@@ -41,8 +42,16 @@ public partial class RoomChoose : Control
 
         roomIcon.Texture = ResourceLoader.Load<Texture2D>("res://Assets/Images/Building/"+room.Image+".png");       
     }
+    //由 RoomChooseBar 调用，切换本房间的选中边框显示
+    public void SetSelected(bool selected)
+    {
+        selectEdge.Visible = selected;
+    }
     private void ShowExplore()
     {
+        //通知父面板选中自己，由父面板统一保证同时只有一个房间被选中
+        _bar.SelectRoom(this);
+
         Dictionary<int, int> progress = GameManager.Instance.exploreProgress;
         _bar.detailsPanel.Visible = true;
         if (!progress.ContainsKey(gm.roomID))

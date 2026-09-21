@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://h712blqutfx"]
+
+[ext_resource type="Script" uid="uid://d22lhonhrm35h" path="res://Scripts/UI/Explore/ExploreOptionCard.cs" id="1_scr"]
+[ext_resource type="Texture2D" uid="uid://cqqk2g1m7lknm" path="res://Assets/Images/UI/Explore/action_card.png" id="2_card"]
+[ext_resource type="Texture2D" uid="uid://deqychghgfdga" path="res://Assets/Images/UI/Explore/action_edge.png" id="3_edge"]
+[ext_resource type="Texture2D" uid="uid://cwqay0vk7x016" path="res://Assets/Images/UI/tab_inactive.png" id="4_plate"]
+[ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="5_badge"]
+[ext_resource type="Texture2D" uid="uid://6u23el1whh3l" path="res://Assets/Images/UI/Explore/exploreImage_1.png" id="6_img"]
+
+[node name="ExploreOptionCard" type="Control" unique_id=1451975746 node_paths=PackedStringArray("selectEdge", "namePlate", "nameLabel", "image", "selectBadge", "button")]
+custom_minimum_size = Vector2(380, 360)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 380.0
+offset_bottom = 360.0
+script = ExtResource("1_scr")
+selectEdge = NodePath("selectEdge")
+namePlate = NodePath("namePlate")
+nameLabel = NodePath("nameLabel")
+image = NodePath("image")
+selectBadge = NodePath("selectBadge")
+button = NodePath("Button")
+
+[node name="card" type="NinePatchRect" parent="." unique_id=2067370461]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_card")
+region_rect = Rect2(0, 0, 513, 553)
+patch_margin_left = 70
+patch_margin_top = 70
+patch_margin_right = 70
+patch_margin_bottom = 70
+
+[node name="namePlate" type="NinePatchRect" parent="." unique_id=2115333339]
+visible = false
+layout_mode = 0
+offset_left = 20.0
+offset_top = 24.0
+offset_right = 360.0
+offset_bottom = 80.0
+texture = ExtResource("4_plate")
+region_rect = Rect2(0, 0, 190, 72)
+patch_margin_left = 22
+patch_margin_top = 14
+patch_margin_right = 22
+patch_margin_bottom = 14
+
+[node name="nameLabel" type="Label" parent="." unique_id=95661075]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 36.0
+offset_right = 360.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 40
+text = "仔细搜索"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="image" type="TextureRect" parent="." unique_id=1583687983]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 108.0
+offset_right = 331.0
+offset_bottom = 301.0
+texture = ExtResource("6_img")
+expand_mode = 1
+
+[node name="selectBadge" type="NinePatchRect" parent="." unique_id=450352747]
+visible = false
+layout_mode = 0
+offset_left = 100.0
+offset_top = -18.0
+offset_right = 280.0
+offset_bottom = 30.0
+texture = ExtResource("5_badge")
+region_rect = Rect2(0, 0, 190, 72)
+patch_margin_left = 22
+patch_margin_top = 14
+patch_margin_right = 22
+patch_margin_bottom = 14
+
+[node name="badgeLabel" type="Label" parent="selectBadge" unique_id=1237517077]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+text = "当前选择"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="selectEdge" type="NinePatchRect" parent="." unique_id=1913525605]
+visible = false
+layout_mode = 0
+offset_left = 4.0
+offset_top = 1.0
+offset_right = 479.64105
+offset_bottom = 461.25644
+scale = Vector2(0.78, 0.78)
+texture = ExtResource("3_edge")
+region_rect = Rect2(0, 0, 512, 488)
+patch_margin_left = 44
+patch_margin_top = 44
+patch_margin_right = 44
+patch_margin_bottom = 44
+
+[node name="Button" type="Button" parent="." unique_id=1627888606]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true

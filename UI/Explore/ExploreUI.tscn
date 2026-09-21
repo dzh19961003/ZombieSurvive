@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://daq3kljsrucf7" path="res://Assets/Images/BuildingBg/building_2_0_1.png" id="1_3fx2v"]
 [ext_resource type="Script" uid="uid://c7e1hoilidhkt" path="res://Scripts/UI/Explore/ExploreUI.cs" id="1_bp85n"]
-[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="2_hoe4v"]
 [ext_resource type="Texture2D" uid="uid://uw0mvew2mip3" path="res://Assets/Images/UI/Explore/mask.png" id="3_shwkd"]
+[ext_resource type="Texture2D" uid="uid://dx8m4agq8alft" path="res://Assets/Images/UI/Explore/explore_panel.png" id="4_xam4r"]
 [ext_resource type="Texture2D" uid="uid://ckcbjbuah5tu1" path="res://Assets/Images/UI/Explore/status_1.png" id="5_xam4r"]
 [ext_resource type="Texture2D" uid="uid://diecikgebyq1o" path="res://Assets/Images/UI/Explore/status_2.png" id="6_shwkd"]
 [ext_resource type="Texture2D" uid="uid://d4dcq4qecl6tn" path="res://Assets/Images/UI/Explore/status_3.png" id="7_n1p2n"]
@@ -52,6 +52,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 3.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_shwkd")
@@ -65,24 +67,25 @@ offset_bottom = 1339.0
 
 [node name="DesBar" type="NinePatchRect" parent="." unique_id=1911186057]
 layout_mode = 0
-offset_left = 86.0
-offset_top = 1035.0
-offset_right = 1016.0
-offset_bottom = 1349.0
-texture = ExtResource("2_hoe4v")
-region_rect = Rect2(0, 0, 136, 136)
-patch_margin_left = 28
-patch_margin_top = 27
-patch_margin_right = 33
-patch_margin_bottom = 36
+offset_left = 61.0
+offset_top = 1005.0
+offset_right = 1034.7864
+offset_bottom = 1359.0
+texture = ExtResource("4_xam4r")
+region_rect = Rect2(0, 0, 850, 308)
+patch_margin_left = 50
+patch_margin_top = 52
+patch_margin_right = 75
+patch_margin_bottom = 53
 
 [node name="desLabel" type="Label" parent="DesBar" unique_id=166100634]
 custom_minimum_size = Vector2(864, 200)
 layout_mode = 0
-offset_left = 29.0
-offset_top = 19.0
-offset_right = 893.0
-offset_bottom = 219.0
+offset_left = 38.0
+offset_top = 54.0
+offset_right = 902.0
+offset_bottom = 254.0
+theme_override_constants/line_spacing = 15
 theme_override_font_sizes/font_size = 36
 text = "描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述"
 autowrap_mode = 1

@@ -1,45 +1,52 @@
 using Godot;
 using Godot.Collections;
 using MyProject;
-
+using System.Collections.Generic;
 
 
 public partial class ExploreChooseBar : NinePatchRect
 {
-    [Export] public TextureButton backBtn;
-    [Export] public TextureButton carefulExploreBtn;
-    [Export] public TextureButton quicklyExploreBtn;
-    [Export] public Label dangerLabel;
+    [Export] public HBoxContainer optionContainer;   //两个选项卡片的容器
+    [Export] public TextureRect detailPanel;         //下方详情面板
+    [Export] public Label optionName;                //详情面板里的搜索方式名字
+    [Export] public Label desLabel;                  //详情面板里的房间描述
+    [Export] public Label qualityValue;              //品质等级
+    [Export] public Label progressValue;             //进度等级
+    [Export] public Label noiseValue;                //噪音等级
+    [Export] public Button startBtn;                 //开始搜索
+    [Export] public Label dangerLabel;               //离开风险等级
+    [Export] public TextureButton leaveBtn;          //直接离开
 
     public ExploreUI exploreUI;
+
     private GameManager gameManager;
-    private bool progress=true;
-    bool include = true;
-    private int danger=3;
+    private bool progress = true;
+    private bool include = true;
+    private int danger = 3;
     private int tempEvent;
+    private int selectedType = 1;                    //当前选中的搜索方式
+    private ExploreOptionCard selectedCard;
+    private List<ExploreOptionCard> cards = new List<ExploreOptionCard>();
+
     public override void _Ready()
     {
         // 中途撤离按钮：弹确认框，确认后交给 ExploreUI 统一销毁所有探索界面
-        backBtn.Pressed += OnBack;
-        carefulExploreBtn.Pressed += () => 
-        {
-            Explore(1); 
-        };
-        quicklyExploreBtn.Pressed += () => 
-        {
-            Explore(2); 
-        };
+        leaveBtn.Pressed += OnBack;
+        // 开始搜索：这时候才真正走探索逻辑
+        startBtn.Pressed += () => Explore(selectedType);
         gameManager = GameManager.Instance;
-        
     }
 
-    public void Init(ExploreUI owner,bool finish)
+    public void Init(ExploreUI owner, bool finish)
     {
+        exploreUI = owner;
+        detailPanel.Visible = false;                 //没选之前不显示详情
+
         //根据权重取得风险
         danger = Tools.GetRandomNumber(Consts.leaveDanger, Consts.leaveDangerWeight);
 
         //探索度大于90时，固定为低风险
-        if (gameManager.exploreProgress.TryGetValue(gameManager.roomID, out int d)) 
+        if (gameManager.exploreProgress.TryGetValue(gameManager.roomID, out int d))
         {
             if (d >= 90)
             {
@@ -64,15 +71,95 @@ public partial class ExploreChooseBar : NinePatchRect
             default:
                 break;
         }
-        exploreUI = owner;
-        carefulExploreBtn.Visible = !finish;
-        quicklyExploreBtn.Visible = !finish;
+
+        //详情面板里的描述直接复用当前房间的描述
+        desLabel.Text = ConfigManager.Instance.roomDic[gameManager.roomID].Des;
+
+        //生成两个搜索方式卡片
+        CreateOption(1, "仔细搜索", "exploreImage_1");
+        CreateOption(2, "高效搜索", "exploreImage_2");
+
+        startBtn.Visible = !finish;
     }
 
-    private void Explore(int type) 
+    //生成一个搜索方式卡片
+    private void CreateOption(int type, string optionText, string imageName)
+    {
+        var scene = GD.Load<PackedScene>("res://UI/Explore/exploreOptionCard.tscn");
+        ExploreOptionCard card = scene.Instantiate<ExploreOptionCard>();
+        optionContainer.AddChild(card);
+        card.Initial(type, optionText, imageName);
+        cards.Add(card);
+    }
+
+    //选中某个搜索方式：清掉上一个的边框和角标，保证同时只有一个被选中，然后刷新详情面板
+    public void SelectOption(ExploreOptionCard card)
+    {
+        if (selectedCard == card)
+        {
+            return;
+        }
+        if (selectedCard != null)
+        {
+            selectedCard.SetSelected(false);
+        }
+        selectedCard = card;
+        selectedCard.SetSelected(true);
+        selectedType = card.ExploreType;
+        RefreshDetail();
+    }
+
+    //刷新详情面板里的名字和 品质/进度/噪音
+    private void RefreshDetail()
+    {
+        int quality;
+        int progressLevel;
+        int noiseLevel;
+
+        if (selectedType == 1)
+        {
+            optionName.Text = "仔细搜索";
+            quality = Consts.carefulQualityLevel;
+            progressLevel = Consts.carefulProgressLevel;
+            noiseLevel = Consts.carefulNoiseLevel;
+        }
+        else
+        {
+            optionName.Text = "高效搜索";
+            quality = Consts.quickQualityLevel;
+            progressLevel = Consts.quickProgressLevel;
+            noiseLevel = Consts.quickNoiseLevel;
+        }
+
+        qualityValue.Text = Consts.GetLevelText(quality);
+        qualityValue.AddThemeColorOverride("font_color", GetLevelColor(quality, true));
+        progressValue.Text = Consts.GetLevelText(progressLevel);
+        progressValue.AddThemeColorOverride("font_color", GetLevelColor(progressLevel, true));
+        noiseValue.Text = Consts.GetLevelText(noiseLevel);
+        noiseValue.AddThemeColorOverride("font_color", GetLevelColor(noiseLevel, false));
+
+        detailPanel.Visible = true;
+    }
+
+    //等级文字颜色：higherIsBetter=false 表示越低越好（噪音）
+    private Color GetLevelColor(int level, bool higherIsBetter)
+    {
+        int good = higherIsBetter ? level : 4 - level;      //1=差 2=一般 3=好
+        switch (good)
+        {
+            case 3:
+                return Colors.Green;
+            case 2:
+                return Colors.Yellow;
+            default:
+                return Colors.Red;
+        }
+    }
+
+    private void Explore(int type)
     {
         EventChooseBar eventChooseBar=(EventChooseBar)UIManager.Instance.CreateUI("res://UI/Explore/EventChooseBar.tscn");
-        Dictionary<int, int> explorePogress = gameManager.exploreProgress;
+        Godot.Collections.Dictionary<int, int> explorePogress = gameManager.exploreProgress;
         int eventID=1;
         //仔细探索
         if (type==1)

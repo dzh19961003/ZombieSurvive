@@ -24,8 +24,10 @@ tipsLabel = NodePath("tips")
 
 [node name="bg" type="ColorRect" parent="." unique_id=1899464651]
 layout_mode = 1
-offset_right = 1080.0
-offset_bottom = 1920.0
+offset_left = -302.0
+offset_top = -295.0
+offset_right = 1320.0
+offset_bottom = 2282.1777
 color = Color(0.0627451, 0.0627451, 0.0627451, 0.78431374)
 
 [node name="bg2" type="NinePatchRect" parent="." unique_id=1200595212]

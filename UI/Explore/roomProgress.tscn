@@ -1,32 +1,64 @@
 [gd_scene format=3 uid="uid://c2ms2t0wsgj54"]
 
 [ext_resource type="Script" uid="uid://ccani7wwqu0qm" path="res://Scripts/UI/Explore/RoomProgress.cs" id="1_yo15o"]
-[ext_resource type="Texture2D" uid="uid://cuf21obshc0gy" path="res://Assets/Images/UI/progressIn.png" id="2_5c2ei"]
-[ext_resource type="Texture2D" uid="uid://cit3gvlwpjso6" path="res://Assets/Images/UI/progressOut.png" id="3_sj2qs"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Explore/progress_node_off.png" id="2_off"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Explore/progress_node_on.png" id="3_on"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Explore/progress_node_current.png" id="4_cur"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Explore/progress_line.png" id="5_line"]
 
-[node name="roomProgress" type="Control" unique_id=1218447031 node_paths=PackedStringArray("on", "off")]
-custom_minimum_size = Vector2(128, 128)
+[node name="roomProgress" type="Control" node_paths=PackedStringArray("lineLeft", "lineRight", "off", "on", "current")]
+custom_minimum_size = Vector2(119, 72)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 128.0
-offset_bottom = 128.0
+offset_right = 119.0
+offset_bottom = 72.0
+mouse_filter = 2
 script = ExtResource("1_yo15o")
-on = NodePath("on")
+lineLeft = NodePath("lineLeft")
+lineRight = NodePath("lineRight")
 off = NodePath("off")
+on = NodePath("on")
+current = NodePath("current")
 
-[node name="off" type="TextureRect" parent="." unique_id=246106973]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource("3_sj2qs")
-stretch_mode = 2
+[node name="lineLeft" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 31.0
+offset_right = 30.0
+offset_bottom = 40.0
+texture = ExtResource("5_line")
+expand_mode = 1
 
-[node name="on" type="TextureRect" parent="." unique_id=1724851453]
+[node name="lineRight" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 31.0
+offset_right = 119.0
+offset_bottom = 40.0
+texture = ExtResource("5_line")
+expand_mode = 1
+
+[node name="off" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_right = 97.0
+offset_bottom = 72.0
+texture = ExtResource("2_off")
+expand_mode = 1
+
+[node name="on" type="TextureRect" parent="."]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource("2_5c2ei")
-stretch_mode = 2
+layout_mode = 0
+offset_left = 22.0
+offset_right = 97.0
+offset_bottom = 72.0
+texture = ExtResource("3_on")
+expand_mode = 1
+
+[node name="current" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 22.0
+offset_right = 97.0
+offset_bottom = 72.0
+texture = ExtResource("4_cur")
+expand_mode = 1

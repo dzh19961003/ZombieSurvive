@@ -86,7 +86,7 @@ public partial class ExploreUI : Control
         else
         {
             TextTyper.TypeText(desLabel, "已经到头，没什么好探索的了");
-            _roomChooseBar.Init(this);
+            _roomChooseBar.Init(this, maxLayer);
         }
     }
     public void RefreshExploreUI(bool showProgress)
