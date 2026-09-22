@@ -46,12 +46,14 @@ public partial class Train : Area2D
 	{
 		CallDeferred(nameof(RefreshTexture));
 	}
-	private void RefreshTexture()
+	public void RefreshTexture()
 	{
 		if (PlayerManager.Instance == null || _sprite == null) return;
 
 		int level = Mathf.Clamp(PlayerManager.Instance.TrainLevel, 1, MaxTextureLevel);
-		var tex = GD.Load<Texture2D>($"res://Assets/Images/Base/train_{level}.png");
+		bool isNight = GameManager.Instance?.CurrentTimePeriod == 3;
+		string prefix = isNight ? "night_" : "";
+		var tex = GD.Load<Texture2D>($"res://Assets/Images/Base/{prefix}train_{level}.png");
 		if (tex != null)
 		{
 			_sprite.Texture = tex;

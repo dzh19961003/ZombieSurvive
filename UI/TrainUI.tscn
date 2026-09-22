@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dalgr2tuomi4a"]
 
-[ext_resource type="Script" uid="uid://ci75ddlesiovy" path="res://Scripts/UI/TrainUI.cs" id="1_badpg"]
+[ext_resource type="Script" uid="uid://ci75ddlesiovy" path="res://Scripts/UI/Train/TrainUI.cs" id="1_badpg"]
 [ext_resource type="Texture2D" uid="uid://d1nmp4fcid50p" path="res://Assets/Images/UI/main_panel_2.png" id="2_70m6o"]
 [ext_resource type="PackedScene" uid="uid://cqgxxnp0f3lfa" path="res://UI/Train/TUpgradeUI.tscn" id="3_badpg"]
 [ext_resource type="PackedScene" uid="uid://q5r8k0qci4am" path="res://UI/Train/TExerciseUI.tscn" id="4_70m6o"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="6_8o8fc"]
 [ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="7_n3yvv"]
 [ext_resource type="Texture2D" uid="uid://cwqay0vk7x016" path="res://Assets/Images/UI/tab_inactive.png" id="8_usill"]
+
 
 
 [node name="TrainUI" type="Control" unique_id=541979178 node_paths=PackedStringArray("closeBtn", "upgrade", "exercise", "upgradePanel", "exercisePanel")]

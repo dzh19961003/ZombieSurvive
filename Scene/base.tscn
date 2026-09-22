@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://cvn2jkhui0xed"]
 
+[ext_resource type="Script" uid="uid://0e3p57ees6xm" path="res://Scripts/Furnitures/Base.cs" id="1_ktgr2"]
 [ext_resource type="Texture2D" uid="uid://dejet8o5gix85" path="res://Assets/Images/Base/bg_expanded.png" id="1_t37pv"]
 [ext_resource type="Script" uid="uid://bum5t6p0d6c6j" path="res://Scripts/Furnitures/Warehouse.cs" id="2_0ce0i"]
 [ext_resource type="Texture2D" uid="uid://dh312wub7p60c" path="res://Assets/Images/Base/warehouse.png" id="2_7lj54"]
 [ext_resource type="Script" uid="uid://bbjo6et3yuko2" path="res://Scripts/Furnitures/Door.cs" id="4_vtgk1"]
 [ext_resource type="Texture2D" uid="uid://c42gj00wry1vu" path="res://Assets/Images/Base/door.png" id="5_grk85"]
-[ext_resource type="Script" uid="uid://cvm1aqi8gvins" path="res://Scene/Train.cs" id="6_4pfap"]
+[ext_resource type="Script" uid="uid://cvm1aqi8gvins" path="res://Scripts/Furnitures/Train.cs" id="6_4pfap"]
 [ext_resource type="Script" uid="uid://c17xbx6y137dw" path="res://Scripts/Furnitures/Workstation.cs" id="6_p35hx"]
 [ext_resource type="Texture2D" uid="uid://cim3wacu5b7io" path="res://Assets/Images/Base/train_1.png" id="7_ma5s7"]
 [ext_resource type="Script" uid="uid://b1sfv6exwkadr" path="res://Scripts/Tools/CameraDragger.cs" id="8_cam"]
@@ -28,6 +29,7 @@ size = Vector2(366, 249)
 size = Vector2(298.78125, 253.19531)
 
 [node name="Base" type="Node2D" unique_id=1002387130]
+script = ExtResource("1_ktgr2")
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=508625364]
 position = Vector2(0, -2.842171e-14)
