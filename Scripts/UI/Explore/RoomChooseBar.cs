@@ -17,7 +17,6 @@ public partial class RoomChooseBar : NinePatchRect
     [Export] public Label progressNum;          //“路线进度”右侧的 2/3 文本
 
     public ExploreUI exploreUI;
-    private GameManager gm;
     private bool finish = false;
     private RoomChoose selectedRoom;            //当前处于选中状态的房间
 
@@ -29,12 +28,12 @@ public partial class RoomChooseBar : NinePatchRect
             tips.OnConfirm = () => exploreUI.LeaveExplore();
         };
         exploreBtn.Pressed += InitialExplore;
-        gm = GameManager.Instance;
     }
     public void Init(ExploreUI owner, Array<int> layerRooms, int maxLayer)
     {
         exploreUI = owner;
         selectedRoom = null;
+        finish = false;
         locationLabel.Text = "地点：";
 
         if (maxLayer < GameManager.Instance.exploreLayer)
@@ -57,6 +56,7 @@ public partial class RoomChooseBar : NinePatchRect
     {
         exploreUI = owner;
         selectedRoom = null;
+        finish = false;
         locationLabel.Text = "地点：";
         CreateProgress(maxLayer);
     }
@@ -93,11 +93,21 @@ public partial class RoomChooseBar : NinePatchRect
     }
     private void InitialExplore()
     {
-        if (GameManager.Instance.exploreProgress[GameManager.Instance.roomID] >= 100)
+        //没选房间就点探索，直接忽略
+        if (selectedRoom == null) return;
+
+        //用当前选中的房间，而不是 GameManager 里残留的旧房间
+        int roomID = selectedRoom.ID;
+        GameManager.Instance.roomID = roomID;
+
+        //每次重新判断，别沿用上一次的结果
+        finish = false;
+        if (GameManager.Instance.GetExploreProgress(roomID) >= 100)
         {
             finish = true;
         }
-        exploreUI.OnRoomSelected(gm.roomID, false);
+
+        exploreUI.OnRoomSelected(roomID, finish);
         exploreUI.RefreshExploreUI(true);
     }
 }

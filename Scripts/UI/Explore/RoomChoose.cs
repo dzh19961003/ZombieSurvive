@@ -19,7 +19,6 @@ public partial class RoomChoose : Control
    
     public int ID;
     RoomChooseBar _bar;
-    GameManager gm = GameManager.Instance;
     int currentRoomID;
     public override void _Ready()
 	{
@@ -52,17 +51,11 @@ public partial class RoomChoose : Control
         //通知父面板选中自己，由父面板统一保证同时只有一个房间被选中
         _bar.SelectRoom(this);
 
-        Dictionary<int, int> progress = GameManager.Instance.exploreProgress;
-        _bar.detailsPanel.Visible = true;
-        if (!progress.ContainsKey(gm.roomID))
-        {
-            progress.Add(gm.roomID, 0);
-            _bar.exploreProgress.Text = progress[gm.roomID].ToString() + "%";
-        }
-        else
-        {
-            _bar.exploreProgress.Text = progress[gm.roomID].ToString() + "%";
-        }
+        //先把当前房间设为"当前房间"，后面查进度查的才是它自己
         GameManager.Instance.roomID = currentRoomID;
+
+        _bar.detailsPanel.Visible = true;
+        int progressValue = GameManager.Instance.GetExploreProgress(currentRoomID);
+        _bar.exploreProgress.Text = progressValue + "%";
     }
 }

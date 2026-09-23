@@ -46,12 +46,9 @@ public partial class ExploreChooseBar : NinePatchRect
         danger = Tools.GetRandomNumber(Consts.leaveDanger, Consts.leaveDangerWeight);
 
         //探索度大于90时，固定为低风险
-        if (gameManager.exploreProgress.TryGetValue(gameManager.roomID, out int d))
+        if (gameManager.GetExploreProgress(gameManager.roomID) >= 90)
         {
-            if (d >= 90)
-            {
-                danger = 1;
-            }
+            danger = 1;
         }
 
         switch (danger)
@@ -159,7 +156,6 @@ public partial class ExploreChooseBar : NinePatchRect
     private void Explore(int type)
     {
         EventChooseBar eventChooseBar=(EventChooseBar)UIManager.Instance.CreateUI("res://UI/Explore/EventChooseBar.tscn");
-        Godot.Collections.Dictionary<int, int> explorePogress = gameManager.exploreProgress;
         int eventID=1;
         //仔细探索
         if (type==1)
@@ -196,14 +192,14 @@ public partial class ExploreChooseBar : NinePatchRect
         //取出应该触发的支线事件ID
         if (ConfigManager.Instance.roomDic[gameManager.roomID].SubTask.Count > 0 && !subTaskArray.Contains(ConfigManager.Instance.roomDic[gameManager.roomID].SubTask[0]))
         {
-            if (explorePogress[(gameManager.roomID)] >= ConfigManager.Instance.roomDic[gameManager.roomID].TriggerProgress[0])
+            if (gameManager.GetExploreProgress(gameManager.roomID) >= ConfigManager.Instance.roomDic[gameManager.roomID].TriggerProgress[0])
             {
                 eventID = ConfigManager.Instance.roomDic[gameManager.roomID].SubTask[0];
             }
         }
         if (ConfigManager.Instance.roomDic[gameManager.roomID].SubTask.Count > 1 && !subTaskArray.Contains(ConfigManager.Instance.roomDic[gameManager.roomID].SubTask[1]))
         {
-            if (explorePogress[(gameManager.roomID)] >= ConfigManager.Instance.roomDic[gameManager.roomID].TriggerProgress[1])
+            if (gameManager.GetExploreProgress(gameManager.roomID) >= ConfigManager.Instance.roomDic[gameManager.roomID].TriggerProgress[1])
             {
                 eventID = ConfigManager.Instance.roomDic[gameManager.roomID].SubTask[1];
             }
@@ -242,38 +238,23 @@ public partial class ExploreChooseBar : NinePatchRect
         if (progress==true)
         {
             int noise = 0;
-            int progress = 0;
+            int addProgress = 0;
             if (type == 1)
-            {               
-                if (explorePogress.ContainsKey(gameManager.roomID))
-                {
-                    progress = Tools.GetRandomNumber(Consts.carefulExploreProgress);
-                    explorePogress[(gameManager.roomID)] += progress;
-                }
-                else
-                {
-                    explorePogress[(gameManager.roomID)] = Tools.GetRandomNumber(Consts.carefulExploreProgress);
-                }
+            {
+                addProgress = Tools.GetRandomNumber(Consts.carefulExploreProgress);
                 noise = Tools.GetRandomNumber(Consts.carefulNoiseProgress);
-                gameManager.exploreNoise += noise;
             }
             //快速探索
             else
             {
-                if (explorePogress.ContainsKey(gameManager.roomID))
-                {
-                    progress = Tools.GetRandomNumber(Consts.quickExploreProgress);
-                    explorePogress[(gameManager.roomID)] += progress;
-                }
-                else
-                {
-                    explorePogress[(gameManager.roomID)] = Tools.GetRandomNumber(Consts.quickExploreProgress);
-                }
+                addProgress = Tools.GetRandomNumber(Consts.quickExploreProgress);
                 noise = Tools.GetRandomNumber(Consts.quickNoiseProgress);
-                gameManager.exploreNoise += noise;
             }
+            gameManager.AddExploreProgress(gameManager.roomID, addProgress);
+            gameManager.exploreNoise += noise;
+
             UIManager.Instance.ShowFloatTips(100001, "+" + noise.ToString() + "%");
-            UIManager.Instance.ShowFloatTips(100002, "+" + progress.ToString() + "%");
+            UIManager.Instance.ShowFloatTips(100002, "+" + addProgress.ToString() + "%");
             //处理噪音值和探索值达到上限的方法
             if (gameManager.exploreNoise >= 100)
             {
@@ -300,20 +281,11 @@ public partial class ExploreChooseBar : NinePatchRect
                     include = false;
                 }
             }
-            //最后根据综合情况判断进度应该是多少
-            if (include==false)
+            //最后根据综合情况判断进度应该是多少：有未完成的重要支线时最多 90，否则最多 100
+            int maxProgress = include ? 100 : 90;
+            if (gameManager.GetExploreProgress(gameManager.roomID) > maxProgress)
             {
-                if (explorePogress[(gameManager.roomID)] > 90)
-                {
-                    explorePogress[(gameManager.roomID)] = 90;
-                }
-            }
-            else
-            {
-                if (explorePogress[(gameManager.roomID)] > 100)
-                {
-                    explorePogress[(gameManager.roomID)] = 100;
-                }
+                gameManager.SetExploreProgress(gameManager.roomID, maxProgress);
             }            
         }      
         eventChooseBar.exploreUI = exploreUI;

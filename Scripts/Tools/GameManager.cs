@@ -139,6 +139,30 @@ public partial class GameManager : Node2D,ISaveable
     }
     #endregion
 
+    #region 探索进度读写
+    // 统一用这三个方法读写 exploreProgress，不要在别处直接 exploreProgress[房间ID]
+    //（直接查的话，房间还没记录过就会报 KeyNotFoundException）
+
+    // 取某个房间的探索进度，没记录过就当 0
+    public int GetExploreProgress(int roomID)
+    {
+        if (exploreProgress.TryGetValue(roomID, out int value)) return value;
+        return 0;
+    }
+
+    // 给某个房间加探索进度（没记录过会自动建一条），结果夹在 0~100
+    public void AddExploreProgress(int roomID, int add)
+    {
+        exploreProgress[roomID] = Mathf.Clamp(GetExploreProgress(roomID) + add, 0, 100);
+    }
+
+    // 直接设定某个房间的探索进度，结果夹在 0~100
+    public void SetExploreProgress(int roomID, int value)
+    {
+        exploreProgress[roomID] = Mathf.Clamp(value, 0, 100);
+    }
+    #endregion
+
     public void LoadEvent(int roomID)
     {
         Array<int> eventArray = new Array<int>();

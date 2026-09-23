@@ -63,10 +63,10 @@ scale = Vector2(1.1, 1.1)
 
 [node name="building5" parent="." unique_id=1032576674 instance=ExtResource("3_vnod4")]
 layout_mode = 0
-offset_left = 422.99997
-offset_top = 165.0
-offset_right = 422.99997
-offset_bottom = 165.0
+offset_left = 421.0
+offset_top = 193.0
+offset_right = 421.0
+offset_bottom = 193.0
 scale = Vector2(1.1, 1.1)
 
 [node name="backBtn" type="TextureButton" parent="." unique_id=1209917913]
@@ -92,7 +92,7 @@ offset_right = 405.0
 offset_bottom = 134.0
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
 theme_override_constants/line_spacing = 3
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 48
 text = "返回基地"
 horizontal_alignment = 1

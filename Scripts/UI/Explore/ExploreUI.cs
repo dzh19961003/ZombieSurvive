@@ -93,15 +93,8 @@ public partial class ExploreUI : Control
     {
         
         exploreProgressBar.Visible = showProgress;
-        if (GameManager.Instance.exploreProgress.ContainsKey(GameManager.Instance.roomID))
-        {
-            exploreProgressLabel.Text = GameManager.Instance.exploreProgress[GameManager.Instance.roomID].ToString() + "%";
-        }
-        else
-        {
-            GameManager.Instance.exploreProgress.Add(GameManager.Instance.roomID, 0);
-            exploreProgressLabel.Text = GameManager.Instance.exploreProgress[GameManager.Instance.roomID].ToString() + "%";
-        }
+        //没记录过的房间进度按 0 算，不直接查字典
+        exploreProgressLabel.Text = GameManager.Instance.GetExploreProgress(GameManager.Instance.roomID) + "%";
         noiseProgressLabel.Text = GameManager.Instance.exploreNoise.ToString() + "%";
 
         ExploreEvent exploreEvent = ConfigManager.Instance.exploreEventDic[GameManager.Instance.currentEventID];

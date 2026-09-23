@@ -18,6 +18,8 @@ public partial class Warehouse : Area2D
     {
 		if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed && mouseButton.ButtonIndex == MouseButton.Left )
 		{
+			// 有全屏面板（探索界面等）盖在上面时，忽略这次点击
+			if (UIManager.Instance.IsSceneClickBlocked()) return;
 			OpenWarehouse();
         }
     }

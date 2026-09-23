@@ -134,6 +134,43 @@ public partial class UIManager : Node
     }
 
     // ─────────────────────────────────────────────────────────
+    //  场景点击锁（全自动，新增面板不用写任何代码）
+    //  背景：Main 场景常驻，基地里的建筑（Train/Workstation/Warehouse/Door）
+    //  一直挂在场景里。全屏面板（探索地图、探索界面等）盖上去之后，
+    //  点空白处时 Area2D 的 input_event 照样会被触发，于是误开了功能 UI。
+    //
+    //  判断规则（满足全部三条才算"挡住场景"）：
+    //    1. 是 UIManager 的直接子节点（ShowUI / CreateUI 都会挂到这里）
+    //    2. Visible = true（被 HideUI 隐藏的缓存面板不算）
+    //    3. mouse_filter 不是 Ignore（MainUI 这种 HUD 设了 Ignore，故意让点击穿过去）
+    //    4. 宽高都盖住屏幕的 FullScreenRatio 以上
+    // ─────────────────────────────────────────────────────────
+
+    // 面板盖住屏幕多大比例算"全屏面板"，0.8 = 宽高各占 80% 以上
+    private const float FullScreenRatio = 0.8f;
+
+    // 场景里的建筑点击前调用：true = 现在有全屏面板挡着，这次点击要忽略
+    public bool IsSceneClickBlocked()
+    {
+        Vector2 screenSize = GetViewport().GetVisibleRect().Size;
+
+        foreach (Node child in GetChildren())
+        {
+            Control panel = child as Control;
+            if (panel == null) continue;
+            if (!panel.Visible) continue;
+            if (panel.MouseFilter == Control.MouseFilterEnum.Ignore) continue;
+
+            if (panel.Size.X >= screenSize.X * FullScreenRatio &&
+                panel.Size.Y >= screenSize.Y * FullScreenRatio)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // ─────────────────────────────────────────────────────────
     //  HideAll：关闭所有面板（切换场景前可以调用）
     // ─────────────────────────────────────────────────────────
     public void HideAll()
