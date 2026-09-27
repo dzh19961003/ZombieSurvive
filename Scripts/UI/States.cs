@@ -58,18 +58,17 @@ public partial class States : Control
         // 根据正面/负面设置样式
         if (state.Positive == 1)
         {
-            PosIcon.FlipH = false;
+            PosIcon.Texture=GD.Load<Texture2D>("res://Assets/Images/UI/Property/good_bg.png");
             StateName.AddThemeColorOverride("font_color", Colors.Green);
         }
         else
         {
-            PosIcon.FlipH = true;
+            PosIcon.Texture = GD.Load<Texture2D>("res://Assets/Images/UI/Property/bad_bg.png");
             StateName.AddThemeColorOverride("font_color", Colors.Red);
         }
 
         // 显示所有节点
         PosIcon.Visible = true;
-        Bg.Visible = true;
         StateName.Visible = true;
         TimeLen.Visible = true;
 

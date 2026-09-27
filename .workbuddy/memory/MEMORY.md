@@ -15,6 +15,13 @@
 - 子场景动态挂入 SceneContainer 节点
 - 打开/关闭UI面板用 UIManager.Instance.ShowPanel(路径) / HidePanel(路径)
 - 存档系统：实现 ISaveable 接口 + AddToGroup("Save")，SaveManager 自动发现
+- 探索进度：统一用 GameManager 的 GetExploreProgress / AddExploreProgress / SetExploreProgress
+  读写，禁止在别处直接 exploreProgress[房间ID]（房间没记录过会 KeyNotFoundException）
+- 类型坑：多个脚本只 using 了 Godot.Collections，没 using System.Collections.Generic，
+  写 Dictionary<int,int> 实际是 Godot.Collections.Dictionary，报错栈会指向引擎 Dictionary.cs
+  input_event 仍会触发。UIManager.IsSceneClickBlocked() 自动扫描直接子节点判定
+  （Visible=true + mouse_filter≠Ignore + 宽高各占屏幕80%以上），新增面板无需写任何代码；
+  建筑脚本点击前调一次即可。MainUI 因 mouse_filter=Ignore 天然放行
 
 ## 目录结构
 - Scripts/Tools/ — 工具类（ConfigManager、UIManager、SceneLoader、SaveManager等）

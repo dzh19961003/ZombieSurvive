@@ -1,25 +1,31 @@
 [gd_scene format=3 uid="uid://15kqr0hmpuqy"]
 
 [ext_resource type="Script" uid="uid://daunwsd0fkudj" path="res://Scripts/UI/PropertyUi.cs" id="1_00jn1"]
-[ext_resource type="Texture2D" uid="uid://qoeawfpiwoj8" path="res://Assets/Images/UI/New/bg_3.png" id="2_7b2ht"]
+[ext_resource type="Texture2D" uid="uid://bwd0ubdlxaq04" path="res://Assets/Images/UI/Property/bg_2.png" id="2_6k270"]
 [ext_resource type="Texture2D" uid="uid://desgea4htjck3" path="res://icon.svg" id="2_a1hvy"]
+[ext_resource type="Texture2D" uid="uid://ckx844ynbr37a" path="res://Assets/Images/UI/Property/equip_bg.png" id="3_6k270"]
 [ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="3_8l46q"]
+[ext_resource type="Texture2D" uid="uid://deoueql4psbch" path="res://Assets/Images/Items/knife1_icon.png" id="3_bje0t"]
 [ext_resource type="Texture2D" uid="uid://cknyjjfsqbekv" path="res://Assets/Images/UI/New/tab_nonselected.png" id="3_gbxri"]
-[ext_resource type="Texture2D" uid="uid://401g6anh5dnd" path="res://Assets/Images/UI/New/itemBg.png" id="4_o5jng"]
+[ext_resource type="Texture2D" uid="uid://cf3q4me5htwwx" path="res://Assets/Images/Items/jacket1_icon.png" id="4_0g72h"]
 [ext_resource type="Script" uid="uid://bxkd3n0h3aas6" path="res://Scripts/UI/SpecialItemList.cs" id="4_qxceh"]
+[ext_resource type="Texture2D" uid="uid://dvvjcc386kp6q" path="res://Assets/Images/Items/shoes1_icon.png" id="5_0fvta"]
+[ext_resource type="Texture2D" uid="uid://baa5sri2u20w7" path="res://Assets/Images/Items/ring1_icon.png" id="6_sjbdt"]
 [ext_resource type="Texture2D" uid="uid://b2l7to85rkjl" path="res://Assets/Images/UI/heart_icon.png" id="7_f8vne"]
-[ext_resource type="Texture2D" uid="uid://brqqy0i1nrwko" path="res://Assets/Images/UI/New/progressBg.png" id="8_pgtbk"]
-[ext_resource type="Texture2D" uid="uid://blsuj411ot7hm" path="res://Assets/Images/UI/New/HPprogress.png" id="9_6k270"]
-[ext_resource type="Texture2D" uid="uid://c73yxng4uea1l" path="res://Assets/Images/UI/New/closeBtn.png" id="11_bje0t"]
-[ext_resource type="Texture2D" uid="uid://bxcrxndv58etk" path="res://Assets/Images/UI/New/strength.png" id="12_0g72h"]
+[ext_resource type="Texture2D" uid="uid://h08l6lxy1shb" path="res://Assets/Images/UI/Property/hp_progress.png" id="11_itt3u"]
+[ext_resource type="Texture2D" uid="uid://x26ev65m6p0k" path="res://Assets/Images/UI/New/strength.png" id="12_0g72h"]
 [ext_resource type="Texture2D" uid="uid://d141ff1l2u5qd" path="res://Assets/Images/UI/New/speed.png" id="13_0fvta"]
+[ext_resource type="Texture2D" uid="uid://cvvkeke1olr8d" path="res://Assets/Images/UI/Property/close_btn.png" id="13_pgtbk"]
 [ext_resource type="Texture2D" uid="uid://duddhv3a3jk84" path="res://Assets/Images/UI/New/brain.png" id="14_sjbdt"]
+[ext_resource type="Texture2D" uid="uid://cedxmni21b24f" path="res://Assets/Images/UI/Property/exp_progress.png" id="15_y338u"]
 
 [node name="PropertyUI" type="Control" unique_id=1276892508 node_paths=PackedStringArray("close_button", "StateAreas", "TalentAreas")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 75.0
+offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_00jn1")
@@ -31,93 +37,152 @@ TalentAreas = NodePath("Traits/TraitAreas")
 propagate_maximum_size = true
 layout_mode = 1
 anchors_preset = -1
+offset_top = -75.0
 offset_right = 1080.0
-offset_bottom = 1920.0
+offset_bottom = 1845.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.78431374)
 
-[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=891162855]
+[node name="NinePatchRect" type="TextureRect" parent="." unique_id=504477123]
 layout_mode = 0
-offset_left = 75.0
-offset_top = 115.0
-offset_right = 1006.0
-offset_bottom = 1751.0
-texture = ExtResource("2_7b2ht")
-region_rect = Rect2(0, 0, 900, 1236)
-patch_margin_left = 78
-patch_margin_top = 141
-patch_margin_right = 88
-patch_margin_bottom = 119
+offset_left = 33.0
+offset_top = 110.0
+offset_right = 1025.0
+offset_bottom = 1550.0
+texture = ExtResource("2_6k270")
 
-[node name="Equipments" type="TextureRect" parent="." unique_id=1282518273]
+[node name="propertyDes" type="Label" parent="." unique_id=543353880]
 layout_mode = 0
-offset_left = 394.0
-offset_top = 578.0
-offset_right = 688.1666
-offset_bottom = 658.0
-texture = ExtResource("3_gbxri")
-expand_mode = 2
+offset_left = 175.0
+offset_top = 154.0
+offset_right = 368.0
+offset_bottom = 202.0
+theme_override_font_sizes/font_size = 48
+text = "个人属性"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="equipments" type="HBoxContainer" parent="Equipments" unique_id=1145534198]
-layout_mode = 0
-offset_left = -286.0
-offset_top = 97.0
-offset_right = 579.0
-offset_bottom = 233.0
-theme_override_constants/separation = 44
-alignment = 1
+[node name="Equipments" type="Control" parent="." unique_id=1592890376]
+anchors_preset = 0
 
-[node name="helmet" type="TextureRect" parent="Equipments/equipments" unique_id=993718778]
+[node name="EquipBg" type="Sprite2D" parent="Equipments" unique_id=863488691]
+position = Vector2(181.75, 768.6589)
+scale = Vector2(0.908867, 0.90886694)
+texture = ExtResource("3_6k270")
+
+[node name="EquipBg2" type="Sprite2D" parent="Equipments" unique_id=1952649288]
+position = Vector2(415, 768.6589)
+scale = Vector2(0.908867, 0.90886694)
+texture = ExtResource("3_6k270")
+
+[node name="EquipBg3" type="Sprite2D" parent="Equipments" unique_id=659677387]
+position = Vector2(644, 768.6588)
+scale = Vector2(0.908867, 0.90886694)
+texture = ExtResource("3_6k270")
+
+[node name="EquipBg4" type="Sprite2D" parent="Equipments" unique_id=2118271656]
+position = Vector2(875, 768.6589)
+scale = Vector2(0.908867, 0.90886694)
+texture = ExtResource("3_6k270")
+
+[node name="weapon" type="TextureRect" parent="Equipments" unique_id=2073056354]
 custom_minimum_size = Vector2(140, 100)
-layout_mode = 2
-texture = ExtResource("4_o5jng")
+layout_mode = 0
+offset_left = 90.0
+offset_top = 676.0
+offset_right = 279.39087
+offset_bottom = 858.0
+texture = ExtResource("3_bje0t")
 expand_mode = 1
 
-[node name="armor" type="TextureRect" parent="Equipments/equipments" unique_id=1873382615]
+[node name="weapon" type="Label" parent="Equipments/weapon" unique_id=990717200]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 184.0
+offset_right = 138.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 35
+text = "武器"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="armor" type="TextureRect" parent="Equipments" unique_id=1873382615]
 custom_minimum_size = Vector2(140, 100)
-layout_mode = 2
-texture = ExtResource("4_o5jng")
+layout_mode = 0
+offset_left = 319.0
+offset_top = 677.0
+offset_right = 508.39087
+offset_bottom = 859.0
+texture = ExtResource("4_0g72h")
 expand_mode = 1
 
-[node name="shoes" type="TextureRect" parent="Equipments/equipments" unique_id=895999204]
+[node name="armor" type="Label" parent="Equipments/armor" unique_id=907574571]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 184.0
+offset_right = 138.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 35
+text = "护甲"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="shoes" type="TextureRect" parent="Equipments" unique_id=895999204]
 custom_minimum_size = Vector2(140, 140)
-layout_mode = 2
-texture = ExtResource("4_o5jng")
+layout_mode = 0
+offset_left = 550.0
+offset_top = 677.0
+offset_right = 739.39087
+offset_bottom = 859.0
+texture = ExtResource("5_0fvta")
 expand_mode = 1
 
-[node name="ornament" type="TextureRect" parent="Equipments/equipments" unique_id=2073056354]
+[node name="shoes" type="Label" parent="Equipments/shoes" unique_id=403855683]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 184.0
+offset_right = 138.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 35
+text = "鞋子"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ring" type="TextureRect" parent="Equipments" unique_id=993718778]
 custom_minimum_size = Vector2(140, 100)
-layout_mode = 2
-texture = ExtResource("4_o5jng")
+layout_mode = 0
+offset_left = 779.0
+offset_top = 677.0
+offset_right = 968.39087
+offset_bottom = 859.0
+texture = ExtResource("6_sjbdt")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Equipments" unique_id=2026701635]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -86.08331
-offset_top = -27.0
-offset_right = 83.91669
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ring" type="Label" parent="Equipments/ring" unique_id=1394979250]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 184.0
+offset_right = 138.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 35
+text = "饰品"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Equipments" type="Label" parent="Equipments" unique_id=2026701635]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 613.0
+offset_right = 228.0
+offset_bottom = 649.0
 theme_override_font_sizes/font_size = 35
 text = "装备"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="States" type="TextureRect" parent="." unique_id=839262290]
-layout_mode = 0
-offset_left = 394.0
-offset_top = 846.0
-offset_right = 688.1666
-offset_bottom = 926.0
-texture = ExtResource("3_gbxri")
-expand_mode = 2
+[node name="States" type="Control" parent="." unique_id=1132287019]
+anchors_preset = 0
 
 [node name="Label" type="Label" parent="States" unique_id=2076384446]
 layout_mode = 1
@@ -126,10 +191,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -87.0
-offset_top = -27.0
-offset_right = 85.0
-offset_bottom = 22.0
+offset_left = 122.0
+offset_top = 948.0
+offset_right = 240.0
+offset_bottom = 997.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 35
@@ -139,21 +204,19 @@ vertical_alignment = 1
 
 [node name="StateAreas" type="GridContainer" parent="States" unique_id=597607504]
 layout_mode = 0
-offset_left = -275.0
-offset_top = 89.0
-offset_right = 574.0
-offset_bottom = 237.0
-theme_override_constants/h_separation = 44
-columns = 3
+offset_left = 69.0
+offset_top = 1005.0
+offset_right = 840.6666
+offset_bottom = 1145.8333
+scale = Vector2(1.2, 1.2)
+columns = 4
 
-[node name="Traits" type="TextureRect" parent="." unique_id=1742402963]
-layout_mode = 0
-offset_left = 394.0
-offset_top = 1093.0
-offset_right = 688.1666
-offset_bottom = 1173.0
-texture = ExtResource("3_gbxri")
-expand_mode = 2
+[node name="Traits" type="Control" parent="." unique_id=489294827]
+anchors_preset = 0
+offset_left = 136.0
+offset_top = 1207.0
+offset_right = 430.16663
+offset_bottom = 1287.0
 
 [node name="Label" type="Label" parent="Traits" unique_id=23511985]
 layout_mode = 1
@@ -162,27 +225,28 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -87.0
-offset_top = -28.0
-offset_right = 85.0
-offset_bottom = 21.0
+offset_left = -189.08331
+offset_top = -44.0
+offset_right = -17.083313
+offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 35
-text = "特质"
+text = "天赋"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TraitAreas" type="GridContainer" parent="Traits" unique_id=1285491182]
 layout_mode = 0
-offset_left = -285.0
-offset_top = 96.0
-offset_right = 576.0
-offset_bottom = 237.0
-theme_override_constants/h_separation = 66
-columns = 3
+offset_left = -64.0
+offset_top = 53.0
+offset_right = 696.0
+offset_bottom = 190.5
+scale = Vector2(1.2, 1.2)
+columns = 4
 
 [node name="SpecialProps" type="TextureRect" parent="." unique_id=553795152]
+visible = false
 layout_mode = 0
 offset_left = 394.0
 offset_top = 1406.0
@@ -232,6 +296,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Portrait" type="TextureButton" parent="." unique_id=937400659]
+visible = false
 layout_mode = 0
 offset_left = 154.0
 offset_top = 223.0
@@ -242,173 +307,213 @@ stretch_mode = 0
 
 [node name="Health" type="TextureProgressBar" parent="." unique_id=1707433092]
 layout_mode = 0
-offset_left = 462.0
-offset_top = 233.0
-offset_right = 1354.0
-offset_bottom = 343.0
-scale = Vector2(0.5, 0.5)
+offset_left = 394.0
+offset_top = 290.0
+offset_right = 959.0
+offset_bottom = 319.0
 value = 50.0
-texture_under = ExtResource("8_pgtbk")
-texture_progress = ExtResource("9_6k270")
-texture_progress_offset = Vector2(20, 21.875)
+nine_patch_stretch = true
+texture_progress = ExtResource("11_itt3u")
 tint_over = Color(0.9945772, 5.4628404e-06, 9.62615e-07, 1)
 
 [node name="Label" type="Label" parent="Health" unique_id=1827576991]
 layout_mode = 0
-offset_left = 296.0
-offset_right = 602.0
-offset_bottom = 110.0
-theme_override_font_sizes/font_size = 80
+offset_left = 188.0
+offset_top = -8.0
+offset_right = 346.0
+offset_bottom = 35.0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 42
 text = "100/100"
 
 [node name="TextureRect" type="TextureRect" parent="Health" unique_id=1271902915]
 layout_mode = 0
-offset_left = -222.0
-offset_top = -50.0
-offset_right = -8.0
-offset_bottom = 164.0
+offset_left = -92.0
+offset_top = -31.0
+offset_right = 5.0
+offset_bottom = 66.0
 texture = ExtResource("7_f8vne")
+expand_mode = 1
 
 [node name="close_button" type="Button" parent="." unique_id=1378168597]
 layout_mode = 0
-offset_left = 898.00006
-offset_top = 96.00001
-offset_right = 1034.0
-offset_bottom = 238.0
+offset_left = 897.00006
+offset_top = 115.0
+offset_right = 1033.0
+offset_bottom = 257.0
 scale = Vector2(0.9, 0.9)
 theme_override_icons/icon = ExtResource("2_a1hvy")
-icon = ExtResource("11_bje0t")
+icon = ExtResource("13_pgtbk")
 flat = true
 icon_alignment = 1
 
 [node name="strength" type="TextureRect" parent="." unique_id=280162119]
 layout_mode = 0
-offset_left = 183.00002
-offset_top = 413.0
-offset_right = 214.3929
-offset_bottom = 447.42078
-scale = Vector2(2.1979518, 1.9755502)
+offset_left = 342.0
+offset_top = 420.0
+offset_right = 407.6475
+offset_bottom = 491.97925
+scale = Vector2(1.112, 1)
 texture = ExtResource("12_0g72h")
 expand_mode = 1
 
 [node name="number" type="Label" parent="strength" unique_id=40318838]
 layout_mode = 0
-offset_left = 38.672367
-offset_top = -5.568069
-offset_right = 78.67236
-offset_bottom = 39.43193
-theme_override_font_sizes/font_size = 32
+offset_left = 73.74101
+offset_top = 6.000002
+offset_right = 164.74101
+offset_bottom = 67.0
+theme_override_font_sizes/font_size = 60
 text = "10"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="progress" type="TextureProgressBar" parent="strength" unique_id=912182157]
 layout_mode = 0
-offset_left = -6.824533
-offset_top = 43.532173
-offset_right = 473.17548
-offset_bottom = 153.53217
-scale = Vector2(0.20794062, 0.19761012)
+offset_left = -4.5776367e-05
+offset_top = 97.0
+offset_right = 157.37407
+offset_bottom = 118.99999
+value = 100.0
 nine_patch_stretch = true
-stretch_margin_left = 60
-stretch_margin_right = 60
-texture_under = ExtResource("8_pgtbk")
-texture_progress = ExtResource("9_6k270")
-texture_progress_offset = Vector2(10.97, 0)
+texture_progress = ExtResource("15_y338u")
 
 [node name="Label" type="Label" parent="strength/progress" unique_id=1770772263]
 layout_mode = 0
-offset_left = 160.0
-offset_top = 23.0
-offset_right = 315.0
-offset_bottom = 93.0
-theme_override_font_sizes/font_size = 48
+offset_left = 3.4332275e-05
+offset_top = -2.0000153
+offset_right = 157.37415
+offset_bottom = 21.999985
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
 text = "0/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="strength" type="Label" parent="strength" unique_id=391243204]
+layout_mode = 0
+offset_left = 33.273373
+offset_top = -46.000015
+offset_right = 125.27338
+offset_bottom = -10.000015
+theme_override_colors/font_color = Color(0.98039216, 0.94509804, 0.73333335, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "强健"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="agile" type="TextureRect" parent="." unique_id=1127263960]
 layout_mode = 0
-offset_left = 447.0
-offset_top = 407.0
-offset_right = 474.7531
-offset_bottom = 447.0
-scale = Vector2(2.1979518, 1.9755502)
+offset_left = 567.0
+offset_top = 420.0
+offset_right = 653.0
+offset_bottom = 492.0
 texture = ExtResource("13_0fvta")
 expand_mode = 1
 
 [node name="number" type="Label" parent="agile" unique_id=889037789]
 layout_mode = 0
-offset_left = 42.312122
-offset_top = -3.0371287
-offset_right = 82.31212
-offset_bottom = 41.96287
-theme_override_font_sizes/font_size = 32
+offset_left = 94.999985
+offset_top = 4.9999924
+offset_right = 185.99998
+offset_bottom = 65.99999
+theme_override_font_sizes/font_size = 60
 text = "50"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="progress" type="TextureProgressBar" parent="agile" unique_id=1171486576]
 layout_mode = 0
-offset_left = -3.6397579
-offset_top = 46.569305
-offset_right = 476.36023
-offset_bottom = 156.5693
-scale = Vector2(0.20794062, 0.19761012)
+offset_left = 1.5258789e-05
+offset_top = 97.0
+offset_right = 177.00002
+offset_bottom = 118.99999
+value = 100.0
 nine_patch_stretch = true
-stretch_margin_left = 60
-stretch_margin_right = 60
-texture_under = ExtResource("8_pgtbk")
+texture_progress = ExtResource("15_y338u")
 
 [node name="Label2" type="Label" parent="agile/progress" unique_id=1389851494]
 layout_mode = 0
-offset_left = 164.098
-offset_top = 23.0
-offset_right = 319.09802
-offset_bottom = 93.0
-theme_override_font_sizes/font_size = 48
+offset_top = -2.0
+offset_right = 177.0
+offset_bottom = 22.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
 text = "0/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="speed" type="Label" parent="agile" unique_id=1313973732]
+layout_mode = 0
+offset_left = 42.0
+offset_top = -45.000015
+offset_right = 134.0
+offset_bottom = -9.000015
+theme_override_colors/font_color = Color(0.98039216, 0.94509804, 0.73333335, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "敏捷"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="intelligence" type="TextureRect" parent="." unique_id=820454334]
 layout_mode = 0
-offset_left = 704.0
-offset_top = 411.0
-offset_right = 734.90063
-offset_bottom = 451.0
-scale = Vector2(2.1979518, 1.9755502)
+offset_left = 796.0
+offset_top = 421.0
+offset_right = 875.35297
+offset_bottom = 492.0
 texture = ExtResource("14_sjbdt")
 expand_mode = 1
 
 [node name="number" type="Label" parent="intelligence" unique_id=1407329152]
 layout_mode = 0
-offset_left = 40.492245
-offset_top = -3.0371287
-offset_right = 80.49225
-offset_bottom = 41.96287
-theme_override_font_sizes/font_size = 32
-text = "5"
+offset_left = 87.00003
+offset_top = 4.9999924
+offset_right = 178.00003
+offset_bottom = 65.99999
+theme_override_font_sizes/font_size = 60
+text = "50"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="progress" type="TextureProgressBar" parent="intelligence" unique_id=1870846007]
 layout_mode = 0
-offset_left = 2.2748396
-offset_top = 45.05074
-offset_right = 482.27484
-offset_bottom = 155.19746
-scale = Vector2(0.20794062, 0.19761012)
+offset_left = -1.0
+offset_top = 97.0
+offset_right = 169.0
+offset_bottom = 119.0
+value = 100.0
 nine_patch_stretch = true
-stretch_margin_left = 60
-stretch_margin_right = 60
-texture_under = ExtResource("8_pgtbk")
+texture_progress = ExtResource("15_y338u")
 
 [node name="Label3" type="Label" parent="intelligence/progress" unique_id=2124319613]
 layout_mode = 0
-offset_left = 164.098
-offset_top = 23.0
-offset_right = 319.09802
-offset_bottom = 93.0
-theme_override_font_sizes/font_size = 48
+offset_top = -2.0
+offset_right = 169.0
+offset_bottom = 22.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 24
 text = "0/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="speed" type="Label" parent="intelligence" unique_id=1554498469]
+layout_mode = 0
+offset_left = 35.0
+offset_top = -46.000015
+offset_right = 127.0
+offset_bottom = -10.000015
+theme_override_colors/font_color = Color(0.98039216, 0.94509804, 0.73333335, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "智力"
 horizontal_alignment = 1
 vertical_alignment = 1
 

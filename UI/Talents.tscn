@@ -1,18 +1,17 @@
 [gd_scene format=3 uid="uid://d3yd8heapq3r6"]
 
 [ext_resource type="Script" uid="uid://qqq1vcse3l02" path="res://Scripts/UI/Talents.cs" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://dmsp4tv0xocxa" path="res://Assets/Images/UI/rarity_green.png" id="2_7bmo2"]
-[ext_resource type="Texture2D" uid="uid://rmjmivhdjuc6" path="res://Assets/Images/UI/rarity_blue.png" id="3_7uc4g"]
-[ext_resource type="Texture2D" uid="uid://cqpcu7ik6fr4y" path="res://Assets/Images/UI/rarity_purple.png" id="4_wtjos"]
-[ext_resource type="Texture2D" uid="uid://dmujn2n7t1dig" path="res://Assets/Images/UI/rarity_orange.png" id="5_c4reh"]
-
+[ext_resource type="Texture2D" uid="uid://bt1bevceypcox" path="res://Assets/Images/UI/Property/rarity_1.png" id="2_bfvga"]
+[ext_resource type="Texture2D" uid="uid://dsdedjkb2c5vg" path="res://Assets/Images/UI/Property/rarity_2.png" id="3_ykwdt"]
+[ext_resource type="Texture2D" uid="uid://b28xqgyx5tkqt" path="res://Assets/Images/UI/Property/rarity_3.png" id="4_myq0u"]
+[ext_resource type="Texture2D" uid="uid://ygy1qvy4ouwq" path="res://Assets/Images/UI/Property/rarity_4.png" id="5_3qiba"]
 
 [node name="Trait" type="Control" unique_id=103860773 node_paths=PackedStringArray("Bg", "TalentName", "Rarity")]
-custom_minimum_size = Vector2(230, 79)
+custom_minimum_size = Vector2(187, 71)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 230.0
-offset_bottom = 79.0
+offset_right = 187.0
+offset_bottom = 71.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_script")
@@ -22,45 +21,41 @@ Rarity = [NodePath("rarity1"), NodePath("rarity2"), NodePath("rarity3"), NodePat
 
 [node name="rarity1" type="TextureRect" parent="." unique_id=1499623245]
 layout_mode = 0
-offset_right = 234.0
-offset_bottom = 79.0
-texture = ExtResource("2_7bmo2")
-expand_mode = 1
+offset_right = 187.0
+offset_bottom = 71.0
+texture = ExtResource("2_bfvga")
 
 [node name="rarity2" type="TextureRect" parent="." unique_id=1158359805]
 layout_mode = 0
-offset_right = 234.0
-offset_bottom = 79.0
-texture = ExtResource("3_7uc4g")
-expand_mode = 1
+offset_right = 187.0
+offset_bottom = 71.0
+texture = ExtResource("3_ykwdt")
 
 [node name="rarity3" type="TextureRect" parent="." unique_id=360118948]
 layout_mode = 0
-offset_right = 234.0
-offset_bottom = 79.0
-texture = ExtResource("4_wtjos")
-expand_mode = 1
+offset_right = 187.0
+offset_bottom = 71.0
+texture = ExtResource("4_myq0u")
 
 [node name="rarity4" type="TextureRect" parent="." unique_id=757428971]
 layout_mode = 0
-offset_right = 234.0
-offset_bottom = 79.0
-texture = ExtResource("5_c4reh")
-expand_mode = 1
+offset_right = 187.0
+offset_bottom = 71.0
+texture = ExtResource("5_3qiba")
 
 [node name="TalentName" type="Label" parent="." unique_id=886531404]
 layout_mode = 0
-offset_left = 54.0
-offset_top = 17.0
-offset_right = 195.0
-offset_bottom = 58.0
-theme_override_font_sizes/font_size = 29
+offset_left = 23.0
+offset_top = 14.0
+offset_right = 164.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 30
 text = "天赋名字"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Bg" type="TextureButton" parent="." unique_id=19116228]
 layout_mode = 1
-offset_right = 232.0
-offset_bottom = 76.0
+offset_right = 187.0
+offset_bottom = 71.0
 ignore_texture_size = true

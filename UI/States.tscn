@@ -1,16 +1,14 @@
 [gd_scene format=3 uid="uid://mnqrb3ht0w74"]
 
 [ext_resource type="Script" uid="uid://dxy4e40th2e2k" path="res://Scripts/UI/States.cs" id="1_7o1y6"]
-[ext_resource type="Texture2D" uid="uid://cgo5d5n4nefk3" path="res://Assets/Images/UI/arrow_left.png" id="2_5en7t"]
-[ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="3_dcnyy"]
-[ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="4_kktbc"]
+[ext_resource type="Texture2D" uid="uid://2vvu84iegl1r" path="res://Assets/Images/UI/Property/bad_bg.png" id="2_e7djp"]
 
 [node name="Buff" type="Control" unique_id=1420942808 node_paths=PackedStringArray("PosIcon", "Bg", "StateName", "TimeLen")]
-custom_minimum_size = Vector2(240, 79)
+custom_minimum_size = Vector2(188, 69)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 240.0
-offset_bottom = 79.0
+offset_right = 188.0
+offset_bottom = 69.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_7o1y6")
@@ -21,46 +19,39 @@ TimeLen = NodePath("Duration/TimeLen")
 
 [node name="PosIcon" type="TextureRect" parent="." unique_id=881591601]
 layout_mode = 0
-offset_left = 228.0
-offset_top = 26.0
-offset_right = 304.0
-offset_bottom = 102.0
-rotation = 1.5707964
-scale = Vector2(0.62926424, 0.61784494)
-texture = ExtResource("2_5en7t")
+offset_right = 188.0
+offset_bottom = 69.0
+texture = ExtResource("2_e7djp")
 
 [node name="Bg" type="TextureButton" parent="." unique_id=1045471739]
 layout_mode = 0
-offset_right = 196.0
-offset_bottom = 79.0
-texture_normal = ExtResource("3_dcnyy")
+offset_right = 188.0
+offset_bottom = 69.0
 
 [node name="StateName" type="Label" parent="." unique_id=153694741]
 layout_mode = 0
-offset_left = 22.0
-offset_top = 15.0
-offset_right = 170.0
-offset_bottom = 56.0
-theme_override_font_sizes/font_size = 29
+offset_left = 33.0
+offset_top = 13.0
+offset_right = 154.0
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 30
 text = "状态名称"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Duration" type="TextureRect" parent="." unique_id=136986268]
-layout_mode = 0
-offset_left = 172.0
-offset_right = 238.0
-offset_bottom = 32.0
-texture = ExtResource("4_kktbc")
-expand_mode = 1
+[node name="Duration" type="Control" parent="." unique_id=1584126887]
+anchors_preset = 0
+offset_right = 188.0
+offset_bottom = 69.0
 
 [node name="TimeLen" type="Label" parent="Duration" unique_id=2077637104]
 layout_mode = 0
-offset_left = 7.0
-offset_top = 3.0
-offset_right = 59.0
-offset_bottom = 26.0
-theme_override_font_sizes/font_size = 12
-text = "持续时间"
+offset_left = 154.0
+offset_top = -6.0
+offset_right = 190.0
+offset_bottom = 18.0
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "2天"
 horizontal_alignment = 1
 vertical_alignment = 1
