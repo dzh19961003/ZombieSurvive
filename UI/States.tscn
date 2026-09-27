@@ -43,6 +43,7 @@ vertical_alignment = 1
 anchors_preset = 0
 offset_right = 188.0
 offset_bottom = 69.0
+mouse_filter = 2
 
 [node name="TimeLen" type="Label" parent="Duration" unique_id=2077637104]
 layout_mode = 0

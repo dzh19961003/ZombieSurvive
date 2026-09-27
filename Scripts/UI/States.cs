@@ -59,12 +59,12 @@ public partial class States : Control
         if (state.Positive == 1)
         {
             PosIcon.Texture=GD.Load<Texture2D>("res://Assets/Images/UI/Property/good_bg.png");
-            StateName.AddThemeColorOverride("font_color", Colors.Green);
+            StateName.AddThemeColorOverride("font_color", Color.FromHtml("#9fce94"));
         }
         else
         {
             PosIcon.Texture = GD.Load<Texture2D>("res://Assets/Images/UI/Property/bad_bg.png");
-            StateName.AddThemeColorOverride("font_color", Colors.Red);
+            StateName.AddThemeColorOverride("font_color", Color.FromHtml("#c54949"));
         }
 
         // 显示所有节点
@@ -90,12 +90,8 @@ public partial class States : Control
         //UIManager.Instance.ShowCommonTips(state.Name, state.Effect);
         if (UIManager.Instance != null)
         {
-
             DetailsState buffTips = (DetailsState)UIManager.Instance.ShowUI("res://UI/DetailsTag/DetailsState.tscn");
             buffTips.Initail(ID);
-            UIManager.Instance.SetSpwanPosition(this, buffTips);
-
-
         }
     }
 }

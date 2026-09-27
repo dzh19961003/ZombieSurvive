@@ -103,7 +103,7 @@ namespace MyProject
             {
                 TalentName.Text = talent.Name;
             }
-
+            UIManager.Instance.SetLabelRarityColor(TalentName, ConfigManager.Instance.talentDic[TalentID].Rarity);
 
 
             // 显示所有节点
@@ -150,9 +150,7 @@ namespace MyProject
                 
                 DetailsTalent talentTips = (DetailsTalent)UIManager.Instance.ShowUI("res://UI/DetailsTag/DetailsTalent.tscn");
                 talentTips.InitialTips(TalentID);
-                UIManager.Instance.SetSpwanPosition(this, talentTips);
-
-
+                //UIManager.Instance.SetSpwanPosition(this, talentTips);
             }
         }
     }

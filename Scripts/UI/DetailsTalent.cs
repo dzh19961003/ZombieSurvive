@@ -1,6 +1,7 @@
 using Godot;
 using MyProject;
 using System;
+using System.Diagnostics;
 
 public partial class DetailsTalent : Control
 {
@@ -8,13 +9,17 @@ public partial class DetailsTalent : Control
     [Export] public Label nameLable;
     [Export] public Label descriptino;
     [Export] public Button BG;
-    
+    [Export] public Button closeBtn;
+
     public override void _Ready()
     {
-        BG.Pressed += () =>
+        closeBtn.Pressed+= () =>
         {
             UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsTalent.tscn");
-            
+        };
+        BG.Pressed += () =>
+        {
+            UIManager.Instance.HideUI("res://UI/DetailsTag/DetailsTalent.tscn");            
         };
     }
     public void InitialTips(int ID)
@@ -26,6 +31,6 @@ public partial class DetailsTalent : Control
         Rarity[ConfigManager.Instance.talentDic[ID].Rarity - 1].Visible = true;
         nameLable.Text = ConfigManager.Instance.talentDic[ID].Name;
         descriptino.Text = ConfigManager.Instance.talentDic[ID].Effect;
-        
+        UIManager.Instance.SetLabelRarityColor(nameLable,ConfigManager.Instance.talentDic[ID].Rarity);
     }
 }
