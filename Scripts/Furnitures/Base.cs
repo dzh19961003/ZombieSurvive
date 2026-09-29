@@ -23,7 +23,8 @@ public partial class Base : Node2D
         RegisterStaticSwap("Tent", "tent_1.png", "night_tent_1.png");
         RegisterStaticSwap("Plant", "plant_1.png", "night_plant_1.png");
         RegisterStaticSwap("Plant/Plant2", "plant_1.png", "night_plant_1.png");
-
+        RegisterStaticSwap("Door/Door", "door.png", "night_door.png");
+        RegisterStaticSwap("Warehouse/Warehouse", "warehouse.png", "night_warehouse.png");
         _train = GetNodeOrNull<Train>("Train");
         _workstation = GetNodeOrNull<Workstation>("Workstation");
 
