@@ -37,6 +37,12 @@ public partial class TrainUI : Control
 
     private void OnExercisePressed()
     {
+        
+        if (PlayerManager.Instance == null || PlayerManager.Instance.TrainLevel <= 1)
+        {
+            UIManager.Instance?.ShowCommonTips2("请先解锁自律区");
+            return;
+        }
         SwitchToExercise();
     }
 

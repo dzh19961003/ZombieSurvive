@@ -37,6 +37,12 @@ public partial class WorkstationUI : Control
 
     private void OnMakePressed()
     {
+        
+        if (PlayerManager.Instance == null || PlayerManager.Instance.WorkStationLevel <= 1)
+        {
+            UIManager.Instance?.ShowCommonTips2("请先解锁工作台");
+            return;
+        }
         SwitchToMake();
     }
 

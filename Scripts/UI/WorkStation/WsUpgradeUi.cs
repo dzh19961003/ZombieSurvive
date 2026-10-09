@@ -124,6 +124,11 @@ public partial class WsUpgradeUi : Control
 		if (_makeLevelValue != null) _makeLevelValue.Text = levelText;
 		if (_makeNextLevelValue != null) _makeNextLevelValue.Text = nextText;
 		var cfg = FindUpgradeConfig();
+		if (currentLevel==1)
+		{
+			upgrade.Text="解锁";
+			return;
+		}
 		if (currentLevel==5)
 		{
 			_makeNextLevelValue.Visible=false;
@@ -138,7 +143,11 @@ public partial class WsUpgradeUi : Control
 			return;
 		}
 
-		if (upgrade != null) upgrade.Disabled = false;
+		if (upgrade != null)
+		{
+			upgrade.Disabled = false;
+			upgrade.Text = "升级";
+		}
 
 		// 动态填充三个需求槽位
 		int slotCount = Mathf.Min(_reqLabels.Length, _reqIcons.Length);
@@ -199,7 +208,7 @@ public partial class WsUpgradeUi : Control
 		if (_decomposeLock != null) _decomposeLock.Visible = !decomposeUnlocked;
 	}
 
-	//根据工作台等级切换升级界面预览图（与基地场景保持一致）
+	//根据等级切换图
 	private void RefreshWsTexture()
 	{
 		if (_wsTexture == null || PlayerManager.Instance == null) return;
@@ -280,7 +289,6 @@ public partial class WsUpgradeUi : Control
 		RefreshDisplay();
 	}
 
-	// 判断 itemID:need 这一项是否充足（物品 / 属性统一入口）
 	// 判断材料充足
 	private bool IsEnough(int itemID, int need)
 	{

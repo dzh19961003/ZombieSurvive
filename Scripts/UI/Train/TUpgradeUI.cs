@@ -124,6 +124,11 @@ public partial class TUpgradeUI : Control
 			_expELevelValue.Text = cfg != null ? $"+{cfg.ExpAdd+PlayerManager.Instance.Exp_acq_rate*100:F2}%" : "+0%";
 		}
 
+		if (currentLevel == 1)
+		{
+			upgrade.Text = "解锁";
+			return;
+		}
 		if (currentLevel >= MaxLevel)
 		{
 			if (_expENextLevelValue != null) _expENextLevelValue.Visible = false;
@@ -144,7 +149,11 @@ public partial class TUpgradeUI : Control
 			_expENextLevelValue.Text = nextCfg != null ? $"+{nextCfg.ExpAdd+PlayerManager.Instance.Exp_acq_rate*100:F2}%" : "+0%";
 		}
 		_maxTip.Visible = false;
-		if (upgrade != null) upgrade.Disabled = false;
+		if (upgrade != null)
+		{
+			upgrade.Disabled = false;
+			upgrade.Text = "升级";
+		}
 
 		// 动态填充三个需求槽位
 		int slotCount = Mathf.Min(_reqLabels.Length, _reqIcons.Length);
