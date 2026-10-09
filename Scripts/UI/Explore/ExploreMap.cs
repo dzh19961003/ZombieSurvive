@@ -25,7 +25,7 @@ public partial class ExploreMap : Control
 			{
 				UIManager.Instance.HideUI("res://UI/Explore/ExploreMap.tscn");
 				UIManager.Instance.ShowUI(Paths.MainUI);
-				GameManager.Instance.gameState = 5;
+				
 				if (GameManager.Instance.CurrentTimePeriod != 3)
 				{
                     do

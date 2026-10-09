@@ -34,7 +34,6 @@ public partial class Door : Area2D
             tips.OnConfirm = () =>
             {
                 UIManager.Instance.ShowUI("res://UI/Explore/ExploreMap.tscn");
-                GameManager.Instance.gameState = 4;
                 GameManager.Instance.AdvanceTime();
             };
         }

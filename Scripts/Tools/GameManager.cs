@@ -5,15 +5,6 @@ using MyProject;
 
 public partial class GameManager : Node2D,ISaveable
 {
-    /*当前游戏环节
-    
-    写日记 = 1,
-    随机事件 = 2,
-    早晨 = 3,
-    探索 = 4,
-    夜晚 = 5 */
-    public int gameState = 1;
-
     /*当前探索环节
     选择房间 = 1,
     选择事件 = 2，
@@ -62,7 +53,6 @@ public partial class GameManager : Node2D,ISaveable
     {
         return new Dictionary
         {
-            { "gameState", gameState },
             { "exploreProgress",exploreProgress},
             { "timePeriod", currentTimePeriod },
             { "dayCount", dayCount }
@@ -71,7 +61,6 @@ public partial class GameManager : Node2D,ISaveable
 
     public void LoadSaveData(Dictionary data)
     {
-        gameState = data.ContainsKey("gameState") ? (int)data["gameState"] : 1;
         exploreProgress =  data.ContainsKey("exploreProgress") ? (Dictionary<int,int>)data["exploreProgress"] : new Dictionary<int, int>();
         currentTimePeriod = data.ContainsKey("timePeriod") ? (int)data["timePeriod"] : 0;
         dayCount = data.ContainsKey("dayCount") ? (int)data["dayCount"] : 1;
