@@ -68,6 +68,8 @@ public partial class PlayerManager : Node, ISaveable
     //工作台等级
     private int _workStationLevel = 1;
     private int _trainLevel = 1;
+    private bool _workstationUnlocked = false;
+    private bool _trainUnlocked = false;
    //每次锻炼消耗的玩家体力
     private const int TrainStaminaCost = 5;        
     //玩家体力基础满值
@@ -265,6 +267,18 @@ public partial class PlayerManager : Node, ISaveable
 
     public int WorkStationLevel => _workStationLevel;
     public int TrainLevel => _trainLevel;
+    public bool WorkstationUnlocked => _workstationUnlocked;
+    public bool TrainUnlocked => _trainUnlocked;
+    public void SetWorkstationUnlocked(bool value)
+    {
+        _workstationUnlocked = value;
+        GetItem?.Invoke();
+    }
+    public void SetTrainUnlocked(bool value)
+    {
+        _trainUnlocked = value;
+        GetItem?.Invoke();
+    }
     public void SetWorkStationLevel(int level)
     {
         _workStationLevel = Mathf.Max(1, level);

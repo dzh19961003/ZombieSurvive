@@ -117,6 +117,10 @@ public partial class TUpgradeUI : Control
 		var cfg = FindUpgradeConfig();
 		var nextCfg = FindNextUpgradeConfig();
 
+		// 等级1未解锁：材料查当前等级配置；已解锁或等级>1：查下一等级配置
+		bool isUnlockStep = currentLevel == 1 && !PlayerManager.Instance.TrainUnlocked;
+		var reqCfg = isUnlockStep ? cfg : nextCfg;
+
 		// 经验效率
 		if (_expELevelValue != null)
 		{
@@ -124,11 +128,6 @@ public partial class TUpgradeUI : Control
 			_expELevelValue.Text = cfg != null ? $"+{cfg.ExpAdd+PlayerManager.Instance.Exp_acq_rate*100:F2}%" : "+0%";
 		}
 
-		if (currentLevel == 1)
-		{
-			upgrade.Text = "解锁";
-			return;
-		}
 		if (currentLevel >= MaxLevel)
 		{
 			if (_expENextLevelValue != null) _expENextLevelValue.Visible = false;
@@ -152,7 +151,7 @@ public partial class TUpgradeUI : Control
 		if (upgrade != null)
 		{
 			upgrade.Disabled = false;
-			upgrade.Text = "升级";
+			upgrade.Text = (currentLevel == 1 && !PlayerManager.Instance.TrainUnlocked) ? "解锁" : "升级";
 		}
 
 		// 动态填充三个需求槽位
@@ -163,8 +162,8 @@ public partial class TUpgradeUI : Control
 			_reqIcons[i].Visible = true;
 			_reqLabels[i].Visible = true;
 
-			int itemID = (cfg.ItemID != null && i < cfg.ItemID.Count) ? cfg.ItemID[i] : 0;
-			int need   = (cfg.ItemNum != null && i < cfg.ItemNum.Count) ? cfg.ItemNum[i] : 0;
+			int itemID = (reqCfg.ItemID != null && i < reqCfg.ItemID.Count) ? reqCfg.ItemID[i] : 0;
+			int need   = (reqCfg.ItemNum != null && i < reqCfg.ItemNum.Count) ? reqCfg.ItemNum[i] : 0;
 			if (UIManager.Instance != null && itemID != 0 && itemID < 10000)
 			{
 				var icon = UIManager.Instance.GetItemIcon(itemID);
@@ -231,7 +230,9 @@ public partial class TUpgradeUI : Control
 	{
 		if (PlayerManager.Instance == null || ConfigManager.Instance == null) return;
 
-		var cfg = FindUpgradeConfig();
+		bool isUnlock = currentLevel == 1 && !PlayerManager.Instance.TrainUnlocked;
+
+		var cfg = isUnlock ? FindUpgradeConfig() : FindNextUpgradeConfig();
 		if (cfg == null)
 		{
 			UIManager.Instance.ShowCommonTips2("自律区已达最高等级，无法升级");
@@ -247,7 +248,7 @@ public partial class TUpgradeUI : Control
 				int need   = i < cfg.ItemNum.Count ? cfg.ItemNum[i] : 0;
 				if (!IsEnough(itemID, need))
 				{
-					UIManager.Instance.ShowCommonTips2("升级材料不足");
+					UIManager.Instance.ShowCommonTips2(isUnlock ? "解锁材料不足" : "升级材料不足");
 					return;
 				}
 			}
@@ -278,15 +279,22 @@ public partial class TUpgradeUI : Control
 				if (itemID == 10015 && need > 0)
 				{
 					PlayerManager.Instance.AddItem(10015, -need);
-					break; 
+					break;
 				}
 			}
 		}
 
-		currentLevel++;
-
-		GD.Print($"[TUpgradeUI] 升级成功，当前等级：{currentLevel}");
-		PlayerManager.Instance.SetTrainLevel(currentLevel);
+		if (isUnlock)
+		{
+			PlayerManager.Instance.SetTrainUnlocked(true);
+			GD.Print("[TUpgradeUI] 自律区已解锁");
+		}
+		else
+		{
+			currentLevel++;
+			GD.Print($"[TUpgradeUI] 升级成功，当前等级：{currentLevel}");
+			PlayerManager.Instance.SetTrainLevel(currentLevel);
+		}
 
 		RefreshDisplay();
 	}

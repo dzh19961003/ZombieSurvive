@@ -101,6 +101,13 @@ public partial class WsUpgradeUi : Control
 		return list.FirstOrDefault(r => r.Level == currentLevel);
 	}
 
+	private RoofWorkstation FindNextUpgradeConfig()
+	{
+		var list = ConfigManager.Instance?.roofWorkstationList;
+		if (list == null) return null;
+		return list.FirstOrDefault(r => r.Level == currentLevel + 1);
+	}
+
 	private void RefreshDisplay()
 	{
 		if (PlayerManager.Instance == null || ConfigManager.Instance == null) return;
@@ -123,12 +130,9 @@ public partial class WsUpgradeUi : Control
 		if (_gradeTitle != null) _gradeTitle.Text = wsLevelText;
 		if (_makeLevelValue != null) _makeLevelValue.Text = levelText;
 		if (_makeNextLevelValue != null) _makeNextLevelValue.Text = nextText;
-		var cfg = FindUpgradeConfig();
-		if (currentLevel==1)
-		{
-			upgrade.Text="解锁";
-			return;
-		}
+		// 等级1未解锁：查当前等级配置；已解锁或等级>1：查下一等级配置
+		bool isUnlockStep = currentLevel == 1 && !PlayerManager.Instance.WorkstationUnlocked;
+		var cfg = isUnlockStep ? FindUpgradeConfig() : FindNextUpgradeConfig();
 		if (currentLevel==5)
 		{
 			_makeNextLevelValue.Visible=false;
@@ -146,7 +150,7 @@ public partial class WsUpgradeUi : Control
 		if (upgrade != null)
 		{
 			upgrade.Disabled = false;
-			upgrade.Text = "升级";
+			upgrade.Text = (currentLevel == 1 && !PlayerManager.Instance.WorkstationUnlocked) ? "解锁" : "升级";
 		}
 
 		// 动态填充三个需求槽位
@@ -225,7 +229,9 @@ public partial class WsUpgradeUi : Control
 	{
 		if (PlayerManager.Instance == null || ConfigManager.Instance == null) return;
 
-		var cfg = FindUpgradeConfig();
+		bool isUnlock = currentLevel == 1 && !PlayerManager.Instance.WorkstationUnlocked;
+
+		var cfg = isUnlock ? FindUpgradeConfig() : FindNextUpgradeConfig();
 		if (cfg == null)
 		{	
 			UIManager.Instance.ShowCommonTips2("工作台已达最高等级，无法升级");
@@ -241,7 +247,7 @@ public partial class WsUpgradeUi : Control
 				int need   = i < cfg.ItemNum.Count ? cfg.ItemNum[i] : 0;
 				if (!IsEnough(itemID, need))
 				{
-					UIManager.Instance.ShowCommonTips2("升级材料不足");
+					UIManager.Instance.ShowCommonTips2(isUnlock ? "解锁材料不足" : "升级材料不足");
 					return;
 				}
 			}
@@ -258,9 +264,6 @@ public partial class WsUpgradeUi : Control
 
 				if (itemID < 10000)
 				{
-					// 物品：走 RemoveItem（钳制到 0，触发 GetItem 事件）
-
-					
 					PlayerManager.Instance.RemoveItem(itemID, need);
 				}
 			}
@@ -274,17 +277,24 @@ public partial class WsUpgradeUi : Control
 				int need   = i < cfg.ItemNum.Count ? cfg.ItemNum[i] : 0;
 				if (itemID == 10015 && need > 0)
 				{
-					// 统一走 AddItem扣除
 					PlayerManager.Instance.AddItem(10015, -need);
 					break; // 体力只扣一次
 				}
 			}
 		}
 
-		currentLevel++;
-		nextLevel++;
-		GD.Print($"[WsUpgradeUi] 升级成功，当前等级：{currentLevel}");
-		PlayerManager.Instance.SetWorkStationLevel(currentLevel);
+		if (isUnlock)
+		{
+			PlayerManager.Instance.SetWorkstationUnlocked(true);
+			GD.Print("[WsUpgradeUi] 工作台已解锁");
+		}
+		else
+		{
+			currentLevel++;
+			nextLevel++;
+			GD.Print($"[WsUpgradeUi] 升级成功，当前等级：{currentLevel}");
+			PlayerManager.Instance.SetWorkStationLevel(currentLevel);
+		}
 
 		RefreshDisplay();
 	}
