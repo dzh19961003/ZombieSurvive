@@ -1,0 +1,53 @@
+[
+  {
+    "ID(int)": 1,
+    "level(int)": 1,
+    "roofStamina(int)": 10,
+    "exploreStamina(int)": 30,
+    "icon(string)": "tent_1",
+    "itemID(int)": [
+      7,
+      9,
+      10015
+    ],
+    "itemNum(int)": [
+      2,
+      2,
+      2
+    ]
+  },
+  {
+    "ID(int)": 2,
+    "level(int)": 2,
+    "roofStamina(int)": 20,
+    "exploreStamina(int)": 35,
+    "icon(string)": "tent_2",
+    "itemID(int)": [
+      7,
+      9,
+      10015
+    ],
+    "itemNum(int)": [
+      3,
+      3,
+      3
+    ]
+  },
+  {
+    "ID(int)": 3,
+    "level(int)": 3,
+    "roofStamina(int)": 30,
+    "exploreStamina(int)": 40,
+    "icon(string)": "tent_3",
+    "itemID(int)": [
+      7,
+      9,
+      10015
+    ],
+    "itemNum(int)": [
+      4,
+      4,
+      4
+    ]
+  }
+]

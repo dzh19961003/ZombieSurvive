@@ -1,0 +1,70 @@
+[
+  {
+    "ID(int)": 1,
+    "level(int)": 1,
+    "growSpeed(int)": 0,
+    "growNum(int)": 0,
+    "icon(string)": "plant_1",
+    "itemID(int)": [
+      7,
+      9,
+      10015
+    ],
+    "itemNum(int)": [
+      2,
+      2,
+      2
+    ]
+  },
+  {
+    "ID(int)": 2,
+    "level(int)": 2,
+    "growSpeed(int)": 14,
+    "growNum(int)": 1,
+    "icon(string)": "plant_2",
+    "itemID(int)": [
+      7,
+      9,
+      10015
+    ],
+    "itemNum(int)": [
+      3,
+      3,
+      3
+    ]
+  },
+  {
+    "ID(int)": 3,
+    "level(int)": 3,
+    "growSpeed(int)": 16,
+    "growNum(int)": 2,
+    "icon(string)": "plant_3",
+    "itemID(int)": [
+      7,
+      9,
+      10015
+    ],
+    "itemNum(int)": [
+      4,
+      4,
+      4
+    ]
+  },
+  {
+    "ID(int)": 4,
+    "level(int)": 4,
+    "growSpeed(int)": 18,
+    "growNum(int)": 3,
+    "icon(string)": "plant_4",
+    "itemID(int)": [
+      7,
+      9,
+      10015
+    ],
+    "itemNum(int)": [
+      5,
+      5,
+      5
+    ]
+  }
+]

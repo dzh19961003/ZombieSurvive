@@ -1,95 +1,147 @@
 [
   {
-	"ID(int)": 1,
-	"name(string)": "街角咖啡",
-	"image(string)": "building_coffee",
-	"stars(int)": 1,
-	"des(string)": "Lucky咖啡Lucky咖啡Lucky咖啡",
-	"enterDes(string)": "你进入了Lucky咖啡，这里XXX",
-	"food(int)": 3,
-	"medic(int)": 1,
-	"equip(int)": 1,
-	"material(int)": 1,
-	"roomID(int)": [
-	  1,
-	  2,
-	  3,
-	  4
-	]
+    "ID(int)": 1,
+    "name(string)": "街角咖啡",
+    "image(string)": "building_coffee",
+    "stars(int)": 1,
+    "des(string)": "一家开在街角的咖啡店，平时没什么生意，丧尸爆发时应该没什么人，里面的东西可能都还完好无损",
+    "enterDes(string)": "你站在了街角咖啡店的门口，向里面看去似乎有一些杂乱，桌子椅子散落一地，但没有看见丧尸",
+    "food(int)": 3,
+    "medic(int)": 1,
+    "equip(int)": 1,
+    "material(int)": 1,
+    "roomID(int)": [
+      1,
+      2,
+      3,
+      4
+    ]
   },
   {
-	"ID(int)": 3,
-	"name(string)": "渔网网咖",
-	"image(string)": "building_netbar",
-	"stars(int)": 2,
-	"des(string)": "渔网网咖渔网网咖渔网网咖",
-	"enterDes(string)": "你进入了渔网网咖，这里XXX",
-	"food(int)": 2,
-	"medic(int)": 1,
-	"equip(int)": 1,
-	"material(int)": 3,
-	"roomID(int)": [
-	  6
-	]
+    "ID(int)": 2,
+    "name(string)": "好老头餐馆",
+    "image(string)": "building_coffee",
+    "stars(int)": 1,
+    "des(string)": "开在居民区的社区小餐馆，丧尸病毒爆发时应该还没到饭点，估计店里没什么人。这种小馆子后厨多少会囤些米面粮油，就是不知道还剩多少能用的。",
+    "enterDes(string)": "你站在了好老头餐馆的门口，卷帘门拉起了一半，里面的桌椅还整整齐齐，地上放着没拖完的水桶和拖把，没有看见丧尸。",
+    "food(int)": 3,
+    "medic(int)": 1,
+    "equip(int)": 1,
+    "material(int)": 1,
+    "roomID(int)": [
+      5
+    ]
   },
   {
-	"ID(int)": 4,
-	"name(string)": "不如家酒店",
-	"image(string)": "building_hotel",
-	"stars(int)": 3,
-	"des(string)": "不如家酒店不如家酒店不如家酒店",
-	"enterDes(string)": "你进入了不如家酒店，这里XXX",
-	"food(int)": 5,
-	"medic(int)": 2,
-	"equip(int)": 2,
-	"material(int)": 3,
-	"roomID(int)": [
-	  7
-	]
+    "ID(int)": 3,
+    "name(string)": "渔网网咖",
+    "image(string)": "building_netbar",
+    "stars(int)": 2,
+    "des(string)": "通宵营业的网咖，病毒爆发时正是清晨，里面多半还躺着一群包夜没走的人。现在从外面看安安静静，可谁也说不准那些包夜的都变成了什么。",
+    "enterDes(string)": "你站在了渔网网咖的门口，玻璃门后就是吧台，饮料柜还亮着灯，大厅的方向看不见人影，却隐约传来几声闷响。",
+    "food(int)": 2,
+    "medic(int)": 1,
+    "equip(int)": 1,
+    "material(int)": 3,
+    "roomID(int)": [
+      6
+    ]
   },
   {
-	"ID(int)": 5,
-	"name(string)": "实验小学",
-	"image(string)": "building_school",
-	"stars(int)": 4,
-	"des(string)": "实验小学实验小学实验小学",
-	"enterDes(string)": "你进入了实验小学，这里XXX",
-	"food(int)": 4,
-	"medic(int)": 3,
-	"equip(int)": 4,
-	"material(int)": 3,
-	"roomID(int)": [
-	  8
-	]
+    "ID(int)": 4,
+    "name(string)": "金仁堂大药房",
+    "image(string)": "building_medic",
+    "stars(int)": 2,
+    "des(string)": "街边常见的连锁药房，货架上应该什么药都有。人不会多，但药房临街，保不齐有街上游荡的东西晃悠进去过。",
+    "enterDes(string)": "你站在了金仁堂大药房的门口，玻璃门敞开着，近处的货架还算整齐，只有最里面的货架挡住了视线，看不清后面藏着什么。",
+    "food(int)": null,
+    "medic(int)": null,
+    "equip(int)": null,
+    "material(int)": null,
+    "roomID(int)": []
   },
   {
-	"ID(int)": 6,
-	"name(string)": "人民医院",
-	"image(string)": "building_hospital",
-	"stars(int)": 5,
-	"des(string)": "人民医院人民医院人民医院",
-	"enterDes(string)": "你进入了人民医院，这里XXX",
-	"food(int)": 3,
-	"medic(int)": 5,
-	"equip(int)": 4,
-	"material(int)": 3,
-	"roomID(int)": [
-	  9
-	]
+    "ID(int)": 5,
+    "name(string)": "家里酒店",
+    "image(string)": "building_hotel",
+    "stars(int)": 3,
+    "des(string)": "中档连锁酒店，客房少说几十间。病毒爆发时是清晨，住客们多半还没出门——但愿他们现在还老老实实待在自己房间里。大堂和走廊是什么情况，从外面可看不出来。",
+    "enterDes(string)": "你站在了家里酒店的门口，旋转门卡住不动了，大堂里行李车翻倒在地，前台的电脑还亮着，而电梯口的方向，不知什么东西撞了一下。",
+    "food(int)": 5,
+    "medic(int)": 2,
+    "equip(int)": 2,
+    "material(int)": 3,
+    "roomID(int)": [
+      7
+    ]
   },
   {
-	"ID(int)": 2,
-	"name(string)": "Lucky咖啡2",
-	"image(string)": "building_coffee",
-	"stars(int)": 1,
-	"des(string)": "Lucky咖啡2Lucky咖啡2Lucky咖啡2",
-	"enterDes(string)": "你进入了Lucky咖啡2，这里XXX",
-	"food(int)": 3,
-	"medic(int)": 1,
-	"equip(int)": 1,
-	"material(int)": 1,
-	"roomID(int)": [
-	  5
-	]
+    "ID(int)": 6,
+    "name(string)": "汽修厂",
+    "image(string)": "building_carfix",
+    "stars(int)": 3,
+    "des(string)": "规模不小的汽修厂，工人不会太多，但也少不了。里面工具零件肯定不缺，只是车间里机器架子多，视线好不了，真要进去得打起十二分精神。",
+    "enterDes(string)": "你站在了汽修厂的门口，卷帘门大敞着，一辆车还悬在举升机上，车间深处偶尔传来金属碰撞声，听不出是风，还是别的什么。",
+    "food(int)": null,
+    "medic(int)": null,
+    "equip(int)": null,
+    "material(int)": null,
+    "roomID(int)": []
+  },
+  {
+    "ID(int)": 7,
+    "name(string)": "第一小学",
+    "image(string)": "building_school",
+    "stars(int)": 4,
+    "des(string)": "一所学校，里面的人恐怕少不了。校门口的电动车还横七竖八停在那儿，教室里的情形，最好别去想。",
+    "enterDes(string)": "你站在了第一小学的门口，电动门开着一道缝，门卫室里空无一人，操场上散落着几个书包，教学楼安安静静，安静得不像一所学校。",
+    "food(int)": 4,
+    "medic(int)": 3,
+    "equip(int)": 4,
+    "material(int)": 3,
+    "roomID(int)": [
+      8
+    ]
+  },
+  {
+    "ID(int)": 8,
+    "name(string)": "瘦西来超市",
+    "image(string)": "building_supermarket",
+    "stars(int)": 4,
+    "des(string)": "大型连锁超市，丧尸病毒爆发时正是早市，抢特价菜的人估计挤满了生鲜区。里面的物资够吃很久——如果货架间那些晃来晃去的影子肯让路的话。",
+    "enterDes(string)": "你站在了瘦西来超市的门口，自动门还在不知疲倦地开合，入口处的促销堆头倒了一半，生鲜区的方向人影晃动，数量恐怕不少。",
+    "food(int)": null,
+    "medic(int)": null,
+    "equip(int)": null,
+    "material(int)": null,
+    "roomID(int)": []
+  },
+  {
+    "ID(int)": 9,
+    "name(string)": "人民医院",
+    "image(string)": "building_hospital",
+    "stars(int)": 5,
+    "des(string)": "全市最大的综合医院，一天到晚人来人往。里面现在得有多少\"人\"，想都不敢想。药品器械肯定全城最好，就看有没有命拿了。",
+    "enterDes(string)": "你站在了人民医院门诊大楼的门口，玻璃大门敞开着，挂号大厅里人挤人——只是已经没有一个还称得上是活人。",
+    "food(int)": 3,
+    "medic(int)": 5,
+    "equip(int)": 4,
+    "material(int)": 3,
+    "roomID(int)": [
+      9
+    ]
+  },
+  {
+    "ID(int)": 10,
+    "name(string)": "富凸康电子厂",
+    "image(string)": "building_factory",
+    "stars(int)": 5,
+    "des(string)": "占了老大一片地的电子厂，听说工人有好几千。丧尸病毒爆发时正是进厂上班的高峰，现在那片厂区里游荡的，恐怕是一片望不到头的蓝色人潮。",
+    "enterDes(string)": "你站在了富凸康电子厂的大门外，闸机早被撞开，工卡和挂绳撒了一地，厂区主干道上游荡的蓝色工服，一眼望不到头。",
+    "food(int)": null,
+    "medic(int)": null,
+    "equip(int)": null,
+    "material(int)": null,
+    "roomID(int)": []
   }
 ]

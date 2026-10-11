@@ -1,0 +1,23 @@
+[
+  {
+    "ID(int)": 1,
+    "itemID(int)": 11,
+    "progress(int)": 100,
+    "stamina(int)": 5,
+    "num(int)": 3
+  },
+  {
+    "ID(int)": 2,
+    "itemID(int)": 12,
+    "progress(int)": 120,
+    "stamina(int)": 6,
+    "num(int)": 4
+  },
+  {
+    "ID(int)": 3,
+    "itemID(int)": 13,
+    "progress(int)": 140,
+    "stamina(int)": 7,
+    "num(int)": 5
+  }
+]

@@ -73,6 +73,21 @@ namespace MyProject
         /// <summary>ItemPool 配置字典（以 ID 为键）</summary>
         public Dictionary<int, ItemPool> itemPoolDic { get; private set; }
 
+        /// <summary>RoofPlants 配置列表</summary>
+        public List<RoofPlants> roofPlantsList { get; private set; }
+        /// <summary>RoofPlants 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, RoofPlants> roofPlantsDic { get; private set; }
+
+        /// <summary>RoofPlantsItem 配置列表</summary>
+        public List<RoofPlantsItem> roofPlantsItemList { get; private set; }
+        /// <summary>RoofPlantsItem 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, RoofPlantsItem> roofPlantsItemDic { get; private set; }
+
+        /// <summary>RoofTent 配置列表</summary>
+        public List<RoofTent> roofTentList { get; private set; }
+        /// <summary>RoofTent 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, RoofTent> roofTentDic { get; private set; }
+
         /// <summary>RoofTrain 配置列表</summary>
         public List<RoofTrain> roofTrainList { get; private set; }
         /// <summary>RoofTrain 配置字典（以 ID 为键）</summary>
@@ -92,6 +107,11 @@ namespace MyProject
         public List<Room> roomList { get; private set; }
         /// <summary>Room 配置字典（以 ID 为键）</summary>
         public Dictionary<int, Room> roomDic { get; private set; }
+
+        /// <summary>Script 配置列表</summary>
+        public List<Script> scriptList { get; private set; }
+        /// <summary>Script 配置字典（以 ID 为键）</summary>
+        public Dictionary<int, Script> scriptDic { get; private set; }
 
         /// <summary>State 配置列表</summary>
         public List<State> stateList { get; private set; }
@@ -162,6 +182,18 @@ namespace MyProject
             itemPoolDic = JsonLoader.LoadToDic<ItemPool>("item_pool");
             GD.Print("[ConfigManager] ItemPool loaded: List=" + (itemPoolList?.Count ?? 0) + ", Dic=" + (itemPoolDic?.Count ?? 0));
 
+            roofPlantsList = JsonLoader.LoadToList<RoofPlants>("roof_plants");
+            roofPlantsDic = JsonLoader.LoadToDic<RoofPlants>("roof_plants");
+            GD.Print("[ConfigManager] RoofPlants loaded: List=" + (roofPlantsList?.Count ?? 0) + ", Dic=" + (roofPlantsDic?.Count ?? 0));
+
+            roofPlantsItemList = JsonLoader.LoadToList<RoofPlantsItem>("roof_plants_item");
+            roofPlantsItemDic = JsonLoader.LoadToDic<RoofPlantsItem>("roof_plants_item");
+            GD.Print("[ConfigManager] RoofPlantsItem loaded: List=" + (roofPlantsItemList?.Count ?? 0) + ", Dic=" + (roofPlantsItemDic?.Count ?? 0));
+
+            roofTentList = JsonLoader.LoadToList<RoofTent>("roof_tent");
+            roofTentDic = JsonLoader.LoadToDic<RoofTent>("roof_tent");
+            GD.Print("[ConfigManager] RoofTent loaded: List=" + (roofTentList?.Count ?? 0) + ", Dic=" + (roofTentDic?.Count ?? 0));
+
             roofTrainList = JsonLoader.LoadToList<RoofTrain>("roof_train");
             roofTrainDic = JsonLoader.LoadToDic<RoofTrain>("roof_train");
             GD.Print("[ConfigManager] RoofTrain loaded: List=" + (roofTrainList?.Count ?? 0) + ", Dic=" + (roofTrainDic?.Count ?? 0));
@@ -177,6 +209,10 @@ namespace MyProject
             roomList = JsonLoader.LoadToList<Room>("room");
             roomDic = JsonLoader.LoadToDic<Room>("room");
             GD.Print("[ConfigManager] Room loaded: List=" + (roomList?.Count ?? 0) + ", Dic=" + (roomDic?.Count ?? 0));
+
+            scriptList = JsonLoader.LoadToList<Script>("script");
+            scriptDic = JsonLoader.LoadToDic<Script>("script");
+            GD.Print("[ConfigManager] Script loaded: List=" + (scriptList?.Count ?? 0) + ", Dic=" + (scriptDic?.Count ?? 0));
 
             stateList = JsonLoader.LoadToList<State>("state");
             stateDic = JsonLoader.LoadToDic<State>("state");

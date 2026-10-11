@@ -1,0 +1,42 @@
+[
+  {
+    "ID(int)": 1,
+    "buildingID(int)": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  {
+    "ID(int)": 2,
+    "buildingID(int)": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
+  },
+  {
+    "ID(int)": 3,
+    "buildingID(int)": [
+      3,
+      3,
+      3,
+      3,
+      3
+    ]
+  },
+  {
+    "ID(int)": 4,
+    "buildingID(int)": [
+      4,
+      4,
+      4,
+      4,
+      4
+    ]
+  }
+]
