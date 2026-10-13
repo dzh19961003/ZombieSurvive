@@ -19,6 +19,7 @@ public partial class TUpgradeUI : Control
 	private Label _gradeTitle;
 	private Label _expELevelValue;
 	private Label _expENextLevelValue;
+	private TextureRect _arrow;
 	private Label _maxTip;
 	private Label[] _reqLabels;
 	private TextureRect[] _reqIcons;
@@ -34,6 +35,7 @@ public partial class TUpgradeUI : Control
 		_expELevelValue = GetNode<Label>("ExpEfficiency/EELevelValue");
 		_maxTip=GetNode<Label>("UpgradeRequ/maxTip");
 		_expENextLevelValue = GetNode<Label>("ExpEfficiency/EENextLevelValue");
+		_arrow = GetNode<TextureRect>("ExpEfficiency/Arrow");
 		_trainTexture     = GetNode<TextureRect>("TrainTexture");
 		_reqLabels = new Label[]
 		{
@@ -122,16 +124,51 @@ public partial class TUpgradeUI : Control
 		var reqCfg = isUnlockStep ? cfg : nextCfg;
 
 		// 经验效率
-		if (_expELevelValue != null)
+		if (isUnlockStep)
 		{
-			_expELevelValue.Visible = true;
-			_expELevelValue.Text = cfg != null ? $"+{cfg.ExpAdd+PlayerManager.Instance.Exp_acq_rate*100:F2}%" : "+0%";
+			// 解锁前
+			if (_expELevelValue != null)
+			{
+				_expELevelValue.Visible = true;
+				_expELevelValue.Text = "解锁后查看";
+			}
+			if (_expENextLevelValue != null)
+			{
+				_expENextLevelValue.Visible = false;
+				_expENextLevelValue.Text = "解锁后查看";
+			}
+			if (_arrow != null) _arrow.Visible = false;
+		}
+		else
+		{
+			// 解锁后
+			if (_expELevelValue != null)
+			{
+				_expELevelValue.Visible = true;
+				_expELevelValue.Text = cfg != null ? $"+{cfg.ExpAdd+PlayerManager.Instance.Exp_acq_rate*100:F2}%" : "+0%";
+			}
+
+			if (currentLevel >= MaxLevel)
+			{
+				// 满级
+				if (_expENextLevelValue != null) _expENextLevelValue.Visible = false;
+				if (_arrow != null) _arrow.Visible = false;
+			}
+			else
+			{
+				// 正常升级
+				if (_expENextLevelValue != null)
+				{
+					_expENextLevelValue.Visible = true;
+					_expENextLevelValue.Text = nextCfg != null ? $"+{nextCfg.ExpAdd+PlayerManager.Instance.Exp_acq_rate*100:F2}%" : "+0%";
+				}
+				if (_arrow != null) _arrow.Visible = true;
+			}
 		}
 
 		if (currentLevel >= MaxLevel)
 		{
-			if (_expENextLevelValue != null) _expENextLevelValue.Visible = false;
-			// 已达最高等级：清空需求并禁用按钮
+			// 已达最高等级清空需求并禁用按钮
 			for (int i = 0; i < _reqLabels.Length; i++)
 			{
 				_reqIcons[i].Visible = false;
@@ -140,12 +177,6 @@ public partial class TUpgradeUI : Control
 			if (upgrade != null) upgrade.Icon = GD.Load<Texture2D>("res://Assets/Images/UI/button_cancel.png");
 			_maxTip.Visible = true;
 			return;
-		}
-
-		if (_expENextLevelValue != null)
-		{
-			_expENextLevelValue.Visible = true;
-			_expENextLevelValue.Text = nextCfg != null ? $"+{nextCfg.ExpAdd+PlayerManager.Instance.Exp_acq_rate*100:F2}%" : "+0%";
 		}
 		_maxTip.Visible = false;
 		if (upgrade != null)

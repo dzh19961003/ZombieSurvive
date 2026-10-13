@@ -1,0 +1,350 @@
+[gd_scene format=3 uid="uid://clq1bqaevkglj"]
+
+[ext_resource type="Texture2D" uid="uid://ccfvu4n26uppx" path="res://Assets/Images/Base/tent_1.png" id="1_tent"]
+[ext_resource type="Texture2D" uid="uid://d1nmp4fcid50p" path="res://Assets/Images/UI/main_panel_2.png" id="2_panel"]
+[ext_resource type="Texture2D" uid="uid://bs7gg3xn14v6b" path="res://Assets/Images/UI/close_button.png" id="3_close"]
+[ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="4_title"]
+[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="5_frame"]
+[ext_resource type="Texture2D" uid="uid://c33rmupvbsy43" path="res://Assets/Images/UI/arrow_1.png" id="6_arrow"]
+[ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="7_stam"]
+[ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="8_btnbg"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Items/wood_icon.png" id="9_wood"]
+[ext_resource type="Texture2D" uid="uid://bwawwv5xw4hp7" path="res://Assets/Images/Items/tools_icon.png" id="10_tools"]
+[ext_resource type="Script" uid="uid://fp4wpd6f0mv6" path="res://Scripts/UI/Tent/TentUpgradeUI.cs" id="11_script"]
+
+[node name="TentUI" type="Control" unique_id=330451155 node_paths=PackedStringArray("upgrade")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1080.0
+offset_bottom = 1920.0
+script = ExtResource("11_script")
+upgrade = NodePath("UpgradeBtn")
+
+[node name="Control" type="ColorRect" parent="." unique_id=2031640416]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 1080.0
+offset_bottom = 1920.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78431374)
+
+[node name="BG" type="NinePatchRect" parent="." unique_id=100000001]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 107.0
+offset_right = 996.0
+offset_bottom = 1812.0
+texture = ExtResource("2_panel")
+region_rect = Rect2(0, 0, 980, 1720)
+
+[node name="CloseBtn" type="Button" parent="." unique_id=110083799]
+layout_mode = 0
+offset_left = 897.0
+offset_top = 59.0
+offset_right = 1042.0
+offset_bottom = 204.0
+icon = ExtResource("3_close")
+flat = true
+expand_icon = true
+
+[node name="Title" type="TextureRect" parent="." unique_id=1193820744]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 71.0
+offset_right = 775.0
+offset_bottom = 181.0
+texture = ExtResource("4_title")
+expand_mode = 1
+
+[node name="TentName" type="Label" parent="Title" unique_id=100000002]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 16.0
+offset_right = 329.0
+offset_bottom = 81.0
+theme_override_font_sizes/font_size = 40
+text = "帐篷"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GradeTitle" type="Label" parent="." unique_id=1617013755]
+layout_mode = 0
+offset_left = 401.0
+offset_top = 377.0
+offset_right = 666.0
+offset_bottom = 437.0
+theme_override_font_sizes/font_size = 40
+text = "等级1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TentTexture" type="TextureRect" parent="." unique_id=151615945]
+layout_mode = 0
+offset_left = 233.0
+offset_top = 478.0
+offset_right = 833.0
+offset_bottom = 878.0
+texture = ExtResource("1_tent")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Stamina1" type="NinePatchRect" parent="." unique_id=329209974]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 997.0
+offset_right = 866.0
+offset_bottom = 1097.0
+
+[node name="BG" type="TextureRect" parent="Stamina1" unique_id=100000003]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -27.0
+offset_right = 162.0
+offset_bottom = 109.0
+texture = ExtResource("5_frame")
+
+[node name="Name1" type="Label" parent="Stamina1" unique_id=2091111933]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 14.0
+offset_right = 128.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 32
+text = "基地体力"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StamIcon1" type="TextureRect" parent="Stamina1" unique_id=1254296122]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 20.0
+offset_right = 240.0
+offset_bottom = 60.0
+texture = ExtResource("7_stam")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CurVal1" type="Label" parent="Stamina1" unique_id=618479945]
+layout_mode = 0
+offset_left = 269.0
+offset_top = 14.0
+offset_right = 351.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "10"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Arrow1" type="TextureRect" parent="Stamina1" unique_id=1660685277]
+layout_mode = 0
+offset_left = 422.0
+offset_top = 20.0
+offset_right = 462.0
+offset_bottom = 60.0
+texture = ExtResource("6_arrow")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NextVal1" type="Label" parent="Stamina1" unique_id=1897447273]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 14.0
+offset_right = 602.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "15"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Stamina2" type="NinePatchRect" parent="." unique_id=71157114]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 1184.0
+offset_right = 866.0
+offset_bottom = 1284.0
+
+[node name="BG" type="TextureRect" parent="Stamina2" unique_id=100000004]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -27.0
+offset_right = 162.0
+offset_bottom = 109.0
+texture = ExtResource("5_frame")
+
+[node name="Name2" type="Label" parent="Stamina2" unique_id=1637178642]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 14.0
+offset_right = 128.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 32
+text = "探索体力"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StamIcon2" type="TextureRect" parent="Stamina2" unique_id=369630899]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 20.0
+offset_right = 240.0
+offset_bottom = 60.0
+texture = ExtResource("7_stam")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CurVal2" type="Label" parent="Stamina2" unique_id=649857800]
+layout_mode = 0
+offset_left = 269.0
+offset_top = 14.0
+offset_right = 351.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "20"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Arrow2" type="TextureRect" parent="Stamina2" unique_id=1939163694]
+layout_mode = 0
+offset_left = 422.0
+offset_top = 20.0
+offset_right = 462.0
+offset_bottom = 60.0
+texture = ExtResource("6_arrow")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NextVal2" type="Label" parent="Stamina2" unique_id=746256527]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 14.0
+offset_right = 602.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "25"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="UpgradeRequ" type="NinePatchRect" parent="." unique_id=363873164]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 1374.0
+offset_right = 866.0
+offset_bottom = 1474.0
+
+[node name="BG" type="TextureRect" parent="UpgradeRequ" unique_id=100000005]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -27.0
+offset_right = 162.0
+offset_bottom = 109.0
+texture = ExtResource("5_frame")
+
+[node name="ReqLabel" type="Label" parent="UpgradeRequ" unique_id=100000006]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 14.0
+offset_right = 128.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 32
+text = "升级需求"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReqIcon1" type="TextureRect" parent="UpgradeRequ" unique_id=1993445292]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 20.0
+offset_right = 292.0
+offset_bottom = 60.0
+texture = ExtResource("9_wood")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ReqLabel1" type="Label" parent="UpgradeRequ" unique_id=837733664]
+layout_mode = 0
+offset_left = 297.0
+offset_top = 14.0
+offset_right = 379.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "×2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReqIcon2" type="TextureRect" parent="UpgradeRequ" unique_id=783515408]
+layout_mode = 0
+offset_left = 388.0
+offset_top = 20.0
+offset_right = 428.0
+offset_bottom = 60.0
+texture = ExtResource("10_tools")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ReqLabel2" type="Label" parent="UpgradeRequ" unique_id=1198598793]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 14.0
+offset_right = 502.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "×2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReqIcon3" type="TextureRect" parent="UpgradeRequ" unique_id=1378406630]
+visible = false
+layout_mode = 0
+offset_left = 510.0
+offset_top = 20.0
+offset_right = 550.0
+offset_bottom = 60.0
+texture = ExtResource("7_stam")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ReqLabel3" type="Label" parent="UpgradeRequ" unique_id=583118225]
+visible = false
+layout_mode = 0
+offset_left = 547.0
+offset_top = 14.0
+offset_right = 629.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "×2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MaxTip" type="Label" parent="." unique_id=2047512425]
+visible = false
+layout_mode = 0
+offset_left = 255.0
+offset_top = 1389.0
+offset_right = 815.0
+offset_bottom = 1434.0
+theme_override_font_sizes/font_size = 32
+text = "已达到最高等级，无法升级"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeBtn" type="Button" parent="." unique_id=692495093]
+layout_mode = 0
+offset_left = 333.0
+offset_top = 1589.0
+offset_right = 733.0
+offset_bottom = 1719.0
+theme_override_font_sizes/font_size = 40
+text = "解锁"
+icon = ExtResource("8_btnbg")
+flat = true
+text_overrun_behavior = 1
+icon_alignment = 1
+expand_icon = true

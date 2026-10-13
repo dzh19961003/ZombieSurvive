@@ -65,11 +65,13 @@ public partial class PlayerManager : Node, ISaveable
     private int armTime = 3;
     private int bodyTime = 2;
     private int headTime = 6;
-    //工作台等级
+    //各家具等级
     private int _workStationLevel = 1;
     private int _trainLevel = 1;
+    private int _tentLevel = 1;
     private bool _workstationUnlocked = false;
     private bool _trainUnlocked = false;
+    private bool _tentUnlocked = false;
    //每次锻炼消耗的玩家体力
     private const int TrainStaminaCost = 5;        
     //玩家体力基础满值
@@ -267,8 +269,10 @@ public partial class PlayerManager : Node, ISaveable
 
     public int WorkStationLevel => _workStationLevel;
     public int TrainLevel => _trainLevel;
+    public int TentLevel => _tentLevel;
     public bool WorkstationUnlocked => _workstationUnlocked;
     public bool TrainUnlocked => _trainUnlocked;
+    public bool TentUnlocked => _tentUnlocked;
     public void SetWorkstationUnlocked(bool value)
     {
         _workstationUnlocked = value;
@@ -279,6 +283,11 @@ public partial class PlayerManager : Node, ISaveable
         _trainUnlocked = value;
         GetItem?.Invoke();
     }
+    public void SetTentUnlocked(bool value)
+    {
+        _tentUnlocked = value;
+        GetItem?.Invoke();
+    }
     public void SetWorkStationLevel(int level)
     {
         _workStationLevel = Mathf.Max(1, level);
@@ -287,6 +296,23 @@ public partial class PlayerManager : Node, ISaveable
     public void SetTrainLevel(int level)
     {
         _trainLevel = Mathf.Max(1, level);
+        GetItem?.Invoke();
+    }
+    public void SetTentLevel(int level)
+    {
+        _tentLevel = Mathf.Max(1, level);
+        // 根据帐篷等级更新最大体力
+        if (ConfigManager.Instance != null)
+        {
+            var cfg = ConfigManager.Instance.roofTentList?.Find(t => t.Level == _tentLevel);
+            if (cfg != null)
+            {
+                maxBaseStamina = cfg.RoofStamina;
+                maxexploreStamina = cfg.ExploreStamina;
+                baseStamina = Mathf.Min(baseStamina, MaxBaseStamina);
+                exploreStamina = Mathf.Min(exploreStamina, MaxexploreStamina);
+            }
+        }
         GetItem?.Invoke();
     }
 

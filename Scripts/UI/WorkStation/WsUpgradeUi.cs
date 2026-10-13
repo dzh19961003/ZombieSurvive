@@ -128,17 +128,52 @@ public partial class WsUpgradeUi : Control
 		string levelText = $"等级{sumLevel}";
 		string nextText = $"等级{sumLevel+1}";
 		if (_gradeTitle != null) _gradeTitle.Text = wsLevelText;
-		if (_makeLevelValue != null) _makeLevelValue.Text = levelText;
-		if (_makeNextLevelValue != null) _makeNextLevelValue.Text = nextText;
+
 		// 等级1未解锁：查当前等级配置；已解锁或等级>1：查下一等级配置
 		bool isUnlockStep = currentLevel == 1 && !PlayerManager.Instance.WorkstationUnlocked;
 		var cfg = isUnlockStep ? FindUpgradeConfig() : FindNextUpgradeConfig();
+
+		// 制作等级数值显示：三种状态
+		if (isUnlockStep)
+		{
+			// 解锁前：不显示具体数值
+			if (_makeLevelValue != null)
+			{
+				_makeLevelValue.Visible = true;
+				_makeLevelValue.Text = "???";
+			}
+			if (_makeNextLevelValue != null)
+			{
+				_makeNextLevelValue.Visible = false;
+				_makeNextLevelValue.Text = "???";
+			}
+		}
+		else
+		{
+			// 解锁后：显示当前数值
+			if (_makeLevelValue != null) _makeLevelValue.Text = levelText;
+
+			if (currentLevel == 5)
+			{
+				// 满级：不显示下一级预览
+				if (_makeNextLevelValue != null) _makeNextLevelValue.Visible = false;
+			}
+			else
+			{
+				// 正常升级：显示下一级预览
+				if (_makeNextLevelValue != null)
+				{
+					_makeNextLevelValue.Visible = true;
+					_makeNextLevelValue.Text = nextText;
+				}
+			}
+		}
+
 		if (currentLevel==5)
 		{
-			_makeNextLevelValue.Visible=false;
 			// 已达最高等级：清空需求并禁用按钮
 			for (int i = 0; i < _reqLabels.Length; i++)
-			{	
+			{
 				_reqIcons[i].Visible=false;
 				_reqLabels[i].Visible=false;
 			}
