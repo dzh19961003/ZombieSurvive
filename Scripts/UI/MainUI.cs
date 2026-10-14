@@ -32,6 +32,8 @@ namespace MyProject
                         }
                         while (GameManager.Instance.CurrentTimePeriod != 0);
 
+                        // 睡觉补满所有体力（锻炼、基地、探索）
+                        PlayerManager.Instance.SleepRefillAll();
                     };
             };
         }

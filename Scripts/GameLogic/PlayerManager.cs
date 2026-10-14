@@ -205,14 +205,7 @@ public partial class PlayerManager : Node, ISaveable
             GD.Print("[PlayerManager] 每日锻炼次数已重置");
         }
 
-        //玩家体力未满则补满
-        bool staminaRefilled = playerstaminacost < PlayerStaminaBaseFull;
-        if (staminaRefilled)
-        {
-            RefillPlayerStamina();
-        }
-
-        if (keys.Count > 0 || trainTimesReset || staminaRefilled)
+        if (keys.Count > 0 || trainTimesReset)
         {
             GetItem?.Invoke();
             GetItem2?.Invoke(stateArray);
@@ -350,7 +343,40 @@ public partial class PlayerManager : Node, ISaveable
         playerstaminacost = PlayerStaminaBaseFull;
         GetItem?.Invoke();
     }
+    public void RefillBaseStamina()
+    {
+        baseStamina = maxBaseStamina;
+        GetItem?.Invoke();
+    }
 
+    /// <summary>睡觉补满所有体力：锻炼体力、基地体力、探索体力</summary>
+    public void SleepRefillAll()
+    {
+        bool changed = false;
+        if (playerstaminacost < PlayerStaminaBaseFull)
+        {
+            playerstaminacost = PlayerStaminaBaseFull;
+            changed = true;
+            GD.Print("[PlayerManager] 睡觉：锻炼体力已补满");
+        }
+        if (baseStamina < MaxBaseStamina)
+        {
+            baseStamina = MaxBaseStamina;
+            changed = true;
+            GD.Print("[PlayerManager] 睡觉：基地体力已补满");
+        }
+        if (exploreStamina < MaxexploreStamina)
+        {
+            exploreStamina = MaxexploreStamina;
+            changed = true;
+            GD.Print("[PlayerManager] 睡觉：探索体力已补满");
+        }
+        if (changed)
+        {
+            GetItem?.Invoke();
+        }
+    }
+    
     public enum TrainStatType
     {
         Strength = 0,
@@ -622,7 +648,7 @@ public partial class PlayerManager : Node, ISaveable
             // AddItem(10009, 0.1);
             // GetState(2);
             AddItem(10019, -1);
-            AddItem(10015,5);
+            // AddItem(10015,5);
             AddItem(10020,3);
             GameManager.Instance.AdvanceTime();
         }
