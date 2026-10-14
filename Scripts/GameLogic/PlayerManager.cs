@@ -345,8 +345,12 @@ public partial class PlayerManager : Node, ISaveable
     }
     public void RefillBaseStamina()
     {
-        baseStamina = maxBaseStamina;
-        GetItem?.Invoke();
+        int target = MaxBaseStamina;
+        if (baseStamina < target)
+        {
+            baseStamina = target;
+            GetItem?.Invoke();
+        }
     }
 
     /// <summary>睡觉补满所有体力：锻炼体力、基地体力、探索体力</summary>
@@ -359,15 +363,18 @@ public partial class PlayerManager : Node, ISaveable
             changed = true;
             GD.Print("[PlayerManager] 睡觉：锻炼体力已补满");
         }
-        if (baseStamina < MaxBaseStamina)
+        
+        int maxBase = MaxBaseStamina;
+        if (baseStamina < maxBase)
         {
-            baseStamina = MaxBaseStamina;
+            baseStamina = maxBase;
             changed = true;
             GD.Print("[PlayerManager] 睡觉：基地体力已补满");
         }
-        if (exploreStamina < MaxexploreStamina)
+        int maxExplore = MaxexploreStamina;
+        if (exploreStamina < maxExplore)
         {
-            exploreStamina = MaxexploreStamina;
+            exploreStamina = maxExplore;
             changed = true;
             GD.Print("[PlayerManager] 睡觉：探索体力已补满");
         }
@@ -730,6 +737,39 @@ public partial class PlayerManager : Node, ISaveable
         playerstaminacost=data.ContainsKey("playerstaminacost") ? (int)data["playerstaminacost"] : 5;
         trainTimesDic = data.ContainsKey("trainTimesDic") ? (Dictionary<int, int>)data["trainTimesDic"] : new Dictionary<int, int> { };
         GD.Print($"[PlayerManager] 数据恢复完成：HP={Hp}/{MaxHp}, Str={Strength}({strength_exp}/{ExpMax}), Agi={Agility}({agility_exp}/{ExpMax}), Int={Intelligence}({intelligence_exp}/{ExpMax})");
+
+        // 延迟校准：确保所有加成生效后，体力值不超过上限
+        CallDeferred(nameof(ClampAllStamina));
+    }
+
+    /// <summary>校准值，确保不超过各自上限</summary>
+    private void ClampAllStamina()
+    {
+        bool changed = false;
+        int maxBase = MaxBaseStamina;
+        if (baseStamina > maxBase)
+        {
+            baseStamina = maxBase;
+            changed = true;
+            GD.Print($"[PlayerManager] 读档校准：基地体力超出上限，已修正为 {maxBase}");
+        }
+        int maxExplore = MaxexploreStamina;
+        if (exploreStamina > maxExplore)
+        {
+            exploreStamina = maxExplore;
+            changed = true;
+            GD.Print($"[PlayerManager] 读档校准：探索体力超出上限，已修正为 {maxExplore}");
+        }
+        if (playerstaminacost > PlayerStaminaBaseFull)
+        {
+            playerstaminacost = PlayerStaminaBaseFull;
+            changed = true;
+            GD.Print($"[PlayerManager] 读档校准：锻炼体力超出上限，已修正为 {PlayerStaminaBaseFull}");
+        }
+        if (changed)
+        {
+            GetItem?.Invoke();
+        }
     }
     #endregion
 }

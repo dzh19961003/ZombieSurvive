@@ -13,6 +13,7 @@ public partial class WsUpgradeUi : Control
 	//未解锁功能名称灰色（与场景默认灰色一致）
 	private static readonly Color LockedFunColor = new(0.5958281f, 0.5958281f, 0.5958281f, 1f);
 	private const int MaxTextureLevel = 5;
+	private const int MaxLevel = 5;
 
 
 	// 当前工作台等级
@@ -96,16 +97,16 @@ public partial class WsUpgradeUi : Control
 	
 	private RoofWorkstation FindUpgradeConfig()
 	{
-		var list = ConfigManager.Instance?.roofWorkstationList;
-		if (list == null) return null;
-		return list.FirstOrDefault(r => r.Level == currentLevel);
+		var dic = ConfigManager.Instance?.roofWorkstationDic;
+		if (dic == null) return null;
+		return dic.ContainsKey(currentLevel) ? dic[currentLevel] : null;
 	}
 
 	private RoofWorkstation FindNextUpgradeConfig()
 	{
-		var list = ConfigManager.Instance?.roofWorkstationList;
-		if (list == null) return null;
-		return list.FirstOrDefault(r => r.Level == currentLevel + 1);
+		var dic = ConfigManager.Instance?.roofWorkstationDic;
+		if (dic == null) return null;
+		return dic.ContainsKey(currentLevel + 1) ? dic[currentLevel + 1] : null;
 	}
 
 	private void RefreshDisplay()
@@ -153,7 +154,7 @@ public partial class WsUpgradeUi : Control
 			// 解锁后：显示当前数值
 			if (_makeLevelValue != null) _makeLevelValue.Text = levelText;
 
-			if (currentLevel == 5)
+			if (currentLevel >= MaxLevel && PlayerManager.Instance.WorkstationUnlocked)
 			{
 				// 满级：不显示下一级预览
 				if (_makeNextLevelValue != null) _makeNextLevelValue.Visible = false;
@@ -169,7 +170,7 @@ public partial class WsUpgradeUi : Control
 			}
 		}
 
-		if (currentLevel==5)
+		if (currentLevel >= MaxLevel && PlayerManager.Instance.WorkstationUnlocked)
 		{
 			// 已达最高等级：清空需求并禁用按钮
 			for (int i = 0; i < _reqLabels.Length; i++)
@@ -196,30 +197,13 @@ public partial class WsUpgradeUi : Control
 
 			int itemID = (cfg.ItemID != null && i < cfg.ItemID.Count) ? cfg.ItemID[i] : 0;
 			int need   = (cfg.ItemNum != null && i < cfg.ItemNum.Count) ? cfg.ItemNum[i] : 0;
-			if (UIManager.Instance != null && itemID != 0 && itemID < 10000)
+			if (UIManager.Instance != null && itemID != 0)
 			{
 				var icon = UIManager.Instance.GetItemIcon(itemID);
 				if (icon != null) _reqIcons[i].Texture = icon;
 			}
 
-			bool insufficient;
-			if (itemID >= 10000)
-			{
-				
-				if (itemID == 10015)
-				{
-					insufficient = PlayerManager.Instance.BaseStamina < need;
-				}
-				else
-				{
-					insufficient = true;
-				}
-			}
-			else
-			{
-				// 物品类：用持有数量比
-				insufficient = PlayerManager.Instance.GetItemCount(itemID) < need;
-			}
+			bool insufficient = !IsEnough(itemID, need);
 			_reqLabels[i].Text = $"×{need}";
 			SetReqColor(_reqLabels[i], insufficient);
 		}
@@ -288,7 +272,7 @@ public partial class WsUpgradeUi : Control
 			}
 		}
 
-		// 扣物品材料
+		// 扣材料（物品 + 属性类）
 		if (cfg.ItemID != null && cfg.ItemNum != null)
 		{
 			for (int i = 0; i < cfg.ItemID.Count; i++)
@@ -301,19 +285,10 @@ public partial class WsUpgradeUi : Control
 				{
 					PlayerManager.Instance.RemoveItem(itemID, need);
 				}
-			}
-		}
-		//扣体力
-		if (cfg.ItemID != null && cfg.ItemNum != null)
-		{
-			for (int i = 0; i < cfg.ItemID.Count; i++)
-			{
-				int itemID = cfg.ItemID[i];
-				int need   = i < cfg.ItemNum.Count ? cfg.ItemNum[i] : 0;
-				if (itemID == 10015 && need > 0)
+				else
 				{
-					PlayerManager.Instance.AddItem(10015, -need);
-					break; // 体力只扣一次
+					// 属性类（10000+）：通过 AddItem 扣减
+					PlayerManager.Instance.AddItem(itemID, -need);
 				}
 			}
 		}
@@ -334,7 +309,7 @@ public partial class WsUpgradeUi : Control
 		RefreshDisplay();
 	}
 
-	// 判断材料充足
+	// 判断材料是否充足（支持物品ID和属性ID）
 	private bool IsEnough(int itemID, int need)
 	{
 		if (PlayerManager.Instance == null) return false;
@@ -342,8 +317,18 @@ public partial class WsUpgradeUi : Control
 
 		if (itemID >= 10000)
 		{
-			if (itemID == 10015) return PlayerManager.Instance.BaseStamina >= need;
-			return false;
+			// 属性类：通过 AddItem 对应的属性判断
+			switch (itemID)
+			{
+				case 10001: return PlayerManager.Instance.Hp >= need;
+				case 10002: return PlayerManager.Instance.MaxHp >= need;
+				case 10003: return PlayerManager.Instance.Strength >= need;
+				case 10004: return PlayerManager.Instance.Agility >= need;
+				case 10005: return PlayerManager.Instance.Intelligence >= need;
+				case 10015: return PlayerManager.Instance.BaseStamina >= need;
+				case 10016: return PlayerManager.Instance.ExploreStamina >= need;
+				default: return false;
+			}
 		}
 		return PlayerManager.Instance.GetItemCount(itemID) >= need;
 	}
