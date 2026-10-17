@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://cv5t5wc74uif"]
+
+[ext_resource type="Script" uid="uid://cv1eqhes3tegs" path="res://Scripts/UI/Plant/PlantUI.cs" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://d1nmp4fcid50p" path="res://Assets/Images/UI/main_panel_2.png" id="2_panel"]
+[ext_resource type="PackedScene" uid="uid://b31yl5hhpulvo" path="res://UI/Plant/PlantPanel.tscn" id="3_plantscene"]
+[ext_resource type="PackedScene" path="res://UI/Plant/PlantUpgradeUI.tscn" id="3_upscene"]
+[ext_resource type="Texture2D" uid="uid://bs7gg3xn14v6b" path="res://Assets/Images/UI/close_button.png" id="4_close"]
+[ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="4_title"]
+[ext_resource type="Texture2D" uid="uid://cwqay0vk7x016" path="res://Assets/Images/UI/tab_inactive.png" id="5_inactive"]
+[ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="6_active"]
+
+[node name="PlantUI" type="Control" unique_id=1788432204 node_paths=PackedStringArray("closeBtn", "upgrade", "plant", "upgradePanel", "plantPanel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+closeBtn = NodePath("CloseBtn")
+upgrade = NodePath("UpgradeTab")
+plant = NodePath("PlantTab")
+upgradePanel = NodePath("BG/PlantUpgradeUI")
+plantPanel = NodePath("BG/PlantPanel")
+
+[node name="Control" type="ColorRect" parent="." unique_id=1328444102]
+propagate_maximum_size = true
+layout_mode = 1
+anchors_preset = -1
+offset_right = 1080.0
+offset_bottom = 1920.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78431374)
+
+[node name="BG" type="NinePatchRect" parent="." unique_id=1670842766]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 107.0
+offset_right = 996.0
+offset_bottom = 1812.0
+texture = ExtResource("2_panel")
+region_rect = Rect2(0, 0, 980, 1720)
+
+[node name="PlantUpgradeUI" parent="BG" unique_id=52667894 instance=ExtResource("3_upscene")]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 241.0
+offset_right = 892.0
+offset_bottom = 1665.0
+
+[node name="PlantPanel" parent="BG" unique_id=830928075 instance=ExtResource("3_plantscene")]
+visible = false
+layout_mode = 0
+offset_left = 27.0
+offset_top = 241.0
+offset_right = 892.0
+offset_bottom = 1665.0
+
+[node name="CloseBtn" type="Button" parent="." unique_id=305923948]
+layout_mode = 0
+offset_left = 897.0
+offset_top = 59.0
+offset_right = 1042.0
+offset_bottom = 204.0
+icon = ExtResource("4_close")
+flat = true
+expand_icon = true
+
+[node name="Title" type="TextureRect" parent="." unique_id=1065203034]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 71.0
+offset_right = 775.0
+offset_bottom = 181.0
+texture = ExtResource("4_title")
+expand_mode = 1
+
+[node name="PlantName" type="Label" parent="Title" unique_id=242199389]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 16.0
+offset_right = 329.0
+offset_bottom = 81.0
+theme_override_font_sizes/font_size = 40
+text = "种植区"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeTab" type="TextureButton" parent="." unique_id=1627427722]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 237.0
+offset_right = 542.0
+offset_bottom = 348.0
+texture_normal = ExtResource("6_active")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="UpgradeTab" unique_id=39579323]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 26.0
+offset_right = 382.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 41
+text = "升级"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlantTab" type="TextureButton" parent="." unique_id=1652026444]
+layout_mode = 0
+offset_left = 533.0
+offset_top = 237.0
+offset_right = 965.0
+offset_bottom = 348.0
+texture_normal = ExtResource("5_inactive")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="PlantTab" unique_id=478043500]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 25.0
+offset_right = 380.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 41
+text = "种植"
+horizontal_alignment = 1
+vertical_alignment = 1

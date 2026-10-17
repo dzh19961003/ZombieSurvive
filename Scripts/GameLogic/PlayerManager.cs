@@ -210,6 +210,9 @@ public partial class PlayerManager : Node, ISaveable
             GetItem?.Invoke();
             GetItem2?.Invoke(stateArray);
         }
+
+        //作物每日生长，进度+growSpeed
+        PlantManager.Instance?.GrowPlants();
     }
     //只读访问：返回副本，外部无法修改内部数组
     public Array<int> GetStateArray()
@@ -306,6 +309,11 @@ public partial class PlayerManager : Node, ISaveable
                 exploreStamina = Mathf.Min(exploreStamina, MaxexploreStamina);
             }
         }
+        GetItem?.Invoke();
+    }
+    //通知UI刷新
+    public void NotifyChanged()
+    {
         GetItem?.Invoke();
     }
 

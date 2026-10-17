@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://diqjof7ffrcgr"]
+
+[ext_resource type="Texture2D" uid="uid://bcndqhtwwxvaw" path="res://Assets/Images/UI/info_tooltip.png" id="1_tipbg"]
+[ext_resource type="Texture2D" uid="uid://df15axruggc43" path="res://Assets/Images/Items/veg3_icon.png" id="2_icon"]
+
+[node name="MatureTip" type="Node2D"]
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(326, 1180)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_tipbg")
+
+[node name="Icon" type="Sprite2D" parent="Bg"]
+position = Vector2(0, -12)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("2_icon")

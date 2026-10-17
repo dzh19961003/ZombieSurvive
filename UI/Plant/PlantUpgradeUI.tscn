@@ -1,0 +1,276 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://dl4useu6hr2g3" path="res://Scripts/UI/Plant/PlantUpgradeUI.cs" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://d1nmp4fcid50p" path="res://Assets/Images/Base/plant_1.png" id="2_plant"]
+[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="3_frame"]
+[ext_resource type="Texture2D" uid="uid://c33rmupvbsy43" path="res://Assets/Images/UI/arrow_1.png" id="4_arrow"]
+[ext_resource type="Texture2D" uid="uid://b0f54t58kd7u3" path="res://Assets/Images/Items/wood_icon.png" id="5_wood"]
+[ext_resource type="Texture2D" uid="uid://bwawwv5xw4hp7" path="res://Assets/Images/Items/tools_icon.png" id="6_tools"]
+[ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="7_stam"]
+[ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="8_active"]
+
+[node name="PlantUpgradeUI" type="Control" node_paths=PackedStringArray("upgrade")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 922.0
+offset_bottom = 1452.0
+script = ExtResource("1_script")
+upgrade = NodePath("UpgradeBtn")
+
+[node name="PlantTexture" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 120.0
+offset_right = 759.0
+offset_bottom = 520.0
+texture = ExtResource("2_plant")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GradeTitle" type="Label" parent="."]
+layout_mode = 0
+offset_left = 327.0
+offset_top = 530.0
+offset_right = 592.0
+offset_bottom = 590.0
+theme_override_font_sizes/font_size = 40
+text = "等级1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlantNum" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 690.0
+offset_right = 792.0
+offset_bottom = 790.0
+
+[node name="BG" type="TextureRect" parent="PlantNum"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -27.0
+offset_right = 162.0
+offset_bottom = 109.0
+texture = ExtResource("3_frame")
+
+[node name="Name1" type="Label" parent="PlantNum"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = 14.0
+offset_right = 144.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 32
+text = "种植数量"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurVal1" type="Label" parent="PlantNum"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 14.0
+offset_right = 330.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Arrow1" type="TextureRect" parent="PlantNum"]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 20.0
+offset_right = 420.0
+offset_bottom = 60.0
+texture = ExtResource("4_arrow")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NextVal1" type="Label" parent="PlantNum"]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 14.0
+offset_right = 590.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "1"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="GrowSpeed" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 877.0
+offset_right = 792.0
+offset_bottom = 977.0
+
+[node name="BG" type="TextureRect" parent="GrowSpeed"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -27.0
+offset_right = 162.0
+offset_bottom = 109.0
+texture = ExtResource("3_frame")
+
+[node name="Name2" type="Label" parent="GrowSpeed"]
+layout_mode = 0
+offset_left = -15.0
+offset_top = 14.0
+offset_right = 145.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 32
+text = "生长速度"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurVal2" type="Label" parent="GrowSpeed"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 14.0
+offset_right = 330.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Arrow2" type="TextureRect" parent="GrowSpeed"]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 20.0
+offset_right = 420.0
+offset_bottom = 60.0
+texture = ExtResource("4_arrow")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NextVal2" type="Label" parent="GrowSpeed"]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 14.0
+offset_right = 590.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "14"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="UpgradeRequ" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 1067.0
+offset_right = 792.0
+offset_bottom = 1167.0
+
+[node name="BG" type="TextureRect" parent="UpgradeRequ"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -27.0
+offset_right = 162.0
+offset_bottom = 109.0
+texture = ExtResource("3_frame")
+
+[node name="ReqLabel" type="Label" parent="UpgradeRequ"]
+layout_mode = 0
+offset_top = 14.0
+offset_right = 128.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 32
+text = "升级需求"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReqIcon1" type="TextureRect" parent="UpgradeRequ"]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 20.0
+offset_right = 292.0
+offset_bottom = 60.0
+texture = ExtResource("5_wood")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ReqLabel1" type="Label" parent="UpgradeRequ"]
+layout_mode = 0
+offset_left = 297.0
+offset_top = 14.0
+offset_right = 379.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "×2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReqIcon2" type="TextureRect" parent="UpgradeRequ"]
+layout_mode = 0
+offset_left = 388.0
+offset_top = 20.0
+offset_right = 428.0
+offset_bottom = 60.0
+texture = ExtResource("6_tools")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ReqLabel2" type="Label" parent="UpgradeRequ"]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 14.0
+offset_right = 502.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "×2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReqIcon3" type="TextureRect" parent="UpgradeRequ"]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 20.0
+offset_right = 550.0
+offset_bottom = 60.0
+texture = ExtResource("7_stam")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ReqLabel3" type="Label" parent="UpgradeRequ"]
+layout_mode = 0
+offset_left = 547.0
+offset_top = 14.0
+offset_right = 629.0
+offset_bottom = 59.0
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+text = "×2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MaxTip" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 181.0
+offset_top = 1082.0
+offset_right = 741.0
+offset_bottom = 1127.0
+theme_override_font_sizes/font_size = 32
+text = "已达到最高等级，无法升级"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeBtn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 259.0
+offset_top = 1268.0
+offset_right = 659.0
+offset_bottom = 1398.0
+theme_override_font_sizes/font_size = 40
+text = "解锁"
+icon = ExtResource("8_active")
+flat = true
+text_overrun_behavior = 1
+icon_alignment = 1
+expand_icon = true

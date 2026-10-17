@@ -1,0 +1,200 @@
+[gd_scene format=3 uid="uid://b31yl5hhpulvo"]
+
+[ext_resource type="Script" uid="uid://cjaf4bk6a4d4v" path="res://Scripts/UI/Plant/PlantPanel.cs" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bs8sbck0de24s" path="res://Assets/Images/UI/New/bg_5.png" id="2_card"]
+[ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="3_stam"]
+[ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="4_active"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pgbar_bg"]
+bg_color = Color(0.2, 0.28, 0.28, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pgbar_fill"]
+bg_color = Color(0.97, 0.84, 0.29, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="PlantPanel" type="Control" unique_id=771414878]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 922.0
+offset_bottom = 1452.0
+script = ExtResource("1_script")
+
+[node name="RowList" type="VBoxContainer" parent="." unique_id=2099757968]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 13.0
+offset_right = 867.0
+offset_bottom = 673.0
+theme_override_constants/separation = 40
+
+[node name="Row1" type="Control" parent="RowList" unique_id=457972394]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="CardBg" type="TextureRect" parent="RowList/Row1" unique_id=2028777858]
+layout_mode = 0
+offset_right = 860.0
+offset_bottom = 200.0
+texture = ExtResource("2_card")
+expand_mode = 1
+
+[node name="Icon" type="TextureRect" parent="RowList/Row1" unique_id=1297654989]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 30.0
+offset_right = 165.0
+offset_bottom = 170.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NumLabel" type="Label" parent="RowList/Row1" unique_id=202459198]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 120.0
+offset_right = 165.0
+offset_bottom = 168.0
+theme_override_font_sizes/font_size = 26
+text = "x3"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="NameLabel" type="Label" parent="RowList/Row1" unique_id=1066663384]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 20.0
+offset_right = 560.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 36
+text = "胡萝卜"
+vertical_alignment = 1
+
+[node name="PlantState" type="Control" parent="RowList/Row1" unique_id=1455149391]
+anchors_preset = 0
+
+[node name="StaminaIcon" type="TextureRect" parent="RowList/Row1/PlantState" unique_id=1618048437]
+layout_mode = 0
+offset_left = 620.0
+offset_top = 25.0
+offset_right = 660.0
+offset_bottom = 65.0
+texture = ExtResource("3_stam")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StaminaLabel" type="Label" parent="RowList/Row1/PlantState" unique_id=28485007]
+layout_mode = 0
+offset_left = 665.0
+offset_top = 25.0
+offset_right = 740.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 32
+text = "x5"
+vertical_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="RowList/Row1/PlantState" unique_id=821590005]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 105.0
+offset_right = 620.0
+offset_bottom = 175.0
+theme_override_font_sizes/font_size = 30
+text = "预计时间：5天"
+vertical_alignment = 1
+
+[node name="PlantBtn" type="Button" parent="RowList/Row1/PlantState" unique_id=1102955196]
+layout_mode = 0
+offset_left = 630.0
+offset_top = 95.0
+offset_right = 850.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 34
+text = "种植"
+icon = ExtResource("4_active")
+flat = true
+text_overrun_behavior = 1
+icon_alignment = 1
+expand_icon = true
+
+[node name="GrowState" type="Control" parent="RowList/Row1" unique_id=1675603357]
+visible = false
+anchors_preset = 0
+offset_left = -21.0
+offset_top = 20.0
+offset_right = -21.0
+offset_bottom = 20.0
+
+[node name="Progress" type="ProgressBar" parent="RowList/Row1/GrowState" unique_id=36091264]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 55.0
+offset_right = 850.0
+offset_bottom = 115.0
+theme_override_styles/background = SubResource("StyleBoxFlat_pgbar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pgbar_fill")
+show_percentage = false
+
+[node name="ProgressLabel" type="Label" parent="RowList/Row1/GrowState/Progress" unique_id=1087690980]
+layout_mode = 0
+offset_right = 660.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 26
+text = "72/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GrowLabel" type="Label" parent="RowList/Row1/GrowState" unique_id=311501047]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 125.0
+offset_right = 700.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 30
+text = "生长中，剩余2天"
+vertical_alignment = 1
+
+[node name="RipeState" type="Control" parent="RowList/Row1" unique_id=299383410]
+visible = false
+anchors_preset = 0
+
+[node name="RipeLabel" type="Label" parent="RowList/Row1/RipeState" unique_id=1297380321]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 55.0
+offset_right = 560.0
+offset_bottom = 115.0
+theme_override_colors/font_color = Color(0.35, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 36
+text = "已成熟"
+vertical_alignment = 1
+
+[node name="HarvestBtn" type="Button" parent="RowList/Row1/RipeState" unique_id=629734109]
+layout_mode = 0
+offset_left = 630.0
+offset_top = 35.0
+offset_right = 850.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 34
+text = "收获"
+icon = ExtResource("4_active")
+flat = true
+text_overrun_behavior = 1
+icon_alignment = 1
+expand_icon = true
+
+[node name="PlantedLabel" type="Label" parent="." unique_id=879898323]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 1350.0
+offset_right = 891.0
+offset_bottom = 1410.0
+theme_override_font_sizes/font_size = 36
+text = "已种植：0/0"
+horizontal_alignment = 1
+vertical_alignment = 1
