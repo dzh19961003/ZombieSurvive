@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://dyqrdbks6ulsp"]
+
+[ext_resource type="Script" uid="uid://hsr81bp4tl27" path="res://Scripts/UI/StartMenu.cs" id="1_start"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_startmenu"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.08, 0.08, 0.1, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6, 0.55, 0.4, 1)
+
+[node name="StartMenu" type="Control" unique_id=227513665]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_start")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1665266971]
+layout_mode = 0
+offset_left = -592.0
+offset_top = -494.0
+offset_right = 1645.0
+offset_bottom = 2680.0
+color = Color(0, 0, 0, 1)
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1909811050]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 700.0
+offset_right = -1.0
+offset_bottom = 800.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.95, 0.9, 0.75, 1)
+theme_override_font_sizes/font_size = 72
+text = "Zombie Dirary"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnBox" type="VBoxContainer" parent="." unique_id=317775036]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 900.0
+offset_right = 740.0
+offset_bottom = 1180.0
+theme_override_constants/separation = 40
+
+[node name="NewGameBtn" type="Button" parent="BtnBox" unique_id=1469912339]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_startmenu")
+text = "新游戏"
+
+[node name="ContinueBtn" type="Button" parent="BtnBox" unique_id=1935509874]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_startmenu")
+text = "继续游戏(无用别点)"

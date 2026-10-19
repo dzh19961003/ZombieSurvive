@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://bjwnfcgaqcp6m"]
+
+[ext_resource type="Script" uid="uid://ckb1mx8pii0ll" path="res://Scripts/UI/DiaryUI.cs" id="1_diary"]
+[ext_resource type="Texture2D" uid="uid://c73yxng4uea1l" path="res://Assets/Images/UI/New/closeBtn.png" id="2_l34xf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_diary"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.93, 0.91, 0.84, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.45, 0.35, 0.2, 1)
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 12
+
+[node name="DiaryUI" type="Control" unique_id=140796564]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_diary")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1951146355]
+layout_mode = 0
+offset_left = -592.0
+offset_top = -494.0
+offset_right = 1645.0
+offset_bottom = 2680.0
+color = Color(0, 0, 0, 0.60784316)
+
+[node name="Panel" type="Panel" parent="." unique_id=2101143285]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 92.0
+offset_right = 1005.0
+offset_bottom = 1787.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_diary")
+
+[node name="TitleRow" type="HBoxContainer" parent="Panel" unique_id=1571900172]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = -496.0
+offset_bottom = 80.0
+grow_horizontal = 2
+
+[node name="dateLabel" type="Label" parent="Panel/TitleRow" unique_id=47945040]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.25, 0.2, 0.15, 1)
+theme_override_font_sizes/font_size = 48
+text = "1日"
+vertical_alignment = 1
+
+[node name="CloseBtn" type="Button" parent="Panel" unique_id=455777377]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -95.0
+offset_top = -37.0
+offset_right = 47.0
+offset_bottom = 105.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+icon = ExtResource("2_l34xf")
+flat = true
+expand_icon = true
+
+[node name="ContentLabel" type="Label" parent="Panel" unique_id=491100589]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 132.0
+offset_right = 882.0
+offset_bottom = 1634.0
+theme_override_colors/font_color = Color(0.2, 0.16, 0.1, 1)
+theme_override_constants/line_spacing = 16
+theme_override_constants/paragraph_spacing = 32
+theme_override_font_sizes/font_size = 48
+autowrap_mode = 2

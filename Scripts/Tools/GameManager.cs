@@ -29,6 +29,9 @@ public partial class GameManager : Node2D,ISaveable
     //各建筑探索进度
     public Dictionary<int, int> exploreProgress = new Dictionary<int, int>();
 
+    // 当前剧本ID（游戏开始前随机 1~4，随存档保存/读取）
+    public int currentScriptID = 0;
+
     //各建筑已触发支线
     public Dictionary<int, Array<int>> subTaskDic = new Dictionary<int, Array<int>>();
 
@@ -55,7 +58,8 @@ public partial class GameManager : Node2D,ISaveable
         {
             { "exploreProgress",exploreProgress},
             { "timePeriod", currentTimePeriod },
-            { "dayCount", dayCount }
+            { "dayCount", dayCount },
+            { "currentScriptID", currentScriptID }
         };
     }
 
@@ -64,6 +68,7 @@ public partial class GameManager : Node2D,ISaveable
         exploreProgress =  data.ContainsKey("exploreProgress") ? (Dictionary<int,int>)data["exploreProgress"] : new Dictionary<int, int>();
         currentTimePeriod = data.ContainsKey("timePeriod") ? (int)data["timePeriod"] : 0;
         dayCount = data.ContainsKey("dayCount") ? (int)data["dayCount"] : 1;
+        currentScriptID = data.ContainsKey("currentScriptID") ? (int)data["currentScriptID"] : 0;
     }
     #endregion
 
@@ -182,5 +187,76 @@ public partial class GameManager : Node2D,ISaveable
         carefulEventArray = eventArray;
         quickEventArray = eventArray2;
     }
+
+    #region 剧本与日记
+    /// <summary>
+    /// 新游戏开始时调用：从 script 表随机一个剧本ID（当前为 1~4），
+    /// 同时重置天数与探索进度，把GameManager还原到初始状态。
+    /// </summary>
+    public void NewGameStart()
+    {
+        // 从 scriptList 里取一个随机ID
+        if (ConfigManager.Instance.scriptList == null || ConfigManager.Instance.scriptList.Count == 0)
+        {
+            GD.PrintErr("[GameManager] script表为空，无法随机剧本，默认用 1");
+            currentScriptID = 1;
+        }
+        else
+        {
+            int r = GD.RandRange(0, ConfigManager.Instance.scriptList.Count - 1);
+            currentScriptID = ConfigManager.Instance.scriptList[r].ID;
+            GD.Print($"[GameManager] 新游戏 → 随机剧本ID = {currentScriptID}");
+        }
+
+        // 重置时间到第1天早晨
+        SetTimePeriod(0, 1);
+
+        // 清空探索进度与支线
+        exploreProgress.Clear();
+        subTaskDic.Clear();
+        finishedEvent.Clear();
+
+        GD.Print("[GameManager] 新游戏初始化完成");
+    }
+
+    /// <summary>
+    /// 取当前天数 + 当前剧本 对应的日记文本。
+    /// 同一天的同一条目可能有多份（type、scriptID 不同），
+    /// 会筛选出 Day == day 且 ScriptID 包含当前剧本ID 的第一条返回。
+    /// 找不到返回空字符串（调用方自行决定是否弹出）。
+    /// </summary>
+    public string GetDiaryTextForCurrentDay()
+    {
+        int day = dayCount;
+        int scriptID = currentScriptID;
+        if (ConfigManager.Instance.diaryList == null) return "";
+
+        foreach (var d in ConfigManager.Instance.diaryList)
+        {
+            if (d.Day == day && d.ScriptID != null && d.ScriptID.Contains(scriptID))
+            {
+                return d.Diaries ?? "";
+            }
+        }
+        return "";
+    }
+
+    /// <summary>
+    /// 指定天数的日记（按当前剧本筛选）。供非"当前天"的场景调用。
+    /// </summary>
+    public string GetDiaryTextForDay(int day)
+    {
+        if (ConfigManager.Instance.diaryList == null) return "";
+        int scriptID = currentScriptID;
+        foreach (var d in ConfigManager.Instance.diaryList)
+        {
+            if (d.Day == day && d.ScriptID != null && d.ScriptID.Contains(scriptID))
+            {
+                return d.Diaries ?? "";
+            }
+        }
+        return "";
+    }
+    #endregion
 
 }

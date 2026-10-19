@@ -34,6 +34,9 @@ namespace MyProject
 
                         // 睡觉补满所有体力（锻炼、基地、探索）
                         PlayerManager.Instance.SleepRefillAll();
+
+                        // 跨天到早晨后，弹出当天日记（逐字打印）
+                        StartMenu.OpenDiary();
                     };
             };
         }

@@ -17,7 +17,8 @@ public partial class UIManager : Node
     public override void _Ready()
     {
         Instance = this;
-        ShowUI(Paths.MainUI);
+        // 启动先显示开始菜单，点"新游戏"后再进主界面
+        ShowUI(Paths.StartMenu);
     }
     public override void _Process(double delta)
     {
