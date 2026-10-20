@@ -50,14 +50,14 @@ public partial class GameManager : Node2D,ISaveable
     public static GameManager Instance { get; private set; }
 
     #region 存档相关
+    // 按需求：只保存"剧本ID"和"当前天数"。
+    // 时段固定回到"早晨"，探索流程不保存（每次醒来都从该天的起点重新来）。
     public string SaveKey => GetPath();
 
     public Dictionary GetSaveData()
     {
         return new Dictionary
         {
-            { "exploreProgress",exploreProgress},
-            { "timePeriod", currentTimePeriod },
             { "dayCount", dayCount },
             { "currentScriptID", currentScriptID }
         };
@@ -65,8 +65,6 @@ public partial class GameManager : Node2D,ISaveable
 
     public void LoadSaveData(Dictionary data)
     {
-        exploreProgress =  data.ContainsKey("exploreProgress") ? (Dictionary<int,int>)data["exploreProgress"] : new Dictionary<int, int>();
-        currentTimePeriod = data.ContainsKey("timePeriod") ? (int)data["timePeriod"] : 0;
         dayCount = data.ContainsKey("dayCount") ? (int)data["dayCount"] : 1;
         currentScriptID = data.ContainsKey("currentScriptID") ? (int)data["currentScriptID"] : 0;
     }
@@ -217,6 +215,34 @@ public partial class GameManager : Node2D,ISaveable
         finishedEvent.Clear();
 
         GD.Print("[GameManager] 新游戏初始化完成");
+    }
+
+    /// <summary>
+    /// 继续游戏时调用：把 GameManager 重置为"当前这一天的早晨"。
+    /// 只负责时间/天数回到当天早晨，并清空当天会重新跑的探索流程状态。
+    /// 玩家自身的体力、饥饿、物品等由调用方（StartMenu）决定怎么处理，
+    /// 这里不动 PlayerManager。
+    /// </summary>
+    public void RestoreToMorning()
+    {
+        // 时段固定回到早晨，天数保持 LoadSaveData 恢复的值
+        SetTimePeriod(0, dayCount);
+
+        // 探索流程不保存，醒来就清空重新来
+        exploreProgress.Clear();
+        subTaskDic.Clear();
+        finishedEvent.Clear();
+        exploreState = 1;
+        exploreLayer = 1;
+        currentBuildingID = 1;
+        currentEventID = 1;
+        roomID = 1;
+        exploreNoise = 0;
+        currentSubTask = 0;
+        carefulEventArray = new Array<int>();
+        quickEventArray = new Array<int>();
+
+        GD.Print($"[GameManager] 已恢复到第{dayCount}天早晨（剧本 {currentScriptID}）");
     }
 
     /// <summary>

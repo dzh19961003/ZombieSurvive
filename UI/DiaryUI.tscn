@@ -75,14 +75,23 @@ icon = ExtResource("2_l34xf")
 flat = true
 expand_icon = true
 
-[node name="ContentLabel" type="Label" parent="Panel" unique_id=491100589]
+[node name="ContentBox" type="VBoxContainer" parent="Panel" unique_id=491100589]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 132.0
 offset_right = 882.0
-offset_bottom = 1634.0
-theme_override_colors/font_color = Color(0.2, 0.16, 0.1, 1)
-theme_override_constants/line_spacing = 16
-theme_override_constants/paragraph_spacing = 32
-theme_override_font_sizes/font_size = 48
-autowrap_mode = 2
+offset_bottom = 1682.0
+theme_override_constants/separation = 16
+
+[node name="HintLabel" type="Label" parent="Panel" unique_id=491200590]
+layout_mode = 0
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 132.0
+offset_right = 882.0
+offset_bottom = 180.0
+theme_override_colors/font_color = Color(0.55, 0.55, 0.55, 1)
+theme_override_font_sizes/font_size = 32
+text = "点击续写日记"
+horizontal_alignment = 1
+vertical_alignment = 1

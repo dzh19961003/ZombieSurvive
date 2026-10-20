@@ -164,9 +164,13 @@ public partial class PlayerManager : Node, ISaveable
         {
             timePeriodsElapsed = 0;
             GD.Print("[PlayerManager] 完整一天结束，开始每日结算");
-            //饱食度-1，后续接入结局触发
-            AddItem(10019,-1);
+            // 先跑每日结算（状态到期、锻炼次数清零、作物生长），再扣饱食度。
+            // 顺序很关键：饱食度扣减会触发 SyncHungerState 增删 StateTimeDic 的 key，
+            // 必须在 OnDayEnd 拷贝 keys 快照之后执行，否则 OnDayEnd 拿旧快照做
+            // StateTimeDic[id]-=1 会 KeyNotFoundException。
             OnDayEnd();
+            // 饱食度-1，后续接入结局触发（挪到结算之后，避免和 OnDayEnd 的 keys 快照打架）
+            AddItem(10019, -1);
         }
     }
 
@@ -180,6 +184,18 @@ public partial class PlayerManager : Node, ISaveable
         var expired = new Array<int>();
         foreach (var id in keys)
         {
+            // 饥饿类状态（5~8）是"持续状态"，由 SyncHungerState 随 hunger 值增删，
+            // 不参与"每日 -1 过期"结算，跳过避免和 SyncHungerState 打架
+            if (id >= 5 && id <= 8)
+            {
+                continue;
+            }
+            // 防御：AddItem(10019) 触发的 SyncHungerState 可能已删除/新增了 key，
+            // 旧快照里的 key 可能已不在 StateTimeDic 里，直接 -= 1 会 KeyNotFoundException
+            if (!StateTimeDic.ContainsKey(id))
+            {
+                continue;
+            }
             StateTimeDic[id] -= 1;
             if (StateTimeDic[id] <= 0)
             {
@@ -194,7 +210,15 @@ public partial class PlayerManager : Node, ISaveable
             {
                 stateArray.Remove(id);
             }
-            GD.Print($"[PlayerManager] 状态到期移除：ID={id} ({ConfigManager.Instance.stateDic[id].Name})");
+            // 缺配保护：state.json 里没有这个状态ID时不要访问 stateDic[id].Name（会 KeyNotFoundException）
+            if (ConfigManager.Instance.stateDic.ContainsKey(id))
+            {
+                GD.Print($"[PlayerManager] 状态到期移除：ID={id} ({ConfigManager.Instance.stateDic[id].Name})");
+            }
+            else
+            {
+                GD.PrintErr($"[PlayerManager] 状态到期移除：ID={id}（state.json 未配置，跳过名称打印）");
+            }
         }
 
         //每日锻炼次数清零，新的一天从 0/x 开始
@@ -615,20 +639,24 @@ public partial class PlayerManager : Node, ISaveable
         }
         Instance = this;
         AddToGroup("Save");
-        SaveManager.Instance.Save();
-        SaveManager.Instance.Load();
+        // 测试残留：启动时自动存/读档会覆盖你睡觉存的存档，导致"继续游戏"读回第1天
+        // SaveManager.Instance.Save();
+        // SaveManager.Instance.Load();
         CallDeferred(nameof(DeferredInitHungerState));
-        GetState(2);
-        //测试
-        AddItem(1,25);
-        AddItem(2,25);
-        AddItem(3,25);
-        AddItem(4,25);
-        AddItem(5,25);
-        AddItem(6,25);
-        AddItem(7,25);
-        AddItem(8,25);
-        AddItem(9,25);
+        // 测试残留：状态ID=2 在 state.json 里不存在，GetState(2) 塞进 StateTimeDic 后，
+        // 跨天 OnDayEnd 做 StateTimeDic[id]-=1 和查 stateDic[id].Name 时会 KeyNotFoundException。
+        // 连同下面那串 AddItem 测试数据一起注释掉，等正式状态配置表接好再放开。
+        // GetState(2);
+        // //测试
+        // AddItem(1,25);
+        // AddItem(2,25);
+        // AddItem(3,25);
+        // AddItem(4,25);
+        // AddItem(5,25);
+        // AddItem(6,25);
+        // AddItem(7,25);
+        // AddItem(8,25);
+        // AddItem(9,25);
 
         
     }
@@ -688,7 +716,6 @@ public partial class PlayerManager : Node, ISaveable
             { "talentID", talentID },
             { "stateArray", stateArray},
             { "stateTimeDic", StateTimeDic},
-            { "timePeriodsElapsed", timePeriodsElapsed},
             {"exp_acq_rate", exp_acq_rate},
             {"armor", armor},
             {"max_armor", max_armor},
@@ -741,7 +768,9 @@ public partial class PlayerManager : Node, ISaveable
         talentID  = data.ContainsKey("talentID")  ? (Array<int>)data["talentID"]            : new Array<int> { };
         stateArray = data.ContainsKey("stateArray") ? (Array<int>)data["stateArray"]        : new Array<int> { };
         StateTimeDic = data.ContainsKey("stateTimeDic") ? (Dictionary<int, int>)data["stateTimeDic"] : new Dictionary<int, int> { };
-        timePeriodsElapsed = data.ContainsKey("timePeriodsElapsed") ? (int)data["timePeriodsElapsed"] : 0;
+        // timePeriodsElapsed 不存不读：它表示"当天已推进的时段数"，
+        // 属于"时段/当天进度"，按需求"回到当天早晨"时时段进度本就应为 0，
+        // 让它保持字段初始值 0，避免读档把上次推进的进度带回来导致多跨天。
         playerstaminacost=data.ContainsKey("playerstaminacost") ? (int)data["playerstaminacost"] : 5;
         trainTimesDic = data.ContainsKey("trainTimesDic") ? (Dictionary<int, int>)data["trainTimesDic"] : new Dictionary<int, int> { };
         GD.Print($"[PlayerManager] 数据恢复完成：HP={Hp}/{MaxHp}, Str={Strength}({strength_exp}/{ExpMax}), Agi={Agility}({agility_exp}/{ExpMax}), Int={Intelligence}({intelligence_exp}/{ExpMax})");

@@ -37,6 +37,10 @@ namespace MyProject
 
                         // 跨天到早晨后，弹出当天日记（逐字打印）
                         StartMenu.OpenDiary();
+
+                        // 睡觉即存档：把当前天数+剧本写进存档
+                        // 这样"继续游戏"就能恢复到这一天的早上
+                        SaveManager.Instance.Save();
                     };
             };
         }
