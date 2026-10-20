@@ -13,6 +13,7 @@ public partial class Base : Node2D
     private readonly List<TextureSwap> _staticSwaps = new();
     private Train _train;
     private Workstation _workstation;
+    private Tent _tent;
     private Plant _plant;
 
     private const string TexDir = "res://Assets/Images/Base/";
@@ -21,11 +22,11 @@ public partial class Base : Node2D
     {
         // 注册需要昼夜切换的静态精灵（节点路径, 白天贴图, 夜间贴图）
         RegisterStaticSwap("Bg", "bg_expanded.png", "night_bg_expanded.png");
-        RegisterStaticSwap("Tent", "tent_1.png", "night_tent_1.png");
         RegisterStaticSwap("Door/Door", "door.png", "night_door.png");
         RegisterStaticSwap("Warehouse/Warehouse", "warehouse.png", "night_warehouse.png");
         _train = GetNodeOrNull<Train>("Train");
         _workstation = GetNodeOrNull<Workstation>("Workstation");
+        _tent = GetNodeOrNull<Tent>("Tent");
         _plant = GetNodeOrNull<Plant>("Plant");
 
         CallDeferred(nameof(DeferredInit));
@@ -72,6 +73,7 @@ public partial class Base : Node2D
         // 动态建筑（有等级的）让它们自己刷新（内部会判断昼夜）
         _train?.RefreshTexture();
         _workstation?.RefreshTexture();
+        _tent?.RefreshTexture();
         _plant?.RefreshTexture();
     }
 
