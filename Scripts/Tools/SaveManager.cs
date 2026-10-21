@@ -196,14 +196,55 @@ public partial class SaveManager : Node
 	}
 
 	/// <summary>
-	/// 删除存档文件（比如玩家选择"重新开始"）
+	/// 删除存档文件（比如玩家选择"重新开始"）。
+	/// 用 DirAccess.Open("user://").Remove("save.json")（Godot 官方推荐写法），
+	/// 删完强制验证；失败再用 RemoveAbsolute 兜底。
 	/// </summary>
 	public void DeleteSaveFile()
 	{
+		if (!FileAccess.FileExists(SAVE_FILE_PATH))
+		{
+			GD.Print("[SaveManager] 本来就没有存档文件，无需删除");
+			return;
+		}
+
+		string fileName = "save.json"; // SAVE_FILE_PATH = "user://save.json"
+
+		// 方式1（官方推荐）：打开 user:// 目录，删相对文件名
+		using (var dir = DirAccess.Open("user://"))
+		{
+			if (dir != null)
+			{
+				Error err = dir.Remove(fileName);
+				if (err != Error.Ok)
+				{
+					GD.PrintErr($"[SaveManager] 方式1删除失败（{(int)err}），尝试方式2");
+				}
+			}
+			else
+			{
+				GD.PrintErr("[SaveManager] 无法打开 user:// 目录，尝试方式2");
+			}
+		}
+
+		// 方式2（兜底）：RemoveAbsolute 直接删绝对路径
 		if (FileAccess.FileExists(SAVE_FILE_PATH))
 		{
-			DirAccess.RemoveAbsolute(ProjectSettings.GlobalizePath(SAVE_FILE_PATH));
-			GD.Print("[SaveManager] 存档已删除");
+			Error err2 = DirAccess.RemoveAbsolute(SAVE_FILE_PATH);
+			if (err2 != Error.Ok)
+			{
+				GD.PrintErr($"[SaveManager] 方式2删除也失败（{(int)err2}），存档仍在：" + SAVE_FILE_PATH);
+			}
+		}
+
+		// 最终验证
+		if (FileAccess.FileExists(SAVE_FILE_PATH))
+		{
+			GD.PrintErr("[SaveManager] 警告：两种删除方式都失败，存档文件仍在：" + SAVE_FILE_PATH);
+		}
+		else
+		{
+			GD.Print("[SaveManager] 存档已删除：" + SAVE_FILE_PATH);
 		}
 	}
 }

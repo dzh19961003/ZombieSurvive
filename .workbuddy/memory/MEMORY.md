@@ -23,6 +23,13 @@
   （Visible=true + mouse_filter≠Ignore + 宽高各占屏幕80%以上），新增面板无需写任何代码；
   建筑脚本点击前调一次即可。MainUI 因 mouse_filter=Ignore 天然放行
 
+## 转场/淡入节奏控制
+- 纯代码创建全屏 Control 用 CanvasLayer(Layer=100) 挂到 UIManager.Instance 下，保证盖住所有面板
+- 控制节奏用 Task.Delay(16) 按帧步进，和 TextTyper 的淡入写法一致（项目已验证可用）
+- StartMenu.OpenDiary() 是"日记前转场"的统一收口（新游戏/继续/睡觉 三条路径都走它）
+- 纯代码建 Control 的锚点要用 SetAnchorsPreset(Control.LayoutPreset.FullRect, false)，
+  不能用属性初始化器里的 AnchorsPreset（类型转换报 CS0266）；GrowDirection 同理别强转 int
+
 ## 目录结构
 - Scripts/Tools/ — 工具类（ConfigManager、UIManager、SceneLoader、SaveManager等）
 - Scripts/GameLogic/ — 游戏逻辑

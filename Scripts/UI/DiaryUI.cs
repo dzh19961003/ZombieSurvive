@@ -78,7 +78,7 @@ public partial class DiaryUI : Control
     {
         Visible = true;
         _hintTimer = 0;
-        dateLabel.Text = date + "日";
+        dateLabel.Text ="第" + date + "日";
 
         // 清掉上一轮残留的段落 Label（hintLabel 在 Panel 下，不是 ContentBox 子节点，不会被误删）
         foreach (var child in contentBox.GetChildren())
