@@ -620,11 +620,15 @@ public partial class PlayerManager : Node, ISaveable
         {
             if (!ItemDic.ContainsKey(id))
             {
-                ItemDic.Add(id, (int)amount);
+                if (amount > 0) ItemDic.Add(id, (int)amount);
             }
             else
             {
                 ItemDic[id] += (int)amount;
+                if (ItemDic[id] <= 0)
+                {
+                    ItemDic.Remove(id);
+                }
             }
         }
         GetItem?.Invoke();
@@ -733,7 +737,13 @@ public partial class PlayerManager : Node, ISaveable
             { "headTime", headTime},
             {"playerMakeLevel",playerMakeLevel},
             {"playerstaminacost",playerstaminacost},
-            { "trainTimesDic", trainTimesDic}
+            { "trainTimesDic", trainTimesDic},
+            { "workStationLevel", _workStationLevel},
+            { "trainLevel", _trainLevel},
+            { "tentLevel", _tentLevel},
+            { "workstationUnlocked", _workstationUnlocked},
+            { "trainUnlocked", _trainUnlocked},
+            { "tentUnlocked", _tentUnlocked}
         };
     }
     public void LoadSaveData(Dictionary data)
@@ -764,15 +774,58 @@ public partial class PlayerManager : Node, ISaveable
         bodyTime = data.ContainsKey("bodyTime") ? (int)data["bodyTime"] : 2;
         headTime = data.ContainsKey("headTime") ? (int)data["headTime"] : 6;
         // ItemArray = data.ContainsKey("ItemArray") ? (Array<int>)data["ItemArray"] : new Array<int>{1,2};
-        ItemDic   = data.ContainsKey("ItemDic")   ? (Dictionary<int, int>)data["ItemDic"]   : new Dictionary<int, int> { };
+        // JSON 序列化后字典 key 会变成 string，需手动转回 int，并过滤数量为0的物品
+        ItemDic = new Dictionary<int, int>();
+        if (data.ContainsKey("ItemDic"))
+        {
+            var rawDic = data["ItemDic"].AsGodotDictionary();
+            foreach (var key in rawDic.Keys)
+            {
+                int itemID = key.VariantType == Variant.Type.Int ? key.AsInt32() : int.Parse(key.AsString());
+                int count = (int)rawDic[key];
+                if (count > 0) ItemDic[itemID] = count;
+            }
+        }
+
         talentID  = data.ContainsKey("talentID")  ? (Array<int>)data["talentID"]            : new Array<int> { };
         stateArray = data.ContainsKey("stateArray") ? (Array<int>)data["stateArray"]        : new Array<int> { };
-        StateTimeDic = data.ContainsKey("stateTimeDic") ? (Dictionary<int, int>)data["stateTimeDic"] : new Dictionary<int, int> { };
+
+        // StateTimeDic 同样处理 key 类型问题
+        StateTimeDic = new Dictionary<int, int>();
+        if (data.ContainsKey("stateTimeDic"))
+        {
+            var rawDic = data["stateTimeDic"].AsGodotDictionary();
+            foreach (var key in rawDic.Keys)
+            {
+                int stateID = key.VariantType == Variant.Type.Int ? key.AsInt32() : int.Parse(key.AsString());
+                StateTimeDic[stateID] = (int)rawDic[key];
+            }
+        }
         // timePeriodsElapsed 不存不读：它表示"当天已推进的时段数"，
         // 属于"时段/当天进度"，按需求"回到当天早晨"时时段进度本就应为 0，
         // 让它保持字段初始值 0，避免读档把上次推进的进度带回来导致多跨天。
         playerstaminacost=data.ContainsKey("playerstaminacost") ? (int)data["playerstaminacost"] : 5;
-        trainTimesDic = data.ContainsKey("trainTimesDic") ? (Dictionary<int, int>)data["trainTimesDic"] : new Dictionary<int, int> { };
+
+        // trainTimesDic 同样处理 key 类型问题
+        trainTimesDic = new Dictionary<int, int>();
+        if (data.ContainsKey("trainTimesDic"))
+        {
+            var rawDic = data["trainTimesDic"].AsGodotDictionary();
+            foreach (var key in rawDic.Keys)
+            {
+                int trainID = key.VariantType == Variant.Type.Int ? key.AsInt32() : int.Parse(key.AsString());
+                trainTimesDic[trainID] = (int)rawDic[key];
+            }
+        }
+
+        // 家具等级与解锁状态
+        _workStationLevel = data.ContainsKey("workStationLevel") ? Mathf.Max(1, (int)data["workStationLevel"]) : 1;
+        _trainLevel = data.ContainsKey("trainLevel") ? Mathf.Max(1, (int)data["trainLevel"]) : 1;
+        _tentLevel = data.ContainsKey("tentLevel") ? Mathf.Max(1, (int)data["tentLevel"]) : 1;
+        _workstationUnlocked = data.ContainsKey("workstationUnlocked") && (bool)data["workstationUnlocked"];
+        _trainUnlocked = data.ContainsKey("trainUnlocked") && (bool)data["trainUnlocked"];
+        _tentUnlocked = data.ContainsKey("tentUnlocked") && (bool)data["tentUnlocked"];
+
         GD.Print($"[PlayerManager] 数据恢复完成：HP={Hp}/{MaxHp}, Str={Strength}({strength_exp}/{ExpMax}), Agi={Agility}({agility_exp}/{ExpMax}), Int={Intelligence}({intelligence_exp}/{ExpMax})");
 
         // 延迟校准：确保所有加成生效后，体力值不超过上限

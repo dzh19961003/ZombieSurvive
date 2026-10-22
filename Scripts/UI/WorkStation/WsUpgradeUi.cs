@@ -197,10 +197,26 @@ public partial class WsUpgradeUi : Control
 
 			int itemID = (cfg.ItemID != null && i < cfg.ItemID.Count) ? cfg.ItemID[i] : 0;
 			int need   = (cfg.ItemNum != null && i < cfg.ItemNum.Count) ? cfg.ItemNum[i] : 0;
-			if (UIManager.Instance != null && itemID != 0)
+
+			if (itemID == 0 || need == 0)
+			{
+				_reqIcons[i].Visible = false;
+				_reqLabels[i].Visible = false;
+				continue;
+			}
+
+			_reqIcons[i].Visible = true;
+			_reqLabels[i].Visible = true;
+
+			if (UIManager.Instance != null && itemID < 10000)
 			{
 				var icon = UIManager.Instance.GetItemIcon(itemID);
 				if (icon != null) _reqIcons[i].Texture = icon;
+			}
+			else if (itemID == 10015)
+			{
+				var staminaIcon = GD.Load<Texture2D>("res://Assets/Images/UI/stamina.png");
+				if (staminaIcon != null) _reqIcons[i].Texture = staminaIcon;
 			}
 
 			bool insufficient = !IsEnough(itemID, need);

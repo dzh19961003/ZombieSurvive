@@ -195,15 +195,26 @@ public partial class TUpgradeUI : Control
 
 			int itemID = (reqCfg.ItemID != null && i < reqCfg.ItemID.Count) ? reqCfg.ItemID[i] : 0;
 			int need   = (reqCfg.ItemNum != null && i < reqCfg.ItemNum.Count) ? reqCfg.ItemNum[i] : 0;
-			if (UIManager.Instance != null && itemID != 0 && itemID < 10000)
+
+			if (itemID == 0 || need == 0)
+			{
+				_reqIcons[i].Visible = false;
+				_reqLabels[i].Visible = false;
+				continue;
+			}
+
+			_reqIcons[i].Visible = true;
+			_reqLabels[i].Visible = true;
+
+			if (UIManager.Instance != null && itemID < 10000)
 			{
 				var icon = UIManager.Instance.GetItemIcon(itemID);
 				if (icon != null) _reqIcons[i].Texture = icon;
 			}
-			else if (itemID >= 10000)
+			else if (itemID == 10015)
 			{
-				var icon = UIManager.Instance.GetItemIcon(itemID);
-				if (icon != null) _reqIcons[i].Texture = icon;
+				var staminaIcon = GD.Load<Texture2D>("res://Assets/Images/UI/stamina.png");
+				if (staminaIcon != null) _reqIcons[i].Texture = staminaIcon;
 			}
 
 			bool insufficient = !IsEnough(itemID, need);
