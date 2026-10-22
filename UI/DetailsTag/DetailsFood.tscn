@@ -141,6 +141,8 @@ offset_right = 162.0
 offset_bottom = 283.0
 scale = Vector2(1.0351561, 1.0351561)
 texture = ExtResource("2_8qnwx")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="state" type="Label" parent="." unique_id=1774318255]
 layout_mode = 0

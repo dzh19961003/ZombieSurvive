@@ -164,3 +164,4 @@ offset_bottom = 179.39941
 scale = Vector2(1.0351561, 1.0351561)
 texture = ExtResource("9_fcexc")
 expand_mode = 1
+stretch_mode = 5
