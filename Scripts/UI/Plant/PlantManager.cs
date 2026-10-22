@@ -192,8 +192,32 @@ public partial class PlantManager : Node, ISaveable
     {
         _plantLevel = data.ContainsKey("plantLevel") ? (int)data["plantLevel"] : 1;
         _plantUnlocked = data.ContainsKey("plantUnlocked") && (bool)data["plantUnlocked"];
-        plantSlotDic = data.ContainsKey("plantSlotDic") ? (Dictionary<int, int>)data["plantSlotDic"] : new Dictionary<int, int> { };
-        plantProgressDic = data.ContainsKey("plantProgressDic") ? (Dictionary<int, int>)data["plantProgressDic"] : new Dictionary<int, int> { };
+
+        // 注意：JSON 序列化后字典 key 会变成 string，需要手动转回 int
+        plantSlotDic = new Dictionary<int, int>();
+        plantProgressDic = new Dictionary<int, int>();
+
+        if (data.ContainsKey("plantSlotDic"))
+        {
+            var rawSlotDic = data["plantSlotDic"].AsGodotDictionary();
+            foreach (var key in rawSlotDic.Keys)
+            {
+                int slotKey = key.VariantType == Variant.Type.Int ? key.AsInt32() : int.Parse(key.AsString());
+                plantSlotDic[slotKey] = (int)rawSlotDic[key];
+            }
+        }
+
+        if (data.ContainsKey("plantProgressDic"))
+        {
+            var rawProgressDic = data["plantProgressDic"].AsGodotDictionary();
+            foreach (var key in rawProgressDic.Keys)
+            {
+                int slotKey = key.VariantType == Variant.Type.Int ? key.AsInt32() : int.Parse(key.AsString());
+                plantProgressDic[slotKey] = (int)rawProgressDic[key];
+            }
+        }
+
+        NotifyChanged();
         GD.Print($"[PlantManager] 数据恢复完成：Level={_plantLevel}, Unlocked={_plantUnlocked}, Slots={plantSlotDic.Count}");
     }
     #endregion
