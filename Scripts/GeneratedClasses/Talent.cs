@@ -24,11 +24,17 @@ namespace MyProject
         /// <summary>原始字段: rarity(int)</summary>
         public int Rarity { get; set; }
 
-        /// <summary>原始字段: effectType(int)</summary>
-        public int EffectType { get; set; }
+        /// <summary>原始字段: effectType1(int)</summary>
+        public int EffectType1 { get; set; }
 
-        /// <summary>原始字段: effectNum(int)</summary>
-        public int EffectNum { get; set; }
+        /// <summary>原始字段: effectType2(int)</summary>
+        public int EffectType2 { get; set; }
+
+        /// <summary>原始字段: effectNum1(int)</summary>
+        public int EffectNum1 { get; set; }
+
+        /// <summary>原始字段: effectNum2(int)</summary>
+        public int EffectNum2 { get; set; }
 
         /// <summary>原始字段: battleEffect(int)</summary>
         public int BattleEffect { get; set; }

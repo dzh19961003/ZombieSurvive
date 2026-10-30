@@ -72,6 +72,7 @@ namespace MyProject
 
             PlayerManager.Instance.GetItem += RefreshAttributes;
             PlayerManager.Instance.GetItem2 += SpawnStateList;
+            PlayerManager.Instance.GetTalent += SpawnTalentList;
         }
 
         private void OnVisibilityChanged()

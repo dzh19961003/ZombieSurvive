@@ -18,6 +18,8 @@ public partial class PlayerManager : Node, ISaveable
     public string SaveKey => GetPath();
     public event Action GetItem;
     public event Action<Array<int>> GetItem2;
+    
+    public event Action<Array<int>> GetTalent;
 
     // 三项属性对应的经验值。满 ExpMax 时，对应属性 +1 并清零。
     public const int ExpMax = 100;
@@ -27,7 +29,7 @@ public partial class PlayerManager : Node, ISaveable
     //仓库
     private Dictionary<int, int> ItemDic = new Dictionary<int, int>();
    //天赋列表
-    private Array<int> talentID = new Array<int>() { 1,2,3};
+    private Array<int> talentID = new Array<int>() {};
     private Dictionary<int,int> ItemArray=new Dictionary<int, int>() { };
    //测试数据
     private Array<int> stateArray = new Array<int>() { };
@@ -81,7 +83,7 @@ public partial class PlayerManager : Node, ISaveable
     //制作等级
     private int playerMakeLevel=0;
     private int playerstaminacost=5;
-    public double Hp {get{return hpBase + GetAddition(10001);}private set{}}
+    public double Hp {get{return Math.Min(hpBase + GetAddition(10001), MaxHp);}private set{}}
     public double MaxHp {get{return maxHpBase + GetAddition(10002);}private set{}}
     public int Strength {get{return strengthBase + GetAddition(10003);}private set{}}
     public int Agility {get{return agilityBase + GetAddition(10004);}private set{}}
@@ -108,15 +110,34 @@ public partial class PlayerManager : Node, ISaveable
     public int BodyTime { get { return bodyTime + GetAddition(10025); } private set { } }
     public int HeadTime { get { return headTime + GetAddition(10026); } private set { } }
     public int Playerstaminacost { get { return playerstaminacost + GetAddition(10027); } private set { } }
-    //增量计算
+    //增量计算：
     public int GetAddition(int statetype)
         {
             int v = 0;
+            //状态加成
             foreach (var item in stateArray)
             {
                 if (statetype == ConfigManager.Instance.stateDic[item].EffctType)
                 {
                     v += ConfigManager.Instance.stateDic[item].EffctNum;
+                }
+            }
+            //天赋加成
+            foreach (var id in talentID)
+            {
+                if (!ConfigManager.Instance.talentDic.ContainsKey(id))
+                {
+                    GD.PrintErr($"[PlayerManager] 天赋ID不存在：{id}");
+                    continue;
+                }
+                Talent talent = ConfigManager.Instance.talentDic[id];
+                if (statetype == talent.EffectType1)
+                {
+                    v += talent.EffectNum1;
+                }
+                if (statetype == talent.EffectType2)
+                {
+                    v += talent.EffectNum2;
                 }
             }
             return v;
@@ -184,14 +205,12 @@ public partial class PlayerManager : Node, ISaveable
         var expired = new Array<int>();
         foreach (var id in keys)
         {
-            // 饥饿类状态（5~8）是"持续状态"，由 SyncHungerState 随 hunger 值增删，
-            // 不参与"每日 -1 过期"结算，跳过避免和 SyncHungerState 打架
+            
             if (id >= 5 && id <= 8)
             {
                 continue;
             }
-            // 防御：AddItem(10019) 触发的 SyncHungerState 可能已删除/新增了 key，
-            // 旧快照里的 key 可能已不在 StateTimeDic 里，直接 -= 1 会 KeyNotFoundException
+            
             if (!StateTimeDic.ContainsKey(id))
             {
                 continue;
@@ -210,7 +229,7 @@ public partial class PlayerManager : Node, ISaveable
             {
                 stateArray.Remove(id);
             }
-            // 缺配保护：state.json 里没有这个状态ID时不要访问 stateDic[id].Name（会 KeyNotFoundException）
+           
             if (ConfigManager.Instance.stateDic.ContainsKey(id))
             {
                 GD.Print($"[PlayerManager] 状态到期移除：ID={id} ({ConfigManager.Instance.stateDic[id].Name})");
@@ -250,6 +269,26 @@ public partial class PlayerManager : Node, ISaveable
         var copy = new Array<int>();
         foreach (var id in talentID) copy.Add(id);
         return copy;
+    }
+
+    //获得天赋
+    public void AddTalent(int ID)
+    {
+        if (!ConfigManager.Instance.talentDic.ContainsKey(ID))
+        {
+            GD.PrintErr($"[PlayerManager] 天赋ID不存在：{ID}");
+            return;
+        }
+        if (talentID.Contains(ID))
+        {
+            GD.Print($"[PlayerManager] 已拥有天赋：ID={ID}，跳过重复添加");
+            return;
+        }
+        talentID.Add(ID);
+        
+        GetItem?.Invoke();
+        //通知UI重建天赋标签列表
+        GetTalent?.Invoke(GetTalentID());
     }
 
     
@@ -661,7 +700,6 @@ public partial class PlayerManager : Node, ISaveable
         // AddItem(7,25);
         // AddItem(8,25);
         // AddItem(9,25);
-
         
     }
 
@@ -697,6 +735,7 @@ public partial class PlayerManager : Node, ISaveable
             AddItem(10019, -1);
             // AddItem(10015,5);
             AddItem(10020,3);
+            AddTalent(7);
             GameManager.Instance.AdvanceTime();
         }
     }
