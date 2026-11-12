@@ -36,6 +36,9 @@ namespace MyProject
         /// <summary>原始字段: roomLayer(int)</summary>
         public int RoomLayer { get; set; }
 
+        /// <summary>原始字段: exploreNum(int)</summary>
+        public int ExploreNum { get; set; }
+
         /// <summary>原始字段: eventPool(int)</summary>
         public List<int> EventPool { get; set; }
 

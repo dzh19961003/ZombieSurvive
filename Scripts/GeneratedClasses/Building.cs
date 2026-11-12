@@ -27,6 +27,9 @@ namespace MyProject
         /// <summary>原始字段: enterDes(string)</summary>
         public string EnterDes { get; set; }
 
+        /// <summary>原始字段: layerNum(int)</summary>
+        public int LayerNum { get; set; }
+
         /// <summary>原始字段: food(int)</summary>
         public int Food { get; set; }
 
