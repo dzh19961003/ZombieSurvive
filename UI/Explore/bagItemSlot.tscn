@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bg0v4x2sl7d9m"]
+[gd_scene format=3 uid="uid://bg0v4x2sl7eam"]
 
 [ext_resource type="Script" uid="uid://p16vhfjkocf82" path="res://Scripts/UI/Explore/BagItemSlot.cs" id="1_slot"]
 [ext_resource type="Texture2D" uid="uid://7vqw5gyrfkb7" path="res://Assets/Images/UI/Explore/ExploreNew/Bag/bagItem.png" id="2_bg"]

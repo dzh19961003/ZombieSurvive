@@ -17,8 +17,8 @@ public partial class WorkstationUI : Control
         upgrade.Pressed += OnUpgradePressed;
         make.Pressed += OnMakePressed;
 
-        _tabActive = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/tab_active.png");
-        _tabInactive = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/tab_inactive.png");
+        _tabActive = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/building/tab_selected.png");
+        _tabInactive = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/building/tab_unselected.png");
 
         // 默认显示升级界面
         CallDeferred(nameof(SwitchToUpgrade));

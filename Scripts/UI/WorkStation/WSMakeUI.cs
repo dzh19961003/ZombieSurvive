@@ -11,39 +11,64 @@ public partial class WSMakeUI : Control
 	[Export] TextureButton disassemb;
 
 	private const int StaminaPropID = 10015;
-	//功能解锁等级：做饭3级、分解5级
+	//功能解锁等级：做饭3级、拆解5级
 	private const int CookUnlockLevel = 3;
 	private const int DecomposeUnlockLevel = 5;
-	// 不可用行灰色
-	private static readonly Color DimColor = new(0.27752772f, 0.27752772f, 0.27752772f, 1f);
+	//拆解列表固定行数
+	private const int DecomposeRowCount = 5;
+
+	//不可用行灰色
+	private static readonly Color DimColor = new(0.45f, 0.52f, 0.6f, 1f);
+	//数量不足红色
+	private static readonly Color InsufficientColor = new(0.94f, 0.27f, 0.24f, 1f);
+	private static readonly Color NormalColor = new(1f, 1f, 1f, 1f);
+
 	private enum TabType { Make = 0, Cook = 1, Decompose = 2 }
 	private TabType currentTab = TabType.Make;
 
+	private Texture2D _tabActive;
+	private Texture2D _tabInactive;
+	private Texture2D _staminaTex;
+
 	private VBoxContainer _recipeList;
 	private TextureButton _rowTemplate;
-	private Control _selectedArea;
-	private Label _selectedTip;
-	private Control _selectedInfo;
-	private TextureRect _selectedIcon;
-	private Label _selectedName;
-	private Label _selectedDesc;
-	private Button _actionBtn;
+	private Label _infoValue;
+	private Label _infoDetail;
+	private TextureRect _decompLock;
+	private Label _decompLv;
 
-	// 当前选中的配置行
+	private Control _detailInfo;
+	private Label _detailTip;
+	private TextureRect _detailIcon;
+	private Label _detailName;
+	private TextureButton _actionBtn;
+	private Label _actionLabel;
+
+	//当前选中的配置行
 	private RoofWorkstationItem _selectedCfg;
+	private readonly List<TextureButton> _rows = new();
+	private readonly List<RoofWorkstationItem> _rowCfgs = new();
 
 	public override void _Ready()
 	{
-		_recipeList  = GetNode<VBoxContainer>("RecipeScroll/RecipeList");
-		_selectedArea = GetNode<Control>("SelecedArea");
-		_selectedTip  = GetNode<Label>("SelecedArea/Label");
-		_selectedInfo = GetNode<Control>("SelecedArea/SelecedInfo");
-		_selectedIcon = GetNode<TextureRect>("SelecedArea/SelecedInfo/Icon");
-		_selectedName = GetNode<Label>("SelecedArea/SelecedInfo/InfoCol/NameLabel");
-		_selectedDesc = GetNode<Label>("SelecedArea/SelecedInfo/InfoCol/DescLabel");
-		_actionBtn    = GetNode<Button>("SelecedArea/ActionBtn");
-		
-		_rowTemplate = GetNode<TextureButton>("RecipeScroll/RecipeList/Row1");
+		_tabActive = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/building/tab_selected.png");
+		_tabInactive = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/building/tab_unselected.png");
+		_staminaTex = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/stamina.png");
+
+		_infoValue = GetNode<Label>("InfoBar/InfoValue");
+		_infoDetail = GetNode<Label>("InfoBar/InfoDetail");
+		_decompLock = GetNode<TextureRect>("SubTabBar/TabDecompose/Content/Lock");
+		_decompLv = GetNode<Label>("SubTabBar/TabDecompose/Content/Lv");
+
+		_detailInfo = GetNode<Control>("DetailCard/DetailInfo");
+		_detailTip = GetNode<Label>("DetailCard/DetailTip");
+		_detailIcon = GetNode<TextureRect>("DetailCard/DetailInfo/DetailIconBox/Icon");
+		_detailName = GetNode<Label>("DetailCard/DetailInfo/DetailName");
+		_actionBtn = GetNode<TextureButton>("DetailCard/ActionBtn");
+		_actionLabel = GetNode<Label>("DetailCard/ActionBtn/Label");
+
+		_recipeList = GetNode<VBoxContainer>("RecipeScroll/RecipeList");
+		_rowTemplate = GetNode<TextureButton>("RecipeScroll/RecipeList/RowTemplate");
 		_recipeList.RemoveChild(_rowTemplate);
 
 		if (make != null) make.Pressed += () => SwitchTab(TabType.Make);
@@ -86,61 +111,72 @@ public partial class WSMakeUI : Control
 
 	private void OnPlayerDataChanged()
 	{
+		CallDeferred(nameof(RefreshInfo));
+		CallDeferred(nameof(RefreshTabLocks));
 		CallDeferred(nameof(RefreshRows));
 		CallDeferred(nameof(RefreshActionBtn));
-		CallDeferred(nameof(RefreshTabLocks));
 	}
 
 	//判断子页签是否解锁
 	private bool IsTabUnlocked(TabType tab)
-{
-    if (PlayerManager.Instance == null)
-    {
-        return tab == TabType.Make;
-    }
-    int stationLevel = PlayerManager.Instance.WorkStationLevel;
-    switch (tab)
-    {
-        case TabType.Cook:
-            return stationLevel >= CookUnlockLevel;
-        case TabType.Decompose:
-            return stationLevel >= DecomposeUnlockLevel;
-        default:
-            return true;
-    }
-}
+	{
+		if (PlayerManager.Instance == null)
+		{
+			return tab == TabType.Make;
+		}
+		int stationLevel = PlayerManager.Instance.WorkStationLevel;
+		switch (tab)
+		{
+			case TabType.Cook:
+				return stationLevel >= CookUnlockLevel;
+			case TabType.Decompose:
+				return stationLevel >= DecomposeUnlockLevel;
+			default:
+				return true;
+		}
+	}
 
-	
+	//顶部总制作等级信息
+	private void RefreshInfo()
+	{
+		if (PlayerManager.Instance == null) return;
+		int stationLevel = PlayerManager.Instance.WorkStationLevel;
+		int roleLevel = PlayerManager.Instance.PlayerMakeLevel;
+		_infoValue.Text = $"{stationLevel + roleLevel}";
+		_infoDetail.Text = $"|   角色 {roleLevel} + 工作台 {stationLevel}";
+	}
+
 	private void RefreshTabLocks()
 	{
-		if (cook != null)      cook.Modulate      = IsTabUnlocked(TabType.Cook) ? Colors.White : DimColor;
-		if (disassemb != null) disassemb.Modulate = IsTabUnlocked(TabType.Decompose) ? Colors.White : DimColor;
+		bool cookUnlocked = IsTabUnlocked(TabType.Cook);
+		bool decomoseUnlocked = IsTabUnlocked(TabType.Decompose);
+		if (cook != null) cook.Modulate = cookUnlocked ? NormalColor : DimColor;
+		if (disassemb != null) disassemb.Modulate = decomoseUnlocked ? NormalColor : DimColor;
+		if (_decompLock != null) _decompLock.Visible = !decomoseUnlocked;
+		if (_decompLv != null)
+		{
+			_decompLv.Visible = !decomoseUnlocked;
+			_decompLv.Text = $"Lv.{DecomposeUnlockLevel}";
+		}
 	}
 
 	//切换页签
 	private void SwitchTab(TabType tab)
 	{
-		
 		if (!IsTabUnlocked(tab))
 		{
 			UIManager.Instance.ShowCommonTips2("工作台等级不足");
 			return;
 		}
 		currentTab = tab;
-		if (make != null)      make.TextureNormal      = TabTexture(tab == TabType.Make);
-		if (cook != null)      cook.TextureNormal      = TabTexture(tab == TabType.Cook);
-		if (disassemb != null) disassemb.TextureNormal = TabTexture(tab == TabType.Decompose);
+		if (make != null)      make.TextureNormal      = tab == TabType.Make ? _tabActive : _tabInactive;
+		if (cook != null)      cook.TextureNormal      = tab == TabType.Cook ? _tabActive : _tabInactive;
+		if (disassemb != null) disassemb.TextureNormal = tab == TabType.Decompose ? _tabActive : _tabInactive;
+
+		ClearSelection();
+		RefreshInfo();
 		RefreshTabLocks();
 		RefreshRows();
-		//切页签清空选中信息
-		ClearSelection();
-	}
-
-	private Texture2D TabTexture(bool active)
-	{
-		return ResourceLoader.Load<Texture2D>(active
-			? "res://Assets/Images/UI/tab_active.png"
-			: "res://Assets/Images/UI/tab_inactive.png");
 	}
 
 	//按当前页签筛选配置并重建物品列表
@@ -153,10 +189,12 @@ public partial class WSMakeUI : Control
 		//清空旧行
 		foreach (var child in _recipeList.GetChildren())
 		{
+			_recipeList.RemoveChild(child);
 			child.QueueFree();
 		}
+		_rows.Clear();
+		_rowCfgs.Clear();
 
-		
 		IEnumerable<RoofWorkstationItem> rows = currentTab switch
 		{
 			TabType.Make      => all.Where(r => r.Type == 1),
@@ -171,69 +209,140 @@ public partial class WSMakeUI : Control
 			_recipeList.AddChild(row);
 			FillRow(row, cfg);
 			row.Pressed += () => SelectRow(cfg);
-		}
-	}
-
-	//填充
-	private void FillRow(TextureButton row, RoofWorkstationItem cfg)
-	{
-		if (ConfigManager.Instance?.itemDic == null) return;
-
-		//物品图标与名称
-		var itemIcon = row.GetNode<TextureRect>("Row1Inner/Item/ItemIcon");
-		var itemName = row.GetNode<Label>("Row1Inner/Item/ItemName");
-		if (ConfigManager.Instance.itemDic.ContainsKey(cfg.ItemID))
-		{
-			var item = ConfigManager.Instance.itemDic[cfg.ItemID];
-			if (UIManager.Instance != null)
-			{
-				var tex = UIManager.Instance.GetItemIcon(cfg.ItemID);
-				if (tex != null) itemIcon.Texture = tex;
-			}
-			itemName.Text = item.Name;
+			_rows.Add(row);
+			_rowCfgs.Add(cfg);
 		}
 
-		//消耗列表
-		List<int> costIDs, costNums;
+		//拆解列表补足空行
 		if (currentTab == TabType.Decompose)
 		{
-			costIDs = cfg.GetID ?? new List<int>();
-			costNums = cfg.GetNum ?? new List<int>();
+			while (_rows.Count < DecomposeRowCount)
+			{
+				var row = (TextureButton)_rowTemplate.Duplicate();
+				_recipeList.AddChild(row);
+				FillEmptyRow(row);
+				_rows.Add(row);
+				_rowCfgs.Add(null);
+			}
 		}
-		else
-		{
-			costIDs = cfg.MaterialID ?? new List<int>();
-			costNums = cfg.MaterialNum ?? new List<int>();
-		}
-		FillCostSlot(row, "Row1Inner/CostList/Recipe1", costIDs, costNums, 0);
-		FillCostSlot(row, "Row1Inner/CostList/Recipe2", costIDs, costNums, 1);
 
-		//体力消耗
-		var stamNum = row.GetNode<Label>("Row1Inner/Stamina/Num");
-		stamNum.Text = $"×{cfg.Stamina}";
-
-		//可用状态
-		row.Modulate = IsRowAvailable(cfg) ? Colors.White : DimColor;
+		RefreshSelectionMark();
 	}
 
-	//填充一个消耗槽位
-	private void FillCostSlot(TextureButton row, string path, List<int> ids, List<int> nums, int index)
+	//填充整行
+	private void FillRow(TextureButton row, RoofWorkstationItem cfg)
 	{
-		var slot = row.GetNode<NinePatchRect>(path);
-		if (index >= ids.Count)
+		row.Disabled = false;
+		row.Modulate = NormalColor;
+
+		var iconBox = row.GetNode<Panel>("IconBox");
+		var icon = row.GetNode<TextureRect>("IconBox/Icon");
+		var nameLabel = row.GetNode<Label>("Name");
+		var sep = row.GetNode<ColorRect>("Sep");
+		var arrow = row.GetNode<Label>("Arrow");
+		var lockTip = row.GetNode<HBoxContainer>("LockTip");
+		var owned = row.GetNode<Panel>("Owned");
+
+		row.GetNode<Panel>("SelectMark").Visible = false;
+		iconBox.Visible = true;
+		sep.Visible = false;
+		arrow.Visible = false;
+		lockTip.Visible = false;
+		owned.Visible = false;
+
+		//物品图标与名称
+		var tex = UIManager.Instance?.GetItemIcon(cfg.ItemID);
+		if (tex != null) icon.Texture = tex;
+		nameLabel.Text = GetItemName(cfg.ItemID);
+
+		if (currentTab == TabType.Decompose)
 		{
-			slot.Visible = false;
+			//拆解：物品 → 产出材料，右侧显示拥有数量
+			arrow.Visible = true;
+			sep.Visible = true;
+			sep.OffsetLeft = 468;
+			sep.OffsetRight = 471;
+
+			var getIDs = cfg.GetID ?? new List<int>();
+			var getNums = cfg.GetNum ?? new List<int>();
+			for (int i = 0; i < 2; i++)
+			{
+				bool has = i < getIDs.Count;
+				int num = (has && i < getNums.Count) ? getNums[i] : 0;
+				SetSlot(row, i, has, has ? UIManager.Instance?.GetItemIcon(getIDs[i]) : null, $"×{num}", NormalColor);
+			}
+			SetSlot(row, 2, false, null, "", NormalColor);
+
+			int have = PlayerManager.Instance?.GetItemCount(cfg.ItemID) ?? 0;
+			owned.Visible = true;
+			owned.GetNode<Label>("Label").Text = $"拥有×{have}";
+			if (have <= 0) row.Modulate = DimColor;
 			return;
 		}
-		slot.Visible = true;
-		var icon = slot.GetNode<TextureRect>("Icon");
-		var num  = slot.GetNode<Label>("Num");
-		if (UIManager.Instance != null)
+
+		//制作/做饭：等级不足显示需求等级
+		int totalMakeLevel = (PlayerManager.Instance?.WorkStationLevel ?? 1) + (PlayerManager.Instance?.PlayerMakeLevel ?? 0);
+		if (cfg.Level > totalMakeLevel)
 		{
-			var tex = UIManager.Instance.GetItemIcon(ids[index]);
-			if (tex != null) icon.Texture = tex;
+			lockTip.Visible = true;
+			lockTip.GetNode<Label>("Num").Text = $"{cfg.Level}";
+			SetSlot(row, 0, false, null, "", NormalColor);
+			SetSlot(row, 1, false, null, "", NormalColor);
+			SetSlot(row, 2, false, null, "", NormalColor);
+			row.Modulate = DimColor;
+			return;
 		}
-		num.Text = $"×{(index < nums.Count ? nums[index] : 0)}";
+
+		sep.Visible = true;
+
+		//材料
+		var mats = cfg.MaterialID ?? new List<int>();
+		var matNums = cfg.MaterialNum ?? new List<int>();
+		for (int i = 0; i < 2; i++)
+		{
+			if (i >= mats.Count)
+			{
+				SetSlot(row, i, false, null, "", NormalColor);
+				continue;
+			}
+			int need = i < matNums.Count ? matNums[i] : 0;
+			bool enough = (PlayerManager.Instance?.GetItemCount(mats[i]) ?? 0) >= need;
+			SetSlot(row, i, true, UIManager.Instance?.GetItemIcon(mats[i]), $"×{need}", enough ? NormalColor : InsufficientColor);
+		}
+
+		//体力
+		int stamina = PlayerManager.Instance?.BaseStamina ?? 0;
+		SetSlot(row, 2, true, _staminaTex, $"×{cfg.Stamina}", stamina >= cfg.Stamina ? NormalColor : InsufficientColor);
+	}
+
+	//填充一个材料槽位
+	private void SetSlot(TextureButton row, int index, bool visible, Texture2D tex, string numText, Color numColor)
+	{
+		var slot = row.GetNode<Control>($"Slot{index + 1}");
+		slot.Visible = visible;
+		if (!visible) return;
+
+		var icon = slot.GetNode<TextureRect>("Icon");
+		var count = slot.GetNode<Label>("Count");
+		if (tex != null) icon.Texture = tex;
+		count.Text = numText;
+		count.AddThemeColorOverride("font_color", numColor);
+	}
+
+	//拆解列表的空行
+	private void FillEmptyRow(TextureButton row)
+	{
+		row.Disabled = true;
+		row.GetNode<Panel>("SelectMark").Visible = false;
+		row.GetNode<Panel>("IconBox").Visible = false;
+		row.GetNode<Label>("Name").Visible = false;
+		row.GetNode<ColorRect>("Sep").Visible = false;
+		row.GetNode<Label>("Arrow").Visible = false;
+		row.GetNode<HBoxContainer>("LockTip").Visible = false;
+		row.GetNode<Panel>("Owned").Visible = false;
+		row.GetNode<Control>("Slot1").Visible = false;
+		row.GetNode<Control>("Slot2").Visible = false;
+		row.GetNode<Control>("Slot3").Visible = false;
 	}
 
 	//判断一行当前是否可执行
@@ -242,7 +351,7 @@ public partial class WSMakeUI : Control
 		if (cfg == null || PlayerManager.Instance == null) return false;
 
 		//等级校验
-		if (cfg.Level > PlayerManager.Instance.WorkStationLevel+PlayerManager.Instance.PlayerMakeLevel) return false;
+		if (cfg.Level > PlayerManager.Instance.WorkStationLevel + PlayerManager.Instance.PlayerMakeLevel) return false;
 
 		if (currentTab == TabType.Decompose)
 		{
@@ -268,48 +377,56 @@ public partial class WSMakeUI : Control
 		return true;
 	}
 
-	//点击行，物品显示到selectedArea
+	//点击行，物品显示到详情区
 	private void SelectRow(RoofWorkstationItem cfg)
 	{
 		_selectedCfg = cfg;
-		if (ConfigManager.Instance?.itemDic == null) return;
 
-		_selectedTip.Visible = false;
-		_selectedInfo.Visible = true;
+		_detailTip.Visible = false;
+		_detailInfo.Visible = true;
 
-		if (ConfigManager.Instance.itemDic.ContainsKey(cfg.ItemID))
-		{
-			var item = ConfigManager.Instance.itemDic[cfg.ItemID];
-			if (UIManager.Instance != null)
-			{
-				var tex = UIManager.Instance.GetItemIcon(cfg.ItemID);
-				if (tex != null) _selectedIcon.Texture = tex;
-			}
-			_selectedName.Text = item.Name;
-		}
+		var tex = UIManager.Instance?.GetItemIcon(cfg.ItemID);
+		if (tex != null) _detailIcon.Texture = tex;
+		_detailName.Text = GetItemName(cfg.ItemID);
+		_actionLabel.Text = currentTab == TabType.Decompose ? "拆解" : "制作";
 
-		_selectedDesc.Text = BuildDesc(cfg);
-		_actionBtn.Text = currentTab == TabType.Decompose ? "分解" : "制作";
 		RefreshActionBtn();
+		RefreshSelectionMark();
 	}
 
-	//刷新动作按钮：条件不足时视觉变灰，保持可点击
+	//刷新动作按钮：条件不足时视觉变暗
 	private void RefreshActionBtn()
 	{
 		if (_actionBtn == null) return;
 		bool enabled = _selectedCfg != null && IsRowAvailable(_selectedCfg);
-		_actionBtn.Modulate = enabled ? Colors.White : DimColor;
+		_actionBtn.Disabled = !enabled;
+		_actionBtn.Modulate = enabled ? NormalColor : new Color(1f, 1f, 1f, 0.45f);
 	}
 
+	//刷新行选中高亮
+	private void RefreshSelectionMark()
+	{
+		for (int i = 0; i < _rows.Count; i++)
+		{
+			var row = _rows[i];
+			if (row == null || !IsInstanceValid(row)) continue;
+			var mark = row.GetNodeOrNull<Panel>("SelectMark");
+			if (mark != null) mark.Visible = _rowCfgs[i] != null && _rowCfgs[i] == _selectedCfg;
+		}
+	}
 
 	private void ClearSelection()
 	{
 		_selectedCfg = null;
-		_selectedTip.Visible = true;
-		_selectedInfo.Visible = false;
-		if (_actionBtn != null) _actionBtn.Modulate = DimColor;
+		if (_detailTip != null) _detailTip.Visible = true;
+		if (_detailInfo != null) _detailInfo.Visible = false;
+		if (_actionBtn != null)
+		{
+			_actionBtn.Disabled = true;
+			_actionBtn.Modulate = new Color(1f, 1f, 1f, 0.45f);
+		}
+		RefreshSelectionMark();
 	}
-
 
 	private void OnScrollGuiInput(InputEvent @event)
 	{
@@ -322,7 +439,7 @@ public partial class WSMakeUI : Control
 		}
 	}
 
-	//点击制作/分解按钮
+	//点击制作/拆解按钮
 	private void OnActionPressed()
 	{
 		if (_selectedCfg == null) return;
@@ -331,7 +448,7 @@ public partial class WSMakeUI : Control
 		var cfg = _selectedCfg;
 
 		//等级校验
-		if (cfg.Level > pm.WorkStationLevel+pm.PlayerMakeLevel)
+		if (cfg.Level > pm.WorkStationLevel + pm.PlayerMakeLevel)
 		{
 			UIManager.Instance.ShowCommonTips2("制作等级不足");
 			return;
@@ -342,7 +459,7 @@ public partial class WSMakeUI : Control
 		{
 			if (pm.GetItemCount(cfg.ItemID) <= 0)
 			{
-				UIManager.Instance.ShowCommonTips2($"未持有{GetItemName(cfg.ItemID)}，无法分解");
+				UIManager.Instance.ShowCommonTips2($"未持有{GetItemName(cfg.ItemID)}，无法拆解");
 				return;
 			}
 		}
@@ -372,70 +489,53 @@ public partial class WSMakeUI : Control
 		bool decompose = currentTab == TabType.Decompose;
 
 		// 扣体力
-		if (_selectedCfg.Stamina > 0)
+		if (cfg.Stamina > 0)
 		{
-			PlayerManager.Instance.AddItem(StaminaPropID, -_selectedCfg.Stamina);
+			PlayerManager.Instance.AddItem(StaminaPropID, -cfg.Stamina);
 		}
 
 		if (decompose)
 		{
-			// 分解
-			PlayerManager.Instance.RemoveItem(_selectedCfg.ItemID, 1);
-			if (_selectedCfg.GetID != null)
+			// 拆解
+			PlayerManager.Instance.RemoveItem(cfg.ItemID, 1);
+			if (cfg.GetID != null)
 			{
-				for (int i = 0; i < _selectedCfg.GetID.Count; i++)
+				for (int i = 0; i < cfg.GetID.Count; i++)
 				{
-					int n = (_selectedCfg.GetNum != null && i < _selectedCfg.GetNum.Count) ? _selectedCfg.GetNum[i] : 0;
-					if (n > 0) PlayerManager.Instance.AddItem(_selectedCfg.GetID[i], n);
+					int n = (cfg.GetNum != null && i < cfg.GetNum.Count) ? cfg.GetNum[i] : 0;
+					if (n > 0) PlayerManager.Instance.AddItem(cfg.GetID[i], n);
 				}
 			}
 		}
 		else
 		{
 			// 扣材料，产出物品
-			if (_selectedCfg.MaterialID != null)
+			if (cfg.MaterialID != null)
 			{
-				for (int i = 0; i < _selectedCfg.MaterialID.Count; i++)
+				for (int i = 0; i < cfg.MaterialID.Count; i++)
 				{
-					int need = (_selectedCfg.MaterialNum != null && i < _selectedCfg.MaterialNum.Count) ? _selectedCfg.MaterialNum[i] : 0;
-					if (need > 0) PlayerManager.Instance.RemoveItem(_selectedCfg.MaterialID[i], need);
+					int need = (cfg.MaterialNum != null && i < cfg.MaterialNum.Count) ? cfg.MaterialNum[i] : 0;
+					if (need > 0) PlayerManager.Instance.RemoveItem(cfg.MaterialID[i], need);
 				}
 			}
-			PlayerManager.Instance.AddItem(_selectedCfg.ItemID, 1);
+			PlayerManager.Instance.AddItem(cfg.ItemID, 1);
 		}
 
-		string itemName = GetItemName(_selectedCfg.ItemID);
-		GD.Print($"[WSMakeUI] {(decompose ? "分解" : "制作")}：{itemName} 完成");
+		GD.Print($"[WSMakeUI] {(decompose ? "拆解" : "制作")}：{GetItemName(cfg.ItemID)} 完成");
+
+		//刷新列表与按钮状态
+		CallDeferred(nameof(RefreshInfo));
+		CallDeferred(nameof(RefreshRows));
+		CallDeferred(nameof(RefreshActionBtn));
 	}
 
-	//构建selectedArea的描述文本
-	private string BuildDesc(RoofWorkstationItem cfg)
+	private string GetItemName(int itemID)
 	{
-		if (currentTab == TabType.Decompose)
+		var itemDic = ConfigManager.Instance?.itemDic;
+		if (itemDic != null && itemDic.ContainsKey(itemID))
 		{
-			string gets = JoinCost(cfg.GetID, cfg.GetNum);
-			return $"拆解获得：{gets}\n消耗体力：×{cfg.Stamina}";
+			return itemDic[itemID].Name;
 		}
-		string mats = JoinCost(cfg.MaterialID, cfg.MaterialNum);
-		return $"制作材料：{mats}\n消耗体力：×{cfg.Stamina}";
-	}
-
-	
-	private string JoinCost(List<int> ids, List<int> nums)
-	{
-		if (ids == null || ids.Count == 0) return "无";
-		var parts = new List<string>();
-		for (int i = 0; i < ids.Count; i++)
-		{
-			int n = (nums != null && i < nums.Count) ? nums[i] : 0;
-			parts.Add($"{GetItemName(ids[i])}×{n}");
-		}
-		return string.Join("　", parts);
-	}
-	private string GetItemName(int id)
-	{
-		return ConfigManager.Instance.itemDic.ContainsKey(id)
-			? ConfigManager.Instance.itemDic[id].Name
-			: $"ID{id}";
+		return $"ID{itemID}";
 	}
 }

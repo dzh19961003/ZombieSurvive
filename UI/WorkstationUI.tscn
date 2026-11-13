@@ -1,129 +1,136 @@
-[gd_scene format=3 uid="uid://qdlmdi5kvult"]
+[gd_scene load_steps=9 format=3 uid="uid://qdlmdi5kvult"]
 
-[ext_resource type="Script" uid="uid://x8pq3or5i6ci" path="res://Scripts/UI/WorkStation/WorkstationUI.cs" id="1_sivno"]
-[ext_resource type="Texture2D" uid="uid://d1nmp4fcid50p" path="res://Assets/Images/UI/main_panel_2.png" id="2_4cbvb"]
-[ext_resource type="PackedScene" uid="uid://dxokfpltwmqnk" path="res://UI/WorkStation/WSMakeUI.tscn" id="3_makeui"]
-[ext_resource type="PackedScene" uid="uid://co5gs6anh2rxe" path="res://UI/WorkStation/WSUpgradeUI.tscn" id="3_mwji2"]
-[ext_resource type="Texture2D" uid="uid://cc0hg7uhjx8l5" path="res://Assets/Images/UI/title_background.png" id="4_sivno"]
-[ext_resource type="Texture2D" uid="uid://bs7gg3xn14v6b" path="res://Assets/Images/UI/close_button.png" id="4_wl7na"]
-[ext_resource type="Texture2D" uid="uid://cwqay0vk7x016" path="res://Assets/Images/UI/tab_inactive.png" id="5_wl7na"]
-[ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="6_active"]
+[ext_resource type="Script" uid="uid://x8pq3or5i6ci" path="res://Scripts/UI/WorkStation/WorkstationUI.cs" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://b45j5gy57g1a1" path="res://Assets/Images/UI/building/01-main-panel-with-dividers.png" id="2_panel"]
+[ext_resource type="PackedScene" uid="uid://co5gs6anh2rxe" path="res://UI/WorkStation/WSUpgradeUI.tscn" id="3_upgradeui"]
+[ext_resource type="PackedScene" uid="uid://dxokfpltwmqnk" path="res://UI/WorkStation/WSMakeUI.tscn" id="4_makeui"]
+[ext_resource type="Texture2D" uid="uid://0ioky7hovi26" path="res://Assets/Images/UI/building/closeBtn.png" id="5_close"]
+[ext_resource type="Texture2D" uid="uid://0tifpx6abr2i" path="res://Assets/Images/UI/building/workstation_title_icon.png" id="6_titleicon"]
+[ext_resource type="Texture2D" uid="uid://n1duxrt38s0a" path="res://Assets/Images/UI/building/tab_selected.png" id="7_tabsel"]
+[ext_resource type="Texture2D" uid="uid://dm8dejofcv83d" path="res://Assets/Images/UI/building/tab_unselected.png" id="8_tabunsel"]
 
-
-[node name="WorkstationUI" type="Control" unique_id=541979178 node_paths=PackedStringArray("closeBtn", "upgrade", "make", "upgradePanel", "makePanel")]
+[node name="WorkstationUI" type="Control" node_paths=PackedStringArray("closeBtn", "upgrade", "make", "upgradePanel", "makePanel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_sivno")
+script = ExtResource("1_script")
 closeBtn = NodePath("closeBtn")
 upgrade = NodePath("Upgrade")
 make = NodePath("Make")
-upgradePanel = NodePath("BG/WSUpgradeUI")
-makePanel = NodePath("BG/WSMakeUI")
+upgradePanel = NodePath("WSUpgradeUI")
+makePanel = NodePath("WSMakeUI")
 
-[node name="Control" type="ColorRect" parent="." unique_id=713719044]
-propagate_maximum_size = true
+[node name="Mask" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
-offset_right = 1080.0
-offset_bottom = 1920.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.78431374)
 
-[node name="BG" type="NinePatchRect" parent="." unique_id=1348429344]
+[node name="BG" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 74.0
-offset_top = 107.0
-offset_right = 996.0
-offset_bottom = 1812.0
-texture = ExtResource("2_4cbvb")
-region_rect = Rect2(0, 0, 980, 1720)
+offset_right = 1080.0
+offset_bottom = 1919.0
+texture = ExtResource("2_panel")
+expand_mode = 1
+stretch_mode = 0
 
-[node name="WSUpgradeUI" parent="BG" unique_id=977526347 instance=ExtResource("3_mwji2")]
-layout_mode = 0
-offset_left = 27.0
-offset_top = 241.0
-offset_right = 892.0
-offset_bottom = 1665.0
+[node name="WSUpgradeUI" parent="." instance=ExtResource("3_upgradeui")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="WSMakeUI" parent="BG" unique_id=1002002001 instance=ExtResource("3_makeui")]
+[node name="WSMakeUI" parent="." instance=ExtResource("4_makeui")]
 visible = false
 layout_mode = 0
-offset_left = 27.0
-offset_top = 241.0
-offset_right = 892.0
-offset_bottom = 1665.0
+offset_left = 50.0
+offset_top = 355.0
+offset_right = 1029.0
+offset_bottom = 1816.0
 
-[node name="closeBtn" type="Button" parent="." unique_id=1721774359]
+[node name="TitleIcon" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 897.0
-offset_top = 59.0
-offset_right = 1042.0
-offset_bottom = 204.0
-icon = ExtResource("4_wl7na")
+offset_left = 58.0
+offset_top = 170.0
+offset_right = 124.0
+offset_bottom = 234.0
+texture = ExtResource("6_titleicon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="WorkstationName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 160.0
+offset_right = 536.0
+offset_bottom = 244.0
+theme_override_colors/font_color = Color(0.9411765, 0.972549, 1, 1)
+theme_override_font_sizes/font_size = 58
+text = "工作台"
+vertical_alignment = 1
+
+[node name="closeBtn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 936.0
+offset_top = 172.0
+offset_right = 1006.0
+offset_bottom = 240.0
+icon = ExtResource("5_close")
 flat = true
 expand_icon = true
 
-[node name="Title" type="TextureRect" parent="." unique_id=2124802664]
+[node name="Upgrade" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 304.0
-offset_top = 71.0
-offset_right = 775.0
-offset_bottom = 181.0
-texture = ExtResource("4_sivno")
-expand_mode = 1
-
-[node name="WorkstationName" type="Label" parent="Title" unique_id=1707353200]
-layout_mode = 0
-offset_left = 118.0
-offset_top = 16.0
-offset_right = 329.0
-offset_bottom = 81.0
-theme_override_font_sizes/font_size = 40
-text = "工作台"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Upgrade" type="TextureButton" parent="." unique_id=1455843115]
-layout_mode = 0
-offset_left = 110.0
-offset_top = 237.0
-offset_right = 542.0
-offset_bottom = 348.0
-texture_normal = ExtResource("6_active")
+offset_left = 63.0
+offset_top = 268.0
+offset_right = 539.0
+offset_bottom = 360.0
+texture_normal = ExtResource("7_tabsel")
+ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="Upgrade" unique_id=1759321959]
-layout_mode = 0
-offset_left = 36.0
-offset_top = 26.0
-offset_right = 382.0
-offset_bottom = 84.0
-theme_override_font_sizes/font_size = 41
+[node name="Label" type="Label" parent="Upgrade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 46
 text = "升级"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Make" type="TextureButton" parent="." unique_id=1975017010]
+[node name="Make" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 533.0
-offset_top = 237.0
-offset_right = 965.0
-offset_bottom = 348.0
-texture_normal = ExtResource("5_wl7na")
+offset_left = 549.0
+offset_top = 268.0
+offset_right = 1025.0
+offset_bottom = 360.0
+texture_normal = ExtResource("8_tabunsel")
+ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="Make" unique_id=2035444002]
-layout_mode = 0
-offset_left = 36.0
-offset_top = 25.0
-offset_right = 380.0
-offset_bottom = 83.0
-theme_override_font_sizes/font_size = 41
+[node name="Label" type="Label" parent="Make"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 46
 text = "制作"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://w2ui0x4z9c3fk"]
+[gd_scene format=3 uid="uid://dqs52ojrgcpmq"]
 
 [ext_resource type="Script" uid="uid://kl25s1ekknhqs" path="res://Scripts/UI/Explore/Warehouse2UI.cs" id="1_w2ui"]
 [ext_resource type="Texture2D" uid="uid://cjbeau7mde2il" path="res://Assets/Images/UI/building/warehouse/warhouseBg.png" id="2_wbg"]

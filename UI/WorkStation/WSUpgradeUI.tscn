@@ -1,270 +1,438 @@
-[gd_scene format=3 uid="uid://co5gs6anh2rxe"]
+[gd_scene load_steps=12 format=3 uid="uid://co5gs6anh2rxe"]
 
-[ext_resource type="Texture2D" uid="uid://eptgjlkbnlxd" path="res://Assets/Images/Base/workspace_1.png" id="2_1oyri"]
-[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="2_2s8ke"]
-[ext_resource type="Texture2D" uid="uid://b421a5lumd2bj" path="res://Assets/Images/UI/tab_active.png" id="3_btnbg"]
-[ext_resource type="Texture2D" uid="uid://c33rmupvbsy43" path="res://Assets/Images/UI/arrow_1.png" id="4_1oyri"]
-[ext_resource type="Texture2D" uid="uid://b0f54t58kd7u3" path="res://Assets/Images/Items/wood_icon.png" id="4_wood"]
-[ext_resource type="Texture2D" uid="uid://bwawwv5xw4hp7" path="res://Assets/Images/Items/tools_icon.png" id="5_tools"]
-[ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="6_stam"]
-[ext_resource type="Texture2D" uid="uid://bf7ktqffrh22v" path="res://Assets/Images/UI/lock.png" id="7_lock"]
-[ext_resource type="Script" uid="uid://i41sashq0xvx" path="res://Scripts/UI/WorkStation/WsUpgradeUi.cs" id="8_script"]
+[ext_resource type="Script" uid="uid://i41sashq0xvx" path="res://Scripts/UI/WorkStation/WsUpgradeUi.cs" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://c33rmupvbsy43" path="res://Assets/Images/UI/arrow_1.png" id="2_arrow"]
+[ext_resource type="Texture2D" uid="uid://bjudc2el10ort" path="res://Assets/Images/UI/building/06-primary-button.png" id="3_button"]
+[ext_resource type="Texture2D" uid="uid://ca1wd333a81va" path="res://Assets/Images/UI/building/workstation_cook.png" id="4_cook"]
+[ext_resource type="Texture2D" uid="uid://ci67sbo0kj5kd" path="res://Assets/Images/UI/building/workstation_apart.png" id="5_apart"]
+[ext_resource type="Texture2D" uid="uid://cbq1t702l1y8w" path="res://Assets/Images/UI/building/lock.png" id="6_lock"]
+[ext_resource type="Texture2D" uid="uid://eptgjlkbnlxd" path="res://Assets/Images/Base/workspace_1.png" id="7_workspace"]
+[ext_resource type="Texture2D" uid="uid://b0f54t58kd7u3" path="res://Assets/Images/Items/wood_icon.png" id="8_wood"]
+[ext_resource type="Texture2D" uid="uid://bwawwv5xw4hp7" path="res://Assets/Images/Items/tools_icon.png" id="9_tools"]
+[ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="10_stamina"]
 
-[node name="WSUpgradeUI" type="Control" unique_id=977526347 node_paths=PackedStringArray("upgrade")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iconbox"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.03137255, 0.14509805, 0.24313726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.1764706, 0.4313726, 0.5568628, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="WSUpgradeUi" type="Control" node_paths=PackedStringArray("upgrade")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 865.0
-offset_bottom = 1424.0
-script = ExtResource("8_script")
+offset_right = 1080.0
+offset_bottom = 1920.0
+script = ExtResource("1_script")
 upgrade = NodePath("UpgradeBtn")
 
-[node name="GradeTitle" type="Label" parent="." unique_id=1214482962]
+[node name="WSTexture" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 300.0
-offset_top = 38.0
-offset_right = 565.0
-offset_bottom = 98.0
-theme_override_font_sizes/font_size = 40
-text = "等级1"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WSTexture" type="TextureRect" parent="." unique_id=1963380931]
-layout_mode = 0
-offset_left = 132.0
-offset_top = 139.0
-offset_right = 732.0
-offset_bottom = 539.0
-texture = ExtResource("2_1oyri")
+offset_left = 60.0
+offset_top = 455.0
+offset_right = 460.0
+offset_bottom = 835.0
+texture = ExtResource("7_workspace")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="MakeLevel" type="NinePatchRect" parent="." unique_id=2119908922]
+[node name="LvTitle" type="Label" parent="."]
 layout_mode = 0
-offset_left = 100.0
-offset_top = 658.0
-offset_right = 765.0
-offset_bottom = 758.0
+offset_left = 516.0
+offset_top = 474.0
+offset_right = 876.0
+offset_bottom = 518.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 34
+text = "工作台等级"
+vertical_alignment = 1
 
-[node name="BG" type="TextureRect" parent="MakeLevel" unique_id=1529144717]
+[node name="LvCur" type="Label" parent="."]
 layout_mode = 0
-offset_left = -24.0
-offset_top = -27.0
-offset_right = 162.0
-offset_bottom = 109.0
-texture = ExtResource("2_2s8ke")
+offset_left = 516.0
+offset_top = 528.0
+offset_right = 700.0
+offset_bottom = 612.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 56
+text = "Lv.2"
+vertical_alignment = 1
 
-[node name="MakeLevelValue" type="Label" parent="MakeLevel" unique_id=-1294967293]
+[node name="LevelArrow" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 269.0
-offset_top = 14.0
-offset_right = 351.0
-offset_bottom = 59.0
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-text = "等级1"
-horizontal_alignment = 2
-
-[node name="Lock2" type="TextureRect" parent="MakeLevel" unique_id=1393396358]
-layout_mode = 0
-offset_left = 422.0
-offset_top = 20.0
-offset_right = 462.0
-offset_bottom = 60.0
-texture = ExtResource("4_1oyri")
+offset_left = 706.0
+offset_top = 554.0
+offset_right = 758.0
+offset_bottom = 596.0
+texture = ExtResource("2_arrow")
 expand_mode = 1
+stretch_mode = 5
 
-[node name="MakeNextLevelValue" type="Label" parent="MakeLevel" unique_id=263172907]
+[node name="LvNext" type="Label" parent="."]
 layout_mode = 0
-offset_left = 520.0
-offset_top = 14.0
-offset_right = 602.0
-offset_bottom = 59.0
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-text = "等级2"
-horizontal_alignment = 2
+offset_left = 776.0
+offset_top = 528.0
+offset_right = 980.0
+offset_bottom = 612.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 56
+text = "Lv.3"
+vertical_alignment = 1
 
-[node name="Label" type="Label" parent="MakeLevel" unique_id=-1294967294]
+[node name="MakeTitle" type="Label" parent="."]
 layout_mode = 0
-offset_top = 14.0
-offset_right = 128.0
-offset_bottom = 59.0
-theme_override_font_sizes/font_size = 32
-text = "制作等级"
-horizontal_alignment = 1
+offset_left = 516.0
+offset_top = 662.0
+offset_right = 916.0
+offset_bottom = 706.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 34
+text = "总制作等级"
+vertical_alignment = 1
 
-[node name="ExtraFun" type="NinePatchRect" parent="." unique_id=1806351133]
+[node name="MakeLevelValue" type="Label" parent="."]
 layout_mode = 0
-offset_left = 100.0
-offset_top = 845.0
-offset_right = 765.0
-offset_bottom = 945.0
+offset_left = 516.0
+offset_top = 716.0
+offset_right = 700.0
+offset_bottom = 800.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 56
+text = "3"
+vertical_alignment = 1
 
-[node name="BG" type="TextureRect" parent="ExtraFun" unique_id=904168990]
+[node name="MakeArrow" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = -24.0
-offset_top = -27.0
-offset_right = 162.0
-offset_bottom = 109.0
-texture = ExtResource("2_2s8ke")
-
-[node name="ExtraFunDescription" type="Label" parent="ExtraFun" unique_id=1811801536]
-layout_mode = 0
-offset_left = 300.0
-offset_top = -22.0
-offset_right = 510.0
-offset_bottom = 23.0
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-text = "厨房（等级3）"
-horizontal_alignment = 2
-
-[node name="ExtraFunDescription2" type="Label" parent="ExtraFun" unique_id=939503251]
-layout_mode = 0
-offset_left = 300.0
-offset_top = 33.0
-offset_right = 510.0
-offset_bottom = 78.0
-theme_override_colors/font_color = Color(0.5958281, 0.5958281, 0.5958281, 1)
-theme_override_font_sizes/font_size = 32
-text = "拆解（等级5）"
-
-[node name="Label" type="Label" parent="ExtraFun" unique_id=1059625277]
-layout_mode = 0
-offset_top = 14.0
-offset_right = 128.0
-offset_bottom = 59.0
-theme_override_font_sizes/font_size = 32
-text = "额外功能"
-horizontal_alignment = 1
-
-[node name="Lock" type="TextureRect" parent="ExtraFun" unique_id=1381699839]
-layout_mode = 0
-offset_left = 252.0
-offset_top = 33.0
-offset_right = 292.0
-offset_bottom = 73.0
-texture = ExtResource("7_lock")
+offset_left = 706.0
+offset_top = 742.0
+offset_right = 758.0
+offset_bottom = 784.0
+texture = ExtResource("2_arrow")
 expand_mode = 1
+stretch_mode = 5
 
-[node name="Lock2" type="TextureRect" parent="ExtraFun" unique_id=709052850]
+[node name="MakeNextLevelValue" type="Label" parent="."]
 layout_mode = 0
-offset_left = 251.0
-offset_top = -22.0
-offset_right = 291.0
-offset_bottom = 18.0
-texture = ExtResource("7_lock")
+offset_left = 776.0
+offset_top = 716.0
+offset_right = 980.0
+offset_bottom = 800.0
+theme_override_colors/font_color = Color(0.9607843, 0.627451, 0.23529412, 1)
+theme_override_font_sizes/font_size = 56
+text = "4"
+vertical_alignment = 1
+
+[node name="RoleBonusCur" type="Label" parent="."]
+layout_mode = 0
+offset_left = 516.0
+offset_top = 804.0
+offset_right = 816.0
+offset_bottom = 846.0
+theme_override_colors/font_color = Color(0.8980392, 0.94509804, 0.98039216, 1)
+theme_override_font_sizes/font_size = 30
+text = "角色1 +"
+vertical_alignment = 1
+
+[node name="StationBonusCur" type="Label" parent="."]
+layout_mode = 0
+offset_left = 516.0
+offset_top = 848.0
+offset_right = 816.0
+offset_bottom = 890.0
+theme_override_colors/font_color = Color(0.8980392, 0.94509804, 0.98039216, 1)
+theme_override_font_sizes/font_size = 30
+text = "工作台2"
+vertical_alignment = 1
+
+[node name="RoleBonusNext" type="Label" parent="."]
+layout_mode = 0
+offset_left = 776.0
+offset_top = 804.0
+offset_right = 1040.0
+offset_bottom = 846.0
+theme_override_colors/font_color = Color(0.8980392, 0.94509804, 0.98039216, 1)
+theme_override_font_sizes/font_size = 30
+text = "角色1 +"
+vertical_alignment = 1
+
+[node name="StationBonusNext" type="Label" parent="."]
+layout_mode = 0
+offset_left = 776.0
+offset_top = 848.0
+offset_right = 1040.0
+offset_bottom = 890.0
+theme_override_colors/font_color = Color(0.8980392, 0.94509804, 0.98039216, 1)
+theme_override_font_sizes/font_size = 30
+text = "工作台3"
+vertical_alignment = 1
+
+[node name="SectionTitle1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 984.0
+offset_right = 398.0
+offset_bottom = 1028.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 34
+text = "功能解锁"
+vertical_alignment = 1
+
+[node name="FunIconBg1" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 1056.0
+offset_right = 281.0
+offset_bottom = 1182.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
+
+[node name="FunIcon1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 123.0
+offset_top = 1064.0
+offset_right = 261.0
+offset_bottom = 1174.0
+texture = ExtResource("4_cook")
 expand_mode = 1
+stretch_mode = 5
 
-[node name="UpgradeRequ" type="NinePatchRect" parent="." unique_id=129518580]
+[node name="FunName1" type="Label" parent="."]
 layout_mode = 0
-offset_left = 100.0
-offset_top = 1035.0
-offset_right = 765.0
-offset_bottom = 1135.0
+offset_left = 327.0
+offset_top = 1058.0
+offset_right = 567.0
+offset_bottom = 1102.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 34
+text = "厨房"
+vertical_alignment = 1
 
-[node name="BG" type="TextureRect" parent="UpgradeRequ" unique_id=1920888104]
+[node name="FunStatus1" type="Label" parent="."]
 layout_mode = 0
-offset_left = -24.0
-offset_top = -27.0
-offset_right = 162.0
-offset_bottom = 109.0
-texture = ExtResource("2_2s8ke")
+offset_left = 327.0
+offset_top = 1104.0
+offset_right = 587.0
+offset_bottom = 1144.0
+theme_override_colors/font_color = Color(0.66, 0.79607844, 0.8784314, 1)
+theme_override_font_sizes/font_size = 30
+text = "已解锁"
+vertical_alignment = 1
 
-[node name="Label" type="Label" parent="UpgradeRequ" unique_id=429024595]
+[node name="FunIconBg2" type="Panel" parent="."]
 layout_mode = 0
-offset_top = 14.0
-offset_right = 128.0
-offset_bottom = 59.0
-theme_override_font_sizes/font_size = 32
+offset_left = 574.0
+offset_top = 1056.0
+offset_right = 752.0
+offset_bottom = 1182.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
+
+[node name="FunIcon2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 594.0
+offset_top = 1064.0
+offset_right = 732.0
+offset_bottom = 1174.0
+texture = ExtResource("5_apart")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FunLock2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 620.0
+offset_top = 1062.0
+offset_right = 706.0
+offset_bottom = 1168.0
+texture = ExtResource("6_lock")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FunName2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 1058.0
+offset_right = 1000.0
+offset_bottom = 1102.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 34
+text = "拆解"
+vertical_alignment = 1
+
+[node name="FunStatus2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 1104.0
+offset_right = 1040.0
+offset_bottom = 1144.0
+theme_override_colors/font_color = Color(0.4862745, 0.61960787, 0.72156864, 1)
+theme_override_font_sizes/font_size = 30
+text = "Lv.5解锁"
+vertical_alignment = 1
+
+[node name="SectionTitle2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 1270.0
+offset_right = 398.0
+offset_bottom = 1314.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 34
 text = "升级需求"
-horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="UpgradeRequ" unique_id=732886219]
+[node name="Req1" type="Control" parent="."]
 layout_mode = 0
-offset_left = 252.0
-offset_top = 20.0
-offset_right = 292.0
-offset_bottom = 60.0
-texture = ExtResource("4_wood")
+offset_left = 65.0
+offset_top = 1320.0
+offset_right = 325.0
+offset_bottom = 1570.0
+
+[node name="Icon" type="TextureRect" parent="Req1"]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 220.0
+offset_bottom = 150.0
+texture = ExtResource("8_wood")
 expand_mode = 1
+stretch_mode = 5
 
-[node name="requirement1" type="Label" parent="UpgradeRequ" unique_id=1741728290]
+[node name="Name" type="Label" parent="Req1"]
 layout_mode = 0
-offset_left = 297.0
-offset_top = 14.0
-offset_right = 379.0
-offset_bottom = 59.0
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-text = "X5"
+offset_top = 150.0
+offset_right = 260.0
+offset_bottom = 190.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "木材"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="UpgradeRequ" unique_id=1779073129]
+[node name="Count" type="Label" parent="Req1"]
 layout_mode = 0
-offset_left = 388.0
-offset_top = 20.0
-offset_right = 428.0
-offset_bottom = 60.0
-texture = ExtResource("5_tools")
-expand_mode = 1
-
-[node name="requirement2" type="Label" parent="UpgradeRequ" unique_id=1645050086]
-layout_mode = 0
-offset_left = 420.0
-offset_top = 14.0
-offset_right = 502.0
-offset_bottom = 59.0
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 0, 0.023529412, 1)
-theme_override_font_sizes/font_size = 32
-text = "X5"
+offset_top = 190.0
+offset_right = 260.0
+offset_bottom = 230.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "5/5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect3" type="TextureRect" parent="UpgradeRequ" unique_id=416462427]
+[node name="Req2" type="Control" parent="."]
 layout_mode = 0
-offset_left = 510.0
-offset_top = 20.0
-offset_right = 550.0
-offset_bottom = 60.0
-texture = ExtResource("6_stam")
-expand_mode = 1
+offset_left = 404.0
+offset_top = 1320.0
+offset_right = 664.0
+offset_bottom = 1570.0
 
-[node name="requirement3" type="Label" parent="UpgradeRequ" unique_id=1125220601]
+[node name="Icon" type="TextureRect" parent="Req2"]
 layout_mode = 0
-offset_left = 547.0
-offset_top = 14.0
-offset_right = 629.0
-offset_bottom = 59.0
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 32
-text = "X5"
+offset_left = 40.0
+offset_right = 220.0
+offset_bottom = 150.0
+texture = ExtResource("9_tools")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Req2"]
+layout_mode = 0
+offset_top = 150.0
+offset_right = 260.0
+offset_bottom = 190.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "金属零件"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="maxTip" type="Label" parent="UpgradeRequ" unique_id=156945580]
+[node name="Count" type="Label" parent="Req2"]
+layout_mode = 0
+offset_top = 190.0
+offset_right = 260.0
+offset_bottom = 230.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "5/5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Req3" type="Control" parent="."]
+layout_mode = 0
+offset_left = 742.0
+offset_top = 1320.0
+offset_right = 1002.0
+offset_bottom = 1570.0
+
+[node name="Icon" type="TextureRect" parent="Req3"]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 220.0
+offset_bottom = 150.0
+texture = ExtResource("10_stamina")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Req3"]
+layout_mode = 0
+offset_top = 150.0
+offset_right = 260.0
+offset_bottom = 190.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "体力"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Count" type="Label" parent="Req3"]
+layout_mode = 0
+offset_top = 190.0
+offset_right = 260.0
+offset_bottom = 230.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "5/5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="maxTip" type="Label" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 254.0
-offset_top = 15.0
-offset_right = 638.0
-offset_bottom = 60.0
+offset_left = 300.0
+offset_top = 1430.0
+offset_right = 780.0
+offset_bottom = 1490.0
+theme_override_colors/font_color = Color(0.4862745, 0.61960787, 0.72156864, 1)
 theme_override_font_sizes/font_size = 32
 text = "已达到最高等级，无法升级"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="UpgradeBtn" type="Button" parent="." unique_id=1788584474]
+[node name="UpgradeBtn" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 232.0
-offset_top = 1250.0
-offset_right = 632.0
-offset_bottom = 1380.0
-theme_override_font_sizes/font_size = 40
+offset_left = 111.0
+offset_top = 1609.0
+offset_right = 973.0
+offset_bottom = 1727.0
+texture_normal = ExtResource("3_button")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="UpgradeBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 46
 text = "升级"
-icon = ExtResource("3_btnbg")
-flat = true
-text_overrun_behavior = 1
-icon_alignment = 1
-expand_icon = true
+horizontal_alignment = 1
+vertical_alignment = 1

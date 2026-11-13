@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bagu1x9k3mq7t"]
+[gd_scene format=3 uid="uid://bagu1yak3mq7t"]
 
 [ext_resource type="Script" uid="uid://psubkn8ll2e3q" path="res://Scripts/UI/Explore/BagUI.cs" id="1_bagui"]
 [ext_resource type="Texture2D" uid="uid://c7dptawswqo1q" path="res://Assets/Images/UI/Explore/ExploreNew/Bag/bagBg.png" id="2_bgbg"]
