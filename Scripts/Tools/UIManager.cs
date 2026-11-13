@@ -99,9 +99,9 @@ public partial class UIManager : Node
     //  （防止缓存里留下已释放节点的悬空引用）。
     //
     //  重载 1：传节点引用
-    //    UIManager.Instance.DeleteUI(exploreUI);
+    //    UIManager.Instance.DeleteUI(somePanel);
     //  重载 2：传场景路径
-    //    UIManager.Instance.DeleteUI("res://UI/Explore/ExploreUI.tscn");
+    //    UIManager.Instance.DeleteUI("res://UI/xxx/yyy.tscn");
     // ─────────────────────────────────────────────────────────
     public void DeleteUI(Control panel)
     {
