@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://cdrlh6qioqrpp"]
+
+[ext_resource type="Script" uid="uid://dt3qniftf4yni" path="res://Scripts/UI/Explore/RoomCard.cs" id="1_card"]
+[ext_resource type="Texture2D" uid="uid://ckg6jly32patl" path="res://Assets/Images/UI/Explore/ExploreNew/roomBg.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://cs2bnpdhbq1e0" path="res://Assets/Images/UI/Explore/ExploreNew/enter.png" id="3_enter"]
+[ext_resource type="Texture2D" uid="uid://bn4lqwpfihf3" path="res://Assets/Images/UI/Explore/ExploreNew/roomProgress.png" id="4_prog"]
+
+[node name="RoomCard" type="Control" unique_id=3100001 node_paths=PackedStringArray("nameLabel", "progressLabel", "supplyRow", "clickBtn", "mask")]
+custom_minimum_size = Vector2(370, 525)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 370.0
+offset_bottom = 525.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_card")
+nameLabel = NodePath("NameLabel")
+progressLabel = NodePath("ProgressLabel")
+supplyRow = NodePath("SupplyRow")
+clickBtn = NodePath("ClickBtn")
+mask = NodePath("Mask")
+
+[node name="Bg" type="TextureRect" parent="." unique_id=3100002]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 370.0
+offset_bottom = 525.0
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="DoorIcon" type="TextureRect" parent="." unique_id=3100003]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 96.0
+offset_bottom = 96.0
+texture = ExtResource("3_enter")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="." unique_id=3100004]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 22.0
+offset_right = 355.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 40
+text = "店铺大厅"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressIcon" type="TextureRect" parent="." unique_id=3100005]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 270.0
+offset_right = 148.0
+offset_bottom = 338.0
+texture = ExtResource("4_prog")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ProgressLabel" type="Label" parent="." unique_id=3100006]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 270.0
+offset_right = 350.0
+offset_bottom = 338.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 46
+text = "8/8"
+vertical_alignment = 1
+
+[node name="SupplyLabel" type="Label" parent="." unique_id=3100007]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 365.0
+offset_right = 350.0
+offset_bottom = 403.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 28
+text = "物资种类"
+vertical_alignment = 1
+
+[node name="SupplyRow" type="HBoxContainer" parent="." unique_id=3100008]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 410.0
+offset_right = 350.0
+offset_bottom = 490.0
+theme_override_constants/separation = 8
+
+[node name="ClickBtn" type="Button" parent="." unique_id=3100009]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 370.0
+offset_bottom = 525.0
+flat = true
+
+[node name="Mask" type="ColorRect" parent="." unique_id=3100010]
+visible = false
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 370.0
+offset_bottom = 525.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.55)

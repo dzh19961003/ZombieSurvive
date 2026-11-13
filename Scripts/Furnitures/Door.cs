@@ -36,6 +36,12 @@ public partial class Door : Area2D
                 UIManager.Instance.ShowUI("res://UI/Explore/ExploreMap.tscn");
                 GameManager.Instance.AdvanceTime();
             };
+            // 背包按钮：打开出门装物品界面（仓库+背包组合）
+            tips.SetBagBtnVisible(true);
+            tips.OnBag = () =>
+            {
+                UIManager.Instance.CreateUI("res://UI/Explore/Warehouse2UI.tscn");
+            };
         }
         else
         {

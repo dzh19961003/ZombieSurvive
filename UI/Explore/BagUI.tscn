@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://bagu1x9k3mq7t"]
+
+[ext_resource type="Script" uid="uid://psubkn8ll2e3q" path="res://Scripts/UI/Explore/BagUI.cs" id="1_bagui"]
+[ext_resource type="Texture2D" uid="uid://c7dptawswqo1q" path="res://Assets/Images/UI/Explore/ExploreNew/Bag/bagBg.png" id="2_bgbg"]
+[ext_resource type="Texture2D" uid="uid://cu8wdfxugvuqi" path="res://Assets/Images/UI/Explore/ExploreNew/Bag/close.png" id="3_close"]
+
+[node name="BagUI" type="Control" unique_id=2000001 node_paths=PackedStringArray("closeBtn", "itemList", "titleLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bagui")
+closeBtn = NodePath("CloseBtn")
+itemList = NodePath("BagArea")
+titleLabel = NodePath("Title")
+
+[node name="DimBg" type="ColorRect" parent="." unique_id=2000002]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 1130.0
+offset_bottom = 1970.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0627451, 0.0627451, 0.0627451, 0.78431374)
+
+[node name="Bg" type="TextureRect" parent="." unique_id=2000003]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 124.0
+offset_right = 1011.0
+offset_bottom = 1796.0
+texture = ExtResource("2_bgbg")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="Title" type="Label" parent="." unique_id=2000004]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 378.0
+offset_right = 790.0
+offset_bottom = 482.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 56
+text = "探索背包"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseBtn" type="Button" parent="." unique_id=2000005]
+layout_mode = 0
+offset_left = 838.0
+offset_top = 388.0
+offset_right = 898.0
+offset_bottom = 448.0
+icon = ExtResource("3_close")
+flat = true
+expand_icon = true
+
+[node name="BagArea" type="GridContainer" parent="." unique_id=2000006]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 530.0
+offset_right = 905.0
+offset_bottom = 1600.0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 14
+columns = 4

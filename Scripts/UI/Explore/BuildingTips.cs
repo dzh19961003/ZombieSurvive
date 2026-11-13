@@ -63,10 +63,12 @@ public partial class BuildingTips : Control
     {
         UIManager.Instance.HideUI("res://UI/Explore/BuildingTips.tscn");
         GameManager.Instance.currentBuildingID = buildingID;
-        // 用 CreateUI 创建全新实例（不走缓存），每次打开 ExploreUI 都会重新执行 _Ready
-        ExploreUI explore = (ExploreUI)UIManager.Instance.CreateUI("res://UI/Explore/ExploreUI.tscn");
         GameManager.Instance.exploreState = 1;
         GameManager.Instance.exploreLayer = 1;
-        explore.RefreshExplore();       
+        // 每次进入建筑都重新开始一次探索流程，末层全遮罩标志清零
+        GameManager.Instance.lastLayerFinished = false;
+        // 用 CreateUI 创建全新实例（不走缓存），每次进入都重新执行 _Ready
+        RoomChooseUI roomChoose = (RoomChooseUI)UIManager.Instance.CreateUI("res://UI/Explore/RoomChooseUI.tscn");
+        roomChoose.RefreshAll();
     }
 }

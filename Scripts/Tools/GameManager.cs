@@ -41,6 +41,18 @@ public partial class GameManager : Node2D,ISaveable
     //建筑探索噪音值
     public int exploreNoise=0;
 
+    //局内探索背包物品（不接入存档，只在一次外出探索中使用）
+    //key=物品ID，value=数量；一格放一种，数量不限
+    public Dictionary<int, int> BagItemDic = new Dictionary<int, int>();
+
+    //各房间剩余可探索次数（key=房间ID），接入存档
+    //房间第一次被读到时会初始化成 room 表里的 exploreNum
+    public Dictionary<int, int> roomExploreNum = new Dictionary<int, int>();
+
+    //末层所有房间都探索完毕后置位，用于房间选择界面显示"这次已经探索完毕了"
+    //不进存档，只在一次外出探索流程内有效（早晨恢复时清空）
+    public bool lastLayerFinished = false;
+
     //当前事件
     public Array<int> carefulEventArray = new Array<int>();
     public Array<int> quickEventArray = new Array<int>();
@@ -50,16 +62,24 @@ public partial class GameManager : Node2D,ISaveable
     public static GameManager Instance { get; private set; }
 
     #region 存档相关
-    // 按需求：只保存"剧本ID"和"当前天数"。
-    // 时段固定回到"早晨"，探索流程不保存（每次醒来都从该天的起点重新来）。
+    // 保存：剧本ID、当前天数、各房间剩余探索次数。
+    // 时段固定回到"早晨"；除 roomExploreNum 外的探索流程状态不保存。
     public string SaveKey => GetPath();
 
     public Dictionary GetSaveData()
     {
+        // Json.Stringify 只认 Godot 的 Dictionary，所以把 int 型的 key 转成字符串再存
+        var roomSave = new Godot.Collections.Dictionary();
+        foreach (var kv in roomExploreNum)
+        {
+            roomSave[kv.Key.ToString()] = kv.Value;
+        }
+
         return new Dictionary
         {
             { "dayCount", dayCount },
-            { "currentScriptID", currentScriptID }
+            { "currentScriptID", currentScriptID },
+            { "roomExploreNum", roomSave }
         };
     }
 
@@ -67,6 +87,16 @@ public partial class GameManager : Node2D,ISaveable
     {
         dayCount = data.ContainsKey("dayCount") ? (int)data["dayCount"] : 1;
         currentScriptID = data.ContainsKey("currentScriptID") ? (int)data["currentScriptID"] : 0;
+
+        roomExploreNum.Clear();
+        if (data.ContainsKey("roomExploreNum"))
+        {
+            var roomSave = data["roomExploreNum"].AsGodotDictionary();
+            foreach (var key in roomSave.Keys)
+            {
+                roomExploreNum[int.Parse(key.ToString())] = (int)roomSave[key];
+            }
+        }
     }
     #endregion
 
@@ -155,6 +185,78 @@ public partial class GameManager : Node2D,ISaveable
     }
     #endregion
 
+    #region 房间剩余探索次数（roomExploreNum）
+    // 取某房间剩余可探索次数；没记录过就按配置表的 exploreNum 初始化一条
+    public int GetRoomExploreNum(int roomID, int maxNum)
+    {
+        if (!roomExploreNum.ContainsKey(roomID))
+        {
+            roomExploreNum[roomID] = maxNum;
+        }
+        return roomExploreNum[roomID];
+    }
+
+    // 每完成一次探索，剩余次数减 1（最低到 0，不会变负）
+    public void CostRoomExploreNum(int roomID)
+    {
+        if (!roomExploreNum.ContainsKey(roomID)) return;
+        roomExploreNum[roomID] = Mathf.Max(0, roomExploreNum[roomID] - 1);
+    }
+
+    // 直接设定剩余次数（关键支线保留一次探索机会时会用到）
+    public void SetRoomExploreNum(int roomID, int value)
+    {
+        roomExploreNum[roomID] = Mathf.Max(0, value);
+    }
+    #endregion
+
+    #region 局内背包（BagItemDic）操作
+    // 获取背包内某物品数量，没有则为 0
+    public int GetBagItemCount(int itemID)
+    {
+        return BagItemDic.TryGetValue(itemID, out int count) ? count : 0;
+    }
+
+    // 判断背包当前是否已满（物品种类 >= BagNum）
+    public bool IsBagFull()
+    {
+        return BagItemDic.Count >= PlayerManager.Instance.BagNum;
+    }
+
+    // 往背包加物品。返回 true=成功；false=背包已满且不是已有物品类型
+    public bool AddBagItem(int itemID, int amount)
+    {
+        if (amount <= 0) return true;
+        // 已存在的物品类型不受容量限制，只有新种类才检查
+        if (!BagItemDic.ContainsKey(itemID) && IsBagFull())
+        {
+            return false;
+        }
+        BagItemDic[itemID] = GetBagItemCount(itemID) + amount;
+        return true;
+    }
+
+    // 从背包移除物品，数量不足则移除全部并返回实际移除量
+    public int RemoveBagItem(int itemID, int amount)
+    {
+        if (!BagItemDic.ContainsKey(itemID)) return 0;
+        int have = BagItemDic[itemID];
+        int remove = Mathf.Min(have, amount);
+        BagItemDic[itemID] = have - remove;
+        if (BagItemDic[itemID] <= 0)
+        {
+            BagItemDic.Remove(itemID);
+        }
+        return remove;
+    }
+
+    // 清空背包（探索结束把东西放回仓库前调用）
+    public void ClearBag()
+    {
+        BagItemDic.Clear();
+    }
+    #endregion
+
     public void LoadEvent(int roomID)
     {
         Array<int> eventArray = new Array<int>();
@@ -209,10 +311,12 @@ public partial class GameManager : Node2D,ISaveable
         // 重置时间到第1天早晨
         SetTimePeriod(0, 1);
 
-        // 清空探索进度与支线
+        // 清空探索进度与支线（新游戏从零开始，房间探索次数也要重置）
         exploreProgress.Clear();
         subTaskDic.Clear();
         finishedEvent.Clear();
+        roomExploreNum.Clear();
+        lastLayerFinished = false;
 
         GD.Print("[GameManager] 新游戏初始化完成");
     }
@@ -241,6 +345,7 @@ public partial class GameManager : Node2D,ISaveable
         currentSubTask = 0;
         carefulEventArray = new Array<int>();
         quickEventArray = new Array<int>();
+        lastLayerFinished = false;
 
         GD.Print($"[GameManager] 已恢复到第{dayCount}天早晨（剧本 {currentScriptID}）");
     }

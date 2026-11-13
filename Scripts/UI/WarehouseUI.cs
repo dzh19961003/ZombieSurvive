@@ -19,6 +19,26 @@ public partial class WarehouseUI : Control
     // 最少显示的格子数量，铺满至少一整屏
     private int minNum = 35;
 
+    // 页签有两态：底框和图标都要换。_1 是浅蓝(未选中)，_2 是橙色(选中)
+    private const string TabNormalPath = "res://Assets/Images/UI/building/warehouse/tabNormal.png";
+    private const string TabSelectedPath = "res://Assets/Images/UI/building/warehouse/tabSelectedl.png";
+    private static readonly string[] IconNormal =
+    {
+        "res://Assets/Images/UI/building/warehouse/all_1.png",
+        "res://Assets/Images/UI/building/warehouse/food_1.png",
+        "res://Assets/Images/UI/building/warehouse/medicine_1.png",
+        "res://Assets/Images/UI/building/warehouse/equip_1.png",
+        "res://Assets/Images/UI/building/warehouse/tools_1.png"
+    };
+    private static readonly string[] IconSelected =
+    {
+        "res://Assets/Images/UI/building/warehouse/all_2.png",
+        "res://Assets/Images/UI/building/warehouse/food_2.png",
+        "res://Assets/Images/UI/building/warehouse/medicine_2.png",
+        "res://Assets/Images/UI/building/warehouse/equip_2.png",
+        "res://Assets/Images/UI/building/warehouse/tools_2.png"
+    };
+
 
     public override void _Ready()
 	{
@@ -29,7 +49,7 @@ public partial class WarehouseUI : Control
             int index = i;
             tabButton[i].Pressed += () => SwitchBtn(index);
         }
-        tabButton[0].TextureNormal = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/New/switchBtn_2.png");
+        SetTabState(0);
         // _Ready顺序不确定，延迟初始化避免PlayerManager未就绪
         CallDeferred(nameof(DeferredInit));
     }
@@ -51,6 +71,7 @@ public partial class WarehouseUI : Control
         }
         // 订阅玩家数据变化，物品增减时自动刷新仓库
         PlayerManager.Instance.GetItem += OnPlayerDataChanged;
+        GD.Print($"[诊断] 仓库 DeferredInit，读到物品种类={PlayerManager.Instance.GetAllItemIDs().Count}");
         RefreshWarehouse();
     }
 
@@ -162,18 +183,26 @@ public partial class WarehouseUI : Control
         ItemList.UpdateMinimumSize();
     }
 
-    //点击页签按钮后根据类型生成物品栏
-    private void SwitchBtn(int index)
+    // 切换页签的两态外观（底框 + 图标），并刷新物品栏
+    public void SetTabState(int index)
     {
         for (int i = 0; i < tabButton.Length; i++)
         {
-            tabButton[i].TextureNormal = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/New/switchBtn.png");
+            bool selected = (i == index);
+            tabButton[i].TextureNormal = ResourceLoader.Load<Texture2D>(selected ? TabSelectedPath : TabNormalPath);
+            TextureRect icon = tabButton[i].GetNodeOrNull<TextureRect>("type");
+            if (icon != null)
+            {
+                icon.Texture = ResourceLoader.Load<Texture2D>(selected ? IconSelected[i] : IconNormal[i]);
+            }
         }
-        tabButton[index].TextureNormal = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/New/switchBtn_2.png");
-        for (int i = 0; i < ItemList.GetChildCount(); i++)
-        {
-            ItemList.GetChild(i).QueueFree();
-        }
+    }
+
+    //点击页签按钮后根据类型生成物品栏
+    private void SwitchBtn(int index)
+    {
+        SetTabState(index);
+        ClearItemList();
         switch (index)
         {
             case 0:

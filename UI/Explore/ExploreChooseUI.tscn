@@ -1,0 +1,334 @@
+[gd_scene format=3 uid="uid://dpyhwpv4cln8r"]
+
+[ext_resource type="Script" uid="uid://z0519denjwr3w" path="res://Scripts/UI/Explore/ExploreChooseUI.cs" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://blarvcfdxxu8i" path="res://Assets/Images/UI/Battle/hp_icon.png" id="2_hp"]
+[ext_resource type="Texture2D" uid="uid://colmv4fearh77" path="res://Assets/Images/UI/Battle/armer_icon.png" id="3_armor"]
+[ext_resource type="Texture2D" uid="uid://q2xr74a8wr0" path="res://Assets/Images/UI/Battle/bag.png" id="4_bag"]
+[ext_resource type="Texture2D" uid="uid://c5emli6w182a7" path="res://Assets/Images/UI/Explore/ExploreNew/expStamina.png" id="5_stamina"]
+[ext_resource type="Texture2D" uid="uid://dp5dqke28mdy0" path="res://Assets/Images/UI/Explore/ExploreNew/locationBg.png" id="6_location"]
+[ext_resource type="Texture2D" uid="uid://rtkkvlh4quvk" path="res://Assets/Images/UI/Explore/ExploreNew/progressIn.png" id="7_progin"]
+[ext_resource type="Texture2D" uid="uid://cuxbd1v7or2ui" path="res://Assets/Images/UI/Explore/ExploreNew/progressOut.png" id="8_progout"]
+[ext_resource type="Texture2D" uid="uid://c75emyeii37ul" path="res://Assets/Images/UI/Explore/ExploreNew/roomInfo.png" id="9_roominfo"]
+[ext_resource type="Texture2D" uid="uid://bn4lqwpfihf3" path="res://Assets/Images/UI/Explore/ExploreNew/roomProgress.png" id="10_roomprog"]
+[ext_resource type="Texture2D" uid="uid://jiwi112rws14" path="res://Assets/Images/UI/Explore/ExploreNew/noiseIcon.png" id="11_noiseicon"]
+[ext_resource type="Texture2D" uid="uid://birn4r06nqwv5" path="res://Assets/Images/UI/Explore/ExploreNew/noiseBG.png" id="12_noisebg"]
+[ext_resource type="Texture2D" uid="uid://dqbewq5e1tutw" path="res://Assets/Images/UI/Explore/ExploreNew/noiseBar.png" id="13_noisebar"]
+[ext_resource type="Texture2D" uid="uid://cb4dpgvm2bub5" path="res://Assets/Images/UI/Explore/ExploreNew/desBg.png" id="14_desbg"]
+[ext_resource type="Texture2D" uid="uid://gh4mp8kbe5en" path="res://Assets/Images/UI/Explore/material_image.png" id="15_eventimg"]
+
+[node name="ExploreChooseUI" type="Control" unique_id=3400001 node_paths=PackedStringArray("hpLabel", "armorLabel", "staminaLabel", "bagLabel", "titleLabel", "layerDots", "roomNameLabel", "roomLeftLabel", "noiseLabel", "noiseBar", "eventImage", "desLabel", "optionBox", "floatLayer", "bgImage")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+hpLabel = NodePath("HPLabel")
+armorLabel = NodePath("ArmorLabel")
+staminaLabel = NodePath("StaminaLabel")
+bagLabel = NodePath("BagLabel")
+titleLabel = NodePath("TitleLabel")
+layerDots = NodePath("LayerDots")
+roomNameLabel = NodePath("RoomNameLabel")
+roomLeftLabel = NodePath("RoomLeftLabel")
+noiseLabel = NodePath("NoiseLabel")
+noiseBar = NodePath("NoiseBar")
+eventImage = NodePath("EventImage")
+desLabel = NodePath("DesLabel")
+optionBox = NodePath("OptionBox")
+floatLayer = NodePath("FloatLayer")
+bgImage = NodePath("BgImage")
+
+[node name="BgColor" type="ColorRect" parent="." unique_id=3400002]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0392157, 0.117647, 0.2, 1)
+
+[node name="BgPlaceholder" type="ColorRect" parent="." unique_id=3400003]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1080.0
+offset_bottom = 750.0
+color = Color(0.0705882, 0.188235, 0.298039, 1)
+
+[node name="Fade1" type="ColorRect" parent="." unique_id=3400004]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 750.0
+offset_right = 1080.0
+offset_bottom = 770.0
+color = Color(0.0588235, 0.160784, 0.258824, 1)
+
+[node name="Fade2" type="ColorRect" parent="." unique_id=3400005]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 770.0
+offset_right = 1080.0
+offset_bottom = 790.0
+color = Color(0.0509804, 0.137255, 0.227451, 1)
+
+[node name="Fade3" type="ColorRect" parent="." unique_id=3400006]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 790.0
+offset_right = 1080.0
+offset_bottom = 810.0
+color = Color(0.0392157, 0.117647, 0.2, 1)
+
+[node name="BgImage" type="TextureRect" parent="." unique_id=3400007]
+visible = false
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1080.0
+offset_bottom = 810.0
+expand_mode = 1
+stretch_mode = 0
+
+[node name="HPIcon" type="TextureRect" parent="." unique_id=3400008]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 20.0
+offset_right = 110.0
+offset_bottom = 100.0
+texture = ExtResource("2_hp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HPLabel" type="Label" parent="." unique_id=3400009]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 20.0
+offset_right = 270.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 50
+text = "100"
+vertical_alignment = 1
+
+[node name="ArmorIcon" type="TextureRect" parent="." unique_id=3400010]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 125.0
+offset_right = 110.0
+offset_bottom = 205.0
+texture = ExtResource("3_armor")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ArmorLabel" type="Label" parent="." unique_id=3400011]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 125.0
+offset_right = 270.0
+offset_bottom = 205.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 50
+text = "120"
+vertical_alignment = 1
+
+[node name="LocationBg" type="TextureRect" parent="." unique_id=3400012]
+layout_mode = 0
+offset_left = 283.0
+offset_top = 42.0
+offset_right = 803.0
+offset_bottom = 137.0
+texture = ExtResource("6_location")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="TitleLabel" type="Label" parent="." unique_id=3400013]
+layout_mode = 0
+offset_left = 283.0
+offset_top = 42.0
+offset_right = 803.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 46
+text = "地点名称"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LayerDots" type="HBoxContainer" parent="." unique_id=3400014]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 98.0
+offset_right = 600.0
+offset_bottom = 132.0
+alignment = 1
+theme_override_constants/separation = 10
+
+[node name="StaminaIcon" type="TextureRect" parent="." unique_id=3400015]
+layout_mode = 0
+offset_left = 895.0
+offset_top = 18.0
+offset_right = 975.0
+offset_bottom = 98.0
+texture = ExtResource("5_stamina")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StaminaLabel" type="Label" parent="." unique_id=3400016]
+layout_mode = 0
+offset_left = 973.0
+offset_top = 18.0
+offset_right = 1050.0
+offset_bottom = 98.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 44
+text = "25"
+vertical_alignment = 1
+
+[node name="BagIcon" type="TextureRect" parent="." unique_id=3400017]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 215.0
+offset_right = 170.0
+offset_bottom = 355.0
+texture = ExtResource("4_bag")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BagLabel" type="Label" parent="." unique_id=3400018]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 290.0
+offset_right = 170.0
+offset_bottom = 355.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 46
+text = "1/20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RoomInfoBg" type="TextureRect" parent="." unique_id=3400019]
+layout_mode = 0
+offset_left = 283.0
+offset_top = 168.0
+offset_right = 803.0
+offset_bottom = 351.0
+texture = ExtResource("9_roominfo")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="RoomNameLabel" type="Label" parent="." unique_id=3400020]
+layout_mode = 0
+offset_left = 310.0
+offset_top = 180.0
+offset_right = 560.0
+offset_bottom = 255.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 42
+text = "网吧大厅"
+vertical_alignment = 1
+
+[node name="RoomProgressIcon" type="TextureRect" parent="." unique_id=3400021]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 183.0
+offset_right = 660.0
+offset_bottom = 250.0
+texture = ExtResource("10_roomprog")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RoomLeftLabel" type="Label" parent="." unique_id=3400022]
+layout_mode = 0
+offset_left = 665.0
+offset_top = 180.0
+offset_right = 775.0
+offset_bottom = 255.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 44
+text = "8"
+vertical_alignment = 1
+
+[node name="NoiseIcon" type="TextureRect" parent="." unique_id=3400023]
+layout_mode = 0
+offset_left = 305.0
+offset_top = 275.0
+offset_right = 390.0
+offset_bottom = 345.0
+texture = ExtResource("11_noiseicon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NoiseBar" type="TextureProgressBar" parent="." unique_id=3400024]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 288.0
+offset_right = 790.0
+offset_bottom = 325.0
+min_value = 0.0
+max_value = 100.0
+value = 80.0
+texture_under = ExtResource("12_noisebg")
+texture_progress = ExtResource("13_noisebar")
+
+[node name="NoiseLabel" type="Label" parent="." unique_id=3400025]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 288.0
+offset_right = 790.0
+offset_bottom = 325.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "80%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EventImage" type="TextureRect" parent="." unique_id=3400026]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 720.0
+offset_right = 865.0
+offset_bottom = 1160.0
+mouse_filter = 2
+texture = ExtResource("15_eventimg")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="FloatLayer" type="Control" parent="." unique_id=3400027]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 850.0
+offset_right = 340.0
+offset_bottom = 1090.0
+mouse_filter = 2
+
+[node name="DesBg" type="TextureRect" parent="." unique_id=3400028]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 1110.0
+offset_right = 1035.0
+offset_bottom = 1490.0
+texture = ExtResource("14_desbg")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="DesLabel" type="Label" parent="." unique_id=3400029]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 1140.0
+offset_right = 995.0
+offset_bottom = 1460.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 40
+text = "事件描述文字"
+autowrap_mode = 3
+
+[node name="OptionBox" type="VBoxContainer" parent="." unique_id=3400030]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 1520.0
+offset_right = 1040.0
+offset_bottom = 1830.0
+theme_override_constants/separation = 18

@@ -1,10 +1,14 @@
 using Godot;
 using MyProject;
+using System;
 
 public partial class Item : Control
 {
 	public int ID;
     public int num;
+
+    // 外部可以覆盖点击行为（出门装物品界面用它把"打开详情"改成"装进背包"）
+    public Action<Item> OnClickOverride;
 
 	[Export] public TextureRect[] Rarity;
 	[Export] public TextureButton BG;
@@ -71,6 +75,12 @@ public partial class Item : Control
 	{
         if (ID==0)
         {
+            return;
+        }
+        // 有覆盖回调时只执行回调，不打开物品详情面板
+        if (OnClickOverride != null)
+        {
+            OnClickOverride(this);
             return;
         }
         edge.Visible = true;

@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://cfvxtq84ml7gy"]
 
 [ext_resource type="Script" uid="uid://dr4sm6g1v0vwh" path="res://Scripts/UI/Item.cs" id="1_4u0i4"]
-[ext_resource type="Texture2D" uid="uid://401g6anh5dnd" path="res://Assets/Images/UI/New/itemBg.png" id="2_c6xva"]
+[ext_resource type="Texture2D" uid="uid://856vytoxf2py" path="res://Assets/Images/UI/building/warehouse/item.png" id="2_c6xva"]
 [ext_resource type="Texture2D" uid="uid://c5kp62gpikm3m" path="res://Assets/Images/Items/rice_icon.png" id="3_c6xva"]
 [ext_resource type="Texture2D" uid="uid://c2vl6xl2rvua5" path="res://Assets/Images/UI/ItemType/rarity_dot_1.png" id="4_c6xva"]
 [ext_resource type="Texture2D" uid="uid://bpslpdjxivf2g" path="res://Assets/Images/UI/ItemType/rarity_dot_2.png" id="5_qpl1q"]
 [ext_resource type="Texture2D" uid="uid://mnqf6oij858x" path="res://Assets/Images/UI/ItemType/rarity_dot_3.png" id="6_dcb8o"]
 [ext_resource type="Texture2D" uid="uid://dwhgw57us8vgn" path="res://Assets/Images/UI/ItemType/rarity_dot_4.png" id="7_pxt5l"]
 [ext_resource type="Texture2D" uid="uid://4coe83b4amml" path="res://Assets/Images/UI/New/itemNum.png" id="8_dcb8o"]
-[ext_resource type="Texture2D" uid="uid://bkuvlo57mnpgu" path="res://Assets/Images/UI/New/itemBg_2.png" id="8_qpl1q"]
+[ext_resource type="Texture2D" uid="uid://db5dmmdgyy85g" path="res://Assets/Images/UI/Explore/ExploreNew/Bag/itemChoose.png" id="8_qpl1q"]
 [ext_resource type="Texture2D" uid="uid://dnaf1w8cp56f4" path="res://Assets/Images/UI/New/itemType_1_1.png" id="9_pxt5l"]
 
 [node name="Item" type="Control" unique_id=1539995109 node_paths=PackedStringArray("Rarity", "BG", "itemIcon", "numLabel", "edge", "numBg", "itemType")]

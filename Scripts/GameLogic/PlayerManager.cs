@@ -62,6 +62,8 @@ public partial class PlayerManager : Node, ISaveable
     private int exploreStamina = 10;
     private int maxBaseStamina = 10;
     private int maxexploreStamina = 10;
+    // 背包装载能力（最大可携带物品种类数），需要接入存档
+    private int bagNum = 20;
     private int hunger = 3;
     private int dmg = 0;
     private int armTime = 3;
@@ -101,6 +103,7 @@ public partial class PlayerManager : Node, ISaveable
     public int ExploreStamina {get{return exploreStamina + GetAddition(10016);}private set{}}
     public int MaxBaseStamina {get{return maxBaseStamina + GetAddition(10017);}private set{}}
     public int MaxexploreStamina {get{return maxexploreStamina + GetAddition(10018);}private set{}}
+    public int BagNum {get{return bagNum;}private set{}}
     public int Hunger {get{return hunger + GetAddition(10019);}private set{}}
     public int PlayerMakeLevel{ get{return playerMakeLevel + GetAddition(10020);}private set{}}
     public int ArmDmg { get { return dmg + GetAddition(10021); } private set { } }
@@ -409,6 +412,14 @@ public partial class PlayerManager : Node, ISaveable
         return true;
     }
 
+    //探索时扣探索体力：够扣返回true，不够返回false（快速搜索-1、仔细搜索-2）
+    public bool CostExploreStamina(int cost)
+    {
+        if (exploreStamina < cost) return false;
+        exploreStamina -= cost;
+        return true;
+    }
+
     public void RefillPlayerStamina()
     {
         playerstaminacost = PlayerStaminaBaseFull;
@@ -691,15 +702,16 @@ public partial class PlayerManager : Node, ISaveable
         // 连同下面那串 AddItem 测试数据一起注释掉，等正式状态配置表接好再放开。
         // GetState(2);
         // //测试
-        // AddItem(1,25);
-        // AddItem(2,25);
-        // AddItem(3,25);
-        // AddItem(4,25);
-        // AddItem(5,25);
-        // AddItem(6,25);
-        // AddItem(7,25);
-        // AddItem(8,25);
-        // AddItem(9,25);
+        AddItem(1,25);
+        AddItem(2,25);
+        AddItem(3,25);
+        AddItem(4,25);
+        AddItem(5,25);
+        AddItem(6,25);
+        AddItem(7,25);
+        AddItem(8,25);
+        AddItem(9,25);
+        GD.Print($"[诊断] PM._Ready 完成，仓库物品种类={ItemDic.Count}，ID1数量={GetItemCount(1)}");
         
     }
 
@@ -769,6 +781,7 @@ public partial class PlayerManager : Node, ISaveable
             {"exploreStamina", exploreStamina},
             {"maxBaseStamina", maxBaseStamina},
             {"maxexploreStamina", maxexploreStamina},
+            {"bagNum", bagNum},
             {"hunger",hunger},
             { "dmg", dmg},
             { "armTime", armTime},
@@ -807,6 +820,7 @@ public partial class PlayerManager : Node, ISaveable
         exploreStamina      = data.ContainsKey("exploreStamina")      ? (int)data["exploreStamina"]      : 10;
         maxBaseStamina      = data.ContainsKey("maxBaseStamina")      ? (int)data["maxBaseStamina"]      : 10;
         maxexploreStamina   = data.ContainsKey("maxexploreStamina")   ? (int)data["maxexploreStamina"]   : 10;
+        bagNum              = data.ContainsKey("bagNum")              ? (int)data["bagNum"]              : 20;
         hunger              = data.ContainsKey("hunger")              ? (int)data["hunger"]              : 3;
         dmg      = data.ContainsKey("dmg")      ? (int)data["dmg"]      : 0;
         armTime  = data.ContainsKey("armTime")  ? (int)data["armTime"]  : 3;
@@ -866,6 +880,7 @@ public partial class PlayerManager : Node, ISaveable
         _tentUnlocked = data.ContainsKey("tentUnlocked") && (bool)data["tentUnlocked"];
 
         GD.Print($"[PlayerManager] 数据恢复完成：HP={Hp}/{MaxHp}, Str={Strength}({strength_exp}/{ExpMax}), Agi={Agility}({agility_exp}/{ExpMax}), Int={Intelligence}({intelligence_exp}/{ExpMax})");
+        GD.Print($"[诊断] 读档后仓库物品种类={ItemDic.Count}，ID1数量={GetItemCount(1)}");
 
         // 延迟校准：确保所有加成生效后，体力值不超过上限
         CallDeferred(nameof(ClampAllStamina));

@@ -1,0 +1,289 @@
+[gd_scene format=3 uid="uid://w2ui0x4z9c3fk"]
+
+[ext_resource type="Script" uid="uid://kl25s1ekknhqs" path="res://Scripts/UI/Explore/Warehouse2UI.cs" id="1_w2ui"]
+[ext_resource type="Texture2D" uid="uid://cjbeau7mde2il" path="res://Assets/Images/UI/building/warehouse/warhouseBg.png" id="2_wbg"]
+[ext_resource type="Texture2D" uid="uid://c73yxng4uea1l" path="res://Assets/Images/UI/New/closeBtn.png" id="3_close"]
+[ext_resource type="Texture2D" uid="uid://ctx1m46xdonlg" path="res://Assets/Images/UI/building/warehouse/tabNormal.png" id="4_tabn"]
+[ext_resource type="Texture2D" uid="uid://dettnwblyxpnq" path="res://Assets/Images/UI/building/warehouse/tabSelectedl.png" id="5_tabs"]
+[ext_resource type="Texture2D" uid="uid://7ynvvieho1on" path="res://Assets/Images/UI/building/warehouse/all_1.png" id="6_all1"]
+[ext_resource type="Texture2D" uid="uid://daqmratf5luly" path="res://Assets/Images/UI/building/warehouse/all_2.png" id="7_all2"]
+[ext_resource type="Texture2D" uid="uid://jeog8j8gph3t" path="res://Assets/Images/UI/building/warehouse/food_1.png" id="8_food1"]
+[ext_resource type="Texture2D" uid="uid://bo7aluh8n8lqp" path="res://Assets/Images/UI/building/warehouse/food_2.png" id="9_food2"]
+[ext_resource type="Texture2D" uid="uid://b6iokpivhkmhb" path="res://Assets/Images/UI/building/warehouse/medicine_1.png" id="10_med1"]
+[ext_resource type="Texture2D" uid="uid://dgdv00ilnhhv4" path="res://Assets/Images/UI/building/warehouse/medicine_2.png" id="11_med2"]
+[ext_resource type="Texture2D" uid="uid://b06vc5v6cfuy1" path="res://Assets/Images/UI/building/warehouse/equip_1.png" id="12_equip1"]
+[ext_resource type="Texture2D" uid="uid://n8y3l7285xd0" path="res://Assets/Images/UI/building/warehouse/equip_2.png" id="13_equip2"]
+[ext_resource type="Texture2D" uid="uid://cfwsyer0x2m1f" path="res://Assets/Images/UI/building/warehouse/tools_1.png" id="14_tools1"]
+[ext_resource type="Texture2D" uid="uid://ckjsv71epk4dp" path="res://Assets/Images/UI/building/warehouse/tools_2.png" id="15_tools2"]
+
+[node name="Warehouse2UI" type="Control" unique_id=3000001 node_paths=PackedStringArray("closeBtn", "warehouseList", "bagList", "bagNumLabel", "tabButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w2ui")
+closeBtn = NodePath("CloseBtn")
+warehouseList = NodePath("WHScroll/WHGrid")
+bagList = NodePath("BagScroll/BagGrid")
+bagNumLabel = NodePath("BagNumLabel")
+tabButton = [NodePath("tab/AllBtn"), NodePath("tab/FoodBtn"), NodePath("tab/MedicBtn"), NodePath("tab/EquipBtn"), NodePath("tab/MaterialBtn")]
+
+[node name="DimBg" type="ColorRect" parent="." unique_id=3000002]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 1130.0
+offset_bottom = 1970.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0627451, 0.0627451, 0.0627451, 0.78431374)
+
+[node name="WHBg" type="TextureRect" parent="." unique_id=3000003]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 110.0
+offset_right = 1012.0
+offset_bottom = 1010.0
+texture = ExtResource("2_wbg")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="WHTitle" type="Label" parent="." unique_id=3000004]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 120.0
+offset_right = 790.0
+offset_bottom = 205.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 56
+text = "物品仓库"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="tab" type="HBoxContainer" parent="." unique_id=3000005]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 265.0
+offset_right = 986.0
+offset_bottom = 365.0
+theme_override_constants/separation = -15
+
+[node name="AllBtn" type="TextureButton" parent="tab" unique_id=3000006]
+custom_minimum_size = Vector2(188, 85)
+layout_mode = 2
+texture_normal = ExtResource("5_tabs")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="tab/AllBtn" unique_id=3000007]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 28.0
+offset_right = 178.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 34
+text = "全部"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="type" type="TextureRect" parent="tab/AllBtn" unique_id=3000008]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 70.0
+offset_bottom = 70.0
+texture = ExtResource("7_all2")
+expand_mode = 1
+
+[node name="FoodBtn" type="TextureButton" parent="tab" unique_id=3000009]
+custom_minimum_size = Vector2(188, 85)
+layout_mode = 2
+texture_normal = ExtResource("4_tabn")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="tab/FoodBtn" unique_id=3000010]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 28.0
+offset_right = 178.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 34
+text = "食物"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="type" type="TextureRect" parent="tab/FoodBtn" unique_id=3000011]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 70.0
+offset_bottom = 70.0
+texture = ExtResource("8_food1")
+expand_mode = 1
+
+[node name="MedicBtn" type="TextureButton" parent="tab" unique_id=3000012]
+custom_minimum_size = Vector2(188, 85)
+layout_mode = 2
+texture_normal = ExtResource("4_tabn")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="tab/MedicBtn" unique_id=3000013]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 28.0
+offset_right = 178.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 34
+text = "药品"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="type" type="TextureRect" parent="tab/MedicBtn" unique_id=3000014]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 70.0
+offset_bottom = 70.0
+texture = ExtResource("10_med1")
+expand_mode = 1
+
+[node name="EquipBtn" type="TextureButton" parent="tab" unique_id=3000015]
+custom_minimum_size = Vector2(188, 85)
+layout_mode = 2
+texture_normal = ExtResource("4_tabn")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="tab/EquipBtn" unique_id=3000016]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 28.0
+offset_right = 178.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 34
+text = "装备"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="type" type="TextureRect" parent="tab/EquipBtn" unique_id=3000017]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 70.0
+offset_bottom = 70.0
+texture = ExtResource("12_equip1")
+expand_mode = 1
+
+[node name="MaterialBtn" type="TextureButton" parent="tab" unique_id=3000018]
+custom_minimum_size = Vector2(188, 85)
+layout_mode = 2
+texture_normal = ExtResource("4_tabn")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="tab/MaterialBtn" unique_id=3000019]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 28.0
+offset_right = 178.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 34
+text = "材料"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="type" type="TextureRect" parent="tab/MaterialBtn" unique_id=3000020]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 70.0
+offset_bottom = 70.0
+texture = ExtResource("14_tools1")
+expand_mode = 1
+
+[node name="WHScroll" type="ScrollContainer" parent="." unique_id=3000021]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 380.0
+offset_right = 974.0
+offset_bottom = 980.0
+
+[node name="WHGrid" type="GridContainer" parent="WHScroll" unique_id=3000022]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = -12
+theme_override_constants/v_separation = -12
+columns = 5
+
+[node name="BagBg" type="TextureRect" parent="." unique_id=3000023]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 1040.0
+offset_right = 1012.0
+offset_bottom = 1840.0
+texture = ExtResource("2_wbg")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="BagTitle" type="Label" parent="." unique_id=3000024]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 1050.0
+offset_right = 600.0
+offset_bottom = 1120.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 44
+text = "探索背包"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BagNumLabel" type="Label" parent="." unique_id=3000025]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 1055.0
+offset_right = 940.0
+offset_bottom = 1120.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 40
+text = "0/20"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BagScroll" type="ScrollContainer" parent="." unique_id=3000026]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 1190.0
+offset_right = 974.0
+offset_bottom = 1800.0
+
+[node name="BagGrid" type="GridContainer" parent="BagScroll" unique_id=3000027]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 14
+columns = 4
+
+[node name="CloseBtn" type="Button" parent="." unique_id=3000028]
+layout_mode = 0
+offset_left = 889.0
+offset_top = 130.0
+offset_right = 1001.0
+offset_bottom = 245.0
+icon = ExtResource("3_close")
+flat = true
+expand_icon = true

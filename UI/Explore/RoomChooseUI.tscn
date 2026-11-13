@@ -1,0 +1,305 @@
+[gd_scene format=3 uid="uid://bl03ovy2cj0kr"]
+
+[ext_resource type="Script" uid="uid://slpyfju406gxa" path="res://Scripts/UI/Explore/RoomChooseUI.cs" id="1_ui"]
+[ext_resource type="Texture2D" uid="uid://blarvcfdxxu8i" path="res://Assets/Images/UI/Battle/hp_icon.png" id="2_hp"]
+[ext_resource type="Texture2D" uid="uid://colmv4fearh77" path="res://Assets/Images/UI/Battle/armer_icon.png" id="3_armor"]
+[ext_resource type="Texture2D" uid="uid://q2xr74a8wr0" path="res://Assets/Images/UI/Battle/bag.png" id="4_bag"]
+[ext_resource type="Texture2D" uid="uid://c5emli6w182a7" path="res://Assets/Images/UI/Explore/ExploreNew/expStamina.png" id="5_stamina"]
+[ext_resource type="Texture2D" uid="uid://dp5dqke28mdy0" path="res://Assets/Images/UI/Explore/ExploreNew/locationBg.png" id="6_location"]
+[ext_resource type="Texture2D" uid="uid://cb4dpgvm2bub5" path="res://Assets/Images/UI/Explore/ExploreNew/desBg.png" id="7_desbg"]
+[ext_resource type="Texture2D" uid="uid://w6i3u6pcdd75" path="res://Assets/Images/UI/Explore/ExploreNew/leaveBtn.png" id="8_leavebtn"]
+[ext_resource type="Texture2D" uid="uid://deqw3d6ip7vuj" path="res://Assets/Images/UI/Explore/ExploreNew/leave.png" id="9_leaveicon"]
+
+[node name="RoomChooseUI" type="Control" unique_id=3200001 node_paths=PackedStringArray("hpLabel", "armorLabel", "staminaLabel", "bagLabel", "titleLabel", "hintLabel", "desLabel", "layerDots", "roomRow", "leaveBtn", "bgImage", "nextLayerBtn", "nextLayerText")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ui")
+hpLabel = NodePath("HPLabel")
+armorLabel = NodePath("ArmorLabel")
+staminaLabel = NodePath("StaminaLabel")
+bagLabel = NodePath("BagLabel")
+titleLabel = NodePath("TitleLabel")
+hintLabel = NodePath("HintLabel")
+desLabel = NodePath("DesLabel")
+layerDots = NodePath("LayerDots")
+roomRow = NodePath("RoomRow")
+leaveBtn = NodePath("LeaveBtn")
+bgImage = NodePath("BgImage")
+nextLayerBtn = NodePath("NextLayerBtn")
+nextLayerText = NodePath("NextLayerText")
+previewAllFinished = false
+previewLastLayer = false
+
+[node name="BgColor" type="ColorRect" parent="." unique_id=3200002]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0392157, 0.117647, 0.2, 1)
+
+[node name="BgPlaceholder" type="ColorRect" parent="." unique_id=3200003]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1080.0
+offset_bottom = 640.0
+color = Color(0.0705882, 0.188235, 0.298039, 1)
+
+[node name="Fade1" type="ColorRect" parent="." unique_id=3200023]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 640.0
+offset_right = 1080.0
+offset_bottom = 680.0
+color = Color(0.0588235, 0.160784, 0.258824, 1)
+
+[node name="Fade2" type="ColorRect" parent="." unique_id=3200024]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 680.0
+offset_right = 1080.0
+offset_bottom = 720.0
+color = Color(0.0509804, 0.137255, 0.227451, 1)
+
+[node name="Fade3" type="ColorRect" parent="." unique_id=3200025]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 720.0
+offset_right = 1080.0
+offset_bottom = 750.0
+color = Color(0.0392157, 0.117647, 0.2, 1)
+
+[node name="BgImage" type="TextureRect" parent="." unique_id=3200004]
+visible = false
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1080.0
+offset_bottom = 750.0
+expand_mode = 1
+stretch_mode = 0
+
+[node name="HPIcon" type="TextureRect" parent="." unique_id=3200005]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 20.0
+offset_right = 110.0
+offset_bottom = 100.0
+texture = ExtResource("2_hp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HPLabel" type="Label" parent="." unique_id=3200006]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 20.0
+offset_right = 270.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 50
+text = "100"
+vertical_alignment = 1
+
+[node name="ArmorIcon" type="TextureRect" parent="." unique_id=3200007]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 125.0
+offset_right = 110.0
+offset_bottom = 205.0
+texture = ExtResource("3_armor")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ArmorLabel" type="Label" parent="." unique_id=3200008]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 125.0
+offset_right = 270.0
+offset_bottom = 205.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 50
+text = "120"
+vertical_alignment = 1
+
+[node name="LocationBg" type="TextureRect" parent="." unique_id=3200009]
+layout_mode = 0
+offset_left = 283.0
+offset_top = 42.0
+offset_right = 803.0
+offset_bottom = 137.0
+texture = ExtResource("6_location")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="TitleLabel" type="Label" parent="." unique_id=3200010]
+layout_mode = 0
+offset_left = 283.0
+offset_top = 42.0
+offset_right = 803.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 46
+text = "地点名称"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LayerDots" type="HBoxContainer" parent="." unique_id=3200011]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 98.0
+offset_right = 600.0
+offset_bottom = 132.0
+alignment = 1
+theme_override_constants/separation = 10
+
+[node name="StaminaIcon" type="TextureRect" parent="." unique_id=3200012]
+layout_mode = 0
+offset_left = 895.0
+offset_top = 18.0
+offset_right = 975.0
+offset_bottom = 98.0
+texture = ExtResource("5_stamina")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StaminaLabel" type="Label" parent="." unique_id=3200013]
+layout_mode = 0
+offset_left = 973.0
+offset_top = 18.0
+offset_right = 1050.0
+offset_bottom = 98.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 44
+text = "25"
+vertical_alignment = 1
+
+[node name="BagIcon" type="TextureRect" parent="." unique_id=3200014]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 215.0
+offset_right = 170.0
+offset_bottom = 355.0
+texture = ExtResource("4_bag")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BagLabel" type="Label" parent="." unique_id=3200015]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 290.0
+offset_right = 170.0
+offset_bottom = 355.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 46
+text = "1/20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RoomRow" type="HBoxContainer" parent="." unique_id=3200016]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 730.0
+offset_right = 935.0
+offset_bottom = 1255.0
+alignment = 1
+theme_override_constants/separation = 50
+
+[node name="HintLabel" type="Label" parent="." unique_id=3200017]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 1285.0
+offset_right = 1080.0
+offset_bottom = 1355.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 46
+text = "选择前进方向"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DesBg" type="TextureRect" parent="." unique_id=3200018]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 1360.0
+offset_right = 1035.0
+offset_bottom = 1740.0
+texture = ExtResource("7_desbg")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="DesLabel" type="Label" parent="." unique_id=3200019]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 1390.0
+offset_right = 995.0
+offset_bottom = 1730.0
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 40
+text = "建筑描述文字"
+autowrap_mode = 3
+vertical_alignment = 0
+
+[node name="LeaveBtn" type="TextureButton" parent="." unique_id=3200020]
+layout_mode = 0
+offset_left = 760.0
+offset_top = 1770.0
+offset_right = 1035.0
+offset_bottom = 1885.0
+texture_normal = ExtResource("8_leavebtn")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="LeaveIcon" type="TextureRect" parent="." unique_id=3200021]
+layout_mode = 0
+offset_left = 775.0
+offset_top = 1785.0
+offset_right = 855.0
+offset_bottom = 1865.0
+mouse_filter = 2
+texture = ExtResource("9_leaveicon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LeaveText" type="Label" parent="." unique_id=3200022]
+layout_mode = 0
+offset_left = 855.0
+offset_top = 1770.0
+offset_right = 1025.0
+offset_bottom = 1885.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 40
+text = "离开地点"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextLayerBtn" type="TextureButton" parent="." unique_id=3200026]
+visible = false
+layout_mode = 0
+offset_left = 417.0
+offset_top = 1262.0
+offset_right = 662.0
+offset_bottom = 1355.0
+texture_normal = ExtResource("8_leavebtn")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="NextLayerText" type="Label" parent="." unique_id=3200027]
+visible = false
+layout_mode = 0
+offset_left = 417.0
+offset_top = 1262.0
+offset_right = 662.0
+offset_bottom = 1355.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+text = "继续前进"
+horizontal_alignment = 1
+vertical_alignment = 1
