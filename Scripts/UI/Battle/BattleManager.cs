@@ -57,8 +57,8 @@ public partial class BattleManager : Control
     public event Action OnTurnEnd;
     public event Action OnBattleEnd;
 
-    //战斗所需
-    public ExploreUI exploreUI;
+    //战斗所需（探索流程里的战斗状态容器，旧 ExploreUI 已精简为 ExploreBattleData）
+    public ExploreBattleData exploreUI;
     public BattleEnemy battleEnemy;
     public BattleInfo battleInfo;
     public Dictionary<int, BattleEffectBase> playerEffectDic = new Dictionary<int, BattleEffectBase>();//玩家不可重复的效果实例

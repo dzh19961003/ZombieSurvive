@@ -8,7 +8,7 @@ public class BattleInfo
     private PlayerManager pm = PlayerManager.Instance;
     private ConfigManager cm = ConfigManager.Instance;
 
-    public ExploreUI exploreUI;         //探索脚本
+    public ExploreBattleData exploreUI;  //探索流程里的战斗状态容器（旧 ExploreUI 已精简）
     public int enemyID;                 //敌人ID
     public string bodyPart;             //攻击后取得的身体部位
     public double baseDamage;           //基础武器伤害
