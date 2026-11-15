@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwvywnj86ycn0"
-path="res://.godot/imported/foodProgress.png-933d43d524f038795185e07c7c215979.ctex"
+uid="uid://cc0qt4fm386rl"
+path="res://.godot/imported/armor_item_frame.png-54687115913f62effd54ade310734352.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/UI/New/foodProgress.png"
-dest_files=["res://.godot/imported/foodProgress.png-933d43d524f038795185e07c7c215979.ctex"]
+source_file="res://Assets/Images/UI/Details/armor_item_frame.png"
+dest_files=["res://.godot/imported/armor_item_frame.png-54687115913f62effd54ade310734352.ctex"]
 
 [params]
 

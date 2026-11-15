@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cu8wdfxugvuqi"
-path="res://.godot/imported/close.png-187b561b4ec159f356bf6260e5c97a33.ctex"
+uid="uid://c7octpuw3wvtu"
+path="res://.godot/imported/badge_rare.svg-eeeb3211a1d2388d42df88207b95396c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/UI/Explore/ExploreNew/Bag/close.png"
-dest_files=["res://.godot/imported/close.png-187b561b4ec159f356bf6260e5c97a33.ctex"]
+source_file="res://Assets/Images/UI/building/warehouse/badge_rare.svg"
+dest_files=["res://.godot/imported/badge_rare.svg-eeeb3211a1d2388d42df88207b95396c.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

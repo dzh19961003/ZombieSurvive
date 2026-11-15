@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uw5ws7w385vt"
-path="res://.godot/imported/scrollBg.png-567b36cc26363fbe69f9380a8b9b40d9.ctex"
+uid="uid://b01735e6gsiti"
+path="res://.godot/imported/rice_flat.svg-ffd8698352c4f9bbe6fd9daa25858c69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/UI/building/warehouse/scrollBg.png"
-dest_files=["res://.godot/imported/scrollBg.png-567b36cc26363fbe69f9380a8b9b40d9.ctex"]
+source_file="res://Assets/Images/UI/Main/rice_flat.svg"
+dest_files=["res://.godot/imported/rice_flat.svg-ffd8698352c4f9bbe6fd9daa25858c69.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

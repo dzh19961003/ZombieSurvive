@@ -1,71 +1,80 @@
 [gd_scene format=3 uid="uid://bagu1yak3mq7t"]
 
-[ext_resource type="Script" uid="uid://psubkn8ll2e3q" path="res://Scripts/UI/Explore/BagUI.cs" id="1_bagui"]
-[ext_resource type="Texture2D" uid="uid://c7dptawswqo1q" path="res://Assets/Images/UI/Explore/ExploreNew/Bag/bagBg.png" id="2_bgbg"]
-[ext_resource type="Texture2D" uid="uid://cu8wdfxugvuqi" path="res://Assets/Images/UI/Explore/ExploreNew/Bag/close.png" id="3_close"]
+[ext_resource type="Script" path="res://Scripts/UI/Explore/BagUI.cs" id="script"]
+[ext_resource type="Theme" path="res://Assets/Images/UI/building/warehouse/inventory_theme.tres" id="theme"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Explore/ExploreNew/Bag/bagBg.png" id="bag"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Details/close.svg" id="close"]
 
-[node name="BagUI" type="Control" unique_id=2000001 node_paths=PackedStringArray("closeBtn", "itemList", "titleLabel")]
+[node name="BagUI" type="Control" node_paths=PackedStringArray("closeBtn", "itemList", "titleLabel")]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bagui")
+theme = ExtResource("theme")
+script = ExtResource("script")
 closeBtn = NodePath("CloseBtn")
-itemList = NodePath("BagArea")
+itemList = NodePath("BagScroll/BagArea")
 titleLabel = NodePath("Title")
 
-[node name="DimBg" type="ColorRect" parent="." unique_id=2000002]
-layout_mode = 1
-anchors_preset = -1
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 1130.0
-offset_bottom = 1970.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.0627451, 0.0627451, 0.0627451, 0.78431374)
-
-[node name="Bg" type="TextureRect" parent="." unique_id=2000003]
+[node name="DimBg" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 70.0
-offset_top = 124.0
-offset_right = 1011.0
-offset_bottom = 1796.0
-texture = ExtResource("2_bgbg")
+offset_left = 0
+offset_top = 0
+offset_right = 1080
+offset_bottom = 1920
+color = Color(0, 0, 0, 0.78)
+
+[node name="Bg" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 70
+offset_top = 124
+offset_right = 1011
+offset_bottom = 1796
+mouse_filter = 2
+texture = ExtResource("bag")
 expand_mode = 1
-stretch_mode = 0
 
-[node name="Title" type="Label" parent="." unique_id=2000004]
+[node name="Title" type="Label" parent="."]
 layout_mode = 0
-offset_left = 210.0
-offset_top = 378.0
-offset_right = 790.0
-offset_bottom = 482.0
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_constants/outline_size = 6
+offset_left = 210
+offset_top = 378
+offset_right = 790
+offset_bottom = 482
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.96, 0.94, 0.86, 1)
 theme_override_font_sizes/font_size = 56
-text = "探索背包"
+text = "背包"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CloseBtn" type="Button" parent="." unique_id=2000005]
+[node name="CloseBtn" type="Button" parent="."]
 layout_mode = 0
-offset_left = 838.0
-offset_top = 388.0
-offset_right = 898.0
-offset_bottom = 448.0
-icon = ExtResource("3_close")
+offset_left = 838
+offset_top = 388
+offset_right = 898
+offset_bottom = 448
+icon = ExtResource("close")
 flat = true
 expand_icon = true
+focus_mode = 0
+mouse_default_cursor_shape = 2
 
-[node name="BagArea" type="GridContainer" parent="." unique_id=2000006]
+[node name="BagScroll" type="ScrollContainer" parent="."]
 layout_mode = 0
-offset_left = 185.0
-offset_top = 530.0
-offset_right = 905.0
-offset_bottom = 1600.0
-theme_override_constants/h_separation = 20
+offset_left = 197
+offset_top = 526
+offset_right = 907
+offset_bottom = 1602
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 1
+follow_focus = true
+
+[node name="BagArea" type="GridContainer" parent="BagScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 14
 columns = 4

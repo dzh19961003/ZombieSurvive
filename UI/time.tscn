@@ -1,91 +1,88 @@
 [gd_scene format=3 uid="uid://2rhn2jmv0o1k"]
 
-[ext_resource type="Texture2D" uid="uid://cimgjjgut172w" path="res://Assets/Images/UI/time.png" id="2_1udsu"]
-[ext_resource type="Texture2D" uid="uid://cym0gfn2qmrrj" path="res://Assets/Images/UI/New/timeBan.png" id="2_f6cye"]
-[ext_resource type="Script" uid="uid://cqougbv0d1odb" path="res://Scripts/UI/Time.cs" id="2_qbgyk"]
-[ext_resource type="Texture2D" uid="uid://cw71ohu7t58pp" path="res://Assets/Images/UI/New/days.png" id="4_1udsu"]
-[ext_resource type="Texture2D" uid="uid://c7g38jwrc0pli" path="res://Assets/Images/UI/New/weather_1.png" id="5_qbgyk"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Details/armor_panel.png" id="panel"]
+[ext_resource type="Material" path="res://Assets/Images/UI/Details/details_opaque.tres" id="opaque"]
+[ext_resource type="Theme" path="res://Assets/Images/UI/building/warehouse/inventory_theme.tres" id="theme"]
+[ext_resource type="Script" path="res://Scripts/UI/Time.cs" id="script"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Main/sun_flat.svg" id="sun"]
 
 [node name="Clock" type="TextureButton" unique_id=1599589682]
-anchors_preset = -1
+texture_filter = 1
+anchors_preset = 0
 offset_right = 268.0
 offset_bottom = 162.0
+theme = ExtResource("theme")
 ignore_texture_size = true
 stretch_mode = 0
-script = ExtResource("2_qbgyk")
+script = ExtResource("script")
 
-[node name="bg" type="NinePatchRect" parent="." unique_id=771674485]
+[node name="bg" type="NinePatchRect" parent="."]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 1.0
-offset_right = 443.0
-offset_bottom = 274.0
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("2_f6cye")
-region_rect = Rect2(-1, -1, 441, 314)
-patch_margin_top = 161
-patch_margin_bottom = 82
+offset_left = 2
+offset_top = 1
+offset_right = 266
+offset_bottom = 163
+mouse_filter = 2
+material = ExtResource("opaque")
+texture = ExtResource("panel")
+patch_margin_left = 28
+patch_margin_top = 28
+patch_margin_right = 28
+patch_margin_bottom = 28
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1843491433]
-visible = false
+[node name="Divider" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 124.0
-offset_top = 67.0
-offset_right = 232.0
-offset_bottom = 136.0
-texture = ExtResource("2_1udsu")
+offset_left = 16
+offset_top = 62
+offset_right = 252
+offset_bottom = 64
+mouse_filter = 2
+color = Color(0.5, 0.76, 0.91, 1)
 
-[node name="Label" type="Label" parent="." unique_id=486867903]
+[node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 21.0
-offset_top = 69.0
-offset_right = 171.0
-offset_bottom = 144.0
-theme_override_colors/font_color = Color(0.21176471, 0.21568628, 0.2, 1)
+offset_left = 18
+offset_top = 76
+offset_right = 168
+offset_bottom = 141
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.94, 0.98, 1, 1)
 theme_override_font_sizes/font_size = 40
 text = "早晨"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Day" type="TextureButton" parent="." unique_id=1268579884]
+
+[node name="Day" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 13.0
-offset_top = 15.0
-offset_right = 253.0
-offset_bottom = 61.0
+offset_left = 14
+offset_top = 10
+offset_right = 254
+offset_bottom = 55
+ignore_texture_size = true
 stretch_mode = 0
 
-[node name="DayCount" type="Label" parent="Day" unique_id=1240658737]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.22100002
-anchor_right = -0.22100002
-offset_left = 125.04001
-offset_top = 4.0
-offset_right = 230.04001
-offset_bottom = 49.0
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_constants/outline_size = 5
+[node name="DayCount" type="Label" parent="Day"]
+layout_mode = 0
+offset_left = 0
+offset_top = 0
+offset_right = 240
+offset_bottom = 45
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.94, 0.98, 1, 1)
 theme_override_font_sizes/font_size = 32
 text = "第1天"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="." unique_id=1094347941]
-visible = false
-layout_mode = 0
-offset_left = 21.0
-offset_top = 16.0
-offset_right = 62.0
-offset_bottom = 60.608017
-texture = ExtResource("4_1udsu")
-expand_mode = 1
 
-[node name="Weather" type="TextureRect" parent="." unique_id=1183837502]
+[node name="Weather" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 179.0
-offset_top = 75.0
-offset_right = 242.0
-offset_bottom = 138.0
-texture = ExtResource("5_qbgyk")
+offset_left = 184
+offset_top = 79
+offset_right = 242
+offset_bottom = 137
+mouse_filter = 2
+texture = ExtResource("sun")
 expand_mode = 1
+stretch_mode = 5

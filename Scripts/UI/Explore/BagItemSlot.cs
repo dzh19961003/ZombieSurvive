@@ -40,7 +40,7 @@ public partial class BagItemSlot : Control
         }
     }
 
-    // 选中态：显示橙色选中边框（itemChoose.png），和未选中的深蓝格子（bagItem.png）区分开
+    // 选中态：显示共用的 inventory_selection.png 橙色边框，底图为 inventory_slot.png
     public bool IsSelected = false;
     public void SetSelected(bool selected)
     {

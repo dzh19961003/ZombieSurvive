@@ -37,8 +37,8 @@ public partial class StaHunUi : TextureButton
 		_hungerStateLabel = GetNodeOrNull<Label>("HungerState/Label");
 
 		// 预加载绿色/灰色方块纹理（与场景 H1/H3 纹理资源一致）
-		_greenTex = GD.Load<Texture2D>("res://Assets/Images/UI/new/foodProgress.png");
-		_grayTex  = GD.Load<Texture2D>("res://Assets/Images/UI/new/foodProgress_2.png");
+		_greenTex = GD.Load<Texture2D>("res://Assets/Images/UI/Main/apple_active.svg");
+		_grayTex  = GD.Load<Texture2D>("res://Assets/Images/UI/Main/apple_inactive.svg");
 
 		// 用 CallDeferred：保证 PlayerManager.Instance 已初始化（避免 _Ready 顺序不同步导致 null）
 		CallDeferred(nameof(DeferredSetup));
@@ -108,16 +108,16 @@ public partial class StaHunUi : TextureButton
 		switch (hunger)
 		{
 			case 0:
-                hungerBg.Texture = GD.Load<Texture2D>("res://Assets/Images/UI/New/mainState_1.png");
+                hungerBg.Texture = GD.Load<Texture2D>("res://Assets/Images/UI/Main/hunger_strip.svg");
                 break;
             case 1:
-                hungerBg.Texture = GD.Load<Texture2D>("res://Assets/Images/UI/New/mainState_1.png");
+                hungerBg.Texture = GD.Load<Texture2D>("res://Assets/Images/UI/Main/hunger_strip.svg");
                 break;
             case 2:
-                hungerBg.Texture = GD.Load<Texture2D>("res://Assets/Images/UI/New/mainState_2.png");
+                hungerBg.Texture = GD.Load<Texture2D>("res://Assets/Images/UI/Main/hunger_strip.svg");
                 break;
             case 3:
-                hungerBg.Texture = GD.Load<Texture2D>("res://Assets/Images/UI/New/mainState_3.png");
+                hungerBg.Texture = GD.Load<Texture2D>("res://Assets/Images/UI/Main/hunger_strip.svg");
                 break;
             default:
 				break;

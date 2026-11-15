@@ -1,147 +1,186 @@
 [gd_scene format=3 uid="uid://b0jmqtny847q5"]
 
-[ext_resource type="Texture2D" uid="uid://levtd14e200j" path="res://Assets/Images/UI/New/foodBan.png" id="1_jjyac"]
-[ext_resource type="Script" uid="uid://shyolp5ydh8b" path="res://Scripts/UI/StaHunUi.cs" id="2_q88b4"]
-[ext_resource type="Texture2D" uid="uid://b0jvybtlcvyvv" path="res://Assets/Images/UI/New/hunger.png" id="3_4qygq"]
-[ext_resource type="Texture2D" uid="uid://dwvywnj86ycn0" path="res://Assets/Images/UI/New/foodProgress.png" id="4_cu7rr"]
-[ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="6_0q8px"]
-[ext_resource type="Texture2D" uid="uid://bg8xhhrnrhxxt" path="res://Assets/Images/UI/New/mainState_1.png" id="6_jjyac"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Details/armor_panel.png" id="panel"]
+[ext_resource type="Material" path="res://Assets/Images/UI/Details/details_opaque.tres" id="opaque"]
+[ext_resource type="Theme" path="res://Assets/Images/UI/building/warehouse/inventory_theme.tres" id="theme"]
+[ext_resource type="Script" path="res://Scripts/UI/StaHunUi.cs" id="script"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Main/rice_flat.svg" id="rice"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Main/apple_active.svg" id="apple"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Main/hunger_strip.svg" id="strip"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/stamina.png" id="stamina"]
 
 [node name="Sta_Hun" type="TextureButton" unique_id=960878017 node_paths=PackedStringArray("warehouseBtn", "propertyButton", "hungerBg")]
+texture_filter = 1
 offset_top = 6.0
 offset_right = 546.0
 offset_bottom = 292.0
-texture_normal = ExtResource("1_jjyac")
-script = ExtResource("2_q88b4")
+theme = ExtResource("theme")
+ignore_texture_size = true
+script = ExtResource("script")
 warehouseBtn = NodePath("warehouseButton")
 propertyButton = NodePath("propertyButton")
 hungerBg = NodePath("HungerBg")
 
-[node name="Hunger" type="TextureButton" parent="." unique_id=1709879092]
+[node name="Bg" type="NinePatchRect" parent="."]
 layout_mode = 0
-offset_left = 25.0
-offset_top = 18.0
-offset_right = 318.0
-offset_bottom = 162.0
+offset_left = 12
+offset_top = 10
+offset_right = 534
+offset_bottom = 262
+mouse_filter = 2
+material = ExtResource("opaque")
+texture = ExtResource("panel")
+patch_margin_left = 28
+patch_margin_top = 28
+patch_margin_right = 28
+patch_margin_bottom = 28
+
+[node name="Hunger" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 25
+offset_top = 18
+offset_right = 318
+offset_bottom = 162
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="HIcon" type="TextureRect" parent="Hunger" unique_id=423896582]
+[node name="HIcon" type="TextureRect" parent="Hunger"]
 layout_mode = 0
-offset_left = 5.0
-offset_top = 36.0
-offset_right = 91.63704
-offset_bottom = 122.0
-texture = ExtResource("3_4qygq")
+offset_left = 5
+offset_top = 36
+offset_right = 91
+offset_bottom = 122
+mouse_filter = 2
+texture = ExtResource("rice")
 expand_mode = 1
+stretch_mode = 5
 
-[node name="H1" type="TextureRect" parent="Hunger" unique_id=305634069]
+
+[node name="H1" type="TextureRect" parent="Hunger"]
 layout_mode = 0
-offset_left = 105.0
-offset_top = 55.0
-offset_right = 155.0
-offset_bottom = 106.57576
-texture = ExtResource("4_cu7rr")
+offset_left = 105
+offset_top = 55
+offset_right = 155
+offset_bottom = 107
+mouse_filter = 2
+texture = ExtResource("apple")
 expand_mode = 1
+stretch_mode = 5
 
-[node name="H2" type="TextureRect" parent="Hunger" unique_id=1448421353]
+
+[node name="H2" type="TextureRect" parent="Hunger"]
 layout_mode = 0
-offset_left = 166.0
-offset_top = 55.0
-offset_right = 216.0
-offset_bottom = 106.57576
-texture = ExtResource("4_cu7rr")
+offset_left = 166
+offset_top = 55
+offset_right = 216
+offset_bottom = 107
+mouse_filter = 2
+texture = ExtResource("apple")
 expand_mode = 1
+stretch_mode = 5
 
-[node name="H3" type="TextureRect" parent="Hunger" unique_id=153815242]
+
+[node name="H3" type="TextureRect" parent="Hunger"]
 layout_mode = 0
-offset_left = 229.0
-offset_top = 55.0
-offset_right = 279.0
-offset_bottom = 106.57576
-texture = ExtResource("4_cu7rr")
+offset_left = 229
+offset_top = 55
+offset_right = 279
+offset_bottom = 107
+mouse_filter = 2
+texture = ExtResource("apple")
 expand_mode = 1
+stretch_mode = 5
 
-[node name="Stamina" type="TextureButton" parent="." unique_id=648011017]
+
+[node name="Divider" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 331.0
-offset_top = 25.0
-offset_right = 516.0
-offset_bottom = 164.0
+offset_left = 327
+offset_top = 38
+offset_right = 329
+offset_bottom = 135
+mouse_filter = 2
+color = Color(0.5, 0.76, 0.91, 1)
+
+[node name="Stamina" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 331
+offset_top = 25
+offset_right = 516
+offset_bottom = 164
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="SIcon" type="TextureRect" parent="Stamina" unique_id=940793646]
+[node name="SIcon" type="TextureRect" parent="Stamina"]
 layout_mode = 0
-offset_left = 22.999992
-offset_top = 43.328037
-offset_right = 64.99999
-offset_bottom = 105.77246
-texture = ExtResource("6_0q8px")
+offset_left = 23
+offset_top = 43
+offset_right = 65
+offset_bottom = 105
+mouse_filter = 2
+texture = ExtResource("stamina")
 expand_mode = 1
+stretch_mode = 5
+self_modulate = Color(1, 0.85, 0.65, 1)
 
-[node name="SValue" type="Label" parent="Stamina" unique_id=2022723050]
+[node name="SValue" type="Label" parent="Stamina"]
 layout_mode = 0
-offset_left = 56.0
-offset_top = 39.0
-offset_right = 188.0
-offset_bottom = 111.0
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 48
-text = "x15"
+offset_left = 56
+offset_top = 39
+offset_right = 188
+offset_bottom = 111
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.94, 0.98, 1, 1)
+theme_override_font_sizes/font_size = 46
+text = "x10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HungerBg" type="TextureRect" parent="." unique_id=1127919187]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 157.0
-offset_right = 523.0
-offset_bottom = 252.0
-texture = ExtResource("6_jjyac")
 
-[node name="HungerState" type="TextureButton" parent="." unique_id=2141518108]
+[node name="HungerBg" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 43.0
-offset_top = 176.0
-offset_right = 499.0
-offset_bottom = 232.0
+offset_left = 33
+offset_top = 178
+offset_right = 513
+offset_bottom = 244
+mouse_filter = 2
+texture = ExtResource("strip")
+expand_mode = 1
+
+[node name="HungerState" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 43
+offset_top = 176
+offset_right = 499
+offset_bottom = 232
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="HungerState" unique_id=211532519]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -75.5
-offset_top = -30.0
-offset_right = 67.5
-offset_bottom = 26.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_constants/outline_size = 10
+[node name="Label" type="Label" parent="HungerState"]
+layout_mode = 0
+offset_left = 0
+offset_top = 0
+offset_right = 456
+offset_bottom = 66
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.83, 0.94, 0.89, 1)
 theme_override_font_sizes/font_size = 40
 text = "半饱"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="warehouseButton" type="Button" parent="." unique_id=1205585204]
+
+[node name="warehouseButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 33.0
-offset_top = 27.0
-offset_right = 519.0
-offset_bottom = 158.0
+offset_left = 33
+offset_top = 27
+offset_right = 519
+offset_bottom = 158
 flat = true
 
-[node name="propertyButton" type="Button" parent="." unique_id=316472007]
+[node name="propertyButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 165.0
-offset_right = 500.0
-offset_bottom = 245.0
+offset_left = 40
+offset_top = 165
+offset_right = 500
+offset_bottom = 245
 flat = true

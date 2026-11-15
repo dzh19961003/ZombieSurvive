@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7vqw5gyrfkb7"
-path="res://.godot/imported/bagItem.png-af61386c4da87d78012852fb27652807.ctex"
+uid="uid://bt2nvtrl6e76o"
+path="res://.godot/imported/health_fill.svg-d507cfada2c25638e5a1d4035b2515da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/UI/Explore/ExploreNew/Bag/bagItem.png"
-dest_files=["res://.godot/imported/bagItem.png-af61386c4da87d78012852fb27652807.ctex"]
+source_file="res://Assets/Images/UI/Main/health_fill.svg"
+dest_files=["res://.godot/imported/health_fill.svg-d507cfada2c25638e5a1d4035b2515da.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

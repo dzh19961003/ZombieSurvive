@@ -115,7 +115,7 @@ public partial class WarehouseUI : Control
                     skipNum += 1;
                     continue;
                 }
-                var itemScene = GD.Load<PackedScene>("res://UI/item.tscn");
+                var itemScene = GD.Load<PackedScene>("res://UI/InventoryItem.tscn");
                 Item item = itemScene.Instantiate<Item>();
                 ItemList.AddChild(item);
                 item.ID = itemList[i];
@@ -124,7 +124,7 @@ public partial class WarehouseUI : Control
             }
             for (int i = 0; i < (minNum+ skipNum - itemList.Count); i++)
             {
-                var itemScene = GD.Load<PackedScene>("res://UI/item.tscn");
+                var itemScene = GD.Load<PackedScene>("res://UI/InventoryItem.tscn");
                 Item item = itemScene.Instantiate<Item>();
                 ItemList.AddChild(item);
                 item.ID = 0;
@@ -142,7 +142,7 @@ public partial class WarehouseUI : Control
                     skipNum += 1;
                     continue;
                 }
-                var itemScene = GD.Load<PackedScene>("res://UI/item.tscn");
+                var itemScene = GD.Load<PackedScene>("res://UI/InventoryItem.tscn");
                 Item item = itemScene.Instantiate<Item>();
                 ItemList.AddChild(item);
                 item.ID = ItemID[i];
@@ -156,7 +156,7 @@ public partial class WarehouseUI : Control
                 int fillCount = (remainder == 0) ? 0 : (gridLength - remainder);
                 for (int i = 0; i < fillCount; i++)
                 {
-                    var itemScene = GD.Load<PackedScene>("res://UI/item.tscn");
+                    var itemScene = GD.Load<PackedScene>("res://UI/InventoryItem.tscn");
                     Item item = itemScene.Instantiate<Item>();
                     ItemList.AddChild(item);
                     item.ID = 0;
@@ -167,7 +167,7 @@ public partial class WarehouseUI : Control
             {
                 for (int i = 0; i < minNum- (itemList.Count - skipNum); i++)
                 {
-                    var itemScene = GD.Load<PackedScene>("res://UI/item.tscn");
+                    var itemScene = GD.Load<PackedScene>("res://UI/InventoryItem.tscn");
                     Item item = itemScene.Instantiate<Item>();
                     ItemList.AddChild(item);
                     item.ID = 0;

@@ -1,0 +1,64 @@
+[gd_resource type="Theme" format=3 uid="uid://ti650xftyxm1"]
+
+[ext_resource type="FontVariation" uid="uid://c1sbqb3crvk3a" path="res://Assets/Fonts/font_bold.tres" id="font"]
+
+[sub_resource type="StyleBoxEmpty" id="Empty"]
+
+[sub_resource type="Gradient" id="Transparent"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="NoArrow"]
+gradient = SubResource("Transparent")
+width = 1
+height = 1
+
+[sub_resource type="StyleBoxFlat" id="Grabber"]
+content_margin_left = 7.0
+content_margin_top = 18.0
+content_margin_right = 7.0
+content_margin_bottom = 18.0
+bg_color = Color(0.45, 0.64, 0.77, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="GrabberHover"]
+content_margin_left = 7.0
+content_margin_top = 18.0
+content_margin_right = 7.0
+content_margin_bottom = 18.0
+bg_color = Color(0.59, 0.78, 0.9, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="Track"]
+content_margin_left = 7.0
+content_margin_right = 7.0
+bg_color = Color(0.12, 0.26, 0.36, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[resource]
+default_font = ExtResource("font")
+default_font_size = 28
+Button/styles/focus = SubResource("Empty")
+Button/styles/hover = SubResource("Empty")
+Button/styles/normal = SubResource("Empty")
+Button/styles/pressed = SubResource("Empty")
+Label/colors/font_color = Color(0.96, 0.94, 0.86, 1)
+VScrollBar/icons/decrement = SubResource("NoArrow")
+VScrollBar/icons/decrement_highlight = SubResource("NoArrow")
+VScrollBar/icons/decrement_pressed = SubResource("NoArrow")
+VScrollBar/icons/increment = SubResource("NoArrow")
+VScrollBar/icons/increment_highlight = SubResource("NoArrow")
+VScrollBar/icons/increment_pressed = SubResource("NoArrow")
+VScrollBar/styles/grabber = SubResource("Grabber")
+VScrollBar/styles/grabber_highlight = SubResource("GrabberHover")
+VScrollBar/styles/grabber_pressed = SubResource("GrabberHover")
+VScrollBar/styles/scroll = SubResource("Track")
+VScrollBar/styles/scroll_focus = SubResource("Empty")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btrxou4g2ucfl"
-path="res://.godot/imported/scroll.png-763e19b557b6d598fd5aa7a08a4aea91.ctex"
+uid="uid://d35js8g2jgkxb"
+path="res://.godot/imported/apple_active.svg-c4d66850dc6a28b95392d5b3edcab4dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/UI/building/warehouse/scroll.png"
-dest_files=["res://.godot/imported/scroll.png-763e19b557b6d598fd5aa7a08a4aea91.ctex"]
+source_file="res://Assets/Images/UI/Main/apple_active.svg"
+dest_files=["res://.godot/imported/apple_active.svg-c4d66850dc6a28b95392d5b3edcab4dc.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

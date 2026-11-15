@@ -78,7 +78,7 @@ public partial class Warehouse2UI : Control
         int slotCount = Mathf.Max(ids.Count, 20);
         slotCount = ((slotCount + WhColumns - 1) / WhColumns) * WhColumns;
 
-        PackedScene itemScene = GD.Load<PackedScene>("res://UI/item.tscn");
+        PackedScene itemScene = GD.Load<PackedScene>("res://UI/InventoryItem.tscn");
         for (int i = 0; i < slotCount; i++)
         {
             Item item = itemScene.Instantiate<Item>();

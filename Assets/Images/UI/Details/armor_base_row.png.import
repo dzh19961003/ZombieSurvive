@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://856vytoxf2py"
-path="res://.godot/imported/item.png-44084814c42dd07b20e9feae2365c9d0.ctex"
+uid="uid://cl36l313rp66g"
+path="res://.godot/imported/armor_base_row.png-aceff30acfa17b341a196be1ceb4c548.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/UI/building/warehouse/item.png"
-dest_files=["res://.godot/imported/item.png-44084814c42dd07b20e9feae2365c9d0.ctex"]
+source_file="res://Assets/Images/UI/Details/armor_base_row.png"
+dest_files=["res://.godot/imported/armor_base_row.png-aceff30acfa17b341a196be1ceb4c548.ctex"]
 
 [params]
 

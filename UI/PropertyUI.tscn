@@ -89,19 +89,19 @@ texture = ExtResource("3_6k270")
 [node name="weapon" type="TextureRect" parent="Equipments" unique_id=2073056354]
 custom_minimum_size = Vector2(140, 100)
 layout_mode = 0
-offset_left = 90.0
-offset_top = 676.0
-offset_right = 279.39087
-offset_bottom = 858.0
+offset_left = 101.0
+offset_top = 691.0
+offset_right = 260.2132
+offset_bottom = 844.0
 texture = ExtResource("3_bje0t")
 expand_mode = 1
 
 [node name="weapon" type="Label" parent="Equipments/weapon" unique_id=990717200]
 layout_mode = 0
-offset_left = 46.0
-offset_top = 184.0
-offset_right = 138.0
-offset_bottom = 220.0
+offset_left = 35.0
+offset_top = 171.0
+offset_right = 127.0
+offset_bottom = 207.0
 theme_override_font_sizes/font_size = 35
 text = "武器"
 horizontal_alignment = 1
@@ -110,40 +110,40 @@ vertical_alignment = 1
 [node name="armor" type="TextureRect" parent="Equipments" unique_id=1873382615]
 custom_minimum_size = Vector2(140, 100)
 layout_mode = 0
-offset_left = 319.0
-offset_top = 677.0
-offset_right = 508.39087
-offset_bottom = 859.0
+offset_left = 335.0
+offset_top = 691.0
+offset_right = 494.2132
+offset_bottom = 844.0
 texture = ExtResource("4_0g72h")
 expand_mode = 1
 
 [node name="armor" type="Label" parent="Equipments/armor" unique_id=907574571]
 layout_mode = 0
-offset_left = 46.0
-offset_top = 184.0
-offset_right = 138.0
-offset_bottom = 220.0
+offset_left = 34.0
+offset_top = 171.0
+offset_right = 126.0
+offset_bottom = 207.0
 theme_override_font_sizes/font_size = 35
 text = "护甲"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="shoes" type="TextureRect" parent="Equipments" unique_id=895999204]
-custom_minimum_size = Vector2(140, 140)
+custom_minimum_size = Vector2(140, 100)
 layout_mode = 0
-offset_left = 550.0
-offset_top = 677.0
-offset_right = 739.39087
-offset_bottom = 859.0
+offset_left = 564.0
+offset_top = 691.0
+offset_right = 723.2132
+offset_bottom = 844.0
 texture = ExtResource("5_0fvta")
 expand_mode = 1
 
 [node name="shoes" type="Label" parent="Equipments/shoes" unique_id=403855683]
 layout_mode = 0
-offset_left = 46.0
-offset_top = 184.0
-offset_right = 138.0
-offset_bottom = 220.0
+offset_left = 34.0
+offset_top = 171.0
+offset_right = 126.0
+offset_bottom = 207.0
 theme_override_font_sizes/font_size = 35
 text = "鞋子"
 horizontal_alignment = 1
@@ -152,19 +152,19 @@ vertical_alignment = 1
 [node name="ring" type="TextureRect" parent="Equipments" unique_id=993718778]
 custom_minimum_size = Vector2(140, 100)
 layout_mode = 0
-offset_left = 779.0
-offset_top = 677.0
-offset_right = 968.39087
-offset_bottom = 859.0
+offset_left = 795.0
+offset_top = 691.0
+offset_right = 954.2132
+offset_bottom = 844.0
 texture = ExtResource("6_sjbdt")
 expand_mode = 1
 
 [node name="ring" type="Label" parent="Equipments/ring" unique_id=1394979250]
 layout_mode = 0
-offset_left = 46.0
-offset_top = 184.0
-offset_right = 138.0
-offset_bottom = 220.0
+offset_left = 35.0
+offset_top = 171.0
+offset_right = 127.0
+offset_bottom = 207.0
 theme_override_font_sizes/font_size = 35
 text = "饰品"
 horizontal_alignment = 1
@@ -305,36 +305,6 @@ offset_bottom = 390.0
 texture_normal = ExtResource("2_a1hvy")
 stretch_mode = 0
 
-[node name="Health" type="TextureProgressBar" parent="." unique_id=1707433092]
-layout_mode = 0
-offset_left = 394.0
-offset_top = 290.0
-offset_right = 959.0
-offset_bottom = 319.0
-value = 50.0
-nine_patch_stretch = true
-texture_progress = ExtResource("11_itt3u")
-tint_over = Color(0.9945772, 5.4628404e-06, 9.62615e-07, 1)
-
-[node name="Label" type="Label" parent="Health" unique_id=1827576991]
-layout_mode = 0
-offset_left = 188.0
-offset_top = -8.0
-offset_right = 346.0
-offset_bottom = 35.0
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 42
-text = "100/100"
-
-[node name="TextureRect" type="TextureRect" parent="Health" unique_id=1271902915]
-layout_mode = 0
-offset_left = -92.0
-offset_top = -31.0
-offset_right = 5.0
-offset_bottom = 66.0
-texture = ExtResource("7_f8vne")
-expand_mode = 1
-
 [node name="close_button" type="Button" parent="." unique_id=1378168597]
 layout_mode = 0
 offset_left = 897.00006
@@ -346,6 +316,36 @@ theme_override_icons/icon = ExtResource("2_a1hvy")
 icon = ExtResource("13_pgtbk")
 flat = true
 icon_alignment = 1
+
+[node name="Health" type="TextureProgressBar" parent="." unique_id=1707433092]
+layout_mode = 0
+offset_left = 393.0
+offset_top = 291.0
+offset_right = 963.0
+offset_bottom = 320.0
+value = 50.0
+nine_patch_stretch = true
+texture_progress = ExtResource("11_itt3u")
+tint_over = Color(0.9945772, 5.4628404e-06, 9.62615e-07, 1)
+
+[node name="Label" type="Label" parent="Health" unique_id=1827576991]
+layout_mode = 0
+offset_left = 206.0
+offset_top = -8.0
+offset_right = 364.0
+offset_bottom = 35.0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 42
+text = "100/100"
+
+[node name="TextureRect" type="TextureRect" parent="Health" unique_id=1271902915]
+layout_mode = 0
+offset_left = -90.0
+offset_top = -32.0
+offset_right = 2.0
+offset_bottom = 60.0
+texture = ExtResource("7_f8vne")
+expand_mode = 1
 
 [node name="strength" type="TextureRect" parent="." unique_id=280162119]
 layout_mode = 0
@@ -363,6 +363,7 @@ offset_left = 73.74101
 offset_top = 6.000002
 offset_right = 164.74101
 offset_bottom = 67.0
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 60
 text = "10"
 horizontal_alignment = 1
@@ -370,10 +371,10 @@ vertical_alignment = 1
 
 [node name="progress" type="TextureProgressBar" parent="strength" unique_id=912182157]
 layout_mode = 0
-offset_left = -4.5776367e-05
-offset_top = 97.0
-offset_right = 157.37407
-offset_bottom = 118.99999
+offset_left = 0.89927673
+offset_top = 99.0
+offset_right = 155.57555
+offset_bottom = 117.99999
 value = 100.0
 nine_patch_stretch = true
 texture_progress = ExtResource("15_y338u")
@@ -381,9 +382,9 @@ texture_progress = ExtResource("15_y338u")
 [node name="Label" type="Label" parent="strength/progress" unique_id=1770772263]
 layout_mode = 0
 offset_left = 3.4332275e-05
-offset_top = -2.0000153
-offset_right = 157.37415
-offset_bottom = 21.999985
+offset_top = -3.0000153
+offset_right = 155.57556
+offset_bottom = 20.999985
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 24
@@ -420,6 +421,7 @@ offset_left = 94.999985
 offset_top = 4.9999924
 offset_right = 185.99998
 offset_bottom = 65.99999
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 60
 text = "50"
 horizontal_alignment = 1
@@ -427,19 +429,19 @@ vertical_alignment = 1
 
 [node name="progress" type="TextureProgressBar" parent="agile" unique_id=1171486576]
 layout_mode = 0
-offset_left = 1.5258789e-05
-offset_top = 97.0
-offset_right = 177.00002
-offset_bottom = 118.99999
+offset_left = 0.89927673
+offset_top = 99.0
+offset_right = 174.99998
+offset_bottom = 118.0
 value = 100.0
 nine_patch_stretch = true
 texture_progress = ExtResource("15_y338u")
 
 [node name="Label2" type="Label" parent="agile/progress" unique_id=1389851494]
 layout_mode = 0
-offset_top = -2.0
-offset_right = 177.0
-offset_bottom = 22.0
+offset_top = -3.0
+offset_right = 175.10071
+offset_bottom = 21.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 24
@@ -476,6 +478,7 @@ offset_left = 87.00003
 offset_top = 4.9999924
 offset_right = 178.00003
 offset_bottom = 65.99999
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 60
 text = "50"
 horizontal_alignment = 1
@@ -483,19 +486,20 @@ vertical_alignment = 1
 
 [node name="progress" type="TextureProgressBar" parent="intelligence" unique_id=1870846007]
 layout_mode = 0
-offset_left = -1.0
-offset_top = 97.0
-offset_right = 169.0
-offset_bottom = 119.0
+offset_left = -0.10072327
+offset_top = 98.0
+offset_right = 167.99998
+offset_bottom = 117.0
 value = 100.0
 nine_patch_stretch = true
 texture_progress = ExtResource("15_y338u")
 
 [node name="Label3" type="Label" parent="intelligence/progress" unique_id=2124319613]
 layout_mode = 0
-offset_top = -2.0
-offset_right = 169.0
-offset_bottom = 22.0
+offset_left = 0.10070801
+offset_top = -3.0
+offset_right = 169.10071
+offset_bottom = 21.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 24

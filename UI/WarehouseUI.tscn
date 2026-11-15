@@ -1,252 +1,272 @@
 [gd_scene format=3 uid="uid://6nmspgaue8yk"]
 
-[ext_resource type="Script" uid="uid://clfjt522lih5y" path="res://Scripts/UI/WarehouseUI.cs" id="1_nevy0"]
-[ext_resource type="Texture2D" uid="uid://cjbeau7mde2il" path="res://Assets/Images/UI/building/warehouse/warhouseBg.png" id="2_2b0ju"]
-[ext_resource type="Texture2D" uid="uid://dts0y5aj1pyi6" path="res://Assets/Images/UI/New/bg_2.png" id="3_2b0ju"]
-[ext_resource type="Texture2D" uid="uid://c73yxng4uea1l" path="res://Assets/Images/UI/New/closeBtn.png" id="4_iklqg"]
-[ext_resource type="Texture2D" uid="uid://ctx1m46xdonlg" path="res://Assets/Images/UI/building/warehouse/tabNormal.png" id="5_t5eni"]
-[ext_resource type="Texture2D" uid="uid://dettnwblyxpnq" path="res://Assets/Images/UI/building/warehouse/tabSelectedl.png" id="6_tabs"]
-[ext_resource type="Texture2D" uid="uid://7ynvvieho1on" path="res://Assets/Images/UI/building/warehouse/all_1.png" id="7_all1"]
-[ext_resource type="Texture2D" uid="uid://daqmratf5luly" path="res://Assets/Images/UI/building/warehouse/all_2.png" id="8_all2"]
-[ext_resource type="Texture2D" uid="uid://jeog8j8gph3t" path="res://Assets/Images/UI/building/warehouse/food_1.png" id="9_food1"]
-[ext_resource type="Texture2D" uid="uid://bo7aluh8n8lqp" path="res://Assets/Images/UI/building/warehouse/food_2.png" id="10_food2"]
-[ext_resource type="Texture2D" uid="uid://b6iokpivhkmhb" path="res://Assets/Images/UI/building/warehouse/medicine_1.png" id="11_med1"]
-[ext_resource type="Texture2D" uid="uid://dgdv00ilnhhv4" path="res://Assets/Images/UI/building/warehouse/medicine_2.png" id="12_med2"]
-[ext_resource type="Texture2D" uid="uid://b06vc5v6cfuy1" path="res://Assets/Images/UI/building/warehouse/equip_1.png" id="13_equip1"]
-[ext_resource type="Texture2D" uid="uid://n8y3l7285xd0" path="res://Assets/Images/UI/building/warehouse/equip_2.png" id="14_equip2"]
-[ext_resource type="Texture2D" uid="uid://cfwsyer0x2m1f" path="res://Assets/Images/UI/building/warehouse/tools_1.png" id="15_tools1"]
-[ext_resource type="Texture2D" uid="uid://ckjsv71epk4dp" path="res://Assets/Images/UI/building/warehouse/tools_2.png" id="16_tools2"]
+[ext_resource type="Script" path="res://Scripts/UI/WarehouseUI.cs" id="script"]
+[ext_resource type="Theme" path="res://Assets/Images/UI/building/warehouse/inventory_theme.tres" id="theme"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Explore/ExploreNew/Bag/bagBg.png" id="bag"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Details/close.svg" id="close"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/warehouse/warhouseBg.png" id="panel"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/warehouse/crates.png" id="crates"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/warehouse/tabNormal.png" id="tab"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/warehouse/tabSelectedl.png" id="selected"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/warehouse/all_1.png" id="all1"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/warehouse/all_2.png" id="all2"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/warehouse/food_1.png" id="food1"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/warehouse/food_2.png" id="food2"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/warehouse/medicine_1.png" id="medicine1"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/warehouse/medicine_2.png" id="medicine2"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/warehouse/equip_1.png" id="equip1"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/warehouse/equip_2.png" id="equip2"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/warehouse/tools_1.png" id="tools1"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/warehouse/tools_2.png" id="tools2"]
 
-[node name="Warehouse" type="Control" unique_id=1634816914 node_paths=PackedStringArray("ItemList", "closeBtn", "tabButton")]
+[node name="Warehouse" type="Control" node_paths=PackedStringArray("ItemList", "closeBtn", "tabButton")]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_nevy0")
+theme = ExtResource("theme")
+script = ExtResource("script")
 ItemList = NodePath("ScrollContainer/itemList")
 closeBtn = NodePath("closeBtn")
 tabButton = [NodePath("tab/AllBtn"), NodePath("tab/FoodBtn"), NodePath("tab/MedicBtn"), NodePath("tab/EquipBtn"), NodePath("tab/MaterialBtn")]
 
-[node name="Control" type="ColorRect" parent="." unique_id=309588429]
-propagate_maximum_size = true
-layout_mode = 1
-anchors_preset = -1
-offset_right = 1080.0
-offset_bottom = 1920.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.78431374)
-
-[node name="bg" type="TextureRect" parent="." unique_id=55441412]
+[node name="Control" type="ColorRect" parent="."]
 layout_mode = 0
-offset_left = 68.0
-offset_top = 250.0
-offset_right = 1012.0
-offset_bottom = 1600.0
-texture = ExtResource("2_2b0ju")
+offset_left = 0
+offset_top = 0
+offset_right = 1080
+offset_bottom = 1920
+color = Color(0, 0, 0, 0.78)
+
+[node name="bg" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 68
+offset_top = 250
+offset_right = 1012
+offset_bottom = 1600
+mouse_filter = 2
+texture = ExtResource("panel")
 expand_mode = 1
-stretch_mode = 0
 
-[node name="bg2" type="NinePatchRect" parent="bg" unique_id=457405040]
-visible = false
+[node name="Crates" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 39.0
-offset_top = 257.0
-offset_right = 964.0
-offset_bottom = 1310.0
-texture = ExtResource("3_2b0ju")
-region_rect = Rect2(0, 0, 980, 1578)
-patch_margin_left = 34
-patch_margin_top = 27
-patch_margin_right = 26
-patch_margin_bottom = 24
+offset_left = 128
+offset_top = 282
+offset_right = 269
+offset_bottom = 376
+mouse_filter = 2
+texture = ExtResource("crates")
+expand_mode = 1
 
-[node name="Label" type="Label" parent="." unique_id=672004121]
+[node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 290.0
-offset_top = 268.0
-offset_right = 790.0
-offset_bottom = 378.0
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_constants/outline_size = 6
+offset_left = 300
+offset_top = 282
+offset_right = 850
+offset_bottom = 368
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.96, 0.94, 0.86, 1)
 theme_override_font_sizes/font_size = 56
 text = "物品仓库"
-horizontal_alignment = 1
+horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=61371309]
+[node name="closeBtn" type="Button" parent="."]
 layout_mode = 0
-offset_left = 114.0
-offset_top = 568.0
-offset_right = 974.0
-offset_bottom = 1549.0
-follow_focus = true
-draw_focus_border = true
-
-[node name="itemList" type="GridContainer" parent="ScrollContainer" unique_id=1259200723]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/h_separation = -12
-theme_override_constants/v_separation = -12
-columns = 5
-
-[node name="closeBtn" type="Button" parent="." unique_id=2000255513]
-layout_mode = 0
-offset_left = 889.0
-offset_top = 267.0
-offset_right = 1001.0
-offset_bottom = 382.0
-icon = ExtResource("4_iklqg")
+offset_left = 922
+offset_top = 287
+offset_right = 986
+offset_bottom = 351
+icon = ExtResource("close")
 flat = true
 expand_icon = true
+focus_mode = 0
+mouse_default_cursor_shape = 2
 
-[node name="tab" type="HBoxContainer" parent="." unique_id=1565207282]
+[node name="tab" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 106.0
-offset_top = 468.0
-offset_right = 986.0
-offset_bottom = 567.0
-theme_override_constants/separation = -15
+offset_left = 92
+offset_top = 420
+offset_right = 992
+offset_bottom = 510
+theme_override_constants/separation = 0
 
-[node name="AllBtn" type="TextureButton" parent="tab" unique_id=428616660]
-custom_minimum_size = Vector2(188, 85)
+[node name="AllBtn" type="TextureButton" parent="tab"]
+custom_minimum_size = Vector2(180, 90)
 layout_mode = 2
-texture_normal = ExtResource("6_tabs")
+texture_normal = ExtResource("selected")
 ignore_texture_size = true
 stretch_mode = 0
+mouse_default_cursor_shape = 2
 
-[node name="Label" type="Label" parent="tab/AllBtn" unique_id=1807112969]
+[node name="type" type="TextureRect" parent="tab/AllBtn"]
 layout_mode = 0
-offset_left = 76.0
-offset_top = 28.0
-offset_right = 178.0
-offset_bottom = 75.0
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+offset_left = 18
+offset_top = 18
+offset_right = 70
+offset_bottom = 70
+mouse_filter = 2
+texture = ExtResource("all2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="tab/AllBtn"]
+layout_mode = 0
+offset_left = 78
+offset_top = 17
+offset_right = 172
+offset_bottom = 73
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.96, 0.94, 0.86, 1)
 theme_override_font_sizes/font_size = 34
 text = "全部"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="type" type="TextureRect" parent="tab/AllBtn" unique_id=1380674185]
-layout_mode = 0
-offset_left = 18.0
-offset_top = 18.0
-offset_right = 70.0
-offset_bottom = 70.0
-texture = ExtResource("8_all2")
-expand_mode = 1
-
-[node name="FoodBtn" type="TextureButton" parent="tab" unique_id=2055870386]
-custom_minimum_size = Vector2(188, 85)
+[node name="FoodBtn" type="TextureButton" parent="tab"]
+custom_minimum_size = Vector2(180, 90)
 layout_mode = 2
-texture_normal = ExtResource("5_t5eni")
+texture_normal = ExtResource("tab")
 ignore_texture_size = true
 stretch_mode = 0
+mouse_default_cursor_shape = 2
 
-[node name="Label" type="Label" parent="tab/FoodBtn" unique_id=221438928]
+[node name="type" type="TextureRect" parent="tab/FoodBtn"]
 layout_mode = 0
-offset_left = 76.0
-offset_top = 28.0
-offset_right = 178.0
-offset_bottom = 75.0
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+offset_left = 18
+offset_top = 18
+offset_right = 70
+offset_bottom = 70
+mouse_filter = 2
+texture = ExtResource("food1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="tab/FoodBtn"]
+layout_mode = 0
+offset_left = 78
+offset_top = 17
+offset_right = 172
+offset_bottom = 73
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.96, 0.94, 0.86, 1)
 theme_override_font_sizes/font_size = 34
 text = "食物"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="type" type="TextureRect" parent="tab/FoodBtn" unique_id=643866685]
-layout_mode = 0
-offset_left = 18.0
-offset_top = 18.0
-offset_right = 70.0
-offset_bottom = 70.0
-texture = ExtResource("9_food1")
-expand_mode = 1
-
-[node name="MedicBtn" type="TextureButton" parent="tab" unique_id=309946957]
-custom_minimum_size = Vector2(188, 85)
+[node name="MedicBtn" type="TextureButton" parent="tab"]
+custom_minimum_size = Vector2(180, 90)
 layout_mode = 2
-texture_normal = ExtResource("5_t5eni")
+texture_normal = ExtResource("tab")
 ignore_texture_size = true
 stretch_mode = 0
+mouse_default_cursor_shape = 2
 
-[node name="Label" type="Label" parent="tab/MedicBtn" unique_id=1539690880]
+[node name="type" type="TextureRect" parent="tab/MedicBtn"]
 layout_mode = 0
-offset_left = 76.0
-offset_top = 28.0
-offset_right = 178.0
-offset_bottom = 75.0
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+offset_left = 18
+offset_top = 18
+offset_right = 70
+offset_bottom = 70
+mouse_filter = 2
+texture = ExtResource("medicine1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="tab/MedicBtn"]
+layout_mode = 0
+offset_left = 78
+offset_top = 17
+offset_right = 172
+offset_bottom = 73
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.96, 0.94, 0.86, 1)
 theme_override_font_sizes/font_size = 34
 text = "药品"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="type" type="TextureRect" parent="tab/MedicBtn" unique_id=1362524136]
-layout_mode = 0
-offset_left = 18.0
-offset_top = 18.0
-offset_right = 70.0
-offset_bottom = 70.0
-texture = ExtResource("11_med1")
-expand_mode = 1
-
-[node name="EquipBtn" type="TextureButton" parent="tab" unique_id=754796123]
-custom_minimum_size = Vector2(188, 85)
+[node name="EquipBtn" type="TextureButton" parent="tab"]
+custom_minimum_size = Vector2(180, 90)
 layout_mode = 2
-texture_normal = ExtResource("5_t5eni")
+texture_normal = ExtResource("tab")
 ignore_texture_size = true
 stretch_mode = 0
+mouse_default_cursor_shape = 2
 
-[node name="Label" type="Label" parent="tab/EquipBtn" unique_id=1885384263]
+[node name="type" type="TextureRect" parent="tab/EquipBtn"]
 layout_mode = 0
-offset_left = 76.0
-offset_top = 28.0
-offset_right = 178.0
-offset_bottom = 75.0
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+offset_left = 18
+offset_top = 18
+offset_right = 70
+offset_bottom = 70
+mouse_filter = 2
+texture = ExtResource("equip1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="tab/EquipBtn"]
+layout_mode = 0
+offset_left = 78
+offset_top = 17
+offset_right = 172
+offset_bottom = 73
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.96, 0.94, 0.86, 1)
 theme_override_font_sizes/font_size = 34
 text = "装备"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="type" type="TextureRect" parent="tab/EquipBtn" unique_id=810351038]
-layout_mode = 0
-offset_left = 18.0
-offset_top = 18.0
-offset_right = 70.0
-offset_bottom = 70.0
-texture = ExtResource("13_equip1")
-expand_mode = 1
-
-[node name="MaterialBtn" type="TextureButton" parent="tab" unique_id=625322058]
-custom_minimum_size = Vector2(188, 85)
+[node name="MaterialBtn" type="TextureButton" parent="tab"]
+custom_minimum_size = Vector2(180, 90)
 layout_mode = 2
-texture_normal = ExtResource("5_t5eni")
+texture_normal = ExtResource("tab")
 ignore_texture_size = true
 stretch_mode = 0
+mouse_default_cursor_shape = 2
 
-[node name="Label" type="Label" parent="tab/MaterialBtn" unique_id=1266706163]
+[node name="type" type="TextureRect" parent="tab/MaterialBtn"]
 layout_mode = 0
-offset_left = 76.0
-offset_top = 28.0
-offset_right = 178.0
-offset_bottom = 75.0
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+offset_left = 18
+offset_top = 18
+offset_right = 70
+offset_bottom = 70
+mouse_filter = 2
+texture = ExtResource("tools1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="tab/MaterialBtn"]
+layout_mode = 0
+offset_left = 78
+offset_top = 17
+offset_right = 172
+offset_bottom = 73
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.96, 0.94, 0.86, 1)
 theme_override_font_sizes/font_size = 34
 text = "材料"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="type" type="TextureRect" parent="tab/MaterialBtn" unique_id=1895863589]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
-offset_left = 18.0
-offset_top = 18.0
-offset_right = 70.0
-offset_bottom = 70.0
-texture = ExtResource("15_tools1")
-expand_mode = 1
+offset_left = 100
+offset_top = 530
+offset_right = 1002
+offset_bottom = 1568
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 1
+follow_focus = true
+
+[node name="itemList" type="GridContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 5

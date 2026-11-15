@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://db5dmmdgyy85g"
-path="res://.godot/imported/itemChoose.png-d715f3a8ccc0924cf429f82b840cb08a.ctex"
+uid="uid://bpll43b4t8ia2"
+path="res://.godot/imported/sun_flat.svg-e0d7a778ef7539e2119b4740ac82b1f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/UI/Explore/ExploreNew/Bag/itemChoose.png"
-dest_files=["res://.godot/imported/itemChoose.png-d715f3a8ccc0924cf429f82b840cb08a.ctex"]
+source_file="res://Assets/Images/UI/Main/sun_flat.svg"
+dest_files=["res://.godot/imported/sun_flat.svg-e0d7a778ef7539e2119b4740ac82b1f2.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

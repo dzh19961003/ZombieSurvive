@@ -1,17 +1,24 @@
 [gd_scene format=3 uid="uid://cr451u7s3ttth"]
 
-[ext_resource type="Script" uid="uid://dadiolsni3gkb" path="res://Scripts/UI/PropertyBar.cs" id="1_2fcoe"]
-[ext_resource type="Texture2D" uid="uid://desgea4htjck3" path="res://icon.svg" id="2_d4ma1"]
-[ext_resource type="Texture2D" uid="uid://3gx7ydxhii6a" path="res://Assets/Images/UI/New/propertyBg.png" id="2_xpf6f"]
-[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="3_d4ma1"]
-[ext_resource type="Texture2D" uid="uid://bollw2lwjl02l" path="res://Assets/Images/UI/New/strong.png" id="4_xpf6f"]
-[ext_resource type="Texture2D" uid="uid://d141ff1l2u5qd" path="res://Assets/Images/UI/New/speed.png" id="5_iu1ib"]
-[ext_resource type="Texture2D" uid="uid://duddhv3a3jk84" path="res://Assets/Images/UI/New/brain.png" id="6_smrt8"]
-[ext_resource type="Texture2D" uid="uid://blarvcfdxxu8i" path="res://Assets/Images/UI/Battle/hp_icon.png" id="8_xpf6f"]
-[ext_resource type="Texture2D" uid="uid://brqqy0i1nrwko" path="res://Assets/Images/UI/New/progressBg.png" id="9_iu1ib"]
-[ext_resource type="Texture2D" uid="uid://blsuj411ot7hm" path="res://Assets/Images/UI/New/HPprogress.png" id="10_smrt8"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Details/armor_panel.png" id="panel"]
+[ext_resource type="Material" path="res://Assets/Images/UI/Details/details_opaque.tres" id="opaque"]
+[ext_resource type="Theme" path="res://Assets/Images/UI/building/warehouse/inventory_theme.tres" id="theme"]
+[ext_resource type="Script" path="res://Scripts/UI/PropertyBar.cs" id="script"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Details/armor_item_frame.png" id="portrait"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/New/strong.png" id="strong"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/New/speed.png" id="speed"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/New/brain.png" id="brain"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/hp_icon.png" id="heart"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Main/health_track.svg" id="track"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Main/health_fill.svg" id="fill"]
+[ext_resource type="Shader" path="res://Assets/Images/UI/Details/details_icon_tint.gdshader" id="tint"]
+
+[sub_resource type="ShaderMaterial" id="Material_heart"]
+shader = ExtResource("tint")
+shader_parameter/tint = Color(0.78, 0.38, 0.36, 1)
 
 [node name="PropertyBar" type="Button" unique_id=1181979352 node_paths=PackedStringArray("_strengthLabel", "_agilityLabel", "_intelligenceLabel", "_healthBar", "_healthText")]
+texture_filter = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -21,148 +28,163 @@ offset_right = 588.0
 offset_bottom = -1636.0
 grow_vertical = 0
 flat = true
-script = ExtResource("1_2fcoe")
+theme = ExtResource("theme")
+script = ExtResource("script")
 _strengthLabel = NodePath("HBoxContainer/Label")
 _agilityLabel = NodePath("HBoxContainer/Label3")
 _intelligenceLabel = NodePath("HBoxContainer/Label2")
 _healthBar = NodePath("HealthProgressBar")
 _healthText = NodePath("Label")
 
-[node name="BG" type="TextureRect" parent="." unique_id=1773149968]
+[node name="BG" type="NinePatchRect" parent="."]
 layout_mode = 0
-offset_right = 562.0
-offset_bottom = 307.0
-texture = ExtResource("2_xpf6f")
+offset_left = 0
+offset_top = 0
+offset_right = 554
+offset_bottom = 299
+mouse_filter = 2
+material = ExtResource("opaque")
+texture = ExtResource("panel")
+patch_margin_left = 28
+patch_margin_top = 28
+patch_margin_right = 28
+patch_margin_bottom = 28
 
-[node name="ButtonName" type="Label" parent="." unique_id=1305141967]
+[node name="ButtonName" type="Label" parent="."]
 layout_mode = 0
-offset_left = 233.0
-offset_top = 51.0
-offset_right = 477.77924
-offset_bottom = 107.0
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_constants/outline_size = 10
+offset_left = 224
+offset_top = 38
+offset_right = 504
+offset_bottom = 96
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.94, 0.98, 1, 1)
 theme_override_font_sizes/font_size = 40
 text = "我的属性"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Head" type="TextureRect" parent="." unique_id=219249251]
-visible = false
-layout_mode = 0
-offset_left = 42.0
-offset_top = 52.0
-offset_right = 135.85455
-offset_bottom = 141.0
-texture = ExtResource("2_d4ma1")
-expand_mode = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1455455002]
+[node name="Property" type="NinePatchRect" parent="."]
 layout_mode = 0
-offset_left = 246.0
-offset_top = 111.0
-offset_right = 594.0
-offset_bottom = 191.0
-theme_override_constants/separation = 77
+offset_left = 32
+offset_top = 40
+offset_right = 160
+offset_bottom = 168
+mouse_filter = 2
+material = ExtResource("opaque")
+texture = ExtResource("portrait")
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
 
-[node name="Label" type="Label" parent="HBoxContainer" unique_id=1429099086]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 226
+offset_top = 111
+offset_right = 506
+offset_bottom = 187
+mouse_filter = 2
+theme_override_constants/separation = 56
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(56, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 36
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.94, 0.98, 1, 1)
+theme_override_font_sizes/font_size = 32
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label3" type="Label" parent="HBoxContainer" unique_id=717811890]
+[node name="Label3" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(56, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 36
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.94, 0.98, 1, 1)
+theme_override_font_sizes/font_size = 32
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="HBoxContainer" unique_id=1788613856]
+[node name="Label2" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(56, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 36
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.94, 0.98, 1, 1)
+theme_override_font_sizes/font_size = 32
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="prop1" type="TextureRect" parent="." unique_id=121509411]
+[node name="prop1" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 185.0
-offset_top = 123.0
-offset_right = 238.0
-offset_bottom = 176.0
-texture = ExtResource("4_xpf6f")
+offset_left = 178
+offset_top = 122
+offset_right = 222
+offset_bottom = 166
+mouse_filter = 2
+texture = ExtResource("strong")
 expand_mode = 1
+stretch_mode = 5
 
-[node name="prop2" type="TextureRect" parent="." unique_id=358526004]
+
+[node name="prop2" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 302.0
-offset_top = 124.0
-offset_right = 364.14954
-offset_bottom = 174.0
-texture = ExtResource("5_iu1ib")
+offset_left = 290
+offset_top = 122
+offset_right = 334
+offset_bottom = 166
+mouse_filter = 2
+texture = ExtResource("speed")
 expand_mode = 1
+stretch_mode = 5
 
-[node name="prop3" type="TextureRect" parent="." unique_id=1607627914]
+
+[node name="prop3" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 419.0
-offset_top = 123.0
-offset_right = 476.07693
-offset_bottom = 176.0
-texture = ExtResource("6_smrt8")
+offset_left = 402
+offset_top = 122
+offset_right = 446
+offset_bottom = 166
+mouse_filter = 2
+texture = ExtResource("brain")
 expand_mode = 1
+stretch_mode = 5
 
-[node name="Property" type="NinePatchRect" parent="." unique_id=533678785]
-visible = false
-layout_mode = 0
-offset_left = 130.0
-offset_top = 88.0
-offset_right = 494.0
-offset_bottom = 192.0
-texture = ExtResource("3_d4ma1")
-region_rect = Rect2(0, 0, 136, 136)
-patch_margin_left = 31
-patch_margin_top = 28
-patch_margin_right = 38
-patch_margin_bottom = 37
 
-[node name="Health" type="TextureRect" parent="." unique_id=223369430]
+[node name="Health" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 38.0
-offset_top = 195.0
-offset_right = 111.7
-offset_bottom = 261.0
-texture = ExtResource("8_xpf6f")
+offset_left = 32
+offset_top = 214
+offset_right = 96
+offset_bottom = 270
+mouse_filter = 2
+texture = ExtResource("heart")
 expand_mode = 1
+stretch_mode = 5
+material = SubResource("Material_heart")
 
-[node name="HealthProgressBar" type="TextureProgressBar" parent="." unique_id=135427496]
+[node name="HealthProgressBar" type="TextureProgressBar" parent="."]
 layout_mode = 0
-offset_left = 116.0
-offset_top = 195.0
-offset_right = 1610.0
-offset_bottom = 427.0
-scale = Vector2(0.28, 0.28)
-value = 50.0
-stretch_margin_left = 10
-texture_under = ExtResource("9_iu1ib")
-texture_progress = ExtResource("10_smrt8")
-texture_progress_offset = Vector2(55, 55)
-tint_progress = Color(1, 0.01953125, 0.01953125, 1)
+offset_left = 112
+offset_top = 219
+offset_right = 520
+offset_bottom = 267
+mouse_filter = 2
+value = 100.0
+texture_under = ExtResource("track")
+texture_progress = ExtResource("fill")
+texture_progress_offset = Vector2(12, 10)
 
-[node name="Label" type="Label" parent="." unique_id=1930593645]
-layout_mode = 1
-offset_left = 201.0
-offset_top = 204.0
-offset_right = 449.00006
-offset_bottom = 249.0
-theme_override_constants/outline_size = 10
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 124
+offset_top = 219
+offset_right = 508
+offset_bottom = 267
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.94, 0.98, 1, 1)
 theme_override_font_sizes/font_size = 32
 text = "100/100"
 horizontal_alignment = 1
