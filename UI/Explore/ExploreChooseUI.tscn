@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://birn4r06nqwv5" path="res://Assets/Images/UI/Explore/ExploreNew/noiseBG.png" id="12_noisebg"]
 [ext_resource type="Texture2D" uid="uid://dqbewq5e1tutw" path="res://Assets/Images/UI/Explore/ExploreNew/noiseBar.png" id="13_noisebar"]
 [ext_resource type="Texture2D" uid="uid://cb4dpgvm2bub5" path="res://Assets/Images/UI/Explore/ExploreNew/desBg.png" id="14_desbg"]
-[ext_resource type="Texture2D" uid="uid://gh4mp8kbe5en" path="res://Assets/Images/UI/Explore/material_image.png" id="15_eventimg"]
+[ext_resource type="Texture2D" uid="uid://dui5v8t2a4fvo" path="res://Assets/Images/UI/Explore/ExploreChoose/material_image.png" id="15_eventimg"]
 
 [node name="ExploreChooseUI" type="Control" unique_id=3400001 node_paths=PackedStringArray("hpLabel", "armorLabel", "staminaLabel", "bagLabel", "titleLabel", "layerDots", "roomNameLabel", "roomLeftLabel", "noiseLabel", "noiseBar", "eventImage", "desLabel", "optionBox", "floatLayer", "bgImage")]
 layout_mode = 3
@@ -39,6 +39,7 @@ desLabel = NodePath("DesLabel")
 optionBox = NodePath("OptionBox")
 floatLayer = NodePath("FloatLayer")
 bgImage = NodePath("BgImage")
+previewAnimateRewards = false
 
 [node name="BgColor" type="ColorRect" parent="." unique_id=3400002]
 layout_mode = 1
@@ -93,62 +94,62 @@ stretch_mode = 0
 
 [node name="HPIcon" type="TextureRect" parent="." unique_id=3400008]
 layout_mode = 0
-offset_left = 30.0
-offset_top = 20.0
-offset_right = 110.0
-offset_bottom = 100.0
+offset_left = 60.0
+offset_top = 40.0
+offset_right = 140.0
+offset_bottom = 120.0
 texture = ExtResource("2_hp")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="HPLabel" type="Label" parent="." unique_id=3400009]
 layout_mode = 0
-offset_left = 120.0
-offset_top = 20.0
+offset_left = 152.0
+offset_top = 32.0
 offset_right = 270.0
-offset_bottom = 100.0
+offset_bottom = 114.0
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 44
 text = "100"
 vertical_alignment = 1
 
 [node name="ArmorIcon" type="TextureRect" parent="." unique_id=3400010]
 layout_mode = 0
-offset_left = 30.0
-offset_top = 125.0
-offset_right = 110.0
-offset_bottom = 205.0
+offset_left = 60.0
+offset_top = 128.0
+offset_right = 140.0
+offset_bottom = 210.0
 texture = ExtResource("3_armor")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="ArmorLabel" type="Label" parent="." unique_id=3400011]
 layout_mode = 0
-offset_left = 120.0
-offset_top = 125.0
+offset_left = 152.0
+offset_top = 128.0
 offset_right = 270.0
-offset_bottom = 205.0
+offset_bottom = 210.0
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 44
 text = "120"
 vertical_alignment = 1
 
 [node name="LocationBg" type="TextureRect" parent="." unique_id=3400012]
 layout_mode = 0
-offset_left = 283.0
-offset_top = 42.0
-offset_right = 803.0
-offset_bottom = 137.0
+offset_left = 275.0
+offset_top = 38.0
+offset_right = 811.0
+offset_bottom = 144.0
 texture = ExtResource("6_location")
 expand_mode = 1
 stretch_mode = 0
 
 [node name="TitleLabel" type="Label" parent="." unique_id=3400013]
 layout_mode = 0
-offset_left = 283.0
-offset_top = 42.0
-offset_right = 803.0
-offset_bottom = 100.0
+offset_left = 275.0
+offset_top = 38.0
+offset_right = 811.0
+offset_bottom = 102.0
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
 theme_override_font_sizes/font_size = 46
 text = "地点名称"
@@ -157,50 +158,51 @@ vertical_alignment = 1
 
 [node name="LayerDots" type="HBoxContainer" parent="." unique_id=3400014]
 layout_mode = 0
-offset_left = 460.0
+offset_left = 463.0
 offset_top = 98.0
-offset_right = 600.0
+offset_right = 623.0
 offset_bottom = 132.0
 alignment = 1
 theme_override_constants/separation = 10
+mouse_filter = 2
 
 [node name="StaminaIcon" type="TextureRect" parent="." unique_id=3400015]
 layout_mode = 0
-offset_left = 895.0
-offset_top = 18.0
-offset_right = 975.0
-offset_bottom = 98.0
+offset_left = 893.0
+offset_top = 26.0
+offset_right = 973.0
+offset_bottom = 106.0
 texture = ExtResource("5_stamina")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="StaminaLabel" type="Label" parent="." unique_id=3400016]
 layout_mode = 0
-offset_left = 973.0
-offset_top = 18.0
-offset_right = 1050.0
-offset_bottom = 98.0
+offset_left = 997.0
+offset_top = 32.0
+offset_right = 1064.0
+offset_bottom = 114.0
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_font_sizes/font_size = 44
+theme_override_font_sizes/font_size = 42
 text = "25"
 vertical_alignment = 1
 
 [node name="BagIcon" type="TextureRect" parent="." unique_id=3400017]
 layout_mode = 0
-offset_left = 30.0
-offset_top = 215.0
-offset_right = 170.0
-offset_bottom = 355.0
+offset_left = 62.0
+offset_top = 232.0
+offset_right = 204.0
+offset_bottom = 374.0
 texture = ExtResource("4_bag")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="BagLabel" type="Label" parent="." unique_id=3400018]
 layout_mode = 0
-offset_left = 30.0
-offset_top = 290.0
-offset_right = 170.0
-offset_bottom = 355.0
+offset_left = 62.0
+offset_top = 306.0
+offset_right = 204.0
+offset_bottom = 372.0
 mouse_filter = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 46
@@ -210,125 +212,138 @@ vertical_alignment = 1
 
 [node name="RoomInfoBg" type="TextureRect" parent="." unique_id=3400019]
 layout_mode = 0
-offset_left = 283.0
-offset_top = 168.0
-offset_right = 803.0
-offset_bottom = 351.0
+offset_left = 277.0
+offset_top = 164.0
+offset_right = 813.0
+offset_bottom = 359.0
 texture = ExtResource("9_roominfo")
 expand_mode = 1
 stretch_mode = 0
+mouse_filter = 2
 
 [node name="RoomNameLabel" type="Label" parent="." unique_id=3400020]
 layout_mode = 0
-offset_left = 310.0
-offset_top = 180.0
-offset_right = 560.0
-offset_bottom = 255.0
+offset_left = 318.0
+offset_top = 174.0
+offset_right = 580.0
+offset_bottom = 252.0
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 40
 text = "网吧大厅"
 vertical_alignment = 1
+mouse_filter = 2
 
 [node name="RoomProgressIcon" type="TextureRect" parent="." unique_id=3400021]
 layout_mode = 0
-offset_left = 600.0
-offset_top = 183.0
-offset_right = 660.0
-offset_bottom = 250.0
+offset_left = 610.0
+offset_top = 179.0
+offset_right = 680.0
+offset_bottom = 249.0
 texture = ExtResource("10_roomprog")
 expand_mode = 1
 stretch_mode = 5
+mouse_filter = 2
 
 [node name="RoomLeftLabel" type="Label" parent="." unique_id=3400022]
 layout_mode = 0
-offset_left = 665.0
-offset_top = 180.0
-offset_right = 775.0
-offset_bottom = 255.0
+offset_left = 702.0
+offset_top = 176.0
+offset_right = 780.0
+offset_bottom = 252.0
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_font_sizes/font_size = 44
+theme_override_font_sizes/font_size = 40
 text = "8"
 vertical_alignment = 1
+mouse_filter = 2
 
 [node name="NoiseIcon" type="TextureRect" parent="." unique_id=3400023]
 layout_mode = 0
-offset_left = 305.0
-offset_top = 275.0
+offset_left = 302.0
+offset_top = 274.0
 offset_right = 390.0
-offset_bottom = 345.0
+offset_bottom = 346.0
 texture = ExtResource("11_noiseicon")
 expand_mode = 1
 stretch_mode = 5
+mouse_filter = 2
 
 [node name="NoiseBar" type="TextureProgressBar" parent="." unique_id=3400024]
 layout_mode = 0
-offset_left = 400.0
-offset_top = 288.0
-offset_right = 790.0
-offset_bottom = 325.0
+offset_left = 406.0
+offset_top = 290.0
+offset_right = 770.0
+offset_bottom = 328.0
 min_value = 0.0
 max_value = 100.0
 value = 80.0
 texture_under = ExtResource("12_noisebg")
 texture_progress = ExtResource("13_noisebar")
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+mouse_filter = 2
 
 [node name="NoiseLabel" type="Label" parent="." unique_id=3400025]
 layout_mode = 0
-offset_left = 400.0
-offset_top = 288.0
-offset_right = 790.0
-offset_bottom = 325.0
+offset_left = 406.0
+offset_top = 286.0
+offset_right = 770.0
+offset_bottom = 332.0
 mouse_filter = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 44
 text = "80%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EventImage" type="TextureRect" parent="." unique_id=3400026]
 layout_mode = 0
-offset_left = 208.0
-offset_top = 720.0
-offset_right = 865.0
-offset_bottom = 1160.0
+offset_left = 235.0
+offset_top = 782.0
+offset_right = 875.0
+offset_bottom = 1102.0
 mouse_filter = 2
 texture = ExtResource("15_eventimg")
 expand_mode = 1
-stretch_mode = 0
+stretch_mode = 5
 
 [node name="FloatLayer" type="Control" parent="." unique_id=3400027]
 layout_mode = 0
 offset_left = 30.0
-offset_top = 850.0
+offset_top = 842.0
 offset_right = 340.0
 offset_bottom = 1090.0
 mouse_filter = 2
 
 [node name="DesBg" type="TextureRect" parent="." unique_id=3400028]
 layout_mode = 0
-offset_left = 45.0
-offset_top = 1110.0
-offset_right = 1035.0
-offset_bottom = 1490.0
+offset_left = 36.0
+offset_top = 1106.0
+offset_right = 1058.0
+offset_bottom = 1494.0
 texture = ExtResource("14_desbg")
 expand_mode = 1
 stretch_mode = 0
 
 [node name="DesLabel" type="Label" parent="." unique_id=3400029]
 layout_mode = 0
-offset_left = 85.0
-offset_top = 1140.0
-offset_right = 995.0
-offset_bottom = 1460.0
+offset_left = 94.0
+offset_top = 1144.0
+offset_right = 1010.0
+offset_bottom = 1458.0
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 44
 text = "事件描述文字"
 autowrap_mode = 3
+theme_override_constants/line_spacing = 18
 
 [node name="OptionBox" type="VBoxContainer" parent="." unique_id=3400030]
 layout_mode = 0
 offset_left = 40.0
-offset_top = 1520.0
-offset_right = 1040.0
-offset_bottom = 1830.0
-theme_override_constants/separation = 18
+offset_top = 1518.0
+offset_right = 1062.0
+offset_bottom = 1894.0
+theme_override_constants/separation = 14
+mouse_filter = 2

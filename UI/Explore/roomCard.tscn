@@ -1,111 +1,170 @@
 [gd_scene format=3 uid="uid://cdrlh6qioqrpp"]
 
 [ext_resource type="Script" uid="uid://dt3qniftf4yni" path="res://Scripts/UI/Explore/RoomCard.cs" id="1_card"]
-[ext_resource type="Texture2D" uid="uid://ckg6jly32patl" path="res://Assets/Images/UI/Explore/ExploreNew/roomBg.png" id="2_bg"]
-[ext_resource type="Texture2D" uid="uid://cs2bnpdhbq1e0" path="res://Assets/Images/UI/Explore/ExploreNew/enter.png" id="3_enter"]
+[ext_resource type="Texture2D" uid="uid://ckm85cnbb8u1f" path="res://Assets/Images/UI/Explore/RoomChoose/enter.png" id="3_enter"]
 [ext_resource type="Texture2D" uid="uid://bn4lqwpfihf3" path="res://Assets/Images/UI/Explore/ExploreNew/roomProgress.png" id="4_prog"]
+[ext_resource type="Theme" path="res://Assets/Images/UI/Explore/ActionButton/action_button_theme.tres" id="19_theme"]
+[ext_resource type="Script" path="res://Scripts/UI/Explore/ExploreActionButton.cs" id="20_feedback"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Explore/ActionButton/action_button.png" id="21_skin"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Explore/ActionButton/action_arrow.svg" id="22_arrow"]
 
-[node name="RoomCard" type="Control" unique_id=3100001 node_paths=PackedStringArray("nameLabel", "progressLabel", "supplyRow", "clickBtn", "mask")]
-custom_minimum_size = Vector2(370, 525)
+[node name="RoomCard" type="Control" node_paths=PackedStringArray("nameLabel", "progressLabel", "supplyRow", "clickBtn", "mask")]
+custom_minimum_size = Vector2(394, 539)
 layout_mode = 3
-anchors_preset = 0
-offset_right = 370.0
-offset_bottom = 525.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 394.0
+offset_bottom = 539.0
 script = ExtResource("1_card")
-nameLabel = NodePath("NameLabel")
-progressLabel = NodePath("ProgressLabel")
-supplyRow = NodePath("SupplyRow")
-clickBtn = NodePath("ClickBtn")
-mask = NodePath("Mask")
+nameLabel = NodePath("Visual/ClickBtn/Content/NameLabel")
+progressLabel = NodePath("Visual/ClickBtn/Content/ProgressLabel")
+supplyRow = NodePath("Visual/ClickBtn/Content/SupplyRow")
+clickBtn = NodePath("Visual/ClickBtn")
+mask = NodePath("Visual/Mask")
 
-[node name="Bg" type="TextureRect" parent="." unique_id=3100002]
+[node name="Visual" type="Control" parent="."]
 layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
-offset_right = 370.0
-offset_bottom = 525.0
-texture = ExtResource("2_bg")
-expand_mode = 1
-stretch_mode = 0
+offset_right = 394.0
+offset_bottom = 539.0
+mouse_filter = 2
 
-[node name="DoorIcon" type="TextureRect" parent="." unique_id=3100003]
+[node name="ClickBtn" type="Button" parent="Visual" node_paths=PackedStringArray("content", "blockedOverlay")]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 24.0
-offset_right = 96.0
-offset_bottom = 96.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 394.0
+offset_bottom = 539.0
+texture_filter = 1
+mouse_default_cursor_shape = 2
+theme = ExtResource("19_theme")
+flat = false
+script = ExtResource("20_feedback")
+content = NodePath("Content")
+blockedOverlay = NodePath("../Mask")
+
+[node name="Content" type="Control" parent="Visual/ClickBtn"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 394.0
+offset_bottom = 539.0
+mouse_filter = 2
+
+[node name="NameLabel" type="Label" parent="Visual/ClickBtn/Content"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 20.0
+offset_right = 366.0
+offset_bottom = 98.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+theme_override_font_sizes/font_size = 42
+text = "店铺大厅"
+vertical_alignment = 1
+horizontal_alignment = 1
+
+[node name="DoorIcon" type="TextureRect" parent="Visual/ClickBtn/Content"]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 114.0
+offset_right = 257.0
+offset_bottom = 234.0
+mouse_filter = 2
 texture = ExtResource("3_enter")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="NameLabel" type="Label" parent="." unique_id=3100004]
+[node name="ProgressIcon" type="TextureRect" parent="Visual/ClickBtn/Content"]
 layout_mode = 0
-offset_left = 112.0
-offset_top = 22.0
-offset_right = 355.0
-offset_bottom = 100.0
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_font_sizes/font_size = 40
-text = "店铺大厅"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ProgressIcon" type="TextureRect" parent="." unique_id=3100005]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 270.0
-offset_right = 148.0
-offset_bottom = 338.0
+offset_left = 96.0
+offset_top = 240.0
+offset_right = 172.0
+offset_bottom = 316.0
+mouse_filter = 2
 texture = ExtResource("4_prog")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ProgressLabel" type="Label" parent="." unique_id=3100006]
+[node name="ProgressLabel" type="Label" parent="Visual/ClickBtn/Content"]
 layout_mode = 0
-offset_left = 158.0
-offset_top = 270.0
-offset_right = 350.0
-offset_bottom = 338.0
+offset_left = 204.0
+offset_top = 240.0
+offset_right = 366.0
+offset_bottom = 316.0
+mouse_filter = 2
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_font_sizes/font_size = 46
+theme_override_font_sizes/font_size = 44
 text = "8/8"
 vertical_alignment = 1
 
-[node name="SupplyLabel" type="Label" parent="." unique_id=3100007]
+[node name="Divider" type="ColorRect" parent="Visual/ClickBtn/Content"]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 365.0
-offset_right = 350.0
-offset_bottom = 403.0
+offset_left = 28.0
+offset_top = 322.0
+offset_right = 366.0
+offset_bottom = 324.0
+mouse_filter = 2
+color = Color(0.31, 0.53, 0.66, 1)
+
+[node name="SupplyLabel" type="Label" parent="Visual/ClickBtn/Content"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 328.0
+offset_right = 366.0
+offset_bottom = 376.0
+mouse_filter = 2
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 32
 text = "物资种类"
 vertical_alignment = 1
 
-[node name="SupplyRow" type="HBoxContainer" parent="." unique_id=3100008]
+[node name="SupplyRow" type="HBoxContainer" parent="Visual/ClickBtn/Content"]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 410.0
-offset_right = 350.0
-offset_bottom = 490.0
-theme_override_constants/separation = 8
+offset_left = 28.0
+offset_top = 376.0
+offset_right = 366.0
+offset_bottom = 444.0
+mouse_filter = 2
+theme_override_constants/separation = 38
+alignment = 1
 
-[node name="ClickBtn" type="Button" parent="." unique_id=3100009]
+[node name="ActionRow" type="HBoxContainer" parent="Visual/ClickBtn/Content"]
 layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 370.0
-offset_bottom = 525.0
-flat = true
+offset_left = 28.0
+offset_top = 449.0
+offset_right = 366.0
+offset_bottom = 521.0
+mouse_filter = 2
+theme_override_constants/separation = 14
+alignment = 1
 
-[node name="Mask" type="ColorRect" parent="." unique_id=3100010]
+[node name="ActionRowText" type="Label" parent="Visual/ClickBtn/Content/ActionRow"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.65, 0.24, 1)
+theme_override_font_sizes/font_size = 46
+text = "进入"
+vertical_alignment = 1
+
+[node name="ActionRowArrow" type="TextureRect" parent="Visual/ClickBtn/Content/ActionRow"]
+custom_minimum_size = Vector2(20, 28)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("22_arrow")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Mask" type="TextureRect" parent="Visual"]
 visible = false
 layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
-offset_right = 370.0
-offset_bottom = 525.0
+offset_right = 394.0
+offset_bottom = 539.0
 mouse_filter = 2
-color = Color(0, 0, 0, 0.55)
+self_modulate = Color(0, 0, 0, 0.55)
+texture = ExtResource("21_skin")
+expand_mode = 1
+stretch_mode = 0

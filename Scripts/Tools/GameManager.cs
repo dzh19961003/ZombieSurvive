@@ -186,6 +186,30 @@ public partial class GameManager : Node2D,ISaveable
     #endregion
 
     #region 房间剩余探索次数（roomExploreNum）
+    // 建筑进度直接由已有房间次数计算，沿用 roomExploreNum 的存档，不另存一份百分比。
+    // 只读取已记录的数据，查看建筑说明不会初始化或消耗任何房间次数。
+    public int GetBuildingExploreProgress(int buildingID)
+    {
+        var config = ConfigManager.Instance;
+        if (config == null || !config.buildingDic.TryGetValue(buildingID, out Building building)
+            || building.RoomID == null) return 0;
+
+        long total = 0;
+        long remaining = 0;
+        var visited = new System.Collections.Generic.HashSet<int>();
+        foreach (int id in building.RoomID)
+        {
+            if (!visited.Add(id) || !config.roomDic.TryGetValue(id, out Room room)) continue;
+            int max = Mathf.Max(0, room.ExploreNum);
+            if (max == 0) continue;
+            int left = roomExploreNum.TryGetValue(id, out int saved) ? Mathf.Clamp(saved, 0, max) : max;
+            total += max;
+            remaining += left;
+        }
+        // 向下取整，只有全部次数用尽时才显示 100%。
+        return total == 0 ? 0 : (int)((total - remaining) * 100 / total);
+    }
+
     // 取某房间剩余可探索次数；没记录过就按配置表的 exploreNum 初始化一条
     public int GetRoomExploreNum(int roomID, int maxNum)
     {

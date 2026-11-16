@@ -5,10 +5,11 @@ using System;
 public partial class CommonTips : Control
 {
 	[Export] public Button closeBtn;
-    [Export] public TextureButton confirmBtn;
-    [Export] public TextureButton cancelBtn;
+    [Export] public BaseButton confirmBtn;
+    [Export] public BaseButton cancelBtn;
     [Export] public Label titleLabel;
     [Export] public Label tipsLabel;
+    [Export] public ScrollContainer bodyScroll;
 
     // ─────────────────────────────────────────────────────────
     //  外部回调：每次显示弹窗时用 = 赋值（覆盖），不要用 += 累加。
@@ -24,30 +25,59 @@ public partial class CommonTips : Control
     public override void _Ready()
 	{
         // 三个按钮都关闭弹窗；确认/取消额外触发对应回调
-        closeBtn.Pressed += () => UIManager.Instance.HideUI("res://UI/CommonTips.tscn");
+        closeBtn.Pressed += HideDialog;
         confirmBtn.Pressed += () =>
         {
-            UIManager.Instance.HideUI("res://UI/CommonTips.tscn");
-            OnConfirm?.Invoke();
+            Action callback = OnConfirm;
+            HideDialog();
+            callback?.Invoke();
         };
         cancelBtn.Pressed += () =>
         {
-            UIManager.Instance.HideUI("res://UI/CommonTips.tscn");
-            OnCancel?.Invoke();
+            Action callback = OnCancel;
+            HideDialog();
+            callback?.Invoke();
         };
         // 背包按钮：不关闭弹窗，单独触发 OnBag
         if (bagBtn != null)
         {
             bagBtn.Pressed += () => OnBag?.Invoke();
         }
+        confirmBtn.CallDeferred("grab_focus");
+    }
+
+    private void HideDialog()
+    {
+        UIManager.Instance?.HideUI("res://UI/CommonTips.tscn");
+        Hide();
+    }
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if (IsVisibleInTree() && @event.IsActionPressed("ui_cancel"))
+        {
+            HideDialog();
+            GetViewport().SetInputAsHandled();
+        }
     }
 
     public void SpawnTips(string title,string tips)
     {
-        titleLabel.Text = title;
-        tipsLabel.Text = tips;
+        // ShowUI 会复用弹窗；新一轮提示不能沿用上一次确认/取消/背包的操作。
+        OnConfirm = null;
+        OnCancel = null;
+        OnBag = null;
+        titleLabel.Text = title ?? string.Empty;
+        tipsLabel.Text = tips ?? string.Empty;
+        if (bodyScroll != null)
+        {
+            // 正文高度交给容器计算，新提示回到开头。
+            bodyScroll.ScrollVertical = 0;
+            bodyScroll.QueueSort();
+        }
         // 每次打开默认隐藏背包按钮（需要时由调用方显式开启）
         SetBagBtnVisible(false);
+        confirmBtn.CallDeferred("grab_focus");
     }
 
     // 控制右下角背包按钮是否显示（默认隐藏，只在外出探索等需要装物品的确认框打开）

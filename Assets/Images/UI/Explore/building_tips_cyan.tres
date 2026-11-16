@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://Assets/Images/UI/Explore/building_tips_icon.gdshader" id="1_gqfx2"]
+
+[resource]
+shader = ExtResource("1_gqfx2")
+shader_parameter/ink_color = Color(0.66, 0.85, 0.95, 1)

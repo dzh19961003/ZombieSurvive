@@ -2,7 +2,6 @@ using Godot;
 using MyProject;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 // 第五大点：探索详情界面
 // 一次搜索后抽出一个事件：描述逐字打印 → 发奖励(飘字) → 生成选项 → 点选项后跳转到下一个事件或收尾
@@ -28,8 +27,10 @@ public partial class ExploreChooseUI : Control
     [Export] public VBoxContainer optionBox;
     [Export] public Control floatLayer;
     [Export] public TextureRect bgImage;
+    [Export] public bool previewAnimateRewards = false;
 
     private const string IconDir = "res://Assets/Images/UI/Explore/ExploreNew/";
+    private const string EventImageDir = "res://Assets/Images/UI/Explore/ExploreChoose/";
     private const string OptionPath = "res://UI/Explore/eventOptionBar.tscn";
     private const string StrategyPath = "res://UI/Explore/ExploreStrategyUI.tscn";
 
@@ -102,7 +103,7 @@ public partial class ExploreChooseUI : Control
 
         int kinds = gm.BagItemDic.Count;
         bagLabel.Text = $"{kinds}/{pm.BagNum}";
-        bagLabel.AddThemeColorOverride("font_color", kinds > pm.BagNum ? WarnColor : NormalColor);
+        bagLabel.AddThemeColorOverride("font_color", kinds > pm.BagNum ? WarnColor : Colors.White);
     }
 
     private void RefreshNoise()
@@ -114,7 +115,7 @@ public partial class ExploreChooseUI : Control
 
     private void SpawnLayerDots(int total, int current)
     {
-        foreach (Node n in layerDots.GetChildren()) n.QueueFree();
+        ClearChildren(layerDots);
         for (int i = 1; i <= total; i++)
         {
             string file = i <= current ? "progressIn.png" : "progressOut.png";
@@ -123,6 +124,7 @@ public partial class ExploreChooseUI : Control
             dot.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
             dot.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered;
             dot.CustomMinimumSize = new Vector2(30, 30);
+            dot.MouseFilter = MouseFilterEnum.Ignore;
             layerDots.AddChild(dot);
         }
     }
@@ -235,13 +237,13 @@ public partial class ExploreChooseUI : Control
         if (ev.EventType == 103) GameManager.Instance.currentSubTask = eventID;
 
         // 事件大图，读 explore_event 表 image 字段
-        string imgPath = $"res://Assets/Images/UI/Explore/{ev.Image}.png";
+        string imgPath = EventImagePath(ev.Image);
         eventImage.Texture = ResourceLoader.Exists(imgPath) ? GD.Load<Texture2D>(imgPath) : null;
         eventImage.Visible = eventImage.Texture != null;
 
         // 每次换事件都清掉上一轮的选项和飘字
-        foreach (Node n in optionBox.GetChildren()) n.QueueFree();
-        foreach (Node n in floatLayer.GetChildren()) n.QueueFree();
+        ClearChildren(optionBox);
+        ClearChildren(floatLayer);
 
         RefreshNumbers();
         roomLeftLabel.Text = GameManager.Instance.GetRoomExploreNum(currentRoom.ID, currentRoom.ExploreNum).ToString();
@@ -258,6 +260,21 @@ public partial class ExploreChooseUI : Control
         if (!GodotObject.IsInstanceValid(this)) return;
         SpawnOptions();
         GiveRewards();
+    }
+
+    private static string EventImagePath(string image)
+    {
+        string path = $"{EventImageDir}{image}.png";
+        return ResourceLoader.Exists(path) ? path : $"res://Assets/Images/UI/Explore/{image}.png";
+    }
+
+    private static void ClearChildren(Node parent)
+    {
+        foreach (Node node in parent.GetChildren())
+        {
+            parent.RemoveChild(node);
+            node.QueueFree();
+        }
     }
 
     private void SpawnOptions()
@@ -371,21 +388,21 @@ public partial class ExploreChooseUI : Control
         RefreshNumbers();
     }
 
-    private void SpawnFloat(Texture2D icon, int num, int order)
+    private void SpawnFloat(Texture2D icon, int num, int order, bool animate = true)
     {
         if (icon == null) return;
 
         var node = new Control();
-        node.Position = new Vector2(30, 140 - order * 104);
-        node.Modulate = new Color(1, 1, 1, 0);
+        node.Position = new Vector2(30, 140 - order * 100);
+        node.Modulate = new Color(1, 1, 1, animate ? 0 : 1);
         node.MouseFilter = MouseFilterEnum.Ignore;
 
         var bg = new TextureRect();
         bg.Texture = GD.Load<Texture2D>(IconDir + "itemGet.png");
         bg.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
         bg.StretchMode = TextureRect.StretchModeEnum.Scale;
-        bg.Position = Vector2.Zero;
-        bg.Size = new Vector2(240, 70);
+        bg.Position = new Vector2(-24, 0);
+        bg.Size = new Vector2(264, 70);
         bg.MouseFilter = MouseFilterEnum.Ignore;
         node.AddChild(bg);
 
@@ -402,7 +419,7 @@ public partial class ExploreChooseUI : Control
 
         var lab = new Label();
         lab.Text = (num >= 0 ? "+" : "") + num;
-        lab.Position = new Vector2(100, 0);
+        lab.Position = new Vector2(94, 0);
         lab.Size = new Vector2(140, 70);
         lab.VerticalAlignment = VerticalAlignment.Center;
         lab.AddThemeFontSizeOverride("font_size", 50);
@@ -411,30 +428,18 @@ public partial class ExploreChooseUI : Control
         node.AddChild(lab);
 
         floatLayer.AddChild(node);
-        _ = PlayFloatAnim(node, order * 300);
+        if (animate) PlayFloatAnim(node, order * 0.3);
     }
 
     // 0.5s 渐入 → 1s 保持 → 0.5s 渐出，全程向上移动直到消失
-    private async Task PlayFloatAnim(Control node, int startDelayMs)
+    private void PlayFloatAnim(Control node, double delay)
     {
-        if (startDelayMs > 0) await Task.Delay(startDelayMs);
-        if (!GodotObject.IsInstanceValid(node)) return;
-
-        Vector2 start = node.Position;
-        float t = 0f;
-        const float total = 2.0f;
-        while (t < total)
-        {
-            await Task.Delay(16);
-            if (!GodotObject.IsInstanceValid(node)) return;
-            t += 0.016f;
-
-            float alpha = t < 0.5f ? t / 0.5f
-                : t > 1.5f ? (total - t) / 0.5f : 1f;
-            node.Modulate = new Color(1, 1, 1, Mathf.Clamp(alpha, 0f, 1f));
-            node.Position = start + new Vector2(0, -120f * (t / total));
-        }
-        if (GodotObject.IsInstanceValid(node)) node.QueueFree();
+        // Tween 绑定飘字节点，切换事件或关闭界面时会随节点自动停止。
+        Tween tween = node.CreateTween().SetParallel();
+        tween.TweenProperty(node, "modulate:a", 1f, 0.5).From(0f).SetDelay(delay);
+        tween.TweenProperty(node, "position", node.Position + new Vector2(0, -120), 2.0).SetDelay(delay);
+        tween.TweenProperty(node, "modulate:a", 0f, 0.5).From(1f).SetDelay(delay + 1.5);
+        tween.Chain().TweenCallback(Callable.From(node.QueueFree));
     }
     #endregion
 
@@ -514,7 +519,7 @@ public partial class ExploreChooseUI : Control
         noiseBar.Value = 80;
         noiseLabel.Text = "80%";
 
-        eventImage.Texture = GD.Load<Texture2D>("res://Assets/Images/UI/Explore/material_image.png");
+        eventImage.Texture = GD.Load<Texture2D>(EventImagePath("material_image"));
         desLabel.Text = "一堆散落的木板和碎石堵在通道中。\n交错的钉子让搬运变得麻烦，\n但里面可能还藏着可用的材料。\n你打算如何处理这堆杂物？";
 
         var scene = GD.Load<PackedScene>(OptionPath);
@@ -532,8 +537,8 @@ public partial class ExploreChooseUI : Control
         }
 
         var cola = GD.Load<Texture2D>("res://Assets/Images/Items/cola_icon.png");
-        SpawnFloat(cola, 1, 0);
-        SpawnFloat(cola, 1, 1);
+        SpawnFloat(cola, 1, 0, previewAnimateRewards);
+        SpawnFloat(cola, 1, 1, previewAnimateRewards);
     }
     #endregion
 }

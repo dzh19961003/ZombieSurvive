@@ -26,9 +26,9 @@ public partial class ExploreStrategyUI : Control
 
     // 探索完毕后要切换的节点
     [Export] public Label leaveText;
-    [Export] public ColorRect quickMask;
+    [Export] public Control quickMask;
     [Export] public Button quickMaskBtn;
-    [Export] public ColorRect carefulMask;
+    [Export] public Control carefulMask;
     [Export] public Button carefulMaskBtn;
 
     // F6 单跑这个场景时，勾选其中一个可以看对应的禁用样式
@@ -139,7 +139,7 @@ public partial class ExploreStrategyUI : Control
     {
         desLabel.Text = value ? FinishedTip : (currentRoom != null ? currentRoom.Des : "");
         desLabel.AddThemeColorOverride("font_color", value ? Colors.White : NormalColor);
-        desLabel.AddThemeFontSizeOverride("font_size", value ? 48 : 40);
+        desLabel.AddThemeFontSizeOverride("font_size", value ? 48 : 44);
         if (value) desTyped = true;   // 别让打字机把固定文案盖掉
 
         leaveText.Text = value ? "离开区域" : "中断探索";
@@ -164,7 +164,7 @@ public partial class ExploreStrategyUI : Control
 
         int kinds = gm.BagItemDic.Count;
         bagLabel.Text = $"{kinds}/{pm.BagNum}";
-        bagLabel.AddThemeColorOverride("font_color", kinds > pm.BagNum ? WarnColor : NormalColor);
+        bagLabel.AddThemeColorOverride("font_color", kinds > pm.BagNum ? WarnColor : Colors.White);
     }
 
     private void RefreshNoise()
@@ -177,7 +177,11 @@ public partial class ExploreStrategyUI : Control
     // 楼层圆点：贴图是128x128，不设缩放会按原尺寸直出变成大球
     private void SpawnLayerDots(int total, int current)
     {
-        foreach (Node n in layerDots.GetChildren()) n.QueueFree();
+        foreach (Node n in layerDots.GetChildren())
+        {
+            layerDots.RemoveChild(n);
+            n.QueueFree();
+        }
 
         for (int i = 1; i <= total; i++)
         {
@@ -187,6 +191,7 @@ public partial class ExploreStrategyUI : Control
             dot.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
             dot.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered;
             dot.CustomMinimumSize = new Vector2(30, 30);
+            dot.MouseFilter = MouseFilterEnum.Ignore;
             layerDots.AddChild(dot);
         }
     }
@@ -314,11 +319,12 @@ public partial class ExploreStrategyUI : Control
         roomLeftLabel.Text = "8";
         noiseBar.Value = 80;
         noiseLabel.Text = "80%";
-        desLabel.Text = "网咖大厅一片寂静，电脑屏幕早已熄灭。桌边散落着一些生活物资，包间的门半掩着。你准备开始搜索，先选择合适的方式。";
+        desLabel.Text = "网吧大厅一片寂静，电脑屏幕早已熄灭。\n桌边散落着一些生活物资，包间的门半掩着。\n你准备开始搜索，先选择合适的方式。";
 
         // 单跑预览：勾哪个开关就看哪种禁用样式
         if (previewFinished)
         {
+            roomLeftLabel.Text = "0";
             finished = true;
             blocked = true;
             ApplyFinishedLook(true);

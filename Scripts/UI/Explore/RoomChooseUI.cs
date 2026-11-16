@@ -30,8 +30,8 @@ public partial class RoomChooseUI : Control
     private const string RoomFinishedTip = "这里已经没有什么好探索的了。";
     private const string LastLayerTip = "这次已经探索完毕了，下次再来吧。";
 
-    // 正常是米色，背包种类超出上限时前面的数字变红
-    private static readonly Color NormalColor = new Color(0.91f, 0.89f, 0.78f);
+    // 背包容量使用设计图的白色，超出上限时警示。
+    private static readonly Color NormalColor = Colors.White;
     private static readonly Color WarnColor = new Color(1f, 0.35f, 0.3f);
 
     // 描述文字只在进入界面时打印一次，后面刷新不重复打字
@@ -144,7 +144,7 @@ public partial class RoomChooseUI : Control
     // 楼层圆点：共 layerNum 个，实心个数 = 当前层，其余空心
     private void SpawnLayerDots(int total, int current)
     {
-        foreach (Node n in layerDots.GetChildren()) n.QueueFree();
+        ClearChildren(layerDots);
 
         for (int i = 1; i <= total; i++)
         {
@@ -155,6 +155,7 @@ public partial class RoomChooseUI : Control
             dot.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
             dot.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered;
             dot.CustomMinimumSize = new Vector2(30, 30);
+            dot.MouseFilter = MouseFilterEnum.Ignore;
             layerDots.AddChild(dot);
         }
     }
@@ -162,7 +163,7 @@ public partial class RoomChooseUI : Control
     // 生成当前层的所有房间卡片（每层若干个，玩家选一个）
     private void SpawnRooms(Building building, int layer)
     {
-        foreach (Node n in roomRow.GetChildren()) n.QueueFree();
+        ClearChildren(roomRow);
 
         var rooms = new List<Room>();
         foreach (int id in building.RoomID)
@@ -179,6 +180,30 @@ public partial class RoomChooseUI : Control
             int left = GameManager.Instance.GetRoomExploreNum(r.ID, r.ExploreNum);
             card.Setup(r, left);
             card.OnCardClicked = EnterRoom;
+        }
+        LayoutRoomCards();
+    }
+
+    // 一、两个房间保持设计图的卡片尺寸；更多房间使用整行宽度并等比缩放。
+    public void LayoutRoomCards()
+    {
+        int count = roomRow.GetChildCount();
+        int gap = count > 2 ? 24 : 48;
+        float rowWidth = count > 2 ? 1008 : 836;
+        float cardWidth = count > 2 ? (rowWidth - gap * (count - 1)) / count : 394;
+        foreach (Node node in roomRow.GetChildren())
+            if (node is RoomCard card) card.SetDisplayWidth(cardWidth);
+        roomRow.AddThemeConstantOverride("separation", gap);
+        roomRow.Position = new Vector2(count > 2 ? 36 : 128, 722);
+        roomRow.Size = new Vector2(rowWidth, 539);
+    }
+
+    private static void ClearChildren(Node parent)
+    {
+        foreach (Node node in parent.GetChildren())
+        {
+            parent.RemoveChild(node);
+            node.QueueFree();
         }
     }
 
@@ -255,14 +280,14 @@ public partial class RoomChooseUI : Control
         staminaLabel.Text = "25";
         bagLabel.Text = "1/20";
         titleLabel.Text = "渔网网咖";
-        SpawnLayerDots(3, 1);
-        desLabel.Text = "网咖大厅一片寂静，电脑屏幕早已熄灭。桌边散落着一些生活物资，包间的门半掩着。你需要选择下一处搜索的房间。";
+        SpawnLayerDots(4, 2);
+        desLabel.Text = "网咖大厅一片寂静，电脑屏幕早已熄灭。\n桌边散落着一些生活物资，包间的门半掩着。\n你需要选择下一处搜索的房间。";
 
-        foreach (Node n in roomRow.GetChildren()) n.QueueFree();
+        ClearChildren(roomRow);
         var previewRooms = new List<Room>
         {
-            new Room { ID = 9,  Name = "大厅吧台", ExploreNum = 8,  Food = 2, Equip = 1 },
-            new Room { ID = 10, Name = "散座区",   ExploreNum = 16, Food = 2, Equip = 1, Material = 1 }
+            new Room { ID = 9,  Name = "网吧大厅", ExploreNum = 8,  Medic = 1, Food = 2, Equip = 1 },
+            new Room { ID = 10, Name = "包间区",   ExploreNum = 16, Medic = 1, Food = 2 }
         };
 
         var cardScene = GD.Load<PackedScene>(CardPath);
@@ -274,10 +299,12 @@ public partial class RoomChooseUI : Control
             card.Setup(previewRooms[i], leftNums[i]);
             card.OnCardClicked = EnterRoom;
         }
+        LayoutRoomCards();
 
         // 单跑预览：勾哪个开关就看哪种全部探索完样式
         if (previewAllFinished || previewLastLayer)
         {
+            hintLabel.Visible = false;
             int idx = 0;
             foreach (Node n in roomRow.GetChildren())
                 if (n is RoomCard c) c.Setup(previewRooms[idx++ % previewRooms.Count], 0);

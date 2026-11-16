@@ -12,16 +12,27 @@ public partial class EventOptionBar : Control
     [Export] public Button button;
 
     private const string IconDir = "res://Assets/Images/UI/Explore/ExploreNew/";
+    private Action onChosen;
+
+    public override void _Ready()
+    {
+        button.Pressed += () => { if (!button.Disabled) onChosen?.Invoke(); };
+    }
 
     // demandTex = 需求图标（null 表示这个选项没有需求）
     // showExit  = nextEvent 是 9998/9999 时，右侧改显示橙色退出门
     public void Setup(string text, bool enough, bool showExit, Texture2D demandTex, int num, Action onClick)
     {
         textLabel.Text = text;
+        onChosen = onClick;
 
         // 未达标：换成灰底 + 整行变暗，按钮禁用
         bg.Texture = GD.Load<Texture2D>(IconDir + (enough ? "eventAble.png" : "eventDisable.png"));
-        Modulate = enough ? Colors.White : new Color(0.55f, 0.58f, 0.62f, 1f);
+        Modulate = Colors.White;
+        textLabel.AddThemeColorOverride("font_color", enough
+            ? new Color(0.9137255f, 0.8862745f, 0.7764706f)
+            : new Color(0.5f, 0.58f, 0.64f));
+        needIcon.Modulate = enough ? Colors.White : new Color(0.8f, 0.8f, 0.8f);
 
         needIcon.Visible = demandTex != null && !showExit;
         needNum.Visible = demandTex != null && !showExit;
@@ -31,13 +42,12 @@ public partial class EventOptionBar : Control
             needNum.Text = num.ToString();
             // 达标绿字、未达标红字（和设计图一致）
             needNum.AddThemeColorOverride("font_color",
-                enough ? new Color(0.55f, 0.85f, 0.5f, 1f) : new Color(0.9f, 0.4f, 0.4f, 1f));
+                enough ? new Color(0.55f, 0.85f, 0.5f, 1f) : new Color(0.76f, 0.4f, 0.43f, 1f));
         }
 
         exitIcon.Visible = showExit;
         if (showExit) exitIcon.Texture = GD.Load<Texture2D>(IconDir + "leave.png");
 
         button.Disabled = !enough;
-        button.Pressed += () => onClick?.Invoke();
     }
 }

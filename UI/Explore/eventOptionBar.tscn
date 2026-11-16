@@ -4,12 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://bseqjk0avjdki" path="res://Assets/Images/UI/Explore/ExploreNew/eventAble.png" id="2_able"]
 [ext_resource type="Texture2D" uid="uid://deqw3d6ip7vuj" path="res://Assets/Images/UI/Explore/ExploreNew/leave.png" id="3_leave"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_option"]
+
 [node name="EventOptionBar" type="Control" unique_id=3500001 node_paths=PackedStringArray("bg", "textLabel", "needIcon", "needNum", "exitIcon", "button")]
-custom_minimum_size = Vector2(1000, 85)
+custom_minimum_size = Vector2(1022, 116)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1000.0
-offset_bottom = 85.0
+offset_right = 1022.0
+offset_bottom = 116.0
 script = ExtResource("1_script")
 bg = NodePath("Bg")
 textLabel = NodePath("TextLabel")
@@ -17,36 +19,41 @@ needIcon = NodePath("NeedIcon")
 needNum = NodePath("NeedNum")
 exitIcon = NodePath("ExitIcon")
 button = NodePath("Button")
+offset_left = 0.0
+offset_top = 0.0
 
 [node name="Bg" type="TextureRect" parent="." unique_id=3500002]
 layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
-offset_right = 1000.0
-offset_bottom = 85.0
+offset_right = 1022.0
+offset_bottom = 116.0
 texture = ExtResource("2_able")
 expand_mode = 1
 stretch_mode = 0
+mouse_filter = 2
 
 [node name="TextLabel" type="Label" parent="." unique_id=3500003]
 layout_mode = 0
-offset_left = 30.0
-offset_top = 5.0
-offset_right = 830.0
-offset_bottom = 80.0
+offset_left = 34.0
+offset_top = 6.0
+offset_right = 842.0
+offset_bottom = 110.0
 mouse_filter = 2
 theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_font_sizes/font_size = 44
+theme_override_font_sizes/font_size = 48
 text = "选项文字"
 vertical_alignment = 1
+theme_override_constants/line_spacing = 8
+autowrap_mode = 3
 
 [node name="NeedIcon" type="TextureRect" parent="." unique_id=3500004]
 visible = false
 layout_mode = 0
-offset_left = 850.0
-offset_top = 7.0
-offset_right = 920.0
-offset_bottom = 77.0
+offset_left = 860.0
+offset_top = 24.0
+offset_right = 924.0
+offset_bottom = 88.0
 mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
@@ -54,12 +61,12 @@ stretch_mode = 5
 [node name="NeedNum" type="Label" parent="." unique_id=3500005]
 visible = false
 layout_mode = 0
-offset_left = 925.0
-offset_top = 5.0
-offset_right = 995.0
-offset_bottom = 80.0
+offset_left = 926.0
+offset_top = 6.0
+offset_right = 1010.0
+offset_bottom = 110.0
 mouse_filter = 2
-theme_override_font_sizes/font_size = 44
+theme_override_font_sizes/font_size = 52
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -67,10 +74,10 @@ vertical_alignment = 1
 [node name="ExitIcon" type="TextureRect" parent="." unique_id=3500006]
 visible = false
 layout_mode = 0
-offset_left = 920.0
-offset_top = 7.0
-offset_right = 990.0
-offset_bottom = 77.0
+offset_left = 928.0
+offset_top = 20.0
+offset_right = 1004.0
+offset_bottom = 96.0
 mouse_filter = 2
 texture = ExtResource("3_leave")
 expand_mode = 1
@@ -80,6 +87,12 @@ stretch_mode = 5
 layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
-offset_right = 1000.0
-offset_bottom = 85.0
+offset_right = 1022.0
+offset_bottom = 116.0
 flat = true
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_option")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_option")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_option")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_option")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_option")

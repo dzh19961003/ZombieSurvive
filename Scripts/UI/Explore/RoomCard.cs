@@ -8,11 +8,11 @@ public partial class RoomCard : Control
     [Export] public Label progressLabel;
     [Export] public HBoxContainer supplyRow;
     [Export] public Button clickBtn;
-    [Export] public ColorRect mask;
+    [Export] public Control mask;
 
-    // 物资图标统一放在 ExploreNew 目录，顺序对应 room 表的 food / medic / equip / material
+    // 与设计图一致：药品、食物、装备、材料；仍按各字段是否非零显示。
     private const string IconDir = "res://Assets/Images/UI/Explore/ExploreNew/";
-    private static readonly string[] SupplyIcons = { "food.png", "medicine.png", "equipment.png", "tools.png" };
+    private static readonly string[] SupplyIcons = { "medicine.png", "food.png", "equipment.png", "tools.png" };
 
     // 当前卡片代表的房间ID
     public int RoomID;
@@ -28,6 +28,16 @@ public partial class RoomCard : Control
         clickBtn.Pressed += () => OnCardClicked?.Invoke(RoomID);
     }
 
+    // 三个以上房间时等比缩小整张卡，避免文字、图标和点击区域各自缩放而错位。
+    public void SetDisplayWidth(float width)
+    {
+        CustomMinimumSize = new Vector2(width, 539);
+        var visual = GetNode<Control>("Visual");
+        float scale = width / 394f;
+        visual.Scale = Vector2.One * scale;
+        visual.Position = new Vector2(0, (539 - 539 * scale) / 2);
+    }
+
     // room = 房间配置，left = 该房间剩余可探索次数
     public void Setup(Room room, int left)
     {
@@ -41,10 +51,15 @@ public partial class RoomCard : Control
         mask.Visible = IsFinished;
 
         // 先清掉上一次生成的图标
-        foreach (Node n in supplyRow.GetChildren()) n.QueueFree();
+        foreach (Node n in supplyRow.GetChildren())
+        {
+            supplyRow.RemoveChild(n);
+            n.QueueFree();
+        }
 
         // 四种物资，配置里数量不为 0 才显示图标
-        int[] amounts = { room.Food, room.Medic, room.Equip, room.Material };
+        int[] amounts = { room.Medic, room.Food, room.Equip, room.Material };
+        supplyRow.AddThemeConstantOverride("separation", Array.FindAll(amounts, amount => amount != 0).Length > 3 ? 20 : 38);
         for (int i = 0; i < amounts.Length; i++)
         {
             if (amounts[i] == 0) continue;
@@ -55,6 +70,7 @@ public partial class RoomCard : Control
             icon.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
             icon.StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered;
             icon.CustomMinimumSize = new Vector2(64, 64);
+            icon.MouseFilter = MouseFilterEnum.Ignore;
             supplyRow.AddChild(icon);
         }
     }

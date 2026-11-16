@@ -1,158 +1,186 @@
 [gd_scene format=3 uid="uid://c51i3w42dmgai"]
 
-[ext_resource type="Script" uid="uid://m8g4ncuhax6q" path="res://Scripts/UI/CommonTips.cs" id="1_3mtwp"]
-[ext_resource type="Texture2D" uid="uid://cc2vql0cmxevl" path="res://Assets/Images/UI/New/bg.png" id="2_2ujjx"]
-[ext_resource type="Texture2D" uid="uid://7ew6ljy6siq4" path="res://Assets/Images/UI/main_panel.png" id="2_3mtwp"]
-[ext_resource type="Texture2D" uid="uid://cj3raeici7cqo" path="res://Assets/Images/UI/New/bg_title.png" id="4_2ujjx"]
-[ext_resource type="Texture2D" uid="uid://bludht7kno3s5" path="res://Assets/Images/UI/New/confirmBtn.png" id="4_loy11"]
-[ext_resource type="Texture2D" uid="uid://dr5fg8rkpso3g" path="res://Assets/Images/UI/New/cancelBtn.png" id="5_ghfco"]
-[ext_resource type="Texture2D" uid="uid://0j0un5rare6m" path="res://Assets/Images/UI/New/closeBtn_2.png" id="7_loy11"]
-[ext_resource type="Texture2D" uid="uid://q2xr74a8wr0" path="res://Assets/Images/UI/Battle/bag.png" id="8_bagbtn"]
+[ext_resource type="Script" uid="uid://m8g4ncuhax6q" path="res://Scripts/UI/CommonTips.cs" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cb4dpgvm2bub5" path="res://Assets/Images/UI/Explore/ExploreNew/desBg.png" id="2_panel"]
+[ext_resource type="Theme" path="res://Assets/Images/UI/Common/common_tips_theme.tres" id="3_theme"]
+[ext_resource type="Texture2D" uid="uid://cnwymxlj1c1mn" path="res://Assets/Images/UI/Details/close.svg" id="4_close"]
+[ext_resource type="Texture2D" uid="uid://q2xr74a8wr0" path="res://Assets/Images/UI/Battle/bag.png" id="5_bag"]
 
-[node name="CommonTips" type="Control" unique_id=1735430347 node_paths=PackedStringArray("closeBtn", "confirmBtn", "cancelBtn", "titleLabel", "tipsLabel", "bagBtn")]
+[sub_resource type="Gradient" id="header_gradient"]
+colors = PackedColorArray(0.055, 0.205, 0.29, 1, 0.08, 0.29, 0.38, 1)
+
+[sub_resource type="GradientTexture2D" id="header_fill"]
+gradient = SubResource("header_gradient")
+width = 32
+height = 128
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[node name="CommonTips" type="Control" unique_id=1772226433 node_paths=PackedStringArray("closeBtn", "confirmBtn", "cancelBtn", "titleLabel", "tipsLabel", "bodyScroll", "bagBtn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3mtwp")
-closeBtn = NodePath("closeBtn")
-confirmBtn = NodePath("confirmButton")
-cancelBtn = NodePath("cancelButton")
-titleLabel = NodePath("title")
-tipsLabel = NodePath("tips")
-bagBtn = NodePath("bagButton")
+theme = ExtResource("3_theme")
+script = ExtResource("1_script")
+closeBtn = NodePath("Dialog/closeBtn")
+confirmBtn = NodePath("Dialog/ActionRow/confirmButton")
+cancelBtn = NodePath("Dialog/ActionRow/cancelButton")
+titleLabel = NodePath("Dialog/title")
+tipsLabel = NodePath("Dialog/BodyScroll/BodyContent/tips")
+bodyScroll = NodePath("Dialog/BodyScroll")
+bagBtn = NodePath("Dialog/ActionRow/bagButton")
 
-[node name="bg" type="ColorRect" parent="." unique_id=1899464651]
+[node name="bg" type="ColorRect" parent="." unique_id=258506919]
 layout_mode = 1
-offset_left = -302.0
-offset_top = -295.0
-offset_right = 1320.0
-offset_bottom = 2282.1777
-color = Color(0.0627451, 0.0627451, 0.0627451, 0.78431374)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.72)
 
-[node name="bg2" type="NinePatchRect" parent="." unique_id=1200595212]
-layout_mode = 0
-offset_left = 107.0
-offset_top = 554.0
-offset_right = 974.0
-offset_bottom = 1288.0
-texture = ExtResource("2_2ujjx")
-patch_margin_left = 215
-patch_margin_top = 236
-patch_margin_right = 196
-patch_margin_bottom = 230
+[node name="Dialog" type="Control" parent="." unique_id=521362713]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -420.0
+offset_right = 480.0
+offset_bottom = 420.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="titleBg" type="NinePatchRect" parent="." unique_id=1294859878]
-visible = false
-layout_mode = 0
-offset_left = 292.0
-offset_top = 393.0
-offset_right = 800.0
-offset_bottom = 504.0
-texture = ExtResource("2_3mtwp")
-region_rect = Rect2(0, 58, 980, 1479)
+[node name="bg2" type="NinePatchRect" parent="Dialog" unique_id=963411199]
+self_modulate = Color(1.2, 1.2, 1.05, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_panel")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
 
-[node name="BgTitle" type="TextureRect" parent="." unique_id=1597580475]
+[node name="HeaderFill" type="TextureRect" parent="Dialog" unique_id=1066588942]
 layout_mode = 0
-offset_left = 302.0
-offset_top = 514.0
-offset_right = 776.0
-offset_bottom = 647.0
-texture = ExtResource("4_2ujjx")
+offset_left = 14.0
+offset_top = 14.0
+offset_right = 946.0
+offset_bottom = 136.0
+mouse_filter = 2
+texture = SubResource("header_fill")
+expand_mode = 1
 
-[node name="title" type="Label" parent="." unique_id=2004018582]
+[node name="HeaderDivider" type="ColorRect" parent="Dialog" unique_id=1133803625]
 layout_mode = 0
-offset_left = 419.0
-offset_top = 545.0
-offset_right = 661.0
-offset_bottom = 616.0
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 60
+offset_left = 18.0
+offset_top = 136.0
+offset_right = 942.0
+offset_bottom = 142.0
+mouse_filter = 2
+color = Color(0.39, 0.66, 0.77, 1)
+
+[node name="title" type="Label" parent="Dialog" unique_id=522329453]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 22.0
+offset_right = 840.0
+offset_bottom = 122.0
+theme_override_colors/font_color = Color(0.96, 0.99, 1, 1)
+theme_override_font_sizes/font_size = 64
 text = "提示标题"
 horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 3
 
-[node name="tips" type="Label" parent="." unique_id=1506583100]
-custom_minimum_size = Vector2(750, 0)
-custom_maximum_size = Vector2(750, -1)
+[node name="closeBtn" type="Button" parent="Dialog" unique_id=1843843949]
 layout_mode = 0
-offset_left = 165.0
-offset_top = 717.0
-offset_right = 915.0
-offset_bottom = 1029.0
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
+offset_left = 844.0
+offset_top = 33.0
+offset_right = 924.0
+offset_bottom = 113.0
+tooltip_text = "关闭"
+mouse_default_cursor_shape = 2
+theme_type_variation = &"CommonClose"
+
+[node name="Icon" type="TextureRect" parent="Dialog/closeBtn" unique_id=1179670628]
+self_modulate = Color(1.3, 1.18, 1.08, 1)
+layout_mode = 0
+offset_left = 14.0
+offset_top = 14.0
+offset_right = 66.0
+offset_bottom = 66.0
+mouse_filter = 2
+texture = ExtResource("4_close")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BodyScroll" type="ScrollContainer" parent="Dialog" unique_id=1069378061]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 190.0
+offset_right = 896.0
+offset_bottom = 610.0
+horizontal_scroll_mode = 0
+
+[node name="BodyContent" type="VBoxContainer" parent="Dialog/BodyScroll" unique_id=840725188]
+custom_minimum_size = Vector2(0, 420)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="tips" type="Label" parent="Dialog/BodyScroll/BodyContent" unique_id=908680359]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.8, 0.91, 0.97, 1)
 theme_override_constants/line_spacing = 20
-theme_override_font_sizes/font_size = 48
-text = "提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 1
+theme_override_font_sizes/font_size = 44
+text = "这里显示提示内容。
+可用于说明操作结果、规则或确认信息。
+请确认后选择下一步操作。"
+autowrap_mode = 3
 
-[node name="confirmButton" type="TextureButton" parent="." unique_id=1933237892]
+[node name="ActionRow" type="HBoxContainer" parent="Dialog" unique_id=586152876]
 layout_mode = 0
-offset_left = 565.0
-offset_top = 1088.0
-offset_right = 915.0
-offset_bottom = 1208.0
-texture_normal = ExtResource("4_loy11")
-ignore_texture_size = true
-stretch_mode = 0
+offset_left = 64.0
+offset_top = 668.0
+offset_right = 896.0
+offset_bottom = 788.0
+mouse_filter = 2
+theme_override_constants/separation = 32
 
-[node name="EatLabel" type="Label" parent="confirmButton" unique_id=1711720869]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 16.0
-offset_right = 270.0
-offset_bottom = 99.0
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 48
-text = "确定"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="cancelButton" type="TextureButton" parent="." unique_id=1945784184]
-layout_mode = 0
-offset_left = 179.0
-offset_top = 1087.0
-offset_right = 529.0
-offset_bottom = 1207.0
-texture_normal = ExtResource("5_ghfco")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="EatLabel" type="Label" parent="cancelButton" unique_id=1224902024]
-layout_mode = 0
-offset_left = 108.0
-offset_top = 16.0
-offset_right = 240.0
-offset_bottom = 99.0
-theme_override_colors/font_color = Color(0.9137255, 0.8862745, 0.7764706, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 48
+[node name="cancelButton" type="Button" parent="Dialog/ActionRow" unique_id=122699789]
+custom_minimum_size = Vector2(160, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
 text = "取消"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="closeBtn" type="Button" parent="." unique_id=1433686113]
-layout_mode = 0
-offset_left = 886.0
-offset_top = 536.0
-offset_right = 1009.0
-offset_bottom = 659.0
-icon = ExtResource("7_loy11")
-flat = true
-expand_icon = true
+[node name="confirmButton" type="Button" parent="Dialog/ActionRow" unique_id=71780939]
+custom_minimum_size = Vector2(160, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_type_variation = &"CommonConfirm"
+text = "确定"
 
-[node name="bagButton" type="TextureButton" parent="." unique_id=1433686114]
+[node name="bagButton" type="TextureButton" parent="Dialog/ActionRow" unique_id=2102121881]
 visible = false
-layout_mode = 0
-offset_left = 812.0
-offset_top = 1238.0
-offset_right = 962.0
-offset_bottom = 1382.0
-texture_normal = ExtResource("8_bagbtn")
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+tooltip_text = "整理背包"
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_bag")
 ignore_texture_size = true
-stretch_mode = 0
+stretch_mode = 5

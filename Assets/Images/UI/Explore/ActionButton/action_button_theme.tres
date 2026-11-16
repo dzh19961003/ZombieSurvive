@@ -1,0 +1,38 @@
+[gd_resource type="Theme" format=3 uid="uid://c7jviu0x4ia5v"]
+
+[ext_resource type="Texture2D" uid="uid://c8ulvhf7oi1m1" path="res://Assets/Images/UI/Explore/ActionButton/action_button.png" id="1_skin"]
+[ext_resource type="FontVariation" uid="uid://c1sbqb3crvk3a" path="res://Assets/Fonts/font_bold.tres" id="2_font"]
+
+[sub_resource type="StyleBoxTexture" id="normal"]
+texture = ExtResource("1_skin")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxEmpty" id="focus"]
+
+[sub_resource type="StyleBoxTexture" id="hover"]
+texture = ExtResource("1_skin")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+modulate_color = Color(1.08, 1.08, 1.08, 1)
+
+[sub_resource type="StyleBoxTexture" id="pressed"]
+texture = ExtResource("1_skin")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+modulate_color = Color(0.86, 0.9, 0.94, 1)
+
+[resource]
+default_font = ExtResource("2_font")
+Button/styles/disabled = SubResource("normal")
+Button/styles/focus = SubResource("focus")
+Button/styles/hover = SubResource("hover")
+Button/styles/hover_pressed = SubResource("pressed")
+Button/styles/normal = SubResource("normal")
+Button/styles/pressed = SubResource("pressed")
