@@ -1,0 +1,708 @@
+[gd_scene format=3]
+
+[ext_resource type="Theme" path="res://Assets/Images/UI/Battle/battle_main_theme.tres" id="theme"]
+
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_main_street_placeholder.png" id="street"]
+
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_main_zombie_placeholder.png" id="zombie"]
+
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/enemy_bg.png" id="header"]
+
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/timeProgress.png" id="timeline"]
+
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/time.png" id="time"]
+
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/player.png" id="player_marker"]
+
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/enemy.png" id="enemy_marker"]
+
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/player_bg.png" id="hud"]
+
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/hp_icon.png" id="heart"]
+
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/armer_icon.png" id="armor"]
+
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/bag.png" id="bag"]
+
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/progress_bg.png" id="track"]
+
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_main_danger.tres" id="danger"]
+
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_main_head.svg" id="head"]
+
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_main_body.svg" id="body"]
+
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_main_arm.svg" id="arm"]
+
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_main_shadow.svg" id="shadow"]
+
+[ext_resource type="PackedScene" path="res://UI/Battle/Components/BattleBodyPart.tscn" id="part"]
+
+[ext_resource type="PackedScene" path="res://UI/Battle/Components/BattleBodyPartUnavailable.tscn" id="part_unavailable"]
+
+[ext_resource type="PackedScene" path="res://UI/Battle/Components/BattleBodyPartMissing.tscn" id="part_missing"]
+
+[ext_resource type="PackedScene" path="res://UI/Battle/Components/BattleAttackButton.tscn" id="attack"]
+
+[ext_resource type="PackedScene" path="res://UI/Battle/Components/BattlePrecisionButtonUnavailable.tscn" id="precision"]
+
+[node name="BattleMain" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("theme")
+texture_filter = 1
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("street")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BackgroundTint" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.07, 0.13, 0.18, 0.08)
+
+[node name="EnemyPresentation" type="Control" parent="."]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 268.0
+offset_right = 1080.0
+offset_bottom = 1100.0
+mouse_filter = 2
+
+[node name="GroundShadow" type="TextureRect" parent="EnemyPresentation"]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 765.0
+offset_right = 760.0
+offset_bottom = 825.0
+mouse_filter = 2
+texture = ExtResource("shadow")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="EnemySprite" type="TextureRect" parent="EnemyPresentation"]
+layout_mode = 0
+offset_left = 258.0
+offset_top = 0.0
+offset_right = 824.0
+offset_bottom = 822.0
+mouse_filter = 2
+texture = ExtResource("zombie")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="DetailBackdrop" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 1360.0
+offset_right = 1052.0
+offset_bottom = 1653.0
+mouse_filter = 2
+color = Color(0.035, 0.10, 0.16, 0.89)
+
+[node name="EnemyHeader" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 66.0
+offset_right = 810.0
+offset_bottom = 154.0
+mouse_filter = 2
+texture = ExtResource("header")
+region_rect = Rect2(5, 5, 581, 87)
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="EnemyName" type="Label" parent="EnemyHeader"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 9.0
+offset_right = 230.0
+offset_bottom = 77.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.98, 0.98, 0.96, 1)
+theme_override_font_sizes/font_size = 42
+text = "普通丧尸"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="Divider" type="ColorRect" parent="EnemyHeader"]
+layout_mode = 0
+offset_left = 233.0
+offset_top = 25.0
+offset_right = 235.0
+offset_bottom = 63.0
+mouse_filter = 2
+color = Color(0.22, 0.46, 0.58, 1)
+
+[node name="DangerTitle" type="Label" parent="EnemyHeader"]
+layout_mode = 0
+offset_left = 247.0
+offset_top = 22.0
+offset_right = 334.0
+offset_bottom = 68.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.68, 0.80, 0.88, 1)
+theme_override_font_sizes/font_size = 27
+text = "危险度"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="Danger1" type="TextureRect" parent="EnemyHeader"]
+layout_mode = 0
+offset_left = 351.0
+offset_top = 20.0
+offset_right = 396.0
+offset_bottom = 70.0
+mouse_filter = 2
+texture = ExtResource("danger")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Danger2" type="TextureRect" parent="EnemyHeader"]
+layout_mode = 0
+offset_left = 407.0
+offset_top = 20.0
+offset_right = 452.0
+offset_bottom = 70.0
+mouse_filter = 2
+texture = ExtResource("danger")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Danger3" type="TextureRect" parent="EnemyHeader"]
+layout_mode = 0
+offset_left = 463.0
+offset_top = 20.0
+offset_right = 508.0
+offset_bottom = 70.0
+mouse_filter = 2
+texture = ExtResource("danger")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="Speed1" type="Button" parent="."]
+layout_mode = 0
+offset_left = 870.0
+offset_top = 80.0
+offset_right = 954.0
+offset_bottom = 142.0
+theme_type_variation = &"BattleSpeed"
+text = "x2"
+mouse_default_cursor_shape = 2
+focus_mode = 0
+
+[node name="Speed2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 964.0
+offset_top = 80.0
+offset_right = 1048.0
+offset_bottom = 142.0
+theme_type_variation = &"BattleSpeed"
+text = "x4"
+mouse_default_cursor_shape = 2
+focus_mode = 0
+
+[node name="Timeline" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 234.0
+offset_top = 218.0
+offset_right = 910.0
+offset_bottom = 252.0
+mouse_filter = 2
+texture = ExtResource("timeline")
+region_rect = Rect2(2, 3, 619, 45)
+patch_margin_left = 15
+patch_margin_top = 10
+patch_margin_right = 15
+patch_margin_bottom = 10
+
+[node name="Fill" type="ColorRect" parent="Timeline"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 659.0
+offset_bottom = 25.0
+mouse_filter = 2
+color = Color(0.88, 0.93, 0.94, 1)
+
+[node name="Hourglass" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 188.0
+offset_right = 236.0
+offset_bottom = 276.0
+mouse_filter = 2
+texture = ExtResource("time")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="PlayerMarker" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 244.0
+offset_top = 178.0
+offset_right = 298.0
+offset_bottom = 248.0
+mouse_filter = 2
+texture = ExtResource("player_marker")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="EnemyMarker" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 178.0
+offset_right = 384.0
+offset_bottom = 248.0
+mouse_filter = 2
+texture = ExtResource("enemy_marker")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="EnemyParts" type="Control" parent="."]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1080.0
+offset_bottom = 1110.0
+mouse_filter = 2
+
+[node name="Head" parent="EnemyParts" instance=ExtResource("part")]
+layout_mode = 0
+offset_left = 454.0
+offset_top = 336.0
+offset_right = 634.0
+offset_bottom = 530.0
+
+[node name="Symbol" parent="EnemyParts/Head" index="0"]
+texture = ExtResource("head")
+
+[node name="PartName" parent="EnemyParts/Head" index="1"]
+text = "头部"
+
+[node name="Value" parent="EnemyParts/Head/Health" index="2"]
+text = "30/30"
+
+[node name="Torso" parent="EnemyParts" instance=ExtResource("part")]
+layout_mode = 0
+offset_left = 454.0
+offset_top = 596.0
+offset_right = 634.0
+offset_bottom = 790.0
+
+[node name="Symbol" parent="EnemyParts/Torso" index="0"]
+texture = ExtResource("body")
+
+[node name="PartName" parent="EnemyParts/Torso" index="1"]
+text = "身体"
+
+[node name="Value" parent="EnemyParts/Torso/Health" index="2"]
+text = "50/50"
+
+[node name="LeftArm" parent="EnemyParts" instance=ExtResource("part_unavailable")]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 779.0
+offset_right = 360.0
+offset_bottom = 979.0
+
+[node name="Symbol" parent="EnemyParts/LeftArm" index="0"]
+texture = ExtResource("arm")
+
+[node name="PartName" parent="EnemyParts/LeftArm" index="1"]
+text = "左臂"
+
+[node name="Value" parent="EnemyParts/LeftArm/Health" index="2"]
+text = "18/18"
+
+[node name="RightArm" parent="EnemyParts" instance=ExtResource("part_missing")]
+layout_mode = 0
+offset_left = 728.0
+offset_top = 779.0
+offset_right = 920.0
+offset_bottom = 979.0
+
+[node name="PartName" parent="EnemyParts/RightArm" index="1"]
+text = "右臂"
+
+[node name="Value" parent="EnemyParts/RightArm/Health" index="2"]
+text = "0/18"
+
+[node name="RandomAttack" parent="." instance=ExtResource("attack")]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 1128.0
+offset_right = 464.0
+offset_bottom = 1462.0
+
+[node name="PrecisionAttack" parent="." instance=ExtResource("precision")]
+layout_mode = 0
+offset_left = 618.0
+offset_top = 1128.0
+offset_right = 938.0
+offset_bottom = 1462.0
+
+[node name="DetailsToggle" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 1415.0
+offset_right = 143.0
+offset_bottom = 1462.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.86, 0.90, 0.94, 1)
+theme_override_font_sizes/font_size = 27
+text = "▼详情"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="ChanceTitle" type="Label" parent="."]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 1480.0
+offset_right = 550.0
+offset_bottom = 1525.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.98, 0.98, 0.96, 1)
+theme_override_font_sizes/font_size = 29
+text = "命中概率"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="UsesTitle" type="Label" parent="."]
+layout_mode = 0
+offset_left = 620.0
+offset_top = 1480.0
+offset_right = 1010.0
+offset_bottom = 1525.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.98, 0.98, 0.96, 1)
+theme_override_font_sizes/font_size = 29
+text = "剩余次数"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="ChanceSymbol1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 1533.0
+offset_right = 191.0
+offset_bottom = 1595.0
+mouse_filter = 2
+texture = ExtResource("head")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="ChanceValue1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 1595.0
+offset_right = 222.0
+offset_bottom = 1642.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.84, 0.35, 1)
+theme_override_font_sizes/font_size = 32
+text = "20%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="ChanceSymbol2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 269.0
+offset_top = 1533.0
+offset_right = 331.0
+offset_bottom = 1595.0
+mouse_filter = 2
+texture = ExtResource("body")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="ChanceValue2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 238.0
+offset_top = 1595.0
+offset_right = 362.0
+offset_bottom = 1642.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.84, 0.35, 1)
+theme_override_font_sizes/font_size = 32
+text = "50%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="ChanceSymbol3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 409.0
+offset_top = 1533.0
+offset_right = 471.0
+offset_bottom = 1595.0
+mouse_filter = 2
+texture = ExtResource("arm")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="ChanceValue3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 378.0
+offset_top = 1595.0
+offset_right = 502.0
+offset_bottom = 1642.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.84, 0.35, 1)
+theme_override_font_sizes/font_size = 32
+text = "30%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="UsesSymbol1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 629.0
+offset_top = 1533.0
+offset_right = 691.0
+offset_bottom = 1595.0
+mouse_filter = 2
+texture = ExtResource("head")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="UsesValue1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 598.0
+offset_top = 1595.0
+offset_right = 722.0
+offset_bottom = 1642.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.17, 0.23, 1)
+theme_override_font_sizes/font_size = 32
+text = "0/2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="UsesSymbol2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 769.0
+offset_top = 1533.0
+offset_right = 831.0
+offset_bottom = 1595.0
+mouse_filter = 2
+texture = ExtResource("body")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="UsesValue2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 738.0
+offset_top = 1595.0
+offset_right = 862.0
+offset_bottom = 1642.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.17, 0.23, 1)
+theme_override_font_sizes/font_size = 32
+text = "0/3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="UsesSymbol3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 909.0
+offset_top = 1533.0
+offset_right = 971.0
+offset_bottom = 1595.0
+mouse_filter = 2
+texture = ExtResource("arm")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="UsesValue3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 878.0
+offset_top = 1595.0
+offset_right = 1002.0
+offset_bottom = 1642.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.17, 0.23, 1)
+theme_override_font_sizes/font_size = 32
+text = "0/2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="PlayerHUD" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 1672.0
+offset_right = 1054.0
+offset_bottom = 1878.0
+mouse_filter = 2
+texture = ExtResource("hud")
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+
+[node name="HealthIcon" type="TextureRect" parent="PlayerHUD"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 30.0
+offset_right = 114.0
+offset_bottom = 102.0
+mouse_filter = 2
+texture = ExtResource("heart")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="ArmorIcon" type="TextureRect" parent="PlayerHUD"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 103.0
+offset_right = 114.0
+offset_bottom = 178.0
+mouse_filter = 2
+texture = ExtResource("armor")
+expand_mode = 1
+stretch_mode = 5
+
+
+[node name="HealthFrame" type="NinePatchRect" parent="PlayerHUD"]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 42.0
+offset_right = 795.0
+offset_bottom = 92.0
+mouse_filter = 2
+texture = ExtResource("track")
+region_rect = Rect2(7, 5, 546, 81)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="HealthBar" type="ProgressBar" parent="PlayerHUD/HealthFrame"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 12.0
+offset_right = 644.0
+offset_bottom = 38.0
+mouse_filter = 2
+theme_type_variation = &"BattleHealth"
+value = 100.0
+show_percentage = false
+
+[node name="Value" type="Label" parent="PlayerHUD/HealthFrame"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 3.0
+offset_right = 657.0
+offset_bottom = 47.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.98, 0.98, 0.96, 1)
+theme_override_font_sizes/font_size = 28
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="ArmorFrame" type="NinePatchRect" parent="PlayerHUD"]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 116.0
+offset_right = 795.0
+offset_bottom = 166.0
+mouse_filter = 2
+texture = ExtResource("track")
+region_rect = Rect2(7, 5, 546, 81)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="ArmorBar" type="ProgressBar" parent="PlayerHUD/ArmorFrame"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 12.0
+offset_right = 644.0
+offset_bottom = 38.0
+mouse_filter = 2
+theme_type_variation = &"BattleArmor"
+value = 100.0
+show_percentage = false
+
+[node name="Value" type="Label" parent="PlayerHUD/ArmorFrame"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 3.0
+offset_right = 657.0
+offset_bottom = 47.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.98, 0.98, 0.96, 1)
+theme_override_font_sizes/font_size = 28
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+
+[node name="Backpack" type="TextureButton" parent="PlayerHUD"]
+layout_mode = 0
+offset_left = 818.0
+offset_top = 27.0
+offset_right = 998.0
+offset_bottom = 179.0
+texture_normal = ExtResource("bag")
+ignore_texture_size = true
+stretch_mode = 5
+mouse_default_cursor_shape = 2
+focus_mode = 0
+
+[editable path="EnemyParts/Head"]
+
+[editable path="EnemyParts/Torso"]
+
+[editable path="EnemyParts/LeftArm"]
+
+[editable path="EnemyParts/RightArm"]
+
+[editable path="RandomAttack"]
+
+[editable path="PrecisionAttack"]

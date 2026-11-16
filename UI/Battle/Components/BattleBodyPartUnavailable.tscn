@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://UI/Battle/Components/BattleBodyPart.tscn" id="base"]
+
+[node name="BattleBodyPartUnavailable" instance=ExtResource("base")]
+theme_type_variation = &"BattlePartUnavailable"
+disabled = true
+mouse_default_cursor_shape = 0
