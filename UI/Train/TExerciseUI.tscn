@@ -1,359 +1,626 @@
-[gd_scene load_steps=8 format=3 uid="uid://q5r8k0qci4am"]
+[gd_scene load_steps=14 format=3 uid="uid://q5r8k0qci4am"]
 
 [ext_resource type="Script" uid="uid://bh3iwxo2ksin8" path="res://Scripts/UI/Train/TExerciseUI.cs" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://b6sodtc2160ym" path="res://Assets/Images/UI/item_frame.png" id="2_frame"]
-[ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="3_stamina"]
-[ext_resource type="Texture2D" uid="uid://c45js2fq06wvd" path="res://Assets/Images/UI/train_1_2.png" id="4_dumbbell"]
-[ext_resource type="Texture2D" uid="uid://txjfb8v8bso5" path="res://Assets/Images/UI/train_1_1.png" id="5_treadmill"]
-[ext_resource type="Texture2D" uid="uid://oyesfm1xd7tv" path="res://Assets/Images/UI/train_1_3.png" id="6_bookshelf"]
-[ext_resource type="Texture2D" uid="uid://du76f06ps5fb1" path="res://Assets/Images/UI/button_confirm.png" id="7_confirm"]
+[ext_resource type="Texture2D" uid="uid://dc0e317gxhf3q" path="res://Assets/Images/UI/building/train_1.png" id="2_dumbbell"]
+[ext_resource type="Texture2D" uid="uid://dcjv07tjyt8mg" path="res://Assets/Images/UI/building/train_2.png" id="3_treadmill"]
+[ext_resource type="Texture2D" uid="uid://v16h7dc264wv" path="res://Assets/Images/UI/building/train_3.png" id="4_bookshelf"]
+[ext_resource type="Texture2D" uid="uid://cim3wacu5b7io" path="res://Assets/Images/Base/train_1.png" id="5_preview"]
+[ext_resource type="Texture2D" uid="uid://bp3pjvwaw4enf" path="res://Assets/Images/UI/stamina.png" id="6_stamina"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.03137255, 0.14509805, 0.24313726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.1764706, 0.4313726, 0.5568628, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_row"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.102, 0.141, 0.153, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.165, 0.478, 0.525, 1)
+bg_color = Color(0.03137255, 0.14509805, 0.24313726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.1764706, 0.4313726, 0.5568628, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iconbox"]
+bg_color = Color(0.07450981, 0.1764706, 0.2784314, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="TExerciseUi" type="Control" unique_id=2039258953]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+bg_color = Color(0.92156863, 0.4862745, 0.16470589, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.98039216, 0.56078434, 0.23529412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+bg_color = Color(0.8, 0.4, 0.13, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_disabled"]
+bg_color = Color(0.34901962, 0.41568628, 0.48235294, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="TExerciseUi" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 865.0
-offset_bottom = 1424.0
+offset_right = 1080.0
+offset_bottom = 1920.0
 script = ExtResource("1_script")
 
-[node name="Row1" type="Panel" parent="." unique_id=1195332470]
+[node name="Summary" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 33.0
-offset_top = 20.0
-offset_right = 832.0
-offset_bottom = 300.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_row")
+offset_left = 87.0
+offset_top = 396.0
+offset_right = 994.0
+offset_bottom = 498.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
 
-[node name="IconFrame" type="TextureRect" parent="Row1"]
+[node name="Pad" type="MarginContainer" parent="Summary"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 12
+
+[node name="Row" type="HBoxContainer" parent="Summary/Pad"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="LeftPart" type="HBoxContainer" parent="Summary/Pad/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="LevelTitle" type="Label" parent="Summary/Pad/Row/LeftPart"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "自律区"
+vertical_alignment = 1
+
+[node name="LevelValue" type="Label" parent="Summary/Pad/Row/LeftPart"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.7058824, 0.2509804, 1)
+theme_override_font_sizes/font_size = 36
+text = "Lv.2"
+vertical_alignment = 1
+
+[node name="Divider" type="ColorRect" parent="Summary/Pad/Row"]
+custom_minimum_size = Vector2(2, 60)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.1764706, 0.37254903, 0.4745098, 0.8)
+
+[node name="RightPart" type="HBoxContainer" parent="Summary/Pad/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="ExpTitle" type="Label" parent="Summary/Pad/Row/RightPart"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "经验效率"
+vertical_alignment = 1
+
+[node name="ExpValue" type="Label" parent="Summary/Pad/Row/RightPart"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.7058824, 0.2509804, 1)
+theme_override_font_sizes/font_size = 36
+text = "+30%"
+vertical_alignment = 1
+
+[node name="Overview" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 30.0
-offset_right = 244.0
-offset_bottom = 250.0
-texture = ExtResource("2_frame")
+offset_left = 87.0
+offset_top = 522.0
+offset_right = 994.0
+offset_bottom = 862.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="IconFrame" type="Panel" parent="Overview"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 318.0
+offset_bottom = 318.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
+
+[node name="IconWrap" type="CenterContainer" parent="Overview/IconFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="TextureRect" parent="Overview/IconFrame/IconWrap"]
+custom_minimum_size = Vector2(260, 260)
+layout_mode = 2
+texture = ExtResource("5_preview")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Icon" type="TextureRect" parent="Row1"]
+[node name="Divider" type="ColorRect" parent="Overview"]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 46.0
-offset_right = 228.0
-offset_bottom = 234.0
-texture = ExtResource("4_dumbbell")
+offset_left = 590.0
+offset_top = 22.0
+offset_right = 592.0
+offset_bottom = 318.0
+color = Color(0.1764706, 0.37254903, 0.4745098, 0.8)
+
+[node name="Info" type="VBoxContainer" parent="Overview"]
+layout_mode = 0
+offset_left = 615.0
+offset_top = 34.0
+offset_right = 892.0
+offset_bottom = 306.0
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="TodayLabel" type="Label" parent="Overview/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "今日锻炼 0/9 次"
+autowrap_mode = 3
+
+[node name="BaseExpLabel" type="Label" parent="Overview/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65882355, 0.83137256, 0.91764706, 1)
+theme_override_font_sizes/font_size = 28
+text = "单次基础经验 50"
+autowrap_mode = 3
+
+[node name="StaminaLabel" type="Label" parent="Overview/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65882355, 0.83137256, 0.91764706, 1)
+theme_override_font_sizes/font_size = 28
+text = "单次体力消耗 ×5"
+autowrap_mode = 3
+
+[node name="Row1" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 888.0
+offset_right = 994.0
+offset_bottom = 1147.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_row")
+
+[node name="IconFrame" type="Panel" parent="Row1"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 232.0
+offset_bottom = 232.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
+
+[node name="IconWrap" type="CenterContainer" parent="Row1/IconFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="TextureRect" parent="Row1/IconFrame/IconWrap"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+texture = ExtResource("2_dumbbell")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="Name" type="Label" parent="Row1"]
 layout_mode = 0
-offset_left = 280.0
-offset_top = 38.0
-offset_right = 580.0
-offset_bottom = 110.0
+offset_left = 250.0
+offset_top = 22.0
+offset_right = 570.0
+offset_bottom = 70.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 38
 text = "哑铃"
 vertical_alignment = 1
 
 [node name="ExpText" type="Label" parent="Row1"]
 layout_mode = 0
-offset_left = 280.0
-offset_top = 138.0
-offset_right = 590.0
-offset_bottom = 200.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 38
+offset_left = 250.0
+offset_top = 76.0
+offset_right = 580.0
+offset_bottom = 116.0
+theme_override_colors/font_color = Color(0.5529412, 0.827451, 0.9490196, 1)
+theme_override_font_sizes/font_size = 28
 text = "力量经验+50"
 vertical_alignment = 1
 
 [node name="LockTip" type="Label" parent="Row1"]
 visible = false
 layout_mode = 0
-offset_left = 280.0
-offset_top = 138.0
-offset_right = 720.0
-offset_bottom = 200.0
-theme_override_colors/font_color = Color(0.5958281, 0.5958281, 0.5958281, 1)
-theme_override_font_sizes/font_size = 40
-text = "升级以解锁"
+offset_left = 250.0
+offset_top = 122.0
+offset_right = 580.0
+offset_bottom = 164.0
+theme_override_colors/font_color = Color(0.4862745, 0.61960787, 0.72156864, 1)
+theme_override_font_sizes/font_size = 26
+text = "自律区 Lv.2 解锁"
 vertical_alignment = 1
+
+[node name="Divider" type="ColorRect" parent="Row1"]
+layout_mode = 0
+offset_left = 590.0
+offset_top = 16.0
+offset_right = 592.0
+offset_bottom = 243.0
+color = Color(0.1764706, 0.37254903, 0.4745098, 0.8)
 
 [node name="Times" type="Label" parent="Row1"]
 layout_mode = 0
-offset_left = 585.0
-offset_top = 34.0
-offset_right = 775.0
-offset_bottom = 104.0
+offset_left = 612.0
+offset_top = 14.0
+offset_right = 892.0
+offset_bottom = 60.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 48
-text = "(0/3)"
+theme_override_font_sizes/font_size = 28
+text = "今日 0/3"
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="StaminaIcon" type="TextureRect" parent="Row1"]
-self_modulate = Color(0, 1, 0, 1)
 layout_mode = 0
-offset_left = 505.0
-offset_top = 134.0
-offset_right = 561.0
-offset_bottom = 190.0
-texture = ExtResource("3_stamina")
+offset_left = 646.0
+offset_top = 72.0
+offset_right = 684.0
+offset_bottom = 124.0
+texture = ExtResource("6_stamina")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="StaminaNum" type="Label" parent="Row1"]
 layout_mode = 0
-offset_left = 567.0
-offset_top = 130.0
-offset_right = 700.0
-offset_bottom = 192.0
+offset_left = 690.0
+offset_top = 70.0
+offset_right = 810.0
+offset_bottom = 124.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 44
+theme_override_font_sizes/font_size = 30
 text = "×5"
 vertical_alignment = 1
 
 [node name="ActionBtn" type="Button" parent="Row1"]
 layout_mode = 0
-offset_left = 468.0
-offset_top = 204.0
-offset_right = 775.0
-offset_bottom = 280.0
-theme_override_font_sizes/font_size = 42
+offset_left = 617.0
+offset_top = 132.0
+offset_right = 892.0
+offset_bottom = 214.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.8784314, 0.9137255, 0.9411765, 1)
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_btn_disabled")
 text = "撸铁"
-icon = ExtResource("7_confirm")
-flat = true
-icon_alignment = 1
-expand_icon = true
 
-[node name="Row2" type="Panel" parent="." unique_id=1590651310]
+[node name="StatusTip" type="Label" parent="Row1"]
+visible = false
 layout_mode = 0
-offset_left = 33.0
-offset_top = 320.0
-offset_right = 832.0
-offset_bottom = 600.0
+offset_left = 612.0
+offset_top = 216.0
+offset_right = 892.0
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(0.4862745, 0.61960787, 0.72156864, 1)
+theme_override_font_sizes/font_size = 20
+text = "今日次数已用尽"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Row2" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 1159.0
+offset_right = 994.0
+offset_bottom = 1418.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_row")
 
-[node name="IconFrame" type="TextureRect" parent="Row2"]
+[node name="IconFrame" type="Panel" parent="Row2"]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 30.0
-offset_right = 244.0
-offset_bottom = 250.0
-texture = ExtResource("2_frame")
-expand_mode = 1
-stretch_mode = 5
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 232.0
+offset_bottom = 232.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
 
-[node name="Icon" type="TextureRect" parent="Row2"]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 46.0
-offset_right = 228.0
-offset_bottom = 234.0
-texture = ExtResource("5_treadmill")
+[node name="IconWrap" type="CenterContainer" parent="Row2/IconFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="TextureRect" parent="Row2/IconFrame/IconWrap"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+texture = ExtResource("3_treadmill")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="Name" type="Label" parent="Row2"]
 layout_mode = 0
-offset_left = 280.0
-offset_top = 38.0
-offset_right = 580.0
-offset_bottom = 110.0
+offset_left = 250.0
+offset_top = 22.0
+offset_right = 570.0
+offset_bottom = 70.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 38
 text = "跑步机"
 vertical_alignment = 1
 
 [node name="ExpText" type="Label" parent="Row2"]
 layout_mode = 0
-offset_left = 280.0
-offset_top = 138.0
-offset_right = 590.0
-offset_bottom = 200.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 38
+offset_left = 250.0
+offset_top = 76.0
+offset_right = 580.0
+offset_bottom = 116.0
+theme_override_colors/font_color = Color(0.5529412, 0.827451, 0.9490196, 1)
+theme_override_font_sizes/font_size = 28
 text = "速度经验+50"
 vertical_alignment = 1
 
 [node name="LockTip" type="Label" parent="Row2"]
 visible = false
 layout_mode = 0
-offset_left = 280.0
-offset_top = 138.0
-offset_right = 720.0
-offset_bottom = 200.0
-theme_override_colors/font_color = Color(0.5958281, 0.5958281, 0.5958281, 1)
-theme_override_font_sizes/font_size = 40
-text = "升级以解锁"
+offset_left = 250.0
+offset_top = 122.0
+offset_right = 580.0
+offset_bottom = 164.0
+theme_override_colors/font_color = Color(0.4862745, 0.61960787, 0.72156864, 1)
+theme_override_font_sizes/font_size = 26
+text = "自律区 Lv.2 解锁"
 vertical_alignment = 1
+
+[node name="Divider" type="ColorRect" parent="Row2"]
+layout_mode = 0
+offset_left = 590.0
+offset_top = 16.0
+offset_right = 592.0
+offset_bottom = 243.0
+color = Color(0.1764706, 0.37254903, 0.4745098, 0.8)
 
 [node name="Times" type="Label" parent="Row2"]
 layout_mode = 0
-offset_left = 585.0
-offset_top = 34.0
-offset_right = 775.0
-offset_bottom = 104.0
+offset_left = 612.0
+offset_top = 14.0
+offset_right = 892.0
+offset_bottom = 60.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 48
-text = "(0/3)"
+theme_override_font_sizes/font_size = 28
+text = "今日 0/3"
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="StaminaIcon" type="TextureRect" parent="Row2"]
-self_modulate = Color(0, 1, 0, 1)
 layout_mode = 0
-offset_left = 505.0
-offset_top = 134.0
-offset_right = 561.0
-offset_bottom = 190.0
-texture = ExtResource("3_stamina")
+offset_left = 646.0
+offset_top = 72.0
+offset_right = 684.0
+offset_bottom = 124.0
+texture = ExtResource("6_stamina")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="StaminaNum" type="Label" parent="Row2"]
 layout_mode = 0
-offset_left = 567.0
-offset_top = 130.0
-offset_right = 700.0
-offset_bottom = 192.0
+offset_left = 690.0
+offset_top = 70.0
+offset_right = 810.0
+offset_bottom = 124.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 44
+theme_override_font_sizes/font_size = 30
 text = "×5"
 vertical_alignment = 1
 
 [node name="ActionBtn" type="Button" parent="Row2"]
 layout_mode = 0
-offset_left = 468.0
-offset_top = 204.0
-offset_right = 775.0
-offset_bottom = 280.0
-theme_override_font_sizes/font_size = 42
+offset_left = 617.0
+offset_top = 132.0
+offset_right = 892.0
+offset_bottom = 214.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.8784314, 0.9137255, 0.9411765, 1)
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_btn_disabled")
 text = "跑步"
-icon = ExtResource("7_confirm")
-flat = true
-icon_alignment = 1
-expand_icon = true
 
-[node name="Row3" type="Panel" parent="." unique_id=909125720]
+[node name="StatusTip" type="Label" parent="Row2"]
+visible = false
 layout_mode = 0
-offset_left = 33.0
-offset_top = 620.0
-offset_right = 832.0
-offset_bottom = 900.0
+offset_left = 612.0
+offset_top = 216.0
+offset_right = 892.0
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(0.4862745, 0.61960787, 0.72156864, 1)
+theme_override_font_sizes/font_size = 20
+text = "今日次数已用尽"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Row3" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 1430.0
+offset_right = 994.0
+offset_bottom = 1689.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_row")
 
-[node name="IconFrame" type="TextureRect" parent="Row3"]
+[node name="IconFrame" type="Panel" parent="Row3"]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 30.0
-offset_right = 244.0
-offset_bottom = 250.0
-texture = ExtResource("2_frame")
-expand_mode = 1
-stretch_mode = 5
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 232.0
+offset_bottom = 232.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
 
-[node name="Icon" type="TextureRect" parent="Row3"]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 46.0
-offset_right = 228.0
-offset_bottom = 234.0
-texture = ExtResource("6_bookshelf")
+[node name="IconWrap" type="CenterContainer" parent="Row3/IconFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="TextureRect" parent="Row3/IconFrame/IconWrap"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+texture = ExtResource("4_bookshelf")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="Name" type="Label" parent="Row3"]
 layout_mode = 0
-offset_left = 280.0
-offset_top = 38.0
-offset_right = 580.0
-offset_bottom = 110.0
+offset_left = 250.0
+offset_top = 22.0
+offset_right = 570.0
+offset_bottom = 70.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 38
 text = "书柜"
 vertical_alignment = 1
 
 [node name="ExpText" type="Label" parent="Row3"]
 layout_mode = 0
-offset_left = 280.0
-offset_top = 138.0
-offset_right = 590.0
-offset_bottom = 200.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 38
+offset_left = 250.0
+offset_top = 76.0
+offset_right = 580.0
+offset_bottom = 116.0
+theme_override_colors/font_color = Color(0.5529412, 0.827451, 0.9490196, 1)
+theme_override_font_sizes/font_size = 28
 text = "智力经验+50"
 vertical_alignment = 1
 
 [node name="LockTip" type="Label" parent="Row3"]
 visible = false
 layout_mode = 0
-offset_left = 280.0
-offset_top = 138.0
-offset_right = 720.0
-offset_bottom = 200.0
-theme_override_colors/font_color = Color(0.5958281, 0.5958281, 0.5958281, 1)
-theme_override_font_sizes/font_size = 40
-text = "升级以解锁"
+offset_left = 250.0
+offset_top = 122.0
+offset_right = 580.0
+offset_bottom = 164.0
+theme_override_colors/font_color = Color(0.4862745, 0.61960787, 0.72156864, 1)
+theme_override_font_sizes/font_size = 26
+text = "自律区 Lv.3 解锁"
 vertical_alignment = 1
+
+[node name="Divider" type="ColorRect" parent="Row3"]
+layout_mode = 0
+offset_left = 590.0
+offset_top = 16.0
+offset_right = 592.0
+offset_bottom = 243.0
+color = Color(0.1764706, 0.37254903, 0.4745098, 0.8)
 
 [node name="Times" type="Label" parent="Row3"]
 layout_mode = 0
-offset_left = 585.0
-offset_top = 34.0
-offset_right = 775.0
-offset_bottom = 104.0
+offset_left = 612.0
+offset_top = 14.0
+offset_right = 892.0
+offset_bottom = 60.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 48
-text = "(0/3)"
+theme_override_font_sizes/font_size = 28
+text = "今日 0/3"
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="StaminaIcon" type="TextureRect" parent="Row3"]
-self_modulate = Color(0, 1, 0, 1)
 layout_mode = 0
-offset_left = 505.0
-offset_top = 134.0
-offset_right = 561.0
-offset_bottom = 190.0
-texture = ExtResource("3_stamina")
+offset_left = 646.0
+offset_top = 72.0
+offset_right = 684.0
+offset_bottom = 124.0
+texture = ExtResource("6_stamina")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="StaminaNum" type="Label" parent="Row3"]
 layout_mode = 0
-offset_left = 567.0
-offset_top = 130.0
-offset_right = 700.0
-offset_bottom = 192.0
+offset_left = 690.0
+offset_top = 70.0
+offset_right = 810.0
+offset_bottom = 124.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 44
+theme_override_font_sizes/font_size = 30
 text = "×5"
 vertical_alignment = 1
 
 [node name="ActionBtn" type="Button" parent="Row3"]
 layout_mode = 0
-offset_left = 468.0
-offset_top = 204.0
-offset_right = 775.0
-offset_bottom = 280.0
-theme_override_font_sizes/font_size = 42
+offset_left = 617.0
+offset_top = 132.0
+offset_right = 892.0
+offset_bottom = 214.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0.8784314, 0.9137255, 0.9411765, 1)
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_btn_disabled")
 text = "阅读"
-icon = ExtResource("7_confirm")
-flat = true
-icon_alignment = 1
-expand_icon = true
+
+[node name="StatusTip" type="Label" parent="Row3"]
+visible = false
+layout_mode = 0
+offset_left = 612.0
+offset_top = 216.0
+offset_right = 892.0
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(0.4862745, 0.61960787, 0.72156864, 1)
+theme_override_font_sizes/font_size = 20
+text = "今日次数已用尽"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BottomNote" type="Label" parent="."]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 1698.0
+offset_right = 994.0
+offset_bottom = 1742.0
+theme_override_colors/font_color = Color(0.4862745, 0.61960787, 0.72156864, 1)
+theme_override_font_sizes/font_size = 26
+text = "锻炼次数每日重置"
+horizontal_alignment = 1
+vertical_alignment = 1

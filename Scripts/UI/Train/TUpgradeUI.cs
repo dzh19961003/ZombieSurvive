@@ -1,66 +1,94 @@
 using Godot;
 using System;
-using System.Linq;
 using MyProject;
 
 public partial class TUpgradeUI : Control
 {
-	[Export] Button upgrade;
+	[Export] TextureButton upgrade;
+
 	private const int MaxTextureLevel = 5;
-	
 	private const int RunningmachineUnlockLevel = 2;
 	private const int BookshelfUnlockLevel = 3;
 	private const int MaxLevel = 5;
-	private static readonly Color LockedFunColor = new(0.5958281f, 0.5958281f, 0.5958281f, 1f);
-	
+
+	private static readonly Color LockedFunColor = new(0.4862745f, 0.61960787f, 0.72156864f, 1f);
+	private static readonly Color NormalColor = new(1f, 1f, 1f, 1f);
+
 	private int currentLevel = 1;
-	
+
 	private TextureRect _trainTexture;
-	private Label _gradeTitle;
-	private Label _expELevelValue;
-	private Label _expENextLevelValue;
-	private TextureRect _arrow;
+	private Label _lvCur;
+	private Label _lvNext;
+	private TextureRect _levelArrow;
+	private Label _expCur;
+	private Label _expNext;
+	private Label _expCurBreak;
+	private Label _expNextBreak;
+	private TextureRect _expArrow;
+	private Label _featureName1;
+	private Label _featureStatus1;
+	private Label _featureName2;
+	private Label _featureStatus2;
+	private Label _reqTitle;
+	private Control _reqRow;
 	private Label _maxTip;
-	private Label[] _reqLabels;
+	private Label _upgradeLabel;
+	private Control[] _reqSlots;
 	private TextureRect[] _reqIcons;
-	//额外功能展示
-	private Label _runningmachineDesc;
-	private Label _bookshelfDesc;
-	private TextureRect _runningmachineLock;
-	private TextureRect _bookshelfLock;
+	private Label[] _reqNames;
+	private Label[] _reqCounts;
 
 	public override void _Ready()
 	{
-		_gradeTitle     = GetNode<Label>("GradeTitle");
-		_expELevelValue = GetNode<Label>("ExpEfficiency/EELevelValue");
-		_maxTip=GetNode<Label>("UpgradeRequ/maxTip");
-		_expENextLevelValue = GetNode<Label>("ExpEfficiency/EENextLevelValue");
-		_arrow = GetNode<TextureRect>("ExpEfficiency/Arrow");
-		_trainTexture     = GetNode<TextureRect>("TrainTexture");
-		_reqLabels = new Label[]
+		_trainTexture      = GetNode<TextureRect>("TrainTexture");
+		_lvCur             = GetNode<Label>("Info/LevelRow/LvCur");
+		_lvNext            = GetNode<Label>("Info/LevelRow/LvNext");
+		_levelArrow        = GetNode<TextureRect>("Info/LevelRow/LevelArrow");
+		_expCur            = GetNode<Label>("Info/ExpRow/ExpCur");
+		_expNext           = GetNode<Label>("Info/ExpRow/ExpNext");
+		_expArrow          = GetNode<TextureRect>("Info/ExpRow/ExpArrow");
+		_expCurBreak       = GetNode<Label>("Info/ExpCurBreak");
+		_expNextBreak      = GetNode<Label>("Info/ExpNextBreak");
+
+		_featureName1      = GetNode<Label>("FeatureRow/Feature1/F1Text/F1Name");
+		_featureStatus1    = GetNode<Label>("FeatureRow/Feature1/F1Text/F1Status");
+		_featureName2      = GetNode<Label>("FeatureRow/Feature2/F2Text/F2Name");
+		_featureStatus2    = GetNode<Label>("FeatureRow/Feature2/F2Text/F2Status");
+
+		_reqTitle = GetNode<Label>("ReqTitle");
+		_reqRow   = GetNode<Control>("ReqRow");
+		_reqSlots = new Control[]
 		{
-			GetNode<Label>("UpgradeRequ/requirement1"),
-			GetNode<Label>("UpgradeRequ/requirement2"),
-			GetNode<Label>("UpgradeRequ/requirement3")
+			GetNode<Control>("ReqRow/Req1"),
+			GetNode<Control>("ReqRow/Req2"),
+			GetNode<Control>("ReqRow/Req3")
 		};
 		_reqIcons = new TextureRect[]
 		{
-			GetNode<TextureRect>("UpgradeRequ/TextureRect"),
-			GetNode<TextureRect>("UpgradeRequ/TextureRect2"),
-			GetNode<TextureRect>("UpgradeRequ/TextureRect3")
+			GetNode<TextureRect>("ReqRow/Req1/IconWrap/Icon"),
+			GetNode<TextureRect>("ReqRow/Req2/IconWrap/Icon"),
+			GetNode<TextureRect>("ReqRow/Req3/IconWrap/Icon")
 		};
-		//额外功能
-		_runningmachineDesc = GetNode<Label>("ExtraFun/ExtraFunDescription");
-		_bookshelfDesc      = GetNode<Label>("ExtraFun/ExtraFunDescription2");
-		_runningmachineLock = GetNode<TextureRect>("ExtraFun/Lock2");
-		_bookshelfLock      = GetNode<TextureRect>("ExtraFun/Lock");
+		_reqNames = new Label[]
+		{
+			GetNode<Label>("ReqRow/Req1/Name"),
+			GetNode<Label>("ReqRow/Req2/Name"),
+			GetNode<Label>("ReqRow/Req3/Name")
+		};
+		_reqCounts = new Label[]
+		{
+			GetNode<Label>("ReqRow/Req1/Count"),
+			GetNode<Label>("ReqRow/Req2/Count"),
+			GetNode<Label>("ReqRow/Req3/Count")
+		};
 
+		_maxTip = GetNode<Label>("MaxTip");
 
 		if (upgrade != null)
 		{
+			_upgradeLabel = upgrade.GetNodeOrNull<Label>("Label");
 			upgrade.Pressed += OnUpgradePressed;
 		}
-
 
 		CallDeferred(nameof(DeferredInit));
 	}
@@ -89,7 +117,7 @@ public partial class TUpgradeUI : Control
 		CallDeferred(nameof(RefreshDisplay));
 	}
 
-	//当前等级配置
+	// 当前等级配置
 	private RoofTrain FindUpgradeConfig()
 	{
 		var dic = ConfigManager.Instance?.roofTrainDic;
@@ -97,7 +125,7 @@ public partial class TUpgradeUI : Control
 		return dic.ContainsKey(currentLevel) ? dic[currentLevel] : null;
 	}
 
-	//下一等级配置
+	// 下一等级配置
 	private RoofTrain FindNextUpgradeConfig()
 	{
 		var dic = ConfigManager.Instance?.roofTrainDic;
@@ -110,117 +138,72 @@ public partial class TUpgradeUI : Control
 		if (PlayerManager.Instance == null || ConfigManager.Instance == null) return;
 
 		currentLevel = PlayerManager.Instance.TrainLevel;
-		//额外功能解锁状态展示
-		RefreshExtraFun();
-		RefreshTrainTexture();
-		string levelText = $"等级{currentLevel}";
-		if (_gradeTitle != null) _gradeTitle.Text = levelText;
+		bool isUnlockStep = currentLevel == 1 && !PlayerManager.Instance.TrainUnlocked;
+		bool isMaxLevel = currentLevel >= MaxLevel && PlayerManager.Instance.TrainUnlocked;
 
-		var cfg = FindUpgradeConfig();
+		var curCfg = FindUpgradeConfig();
 		var nextCfg = FindNextUpgradeConfig();
 
-		// 等级1未解锁：材料查当前等级配置；已解锁或等级>1：查下一等级配置
-		bool isUnlockStep = currentLevel == 1 && !PlayerManager.Instance.TrainUnlocked;
-		var reqCfg = isUnlockStep ? cfg : nextCfg;
+		RefreshTrainTexture();
+		RefreshFeatureUnlock();
+		RefreshLevel(curCfg, nextCfg, isUnlockStep, isMaxLevel);
+		RefreshRequirements(isUnlockStep ? curCfg : nextCfg, isUnlockStep, isMaxLevel);
+	}
 
-		// 经验效率
+	// 等级：Lv.当前 → Lv.下一级
+	private void RefreshLevel(RoofTrain curCfg, RoofTrain nextCfg, bool isUnlockStep, bool isMaxLevel)
+	{
+		_lvCur.Text = $"Lv.{currentLevel}";
+
+		bool hasNext = !isUnlockStep && !isMaxLevel;
+		_lvNext.Visible = hasNext;
+		_levelArrow.Visible = hasNext;
+		if (hasNext) _lvNext.Text = $"Lv.{currentLevel + 1}";
+
+		// 解锁前不展示经验效率
 		if (isUnlockStep)
 		{
-			// 解锁前
-			if (_expELevelValue != null)
-			{
-				_expELevelValue.Visible = true;
-				_expELevelValue.Text = "解锁后查看";
-			}
-			if (_expENextLevelValue != null)
-			{
-				_expENextLevelValue.Visible = false;
-				_expENextLevelValue.Text = "解锁后查看";
-			}
-			if (_arrow != null) _arrow.Visible = false;
-		}
-		else
-		{
-			// 解锁后
-			if (_expELevelValue != null)
-			{
-				_expELevelValue.Visible = true;
-				_expELevelValue.Text = cfg != null ? $"+{cfg.ExpAdd+PlayerManager.Instance.Exp_acq_rate*100:F2}%" : "+0%";
-			}
-
-			if (currentLevel >= MaxLevel)
-			{
-				// 满级
-				if (_expENextLevelValue != null) _expENextLevelValue.Visible = false;
-				if (_arrow != null) _arrow.Visible = false;
-			}
-			else
-			{
-				// 正常升级
-				if (_expENextLevelValue != null)
-				{
-					_expENextLevelValue.Visible = true;
-					_expENextLevelValue.Text = nextCfg != null ? $"+{nextCfg.ExpAdd+PlayerManager.Instance.Exp_acq_rate*100:F2}%" : "+0%";
-				}
-				if (_arrow != null) _arrow.Visible = true;
-			}
-		}
-
-		if (currentLevel >= MaxLevel && PlayerManager.Instance.TrainUnlocked)
-		{
-			// 已达最高等级：清空需求并禁用按钮
-			for (int i = 0; i < _reqLabels.Length; i++)
-			{
-				_reqIcons[i].Visible = false;
-				_reqLabels[i].Visible = false;
-			}
-			if (upgrade != null) upgrade.Icon = GD.Load<Texture2D>("res://Assets/Images/UI/button_cancel.png");
-			_maxTip.Visible = true;
+			_expCur.Text = "解锁后查看";
+			_expCur.AddThemeColorOverride("font_color", LockedFunColor);
+			_expNext.Visible = false;
+			_expArrow.Visible = false;
+			_expCurBreak.Visible = false;
+			_expNextBreak.Visible = false;
 			return;
 		}
-		_maxTip.Visible = false;
-		if (upgrade != null)
+
+		int playerPercent = GetPlayerExpBonusPercent();
+
+		// 当前等级：玩家加成 + 器材加成
+		int curEquipPercent = curCfg != null ? curCfg.ExpAdd : 0;
+		_expCur.AddThemeColorOverride("font_color", NormalColor);
+		_expCur.Text = $"{playerPercent + curEquipPercent}%";
+		_expCurBreak.Visible = true;
+		_expCurBreak.Text = $"玩家{playerPercent}% +\n器材{curEquipPercent}%";
+
+		if (isMaxLevel)
 		{
-			upgrade.Disabled = false;
-			upgrade.Text = (currentLevel == 1 && !PlayerManager.Instance.TrainUnlocked) ? "解锁" : "升级";
+			_expNext.Visible = false;
+			_expArrow.Visible = false;
+			_expNextBreak.Visible = false;
+			return;
 		}
 
-		// 动态填充三个需求槽位
-		int slotCount = Mathf.Min(_reqLabels.Length, _reqIcons.Length);
-		for (int i = 0; i < slotCount; i++)
-		{
-			if (_reqLabels[i] == null || _reqIcons[i] == null) continue;
-			_reqIcons[i].Visible = true;
-			_reqLabels[i].Visible = true;
+		int nextEquipPercent = nextCfg != null ? nextCfg.ExpAdd : 0;
+		_expNext.Visible = true;
+		_expArrow.Visible = true;
+		_expNextBreak.Visible = true;
+		_expNext.Text = $"{playerPercent + nextEquipPercent}%";
+		_expNextBreak.Text = $"玩家{playerPercent}% +\n器材{nextEquipPercent}%";
+	}
 
-			int itemID = (reqCfg.ItemID != null && i < reqCfg.ItemID.Count) ? reqCfg.ItemID[i] : 0;
-			int need   = (reqCfg.ItemNum != null && i < reqCfg.ItemNum.Count) ? reqCfg.ItemNum[i] : 0;
-
-			if (itemID == 0 || need == 0)
-			{
-				_reqIcons[i].Visible = false;
-				_reqLabels[i].Visible = false;
-				continue;
-			}
-
-			_reqIcons[i].Visible = true;
-			_reqLabels[i].Visible = true;
-
-			if (UIManager.Instance != null && itemID < 10000)
-			{
-				var icon = UIManager.Instance.GetItemIcon(itemID);
-				if (icon != null) _reqIcons[i].Texture = icon;
-			}
-			else if (itemID == 10015)
-			{
-				var staminaIcon = GD.Load<Texture2D>("res://Assets/Images/UI/stamina.png");
-				if (staminaIcon != null) _reqIcons[i].Texture = staminaIcon;
-			}
-
-			bool insufficient = !IsEnough(itemID, need);
-			_reqLabels[i].Text = $"×{need}";
-			SetReqColor(_reqLabels[i], insufficient);
-		}
+	// 玩家经验获取效率加成：智力加成 + 状态/天赋等效率加成
+	private int GetPlayerExpBonusPercent()
+	{
+		if (PlayerManager.Instance == null) return 0;
+		double bonus = PlayerManager.Instance.Intelligence * Consts.expPerIntellect
+		             + (PlayerManager.Instance.Exp_acq_rate - 1.0) * 100.0;
+		return (int)Math.Round(bonus);
 	}
 
 	private void RefreshTrainTexture()
@@ -234,26 +217,125 @@ public partial class TUpgradeUI : Control
 			_trainTexture.Texture = tex;
 		}
 	}
-	private void SetReqColor(Label label, bool insufficient)
+
+	// 额外功能解锁：名称保持白色，状态文字显示已解锁/解锁等级
+	private void RefreshFeatureUnlock()
 	{
-		if (label == null) return;
-		//资源不足红色，充足白色
-		label.AddThemeColorOverride("font_color", insufficient ? Colors.Red : Colors.White);
+		RefreshFeature(_featureName1, _featureStatus1, "跑步机", RunningmachineUnlockLevel);
+		RefreshFeature(_featureName2, _featureStatus2, "书柜", BookshelfUnlockLevel);
 	}
 
-	//额外功能展示：等级不足显示锁图标且名称灰色，解锁后白色并隐藏锁图标
-	private void RefreshExtraFun()
+	private void RefreshFeature(Label name, Label status, string featureName, int unlockLevel)
 	{
-		if (_runningmachineDesc == null || _bookshelfDesc == null) return;
+		if (name == null || status == null) return;
 
-		bool runningmachineUnlocked = PlayerManager.Instance.TrainLevel >= RunningmachineUnlockLevel;
-		bool bookshelfUnlocked = PlayerManager.Instance.TrainLevel >= BookshelfUnlockLevel;
+		bool unlocked = PlayerManager.Instance.TrainLevel >= unlockLevel;
+		name.Text = featureName;
+		name.AddThemeColorOverride("font_color", unlocked ? NormalColor : LockedFunColor);
+		status.Text = unlocked ? "已解锁" : $"Lv.{unlockLevel} 解锁";
+		status.AddThemeColorOverride("font_color", unlocked ? new Color(0.4509804f, 0.7882353f, 0.9490196f, 1f) : LockedFunColor);
+	}
 
-		_runningmachineDesc.AddThemeColorOverride("font_color", runningmachineUnlocked ? Colors.White : LockedFunColor);
-		if (_runningmachineLock != null) _runningmachineLock.Visible = !runningmachineUnlocked;
+	// 升级需求：图标 + 名称 + 拥有/需求
+	private void RefreshRequirements(RoofTrain cfg, bool isUnlockStep, bool isMaxLevel)
+	{
+		if (isMaxLevel)
+		{
+			_maxTip.Visible = true;
+			_reqTitle.Visible = false;
+			_reqRow.Visible = false;
+			if (upgrade != null)
+			{
+				upgrade.Disabled = true;
+				upgrade.Modulate = new Color(1f, 1f, 1f, 0.5f);
+			}
+			if (_upgradeLabel != null) _upgradeLabel.Text = "已满级";
+			return;
+		}
 
-		_bookshelfDesc.AddThemeColorOverride("font_color", bookshelfUnlocked ? Colors.White : LockedFunColor);
-		if (_bookshelfLock != null) _bookshelfLock.Visible = !bookshelfUnlocked;
+		_maxTip.Visible = false;
+		_reqTitle.Visible = true;
+		_reqRow.Visible = true;
+		if (upgrade != null)
+		{
+			upgrade.Disabled = false;
+			upgrade.Modulate = NormalColor;
+		}
+		if (_upgradeLabel != null) _upgradeLabel.Text = isUnlockStep ? "解锁" : "升级";
+
+		if (cfg == null) return;
+
+		int slotCount = Mathf.Min(_reqSlots.Length, Mathf.Min(_reqIcons.Length, Mathf.Min(_reqNames.Length, _reqCounts.Length)));
+		for (int i = 0; i < slotCount; i++)
+		{
+			int itemID = (cfg.ItemID != null && i < cfg.ItemID.Count) ? cfg.ItemID[i] : 0;
+			int need = (cfg.ItemNum != null && i < cfg.ItemNum.Count) ? cfg.ItemNum[i] : 0;
+
+			if (itemID == 0 || need == 0)
+			{
+				_reqSlots[i].Visible = false;
+				continue;
+			}
+
+			_reqSlots[i].Visible = true;
+			_reqNames[i].Text = GetItemName(itemID);
+
+			var icon = GetRequirementIcon(itemID);
+			if (icon != null) _reqIcons[i].Texture = icon;
+
+			int have = GetItemHave(itemID);
+			bool insufficient = have < need;
+			_reqCounts[i].Text = $"{have}/{need}";
+			// 资源不足红色，充足白色
+			_reqCounts[i].AddThemeColorOverride("font_color", insufficient ? Colors.Red : Colors.White);
+		}
+
+		// 多余槽位隐藏
+		for (int i = slotCount; i < _reqSlots.Length; i++)
+		{
+			_reqSlots[i].Visible = false;
+		}
+	}
+
+	// 需求图标：体力类属性复用体力图标，其余走通用图标
+	private Texture2D GetRequirementIcon(int itemID)
+	{
+		if (itemID == 10015 || itemID == 10016)
+		{
+			return GD.Load<Texture2D>("res://Assets/Images/UI/stamina.png");
+		}
+		return UIManager.Instance?.GetItemIcon(itemID);
+	}
+
+	private string GetItemName(int itemID)
+	{
+		if (itemID < 10000)
+		{
+			var itemDic = ConfigManager.Instance?.itemDic;
+			return itemDic != null && itemDic.ContainsKey(itemID) ? itemDic[itemID].Name : "";
+		}
+
+		var effectDic = ConfigManager.Instance?.effectTypeDic;
+		return effectDic != null && effectDic.ContainsKey(itemID) ? effectDic[itemID].Type : "";
+	}
+
+	private int GetItemHave(int itemID)
+	{
+		if (PlayerManager.Instance == null) return 0;
+
+		if (itemID < 10000) return PlayerManager.Instance.GetItemCount(itemID);
+
+		switch (itemID)
+		{
+			case 10001: return (int)PlayerManager.Instance.Hp;
+			case 10002: return (int)PlayerManager.Instance.MaxHp;
+			case 10003: return PlayerManager.Instance.Strength;
+			case 10004: return PlayerManager.Instance.Agility;
+			case 10005: return PlayerManager.Instance.Intelligence;
+			case 10015: return PlayerManager.Instance.BaseStamina;
+			case 10016: return PlayerManager.Instance.ExploreStamina;
+			default: return 0;
+		}
 	}
 
 	private void OnUpgradePressed()
@@ -269,13 +351,13 @@ public partial class TUpgradeUI : Control
 			return;
 		}
 
-		//校验所有材料是否充足
-		if (cfg.ItemID != null && cfg.ItemNum != null )
+		// 校验所有材料是否充足
+		if (cfg.ItemID != null && cfg.ItemNum != null)
 		{
 			for (int i = 0; i < cfg.ItemID.Count; i++)
 			{
 				int itemID = cfg.ItemID[i];
-				int need   = i < cfg.ItemNum.Count ? cfg.ItemNum[i] : 0;
+				int need = i < cfg.ItemNum.Count ? cfg.ItemNum[i] : 0;
 				if (!IsEnough(itemID, need))
 				{
 					UIManager.Instance.ShowCommonTips2(isUnlock ? "解锁材料不足" : "升级材料不足");
@@ -290,7 +372,7 @@ public partial class TUpgradeUI : Control
 			for (int i = 0; i < cfg.ItemID.Count; i++)
 			{
 				int itemID = cfg.ItemID[i];
-				int need   = i < cfg.ItemNum.Count ? cfg.ItemNum[i] : 0;
+				int need = i < cfg.ItemNum.Count ? cfg.ItemNum[i] : 0;
 				if (itemID == 0 || need == 0) continue;
 
 				if (itemID < 10000)
@@ -313,33 +395,17 @@ public partial class TUpgradeUI : Control
 		else
 		{
 			currentLevel++;
-			GD.Print($"[TUpgradeUI] 升级成功，当前等级：{currentLevel}");
 			PlayerManager.Instance.SetTrainLevel(currentLevel);
+			GD.Print($"[TUpgradeUI] 升级成功，当前等级：{currentLevel}");
 		}
 
 		RefreshDisplay();
 	}
+
 	// 判断材料是否充足（支持物品ID和属性ID）
 	private bool IsEnough(int itemID, int need)
 	{
-		if (PlayerManager.Instance == null) return false;
 		if (need == 0) return true;
-
-		if (itemID >= 10000)
-		{
-			// 属性类：通过 AddItem 对应的属性判断
-			switch (itemID)
-			{
-				case 10001: return PlayerManager.Instance.Hp >= need;
-				case 10002: return PlayerManager.Instance.MaxHp >= need;
-				case 10003: return PlayerManager.Instance.Strength >= need;
-				case 10004: return PlayerManager.Instance.Agility >= need;
-				case 10005: return PlayerManager.Instance.Intelligence >= need;
-				case 10015: return PlayerManager.Instance.BaseStamina >= need;
-				case 10016: return PlayerManager.Instance.ExploreStamina >= need;
-				default: return false;
-			}
-		}
-		return PlayerManager.Instance.GetItemCount(itemID) >= need;
+		return GetItemHave(itemID) >= need;
 	}
 }

@@ -1,57 +1,72 @@
 using Godot;
 using System;
-using System.Linq;
 using MyProject;
 
 public partial class TentUpgradeUI : Control
 {
-    [Export] Button upgrade;
+    [Export] TextureButton upgrade;
 
     private const int MaxLevel = 3;
     private const int MaxTextureLevel = 3;
 
+    private static readonly Color NormalColor = new(1f, 1f, 1f, 1f);
+
     private int currentLevel = 1;
 
     private TextureRect _tentTexture;
-    private Label _gradeTitle;
+    private Label _lvCur;
+    private Label _lvNext;
+    private TextureRect _levelArrow;
     private Label _curVal1;
     private Label _nextVal1;
     private Label _curVal2;
     private Label _nextVal2;
     private Label _maxTip;
+    private Label _upgradeLabel;
     private TextureRect _arrow1;
     private TextureRect _arrow2;
     private TextureRect[] _reqIcons;
-    private Label[] _reqLabels;
+    private Label[] _reqNames;
+    private Label[] _reqCounts;
     private Control _upgradeRequ;
 
     public override void _Ready()
     {
         _tentTexture = GetNode<TextureRect>("TentTexture");
-        _gradeTitle = GetNode<Label>("GradeTitle");
-        _curVal1 = GetNode<Label>("Stamina1/CurVal1");
-        _nextVal1 = GetNode<Label>("Stamina1/NextVal1");
-        _arrow1 = GetNode<TextureRect>("Stamina1/Arrow1");
-        _curVal2 = GetNode<Label>("Stamina2/CurVal2");
-        _nextVal2 = GetNode<Label>("Stamina2/NextVal2");
-        _arrow2 = GetNode<TextureRect>("Stamina2/Arrow2");
+        _lvCur = GetNode<Label>("LevelBlock/LevelRow/LvCur");
+        _lvNext = GetNode<Label>("LevelBlock/LevelRow/LvNext");
+        _levelArrow = GetNode<TextureRect>("LevelBlock/LevelRow/LevelArrow");
+        _curVal1 = GetNode<Label>("Stats/Row1/HBox/CurVal1");
+        _nextVal1 = GetNode<Label>("Stats/Row1/HBox/NextVal1");
+        _arrow1 = GetNode<TextureRect>("Stats/Row1/HBox/Arrow1");
+        _curVal2 = GetNode<Label>("Stats/Row2/HBox/CurVal2");
+        _nextVal2 = GetNode<Label>("Stats/Row2/HBox/NextVal2");
+        _arrow2 = GetNode<TextureRect>("Stats/Row2/HBox/Arrow2");
         _maxTip = GetNode<Label>("MaxTip");
         _upgradeRequ = GetNode<Control>("UpgradeRequ");
+        string reqRoot = "UpgradeRequ/Pad/Body/ReqList";
         _reqIcons = new TextureRect[]
         {
-            GetNode<TextureRect>("UpgradeRequ/ReqIcon1"),
-            GetNode<TextureRect>("UpgradeRequ/ReqIcon2"),
-            GetNode<TextureRect>("UpgradeRequ/ReqIcon3")
+            GetNode<TextureRect>($"{reqRoot}/Req1/IconWrap/Icon"),
+            GetNode<TextureRect>($"{reqRoot}/Req2/IconWrap/Icon"),
+            GetNode<TextureRect>($"{reqRoot}/Req3/IconWrap/Icon")
         };
-        _reqLabels = new Label[]
+        _reqNames = new Label[]
         {
-            GetNode<Label>("UpgradeRequ/ReqLabel1"),
-            GetNode<Label>("UpgradeRequ/ReqLabel2"),
-            GetNode<Label>("UpgradeRequ/ReqLabel3")
+            GetNode<Label>($"{reqRoot}/Req1/Name"),
+            GetNode<Label>($"{reqRoot}/Req2/Name"),
+            GetNode<Label>($"{reqRoot}/Req3/Name")
+        };
+        _reqCounts = new Label[]
+        {
+            GetNode<Label>($"{reqRoot}/Req1/Count"),
+            GetNode<Label>($"{reqRoot}/Req2/Count"),
+            GetNode<Label>($"{reqRoot}/Req3/Count")
         };
 
         if (upgrade != null)
         {
+            _upgradeLabel = upgrade.GetNodeOrNull<Label>("Label");
             upgrade.Pressed += OnUpgradePressed;
         }
 
@@ -120,88 +135,46 @@ public partial class TentUpgradeUI : Control
         var curCfg = FindConfig();
         var nextCfg = FindNextConfig();
 
-        // 等级标题
-        if (_gradeTitle != null) _gradeTitle.Text = $"等级{currentLevel}";
+        // 等级标题：Lv.当前 → Lv.下一级
+        _lvCur.Text = $"Lv.{currentLevel}";
+        bool hasNextLevel = !isUnlockStep && !isMaxLevel;
+        _lvNext.Visible = hasNextLevel;
+        _levelArrow.Visible = hasNextLevel;
+        if (hasNextLevel) _lvNext.Text = $"Lv.{currentLevel + 1}";
 
         RefreshTentTexture();
+        RefreshStamina(curCfg, nextCfg, isUnlockStep, isMaxLevel);
+        RefreshRequirements(isUnlockStep ? curCfg : nextCfg, isUnlockStep, isMaxLevel);
+    }
 
-        // 数值显示
+    // 基地体力 / 探索体力 的当前值与升级后数值
+    private void RefreshStamina(RoofTent curCfg, RoofTent nextCfg, bool isUnlockStep, bool isMaxLevel)
+    {
         if (isUnlockStep)
         {
-            // 解锁前
-            if (_curVal1 != null) _curVal1.Text = "解锁后查看";
-            if (_curVal2 != null) _curVal2.Text = "解锁后查看";
-            if (_nextVal1 != null)
-            {
-                _nextVal1.Visible = false;
-                _nextVal1.Text = "???";
-            }
-            if (_nextVal2 != null)
-            {
-                _nextVal2.Visible = false;
-                _nextVal2.Text = "???";
-            }
-            if (_arrow1 != null) _arrow1.Visible = false;
-            if (_arrow2 != null) _arrow2.Visible = false;
-        }
-        else
-        {
-            // 解锁后
-            if (_curVal1 != null) _curVal1.Text = curCfg != null ? curCfg.RoofStamina.ToString() : "0";
-            if (_curVal2 != null) _curVal2.Text = curCfg != null ? curCfg.ExploreStamina.ToString() : "0";
-
-            if (isMaxLevel)
-            {
-                // 满级
-                if (_nextVal1 != null) _nextVal1.Visible = false;
-                if (_nextVal2 != null) _nextVal2.Visible = false;
-                if (_arrow1 != null) _arrow1.Visible = false;
-                if (_arrow2 != null) _arrow2.Visible = false;
-            }
-            else
-            {
-                // 正常升级
-                if (_nextVal1 != null)
-                {
-                    _nextVal1.Visible = true;
-                    _nextVal1.Text = nextCfg != null ? nextCfg.RoofStamina.ToString() : "0";
-                }
-                if (_nextVal2 != null)
-                {
-                    _nextVal2.Visible = true;
-                    _nextVal2.Text = nextCfg != null ? nextCfg.ExploreStamina.ToString() : "0";
-                }
-                if (_arrow1 != null) _arrow1.Visible = true;
-                if (_arrow2 != null) _arrow2.Visible = true;
-            }
-        }
-
-        // 满级处理
-        if (isMaxLevel)
-        {
-            if (_maxTip != null) _maxTip.Visible = true;
-            if (_upgradeRequ != null) _upgradeRequ.Visible = false;
-            if (upgrade != null)
-            {
-                upgrade.Icon = GD.Load<Texture2D>("res://Assets/Images/UI/button_cancel.png");
-                upgrade.Disabled = true;
-                upgrade.Text = "满级";
-            }
+            // 解锁前不展示具体数值
+            _curVal1.Text = "???";
+            _curVal2.Text = "???";
+            _nextVal1.Visible = false;
+            _nextVal2.Visible = false;
+            _arrow1.Visible = false;
+            _arrow2.Visible = false;
             return;
         }
 
-        if (_maxTip != null) _maxTip.Visible = false;
-        if (_upgradeRequ != null) _upgradeRequ.Visible = true;
+        _curVal1.Text = curCfg != null ? curCfg.RoofStamina.ToString() : "0";
+        _curVal2.Text = curCfg != null ? curCfg.ExploreStamina.ToString() : "0";
 
-        if (upgrade != null)
+        bool hasNext = !isMaxLevel;
+        _nextVal1.Visible = hasNext;
+        _nextVal2.Visible = hasNext;
+        _arrow1.Visible = hasNext;
+        _arrow2.Visible = hasNext;
+        if (hasNext)
         {
-            upgrade.Disabled = false;
-            upgrade.Text = isUnlockStep ? "解锁" : "升级";
+            _nextVal1.Text = nextCfg != null ? nextCfg.RoofStamina.ToString() : "0";
+            _nextVal2.Text = nextCfg != null ? nextCfg.ExploreStamina.ToString() : "0";
         }
-
-        // 材料需求
-        var reqCfg = isUnlockStep ? curCfg : nextCfg;
-        RefreshRequirements(reqCfg);
     }
 
     private void RefreshTentTexture()
@@ -216,42 +189,104 @@ public partial class TentUpgradeUI : Control
         }
     }
 
-    private void RefreshRequirements(RoofTent cfg)
+    // 升级需求：图标 + 名称 + 拥有/需求
+    private void RefreshRequirements(RoofTent cfg, bool isUnlockStep, bool isMaxLevel)
     {
+        if (isMaxLevel)
+        {
+            _maxTip.Visible = true;
+            _upgradeRequ.Visible = false;
+            if (upgrade != null)
+            {
+                upgrade.Disabled = true;
+                upgrade.Modulate = new Color(1f, 1f, 1f, 0.5f);
+            }
+            if (_upgradeLabel != null) _upgradeLabel.Text = "已满级";
+            return;
+        }
+
+        _maxTip.Visible = false;
+        _upgradeRequ.Visible = true;
+        if (upgrade != null)
+        {
+            upgrade.Disabled = false;
+            upgrade.Modulate = NormalColor;
+        }
+        if (_upgradeLabel != null) _upgradeLabel.Text = isUnlockStep ? "解锁" : "升级";
+
         if (cfg == null) return;
 
-        int slotCount = Mathf.Min(_reqLabels.Length, _reqIcons.Length);
+        int slotCount = Mathf.Min(_reqNames.Length, Mathf.Min(_reqIcons.Length, _reqCounts.Length));
         for (int i = 0; i < slotCount; i++)
         {
-            if (_reqLabels[i] == null || _reqIcons[i] == null) continue;
-
             int itemID = (cfg.ItemID != null && i < cfg.ItemID.Count) ? cfg.ItemID[i] : 0;
             int need = (cfg.ItemNum != null && i < cfg.ItemNum.Count) ? cfg.ItemNum[i] : 0;
 
             if (itemID == 0 || need == 0)
             {
-                _reqIcons[i].Visible = false;
-                _reqLabels[i].Visible = false;
+                SetReqVisible(i, false);
                 continue;
             }
 
-            _reqIcons[i].Visible = true;
-            _reqLabels[i].Visible = true;
+            SetReqVisible(i, true);
+            _reqNames[i].Text = GetItemName(itemID);
 
-            if (UIManager.Instance != null && itemID != 0 && itemID < 10000)
-            {
-                var icon = UIManager.Instance.GetItemIcon(itemID);
-                if (icon != null) _reqIcons[i].Texture = icon;
-            }
-            else if (itemID == 10015)
-            {
-                var staminaIcon = GD.Load<Texture2D>("res://Assets/Images/UI/stamina.png");
-                if (staminaIcon != null) _reqIcons[i].Texture = staminaIcon;
-            }
+            var icon = GetRequirementIcon(itemID);
+            if (icon != null) _reqIcons[i].Texture = icon;
 
-            bool insufficient = !IsEnough(itemID, need);
-            _reqLabels[i].Text = $"×{need}";
-            _reqLabels[i].AddThemeColorOverride("font_color", insufficient ? Colors.Red : Colors.White);
+            int have = GetItemHave(itemID);
+            bool insufficient = have < need;
+            _reqCounts[i].Text = $"{have}/{need}";
+            // 资源不足红色，充足白色
+            _reqCounts[i].AddThemeColorOverride("font_color", insufficient ? Colors.Red : Colors.White);
+        }
+    }
+
+    private void SetReqVisible(int index, bool visible)
+    {
+        _reqIcons[index].Visible = visible;
+        _reqNames[index].Visible = visible;
+        _reqCounts[index].Visible = visible;
+    }
+
+    // 需求图标：体力类属性复用黄色闪电图标，其余走通用图标
+    private Texture2D GetRequirementIcon(int itemID)
+    {
+        if (itemID == 10015 || itemID == 10016)
+        {
+            return GD.Load<Texture2D>("res://Assets/Images/UI/stamina.png");
+        }
+        return UIManager.Instance?.GetItemIcon(itemID);
+    }
+
+    private string GetItemName(int itemID)
+    {
+        if (itemID < 10000)
+        {
+            var itemDic = ConfigManager.Instance?.itemDic;
+            return itemDic != null && itemDic.ContainsKey(itemID) ? itemDic[itemID].Name : "";
+        }
+
+        var effectDic = ConfigManager.Instance?.effectTypeDic;
+        return effectDic != null && effectDic.ContainsKey(itemID) ? effectDic[itemID].Type : "";
+    }
+
+    private int GetItemHave(int itemID)
+    {
+        if (PlayerManager.Instance == null) return 0;
+
+        if (itemID < 10000) return PlayerManager.Instance.GetItemCount(itemID);
+
+        switch (itemID)
+        {
+            case 10001: return (int)PlayerManager.Instance.Hp;
+            case 10002: return (int)PlayerManager.Instance.MaxHp;
+            case 10003: return PlayerManager.Instance.Strength;
+            case 10004: return PlayerManager.Instance.Agility;
+            case 10005: return PlayerManager.Instance.Intelligence;
+            case 10015: return PlayerManager.Instance.BaseStamina;
+            case 10016: return PlayerManager.Instance.ExploreStamina;
+            default: return 0;
         }
     }
 
@@ -275,7 +310,7 @@ public partial class TentUpgradeUI : Control
             {
                 int itemID = cfg.ItemID[i];
                 int need = i < cfg.ItemNum.Count ? cfg.ItemNum[i] : 0;
-                if (!IsEnough(itemID, need))
+                if (GetItemHave(itemID) < need)
                 {
                     UIManager.Instance.ShowCommonTips2(isUnlock ? "解锁材料不足" : "升级材料不足");
                     return;
@@ -317,29 +352,5 @@ public partial class TentUpgradeUI : Control
         }
 
         RefreshDisplay();
-    }
-
-    // 判断材料是否充足（支持物品ID和属性ID）
-    private bool IsEnough(int itemID, int need)
-    {
-        if (PlayerManager.Instance == null) return false;
-        if (need == 0) return true;
-
-        if (itemID >= 10000)
-        {
-            // 属性类：通过 AddItem 对应的属性判断
-            switch (itemID)
-            {
-                case 10001: return PlayerManager.Instance.Hp >= need;
-                case 10002: return PlayerManager.Instance.MaxHp >= need;
-                case 10003: return PlayerManager.Instance.Strength >= need;
-                case 10004: return PlayerManager.Instance.Agility >= need;
-                case 10005: return PlayerManager.Instance.Intelligence >= need;
-                case 10015: return PlayerManager.Instance.BaseStamina >= need;
-                case 10016: return PlayerManager.Instance.ExploreStamina >= need;
-                default: return false;
-            }
-        }
-        return PlayerManager.Instance.GetItemCount(itemID) >= need;
     }
 }
