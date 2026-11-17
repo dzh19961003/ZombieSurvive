@@ -1,20 +1,20 @@
 [gd_scene format=3]
 
-[ext_resource type="Theme" path="res://Assets/Images/UI/Battle/battle_main_theme.tres" id="theme"]
+[ext_resource type="Theme" path="res://Assets/Images/UI/Battle/battle_main_png_theme.tres" id="theme"]
 
-[ext_resource type="PackedScene" path="res://UI/Battle/Components/BattleBodyPart.tscn" id="part"]
+[ext_resource type="PackedScene" path="res://UI/Battle/Components/BodyParts/HeadSelectable.tscn" id="part"]
 
-[ext_resource type="PackedScene" path="res://UI/Battle/Components/BattleBodyPartUnavailable.tscn" id="unavailable"]
+[ext_resource type="PackedScene" path="res://UI/Battle/Components/BodyParts/HeadUnavailable.tscn" id="unavailable"]
 
-[ext_resource type="PackedScene" path="res://UI/Battle/Components/BattleBodyPartMissing.tscn" id="missing"]
+[ext_resource type="PackedScene" path="res://UI/Battle/Components/BodyParts/ArmMissing.tscn" id="missing"]
 
-[ext_resource type="PackedScene" path="res://UI/Battle/Components/BattleAttackButton.tscn" id="attack"]
+[ext_resource type="PackedScene" path="res://UI/Battle/Components/AttackButtons/RandomAvailable.tscn" id="attack"]
 
-[ext_resource type="PackedScene" path="res://UI/Battle/Components/BattleAttackButtonUnavailable.tscn" id="disabled_attack"]
+[ext_resource type="PackedScene" path="res://UI/Battle/Components/AttackButtons/RandomUnavailable.tscn" id="disabled_attack"]
 
-[ext_resource type="PackedScene" path="res://UI/Battle/Components/BattlePrecisionButton.tscn" id="precision"]
+[ext_resource type="PackedScene" path="res://UI/Battle/Components/AttackButtons/PrecisionAvailable.tscn" id="precision"]
 
-[ext_resource type="PackedScene" path="res://UI/Battle/Components/BattlePrecisionButtonUnavailable.tscn" id="disabled_precision"]
+[ext_resource type="PackedScene" path="res://UI/Battle/Components/AttackButtons/PrecisionUnavailable.tscn" id="disabled_precision"]
 
 [node name="BattleMainStates" type="Control"]
 layout_mode = 3

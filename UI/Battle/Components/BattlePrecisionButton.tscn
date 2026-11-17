@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" path="res://UI/Battle/Components/BattleAttackButton.tscn" id="base"]
 
-[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_main_reticle.svg" id="symbol"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_main_reticle.png" id="symbol"]
 
 [node name="BattlePrecisionButton" instance=ExtResource("base")]
 

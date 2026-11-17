@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_main_part_body_missing.png" id="1_olngd"]
+
+[resource]
+atlas = ExtResource("1_olngd")
+region = Rect2(35, 43, 188, 168)
+filter_clip = true

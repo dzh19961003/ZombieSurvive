@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" path="res://UI/Battle/Components/BattleAttackButton.tscn" id="base"]
 
-[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_main_reticle_disabled.svg" id="symbol"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_main_reticle_disabled.png" id="symbol"]
 
-[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_main_swords_disabled.svg" id="swords"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_main_swords_disabled.png" id="swords"]
 
 [node name="BattlePrecisionButtonUnavailable" instance=ExtResource("base")]
 theme_type_variation = &"BattleAttackUnavailable"

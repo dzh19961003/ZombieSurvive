@@ -1,0 +1,262 @@
+[gd_resource type="Theme" format=3 uid="uid://dn8lwoij4qegf"]
+
+[ext_resource type="Texture2D" uid="uid://tmce1fwdv22d" path="res://Assets/Images/UI/Battle/battle_main_part_frame_missing.png" id="3_5qktd"]
+[ext_resource type="Texture2D" uid="uid://osbw0dphvr8c" path="res://Assets/Images/UI/Battle/battle_main_part_frame_selectable.png" id="4_ghikg"]
+[ext_resource type="Texture2D" uid="uid://27fv5xm4lnoi" path="res://Assets/Images/UI/Battle/battle_main_part_frame_unavailable.png" id="5_dtxh6"]
+[ext_resource type="Texture2D" uid="uid://7c2eufmgwbiq" path="res://Assets/Images/UI/Battle/battle_main_attack_available.png" id="attack_available"]
+[ext_resource type="Texture2D" uid="uid://5qjadk11xsya" path="res://Assets/Images/UI/Battle/battle_main_attack_unavailable.png" id="attack_unavailable"]
+[ext_resource type="FontVariation" uid="uid://c1sbqb3crvk3a" path="res://Assets/Fonts/font_bold.tres" id="font"]
+[ext_resource type="Texture2D" uid="uid://ct37yfyqv2mno" path="res://Assets/Images/UI/Battle/battle_main_small_button.png" id="small_button"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbc1b"]
+bg_color = Color(0.12, 0.08, 0.05, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i806i"]
+bg_color = Color(0.025, 0.38, 0.96, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wn68i"]
+texture = ExtResource("attack_unavailable")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ad381"]
+texture = ExtResource("attack_available")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+modulate_color = Color(1.15, 1.12, 1.06, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r7mft"]
+texture = ExtResource("attack_available")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+modulate_color = Color(0.74, 0.81, 0.87, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rro34"]
+texture = ExtResource("attack_available")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_covuw"]
+bg_color = Color(0.88, 0.11, 0.055, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibh6j"]
+bg_color = Color(0.31, 0.33, 0.34, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03nvv"]
+bg_color = Color(0.76, 0.78, 0.79, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.13, 0.15, 0.16, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qfeb8"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("3_5qktd")
+region_rect = Rect2(5, 4, 235, 245)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xifa1"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("3_5qktd")
+region_rect = Rect2(5, 4, 235, 245)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5wlcv"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("3_5qktd")
+region_rect = Rect2(5, 4, 235, 245)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1u4fx"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("3_5qktd")
+region_rect = Rect2(5, 4, 235, 245)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pycor"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("3_5qktd")
+region_rect = Rect2(5, 4, 235, 245)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tn3l7"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("4_ghikg")
+region_rect = Rect2(6, 4, 233, 244)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o52eh"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("4_ghikg")
+region_rect = Rect2(6, 4, 233, 244)
+modulate_color = Color(1.15, 1.12, 1.06, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8671k"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("4_ghikg")
+region_rect = Rect2(6, 4, 233, 244)
+modulate_color = Color(0.74, 0.81, 0.87, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_073jv"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("4_ghikg")
+region_rect = Rect2(6, 4, 233, 244)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y6rmr"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("4_ghikg")
+region_rect = Rect2(6, 4, 233, 244)
+modulate_color = Color(0.74, 0.81, 0.87, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_afb0g"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("5_dtxh6")
+region_rect = Rect2(5, 4, 235, 245)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5jwx6"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("5_dtxh6")
+region_rect = Rect2(5, 4, 235, 245)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p6rtn"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("5_dtxh6")
+region_rect = Rect2(5, 4, 235, 245)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nyndo"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("5_dtxh6")
+region_rect = Rect2(5, 4, 235, 245)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_evt0v"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+texture = ExtResource("5_dtxh6")
+region_rect = Rect2(5, 4, 235, 245)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qaokn"]
+texture = ExtResource("small_button")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ahicl"]
+texture = ExtResource("small_button")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+modulate_color = Color(1.15, 1.12, 1.06, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8g5ps"]
+texture = ExtResource("small_button")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+modulate_color = Color(0.74, 0.81, 0.87, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o8j7d"]
+
+[resource]
+default_font = ExtResource("font")
+BattleArmor/base_type = &"ProgressBar"
+BattleArmor/styles/background = SubResource("StyleBoxFlat_pbc1b")
+BattleArmor/styles/fill = SubResource("StyleBoxFlat_i806i")
+BattleAttack/base_type = &"Button"
+BattleAttack/styles/disabled = SubResource("StyleBoxTexture_wn68i")
+BattleAttack/styles/hover = SubResource("StyleBoxTexture_ad381")
+BattleAttack/styles/hover_pressed = SubResource("StyleBoxTexture_r7mft")
+BattleAttack/styles/normal = SubResource("StyleBoxTexture_rro34")
+BattleAttack/styles/pressed = SubResource("StyleBoxTexture_r7mft")
+BattleAttackUnavailable/base_type = &"Button"
+BattleAttackUnavailable/styles/disabled = SubResource("StyleBoxTexture_wn68i")
+BattleAttackUnavailable/styles/hover = SubResource("StyleBoxTexture_wn68i")
+BattleAttackUnavailable/styles/hover_pressed = SubResource("StyleBoxTexture_wn68i")
+BattleAttackUnavailable/styles/normal = SubResource("StyleBoxTexture_wn68i")
+BattleAttackUnavailable/styles/pressed = SubResource("StyleBoxTexture_wn68i")
+BattleHealth/base_type = &"ProgressBar"
+BattleHealth/styles/background = SubResource("StyleBoxFlat_pbc1b")
+BattleHealth/styles/fill = SubResource("StyleBoxFlat_covuw")
+BattleMissingHealth/base_type = &"ProgressBar"
+BattleMissingHealth/styles/background = SubResource("StyleBoxFlat_ibh6j")
+BattleMissingHealth/styles/fill = SubResource("StyleBoxFlat_covuw")
+BattleMissingTag/base_type = &"Panel"
+BattleMissingTag/styles/panel = SubResource("StyleBoxFlat_03nvv")
+BattlePartMissing/base_type = &"Button"
+BattlePartMissing/styles/disabled = SubResource("StyleBoxTexture_qfeb8")
+BattlePartMissing/styles/hover = SubResource("StyleBoxTexture_xifa1")
+BattlePartMissing/styles/hover_pressed = SubResource("StyleBoxTexture_5wlcv")
+BattlePartMissing/styles/normal = SubResource("StyleBoxTexture_1u4fx")
+BattlePartMissing/styles/pressed = SubResource("StyleBoxTexture_pycor")
+BattlePartSelectable/base_type = &"Button"
+BattlePartSelectable/styles/disabled = SubResource("StyleBoxTexture_tn3l7")
+BattlePartSelectable/styles/hover = SubResource("StyleBoxTexture_o52eh")
+BattlePartSelectable/styles/hover_pressed = SubResource("StyleBoxTexture_8671k")
+BattlePartSelectable/styles/normal = SubResource("StyleBoxTexture_073jv")
+BattlePartSelectable/styles/pressed = SubResource("StyleBoxTexture_y6rmr")
+BattlePartUnavailable/base_type = &"Button"
+BattlePartUnavailable/styles/disabled = SubResource("StyleBoxTexture_afb0g")
+BattlePartUnavailable/styles/hover = SubResource("StyleBoxTexture_5jwx6")
+BattlePartUnavailable/styles/hover_pressed = SubResource("StyleBoxTexture_p6rtn")
+BattlePartUnavailable/styles/normal = SubResource("StyleBoxTexture_nyndo")
+BattlePartUnavailable/styles/pressed = SubResource("StyleBoxTexture_evt0v")
+BattleSpeed/base_type = &"Button"
+BattleSpeed/styles/disabled = SubResource("StyleBoxTexture_qaokn")
+BattleSpeed/styles/hover = SubResource("StyleBoxTexture_ahicl")
+BattleSpeed/styles/hover_pressed = SubResource("StyleBoxTexture_8g5ps")
+BattleSpeed/styles/normal = SubResource("StyleBoxTexture_qaokn")
+BattleSpeed/styles/pressed = SubResource("StyleBoxTexture_8g5ps")
+Button/colors/font_color = Color(0.96, 0.98, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 32
+Button/styles/focus = SubResource("StyleBoxEmpty_o8j7d")
