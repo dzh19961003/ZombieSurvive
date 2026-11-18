@@ -1,57 +1,87 @@
 using Godot;
-using System;
-using System.Linq;
 using MyProject;
 
 public partial class PlantUpgradeUI : Control
 {
-    [Export] Button upgrade;
+    [Export] TextureButton upgrade;
 
     private const int MaxLevel = 4;
     private const int MaxTextureLevel = 4;
 
+    private static readonly Color LockedFunColor = new(0.4862745f, 0.61960787f, 0.72156864f, 1f);
+    private static readonly Color NormalColor = new(1f, 1f, 1f, 1f);
+    private static readonly Color UnlockedColor = new(0.4509804f, 0.7882353f, 0.9490196f, 1f);
+    private static readonly Color InsufficientColor = new(1f, 0.48f, 0.41f, 1f);
+
     private int currentLevel = 1;
 
     private TextureRect _plantTexture;
-    private Label _gradeTitle;
-    private Label _curVal1;
-    private Label _nextVal1;
-    private Label _curVal2;
-    private Label _nextVal2;
+    private Label _lvCur;
+    private Label _lvNext;
+    private TextureRect _levelArrow;
+    private Label _countCur;
+    private Label _countNext;
+    private TextureRect _countArrow;
+    private Label _speedCur;
+    private Label _speedNext;
+    private TextureRect _speedArrow;
+    private Label _speedUnit;
+    private Label _featureStatus;
+    private Label _reqTitle;
+    private Control _reqRow;
     private Label _maxTip;
-    private TextureRect _arrow1;
-    private TextureRect _arrow2;
+    private Label _upgradeLabel;
+    private Control[] _reqSlots;
     private TextureRect[] _reqIcons;
-    private Label[] _reqLabels;
-    private Control _upgradeRequ;
+    private Label[] _reqNames;
+    private Label[] _reqCounts;
 
     public override void _Ready()
     {
-        _plantTexture = GetNode<TextureRect>("PlantTexture");
-        _gradeTitle = GetNode<Label>("GradeTitle");
-        _curVal1 = GetNode<Label>("PlantNum/CurVal1");
-        _nextVal1 = GetNode<Label>("PlantNum/NextVal1");
-        _arrow1 = GetNode<TextureRect>("PlantNum/Arrow1");
-        _curVal2 = GetNode<Label>("GrowSpeed/CurVal2");
-        _nextVal2 = GetNode<Label>("GrowSpeed/NextVal2");
-        _arrow2 = GetNode<TextureRect>("GrowSpeed/Arrow2");
-        _maxTip = GetNode<Label>("MaxTip");
-        _upgradeRequ = GetNode<Control>("UpgradeRequ");
+        _plantTexture   = GetNode<TextureRect>("PlantTexture");
+        _lvCur          = GetNode<Label>("Info/LevelRow/LvCur");
+        _lvNext         = GetNode<Label>("Info/LevelRow/LvNext");
+        _levelArrow     = GetNode<TextureRect>("Info/LevelRow/LevelArrow");
+        _countCur       = GetNode<Label>("Info/CountRow/CountCur");
+        _countNext      = GetNode<Label>("Info/CountRow/CountNext");
+        _countArrow     = GetNode<TextureRect>("Info/CountRow/CountArrow");
+        _speedCur       = GetNode<Label>("Info/SpeedRow/SpeedCur");
+        _speedNext      = GetNode<Label>("Info/SpeedRow/SpeedNext");
+        _speedArrow     = GetNode<TextureRect>("Info/SpeedRow/SpeedArrow");
+        _speedUnit      = GetNode<Label>("Info/SpeedUnit");
+        _featureStatus  = GetNode<Label>("FeatureRow/Feature1/F1Text/F1Status");
+        _reqTitle       = GetNode<Label>("ReqTitle");
+        _reqRow         = GetNode<Control>("ReqRow");
+        _maxTip         = GetNode<Label>("MaxTip");
+
+        _reqSlots = new Control[]
+        {
+            GetNode<Control>("ReqRow/Req1"),
+            GetNode<Control>("ReqRow/Req2"),
+            GetNode<Control>("ReqRow/Req3")
+        };
         _reqIcons = new TextureRect[]
         {
-            GetNode<TextureRect>("UpgradeRequ/ReqIcon1"),
-            GetNode<TextureRect>("UpgradeRequ/ReqIcon2"),
-            GetNode<TextureRect>("UpgradeRequ/ReqIcon3")
+            GetNode<TextureRect>("ReqRow/Req1/IconWrap/Icon"),
+            GetNode<TextureRect>("ReqRow/Req2/IconWrap/Icon"),
+            GetNode<TextureRect>("ReqRow/Req3/IconWrap/Icon")
         };
-        _reqLabels = new Label[]
+        _reqNames = new Label[]
         {
-            GetNode<Label>("UpgradeRequ/ReqLabel1"),
-            GetNode<Label>("UpgradeRequ/ReqLabel2"),
-            GetNode<Label>("UpgradeRequ/ReqLabel3")
+            GetNode<Label>("ReqRow/Req1/Name"),
+            GetNode<Label>("ReqRow/Req2/Name"),
+            GetNode<Label>("ReqRow/Req3/Name")
+        };
+        _reqCounts = new Label[]
+        {
+            GetNode<Label>("ReqRow/Req1/Count"),
+            GetNode<Label>("ReqRow/Req2/Count"),
+            GetNode<Label>("ReqRow/Req3/Count")
         };
 
         if (upgrade != null)
         {
+            _upgradeLabel = upgrade.GetNodeOrNull<Label>("Label");
             upgrade.Pressed += OnUpgradePressed;
         }
 
@@ -75,7 +105,6 @@ public partial class PlantUpgradeUI : Control
             return;
         }
         PlayerManager.Instance.GetItem += OnPlayerDataChanged;
-        
         VisibilityChanged += OnVisibilityChanged;
         RefreshDisplay();
     }
@@ -116,96 +145,50 @@ public partial class PlantUpgradeUI : Control
 
         var curCfg = FindConfig();
         var nextCfg = FindNextConfig();
-
-        // 等级标题
-        if (_gradeTitle != null) _gradeTitle.Text = $"等级{currentLevel}";
+        bool showNext = !isUnlockStep && !isMaxLevel;
 
         RefreshPlantTexture();
+        RefreshLevel(showNext);
+        RefreshStats(curCfg, nextCfg, isUnlockStep, showNext);
+        RefreshFeatureUnlock();
+        RefreshRequirements(isUnlockStep ? curCfg : nextCfg, isUnlockStep, isMaxLevel);
+    }
 
-        // 植物数值显示
-        if (isUnlockStep)
-        {
-            // 解锁前
-            if (_curVal1 != null) _curVal1.Text = "解锁后查看";
-            if (_curVal2 != null) _curVal2.Text = "解锁后查看";
-            if (_nextVal1 != null)
-            {
-                _nextVal1.Visible = false;
-                _nextVal1.Text = "???";
-            }
-            if (_nextVal2 != null)
-            {
-                _nextVal2.Visible = false;
-                _nextVal2.Text = "???";
-            }
-            if (_arrow1 != null) _arrow1.Visible = false;
-            if (_arrow2 != null) _arrow2.Visible = false;
-        }
-        else
-        {
-            // 解锁后
-            if (_curVal1 != null) _curVal1.Text = curCfg != null ? curCfg.GrowNum.ToString() : "0";
-            if (_curVal2 != null) _curVal2.Text = curCfg != null ? curCfg.GrowSpeed.ToString() : "0";
+    // 等级：Lv.当前 → Lv.下一级
+    private void RefreshLevel(bool showNext)
+    {
+        _lvCur.Text = $"Lv.{currentLevel}";
+        _lvNext.Visible = showNext;
+        _levelArrow.Visible = showNext;
+        if (showNext) _lvNext.Text = $"Lv.{currentLevel + 1}";
+    }
 
-            if (isMaxLevel)
-            {
-                // 满级
-                if (_nextVal1 != null) _nextVal1.Visible = false;
-                if (_nextVal2 != null) _nextVal2.Visible = false;
-                if (_arrow1 != null) _arrow1.Visible = false;
-                if (_arrow2 != null) _arrow2.Visible = false;
-            }
-            else
-            {
-                // 正常升级
-                if (_nextVal1 != null)
-                {
-                    _nextVal1.Visible = true;
-                    _nextVal1.Text = nextCfg != null ? nextCfg.GrowNum.ToString() : "0";
-                }
-                if (_nextVal2 != null)
-                {
-                    _nextVal2.Visible = true;
-                    _nextVal2.Text = nextCfg != null ? nextCfg.GrowSpeed.ToString() : "0";
-                }
-                if (_arrow1 != null) _arrow1.Visible = true;
-                if (_arrow2 != null) _arrow2.Visible = true;
-            }
+    // 同时种植数量 / 生长速度
+    private void RefreshStats(RoofPlants curCfg, RoofPlants nextCfg, bool isUnlockStep, bool showNext)
+    {
+        _countCur.AddThemeColorOverride("font_color", isUnlockStep ? LockedFunColor : NormalColor);
+        _speedCur.AddThemeColorOverride("font_color", isUnlockStep ? LockedFunColor : NormalColor);
+        _countCur.Text = isUnlockStep ? "解锁后查看" : (curCfg?.GrowNum ?? 0).ToString();
+        _speedCur.Text = isUnlockStep ? "解锁后查看" : (curCfg?.GrowSpeed ?? 0).ToString();
+
+        _countNext.Visible = showNext;
+        _countArrow.Visible = showNext;
+        _speedNext.Visible = showNext;
+        _speedArrow.Visible = showNext;
+
+        if (showNext)
+        {
+            _countNext.Text = (nextCfg?.GrowNum ?? 0).ToString();
+            _speedNext.Text = (nextCfg?.GrowSpeed ?? 0).ToString();
         }
 
-        // 满级处理
-        if (isMaxLevel)
-        {
-            if (_maxTip != null) _maxTip.Visible = true;
-            if (_upgradeRequ != null) _upgradeRequ.Visible = false;
-            if (upgrade != null)
-            {
-                upgrade.Icon = GD.Load<Texture2D>("res://Assets/Images/UI/button_cancel.png");
-                upgrade.Disabled = true;
-                upgrade.Text = "满级";
-            }
-            return;
-        }
-
-        if (_maxTip != null) _maxTip.Visible = false;
-        if (_upgradeRequ != null) _upgradeRequ.Visible = true;
-
-        if (upgrade != null)
-        {
-            upgrade.Disabled = false;
-            upgrade.Text = isUnlockStep ? "解锁" : "升级";
-        }
-
-        // 材料需求
-        var reqCfg = isUnlockStep ? curCfg : nextCfg;
-        RefreshRequirements(reqCfg);
+        _speedUnit.Visible = !isUnlockStep;
     }
 
     private void RefreshPlantTexture()
     {
-        if (_plantTexture == null || PlayerManager.Instance == null) return;
-
-        int level = Mathf.Clamp(PlantManager.Instance.PlantLevel, 1, MaxTextureLevel);
+        int level = Mathf.Clamp(currentLevel, 1, MaxTextureLevel);
+        //与基地场景 Plant.RefreshTexture 保持一致，统一使用 Base/plant_{level} 贴图
         var tex = GD.Load<Texture2D>($"res://Assets/Images/Base/plant_{level}.png");
         if (tex != null)
         {
@@ -213,42 +196,106 @@ public partial class PlantUpgradeUI : Control
         }
     }
 
-    private void RefreshRequirements(RoofPlants cfg)
+    // 种植功能解锁状态
+    private void RefreshFeatureUnlock()
     {
+        bool unlocked = PlantManager.Instance.PlantUnlocked;
+        _featureStatus.Text = unlocked ? "已解锁" : "Lv.2 解锁";
+        _featureStatus.AddThemeColorOverride("font_color", unlocked ? UnlockedColor : LockedFunColor);
+    }
+
+    // 升级需求：图标 + 名称 + 拥有/需求
+    private void RefreshRequirements(RoofPlants cfg, bool isUnlockStep, bool isMaxLevel)
+    {
+        if (isMaxLevel)
+        {
+            _maxTip.Visible = true;
+            _reqTitle.Visible = false;
+            _reqRow.Visible = false;
+            if (upgrade != null)
+            {
+                upgrade.Disabled = true;
+                upgrade.Modulate = new Color(1f, 1f, 1f, 0.5f);
+            }
+            if (_upgradeLabel != null) _upgradeLabel.Text = "已满级";
+            return;
+        }
+
+        _maxTip.Visible = false;
+        _reqTitle.Visible = true;
+        _reqRow.Visible = true;
+        _reqTitle.Text = isUnlockStep ? "解锁需求" : "升级需求";
+        if (upgrade != null)
+        {
+            upgrade.Disabled = false;
+            upgrade.Modulate = NormalColor;
+        }
+        if (_upgradeLabel != null) _upgradeLabel.Text = isUnlockStep ? "解锁" : "升级";
+
         if (cfg == null) return;
 
-        int slotCount = Mathf.Min(_reqLabels.Length, _reqIcons.Length);
-        for (int i = 0; i < slotCount; i++)
+        for (int i = 0; i < _reqSlots.Length; i++)
         {
-            if (_reqLabels[i] == null || _reqIcons[i] == null) continue;
-
             int itemID = (cfg.ItemID != null && i < cfg.ItemID.Count) ? cfg.ItemID[i] : 0;
             int need = (cfg.ItemNum != null && i < cfg.ItemNum.Count) ? cfg.ItemNum[i] : 0;
 
             if (itemID == 0 || need == 0)
             {
-                _reqIcons[i].Visible = false;
-                _reqLabels[i].Visible = false;
+                _reqSlots[i].Visible = false;
                 continue;
             }
 
-            _reqIcons[i].Visible = true;
-            _reqLabels[i].Visible = true;
+            _reqSlots[i].Visible = true;
+            _reqNames[i].Text = GetItemName(itemID);
 
-            if (UIManager.Instance != null && itemID != 0 && itemID < 10000)
-            {
-                var icon = UIManager.Instance.GetItemIcon(itemID);
-                if (icon != null) _reqIcons[i].Texture = icon;
-            }
-            else if (itemID == 10015)
-            {
-                var staminaIcon = GD.Load<Texture2D>("res://Assets/Images/UI/stamina.png");
-                if (staminaIcon != null) _reqIcons[i].Texture = staminaIcon;
-            }
+            var icon = GetRequirementIcon(itemID);
+            if (icon != null) _reqIcons[i].Texture = icon;
 
-            bool insufficient = !IsEnough(itemID, need);
-            _reqLabels[i].Text = $"×{need}";
-            _reqLabels[i].AddThemeColorOverride("font_color", insufficient ? Colors.Red : Colors.White);
+            int have = GetItemHave(itemID);
+            _reqCounts[i].Text = $"{have}/{need}";
+            _reqCounts[i].AddThemeColorOverride("font_color",
+                have < need ? InsufficientColor : Colors.White);
+        }
+    }
+
+    // 需求图标：体力类复用体力图标，其余走通用图标
+    private Texture2D GetRequirementIcon(int itemID)
+    {
+        if (itemID == 10015 || itemID == 10016)
+        {
+            return GD.Load<Texture2D>("res://Assets/Images/UI/stamina.png");
+        }
+        return UIManager.Instance?.GetItemIcon(itemID);
+    }
+
+    private string GetItemName(int itemID)
+    {
+        if (itemID < 10000)
+        {
+            var itemDic = ConfigManager.Instance?.itemDic;
+            return itemDic != null && itemDic.ContainsKey(itemID) ? itemDic[itemID].Name : "";
+        }
+
+        var effectDic = ConfigManager.Instance?.effectTypeDic;
+        return effectDic != null && effectDic.ContainsKey(itemID) ? effectDic[itemID].Type : "";
+    }
+
+    private int GetItemHave(int itemID)
+    {
+        if (PlayerManager.Instance == null) return 0;
+
+        if (itemID < 10000) return PlayerManager.Instance.GetItemCount(itemID);
+
+        switch (itemID)
+        {
+            case 10001: return (int)PlayerManager.Instance.Hp;
+            case 10002: return (int)PlayerManager.Instance.MaxHp;
+            case 10003: return PlayerManager.Instance.Strength;
+            case 10004: return PlayerManager.Instance.Agility;
+            case 10005: return PlayerManager.Instance.Intelligence;
+            case 10015: return PlayerManager.Instance.BaseStamina;
+            case 10016: return PlayerManager.Instance.ExploreStamina;
+            default: return 0;
         }
     }
 
@@ -295,7 +342,7 @@ public partial class PlantUpgradeUI : Control
                 }
                 else
                 {
-                    // 属性类
+                    // 属性类通过 AddItem 扣减
                     PlayerManager.Instance.AddItem(itemID, -need);
                 }
             }
@@ -316,27 +363,10 @@ public partial class PlantUpgradeUI : Control
         RefreshDisplay();
     }
 
-    // 判断材料是否充足
+    // 判断材料是否充足（支持物品ID和属性ID）
     private bool IsEnough(int itemID, int need)
     {
-        if (PlayerManager.Instance == null) return false;
         if (need == 0) return true;
-
-        if (itemID >= 10000)
-        {
-          
-            switch (itemID)
-            {
-                case 10001: return PlayerManager.Instance.Hp >= need;
-                case 10002: return PlayerManager.Instance.MaxHp >= need;
-                case 10003: return PlayerManager.Instance.Strength >= need;
-                case 10004: return PlayerManager.Instance.Agility >= need;
-                case 10005: return PlayerManager.Instance.Intelligence >= need;
-                case 10015: return PlayerManager.Instance.BaseStamina >= need;
-                case 10016: return PlayerManager.Instance.ExploreStamina >= need;
-                default: return false;
-            }
-        }
-        return PlayerManager.Instance.GetItemCount(itemID) >= need;
+        return GetItemHave(itemID) >= need;
     }
 }

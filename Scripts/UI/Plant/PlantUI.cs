@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class PlantUI : Control
 {
@@ -8,6 +7,7 @@ public partial class PlantUI : Control
     [Export] public TextureButton plant;
     [Export] public Control upgradePanel;
     [Export] public Control plantPanel;
+
     private Texture2D _tabActive;
     private Texture2D _tabInactive;
 
@@ -17,16 +17,15 @@ public partial class PlantUI : Control
         upgrade.Pressed += OnUpgradePressed;
         plant.Pressed += OnPlantPressed;
 
-        _tabActive = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/tab_active.png");
-        _tabInactive = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/tab_inactive.png");
+        _tabActive = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/building/tab_selected.png");
+        _tabInactive = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/building/tab_unselected.png");
 
-        
+        // 默认显示升级界面
         CallDeferred(nameof(SwitchToUpgrade));
     }
 
     private void OnCloseButtonPressed()
     {
-       
         UIManager.Instance.HideUI(Paths.PlantUI);
     }
 
@@ -37,7 +36,6 @@ public partial class PlantUI : Control
 
     private void OnPlantPressed()
     {
-        
         if (PlantManager.Instance == null ||
             (PlantManager.Instance.PlantLevel <= 1 && !PlantManager.Instance.PlantUnlocked))
         {
@@ -47,7 +45,7 @@ public partial class PlantUI : Control
         SwitchToPlant();
     }
 
-    
+    // 升级界面
     private void SwitchToUpgrade()
     {
         if (upgradePanel != null) upgradePanel.Visible = true;
@@ -57,7 +55,7 @@ public partial class PlantUI : Control
         if (plant != null) plant.TextureNormal = _tabInactive;
     }
 
-    
+    // 种植界面
     private void SwitchToPlant()
     {
         if (upgradePanel != null) upgradePanel.Visible = false;
