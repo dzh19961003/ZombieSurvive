@@ -33,6 +33,7 @@ public partial class Door : Area2D
             // 用 = 赋值（覆盖），不要用 += 累加，避免重复连接信号报错
             tips.OnConfirm = () =>
             {
+                GameManager.Instance.BeginExplorationBattleSession();
                 UIManager.Instance.ShowUI("res://UI/Explore/ExploreMap.tscn");
                 GameManager.Instance.AdvanceTime();
             };

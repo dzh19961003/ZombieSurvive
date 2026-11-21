@@ -1,26 +1,25 @@
 using Godot;
-using System;
-using System.Linq;
 using MyProject;
 
 public partial class WsUpgradeUi : Control
 {
 	[Export] TextureButton upgrade;
+	[Export] private ShaderMaterial _disabledActionMaterial;
 
 	//额外功能解锁等级：做饭3级、拆解5级
 	private const int CookUnlockLevel = 3;
 	private const int DecomposeUnlockLevel = 5;
-	private const int MaxTextureLevel = 5;
 	private const int MaxLevel = 5;
 
 	private static readonly Color LockedStatusColor = new(0.4862745f, 0.6196079f, 0.7215686f, 1f);
-	private static readonly Color UnlockedStatusColor = new(0.66f, 0.7960784f, 0.8784314f, 1f);
+	private static readonly Color UnlockedStatusColor = new(0.45f, 0.79f, 0.95f);
 	private static readonly Color LockedIconColor = new(0.45f, 0.53f, 0.6f, 1f);
-	private static readonly Color NormalColor = new(1f, 1f, 1f, 1f);
+	private static readonly Color ValueColor = new(1f, 0.97f, 0.89f);
+	private static readonly Color InsufficientColor = new(1f, 0.47f, 0.42f);
 
 	// 当前工作台等级
 	private int currentLevel = 1;
-	private int nextLevel = 2;
+	private int _makeValueFontSize;
 
 	private Label _lvCur;
 	private Label _lvNext;
@@ -33,6 +32,10 @@ public partial class WsUpgradeUi : Control
 	private Label _roleBonusNext;
 	private Label _stationBonusNext;
 	private Label _maxTip;
+	private Label _requirementsTitle;
+	private Control _requirements;
+	private Label _upgradeLabel;
+	private Control[] _reqSlots;
 	private Label[] _reqNames;
 	private Label[] _reqCounts;
 	private TextureRect[] _reqIcons;
@@ -43,8 +46,6 @@ public partial class WsUpgradeUi : Control
 	private TextureRect _cookIcon;
 	private TextureRect _decomposeIcon;
 	private TextureRect _decomposeLock;
-	//升级界面工作台预览图
-	private TextureRect _wsTexture;
 
 	public override void _Ready()
 	{
@@ -52,6 +53,7 @@ public partial class WsUpgradeUi : Control
 		_lvNext = GetNode<Label>("LvNext");
 		_levelArrow = GetNode<TextureRect>("LevelArrow");
 		_makeLevelValue = GetNode<Label>("MakeLevelValue");
+		_makeValueFontSize = _makeLevelValue.GetThemeFontSize("font_size");
 		_makeNextLevelValue = GetNode<Label>("MakeNextLevelValue");
 		_makeArrow = GetNode<TextureRect>("MakeArrow");
 		_roleBonusCur = GetNode<Label>("RoleBonusCur");
@@ -59,24 +61,32 @@ public partial class WsUpgradeUi : Control
 		_roleBonusNext = GetNode<Label>("RoleBonusNext");
 		_stationBonusNext = GetNode<Label>("StationBonusNext");
 		_maxTip = GetNode<Label>("maxTip");
+		_requirementsTitle = GetNode<Label>("SectionTitle2");
+		_requirements = GetNode<Control>("Requirements");
+		_reqSlots = new[]
+		{
+			_requirements.GetNode<Control>("Req1"),
+			_requirements.GetNode<Control>("Req2"),
+			_requirements.GetNode<Control>("Req3")
+		};
 
 		_reqIcons = new[]
 		{
-			GetNode<TextureRect>("Req1/Icon"),
-			GetNode<TextureRect>("Req2/Icon"),
-			GetNode<TextureRect>("Req3/Icon")
+			_reqSlots[0].GetNode<TextureRect>("IconWrap/Icon"),
+			_reqSlots[1].GetNode<TextureRect>("IconWrap/Icon"),
+			_reqSlots[2].GetNode<TextureRect>("IconWrap/Icon")
 		};
 		_reqNames = new[]
 		{
-			GetNode<Label>("Req1/Name"),
-			GetNode<Label>("Req2/Name"),
-			GetNode<Label>("Req3/Name")
+			_reqSlots[0].GetNode<Label>("Name"),
+			_reqSlots[1].GetNode<Label>("Name"),
+			_reqSlots[2].GetNode<Label>("Name")
 		};
 		_reqCounts = new[]
 		{
-			GetNode<Label>("Req1/Count"),
-			GetNode<Label>("Req2/Count"),
-			GetNode<Label>("Req3/Count")
+			_reqSlots[0].GetNode<Label>("Count"),
+			_reqSlots[1].GetNode<Label>("Count"),
+			_reqSlots[2].GetNode<Label>("Count")
 		};
 
 		//额外功能：厨房（等级3）与拆解（等级5）
@@ -85,11 +95,11 @@ public partial class WsUpgradeUi : Control
 		_cookIcon = GetNode<TextureRect>("FunIcon1");
 		_decomposeIcon = GetNode<TextureRect>("FunIcon2");
 		_decomposeLock = GetNode<TextureRect>("FunLock2");
-		_wsTexture = GetNode<TextureRect>("WSTexture");
 
 		if (upgrade != null)
 		{
 			upgrade.Pressed += OnUpgradePressed;
+			_upgradeLabel = upgrade.GetNode<Label>("Label");
 		}
 
 		CallDeferred(nameof(DeferredInit));
@@ -140,13 +150,11 @@ public partial class WsUpgradeUi : Control
 
 		//工作台实际等级
 		currentLevel = PlayerManager.Instance.WorkStationLevel;
-		nextLevel = currentLevel + 1;
 		//玩家制作等级
 		int playerMakeLevel = PlayerManager.Instance.PlayerMakeLevel;
 		int sumLevel = currentLevel + playerMakeLevel;
 
 		RefreshExtraFun();
-		RefreshWsTexture();
 
 		bool isUnlockStep = currentLevel == 1 && !PlayerManager.Instance.WorkstationUnlocked;
 		var cfg = isUnlockStep ? FindUpgradeConfig() : FindNextUpgradeConfig();
@@ -164,20 +172,15 @@ public partial class WsUpgradeUi : Control
 		_levelArrow.Visible = hasNext;
 		if (hasNext) _lvNext.Text = $"Lv.{currentLevel + 1}";
 
-		if (isUnlockStep)
-		{
-			_makeLevelValue.Text = "???";
-			_makeLevelValue.AddThemeColorOverride("font_color", Colors.White);
-			_makeNextLevelValue.Visible = false;
-			_makeArrow.Visible = false;
-			_roleBonusCur.Visible = false;
-			_stationBonusCur.Visible = false;
-			_roleBonusNext.Visible = false;
-			_stationBonusNext.Visible = false;
-			return;
-		}
-
-		_makeLevelValue.Text = $"{sumLevel}";
+		_makeLevelValue.Text = isUnlockStep ? "解锁后查看" : $"{sumLevel}";
+		_makeLevelValue.AddThemeColorOverride("font_color", isUnlockStep ? LockedStatusColor : ValueColor);
+		_makeLevelValue.AddThemeFontSizeOverride("font_size", isUnlockStep ? 40 : _makeValueFontSize);
+		_makeNextLevelValue.Visible = hasNext;
+		_makeArrow.Visible = hasNext;
+		_roleBonusCur.Visible = !isUnlockStep;
+		_stationBonusCur.Visible = !isUnlockStep;
+		_roleBonusNext.Visible = hasNext;
+		_stationBonusNext.Visible = hasNext;
 		_roleBonusCur.Text = $"角色{playerMakeLevel} +";
 		_stationBonusCur.Text = $"工作台{currentLevel}";
 
@@ -189,29 +192,18 @@ public partial class WsUpgradeUi : Control
 	private void RefreshRequirements(RoofWorkstation reqCfg, bool isUnlockStep)
 	{
 		bool isMax = currentLevel >= MaxLevel && PlayerManager.Instance.WorkstationUnlocked;
-		if (isMax || reqCfg == null)
-		{
-			for (int i = 0; i < _reqNames.Length; i++)
-			{
-				SetReqVisible(i, false);
-			}
-			_maxTip.Visible = true;
-			if (upgrade != null)
-			{
-				upgrade.Disabled = true;
-				upgrade.Modulate = new Color(1f, 1f, 1f, 0.5f);
-				GetNode<Label>("UpgradeBtn/Label").Text = "已满级";
-			}
-			return;
-		}
-
-		_maxTip.Visible = false;
+		bool showRequirements = !isMax && reqCfg != null;
+		_requirements.Visible = showRequirements;
+		_requirementsTitle.Visible = showRequirements;
+		_requirementsTitle.Text = isUnlockStep ? "解锁需求" : "升级需求";
+		_maxTip.Visible = !showRequirements;
 		if (upgrade != null)
 		{
-			upgrade.Disabled = false;
-			upgrade.Modulate = NormalColor;
-			GetNode<Label>("UpgradeBtn/Label").Text = isUnlockStep ? "解锁" : "升级";
+			upgrade.Disabled = !showRequirements;
+			upgrade.Material = showRequirements ? null : _disabledActionMaterial;
+			_upgradeLabel.Text = !showRequirements ? "已满级" : isUnlockStep ? "解锁" : "升级";
 		}
+		if (!showRequirements) return;
 
 		// 动态填充三个需求槽位
 		for (int i = 0; i < _reqNames.Length; i++)
@@ -219,31 +211,19 @@ public partial class WsUpgradeUi : Control
 			int itemID = (reqCfg.ItemID != null && i < reqCfg.ItemID.Count) ? reqCfg.ItemID[i] : 0;
 			int need = (reqCfg.ItemNum != null && i < reqCfg.ItemNum.Count) ? reqCfg.ItemNum[i] : 0;
 
-			if (itemID == 0 || need == 0)
-			{
-				SetReqVisible(i, false);
-				continue;
-			}
-
-			SetReqVisible(i, true);
+			bool hasRequirement = itemID != 0 && need != 0;
+			_reqSlots[i].Visible = hasRequirement;
+			if (!hasRequirement) continue;
 			_reqNames[i].Text = GetItemName(itemID);
 
-			var icon = UIManager.Instance?.GetItemIcon(itemID);
-			if (icon != null) _reqIcons[i].Texture = icon;
+			_reqIcons[i].Texture = WorkstationUI.GetMaterialIcon(itemID);
 
 			int have = GetItemHave(itemID);
 			bool insufficient = have < need;
 			_reqCounts[i].Text = $"{have}/{need}";
 			//资源不足红色，充足白色
-			_reqCounts[i].AddThemeColorOverride("font_color", insufficient ? Colors.Red : Colors.White);
+			_reqCounts[i].AddThemeColorOverride("font_color", insufficient ? InsufficientColor : ValueColor);
 		}
-	}
-
-	private void SetReqVisible(int index, bool visible)
-	{
-		_reqIcons[index].Visible = visible;
-		_reqNames[index].Visible = visible;
-		_reqCounts[index].Visible = visible;
 	}
 
 	private string GetItemName(int itemID)
@@ -254,7 +234,7 @@ public partial class WsUpgradeUi : Control
 			return itemDic != null && itemDic.ContainsKey(itemID) ? itemDic[itemID].Name : "";
 		}
 
-		if (itemID == 10015) return "体力";
+		if (itemID == 10015) return "基地体力";
 
 		var effectDic = ConfigManager.Instance?.effectTypeDic;
 		return effectDic != null && effectDic.ContainsKey(itemID) ? effectDic[itemID].Type : "";
@@ -285,27 +265,14 @@ public partial class WsUpgradeUi : Control
 		bool cookUnlocked = PlayerManager.Instance.WorkStationLevel >= CookUnlockLevel;
 		bool decomposeUnlocked = PlayerManager.Instance.WorkStationLevel >= DecomposeUnlockLevel;
 
-		_cookDesc.Text = cookUnlocked ? "已解锁" : $"Lv.{CookUnlockLevel}解锁";
+		_cookDesc.Text = cookUnlocked ? "已解锁" : $"Lv.{CookUnlockLevel} 解锁";
 		_cookDesc.AddThemeColorOverride("font_color", cookUnlocked ? UnlockedStatusColor : LockedStatusColor);
-		if (_cookIcon != null) _cookIcon.SelfModulate = cookUnlocked ? NormalColor : LockedIconColor;
+		if (_cookIcon != null) _cookIcon.SelfModulate = cookUnlocked ? Colors.White : LockedIconColor;
 
-		_decomposeDesc.Text = decomposeUnlocked ? "已解锁" : $"Lv.{DecomposeUnlockLevel}解锁";
+		_decomposeDesc.Text = decomposeUnlocked ? "已解锁" : $"Lv.{DecomposeUnlockLevel} 解锁";
 		_decomposeDesc.AddThemeColorOverride("font_color", decomposeUnlocked ? UnlockedStatusColor : LockedStatusColor);
-		if (_decomposeIcon != null) _decomposeIcon.SelfModulate = decomposeUnlocked ? NormalColor : LockedIconColor;
+		if (_decomposeIcon != null) _decomposeIcon.SelfModulate = decomposeUnlocked ? Colors.White : LockedIconColor;
 		if (_decomposeLock != null) _decomposeLock.Visible = !decomposeUnlocked;
-	}
-
-	//根据等级切换图
-	private void RefreshWsTexture()
-	{
-		if (_wsTexture == null || PlayerManager.Instance == null) return;
-
-		int level = Mathf.Clamp(PlayerManager.Instance.WorkStationLevel, 1, MaxTextureLevel);
-		var tex = GD.Load<Texture2D>($"res://Assets/Images/Base/workspace_{level}.png");
-		if (tex != null)
-		{
-			_wsTexture.Texture = tex;
-		}
 	}
 
 	private void OnUpgradePressed()
@@ -365,7 +332,6 @@ public partial class WsUpgradeUi : Control
 		else
 		{
 			currentLevel++;
-			nextLevel++;
 			GD.Print($"[WsUpgradeUi] 升级成功，当前等级：{currentLevel}");
 			PlayerManager.Instance.SetWorkStationLevel(currentLevel);
 		}

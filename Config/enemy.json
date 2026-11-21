@@ -1,6 +1,8 @@
 [
   {
     "ID(int)": 1,
+    "name(string)": "普通丧尸",
+    "speed(int)": 9,
     "level(int)": 1,
     "type(int)": 1,
     "image(string)": "enemy_1",
@@ -23,6 +25,8 @@
   },
   {
     "ID(int)": 2,
+    "name(string)": "强化丧尸",
+    "speed(int)": 11,
     "level(int)": 2,
     "type(int)": 1,
     "image(string)": "enemy_1",
@@ -43,6 +47,8 @@
   },
   {
     "ID(int)": 3,
+    "name(string)": "双头变异丧尸",
+    "speed(int)": 12,
     "level(int)": 3,
     "type(int)": 2,
     "image(string)": "enemy_1",

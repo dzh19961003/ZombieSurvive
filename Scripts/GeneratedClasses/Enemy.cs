@@ -12,6 +12,10 @@ namespace MyProject
         /// <summary>原始字段: ID(int)</summary>
         public int ID { get; set; }
 
+        public string Name { get; set; }
+
+        public int Speed { get; set; }
+
         /// <summary>原始字段: level(int)</summary>
         public int Level { get; set; }
 

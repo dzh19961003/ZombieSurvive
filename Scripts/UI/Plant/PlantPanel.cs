@@ -4,15 +4,12 @@ using MyProject;
 
 public partial class PlantPanel : Control
 {
+    [Export] private ShaderMaterial _disabledActionMaterial;
+
     private Control _rowTemplate;
     private VBoxContainer _rowList;
     private Label _levelValue;
     private Label _plantedValue;
-    private Label _speedLabel;
-    private Label _cropLabel;
-    private TextureRect _overviewIcon;
-
-    private const int MaxTextureLevel = 4;
     private const string CropArtPath = "res://Assets/Images/UI/building/";
 
     private static readonly Color InfoColor = new(0.65882355f, 0.83137256f, 0.91764706f, 1f);
@@ -28,9 +25,6 @@ public partial class PlantPanel : Control
         _rowTemplate = _rowList.GetNode<Control>("Row1");
         _levelValue = GetNode<Label>("Summary/Pad/Row/LeftPart/LevelValue");
         _plantedValue = GetNode<Label>("Summary/Pad/Row/RightPart/PlantedValue");
-        _overviewIcon = GetNode<TextureRect>("Overview/IconFrame/IconWrap/Icon");
-        _speedLabel = GetNode<Label>("Overview/Info/SpeedLabel");
-        _cropLabel = GetNode<Label>("Overview/Info/CropLabel");
 
         _rowTemplate.Hide();
 
@@ -93,24 +87,15 @@ public partial class PlantPanel : Control
             row.Show();
         }
 
-        RefreshOverview(dic.Count);
+        RefreshSummary();
     }
 
-    // 顶部概要：等级、已种植数量、生长速度、作物种类
-    private void RefreshOverview(int cropCount)
+    private void RefreshSummary()
     {
         int level = PlantManager.Instance.PlantLevel;
         _levelValue.Text = $"Lv.{level}";
         _plantedValue.Text = $"{PlantManager.Instance.GetPlantedCount()}/{PlantManager.Instance.GetPlantSlotCount()}";
 
-        int textureLevel = Mathf.Clamp(level, 1, MaxTextureLevel);
-        var tex = GD.Load<Texture2D>($"res://Assets/Images/Base/plant_{textureLevel}.png");
-        if (tex != null) _overviewIcon.Texture = tex;
-
-        _speedLabel.Text = PlantManager.Instance.PlantUnlocked
-            ? $"生长速度 {PlantManager.Instance.GetPlantGrowSpeed()}/天"
-            : "生长速度 未解锁";
-        _cropLabel.Text = $"作物 {cropCount} 种";
     }
 
     //填充行
@@ -118,8 +103,9 @@ public partial class PlantPanel : Control
     {
         var icon = row.GetNode<TextureRect>("IconFrame/IconWrap/Icon");
         var nameLabel = row.GetNode<Label>("Name");
-        var descLabel = row.GetNode<Label>("DescLabel");
+        var yieldLabel = row.GetNode<Label>("YieldLabel");
         var stateTip = row.GetNode<Label>("StateTip");
+        var divider = row.GetNode<Control>("Divider");
         var plantState = row.GetNode<Control>("PlantState");
         var staminaLabel = row.GetNode<Label>("PlantState/StaminaNum");
         var plantBtn = row.GetNode<Button>("PlantState/PlantBtn");
@@ -143,7 +129,7 @@ public partial class PlantPanel : Control
             13 => GD.Load<Texture2D>(CropArtPath + "plant_3.png"),
             _ => UIManager.Instance?.GetItemIcon(cfg.ItemID)
         };
-        descLabel.Text = $"每次收获 ×{cfg.Num}";
+        yieldLabel.Text = $"×{cfg.Num}";
         nameLabel.Text = ConfigManager.Instance.itemDic.ContainsKey(cfg.ItemID)
             ? ConfigManager.Instance.itemDic[cfg.ItemID].Name
             : "???";
@@ -171,17 +157,17 @@ public partial class PlantPanel : Control
         plantState.Visible = slotCfgID < 0;
         growState.Visible = growing;
         ripeState.Visible = ripe;
+        divider.Visible = !growing;
+        stateTip.Visible = !growing;
+        nameLabel.Position = new Vector2(nameLabel.Position.X, growing ? 80f : 111f);
 
         if (growing)
         {
             int remainDays = CeilDiv(cfg.Progress - slotProgress, growSpeed);
-            stateTip.Text = $"生长中 · 剩余 {remainDays} 天";
-            stateTip.AddThemeColorOverride("font_color", InfoColor);
-
             progress.MaxValue = cfg.Progress;
             progress.Value = slotProgress;
             progressLabel.Text = $"{slotProgress}/{cfg.Progress}";
-            growLabel.Text = $"剩余 {remainDays} 天";
+            growLabel.Text = growSpeed > 0 ? $"生长中 · 剩余 {remainDays} 天" : "升级后继续生长";
         }
         else if (ripe)
         {
@@ -191,7 +177,7 @@ public partial class PlantPanel : Control
         else
         {
             int days = CeilDiv(cfg.Progress, growSpeed);
-            stateTip.Text = $"预计 {days} 天成熟";
+            stateTip.Text = growSpeed > 0 ? $"预计时间：{days}天" : "升级后可种植";
             stateTip.AddThemeColorOverride("font_color", InfoColor);
 
             staminaLabel.Text = $"体力 ×{cfg.Stamina}";
@@ -199,8 +185,10 @@ public partial class PlantPanel : Control
             bool slotFull = PlantManager.Instance.IsPlantSlotFull();
             bool noStamina = PlayerManager.Instance.BaseStamina < cfg.Stamina;
             plantBtn.Disabled = slotFull || noStamina;
+            plantBtn.Material = plantBtn.Disabled ? _disabledActionMaterial : null;
+            staminaLabel.AddThemeColorOverride("font_color", noStamina ? DangerColor : Colors.White);
             statusTip.Visible = slotFull || noStamina;
-            statusTip.Text = slotFull ? "种植位已满" : "体力不足";
+            statusTip.Text = slotCount == 0 ? "暂无种植位" : slotFull ? "种植位已满" : "体力不足";
             statusTip.AddThemeColorOverride("font_color", noStamina && !slotFull ? DangerColor : InfoColor);
         }
     }

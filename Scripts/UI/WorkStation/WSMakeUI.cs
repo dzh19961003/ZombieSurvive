@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using MyProject;
@@ -9,6 +8,7 @@ public partial class WSMakeUI : Control
 	[Export] TextureButton make;
 	[Export] TextureButton cook;
 	[Export] TextureButton disassemb;
+	[Export] private ShaderMaterial _disabledActionMaterial;
 
 	private const int StaminaPropID = 10015;
 	//功能解锁等级：做饭3级、拆解5级
@@ -17,11 +17,9 @@ public partial class WSMakeUI : Control
 	//拆解列表固定行数
 	private const int DecomposeRowCount = 5;
 
-	//不可用行灰色
-	private static readonly Color DimColor = new(0.45f, 0.52f, 0.6f, 1f);
-	//数量不足红色
-	private static readonly Color InsufficientColor = new(0.94f, 0.27f, 0.24f, 1f);
-	private static readonly Color NormalColor = new(1f, 1f, 1f, 1f);
+	private static readonly Color LockedColor = new(0.60f, 0.69f, 0.79f);
+	private static readonly Color InactiveTabColor = new(0.58f, 0.76f, 0.92f);
+	private static readonly Color InsufficientColor = new(1f, 0.40f, 0.36f);
 
 	private enum TabType { Make = 0, Cook = 1, Decompose = 2 }
 	private TabType currentTab = TabType.Make;
@@ -34,13 +32,13 @@ public partial class WSMakeUI : Control
 	private TextureButton _rowTemplate;
 	private Label _infoValue;
 	private Label _infoDetail;
-	private TextureRect _decompLock;
-	private Label _decompLv;
 
 	private Control _detailInfo;
 	private Label _detailTip;
 	private TextureRect _detailIcon;
 	private Label _detailName;
+	private Control _detailCost;
+	private Label _detailCostLabel;
 	private TextureButton _actionBtn;
 	private Label _actionLabel;
 
@@ -48,28 +46,29 @@ public partial class WSMakeUI : Control
 	private RoofWorkstationItem _selectedCfg;
 	private readonly List<TextureButton> _rows = new();
 	private readonly List<RoofWorkstationItem> _rowCfgs = new();
+	private readonly Dictionary<Texture2D, Texture2D> _fittedIcons = new();
 
 	public override void _Ready()
 	{
 		_tabActive = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/building/tab_selected.png");
 		_tabInactive = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/building/tab_unselected.png");
-		_staminaTex = ResourceLoader.Load<Texture2D>("res://Assets/Images/UI/stamina.png");
+		_staminaTex = WorkstationUI.GetMaterialIcon(StaminaPropID);
 
 		_infoValue = GetNode<Label>("InfoBar/InfoValue");
 		_infoDetail = GetNode<Label>("InfoBar/InfoDetail");
-		_decompLock = GetNode<TextureRect>("SubTabBar/TabDecompose/Content/Lock");
-		_decompLv = GetNode<Label>("SubTabBar/TabDecompose/Content/Lv");
 
 		_detailInfo = GetNode<Control>("DetailCard/DetailInfo");
 		_detailTip = GetNode<Label>("DetailCard/DetailTip");
 		_detailIcon = GetNode<TextureRect>("DetailCard/DetailInfo/DetailIconBox/Icon");
 		_detailName = GetNode<Label>("DetailCard/DetailInfo/DetailName");
+		_detailCost = GetNode<Control>("DetailCard/DetailInfo/DetailCost");
+		_detailCostLabel = _detailCost.GetNode<Label>("Label");
 		_actionBtn = GetNode<TextureButton>("DetailCard/ActionBtn");
 		_actionLabel = GetNode<Label>("DetailCard/ActionBtn/Label");
 
 		_recipeList = GetNode<VBoxContainer>("RecipeScroll/RecipeList");
 		_rowTemplate = GetNode<TextureButton>("RecipeScroll/RecipeList/RowTemplate");
-		_recipeList.RemoveChild(_rowTemplate);
+		_rowTemplate.Hide();
 
 		if (make != null) make.Pressed += () => SwitchTab(TabType.Make);
 		if (cook != null) cook.Pressed += () => SwitchTab(TabType.Cook);
@@ -143,21 +142,33 @@ public partial class WSMakeUI : Control
 		int stationLevel = PlayerManager.Instance.WorkStationLevel;
 		int roleLevel = PlayerManager.Instance.PlayerMakeLevel;
 		_infoValue.Text = $"{stationLevel + roleLevel}";
-		_infoDetail.Text = $"|   角色 {roleLevel} + 工作台 {stationLevel}";
+		_infoDetail.Text = $"角色 {roleLevel} + 工作台 {stationLevel}";
 	}
 
 	private void RefreshTabLocks()
 	{
-		bool cookUnlocked = IsTabUnlocked(TabType.Cook);
-		bool decomoseUnlocked = IsTabUnlocked(TabType.Decompose);
-		if (cook != null) cook.Modulate = cookUnlocked ? NormalColor : DimColor;
-		if (disassemb != null) disassemb.Modulate = decomoseUnlocked ? NormalColor : DimColor;
-		if (_decompLock != null) _decompLock.Visible = !decomoseUnlocked;
-		if (_decompLv != null)
-		{
-			_decompLv.Visible = !decomoseUnlocked;
-			_decompLv.Text = $"Lv.{DecomposeUnlockLevel}";
-		}
+		RefreshTabStyle(make, TabType.Make);
+		RefreshTabStyle(cook, TabType.Cook, CookUnlockLevel);
+		RefreshTabStyle(disassemb, TabType.Decompose, DecomposeUnlockLevel);
+	}
+
+	private void RefreshTabStyle(TextureButton button, TabType tab, int unlockLevel = 0)
+	{
+		bool unlocked = IsTabUnlocked(tab);
+		bool selected = unlocked && currentTab == tab;
+		button.TextureNormal = selected ? _tabActive : _tabInactive;
+		var content = button.GetNode<Control>("Content");
+		var icon = content.GetNode<TextureRect>("Icon");
+		icon.Visible = unlocked;
+		icon.SelfModulate = selected ? Colors.White : new Color(0.73f, 0.85f, 0.96f);
+		content.GetNode<Label>("Label").AddThemeColorOverride("font_color",
+			!unlocked ? LockedColor : selected ? Colors.White : InactiveTabColor);
+		if (unlockLevel == 0) return;
+
+		content.GetNode<TextureRect>("Lock").Visible = !unlocked;
+		var level = content.GetNode<Label>("Lv");
+		level.Visible = !unlocked;
+		level.Text = $"Lv.{unlockLevel}";
 	}
 
 	//切换页签
@@ -169,10 +180,6 @@ public partial class WSMakeUI : Control
 			return;
 		}
 		currentTab = tab;
-		if (make != null)      make.TextureNormal      = tab == TabType.Make ? _tabActive : _tabInactive;
-		if (cook != null)      cook.TextureNormal      = tab == TabType.Cook ? _tabActive : _tabInactive;
-		if (disassemb != null) disassemb.TextureNormal = tab == TabType.Decompose ? _tabActive : _tabInactive;
-
 		ClearSelection();
 		RefreshInfo();
 		RefreshTabLocks();
@@ -189,6 +196,7 @@ public partial class WSMakeUI : Control
 		//清空旧行
 		foreach (var child in _recipeList.GetChildren())
 		{
+			if (child == _rowTemplate) continue;
 			_recipeList.RemoveChild(child);
 			child.QueueFree();
 		}
@@ -209,6 +217,7 @@ public partial class WSMakeUI : Control
 			_recipeList.AddChild(row);
 			FillRow(row, cfg);
 			row.Pressed += () => SelectRow(cfg);
+			row.Show();
 			_rows.Add(row);
 			_rowCfgs.Add(cfg);
 		}
@@ -221,6 +230,7 @@ public partial class WSMakeUI : Control
 				var row = (TextureButton)_rowTemplate.Duplicate();
 				_recipeList.AddChild(row);
 				FillEmptyRow(row);
+				row.Show();
 				_rows.Add(row);
 				_rowCfgs.Add(null);
 			}
@@ -233,13 +243,13 @@ public partial class WSMakeUI : Control
 	private void FillRow(TextureButton row, RoofWorkstationItem cfg)
 	{
 		row.Disabled = false;
-		row.Modulate = NormalColor;
 
 		var iconBox = row.GetNode<Panel>("IconBox");
 		var icon = row.GetNode<TextureRect>("IconBox/Icon");
 		var nameLabel = row.GetNode<Label>("Name");
 		var sep = row.GetNode<ColorRect>("Sep");
-		var arrow = row.GetNode<Label>("Arrow");
+		var arrow = row.GetNode<TextureRect>("Arrow");
+		var costDivider = row.GetNode<Control>("CostDivider");
 		var lockTip = row.GetNode<HBoxContainer>("LockTip");
 		var owned = row.GetNode<Panel>("Owned");
 
@@ -247,12 +257,12 @@ public partial class WSMakeUI : Control
 		iconBox.Visible = true;
 		sep.Visible = false;
 		arrow.Visible = false;
+		costDivider.Visible = false;
 		lockTip.Visible = false;
 		owned.Visible = false;
 
 		//物品图标与名称
-		var tex = UIManager.Instance?.GetItemIcon(cfg.ItemID);
-		if (tex != null) icon.Texture = tex;
+		icon.Texture = GetFittedItemIcon(cfg.ItemID);
 		nameLabel.Text = GetItemName(cfg.ItemID);
 
 		if (currentTab == TabType.Decompose)
@@ -260,8 +270,9 @@ public partial class WSMakeUI : Control
 			//拆解：物品 → 产出材料，右侧显示拥有数量
 			arrow.Visible = true;
 			sep.Visible = true;
-			sep.OffsetLeft = 468;
-			sep.OffsetRight = 471;
+			nameLabel.OffsetRight = 388;
+			sep.OffsetLeft = 450;
+			sep.OffsetRight = 453;
 
 			var getIDs = cfg.GetID ?? new List<int>();
 			var getNums = cfg.GetNum ?? new List<int>();
@@ -269,31 +280,30 @@ public partial class WSMakeUI : Control
 			{
 				bool has = i < getIDs.Count;
 				int num = (has && i < getNums.Count) ? getNums[i] : 0;
-				SetSlot(row, i, has, has ? UIManager.Instance?.GetItemIcon(getIDs[i]) : null, $"×{num}", NormalColor);
+				SetSlot(row, i, has, has ? WorkstationUI.GetMaterialIcon(getIDs[i]) : null, $"×{num}", Colors.White);
 			}
-			SetSlot(row, 2, false, null, "", NormalColor);
+			SetSlot(row, 2, false, null, "", Colors.White);
 
 			int have = PlayerManager.Instance?.GetItemCount(cfg.ItemID) ?? 0;
 			owned.Visible = true;
-			owned.GetNode<Label>("Label").Text = $"拥有×{have}";
-			if (have <= 0) row.Modulate = DimColor;
+			var ownedLabel = owned.GetNode<Label>("Label");
+			ownedLabel.Text = $"拥有×{have}";
+			ownedLabel.AddThemeColorOverride("font_color", have > 0 ? Colors.White : LockedColor);
 			return;
 		}
 
 		//制作/做饭：等级不足显示需求等级
+		sep.Visible = true;
 		int totalMakeLevel = (PlayerManager.Instance?.WorkStationLevel ?? 1) + (PlayerManager.Instance?.PlayerMakeLevel ?? 0);
 		if (cfg.Level > totalMakeLevel)
 		{
 			lockTip.Visible = true;
 			lockTip.GetNode<Label>("Num").Text = $"{cfg.Level}";
-			SetSlot(row, 0, false, null, "", NormalColor);
-			SetSlot(row, 1, false, null, "", NormalColor);
-			SetSlot(row, 2, false, null, "", NormalColor);
-			row.Modulate = DimColor;
+			SetSlot(row, 0, false, null, "", Colors.White);
+			SetSlot(row, 1, false, null, "", Colors.White);
+			SetSlot(row, 2, false, null, "", Colors.White);
 			return;
 		}
-
-		sep.Visible = true;
 
 		//材料
 		var mats = cfg.MaterialID ?? new List<int>();
@@ -302,17 +312,18 @@ public partial class WSMakeUI : Control
 		{
 			if (i >= mats.Count)
 			{
-				SetSlot(row, i, false, null, "", NormalColor);
+				SetSlot(row, i, false, null, "", Colors.White);
 				continue;
 			}
 			int need = i < matNums.Count ? matNums[i] : 0;
 			bool enough = (PlayerManager.Instance?.GetItemCount(mats[i]) ?? 0) >= need;
-			SetSlot(row, i, true, UIManager.Instance?.GetItemIcon(mats[i]), $"×{need}", enough ? NormalColor : InsufficientColor);
+			SetSlot(row, i, true, WorkstationUI.GetMaterialIcon(mats[i]), $"×{need}", enough ? Colors.White : InsufficientColor);
 		}
 
 		//体力
 		int stamina = PlayerManager.Instance?.BaseStamina ?? 0;
-		SetSlot(row, 2, true, _staminaTex, $"×{cfg.Stamina}", stamina >= cfg.Stamina ? NormalColor : InsufficientColor);
+		costDivider.Visible = cfg.Stamina > 0;
+		SetSlot(row, 2, cfg.Stamina > 0, _staminaTex, $"×{cfg.Stamina}", stamina >= cfg.Stamina ? Colors.White : InsufficientColor);
 	}
 
 	//填充一个材料槽位
@@ -324,7 +335,7 @@ public partial class WSMakeUI : Control
 
 		var icon = slot.GetNode<TextureRect>("Icon");
 		var count = slot.GetNode<Label>("Count");
-		if (tex != null) icon.Texture = tex;
+		icon.Texture = tex;
 		count.Text = numText;
 		count.AddThemeColorOverride("font_color", numColor);
 	}
@@ -337,7 +348,8 @@ public partial class WSMakeUI : Control
 		row.GetNode<Panel>("IconBox").Visible = false;
 		row.GetNode<Label>("Name").Visible = false;
 		row.GetNode<ColorRect>("Sep").Visible = false;
-		row.GetNode<Label>("Arrow").Visible = false;
+		row.GetNode<TextureRect>("Arrow").Visible = false;
+		row.GetNode<Control>("CostDivider").Visible = false;
 		row.GetNode<HBoxContainer>("LockTip").Visible = false;
 		row.GetNode<Panel>("Owned").Visible = false;
 		row.GetNode<Control>("Slot1").Visible = false;
@@ -385,10 +397,11 @@ public partial class WSMakeUI : Control
 		_detailTip.Visible = false;
 		_detailInfo.Visible = true;
 
-		var tex = UIManager.Instance?.GetItemIcon(cfg.ItemID);
-		if (tex != null) _detailIcon.Texture = tex;
+		_detailIcon.Texture = GetFittedItemIcon(cfg.ItemID);
 		_detailName.Text = GetItemName(cfg.ItemID);
 		_actionLabel.Text = currentTab == TabType.Decompose ? "拆解" : "制作";
+		_actionBtn.Show();
+		_detailCost.Visible = currentTab == TabType.Decompose && cfg.Stamina > 0;
 
 		RefreshActionBtn();
 		RefreshSelectionMark();
@@ -400,7 +413,13 @@ public partial class WSMakeUI : Control
 		if (_actionBtn == null) return;
 		bool enabled = _selectedCfg != null && IsRowAvailable(_selectedCfg);
 		_actionBtn.Disabled = !enabled;
-		_actionBtn.Modulate = enabled ? NormalColor : new Color(1f, 1f, 1f, 0.45f);
+		_actionBtn.Material = enabled ? null : _disabledActionMaterial;
+		if (_selectedCfg != null && _detailCost.Visible)
+		{
+			_detailCostLabel.Text = $"基地体力 ×{_selectedCfg.Stamina}";
+			bool enough = (PlayerManager.Instance?.BaseStamina ?? 0) >= _selectedCfg.Stamina;
+			_detailCostLabel.AddThemeColorOverride("font_color", enough ? Colors.White : InsufficientColor);
+		}
 	}
 
 	//刷新行选中高亮
@@ -418,12 +437,21 @@ public partial class WSMakeUI : Control
 	private void ClearSelection()
 	{
 		_selectedCfg = null;
-		if (_detailTip != null) _detailTip.Visible = true;
+		if (_detailTip != null)
+		{
+			_detailTip.Text = currentTab switch
+			{
+				TabType.Cook => "请在上方选择食谱",
+				TabType.Decompose => "请在上方选择物品进行拆解",
+				_ => "请在上方选择物品进行制作"
+			};
+			_detailTip.Visible = true;
+		}
 		if (_detailInfo != null) _detailInfo.Visible = false;
 		if (_actionBtn != null)
 		{
 			_actionBtn.Disabled = true;
-			_actionBtn.Modulate = new Color(1f, 1f, 1f, 0.45f);
+			_actionBtn.Hide();
 		}
 		RefreshSelectionMark();
 	}
@@ -527,6 +555,23 @@ public partial class WSMakeUI : Control
 		CallDeferred(nameof(RefreshInfo));
 		CallDeferred(nameof(RefreshRows));
 		CallDeferred(nameof(RefreshActionBtn));
+	}
+
+	private Texture2D GetFittedItemIcon(int itemID)
+	{
+		var texture = UIManager.Instance?.GetItemIcon(itemID);
+		if (texture == null) return null;
+		if (_fittedIcons.TryGetValue(texture, out var fitted)) return fitted;
+
+		// 只裁掉显示时的透明边距，保持物品原图和比例。
+		using var image = texture.GetImage();
+		if (image == null) return texture;
+		var bounds = image.GetUsedRect();
+		fitted = bounds.HasArea()
+			? new AtlasTexture { Atlas = texture, Region = bounds, FilterClip = true }
+			: texture;
+		_fittedIcons[texture] = fitted;
+		return fitted;
 	}
 
 	private string GetItemName(int itemID)

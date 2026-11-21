@@ -15,6 +15,8 @@ namespace MyProject
         /// <summary>原始字段: eventType(int)</summary>
         public int EventType { get; set; }
 
+        public int EnemyPool { get; set; }
+
         /// <summary>原始字段: headType(int)</summary>
         public int HeadType { get; set; }
 

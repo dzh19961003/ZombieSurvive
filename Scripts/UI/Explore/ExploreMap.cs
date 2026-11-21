@@ -34,7 +34,7 @@ public partial class ExploreMap : Control
                     }
                     while (GameManager.Instance.CurrentTimePeriod != 3);
                 }
-			
+                GameManager.Instance.EndExplorationBattleSession();
 			};
         };
 

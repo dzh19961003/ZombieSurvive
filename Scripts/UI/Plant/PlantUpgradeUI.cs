@@ -4,18 +4,17 @@ using MyProject;
 public partial class PlantUpgradeUI : Control
 {
     [Export] TextureButton upgrade;
+    [Export] private ShaderMaterial _disabledActionMaterial;
 
     private const int MaxLevel = 4;
-    private const int MaxTextureLevel = 4;
 
     private static readonly Color LockedFunColor = new(0.4862745f, 0.61960787f, 0.72156864f, 1f);
-    private static readonly Color NormalColor = new(1f, 1f, 1f, 1f);
-    private static readonly Color UnlockedColor = new(0.4509804f, 0.7882353f, 0.9490196f, 1f);
+    private static readonly Color ValueColor = new(1f, 0.97f, 0.89f);
     private static readonly Color InsufficientColor = new(1f, 0.48f, 0.41f, 1f);
 
     private int currentLevel = 1;
+    private int _statFontSize;
 
-    private TextureRect _plantTexture;
     private Label _lvCur;
     private Label _lvNext;
     private TextureRect _levelArrow;
@@ -26,19 +25,19 @@ public partial class PlantUpgradeUI : Control
     private Label _speedNext;
     private TextureRect _speedArrow;
     private Label _speedUnit;
-    private Label _featureStatus;
+    private Label _upgradeHint;
     private Label _reqTitle;
     private Control _reqRow;
     private Label _maxTip;
     private Label _upgradeLabel;
     private Control[] _reqSlots;
+    private Control[] _reqDividers;
     private TextureRect[] _reqIcons;
     private Label[] _reqNames;
     private Label[] _reqCounts;
 
     public override void _Ready()
     {
-        _plantTexture   = GetNode<TextureRect>("PlantTexture");
         _lvCur          = GetNode<Label>("Info/LevelRow/LvCur");
         _lvNext         = GetNode<Label>("Info/LevelRow/LvNext");
         _levelArrow     = GetNode<TextureRect>("Info/LevelRow/LevelArrow");
@@ -49,7 +48,8 @@ public partial class PlantUpgradeUI : Control
         _speedNext      = GetNode<Label>("Info/SpeedRow/SpeedNext");
         _speedArrow     = GetNode<TextureRect>("Info/SpeedRow/SpeedArrow");
         _speedUnit      = GetNode<Label>("Info/SpeedUnit");
-        _featureStatus  = GetNode<Label>("FeatureRow/Feature1/F1Text/F1Status");
+        _statFontSize   = _countCur.GetThemeFontSize("font_size");
+        _upgradeHint    = GetNode<Label>("UpgradeHint");
         _reqTitle       = GetNode<Label>("ReqTitle");
         _reqRow         = GetNode<Control>("ReqRow");
         _maxTip         = GetNode<Label>("MaxTip");
@@ -59,6 +59,11 @@ public partial class PlantUpgradeUI : Control
             GetNode<Control>("ReqRow/Req1"),
             GetNode<Control>("ReqRow/Req2"),
             GetNode<Control>("ReqRow/Req3")
+        };
+        _reqDividers = new Control[]
+        {
+            GetNode<Control>("ReqRow/ReqDivider1"),
+            GetNode<Control>("ReqRow/ReqDivider2")
         };
         _reqIcons = new TextureRect[]
         {
@@ -147,10 +152,10 @@ public partial class PlantUpgradeUI : Control
         var nextCfg = FindNextConfig();
         bool showNext = !isUnlockStep && !isMaxLevel;
 
-        RefreshPlantTexture();
         RefreshLevel(showNext);
         RefreshStats(curCfg, nextCfg, isUnlockStep, showNext);
-        RefreshFeatureUnlock();
+        _upgradeHint.Visible = !isMaxLevel;
+        _upgradeHint.Text = isUnlockStep ? "解锁后即可升级种植区。" : "升级可增加种植位并加快生长。";
         RefreshRequirements(isUnlockStep ? curCfg : nextCfg, isUnlockStep, isMaxLevel);
     }
 
@@ -166,8 +171,10 @@ public partial class PlantUpgradeUI : Control
     // 同时种植数量 / 生长速度
     private void RefreshStats(RoofPlants curCfg, RoofPlants nextCfg, bool isUnlockStep, bool showNext)
     {
-        _countCur.AddThemeColorOverride("font_color", isUnlockStep ? LockedFunColor : NormalColor);
-        _speedCur.AddThemeColorOverride("font_color", isUnlockStep ? LockedFunColor : NormalColor);
+        _countCur.AddThemeColorOverride("font_color", isUnlockStep ? LockedFunColor : ValueColor);
+        _speedCur.AddThemeColorOverride("font_color", isUnlockStep ? LockedFunColor : ValueColor);
+        _countCur.AddThemeFontSizeOverride("font_size", isUnlockStep ? 42 : _statFontSize);
+        _speedCur.AddThemeFontSizeOverride("font_size", isUnlockStep ? 42 : _statFontSize);
         _countCur.Text = isUnlockStep ? "解锁后查看" : (curCfg?.GrowNum ?? 0).ToString();
         _speedCur.Text = isUnlockStep ? "解锁后查看" : (curCfg?.GrowSpeed ?? 0).ToString();
 
@@ -185,25 +192,6 @@ public partial class PlantUpgradeUI : Control
         _speedUnit.Visible = !isUnlockStep;
     }
 
-    private void RefreshPlantTexture()
-    {
-        int level = Mathf.Clamp(currentLevel, 1, MaxTextureLevel);
-        //与基地场景 Plant.RefreshTexture 保持一致，统一使用 Base/plant_{level} 贴图
-        var tex = GD.Load<Texture2D>($"res://Assets/Images/Base/plant_{level}.png");
-        if (tex != null)
-        {
-            _plantTexture.Texture = tex;
-        }
-    }
-
-    // 种植功能解锁状态
-    private void RefreshFeatureUnlock()
-    {
-        bool unlocked = PlantManager.Instance.PlantUnlocked;
-        _featureStatus.Text = unlocked ? "已解锁" : "Lv.2 解锁";
-        _featureStatus.AddThemeColorOverride("font_color", unlocked ? UnlockedColor : LockedFunColor);
-    }
-
     // 升级需求：图标 + 名称 + 拥有/需求
     private void RefreshRequirements(RoofPlants cfg, bool isUnlockStep, bool isMaxLevel)
     {
@@ -215,7 +203,7 @@ public partial class PlantUpgradeUI : Control
             if (upgrade != null)
             {
                 upgrade.Disabled = true;
-                upgrade.Modulate = new Color(1f, 1f, 1f, 0.5f);
+                upgrade.Material = _disabledActionMaterial;
             }
             if (_upgradeLabel != null) _upgradeLabel.Text = "已满级";
             return;
@@ -228,24 +216,25 @@ public partial class PlantUpgradeUI : Control
         if (upgrade != null)
         {
             upgrade.Disabled = false;
-            upgrade.Modulate = NormalColor;
+            upgrade.Material = null;
         }
         if (_upgradeLabel != null) _upgradeLabel.Text = isUnlockStep ? "解锁" : "升级";
 
         if (cfg == null) return;
 
+        bool hasPreviousRequirement = false;
         for (int i = 0; i < _reqSlots.Length; i++)
         {
             int itemID = (cfg.ItemID != null && i < cfg.ItemID.Count) ? cfg.ItemID[i] : 0;
             int need = (cfg.ItemNum != null && i < cfg.ItemNum.Count) ? cfg.ItemNum[i] : 0;
 
-            if (itemID == 0 || need == 0)
-            {
-                _reqSlots[i].Visible = false;
-                continue;
-            }
+            bool hasRequirement = itemID != 0 && need != 0;
+            _reqSlots[i].Visible = hasRequirement;
+            if (i > 0)
+                _reqDividers[i - 1].Visible = hasRequirement && hasPreviousRequirement;
+            if (!hasRequirement) continue;
 
-            _reqSlots[i].Visible = true;
+            hasPreviousRequirement = true;
             _reqNames[i].Text = GetItemName(itemID);
 
             var icon = GetRequirementIcon(itemID);
@@ -254,18 +243,19 @@ public partial class PlantUpgradeUI : Control
             int have = GetItemHave(itemID);
             _reqCounts[i].Text = $"{have}/{need}";
             _reqCounts[i].AddThemeColorOverride("font_color",
-                have < need ? InsufficientColor : Colors.White);
+                have < need ? InsufficientColor : ValueColor);
         }
     }
 
-    // 需求图标：体力类复用体力图标，其余走通用图标
     private Texture2D GetRequirementIcon(int itemID)
     {
-        if (itemID == 10015 || itemID == 10016)
+        return itemID switch
         {
-            return GD.Load<Texture2D>("res://Assets/Images/UI/stamina.png");
-        }
-        return UIManager.Instance?.GetItemIcon(itemID);
+            7 => GD.Load<Texture2D>("res://Assets/Images/UI/building/plant/wood.png"),
+            9 => GD.Load<Texture2D>("res://Assets/Images/UI/building/plant/parts.png"),
+            10015 or 10016 => GD.Load<Texture2D>("res://Assets/Images/UI/stamina.png"),
+            _ => UIManager.Instance?.GetItemIcon(itemID)
+        };
     }
 
     private string GetItemName(int itemID)

@@ -229,12 +229,19 @@ public partial class ExploreStrategyUI : Control
         if (gm.exploreNoise >= 100)
         {
             gm.exploreNoise -= 100;   // 满100减100，多余部分不保留
-            TriggerBattle();
+            if (TriggerBattle(() => ContinueSearch(type)))
+                return;
         }
 
+        ContinueSearch(type);
+    }
+
+    private void ContinueSearch(int type)
+    {
+        Show();
         RefreshNumbers();
         RefreshNoise();
-        roomLeftLabel.Text = gm.GetRoomExploreNum(currentRoom.ID, currentRoom.ExploreNum).ToString();
+        roomLeftLabel.Text = GameManager.Instance.GetRoomExploreNum(currentRoom.ID, currentRoom.ExploreNum).ToString();
 
         // 五、探索详情界面：抽事件、逐字打描述、发奖励、生成选项
         // 本界面不销毁，事件链走完删掉详情界面后直接露出来并 RefreshAll
@@ -242,10 +249,12 @@ public partial class ExploreStrategyUI : Control
         if (ui is ExploreChooseUI choose) choose.Init(type, this);
     }
 
-    // 战斗逻辑按约定先空置：只从 room 表读怪物池占位
-    private void TriggerBattle()
+    private bool TriggerBattle(System.Action resume)
     {
-        GD.Print($"[ExploreStrategyUI] 触发战斗，怪物池 {currentRoom.EnemyPool}（战斗逻辑暂空置）");
+        if (!UIManager.Instance.OpenBattleFromPool(currentRoom.EnemyPool, resume))
+            return false;
+        Hide();
+        return true;
     }
 
     private void OnLeaveClicked()
@@ -271,8 +280,8 @@ public partial class ExploreStrategyUI : Control
         {
             // 低噪音不触发；中噪音按 噪音/100 概率；高噪音必定触发
             bool fight = noise > 60 || (noise > 30 && GD.RandRange(1, 100) <= noise);
-            if (fight) TriggerBattle();
-            BackToRoomChoose();
+            if (!fight || !TriggerBattle(BackToRoomChoose))
+                BackToRoomChoose();
         };
     }
 

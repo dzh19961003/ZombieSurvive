@@ -5,14 +5,17 @@ using MyProject;
 public partial class TUpgradeUI : Control
 {
 	[Export] TextureButton upgrade;
+	[Export] private ShaderMaterial _disabledActionMaterial;
 
 	private const int MaxTextureLevel = 5;
 	private const int RunningmachineUnlockLevel = 2;
 	private const int BookshelfUnlockLevel = 3;
 	private const int MaxLevel = 5;
 
-	private static readonly Color LockedFunColor = new(0.4862745f, 0.61960787f, 0.72156864f, 1f);
-	private static readonly Color NormalColor = new(1f, 1f, 1f, 1f);
+	private static readonly Color LockedFunColor = new(0.56f, 0.66f, 0.78f);
+	private static readonly Color LockedNameColor = new(0.68f, 0.83f, 0.96f);
+	private static readonly Color ValueColor = new(1f, 0.97f, 0.89f);
+	private static readonly Color InsufficientColor = new(1f, 0.47f, 0.42f);
 
 	private int currentLevel = 1;
 
@@ -21,9 +24,10 @@ public partial class TUpgradeUI : Control
 	private Label _lvNext;
 	private TextureRect _levelArrow;
 	private Label _expCur;
+	private int _expValueFontSize;
 	private Label _expNext;
 	private Label _expCurBreak;
-	private Label _expNextBreak;
+	private RichTextLabel _expNextBreak;
 	private TextureRect _expArrow;
 	private Label _featureName1;
 	private Label _featureStatus1;
@@ -45,10 +49,11 @@ public partial class TUpgradeUI : Control
 		_lvNext            = GetNode<Label>("Info/LevelRow/LvNext");
 		_levelArrow        = GetNode<TextureRect>("Info/LevelRow/LevelArrow");
 		_expCur            = GetNode<Label>("Info/ExpRow/ExpCur");
+		_expValueFontSize  = _expCur.GetThemeFontSize("font_size");
 		_expNext           = GetNode<Label>("Info/ExpRow/ExpNext");
 		_expArrow          = GetNode<TextureRect>("Info/ExpRow/ExpArrow");
 		_expCurBreak       = GetNode<Label>("Info/ExpCurBreak");
-		_expNextBreak      = GetNode<Label>("Info/ExpNextBreak");
+		_expNextBreak      = GetNode<RichTextLabel>("Info/ExpNextBreak");
 
 		_featureName1      = GetNode<Label>("FeatureRow/Feature1/F1Text/F1Name");
 		_featureStatus1    = GetNode<Label>("FeatureRow/Feature1/F1Text/F1Status");
@@ -165,6 +170,7 @@ public partial class TUpgradeUI : Control
 		{
 			_expCur.Text = "解锁后查看";
 			_expCur.AddThemeColorOverride("font_color", LockedFunColor);
+			_expCur.AddThemeFontSizeOverride("font_size", 44);
 			_expNext.Visible = false;
 			_expArrow.Visible = false;
 			_expCurBreak.Visible = false;
@@ -176,7 +182,8 @@ public partial class TUpgradeUI : Control
 
 		// 当前等级：玩家加成 + 器材加成
 		int curEquipPercent = curCfg != null ? curCfg.ExpAdd : 0;
-		_expCur.AddThemeColorOverride("font_color", NormalColor);
+		_expCur.AddThemeColorOverride("font_color", ValueColor);
+		_expCur.AddThemeFontSizeOverride("font_size", _expValueFontSize);
 		_expCur.Text = $"{playerPercent + curEquipPercent}%";
 		_expCurBreak.Visible = true;
 		_expCurBreak.Text = $"玩家{playerPercent}% +\n器材{curEquipPercent}%";
@@ -194,7 +201,7 @@ public partial class TUpgradeUI : Control
 		_expArrow.Visible = true;
 		_expNextBreak.Visible = true;
 		_expNext.Text = $"{playerPercent + nextEquipPercent}%";
-		_expNextBreak.Text = $"玩家{playerPercent}% +\n器材{nextEquipPercent}%";
+		_expNextBreak.Text = $"玩家{playerPercent}% +\n器材[color=#ffb35c]{nextEquipPercent}%[/color]";
 	}
 
 	// 玩家经验获取效率加成：智力加成 + 状态/天赋等效率加成
@@ -231,7 +238,7 @@ public partial class TUpgradeUI : Control
 
 		bool unlocked = PlayerManager.Instance.TrainLevel >= unlockLevel;
 		name.Text = featureName;
-		name.AddThemeColorOverride("font_color", unlocked ? NormalColor : LockedFunColor);
+		name.AddThemeColorOverride("font_color", unlocked ? Colors.White : LockedNameColor);
 		status.Text = unlocked ? "已解锁" : $"Lv.{unlockLevel} 解锁";
 		status.AddThemeColorOverride("font_color", unlocked ? new Color(0.4509804f, 0.7882353f, 0.9490196f, 1f) : LockedFunColor);
 	}
@@ -247,7 +254,7 @@ public partial class TUpgradeUI : Control
 			if (upgrade != null)
 			{
 				upgrade.Disabled = true;
-				upgrade.Modulate = new Color(1f, 1f, 1f, 0.5f);
+				upgrade.Material = _disabledActionMaterial;
 			}
 			if (_upgradeLabel != null) _upgradeLabel.Text = "已满级";
 			return;
@@ -259,7 +266,7 @@ public partial class TUpgradeUI : Control
 		if (upgrade != null)
 		{
 			upgrade.Disabled = false;
-			upgrade.Modulate = NormalColor;
+			upgrade.Material = null;
 		}
 		if (_upgradeLabel != null) _upgradeLabel.Text = isUnlockStep ? "解锁" : "升级";
 
@@ -286,8 +293,7 @@ public partial class TUpgradeUI : Control
 			int have = GetItemHave(itemID);
 			bool insufficient = have < need;
 			_reqCounts[i].Text = $"{have}/{need}";
-			// 资源不足红色，充足白色
-			_reqCounts[i].AddThemeColorOverride("font_color", insufficient ? Colors.Red : Colors.White);
+			_reqCounts[i].AddThemeColorOverride("font_color", insufficient ? InsufficientColor : ValueColor);
 		}
 
 		// 多余槽位隐藏

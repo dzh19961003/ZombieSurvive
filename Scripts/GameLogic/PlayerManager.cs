@@ -112,8 +112,15 @@ public partial class PlayerManager : Node, ISaveable
     public int ArmTime { get { return armTime + GetAddition(10024); } private set { } }
     public int BodyTime { get { return bodyTime + GetAddition(10025); } private set { } }
     public int HeadTime { get { return headTime + GetAddition(10026); } private set { } }
+    [Export] public int PrecisionChargeCapacity { get; set; } = 2;
     public int Playerstaminacost { get { return playerstaminacost + GetAddition(10027); } private set { } }
     //增量计算：
+    public void FillExplorationArmor()
+    {
+        armor = Math.Max(0, MaxArmor - GetAddition(10010));
+        GetItem?.Invoke();
+    }
+
     public int GetAddition(int statetype)
         {
             int v = 0;

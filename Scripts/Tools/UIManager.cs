@@ -13,6 +13,7 @@ public partial class UIManager : Node
     private Dictionary<string, Control> _panels = new();
 
     public Item item;
+    private BattleScreen activeBattle;
 
     public override void _Ready()
     {
@@ -20,17 +21,63 @@ public partial class UIManager : Node
         // 启动先显示开始菜单，点"新游戏"后再进主界面
         ShowUI(Paths.StartMenu);
     }
-    public override void _Process(double delta)
+    public override void _UnhandledKeyInput(InputEvent input)
     {
-        if (Input.IsActionJustPressed("ui_select"))
+        if (OS.IsDebugBuild() && input is InputEventKey { Pressed: true, Echo: false, Keycode: Key.F8 }
+            && ConfigManager.Instance.enemyDic.TryGetValue(1, out var enemy)
+            && OpenBattle(enemy, new BattleSession(PlayerManager.Instance), null))
+            GetViewport().SetInputAsHandled();
+    }
+
+    public bool OpenBattleFromPool(int poolId, System.Action resume)
+    {
+        var configs = ConfigManager.Instance;
+        if (configs.enemyPoolDic.TryGetValue(poolId, out var pool) && pool.Enemy != null && pool.Weight != null)
         {
-            GameManager.Instance.enemyID = 1;
-            //测试入口：这里没有 exploreUI，战斗CD会用 BattleInfo 里的默认值
-            //注意用 CreateUI 而不是 ShowUI，因为 ShowUI 会缓存面板、第二次不再走初始化
-            var battleUI = UIManager.Instance.CreateUI("res://UI/Battle/Battle.tscn");
-            BattleManager battleManager = (BattleManager)battleUI;
-            battleManager.StartBattle();
+            var candidates = new List<(Enemy Enemy, int Weight)>();
+            long total = 0;
+            for (int index = 0; index < System.Math.Min(pool.Enemy.Count, pool.Weight.Count); index++)
+            {
+                int weight = pool.Weight[index];
+                if (weight <= 0 || !configs.enemyDic.TryGetValue(pool.Enemy[index], out var enemy))
+                    continue;
+                candidates.Add((enemy, weight));
+                total += weight;
+            }
+
+            if (total > 0)
+            {
+                long ticket = System.Random.Shared.NextInt64(total);
+                foreach (var candidate in candidates)
+                {
+                    ticket -= candidate.Weight;
+                    if (ticket < 0)
+                        return OpenBattle(candidate.Enemy, GameManager.Instance.ExplorationBattle ?? new BattleSession(PlayerManager.Instance), resume);
+                }
+            }
         }
+
+        GD.PushWarning($"[Battle] 怪物池 {poolId} 没有可用敌人，跳过演示战斗。");
+        return false;
+    }
+
+    private bool OpenBattle(Enemy enemy, BattleSession session, System.Action resume)
+    {
+        if (GodotObject.IsInstanceValid(activeBattle) && !activeBattle.IsQueuedForDeletion())
+            return false;
+        var scene = GD.Load<PackedScene>(BattleScreen.ScenePath);
+        if (scene == null)
+            return false;
+        var screen = scene.Instantiate<BattleScreen>();
+        screen.Initialize(enemy, session, resume);
+        activeBattle = screen;
+        screen.TreeExited += () =>
+        {
+            if (activeBattle == screen)
+                activeBattle = null;
+        };
+        AddChild(screen);
+        return true;
     }
 
     // ─────────────────────────────────────────────────────────

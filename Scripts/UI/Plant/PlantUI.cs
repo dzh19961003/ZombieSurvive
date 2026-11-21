@@ -10,6 +10,8 @@ public partial class PlantUI : Control
 
     private Texture2D _tabActive;
     private Texture2D _tabInactive;
+    private static readonly Color ActiveTabColor = new(0.96f, 0.98f, 1f);
+    private static readonly Color InactiveTabColor = new(0.58f, 0.76f, 0.92f);
 
     public override void _Ready()
     {
@@ -51,8 +53,8 @@ public partial class PlantUI : Control
         if (upgradePanel != null) upgradePanel.Visible = true;
         if (plantPanel != null) plantPanel.Visible = false;
 
-        if (upgrade != null) upgrade.TextureNormal = _tabActive;
-        if (plant != null) plant.TextureNormal = _tabInactive;
+        SetTabStyle(upgrade, true);
+        SetTabStyle(plant, false);
     }
 
     // 种植界面
@@ -61,7 +63,13 @@ public partial class PlantUI : Control
         if (upgradePanel != null) upgradePanel.Visible = false;
         if (plantPanel != null) plantPanel.Visible = true;
 
-        if (upgrade != null) upgrade.TextureNormal = _tabInactive;
-        if (plant != null) plant.TextureNormal = _tabActive;
+        SetTabStyle(upgrade, false);
+        SetTabStyle(plant, true);
+    }
+
+    private void SetTabStyle(TextureButton tab, bool active)
+    {
+        tab.TextureNormal = active ? _tabActive : _tabInactive;
+        tab.GetNode<Label>("Label").AddThemeColorOverride("font_color", active ? ActiveTabColor : InactiveTabColor);
     }
 }

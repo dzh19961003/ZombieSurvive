@@ -60,6 +60,26 @@ public partial class GameManager : Node2D,ISaveable
     //怪物ID
     public int enemyID=0;
     public static GameManager Instance { get; private set; }
+    public BattleSession ExplorationBattle { get; private set; }
+
+    public void BeginExplorationBattleSession()
+    {
+        if (ExplorationBattle != null)
+            return;
+
+        var player = PlayerManager.Instance;
+        ExplorationBattle = new BattleSession(player);
+        player.FillExplorationArmor();
+    }
+
+    public void EndExplorationBattleSession()
+    {
+        if (ExplorationBattle == null)
+            return;
+
+        ExplorationBattle = null;
+        SaveManager.Instance?.Save();
+    }
 
     #region 存档相关
     // 保存：剧本ID、当前天数、各房间剩余探索次数。

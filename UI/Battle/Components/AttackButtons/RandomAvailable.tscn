@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" path="res://Assets/Images/UI/Battle/battle_main_png_theme.tres" id="theme"]
 
-[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_main_dice.png" id="symbol"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_attack_die_ivory.png" id="symbol"]
 
 [ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_main_swords.png" id="swords"]
 
@@ -20,10 +20,10 @@ focus_mode = 0
 
 [node name="Symbol" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 74.0
-offset_top = 30.0
-offset_right = 246.0
-offset_bottom = 202.0
+offset_left = 57.0
+offset_top = 13.0
+offset_right = 263.0
+offset_bottom = 219.0
 mouse_filter = 2
 texture = ExtResource("symbol")
 expand_mode = 1

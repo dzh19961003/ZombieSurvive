@@ -1,13 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://dalgr2tuomi4a"]
+[gd_scene format=3 uid="uid://dalgr2tuomi4a"]
 
 [ext_resource type="Script" uid="uid://ci75ddlesiovy" path="res://Scripts/UI/Train/TrainUI.cs" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://b45j5gy57g1a1" path="res://Assets/Images/UI/building/01-main-panel-with-dividers.png" id="2_panel"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/plant/panel.png" id="2_panel"]
 [ext_resource type="PackedScene" uid="uid://cqgxxnp0f3lfa" path="res://UI/Train/TUpgradeUI.tscn" id="3_upgradeui"]
 [ext_resource type="PackedScene" uid="uid://q5r8k0qci4am" path="res://UI/Train/TExerciseUI.tscn" id="4_exerciseui"]
 [ext_resource type="Texture2D" uid="uid://0ioky7hovi26" path="res://Assets/Images/UI/building/closeBtn.png" id="5_close"]
 [ext_resource type="Texture2D" uid="uid://bscvc14353e7q" path="res://Assets/Images/UI/building/train_title_icon.png" id="6_titleicon"]
 [ext_resource type="Texture2D" uid="uid://n1duxrt38s0a" path="res://Assets/Images/UI/building/tab_selected.png" id="7_tabsel"]
 [ext_resource type="Texture2D" uid="uid://dm8dejofcv83d" path="res://Assets/Images/UI/building/tab_unselected.png" id="8_tabunsel"]
+[ext_resource type="Theme" path="res://Assets/Images/UI/building/furniture_theme.tres" id="theme"]
+
+[sub_resource type="StyleBoxEmpty" id="close_style"]
 
 [node name="TrainUI" type="Control" node_paths=PackedStringArray("closeBtn", "upgrade", "exercise", "upgradePanel", "exercisePanel")]
 layout_mode = 3
@@ -16,12 +19,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture_filter = 1
+theme = ExtResource("theme")
 script = ExtResource("1_script")
-closeBtn = NodePath("closeBtn")
-upgrade = NodePath("Upgrade")
-exercise = NodePath("Exercise")
-upgradePanel = NodePath("TUpgradeUi")
-exercisePanel = NodePath("TExerciseUi")
+closeBtn = NodePath("Frame/closeBtn")
+upgrade = NodePath("Frame/Upgrade")
+exercise = NodePath("Frame/Exercise")
+upgradePanel = NodePath("Frame/TUpgradeUi")
+exercisePanel = NodePath("Frame/TExerciseUi")
 
 [node name="Mask" type="ColorRect" parent="."]
 layout_mode = 1
@@ -30,17 +35,53 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.78431374)
+color = Color(0.012, 0.035, 0.068, 0.65)
 
-[node name="BG" type="TextureRect" parent="."]
+[node name="Frame" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -960.0
+offset_right = 540.0
+offset_bottom = 960.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BG" type="NinePatchRect" parent="Frame"]
 layout_mode = 0
-offset_right = 1080.0
-offset_bottom = 1919.0
+offset_left = 46.0
+offset_top = 151.0
+offset_right = 1034.0
+offset_bottom = 1777.0
+mouse_filter = 2
 texture = ExtResource("2_panel")
-expand_mode = 1
-stretch_mode = 0
+patch_margin_left = 34
+patch_margin_top = 34
+patch_margin_right = 34
+patch_margin_bottom = 34
 
-[node name="TUpgradeUi" parent="." instance=ExtResource("3_upgradeui")]
+[node name="HeaderDivider" type="ColorRect" parent="Frame"]
+offset_left = 54.0
+offset_top = 260.0
+offset_right = 1026.0
+offset_bottom = 264.0
+mouse_filter = 2
+color = Color(0.09, 0.38, 0.55, 1)
+
+[node name="CloseDivider" type="ColorRect" parent="Frame"]
+offset_left = 917.0
+offset_top = 172.0
+offset_right = 921.0
+offset_bottom = 250.0
+mouse_filter = 2
+color = Color(0.08, 0.32, 0.47, 1)
+
+[node name="TUpgradeUi" parent="Frame" instance=ExtResource("3_upgradeui")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,7 +91,7 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TExerciseUi" parent="." instance=ExtResource("4_exerciseui")]
+[node name="TExerciseUi" parent="Frame" instance=ExtResource("4_exerciseui")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -61,78 +102,85 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TitleIcon" type="TextureRect" parent="."]
+[node name="TitleIcon" type="TextureRect" parent="Frame"]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 180.0
-offset_right = 152.0
+offset_left = 82.0
+offset_top = 172.0
+offset_right = 162.0
 offset_bottom = 252.0
+mouse_filter = 2
 texture = ExtResource("6_titleicon")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="TrainName" type="Label" parent="."]
+[node name="TrainName" type="Label" parent="Frame"]
 layout_mode = 0
-offset_left = 176.0
-offset_top = 176.0
-offset_right = 576.0
-offset_bottom = 260.0
+offset_left = 190.0
+offset_top = 165.0
+offset_right = 580.0
+offset_bottom = 253.0
+mouse_filter = 2
 theme_override_colors/font_color = Color(0.9411765, 0.972549, 1, 1)
-theme_override_font_sizes/font_size = 58
+theme_override_font_sizes/font_size = 56
 text = "自律区"
 vertical_alignment = 1
 
-[node name="closeBtn" type="Button" parent="."]
+[node name="closeBtn" type="Button" parent="Frame"]
 layout_mode = 0
-offset_left = 936.0
-offset_top = 182.0
-offset_right = 998.0
-offset_bottom = 244.0
+offset_left = 933.0
+offset_top = 169.0
+offset_right = 1014.0
+offset_bottom = 252.0
+theme_override_styles/normal = SubResource("close_style")
+theme_override_styles/hover = SubResource("close_style")
+theme_override_styles/pressed = SubResource("close_style")
 icon = ExtResource("5_close")
 flat = true
 expand_icon = true
 
-[node name="Upgrade" type="TextureButton" parent="."]
+[node name="Upgrade" type="TextureButton" parent="Frame"]
 layout_mode = 0
-offset_left = 63.0
-offset_top = 268.0
-offset_right = 539.0
-offset_bottom = 346.0
+offset_left = 64.0
+offset_top = 267.0
+offset_right = 538.0
+offset_bottom = 360.0
 texture_normal = ExtResource("7_tabsel")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="Upgrade"]
+[node name="Label" type="Label" parent="Frame/Upgrade"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 46
 text = "升级"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Exercise" type="TextureButton" parent="."]
+[node name="Exercise" type="TextureButton" parent="Frame"]
 layout_mode = 0
-offset_left = 549.0
-offset_top = 268.0
-offset_right = 1025.0
-offset_bottom = 346.0
+offset_left = 542.0
+offset_top = 267.0
+offset_right = 1016.0
+offset_bottom = 360.0
 texture_normal = ExtResource("8_tabunsel")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="Exercise"]
+[node name="Label" type="Label" parent="Frame/Exercise"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.58, 0.76, 0.92, 1)
 theme_override_font_sizes/font_size = 46
 text = "锻炼"
 horizontal_alignment = 1

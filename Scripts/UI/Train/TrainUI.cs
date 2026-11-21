@@ -10,6 +10,8 @@ public partial class TrainUI : Control
     [Export] public Control exercisePanel;
     private Texture2D _tabActive;
     private Texture2D _tabInactive;
+    private static readonly Color ActiveTabColor = new(0.96f, 0.98f, 1f);
+    private static readonly Color InactiveTabColor = new(0.58f, 0.76f, 0.92f);
 
     public override void _Ready()
     {
@@ -52,17 +54,23 @@ public partial class TrainUI : Control
         if (upgradePanel != null) upgradePanel.Visible = true;
         if (exercisePanel != null) exercisePanel.Visible = false;
 
-        if (upgrade != null) upgrade.TextureNormal = _tabActive;
-        if (exercise != null) exercise.TextureNormal = _tabInactive;
+        SetTabStyle(upgrade, true);
+        SetTabStyle(exercise, false);
     }
 
-    //制作界面
+    // 锻炼界面
     private void SwitchToExercise()
     {
         if (upgradePanel != null) upgradePanel.Visible = false;
         if (exercisePanel != null) exercisePanel.Visible = true;
 
-        if (upgrade != null) upgrade.TextureNormal = _tabInactive;
-        if (exercise != null) exercise.TextureNormal = _tabActive;
+        SetTabStyle(upgrade, false);
+        SetTabStyle(exercise, true);
+    }
+
+    private void SetTabStyle(TextureButton tab, bool active)
+    {
+        tab.TextureNormal = active ? _tabActive : _tabInactive;
+        tab.GetNode<Label>("Label").AddThemeColorOverride("font_color", active ? ActiveTabColor : InactiveTabColor);
     }
 }

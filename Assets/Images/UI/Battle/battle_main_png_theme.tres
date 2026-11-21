@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://tmce1fwdv22d" path="res://Assets/Images/UI/Battle/battle_main_part_frame_missing.png" id="3_5qktd"]
 [ext_resource type="Texture2D" uid="uid://osbw0dphvr8c" path="res://Assets/Images/UI/Battle/battle_main_part_frame_selectable.png" id="4_ghikg"]
 [ext_resource type="Texture2D" uid="uid://27fv5xm4lnoi" path="res://Assets/Images/UI/Battle/battle_main_part_frame_unavailable.png" id="5_dtxh6"]
-[ext_resource type="Texture2D" uid="uid://7c2eufmgwbiq" path="res://Assets/Images/UI/Battle/battle_main_attack_available.png" id="attack_available"]
+[ext_resource type="Texture2D" uid="uid://d2nw7why5y234" path="res://Assets/Images/UI/Battle/battle_attack_plate_gold.png" id="attack_available"]
 [ext_resource type="Texture2D" uid="uid://5qjadk11xsya" path="res://Assets/Images/UI/Battle/battle_main_attack_unavailable.png" id="attack_unavailable"]
 [ext_resource type="FontVariation" uid="uid://c1sbqb3crvk3a" path="res://Assets/Fonts/font_bold.tres" id="font"]
 [ext_resource type="Texture2D" uid="uid://ct37yfyqv2mno" path="res://Assets/Images/UI/Battle/battle_main_small_button.png" id="small_button"]
@@ -23,26 +23,14 @@ texture_margin_bottom = 24.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ad381"]
 texture = ExtResource("attack_available")
-texture_margin_left = 24.0
-texture_margin_top = 24.0
-texture_margin_right = 24.0
-texture_margin_bottom = 24.0
 modulate_color = Color(1.15, 1.12, 1.06, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r7mft"]
 texture = ExtResource("attack_available")
-texture_margin_left = 24.0
-texture_margin_top = 24.0
-texture_margin_right = 24.0
-texture_margin_bottom = 24.0
 modulate_color = Color(0.74, 0.81, 0.87, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rro34"]
 texture = ExtResource("attack_available")
-texture_margin_left = 24.0
-texture_margin_top = 24.0
-texture_margin_right = 24.0
-texture_margin_bottom = 24.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_covuw"]
 bg_color = Color(0.88, 0.11, 0.055, 1)

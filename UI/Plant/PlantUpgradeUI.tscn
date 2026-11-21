@@ -1,382 +1,401 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene format=3]
 
-[ext_resource type="Script" path="res://Scripts/UI/Plant/PlantUpgradeUI.cs" id="1_script"]
-[ext_resource type="Texture2D" path="res://Assets/Images/Base/plant_1.png" id="2_plant"]
-[ext_resource type="Texture2D" path="res://Assets/Images/UI/arrow_1.png" id="3_arrow"]
-[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/plant_1.png" id="4_crop"]
-[ext_resource type="Texture2D" path="res://Assets/Images/Items/wood_icon.png" id="5_wood"]
-[ext_resource type="Texture2D" path="res://Assets/Images/Items/tools_icon.png" id="6_tools"]
-[ext_resource type="Texture2D" path="res://Assets/Images/UI/stamina.png" id="7_stamina"]
-[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/06-primary-button.png" id="8_button"]
+[ext_resource type="Script" path="res://Scripts/UI/Plant/PlantUpgradeUI.cs" id="script"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/plant/garden_level_2.png" id="garden"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/plant/arrow.png" id="arrow"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/plant/wood.png" id="wood"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/plant/parts.png" id="parts"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/stamina.png" id="stamina"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/building/06-primary-button.png" id="action"]
+[ext_resource type="Theme" path="res://Assets/Images/UI/building/furniture_theme.tres" id="theme"]
+[ext_resource type="ShaderMaterial" path="res://Assets/Images/UI/building/furniture_action_disabled.tres" id="disabled_button"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iconbox"]
-bg_color = Color(0.07450981, 0.1764706, 0.2784314, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxLine" id="req_divider"]
+color = Color(0.095, 0.30, 0.46, 1)
+thickness = 4
+vertical = true
 
 [node name="PlantUpgradeUi" type="Control" node_paths=PackedStringArray("upgrade")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1080.0
 offset_bottom = 1920.0
-script = ExtResource("1_script")
+mouse_filter = 2
+texture_filter = 1
+theme = ExtResource("theme")
+script = ExtResource("script")
 upgrade = NodePath("UpgradeBtn")
+_disabledActionMaterial = ExtResource("disabled_button")
 
 [node name="PlantTexture" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 83.0
-offset_top = 430.0
-offset_right = 543.0
-offset_bottom = 780.0
-texture = ExtResource("2_plant")
+offset_left = 75.0
+offset_top = 477.0
+offset_right = 598.0
+offset_bottom = 1012.0
+mouse_filter = 2
+texture = ExtResource("garden")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="Info" type="Control" parent="."]
 layout_mode = 0
-offset_left = 584.0
-offset_top = 430.0
-offset_right = 994.0
-offset_bottom = 920.0
+offset_left = 631.0
+offset_top = 466.0
+offset_right = 997.0
+offset_bottom = 1052.0
+mouse_filter = 2
 
 [node name="LvTitle" type="Label" parent="Info"]
 layout_mode = 0
-offset_right = 410.0
-offset_bottom = 48.0
-theme_override_colors/font_color = Color(0.8509804, 0.9254902, 0.98039216, 1)
-theme_override_font_sizes/font_size = 34
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 367.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 40
 text = "种植区等级"
 vertical_alignment = 1
 
 [node name="LevelRow" type="HBoxContainer" parent="Info"]
 layout_mode = 0
-offset_top = 50.0
-offset_right = 410.0
-offset_bottom = 130.0
-theme_override_constants/separation = 18
+offset_left = 0.0
+offset_top = 54.0
+offset_right = 367.0
+offset_bottom = 149.0
+mouse_filter = 2
+theme_override_constants/separation = 16
 
 [node name="LvCur" type="Label" parent="Info/LevelRow"]
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 58
-text = "Lv.1"
+theme_override_colors/font_color = Color(1, 0.97, 0.89, 1)
+theme_override_font_sizes/font_size = 70
+text = "Lv.2"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LevelArrow" type="TextureRect" parent="Info/LevelRow"]
-custom_minimum_size = Vector2(50, 44)
+custom_minimum_size = Vector2(53, 46)
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("3_arrow")
+mouse_filter = 2
+texture = ExtResource("arrow")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="LvNext" type="Label" parent="Info/LevelRow"]
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.9607843, 0.627451, 0.23529412, 1)
-theme_override_font_sizes/font_size = 58
-text = "Lv.2"
+theme_override_colors/font_color = Color(1, 0.68, 0.34, 1)
+theme_override_font_sizes/font_size = 70
+text = "Lv.3"
+horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LevelRule" type="ColorRect" parent="Info"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 166.0
+offset_right = 359.0
+offset_bottom = 170.0
+mouse_filter = 2
+color = Color(0.095, 0.30, 0.46, 1)
 
 [node name="CountTitle" type="Label" parent="Info"]
 layout_mode = 0
-offset_top = 152.0
-offset_right = 410.0
-offset_bottom = 196.0
-theme_override_colors/font_color = Color(0.8509804, 0.9254902, 0.98039216, 1)
-theme_override_font_sizes/font_size = 34
+offset_left = 0.0
+offset_top = 192.0
+offset_right = 367.0
+offset_bottom = 245.0
+theme_override_font_sizes/font_size = 40
 text = "同时种植数量"
 vertical_alignment = 1
 
 [node name="CountRow" type="HBoxContainer" parent="Info"]
 layout_mode = 0
-offset_top = 202.0
-offset_right = 410.0
-offset_bottom = 282.0
-theme_override_constants/separation = 18
+offset_left = 0.0
+offset_top = 246.0
+offset_right = 367.0
+offset_bottom = 341.0
+mouse_filter = 2
+theme_override_constants/separation = 16
 
 [node name="CountCur" type="Label" parent="Info/CountRow"]
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 58
-text = "0"
+theme_override_colors/font_color = Color(1, 0.97, 0.89, 1)
+theme_override_font_sizes/font_size = 70
+text = "1"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CountArrow" type="TextureRect" parent="Info/CountRow"]
-custom_minimum_size = Vector2(50, 44)
+custom_minimum_size = Vector2(53, 46)
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("3_arrow")
+mouse_filter = 2
+texture = ExtResource("arrow")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="CountNext" type="Label" parent="Info/CountRow"]
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.9607843, 0.627451, 0.23529412, 1)
-theme_override_font_sizes/font_size = 58
-text = "1"
+theme_override_colors/font_color = Color(1, 0.68, 0.34, 1)
+theme_override_font_sizes/font_size = 70
+text = "2"
+horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CountRule" type="ColorRect" parent="Info"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 367.0
+offset_right = 359.0
+offset_bottom = 371.0
+mouse_filter = 2
+color = Color(0.095, 0.30, 0.46, 1)
 
 [node name="SpeedTitle" type="Label" parent="Info"]
 layout_mode = 0
-offset_top = 304.0
-offset_right = 410.0
-offset_bottom = 348.0
-theme_override_colors/font_color = Color(0.8509804, 0.9254902, 0.98039216, 1)
-theme_override_font_sizes/font_size = 34
+offset_left = 0.0
+offset_top = 386.0
+offset_right = 367.0
+offset_bottom = 439.0
+theme_override_font_sizes/font_size = 40
 text = "生长速度"
 vertical_alignment = 1
 
 [node name="SpeedRow" type="HBoxContainer" parent="Info"]
 layout_mode = 0
-offset_top = 354.0
-offset_right = 410.0
-offset_bottom = 434.0
-theme_override_constants/separation = 18
+offset_left = 0.0
+offset_top = 440.0
+offset_right = 367.0
+offset_bottom = 535.0
+mouse_filter = 2
+theme_override_constants/separation = 16
 
 [node name="SpeedCur" type="Label" parent="Info/SpeedRow"]
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 58
-text = "0"
+theme_override_colors/font_color = Color(1, 0.97, 0.89, 1)
+theme_override_font_sizes/font_size = 70
+text = "14"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SpeedArrow" type="TextureRect" parent="Info/SpeedRow"]
-custom_minimum_size = Vector2(50, 44)
+custom_minimum_size = Vector2(53, 46)
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("3_arrow")
+mouse_filter = 2
+texture = ExtResource("arrow")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="SpeedNext" type="Label" parent="Info/SpeedRow"]
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.9607843, 0.627451, 0.23529412, 1)
-theme_override_font_sizes/font_size = 58
-text = "14"
+theme_override_colors/font_color = Color(1, 0.68, 0.34, 1)
+theme_override_font_sizes/font_size = 70
+text = "16"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SpeedUnit" type="Label" parent="Info"]
 layout_mode = 0
-offset_top = 440.0
-offset_right = 410.0
-offset_bottom = 482.0
-theme_override_colors/font_color = Color(0.65882355, 0.83137256, 0.91764706, 1)
-theme_override_font_sizes/font_size = 26
+offset_left = 12.0
+offset_top = 537.0
+offset_right = 347.0
+offset_bottom = 589.0
+theme_override_colors/font_color = Color(0.66, 0.81, 0.96, 1)
+theme_override_font_sizes/font_size = 33
 text = "进度 / 天"
 vertical_alignment = 1
 
 [node name="UpgradeHint" type="Label" parent="."]
 layout_mode = 0
-offset_left = 83.0
-offset_top = 800.0
-offset_right = 543.0
-offset_bottom = 862.0
-theme_override_colors/font_color = Color(0.65882355, 0.83137256, 0.91764706, 1)
-theme_override_font_sizes/font_size = 28
+offset_left = 97.0
+offset_top = 1087.0
+offset_right = 987.0
+offset_bottom = 1150.0
+theme_override_colors/font_color = Color(0.66, 0.81, 0.96, 1)
+theme_override_font_sizes/font_size = 36
 text = "升级可增加种植位并加快生长。"
-autowrap_mode = 3
 vertical_alignment = 1
 
-[node name="FeatureTitle" type="Label" parent="."]
+[node name="RequirementCard" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 100.0
-offset_top = 930.0
-offset_right = 300.0
-offset_bottom = 976.0
-theme_override_colors/font_color = Color(0.65882355, 0.83137256, 0.91764706, 1)
-theme_override_font_sizes/font_size = 30
-text = "功能解锁"
-vertical_alignment = 1
-
-[node name="FeatureRow" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 85.0
-offset_top = 1000.0
-offset_right = 996.0
-offset_bottom = 1172.0
-theme_override_constants/separation = 0
-
-[node name="Feature1" type="HBoxContainer" parent="FeatureRow"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 22
-alignment = 1
-
-[node name="IconFrame" type="Panel" parent="FeatureRow/Feature1"]
-custom_minimum_size = Vector2(170, 170)
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
-
-[node name="IconWrap" type="CenterContainer" parent="FeatureRow/Feature1/IconFrame"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="F1Icon" type="TextureRect" parent="FeatureRow/Feature1/IconFrame/IconWrap"]
-custom_minimum_size = Vector2(130, 130)
-layout_mode = 2
-texture = ExtResource("4_crop")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="F1Text" type="VBoxContainer" parent="FeatureRow/Feature1"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 4
-
-[node name="F1Name" type="Label" parent="FeatureRow/Feature1/F1Text"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 34
-text = "种植功能"
-
-[node name="F1Status" type="Label" parent="FeatureRow/Feature1/F1Text"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.4509804, 0.7882353, 0.9490196, 1)
-theme_override_font_sizes/font_size = 28
-text = "Lv.2 解锁"
+offset_left = 73.0
+offset_top = 1177.0
+offset_right = 1007.0
+offset_bottom = 1589.0
+mouse_filter = 2
 
 [node name="ReqTitle" type="Label" parent="."]
 layout_mode = 0
-offset_left = 100.0
-offset_top = 1218.0
-offset_right = 300.0
-offset_bottom = 1260.0
-theme_override_colors/font_color = Color(0.65882355, 0.83137256, 0.91764706, 1)
-theme_override_font_sizes/font_size = 30
+offset_left = 99.0
+offset_top = 1190.0
+offset_right = 981.0
+offset_bottom = 1257.0
+theme_override_colors/font_color = Color(0.68, 0.83, 0.96, 1)
+theme_override_font_sizes/font_size = 42
 text = "升级需求"
 vertical_alignment = 1
 
+[node name="Divider" type="ColorRect" parent="ReqTitle"]
+layout_mode = 0
+offset_left = 194.0
+offset_top = 34.0
+offset_right = 882.0
+offset_bottom = 38.0
+mouse_filter = 2
+color = Color(0.095, 0.30, 0.46, 1)
+
 [node name="ReqRow" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 85.0
-offset_top = 1280.0
-offset_right = 996.0
-offset_bottom = 1560.0
-theme_override_constants/separation = 0
+offset_left = 112.0
+offset_top = 1261.0
+offset_right = 968.0
+offset_bottom = 1566.0
+mouse_filter = 2
+theme_override_constants/separation = 4
 
 [node name="Req1" type="VBoxContainer" parent="ReqRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 6
+mouse_filter = 2
+theme_override_constants/separation = 7
 alignment = 1
 
 [node name="IconWrap" type="CenterContainer" parent="ReqRow/Req1"]
-custom_minimum_size = Vector2(0, 170)
+custom_minimum_size = Vector2(0, 178)
 layout_mode = 2
-size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Icon" type="TextureRect" parent="ReqRow/Req1/IconWrap"]
-custom_minimum_size = Vector2(160, 160)
+custom_minimum_size = Vector2(185, 170)
 layout_mode = 2
-texture = ExtResource("5_wood")
+mouse_filter = 2
+texture = ExtResource("wood")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="Name" type="Label" parent="ReqRow/Req1"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.8509804, 0.9254902, 0.98039216, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 34
 text = "木板"
 horizontal_alignment = 1
 
 [node name="Count" type="Label" parent="ReqRow/Req1"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 30
-text = "0/0"
+theme_override_colors/font_color = Color(1, 0.97, 0.89, 1)
+theme_override_font_sizes/font_size = 47
+text = "5/5"
 horizontal_alignment = 1
+
+[node name="ReqDivider1" type="VSeparator" parent="ReqRow"]
+custom_minimum_size = Vector2(4, 185)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("req_divider")
 
 [node name="Req2" type="VBoxContainer" parent="ReqRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 6
+mouse_filter = 2
+theme_override_constants/separation = 7
 alignment = 1
 
 [node name="IconWrap" type="CenterContainer" parent="ReqRow/Req2"]
-custom_minimum_size = Vector2(0, 170)
+custom_minimum_size = Vector2(0, 178)
 layout_mode = 2
-size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Icon" type="TextureRect" parent="ReqRow/Req2/IconWrap"]
-custom_minimum_size = Vector2(160, 160)
+custom_minimum_size = Vector2(185, 170)
 layout_mode = 2
-texture = ExtResource("6_tools")
+mouse_filter = 2
+texture = ExtResource("parts")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="Name" type="Label" parent="ReqRow/Req2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.8509804, 0.9254902, 0.98039216, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 34
 text = "零件"
 horizontal_alignment = 1
 
 [node name="Count" type="Label" parent="ReqRow/Req2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 30
-text = "0/0"
+theme_override_colors/font_color = Color(1, 0.97, 0.89, 1)
+theme_override_font_sizes/font_size = 47
+text = "1/1"
 horizontal_alignment = 1
+
+[node name="ReqDivider2" type="VSeparator" parent="ReqRow"]
+custom_minimum_size = Vector2(4, 185)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("req_divider")
 
 [node name="Req3" type="VBoxContainer" parent="ReqRow"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 6
+mouse_filter = 2
+theme_override_constants/separation = 7
 alignment = 1
 
 [node name="IconWrap" type="CenterContainer" parent="ReqRow/Req3"]
-custom_minimum_size = Vector2(0, 170)
+custom_minimum_size = Vector2(0, 178)
 layout_mode = 2
-size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Icon" type="TextureRect" parent="ReqRow/Req3/IconWrap"]
-custom_minimum_size = Vector2(160, 160)
+custom_minimum_size = Vector2(185, 170)
 layout_mode = 2
-texture = ExtResource("7_stamina")
+mouse_filter = 2
+texture = ExtResource("stamina")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="Name" type="Label" parent="ReqRow/Req3"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.8509804, 0.9254902, 0.98039216, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 34
 text = "基地体力"
 horizontal_alignment = 1
 
 [node name="Count" type="Label" parent="ReqRow/Req3"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 30
-text = "0/0"
+theme_override_colors/font_color = Color(1, 0.97, 0.89, 1)
+theme_override_font_sizes/font_size = 47
+text = "5/4"
 horizontal_alignment = 1
 
 [node name="MaxTip" type="Label" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 85.0
-offset_top = 1280.0
-offset_right = 996.0
-offset_bottom = 1560.0
-theme_override_colors/font_color = Color(0.4862745, 0.61960787, 0.72156864, 1)
-theme_override_font_sizes/font_size = 36
+offset_left = 92.0
+offset_top = 1230.0
+offset_right = 988.0
+offset_bottom = 1525.0
+theme_override_colors/font_color = Color(0.56, 0.66, 0.78, 1)
+theme_override_font_sizes/font_size = 38
 text = "已达到最高等级，无法升级"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="UpgradeBtn" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 112.0
-offset_top = 1622.0
-offset_right = 965.0
-offset_bottom = 1727.0
-texture_normal = ExtResource("8_button")
+offset_left = 105.0
+offset_top = 1605.0
+offset_right = 975.0
+offset_bottom = 1745.0
+texture_normal = ExtResource("action")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -387,8 +406,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 46
+mouse_filter = 2
+offset_bottom = -8.0
+theme_override_font_sizes/font_size = 56
 text = "升级"
 horizontal_alignment = 1
 vertical_alignment = 1

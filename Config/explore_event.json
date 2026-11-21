@@ -1709,6 +1709,7 @@
   {
 	"ID(int)": 19003,
 	"eventType(int)": 202,
+	"enemyPool(int)": null,
 	"headType(int)": 2,
 	"des(string)": "经过一番拉扯战斗，你战胜了丧尸",
 	"image(string)": "material_image",

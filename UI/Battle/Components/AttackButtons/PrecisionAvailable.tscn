@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" path="res://Assets/Images/UI/Battle/battle_main_png_theme.tres" id="theme"]
 
-[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_main_reticle.png" id="symbol"]
+[ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_attack_reticle_fine.png" id="symbol"]
 
 [ext_resource type="Texture2D" path="res://Assets/Images/UI/Battle/battle_main_swords.png" id="swords"]
 
@@ -20,10 +20,10 @@ focus_mode = 0
 
 [node name="Symbol" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 74.0
-offset_top = 30.0
-offset_right = 246.0
-offset_bottom = 202.0
+offset_left = 56.0
+offset_top = 12.0
+offset_right = 264.0
+offset_bottom = 220.0
 mouse_filter = 2
 texture = ExtResource("symbol")
 expand_mode = 1
@@ -40,6 +40,20 @@ mouse_filter = 2
 theme_override_colors/font_color = Color(0.98, 0.98, 0.96, 1)
 theme_override_font_sizes/font_size = 36
 text = "精准攻击"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CancelHint" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = 255.0
+offset_right = 308.0
+offset_bottom = 301.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.62, 0.62, 0.62, 1)
+theme_override_font_sizes/font_size = 25
+text = "再次点击取消"
 horizontal_alignment = 1
 vertical_alignment = 1
 

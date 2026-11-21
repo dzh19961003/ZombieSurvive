@@ -9,7 +9,10 @@ public partial class TExerciseUI : Control
 	private const int TreadmillUnlockLevel = 2;
 	private const int BookshelfUnlockLevel = 3;
 
-	private const int MaxTextureLevel = 5;
+	[Export] private ShaderMaterial _disabledActionMaterial;
+
+	private static readonly Color LockedIconColor = new(0.70f, 0.76f, 0.88f);
+	private static readonly Color InsufficientColor = new(1f, 0.47f, 0.42f);
 
 	private class Furniture
 	{
@@ -30,9 +33,11 @@ public partial class TExerciseUI : Control
 	private class RowUi
 	{
 		public Label Name;
-		public Label ExpText;
+		public RichTextLabel ExpText;
 		public Label LockTip;
-		public Label Times;
+		public TextureRect Icon;
+		public TextureRect LockIcon;
+		public RichTextLabel Times;
 		public TextureRect StaminaIcon;
 		public Label StaminaNum;
 		public Button ActionBtn;
@@ -43,19 +48,11 @@ public partial class TExerciseUI : Control
 
 	private Label _levelValue;
 	private Label _expValue;
-	private TextureRect _overviewIcon;
-	private Label _todayLabel;
-	private Label _baseExpLabel;
-	private Label _staminaLabel;
 
 	public override void _Ready()
 	{
 		_levelValue = GetNode<Label>("Summary/Pad/Row/LeftPart/LevelValue");
 		_expValue = GetNode<Label>("Summary/Pad/Row/RightPart/ExpValue");
-		_overviewIcon = GetNode<TextureRect>("Overview/IconFrame/IconWrap/Icon");
-		_todayLabel = GetNode<Label>("Overview/Info/TodayLabel");
-		_baseExpLabel = GetNode<Label>("Overview/Info/BaseExpLabel");
-		_staminaLabel = GetNode<Label>("Overview/Info/StaminaLabel");
 
 		for (int i = 0; i < _rows.Length; i++)
 		{
@@ -64,9 +61,11 @@ public partial class TExerciseUI : Control
 			var ui = new RowUi
 			{
 				Name = GetNode<Label>($"{row}/Name"),
-				ExpText = GetNode<Label>($"{row}/ExpText"),
+				ExpText = GetNode<RichTextLabel>($"{row}/ExpText"),
 				LockTip = GetNode<Label>($"{row}/LockTip"),
-				Times = GetNode<Label>($"{row}/Times"),
+				Icon = GetNode<TextureRect>($"{row}/Icon"),
+				LockIcon = GetNode<TextureRect>($"{row}/LockIcon"),
+				Times = GetNode<RichTextLabel>($"{row}/Times"),
 				StaminaIcon = GetNode<TextureRect>($"{row}/StaminaIcon"),
 				StaminaNum = GetNode<Label>($"{row}/StaminaNum"),
 				ActionBtn = GetNode<Button>($"{row}/ActionBtn"),
@@ -120,7 +119,6 @@ public partial class TExerciseUI : Control
 		int finalExp = CalcFinalExp();
 
 		RefreshSummary(trainLevel);
-		RefreshOverview(trainLevel, staminaCost);
 		RefreshRows(trainLevel, staminaCost, finalExp);
 	}
 
@@ -134,29 +132,6 @@ public partial class TExerciseUI : Control
 		_expValue.Text = $"+{GetPlayerExpBonusPercent() + equipPercent}%";
 	}
 
-	// 今日锻炼总览：次数、基础经验、体力消耗
-	private void RefreshOverview(int trainLevel, int staminaCost)
-	{
-		int level = Mathf.Clamp(trainLevel, 1, MaxTextureLevel);
-		var tex = GD.Load<Texture2D>($"res://Assets/Images/Base/train_{level}.png");
-		if (tex != null && _overviewIcon != null) _overviewIcon.Texture = tex;
-
-		int unlockedCount = 0;
-		int usedTotal = 0;
-		for (int i = 0; i < _furnitures.Length; i++)
-		{
-			if (trainLevel >= _furnitures[i].UnlockLevel)
-			{
-				unlockedCount++;
-				usedTotal += PlayerManager.Instance.GetTrainTimes(i);
-			}
-		}
-
-		_todayLabel.Text = $"今日锻炼 {usedTotal}/{Consts.maxTrainTimes * unlockedCount} 次";
-		_baseExpLabel.Text = $"单次基础经验 {Consts.trainExp}";
-		_staminaLabel.Text = $"单次体力消耗 ×{staminaCost}";
-	}
-
 	private void RefreshRows(int trainLevel, int staminaCost, int finalExp)
 	{
 		for (int i = 0; i < _furnitures.Length; i++)
@@ -167,7 +142,8 @@ public partial class TExerciseUI : Control
 
 			row.Name.Text = f.DisplayName;
 			row.ActionBtn.Text = f.ActionText;
-			row.Name.AddThemeColorOverride("font_color", Colors.White);
+			row.Icon.SelfModulate = unlocked ? Colors.White : LockedIconColor;
+			row.LockIcon.Visible = !unlocked;
 
 			// 未解锁：只展示名称与解锁条件
 			row.ExpText.Visible = unlocked;
@@ -184,20 +160,21 @@ public partial class TExerciseUI : Control
 			}
 
 			// 经验文案：展示实际可获得经验
-			row.ExpText.Text = $"{f.ExpLabel}+{finalExp}";
+			row.ExpText.Text = $"{f.ExpLabel} [color=#ffb35c]+{finalExp}[/color]";
 
 			// 今日次数
 			int used = PlayerManager.Instance.GetTrainTimes(i);
-			row.Times.Text = $"今日 {used}/{Consts.maxTrainTimes}";
+			row.Times.Text = $"今日 [color=#ffb35c]{used}/{Consts.maxTrainTimes}[/color]";
 
 			// 体力消耗
-			row.StaminaNum.Text = $"×{staminaCost}";
+			row.StaminaNum.Text = $"体力 ×{staminaCost}";
 			bool noStamina = !PlayerManager.Instance.CanConsumeTrainStamina;
-			row.StaminaNum.AddThemeColorOverride("font_color", noStamina ? Colors.Red : Colors.White);
+			row.StaminaNum.AddThemeColorOverride("font_color", noStamina ? InsufficientColor : Colors.White);
 
 			// 次数用尽或体力不足
 			bool timesUp = used >= Consts.maxTrainTimes;
 			row.ActionBtn.Disabled = timesUp || noStamina;
+			row.ActionBtn.Material = row.ActionBtn.Disabled ? _disabledActionMaterial : null;
 			row.StatusTip.Text = timesUp ? "今日次数已用尽" : (noStamina ? "体力不足" : "");
 			row.StatusTip.Visible = timesUp || noStamina;
 		}

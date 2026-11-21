@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class WorkstationUI : Control
 {
@@ -10,6 +9,8 @@ public partial class WorkstationUI : Control
     [Export] public Control makePanel;
     private Texture2D _tabActive;
     private Texture2D _tabInactive;
+    private static readonly Color ActiveTabColor = new(0.96f, 0.98f, 1f);
+    private static readonly Color InactiveTabColor = new(0.58f, 0.76f, 0.92f);
 
     public override void _Ready()
     {
@@ -52,8 +53,8 @@ public partial class WorkstationUI : Control
         if (upgradePanel != null) upgradePanel.Visible = true;
         if (makePanel != null) makePanel.Visible = false;
 
-        if (upgrade != null) upgrade.TextureNormal = _tabActive;
-        if (make != null) make.TextureNormal = _tabInactive;
+        SetTabStyle(upgrade, true);
+        SetTabStyle(make, false);
     }
 
     //制作界面
@@ -62,7 +63,24 @@ public partial class WorkstationUI : Control
         if (upgradePanel != null) upgradePanel.Visible = false;
         if (makePanel != null) makePanel.Visible = true;
 
-        if (upgrade != null) upgrade.TextureNormal = _tabInactive;
-        if (make != null) make.TextureNormal = _tabActive;
+        SetTabStyle(upgrade, false);
+        SetTabStyle(make, true);
+    }
+
+    private void SetTabStyle(TextureButton tab, bool active)
+    {
+        tab.TextureNormal = active ? _tabActive : _tabInactive;
+        tab.GetNode<Label>("Label").AddThemeColorOverride("font_color", active ? ActiveTabColor : InactiveTabColor);
+    }
+
+    internal static Texture2D GetMaterialIcon(int itemID)
+    {
+        return itemID switch
+        {
+            7 => GD.Load<Texture2D>("res://Assets/Images/UI/building/plant/wood.png"),
+            9 => GD.Load<Texture2D>("res://Assets/Images/UI/building/plant/parts.png"),
+            10015 or 10016 => GD.Load<Texture2D>("res://Assets/Images/UI/stamina.png"),
+            _ => UIManager.Instance?.GetItemIcon(itemID)
+        };
     }
 }

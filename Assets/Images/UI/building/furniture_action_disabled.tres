@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[sub_resource type="Shader" id="disabled_action"]
+code = "shader_type canvas_item;
+
+void fragment() {
+	// Recolor the orange skin and keep the blue-white button text legible.
+	vec3 original = COLOR.rgb;
+	float orange = smoothstep(0.07, 0.15, original.r - original.b)
+		* smoothstep(0.02, 0.09, original.r - original.g);
+	float light = clamp((dot(original, vec3(0.299, 0.587, 0.114)) - 0.15) / 0.68, 0.0, 1.0);
+	vec3 slate = mix(vec3(0.14, 0.20, 0.28), vec3(0.63, 0.71, 0.84), light);
+	COLOR.rgb = mix(original, slate, orange);
+}"
+
+[resource]
+shader = SubResource("disabled_action")

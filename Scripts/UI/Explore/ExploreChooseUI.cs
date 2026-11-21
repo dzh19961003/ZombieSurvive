@@ -74,7 +74,7 @@ public partial class ExploreChooseUI : Control
             BackToStrategy();
             return;
         }
-        ShowEvent(eventID);
+        EnterEvent(eventID);
     }
 
     #region 界面刷新
@@ -464,16 +464,30 @@ public partial class ExploreChooseUI : Control
             return;
         }
 
-        // nextEvent 指向 eventType=202 时触发战斗（战斗逻辑暂空置）
-        if (ConfigManager.Instance.exploreEventDic.TryGetValue(next, out ExploreEvent nextEv)
-            && nextEv.EventType == 202)
+        EnterEvent(next);
+    }
+
+    private void EnterEvent(int eventId)
+    {
+        if (ConfigManager.Instance.exploreEventDic.TryGetValue(eventId, out var nextEvent) && nextEvent.EventType == 202)
         {
-            GD.Print($"[ExploreChooseUI] 触发战斗，怪物池 {currentRoom.EnemyPool}（战斗逻辑暂空置）");
-            FinishEvent(false);
-            return;
+            int pool = nextEvent.EnemyPool > 0 ? nextEvent.EnemyPool : currentRoom.EnemyPool;
+            if (UIManager.Instance.OpenBattleFromPool(pool, () => ResumeEvent(eventId)))
+            {
+                Hide();
+                return;
+            }
         }
 
-        ShowEvent(next);
+        ResumeEvent(eventId);
+    }
+
+    private void ResumeEvent(int eventId)
+    {
+        if (IsQueuedForDeletion())
+            return;
+        Show();
+        ShowEvent(eventId);
     }
 
     private void FinishEvent(bool keySubTaskDone)
